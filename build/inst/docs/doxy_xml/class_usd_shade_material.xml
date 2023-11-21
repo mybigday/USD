@@ -1,0 +1,1244 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_shade_material" kind="class" language="C++" prot="public">
+    <compoundname>UsdShadeMaterial</compoundname>
+    <basecompoundref refid="class_usd_shade_node_graph" prot="public" virt="non-virtual">UsdShadeNodeGraph</basecompoundref>
+    <includes refid="usd_2usd_shade_2material_8h" local="no">material.h</includes>
+      <sectiondef kind="user-defined">
+      <header>Helpful Types</header>
+      <memberdef kind="typedef" id="class_usd_shade_material_1a6e405e9325b6adcf3b36a09392d50f4f" prot="public" static="no">
+        <type>std::function&lt; bool(const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;)&gt;</type>
+        <definition>typedef std::function&lt;bool (const SdfPath &amp;)&gt; PathPredicate</definition>
+        <argsstring></argsstring>
+        <name>PathPredicate</name>
+        <briefdescription>
+<para>A function type that takes a path and returns a bool. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="293" column="1" bodyfile="pxr/usd/usdShade/material.h" bodystart="293" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Standard Material Terminal Outputs</header>
+      <description><para><anchor id="class_usd_shade_material_1UsdShadeMaterial_Outputs"/> A <ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref> can have any number of &quot;terminal&quot; outputs. These outputs are generally used to point to outputs of shader prims or NodeGraphs that describe certain properties of the material that a renderer might wish to consume. There are three standard output terminals that are supported by the core API: <bold>surface</bold>, <bold>displacement</bold> and <bold>volume</bold>.</para>
+<para>Each terminal output can further be qualified by a token-valued <bold>renderContext</bold>. When a non-empty renderContext value is specified to the API, the output is considered to have a specific or restricted renderContext. If the renderContext value is empty (i.e. equal to UsdShadeTokens-&gt;universalRenderContext), then the output is considered to be a &quot;universal&quot;, meaning it could apply to any render contexts. Render context token values is typically driven by the rendering backend consuming the terminal output (eg, RI or glslfx). </para>
+</description>
+      <memberdef kind="function" id="class_usd_shade_material_1ad069c0081924a40f12342ffcc0a529f4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_shade_output" kindref="compound">UsdShadeOutput</ref></type>
+        <definition>USDSHADE_API UsdShadeOutput CreateSurfaceOutput</definition>
+        <argsstring>(const TfToken &amp;renderContext=UsdShadeTokens-&gt;universalRenderContext) const</argsstring>
+        <name>CreateSurfaceOutput</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>renderContext</declname>
+          <defval><ref refid="usd_2usd_shade_2tokens_8h_1acd5d180f50410c958d4a0b2a88de0ac5" kindref="member">UsdShadeTokens</ref>-&gt;universalRenderContext</defval>
+        </param>
+        <briefdescription>
+<para>Creates and returns the &quot;surface&quot; output on this material for the specified <computeroutput>renderContext</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the output already exists on the material, it is returned and no authoring is performed. The returned output will always have the requested renderContext. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="325" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1afeb21755f839c3375e92a30824549ed3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_shade_output" kindref="compound">UsdShadeOutput</ref></type>
+        <definition>USDSHADE_API UsdShadeOutput GetSurfaceOutput</definition>
+        <argsstring>(const TfToken &amp;renderContext=UsdShadeTokens-&gt;universalRenderContext) const</argsstring>
+        <name>GetSurfaceOutput</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>renderContext</declname>
+          <defval><ref refid="usd_2usd_shade_2tokens_8h_1acd5d180f50410c958d4a0b2a88de0ac5" kindref="member">UsdShadeTokens</ref>-&gt;universalRenderContext</defval>
+        </param>
+        <briefdescription>
+<para>Returns the &quot;surface&quot; output of this material for the specified <computeroutput>renderContext</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The returned output will always have the requested renderContext.</para>
+<para>An invalid output is returned if an output corresponding to the requested specific-renderContext does not exist.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_material_1a87baddf29b8fa4d8a559a909d3fb5205" kindref="member">UsdShadeMaterial::ComputeSurfaceSource()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="337" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1adf247c683089373b4060d658e8f96841" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API std::vector&lt; <ref refid="class_usd_shade_output" kindref="compound">UsdShadeOutput</ref> &gt;</type>
+        <definition>USDSHADE_API std::vector&lt;UsdShadeOutput&gt; GetSurfaceOutputs</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSurfaceOutputs</name>
+        <briefdescription>
+<para>Returns the &quot;surface&quot; outputs of this material for all available renderContexts. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The returned vector will include all authored &quot;surface&quot; outputs with the <emphasis>universal</emphasis> renderContext output first, if present. Outputs are returned regardless of whether they are connected to a valid source. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="348" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a87baddf29b8fa4d8a559a909d3fb5205" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_shade_shader" kindref="compound">UsdShadeShader</ref></type>
+        <definition>USDSHADE_API UsdShadeShader ComputeSurfaceSource</definition>
+        <argsstring>(const TfToken &amp;renderContext, TfToken *sourceName=nullptr, UsdShadeAttributeType *sourceType=nullptr) const</argsstring>
+        <name>ComputeSurfaceSource</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>renderContext</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> *</type>
+          <declname>sourceName</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>UsdShadeAttributeType *</type>
+          <declname>sourceType</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000112"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Use the form that takes a TfTokenVector or renderContexts. </para>
+</xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="352" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a12f6984873042d8524bc85190e3302e7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_shade_shader" kindref="compound">UsdShadeShader</ref></type>
+        <definition>USDSHADE_API UsdShadeShader ComputeSurfaceSource</definition>
+        <argsstring>(const TfTokenVector &amp;contextVector={UsdShadeTokens-&gt;universalRenderContext}, TfToken *sourceName=nullptr, UsdShadeAttributeType *sourceType=nullptr) const</argsstring>
+        <name>ComputeSurfaceSource</name>
+        <param>
+          <type>const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+          <declname>contextVector</declname>
+          <defval>{<ref refid="usd_2usd_shade_2tokens_8h_1acd5d180f50410c958d4a0b2a88de0ac5" kindref="member">UsdShadeTokens</ref>-&gt;universalRenderContext}</defval>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> *</type>
+          <declname>sourceName</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>UsdShadeAttributeType *</type>
+          <declname>sourceType</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Computes the resolved &quot;surface&quot; output source for the given <computeroutput>contextVector</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Using the earliest renderContext in the contextVector that produces a valid Shader object.</para>
+<para>If a &quot;surface&quot; output corresponding to each of the renderContexts does not exist <bold>or</bold> is not connected to a valid source, then this checks the <emphasis>universal</emphasis> surface output.</para>
+<para>Returns an empty Shader object if there is no valid <emphasis>surface</emphasis> output source for any of the renderContexts in the <computeroutput>contextVector</computeroutput>. The python version of this method returns a tuple containing three elements (the source surface shader, sourceName, sourceType). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="370" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a9b8ce6062c75d2abb3aa6f7fcaab11c3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_shade_output" kindref="compound">UsdShadeOutput</ref></type>
+        <definition>USDSHADE_API UsdShadeOutput CreateDisplacementOutput</definition>
+        <argsstring>(const TfToken &amp;renderContext=UsdShadeTokens-&gt;universalRenderContext) const</argsstring>
+        <name>CreateDisplacementOutput</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>renderContext</declname>
+          <defval><ref refid="usd_2usd_shade_2tokens_8h_1acd5d180f50410c958d4a0b2a88de0ac5" kindref="member">UsdShadeTokens</ref>-&gt;universalRenderContext</defval>
+        </param>
+        <briefdescription>
+<para>Creates and returns the &quot;displacement&quot; output on this material for the specified <computeroutput>renderContext</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the output already exists on the material, it is returned and no authoring is performed. The returned output will always have the requested renderContext. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="382" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a66cb98f3210019f97c54f2d6148191f5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_shade_output" kindref="compound">UsdShadeOutput</ref></type>
+        <definition>USDSHADE_API UsdShadeOutput GetDisplacementOutput</definition>
+        <argsstring>(const TfToken &amp;renderContext=UsdShadeTokens-&gt;universalRenderContext) const</argsstring>
+        <name>GetDisplacementOutput</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>renderContext</declname>
+          <defval><ref refid="usd_2usd_shade_2tokens_8h_1acd5d180f50410c958d4a0b2a88de0ac5" kindref="member">UsdShadeTokens</ref>-&gt;universalRenderContext</defval>
+        </param>
+        <briefdescription>
+<para>Returns the &quot;displacement&quot; output of this material for the specified renderContext. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The returned output will always have the requested renderContext.</para>
+<para>An invalid output is returned if an output corresponding to the requested specific-renderContext does not exist.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_material_1a89ee6b17ed3990efc4aa1cc85cdcca68" kindref="member">UsdShadeMaterial::ComputeDisplacementSource()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="394" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a40253ceb036b09c7af64d26b92f58667" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API std::vector&lt; <ref refid="class_usd_shade_output" kindref="compound">UsdShadeOutput</ref> &gt;</type>
+        <definition>USDSHADE_API std::vector&lt;UsdShadeOutput&gt; GetDisplacementOutputs</definition>
+        <argsstring>() const</argsstring>
+        <name>GetDisplacementOutputs</name>
+        <briefdescription>
+<para>Returns the &quot;displacement&quot; outputs of this material for all available renderContexts. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The returned vector will include all authored &quot;displacement&quot; outputs with the <emphasis>universal</emphasis> renderContext output first, if present. Outputs are returned regardless of whether they are connected to a valid source. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="405" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a89ee6b17ed3990efc4aa1cc85cdcca68" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_shade_shader" kindref="compound">UsdShadeShader</ref></type>
+        <definition>USDSHADE_API UsdShadeShader ComputeDisplacementSource</definition>
+        <argsstring>(const TfToken &amp;renderContext, TfToken *sourceName=nullptr, UsdShadeAttributeType *sourceType=nullptr) const</argsstring>
+        <name>ComputeDisplacementSource</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>renderContext</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> *</type>
+          <declname>sourceName</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>UsdShadeAttributeType *</type>
+          <declname>sourceType</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000113"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Use the form that takes a TfTokenVector or renderContexts </para>
+</xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="409" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a57a74173729f76ea348f09c65507fea3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_shade_shader" kindref="compound">UsdShadeShader</ref></type>
+        <definition>USDSHADE_API UsdShadeShader ComputeDisplacementSource</definition>
+        <argsstring>(const TfTokenVector &amp;contextVector={UsdShadeTokens-&gt;universalRenderContext}, TfToken *sourceName=nullptr, UsdShadeAttributeType *sourceType=nullptr) const</argsstring>
+        <name>ComputeDisplacementSource</name>
+        <param>
+          <type>const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+          <declname>contextVector</declname>
+          <defval>{<ref refid="usd_2usd_shade_2tokens_8h_1acd5d180f50410c958d4a0b2a88de0ac5" kindref="member">UsdShadeTokens</ref>-&gt;universalRenderContext}</defval>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> *</type>
+          <declname>sourceName</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>UsdShadeAttributeType *</type>
+          <declname>sourceType</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Computes the resolved &quot;displacement&quot; output source for the given <computeroutput>contextVector</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Using the earliest renderContext in the contextVector that produces a valid Shader object.</para>
+<para>If a &quot;displacement&quot; output corresponding to each of the renderContexts does not exist <bold>or</bold> is not connected to a valid source, then this checks the <emphasis>universal</emphasis> displacement output.</para>
+<para>Returns an empty Shader object if there is no valid <emphasis>displacement</emphasis> output source for any of the renderContexts in the <computeroutput>contextVector</computeroutput>. The python version of this method returns a tuple containing three elements (the source displacement shader, sourceName, sourceType). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="427" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a4abdf5ff051e043d5b4b8bc5dd0a70f1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_shade_output" kindref="compound">UsdShadeOutput</ref></type>
+        <definition>USDSHADE_API UsdShadeOutput CreateVolumeOutput</definition>
+        <argsstring>(const TfToken &amp;renderContext=UsdShadeTokens-&gt;universalRenderContext) const</argsstring>
+        <name>CreateVolumeOutput</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>renderContext</declname>
+          <defval><ref refid="usd_2usd_shade_2tokens_8h_1acd5d180f50410c958d4a0b2a88de0ac5" kindref="member">UsdShadeTokens</ref>-&gt;universalRenderContext</defval>
+        </param>
+        <briefdescription>
+<para>Creates and returns the &quot;volume&quot; output on this material for the specified <computeroutput>renderContext</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the output already exists on the material, it is returned and no authoring is performed. The returned output will always have the requested renderContext. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="439" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1ae01f95e95bb49a20e242e11af604a524" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_shade_output" kindref="compound">UsdShadeOutput</ref></type>
+        <definition>USDSHADE_API UsdShadeOutput GetVolumeOutput</definition>
+        <argsstring>(const TfToken &amp;renderContext=UsdShadeTokens-&gt;universalRenderContext) const</argsstring>
+        <name>GetVolumeOutput</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>renderContext</declname>
+          <defval><ref refid="usd_2usd_shade_2tokens_8h_1acd5d180f50410c958d4a0b2a88de0ac5" kindref="member">UsdShadeTokens</ref>-&gt;universalRenderContext</defval>
+        </param>
+        <briefdescription>
+<para>Returns the &quot;volume&quot; output of this material for the specified renderContext. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The returned output will always have the requested renderContext.</para>
+<para>An invalid output is returned if an output corresponding to the requested specific-renderContext does not exist.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_material_1a3d76d2c10f83a1dcd958454a67a33659" kindref="member">UsdShadeMaterial::ComputeVolumeSource()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="451" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a01d81919dcac9974944a859da1fec479" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API std::vector&lt; <ref refid="class_usd_shade_output" kindref="compound">UsdShadeOutput</ref> &gt;</type>
+        <definition>USDSHADE_API std::vector&lt;UsdShadeOutput&gt; GetVolumeOutputs</definition>
+        <argsstring>() const</argsstring>
+        <name>GetVolumeOutputs</name>
+        <briefdescription>
+<para>Returns the &quot;volume&quot; outputs of this material for all available renderContexts. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The returned vector will include all authored &quot;volume&quot; outputs with the <emphasis>universal</emphasis> renderContext output first, if present. Outputs are returned regardless of whether they are connected to a valid source. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="461" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a3d76d2c10f83a1dcd958454a67a33659" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_shade_shader" kindref="compound">UsdShadeShader</ref></type>
+        <definition>USDSHADE_API UsdShadeShader ComputeVolumeSource</definition>
+        <argsstring>(const TfToken &amp;renderContext, TfToken *sourceName=nullptr, UsdShadeAttributeType *sourceType=nullptr) const</argsstring>
+        <name>ComputeVolumeSource</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>renderContext</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> *</type>
+          <declname>sourceName</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>UsdShadeAttributeType *</type>
+          <declname>sourceType</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000114"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Use the form that takes a TfTokenVector or renderContexts </para>
+</xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="465" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a8232a17aacfd581a803ed10ac43d155e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_shade_shader" kindref="compound">UsdShadeShader</ref></type>
+        <definition>USDSHADE_API UsdShadeShader ComputeVolumeSource</definition>
+        <argsstring>(const TfTokenVector &amp;contextVector={UsdShadeTokens-&gt;universalRenderContext}, TfToken *sourceName=nullptr, UsdShadeAttributeType *sourceType=nullptr) const</argsstring>
+        <name>ComputeVolumeSource</name>
+        <param>
+          <type>const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+          <declname>contextVector</declname>
+          <defval>{<ref refid="usd_2usd_shade_2tokens_8h_1acd5d180f50410c958d4a0b2a88de0ac5" kindref="member">UsdShadeTokens</ref>-&gt;universalRenderContext}</defval>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> *</type>
+          <declname>sourceName</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>UsdShadeAttributeType *</type>
+          <declname>sourceType</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Computes the resolved &quot;volume&quot; output source for the given <computeroutput>contextVector</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Using the earliest renderContext in the contextVector that produces a valid Shader object.</para>
+<para>If a &quot;volume&quot; output corresponding to each of the renderContexts does not exist <bold>or</bold> is not connected to a valid source, then this checks the <emphasis>universal</emphasis> volume output.</para>
+<para>Returns an empty Shader object if there is no valid <emphasis>volume</emphasis> output output source for any of the renderContexts in the <computeroutput>contextVector</computeroutput>. The python version of this method returns a tuple containing three elements (the source volume shader, sourceName, sourceType). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="483" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Authoring Material Variations</header>
+      <description><para><anchor id="class_usd_shade_material_1UsdShadeMaterial_Variations"/> Each <ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref> prim can host data for any number of render targets (such as Renderman RIS, Arnold, or glslfx).</para>
+<para>A single <ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref> group can, however, encode variations on appearance, varying any data authored on the material and its contents. For example, we might have a logo&apos;d baseball cap that comes in denim, nylon, and corduroy variations.</para>
+<para>We provide methods to aid in authoring such variations on individual Material prims, and also a facility for creating a &quot;master&quot; look variant on another prim (e.g. a model&apos;s root prim, or another common ancestor of all Material prims in a model) that will be able to modify Materials, bindings, connections and values at once.</para>
+<para><bold>Note on variant vs &quot;direct&quot; opinions.</bold> For any given prim&apos;s spec in a layer, opinions expressed inside a variant of a variantSet will be /weaker/ than any opinions expressed &quot;directly&quot; at the location, outside of any layer.</para>
+<para>Therefore, if you intend to author a default variant that is weaker than more explicit variants, you will need to have those opinions be weaker by setting them across a reference arc such as the following:</para>
+<para><programlisting><codeline><highlight class="normal">def<sp/>&quot;MyMaterial&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>add<sp/>references<sp/>=<sp/>&lt;/MyMaterial_defaultShadingVariant&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>variants<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>materialVariant<sp/>=<sp/>&quot;SomeVariant&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>add<sp/>variantSets<sp/>=<sp/>&quot;materialVariant&quot;</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>float<sp/>strongerThanVariantOpinion</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>variantSet<sp/>&quot;materialVariant&quot;<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;SomeVariant&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>variantOpinion</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">over<sp/>&quot;MyMaterial_defaultShadingVariant&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>float<sp/>weakerThanVariantOpinion</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</description>
+      <memberdef kind="function" id="class_usd_shade_material_1a24a49f8d16db54d6e8c24ad0f28f184b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API std::pair&lt; UsdStagePtr, <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> &gt;</type>
+        <definition>USDSHADE_API std::pair&lt;UsdStagePtr, UsdEditTarget&gt; GetEditContextForVariant</definition>
+        <argsstring>(const TfToken &amp;MaterialVariantName, const SdfLayerHandle &amp;layer=SdfLayerHandle()) const</argsstring>
+        <name>GetEditContextForVariant</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>MaterialVariantName</declname>
+        </param>
+        <param>
+          <type>const SdfLayerHandle &amp;</type>
+          <declname>layer</declname>
+          <defval>SdfLayerHandle()</defval>
+        </param>
+        <briefdescription>
+<para>Helper function for configuring a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref>&apos;s <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> to author Material variations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Takes care of creating the Material variantSet and specified variant, if necessary.</para>
+<para>Let&apos;s assume that we are authoring Materials into the Stage&apos;s current <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref>, and that we are iterating over the variations of a <ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref> <emphasis>clothMaterial</emphasis>, and <emphasis>currVariant</emphasis> is the variant we are processing (e.g. &quot;denim&quot;).</para>
+<para>In C++, then, we would use the following pattern: <programlisting><codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>UsdEditContext<sp/>ctxt(clothMaterial.GetEditContextForVariant(currVariant));</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>All<sp/>USD<sp/>mutation<sp/>of<sp/>the<sp/>UsdStage<sp/>on<sp/>which<sp/>clothMaterial<sp/>sits<sp/>will</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>now<sp/>go<sp/>&quot;inside&quot;<sp/>the<sp/>currVariant<sp/>of<sp/>the<sp/>&quot;MaterialVariant&quot;<sp/>variantSet</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>In python, the pattern is: <programlisting filename=".py"><codeline><highlight class="keyword">with</highlight><highlight class="normal"><sp/>clothMaterial.GetEditContextForVariant(currVariant):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Now<sp/>sending<sp/>mutations<sp/>to<sp/>currVariant</highlight></codeline>
+</programlisting></para>
+<para>If <computeroutput>layer</computeroutput> is specified, then we will use it, rather than the stage&apos;s current <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref>&apos;s layer as the destination layer for the edit context we are building. If <computeroutput>layer</computeroutput> does not actually contribute to the Material prim&apos;s definition, any editing will have no effect on this Material.</para>
+<para><bold>Note:</bold> As just stated, using this method involves authoring a selection for the MaterialVariant in the stage&apos;s current EditTarget. When client is done authoring variations on this prim, they will likely want to either <ref refid="class_usd_variant_set_1a51fe1abe65de6440b81799393b1a424f" kindref="member">UsdVariantSet::SetVariantSelection()</ref> to the appropriate default selection, or possibly <ref refid="class_usd_variant_set_1ae8e8d9ed501d143199c72f899255c057" kindref="member">UsdVariantSet::ClearVariantSelection()</ref> on the <ref refid="class_usd_shade_material_1ab4ce98321868063afc409730e0c144bc" kindref="member">UsdShadeMaterial::GetMaterialVariant()</ref> <ref refid="class_usd_variant_set" kindref="compound">UsdVariantSet</ref>. <simplesect kind="see"><para><ref refid="class_usd_variant_set_1a7e0767da11618ebe7aa2e6b6ef3c7021" kindref="member">UsdVariantSet::GetVariantEditContext()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="604" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1ab4ce98321868063afc409730e0c144bc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_variant_set" kindref="compound">UsdVariantSet</ref></type>
+        <definition>USDSHADE_API UsdVariantSet GetMaterialVariant</definition>
+        <argsstring>() const</argsstring>
+        <name>GetMaterialVariant</name>
+        <briefdescription>
+<para>Return a <ref refid="class_usd_variant_set" kindref="compound">UsdVariantSet</ref> object for interacting with the Material variant variantSet. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="610" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a634cb2f5d059a1158db802f6d1eebef8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>static USDSHADE_API bool CreateMasterMaterialVariant</definition>
+        <argsstring>(const UsdPrim &amp;masterPrim, const std::vector&lt; UsdPrim &gt; &amp;MaterialPrims, const TfToken &amp;masterVariantSetName=TfToken())</argsstring>
+        <name>CreateMasterMaterialVariant</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>masterPrim</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &gt; &amp;</type>
+          <declname>MaterialPrims</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>masterVariantSetName</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Create a variantSet on <computeroutput>masterPrim</computeroutput> that will set the MaterialVariant on each of the given <emphasis>MaterialPrims</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The variantSet, whose name can be specified with <computeroutput>masterVariantSetName</computeroutput> and defaults to the same MaterialVariant name created on Materials by <ref refid="class_usd_shade_material_1a24a49f8d16db54d6e8c24ad0f28f184b" kindref="member">GetEditContextForVariant()</ref>, will have the same variants as the Materials, and each Master variant will set every <computeroutput>MaterialPrims&apos;</computeroutput> MaterialVariant selection to the same variant as the master. Thus, it allows all Materials to be switched with a single variant selection, on <computeroutput>masterPrim</computeroutput>.</para>
+<para>If <computeroutput>masterPrim</computeroutput> is an ancestor of any given member of <computeroutput>MaterialPrims</computeroutput>, then we will author variant selections directly on the MaterialPrims. However, it is often preferable to create a master MaterialVariant in a separately rooted tree from the MaterialPrims, so that it can be layered more strongly on top of the Materials. Therefore, for any MaterialPrim in a different tree than masterPrim, we will create &quot;overs&quot; as children of masterPrim that recreate the path to the MaterialPrim, substituting masterPrim&apos;s full path for the MaterialPrim&apos;s root path component.</para>
+<para>Upon successful completion, the new variantSet we created on <computeroutput>masterPrim</computeroutput> will have its variant selection authored to the &quot;last&quot; variant (determined lexicographically). It is up to the calling client to either <ref refid="class_usd_variant_set_1ae8e8d9ed501d143199c72f899255c057" kindref="member">UsdVariantSet::ClearVariantSelection()</ref> on <computeroutput>masterPrim</computeroutput>, or set the selection to the desired default setting.</para>
+<para>Return <computeroutput>true</computeroutput> on success. It is an error if any of <computeroutput>Materials</computeroutput> have a different set of variants for the MaterialVariant than the others. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="641" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>BaseMaterial</header>
+      <description><para><anchor id="class_usd_shade_material_1UsdShadeMaterial_BaseMaterial"/> A specialize arc describes child/parent inheritance. A Material that derives from a BaseMaterial will retain a live composition relationship to its BaseMaterial </para>
+</description>
+      <memberdef kind="function" id="class_usd_shade_material_1a7feafe4e012a6892a965d64d9b87b5d8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref></type>
+        <definition>USDSHADE_API UsdShadeMaterial GetBaseMaterial</definition>
+        <argsstring>() const</argsstring>
+        <name>GetBaseMaterial</name>
+        <briefdescription>
+<para>Get the path to the base Material of this Material. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If there is no base Material, an empty Material is returned </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="661" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1ab97713dbcd9e9bae6b688ccfc7b25cea" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>USDSHADE_API SdfPath GetBaseMaterialPath</definition>
+        <argsstring>() const</argsstring>
+        <name>GetBaseMaterialPath</name>
+        <briefdescription>
+<para>Get the base Material of this Material. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If there is no base Material, an empty path is returned </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="666" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a9d247eb3ea418813f13d845551e5adf3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API void</type>
+        <definition>USDSHADE_API void SetBaseMaterial</definition>
+        <argsstring>(const UsdShadeMaterial &amp;baseMaterial) const</argsstring>
+        <name>SetBaseMaterial</name>
+        <param>
+          <type>const <ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref> &amp;</type>
+          <declname>baseMaterial</declname>
+        </param>
+        <briefdescription>
+<para>Set the base Material of this Material. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>An empty Material is equivalent to clearing the base Material. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="681" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a44e6e183af2496b7e492945ff7eb0919" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API void</type>
+        <definition>USDSHADE_API void SetBaseMaterialPath</definition>
+        <argsstring>(const SdfPath &amp;baseMaterialPath) const</argsstring>
+        <name>SetBaseMaterialPath</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>baseMaterialPath</declname>
+        </param>
+        <briefdescription>
+<para>Set the path to the base Material of this Material. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>An empty path is equivalent to clearing the base Material. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="686" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a8dc60917918f4fa2ca4418f5e1ccc460" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API void</type>
+        <definition>USDSHADE_API void ClearBaseMaterial</definition>
+        <argsstring>() const</argsstring>
+        <name>ClearBaseMaterial</name>
+        <briefdescription>
+<para>Clear the base Material of this Material. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="690" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a671cdb0b0220a6f90558ed1f81838d23" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool HasBaseMaterial</definition>
+        <argsstring>() const</argsstring>
+        <name>HasBaseMaterial</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="694" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a4600e25eacda6be31b1f95a702eb5742" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>static USDSHADE_API SdfPath FindBaseMaterialPathInPrimIndex</definition>
+        <argsstring>(const PcpPrimIndex &amp;primIndex, const PathPredicate &amp;pathIsMaterialPredicate)</argsstring>
+        <name>FindBaseMaterialPathInPrimIndex</name>
+        <param>
+          <type>const <ref refid="class_pcp_prim_index" kindref="compound">PcpPrimIndex</ref> &amp;</type>
+          <declname>primIndex</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_shade_material_1a6e405e9325b6adcf3b36a09392d50f4f" kindref="member">PathPredicate</ref> &amp;</type>
+          <declname>pathIsMaterialPredicate</declname>
+        </param>
+        <briefdescription>
+<para>Given a <ref refid="class_pcp_prim_index" kindref="compound">PcpPrimIndex</ref>, searches it for an arc to a parent material. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is a public static function to support applications that use Pcp but not Usd. Most clients should call <ref refid="class_usd_shade_material_1ab97713dbcd9e9bae6b688ccfc7b25cea" kindref="member">GetBaseMaterialPath</ref>, which uses this function when appropriate. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="674" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_usd_shade_material_1a3e5fc43aea5aea4908c3ce980fdf8908" prot="public" static="yes" mutable="no">
+        <type>const <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref></type>
+        <definition>const UsdSchemaKind schemaKind</definition>
+        <argsstring></argsstring>
+        <name>schemaKind</name>
+        <initializer>= <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741aa6650141c3d230f8e4e51461e1d9e645" kindref="member">UsdSchemaKind::ConcreteTyped</ref></initializer>
+        <briefdescription>
+<para>Compile time constant representing what kind of schema this class is. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="118" column="1" bodyfile="pxr/usd/usdShade/material.h" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_usd_shade_material_1aff8b8d83211f127c6c4cba48fb7d3334" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class UsdSchemaRegistry</definition>
+        <argsstring></argsstring>
+        <name>UsdSchemaRegistry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="196" column="1" bodyfile="pxr/usd/usdShade/material.h" bodystart="196" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_shade_material_1a80ccb00fc19ecea63a298cfa9916ee44" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdShadeMaterial</definition>
+        <argsstring>(const UsdPrim &amp;prim=UsdPrim())</argsstring>
+        <name>UsdShadeMaterial</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+          <defval><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref> on <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> <computeroutput>prim</computeroutput> . </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Equivalent to <ref refid="class_usd_shade_material_1a82deaa8ef85822eac3f339b2a95c9da5" kindref="member">UsdShadeMaterial::Get</ref>(prim.GetStage(), prim.GetPath()) for a <emphasis>valid</emphasis> <computeroutput>prim</computeroutput>, but will not immediately throw an error for an invalid <computeroutput>prim</computeroutput> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="124" column="1" bodyfile="pxr/usd/usdShade/material.h" bodystart="124" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1ab867631eb92a55f65725c4960843046d" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdShadeMaterial</definition>
+        <argsstring>(const UsdSchemaBase &amp;schemaObj)</argsstring>
+        <name>UsdShadeMaterial</name>
+        <param>
+          <type>const <ref refid="class_usd_schema_base" kindref="compound">UsdSchemaBase</ref> &amp;</type>
+          <declname>schemaObj</declname>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref> on the prim held by <computeroutput>schemaObj</computeroutput> . </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Should be preferred over <ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref>(schemaObj.GetPrim()), as it preserves SchemaBase state. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="132" column="1" bodyfile="pxr/usd/usdShade/material.h" bodystart="132" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a2a8ddba9527df94e0d2662ed590cf2ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>USDSHADE_API</type>
+        <definition>virtual USDSHADE_API ~UsdShadeMaterial</definition>
+        <argsstring>()</argsstring>
+        <name>~UsdShadeMaterial</name>
+        <briefdescription>
+<para>Destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="139" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a89a08c908963a797476e6434883572a5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDSHADE_API UsdAttribute GetSurfaceAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSurfaceAttr</name>
+        <briefdescription>
+<para>Represents the universal &quot;surface&quot; output terminal of a material. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>token outputs:surface</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_tf_token" kindref="compound">TfToken</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Token   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="219" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a0d760f2ddf3407ab15a36a27b9f4e4f6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDSHADE_API UsdAttribute CreateSurfaceAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateSurfaceAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_shade_material_1a89a08c908963a797476e6434883572a5" kindref="member">GetSurfaceAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="227" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a080157870841a305c520ff45341f8424" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDSHADE_API UsdAttribute GetDisplacementAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetDisplacementAttr</name>
+        <briefdescription>
+<para>Represents the universal &quot;displacement&quot; output terminal of a material. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>token outputs:displacement</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_tf_token" kindref="compound">TfToken</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Token   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="242" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1aff6d51642daba007e559c29039cc4bd0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDSHADE_API UsdAttribute CreateDisplacementAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateDisplacementAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_shade_material_1a080157870841a305c520ff45341f8424" kindref="member">GetDisplacementAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="250" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a26194b63aeecf6ff948e1cd193f73425" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDSHADE_API UsdAttribute GetVolumeAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetVolumeAttr</name>
+        <briefdescription>
+<para>Represents the universal &quot;volume&quot; output terminal of a material. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>token outputs:volume</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_tf_token" kindref="compound">TfToken</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Token   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="265" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a03125f80b106d49167f85c0cef68ea3e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDSHADE_API UsdAttribute CreateVolumeAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateVolumeAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_shade_material_1a26194b63aeecf6ff948e1cd193f73425" kindref="member">GetVolumeAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="273" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_usd_shade_material_1abf3ddf536a1d8f4757037f1d1958b5e1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+        <definition>static USDSHADE_API const TfTokenVector&amp; GetSchemaAttributeNames</definition>
+        <argsstring>(bool includeInherited=true)</argsstring>
+        <name>GetSchemaAttributeNames</name>
+        <param>
+          <type>bool</type>
+          <declname>includeInherited</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Return a vector of names of all pre-declared attributes for this schema class and all its ancestor classes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does not include attributes that may be authored by custom/extended methods of the schemas involved. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="146" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a82deaa8ef85822eac3f339b2a95c9da5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref></type>
+        <definition>static USDSHADE_API UsdShadeMaterial Get</definition>
+        <argsstring>(const UsdStagePtr &amp;stage, const SdfPath &amp;path)</argsstring>
+        <name>Get</name>
+        <param>
+          <type>const UsdStagePtr &amp;</type>
+          <declname>stage</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Return a <ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref> holding the prim adhering to this schema at <computeroutput>path</computeroutput> on <computeroutput>stage</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no prim exists at <computeroutput>path</computeroutput> on <computeroutput>stage</computeroutput>, or if the prim at that path does not adhere to this schema, return an invalid schema object. This is shorthand for the following:</para>
+<para><programlisting><codeline><highlight class="normal">UsdShadeMaterial(stage-&gt;GetPrimAtPath(path));</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="159" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1adb6b4fe9533be5068bf971a7b4d550eb" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref></type>
+        <definition>static USDSHADE_API UsdShadeMaterial Define</definition>
+        <argsstring>(const UsdStagePtr &amp;stage, const SdfPath &amp;path)</argsstring>
+        <name>Define</name>
+        <param>
+          <type>const UsdStagePtr &amp;</type>
+          <declname>stage</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Attempt to ensure a <emphasis><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref></emphasis> adhering to this schema at <computeroutput>path</computeroutput> is defined (according to <ref refid="class_usd_prim_1a87fbe0030c0fbb6307ee434664f1142f" kindref="member">UsdPrim::IsDefined()</ref>) on this stage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If a prim adhering to this schema at <computeroutput>path</computeroutput> is already defined on this stage, return that prim. Otherwise author an <emphasis><ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref></emphasis> with <emphasis>specifier</emphasis> == <emphasis>SdfSpecifierDef</emphasis> and this schema&apos;s prim type name for the prim at <computeroutput>path</computeroutput> at the current EditTarget. Author <emphasis><ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref></emphasis> s with <computeroutput>specifier</computeroutput> == <emphasis>SdfSpecifierDef</emphasis> and empty typeName at the current EditTarget for any nonexistent, or existing but not <emphasis>Defined</emphasis> ancestors.</para>
+<para>The given <emphasis>path</emphasis> must be an absolute prim path that does not contain any variant selections.</para>
+<para>If it is impossible to author any of the necessary PrimSpecs, (for example, in case <emphasis>path</emphasis> cannot map to the current <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref>&apos;s namespace) issue an error and return an invalid <emphasis><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref></emphasis>.</para>
+<para>Note that this method may return a defined prim whose typeName does not specify this schema class, in case a stronger typeName opinion overrides the opinion at the current EditTarget. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="185" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_usd_shade_material_1a9b47498492265f1a224b6ec58b109a88" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USDSHADE_API <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref></type>
+        <definition>USDSHADE_API UsdSchemaKind _GetSchemaKind</definition>
+        <argsstring>() const override</argsstring>
+        <name>_GetSchemaKind</name>
+        <reimplements refid="class_usd_typed_1a408aa7d080a2672e88403126cc197095">_GetSchemaKind</reimplements>
+        <briefdescription>
+<para>Returns the kind of schema this class belongs to. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="192" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_usd_shade_material_1aa9360fb676c331455b1c118acc45d8e9" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+        <definition>static USDSHADE_API const TfType&amp; _GetStaticTfType</definition>
+        <argsstring>()</argsstring>
+        <name>_GetStaticTfType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="198" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1abbc02364dd87e9f147201cbd8d260d43" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool _IsTypedSchema</definition>
+        <argsstring>()</argsstring>
+        <name>_IsTypedSchema</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="200" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_usd_shade_material_1a5dfe3da94c3b2153585c9bd276122e76" prot="private" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USDSHADE_API const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+        <definition>USDSHADE_API const TfType&amp; _GetTfType</definition>
+        <argsstring>() const override</argsstring>
+        <name>_GetTfType</name>
+        <reimplements refid="class_usd_typed_1a6f7a3688b0129a59c6e70e925d7ac732">_GetTfType</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="204" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a4820fed933857f6a7ee5ec66fae60741" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_tf_small_vector" kindref="compound">UsdShadeAttributeVector</ref></type>
+        <definition>UsdShadeAttributeVector _ComputeNamedOutputSources</definition>
+        <argsstring>(const TfToken &amp;baseName, const TfTokenVector &amp;contextVector) const</argsstring>
+        <name>_ComputeNamedOutputSources</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>baseName</declname>
+        </param>
+        <param>
+          <type>const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+          <declname>contextVector</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="493" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a121a605ee53e5ceb3a85d445ca229e46" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_usd_shade_shader" kindref="compound">UsdShadeShader</ref></type>
+        <definition>UsdShadeShader _ComputeNamedOutputShader</definition>
+        <argsstring>(const TfToken &amp;baseName, const TfTokenVector &amp;contextVector, TfToken *sourceName, UsdShadeAttributeType *sourceType) const</argsstring>
+        <name>_ComputeNamedOutputShader</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>baseName</declname>
+        </param>
+        <param>
+          <type>const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+          <declname>contextVector</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> *</type>
+          <declname>sourceName</declname>
+        </param>
+        <param>
+          <type>UsdShadeAttributeType *</type>
+          <declname>sourceType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="499" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_material_1a6a3320903c808ad9b7c93f4776c2123a" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="class_usd_shade_output" kindref="compound">UsdShadeOutput</ref> &gt;</type>
+        <definition>std::vector&lt;UsdShadeOutput&gt; _GetOutputsForTerminalName</definition>
+        <argsstring>(const TfToken &amp;terminalName) const</argsstring>
+        <name>_GetOutputsForTerminalName</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>terminalName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/material.h" line="507" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A Material provides a container into which multiple &quot;render contexts&quot; can add data that defines a &quot;shading material&quot; for a renderer. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Typically this consists of one or more <ref refid="class_usd_shade_output" kindref="compound">UsdShadeOutput</ref> properties connected to outputs of nested Shader prims - though a context/client is free to add any data that is suitable. We <bold>strongly advise</bold> that all contexts adopt the convention that all properties be prefixed with a namespace that identifies the context e.g. &quot;token outputs:ri:surface.connect = 
+&lt;/MyselfMaterial/previewSurface.outputs:surface&quot;.</para>
+<para><heading level="2">Binding Materials</heading>
+</para>
+<para>In the UsdShading model, geometry expresses a binding to a single Material or to a set of Materials partitioned by UsdGeomSubsets defined beneath the geometry; it is legal to bind a Material at the root (or other sub-prim) of a model, and then bind a different Material to individual gprims, but the meaning of inheritance and &quot;ancestral overriding&quot; of Material bindings is left to each render-target to determine. Since UsdGeom has no concept of shading, we provide the API for binding and unbinding geometry on the API schema <ref refid="class_usd_shade_material_binding_a_p_i" kindref="compound">UsdShadeMaterialBindingAPI</ref>.</para>
+<para><heading level="2">Material Variation</heading>
+</para>
+<para>The entire power of USD VariantSets and all the other composition operators can leveraged when encoding shading variation.</para>
+<para><ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref> provides facilities for a particular way of building &quot;Material variants&quot; in which neither the identity of the Materials themselves nor the geometry Material-bindings need to change - instead we vary the targeted networks, interface values, and even parameter values within a single variantSet.</para>
+<para>See <ref refid="class_usd_shade_material_1UsdShadeMaterial_Variations" kindref="member">Authoring Material Variations</ref> for more details.</para>
+<para><heading level="2">Materials Encapsulate their Networks in Namespace</heading>
+</para>
+<para>UsdShade requires that all of the shaders that &quot;belong&quot; to the Material live under the Material in namespace. This supports powerful, easy reuse of Materials, because it allows us to <emphasis>reference</emphasis> a Material from one asset (the asset might be a library of Materials) into another asset: USD references compose all descendant prims of the reference target into the referencer&apos;s namespace, which means that all of the referenced Material&apos;s shader networks will come along with the Material. When referenced in this way, Materials can also be <ulink url="http://openusd.org/docs/USD-Glossary.html#USDGlossary-Instancing">instanced</ulink>, for ease of deduplication and compactness. Finally, Material encapsulation also allows us to <ref refid="class_usd_shade_material_1UsdShadeMaterial_BaseMaterial" kindref="member">specialize</ref> child materials from parent materials.</para>
+<para>For any described attribute <emphasis>Fallback</emphasis> <emphasis>Value</emphasis> or <emphasis>Allowed</emphasis> <emphasis>Values</emphasis> below that are text/tokens, the actual token is published and defined in <ref refid="usd_2usd_shade_2tokens_8h_1acd5d180f50410c958d4a0b2a88de0ac5" kindref="member">UsdShadeTokens</ref>. So to set an attribute to the value &quot;rightHanded&quot;, use UsdShadeTokens-&gt;rightHanded as the value. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="8162">
+        <label>UsdShadeMaterial</label>
+        <link refid="class_usd_shade_material"/>
+        <childnode refid="8163" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8164">
+        <label>UsdTyped</label>
+        <link refid="class_usd_typed"/>
+        <childnode refid="8165" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8165">
+        <label>UsdSchemaBase</label>
+        <link refid="class_usd_schema_base"/>
+      </node>
+      <node id="8163">
+        <label>UsdShadeNodeGraph</label>
+        <link refid="class_usd_shade_node_graph"/>
+        <childnode refid="8164" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="8166">
+        <label>UsdShadeMaterial</label>
+        <link refid="class_usd_shade_material"/>
+        <childnode refid="8167" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8168">
+        <label>UsdTyped</label>
+        <link refid="class_usd_typed"/>
+        <childnode refid="8169" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8169">
+        <label>UsdSchemaBase</label>
+        <link refid="class_usd_schema_base"/>
+      </node>
+      <node id="8167">
+        <label>UsdShadeNodeGraph</label>
+        <link refid="class_usd_shade_node_graph"/>
+        <childnode refid="8168" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/usd/usdShade/material.h" line="113" column="1" bodyfile="pxr/usd/usdShade/material.h" bodystart="112" bodyend="698"/>
+    <listofallmembers>
+      <member refid="class_usd_shade_material_1a121a605ee53e5ceb3a85d445ca229e46" prot="private" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>_ComputeNamedOutputShader</name></member>
+      <member refid="class_usd_shade_material_1a4820fed933857f6a7ee5ec66fae60741" prot="private" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>_ComputeNamedOutputSources</name></member>
+      <member refid="class_usd_schema_base_1ad99ec8284868478b50e8fc3475880dab" prot="protected" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>_CreateAttr</name></member>
+      <member refid="class_usd_shade_material_1a6a3320903c808ad9b7c93f4776c2123a" prot="private" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>_GetOutputsForTerminalName</name></member>
+      <member refid="class_usd_shade_material_1a9b47498492265f1a224b6ec58b109a88" prot="protected" virt="virtual"><scope>UsdShadeMaterial</scope><name>_GetSchemaKind</name></member>
+      <member refid="class_usd_schema_base_1a6c51fb3251d5fde5ffa9fe7a998ce970" prot="protected" virt="virtual"><scope>UsdShadeMaterial</scope><name>_GetSchemaType</name></member>
+      <member refid="class_usd_shade_material_1aa9360fb676c331455b1c118acc45d8e9" prot="private" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>_GetStaticTfType</name></member>
+      <member refid="class_usd_shade_material_1a5dfe3da94c3b2153585c9bd276122e76" prot="private" virt="virtual"><scope>UsdShadeMaterial</scope><name>_GetTfType</name></member>
+      <member refid="class_usd_schema_base_1aa29ea4c951d8debfd8085a28c6aa80ca" prot="protected" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>_GetType</name></member>
+      <member refid="class_usd_typed_1ad91204cc9fb92f0306372e074052190f" prot="protected" virt="virtual"><scope>UsdShadeMaterial</scope><name>_IsCompatible</name></member>
+      <member refid="class_usd_shade_material_1abbc02364dd87e9f147201cbd8d260d43" prot="private" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>_IsTypedSchema</name></member>
+      <member refid="class_usd_shade_material_1a8dc60917918f4fa2ca4418f5e1ccc460" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>ClearBaseMaterial</name></member>
+      <member refid="class_usd_shade_material_1a89ee6b17ed3990efc4aa1cc85cdcca68" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>ComputeDisplacementSource</name></member>
+      <member refid="class_usd_shade_material_1a57a74173729f76ea348f09c65507fea3" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>ComputeDisplacementSource</name></member>
+      <member refid="class_usd_shade_node_graph_1a08aec767b99c7b3a2530f7006b6a6635" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>ComputeInterfaceInputConsumersMap</name></member>
+      <member refid="class_usd_shade_node_graph_1a76a3c863585af75adece34394f7ae79b" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>ComputeOutputSource</name></member>
+      <member refid="class_usd_shade_material_1a87baddf29b8fa4d8a559a909d3fb5205" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>ComputeSurfaceSource</name></member>
+      <member refid="class_usd_shade_material_1a12f6984873042d8524bc85190e3302e7" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>ComputeSurfaceSource</name></member>
+      <member refid="class_usd_shade_material_1a3d76d2c10f83a1dcd958454a67a33659" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>ComputeVolumeSource</name></member>
+      <member refid="class_usd_shade_material_1a8232a17aacfd581a803ed10ac43d155e" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>ComputeVolumeSource</name></member>
+      <member refid="class_usd_shade_node_graph_1a23107227401fa5432854ace9769500b7" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>ConnectableAPI</name></member>
+      <member refid="class_usd_shade_material_1aff6d51642daba007e559c29039cc4bd0" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>CreateDisplacementAttr</name></member>
+      <member refid="class_usd_shade_material_1a9b8ce6062c75d2abb3aa6f7fcaab11c3" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>CreateDisplacementOutput</name></member>
+      <member refid="class_usd_shade_node_graph_1a8a03fdcc294aa2fae8a42e8e1cde57a5" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>CreateInput</name></member>
+      <member refid="class_usd_shade_material_1a634cb2f5d059a1158db802f6d1eebef8" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>CreateMasterMaterialVariant</name></member>
+      <member refid="class_usd_shade_node_graph_1a3ee6f709731f13f92a807e8ab3a1c7fb" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>CreateOutput</name></member>
+      <member refid="class_usd_shade_material_1a0d760f2ddf3407ab15a36a27b9f4e4f6" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>CreateSurfaceAttr</name></member>
+      <member refid="class_usd_shade_material_1ad069c0081924a40f12342ffcc0a529f4" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>CreateSurfaceOutput</name></member>
+      <member refid="class_usd_shade_material_1a03125f80b106d49167f85c0cef68ea3e" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>CreateVolumeAttr</name></member>
+      <member refid="class_usd_shade_material_1a4abdf5ff051e043d5b4b8bc5dd0a70f1" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>CreateVolumeOutput</name></member>
+      <member refid="class_usd_shade_material_1adb6b4fe9533be5068bf971a7b4d550eb" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>Define</name></member>
+      <member refid="class_usd_shade_material_1a4600e25eacda6be31b1f95a702eb5742" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>FindBaseMaterialPathInPrimIndex</name></member>
+      <member refid="class_usd_shade_material_1a82deaa8ef85822eac3f339b2a95c9da5" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>Get</name></member>
+      <member refid="class_usd_shade_material_1a7feafe4e012a6892a965d64d9b87b5d8" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetBaseMaterial</name></member>
+      <member refid="class_usd_shade_material_1ab97713dbcd9e9bae6b688ccfc7b25cea" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetBaseMaterialPath</name></member>
+      <member refid="class_usd_shade_material_1a080157870841a305c520ff45341f8424" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetDisplacementAttr</name></member>
+      <member refid="class_usd_shade_material_1a66cb98f3210019f97c54f2d6148191f5" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetDisplacementOutput</name></member>
+      <member refid="class_usd_shade_material_1a40253ceb036b09c7af64d26b92f58667" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetDisplacementOutputs</name></member>
+      <member refid="class_usd_shade_material_1a24a49f8d16db54d6e8c24ad0f28f184b" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetEditContextForVariant</name></member>
+      <member refid="class_usd_shade_node_graph_1a6424c331cdf1248389dcafc2c651cf72" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetInput</name></member>
+      <member refid="class_usd_shade_node_graph_1acd083a8223f0a5cb1402c38bad9dccb5" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetInputs</name></member>
+      <member refid="class_usd_shade_node_graph_1a539edcd2a9c7f24c3151d54c633e1fcd" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetInterfaceInputs</name></member>
+      <member refid="class_usd_shade_material_1ab4ce98321868063afc409730e0c144bc" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetMaterialVariant</name></member>
+      <member refid="class_usd_shade_node_graph_1acc6d5f29062faa83e9a7e61be6f97618" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetOutput</name></member>
+      <member refid="class_usd_shade_node_graph_1ac9882b5f0511e292428b35514b943240" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetOutputs</name></member>
+      <member refid="class_usd_schema_base_1a936bfb1e341cc81184c64af44763c433" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetPath</name></member>
+      <member refid="class_usd_schema_base_1a4ba10e023e7f3f3c93131bc7fc3146b7" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetPrim</name></member>
+      <member refid="class_usd_shade_material_1abf3ddf536a1d8f4757037f1d1958b5e1" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetSchemaAttributeNames</name></member>
+      <member refid="class_usd_schema_base_1a030d03e2a9839d9c3da0fbca8c3722d4" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetSchemaClassPrimDefinition</name></member>
+      <member refid="class_usd_schema_base_1aeac68c5514faebb20c5ae3cb930170de" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetSchemaKind</name></member>
+      <member refid="class_usd_shade_material_1a89a08c908963a797476e6434883572a5" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetSurfaceAttr</name></member>
+      <member refid="class_usd_shade_material_1afeb21755f839c3375e92a30824549ed3" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetSurfaceOutput</name></member>
+      <member refid="class_usd_shade_material_1adf247c683089373b4060d658e8f96841" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetSurfaceOutputs</name></member>
+      <member refid="class_usd_shade_material_1a26194b63aeecf6ff948e1cd193f73425" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetVolumeAttr</name></member>
+      <member refid="class_usd_shade_material_1ae01f95e95bb49a20e242e11af604a524" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetVolumeOutput</name></member>
+      <member refid="class_usd_shade_material_1a01d81919dcac9974944a859da1fec479" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>GetVolumeOutputs</name></member>
+      <member refid="class_usd_shade_material_1a671cdb0b0220a6f90558ed1f81838d23" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>HasBaseMaterial</name></member>
+      <member refid="class_usd_shade_node_graph_1a237557b6ace8a23f99df0dc159a4395c" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>InterfaceInputConsumersMap</name></member>
+      <member refid="class_usd_schema_base_1ad658b6730d4246ee1f903ce4ce18fdfe" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>IsAPISchema</name></member>
+      <member refid="class_usd_schema_base_1a68e867971cc992c5b03e73725c405c05" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>IsAppliedAPISchema</name></member>
+      <member refid="class_usd_schema_base_1ae2c90cefba1b2e09dc117a7d972009cb" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>IsConcrete</name></member>
+      <member refid="class_usd_schema_base_1af752510dea0c7106aa89832e60dfa3d5" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>IsMultipleApplyAPISchema</name></member>
+      <member refid="class_usd_schema_base_1afa15659f4fa280e4c0772173d7471920" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>IsTyped</name></member>
+      <member refid="class_usd_shade_node_graph_1ac6516b6b87ba9dcd3cef169fa2fcde83" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>NodeGraphInputConsumersMap</name></member>
+      <member refid="class_usd_schema_base_1a586531d84339318108c817f91367e626" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>operator bool</name></member>
+      <member refid="class_usd_shade_material_1a6e405e9325b6adcf3b36a09392d50f4f" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>PathPredicate</name></member>
+      <member refid="class_usd_shade_material_1a3e5fc43aea5aea4908c3ce980fdf8908" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>schemaKind</name></member>
+      <member refid="class_usd_shade_material_1a9d247eb3ea418813f13d845551e5adf3" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>SetBaseMaterial</name></member>
+      <member refid="class_usd_shade_material_1a44e6e183af2496b7e492945ff7eb0919" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>SetBaseMaterialPath</name></member>
+      <member refid="class_usd_schema_base_1a32e0a9b0465ecf201fb501753baa8587" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>UsdSchemaBase</name></member>
+      <member refid="class_usd_schema_base_1a73921308189043c86867d6bd9012b4af" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>UsdSchemaBase</name></member>
+      <member refid="class_usd_shade_material_1aff8b8d83211f127c6c4cba48fb7d3334" prot="private" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>UsdSchemaRegistry</name></member>
+      <member refid="class_usd_shade_material_1a80ccb00fc19ecea63a298cfa9916ee44" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>UsdShadeMaterial</name></member>
+      <member refid="class_usd_shade_material_1ab867631eb92a55f65725c4960843046d" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>UsdShadeMaterial</name></member>
+      <member refid="class_usd_shade_node_graph_1af887742937393a1ea8e54d405fcf078c" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>UsdShadeNodeGraph</name></member>
+      <member refid="class_usd_shade_node_graph_1a1b1604242583150f7003f1b41056ad99" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>UsdShadeNodeGraph</name></member>
+      <member refid="class_usd_shade_node_graph_1a1cb3b88cbcfc3b4181a372e012a74e68" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>UsdShadeNodeGraph</name></member>
+      <member refid="class_usd_typed_1a0eedaa009a86f3b1186f709bc78d0c09" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>UsdTyped</name></member>
+      <member refid="class_usd_typed_1a64de30966732c854c3c29616244e5250" prot="public" virt="non-virtual"><scope>UsdShadeMaterial</scope><name>UsdTyped</name></member>
+      <member refid="class_usd_schema_base_1a3e97b9a7311478da9f2d168bea29560e" prot="public" virt="virtual"><scope>UsdShadeMaterial</scope><name>~UsdSchemaBase</name></member>
+      <member refid="class_usd_shade_material_1a2a8ddba9527df94e0d2662ed590cf2ca" prot="public" virt="virtual"><scope>UsdShadeMaterial</scope><name>~UsdShadeMaterial</name></member>
+      <member refid="class_usd_shade_node_graph_1a76156ef256a30405ada0b004ed894503" prot="public" virt="virtual"><scope>UsdShadeMaterial</scope><name>~UsdShadeNodeGraph</name></member>
+      <member refid="class_usd_typed_1a558859985aa8647bc068d590b5d9e08f" prot="public" virt="virtual"><scope>UsdShadeMaterial</scope><name>~UsdTyped</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

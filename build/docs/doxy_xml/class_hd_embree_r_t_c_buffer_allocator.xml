@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_embree_r_t_c_buffer_allocator" kind="class" language="C++" prot="public">
+    <compoundname>HdEmbreeRTCBufferAllocator</compoundname>
+    <includes refid="mesh_samplers_8h" local="no">meshSamplers.h</includes>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_hd_embree_r_t_c_buffer_allocator_1a63fe4375a7d52448b2e687c5709ae2bc" prot="public" static="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int PXR_MAX_USER_VERTEX_BUFFERS</definition>
+        <argsstring></argsstring>
+        <name>PXR_MAX_USER_VERTEX_BUFFERS</name>
+        <initializer>= 16</initializer>
+        <briefdescription>
+<para>As of Embree3 the number of buffers was greatly increased however the maximum is only defined locally to the library as of v3.4.0 this was the number. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/meshSamplers.h" line="65" column="1" bodyfile="pxr/imaging/hdEmbree/meshSamplers.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_embree_r_t_c_buffer_allocator_1a369cabfb074206b99391ff8eb00547fc" prot="private" static="no" mutable="no">
+        <type>std::bitset&lt; <ref refid="class_hd_embree_r_t_c_buffer_allocator_1a63fe4375a7d52448b2e687c5709ae2bc" kindref="member">PXR_MAX_USER_VERTEX_BUFFERS</ref> &gt;</type>
+        <definition>std::bitset&lt;PXR_MAX_USER_VERTEX_BUFFERS&gt; _bitset</definition>
+        <argsstring></argsstring>
+        <name>_bitset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/meshSamplers.h" line="68" column="1" bodyfile="pxr/imaging/hdEmbree/meshSamplers.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_embree_r_t_c_buffer_allocator_1a189dff98130f59a93116cdab99190d74" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>HdEmbreeRTCBufferAllocator</definition>
+        <argsstring>()</argsstring>
+        <name>HdEmbreeRTCBufferAllocator</name>
+        <briefdescription>
+<para>Constructor. By default, set everything to unallocated. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/meshSamplers.h" line="47" column="1" bodyfile="pxr/imaging/hdEmbree/meshSamplers.h" bodystart="47" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_embree_r_t_c_buffer_allocator_1a384588751a70490f314c62e2909689c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Allocate</definition>
+        <argsstring>()</argsstring>
+        <name>Allocate</name>
+        <briefdescription>
+<para>Allocate a buffer by finding the first clear bit, using that as the buffer number, and setting the bit to mark it as used. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>An unused RTC user vertex buffer id, or -1 on failure. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/meshSamplers.h" line="53" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_embree_r_t_c_buffer_allocator_1a55d8dc883734de4508b66b5798de4aca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Free</definition>
+        <argsstring>(int buffer)</argsstring>
+        <name>Free</name>
+        <param>
+          <type>int</type>
+          <declname>buffer</declname>
+        </param>
+        <briefdescription>
+<para>Free a buffer by clearing its bit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The buffer to mark as unused. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/meshSamplers.h" line="57" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_embree_r_t_c_buffer_allocator_1a52d2da0b554c1595e3028f611a278b86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int NumBuffers</definition>
+        <argsstring>()</argsstring>
+        <name>NumBuffers</name>
+        <briefdescription>
+<para>Query how many buffers are currently in user for this geometry. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/meshSamplers.h" line="60" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Utility class to track which embree user vertex buffers are currently in use. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="pxr/imaging/hdEmbree/meshSamplers.h" line="44" column="1" bodyfile="pxr/imaging/hdEmbree/meshSamplers.h" bodystart="43" bodyend="69"/>
+    <listofallmembers>
+      <member refid="class_hd_embree_r_t_c_buffer_allocator_1a369cabfb074206b99391ff8eb00547fc" prot="private" virt="non-virtual"><scope>HdEmbreeRTCBufferAllocator</scope><name>_bitset</name></member>
+      <member refid="class_hd_embree_r_t_c_buffer_allocator_1a384588751a70490f314c62e2909689c1" prot="public" virt="non-virtual"><scope>HdEmbreeRTCBufferAllocator</scope><name>Allocate</name></member>
+      <member refid="class_hd_embree_r_t_c_buffer_allocator_1a55d8dc883734de4508b66b5798de4aca" prot="public" virt="non-virtual"><scope>HdEmbreeRTCBufferAllocator</scope><name>Free</name></member>
+      <member refid="class_hd_embree_r_t_c_buffer_allocator_1a189dff98130f59a93116cdab99190d74" prot="public" virt="non-virtual"><scope>HdEmbreeRTCBufferAllocator</scope><name>HdEmbreeRTCBufferAllocator</name></member>
+      <member refid="class_hd_embree_r_t_c_buffer_allocator_1a52d2da0b554c1595e3028f611a278b86" prot="public" virt="non-virtual"><scope>HdEmbreeRTCBufferAllocator</scope><name>NumBuffers</name></member>
+      <member refid="class_hd_embree_r_t_c_buffer_allocator_1a63fe4375a7d52448b2e687c5709ae2bc" prot="public" virt="non-virtual"><scope>HdEmbreeRTCBufferAllocator</scope><name>PXR_MAX_USER_VERTEX_BUFFERS</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

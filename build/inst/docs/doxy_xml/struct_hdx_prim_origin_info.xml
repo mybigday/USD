@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="struct_hdx_prim_origin_info" kind="struct" language="C++" prot="public">
+    <compoundname>HdxPrimOriginInfo</compoundname>
+    <includes refid="pick_task_8h" local="no">pickTask.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_hdx_prim_origin_info_1a7f963568712ddbf93b6e0375c3b3e040" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="struct_hdx_instancer_context" kindref="compound">HdxInstancerContext</ref> &gt;</type>
+        <definition>std::vector&lt;HdxInstancerContext&gt; instancerContexts</definition>
+        <argsstring></argsstring>
+        <name>instancerContexts</name>
+        <briefdescription>
+<para>Information about the instancers instancing the picked object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The outer most instancer will be first. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdx/pickTask.h" line="200" column="1" bodyfile="pxr/imaging/hdx/pickTask.h" bodystart="200" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_hdx_prim_origin_info_1a4b6834f8ee01af3a2f81662fcd7f3fa2" prot="public" static="no" mutable="no">
+        <type>HdContainerDataSourceHandle</type>
+        <definition>HdContainerDataSourceHandle primOrigin</definition>
+        <argsstring></argsstring>
+        <name>primOrigin</name>
+        <briefdescription>
+<para>The prim origin data source for the picked prim if provided by the scene index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdx/pickTask.h" line="203" column="1" bodyfile="pxr/imaging/hdx/pickTask.h" bodystart="203" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="struct_hdx_prim_origin_info_1a84c862ad0d4cb5e20f8b950bfc9d17fa" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HDX_API <ref refid="struct_hdx_prim_origin_info" kindref="compound">HdxPrimOriginInfo</ref></type>
+        <definition>static HDX_API HdxPrimOriginInfo FromPickHit</definition>
+        <argsstring>(HdRenderIndex *renderIndex, const HdxPickHit &amp;hit)</argsstring>
+        <name>FromPickHit</name>
+        <param>
+          <type><ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> *</type>
+          <declname>renderIndex</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_hdx_pick_hit" kindref="compound">HdxPickHit</ref> &amp;</type>
+          <declname>hit</declname>
+        </param>
+        <briefdescription>
+<para>Query terminal scene index of render index for information about picked prim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdx/pickTask.h" line="184" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_hdx_prim_origin_info_1ada37d2a59cdc728e9ac7b98f72e9d077" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HDX_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>HDX_API SdfPath GetFullPath</definition>
+        <argsstring>(const TfToken &amp;nameInPrimOrigin=HdPrimOriginSchemaTokens-&gt;scenePath) const</argsstring>
+        <name>GetFullPath</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>nameInPrimOrigin</declname>
+          <defval>HdPrimOriginSchemaTokens-&gt;scenePath</defval>
+        </param>
+        <briefdescription>
+<para>Combines instance scene paths and prim scene path to obtain the full scene path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The scene path is extracted from the prim origin container data source by using the given key. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdx/pickTask.h" line="194" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A helper to extract information about the picked prim that allows modern applications to identify a prim and, e.g., obtain the scene path such as the path of the corresponding <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Note that this helper assumes that we use scene indices and that the primOrigin data source was populated for each pickable prim in the scene index. Typically, an application will populate the scenePath in the primOrigin data source. But the design allows an application to populate the primOrigin container data source with arbitrary data that helps to give context about a prim and identify the picked prim.</para>
+<para>Note that legacy applications using scene delegates cannot use <ref refid="struct_hdx_prim_origin_info" kindref="compound">HdxPrimOriginInfo</ref> and have to translate the scene index path to a scene path using the scene delegate API <ref refid="class_hd_scene_delegate_1abf2d598723d5458ec074c92af3a4d318" kindref="member">HdSceneDelegate::GetScenePrimPath</ref> and HdSceneDelegate::ConvertIndexPathToCachePath. </para>
+    </detaileddescription>
+    <location file="pxr/imaging/hdx/pickTask.h" line="179" column="1" bodyfile="pxr/imaging/hdx/pickTask.h" bodystart="178" bodyend="204"/>
+    <listofallmembers>
+      <member refid="struct_hdx_prim_origin_info_1a84c862ad0d4cb5e20f8b950bfc9d17fa" prot="public" virt="non-virtual"><scope>HdxPrimOriginInfo</scope><name>FromPickHit</name></member>
+      <member refid="struct_hdx_prim_origin_info_1ada37d2a59cdc728e9ac7b98f72e9d077" prot="public" virt="non-virtual"><scope>HdxPrimOriginInfo</scope><name>GetFullPath</name></member>
+      <member refid="struct_hdx_prim_origin_info_1a7f963568712ddbf93b6e0375c3b3e040" prot="public" virt="non-virtual"><scope>HdxPrimOriginInfo</scope><name>instancerContexts</name></member>
+      <member refid="struct_hdx_prim_origin_info_1a4b6834f8ee01af3a2f81662fcd7f3fa2" prot="public" virt="non-virtual"><scope>HdxPrimOriginInfo</scope><name>primOrigin</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

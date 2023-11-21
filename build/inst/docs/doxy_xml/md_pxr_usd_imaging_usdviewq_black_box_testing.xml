@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="md_pxr_usd_imaging_usdviewq_black_box_testing" kind="page">
+    <compoundname>md_pxr_usdImaging_usdviewq_blackBoxTesting</compoundname>
+    <title>Usdview Black Box Testing</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The testusdview automated testing harness allows us to test many of usdview&apos;s features, but not all. As we develop, when we fix or deploy a feature for which it does not seem reasonable to add a testusdview test-case, we should instead add a test for it here.</para>
+<para><heading level="2">Viewport prim Vising and Invising</heading>
+</para>
+<para><heading level="3">Goal</heading>
+</para>
+<para>Ensure that when we select (including multi-select) prims (or models, when &quot;Pick Mode&quot; is &quot;Models&quot;) in the viewport, and <bold>then</bold> use the hotkeys for <emphasis>Make Invisible</emphasis>, <emphasis>Make Visible</emphasis>, <emphasis>Vis Only</emphasis>, <emphasis>Remove Session Visibility</emphasis>, and <emphasis>Remove All Session Visibility</emphasis>, that:<itemizedlist>
+<listitem><para>The prims actually appear/disappear as expected in the viewport</para>
+</listitem><listitem><para>When the selected items are viewed in the Prim View browser subsequently, the <bold>Vis</bold> column shows &quot;I&quot; appropriately for invisible prims and their descendants, and &quot;V&quot; elsewhere (except for non-Imageable prims such as Materials and Shaders, which should show nothing).</para>
+</listitem></itemizedlist>
+</para>
+<para><heading level="3">Method</heading>
+</para>
+<para><itemizedlist>
+<listitem><para>Start usdview with a sufficiently complex asset such that not all prims are open in the Prim View browser. The Kitchen_set.usd asset works well.</para>
+</listitem><listitem><para>In the viewport, Shift-select several pieces of geometry, from different parts of the scene.</para>
+</listitem><listitem><para>Run through the visibility operations via hotkey (or RMB context menu), ensuring that geometry disappears and reappears. E.g. Ctrl-h to invis/hide, followed by Shift-h to vis/unhide.</para>
+</listitem><listitem><para>After invising some geometry, hover mouse over Prim View, and hit &apos;f&apos; to frame the selection(s), which should cause rows to be expanded, showing the selected prims. You should see that the newly exposed prims have &apos;I&apos; in the <emphasis>Vis</emphasis> column (as well as all of their descendants, if you are in &quot;Pick Models&quot; mode, and open the model in the browser).</para>
+</listitem></itemizedlist>
+</para>
+<para><heading level="2">Vis and Draw Mode Columns Do Not Affect Selection</heading>
+</para>
+<para><heading level="3">Goal</heading>
+</para>
+<para>The Prim View Browser should select prims when the user clicks within the <bold>Prim Name</bold> or <bold>Type</bold> columns, but when clicking in the <bold>Vis</bold> or <bold>Draw Mode</bold> columns, the current selection should not be affected, and instead the user should just be modifying the prim&apos;s visibility or Draw Mode.</para>
+<para>After initial deployment of this feature, there was an uncaught regression in which interacting with a prim/row when the selected prim/row was not visible in the browser would cause the browser to scroll to the selected prim and cancel the interaction.</para>
+<para><heading level="2">Prim View Framing</heading>
+</para>
+<para><heading level="3">Goal</heading>
+</para>
+<para>When making selections in the viewport, we do not expect the &quot;expansion state&quot; of the Prim View to change. Instead, if selected prim(s) is already visible in the browser, then it should highlight (become selected); but if it is not visible/exposed, then only its visible ancestors should be highlighted in a secondary, muted selection color.</para>
+<para><heading level="3">Method</heading>
+</para>
+<para><itemizedlist>
+<listitem><para>Start usdview with a sufficiently complex asset such that not all prims are open in the Prim View browser. The Kitchen_set.usd asset works well.</para>
+</listitem><listitem><para>Pick some geometry in the viewer, and ensure we see desired behavior in browser, as described in Goal above. (The top of the kitchen table is a good one.)</para>
+</listitem><listitem><para>Now hover over the browser, and hit &apos;f&apos; to frame the selection (or first selected prim if a multi-selection).</para>
+</listitem><listitem><para>Reset Prim View with Alt-3 (Show &gt; Prim View Depth &gt; Level 3)</para>
+</listitem><listitem><para>Go back to the viewport, and select something else (e.g refridgerator door). Ensure browser updates only in that a different ancestor selection is made (since the refridgerator is in the <emphasis>North_Group</emphasis> as opposed to the <emphasis>DiningTable_group</emphasis> ).</para>
+</listitem><listitem><para>Hover over the Prim View, and use the arrow/cursor keys to change selection. Upon first keypress, the selected item should become visible/expanded, and uniquely selected (if you had a multi-selection), and navigation should then proceed as expected using up/down, left/rught keys. </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

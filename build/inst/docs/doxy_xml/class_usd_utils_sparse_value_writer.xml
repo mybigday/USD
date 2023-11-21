@@ -1,0 +1,259 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_utils_sparse_value_writer" kind="class" language="C++" prot="public">
+    <compoundname>UsdUtilsSparseValueWriter</compoundname>
+    <includes refid="sparse_value_writer_8h" local="no">sparseValueWriter.h</includes>
+    <innerclass refid="struct_usd_utils_sparse_value_writer_1_1___attr_hash" prot="private">UsdUtilsSparseValueWriter::_AttrHash</innerclass>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_usd_utils_sparse_value_writer_1aa541db03e9bb9f5a43c3b455cf53afaf" prot="private" static="no">
+        <type>std::unordered_map&lt; <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref>, <ref refid="class_usd_utils_sparse_attr_value_writer" kindref="compound">UsdUtilsSparseAttrValueWriter</ref>, _AttrHash &gt;</type>
+        <definition>using _AttrValueWriterMap =  std::unordered_map&lt;UsdAttribute, UsdUtilsSparseAttrValueWriter, _AttrHash&gt;</definition>
+        <argsstring></argsstring>
+        <name>_AttrValueWriterMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/sparseValueWriter.h" line="287" column="1" bodyfile="pxr/usd/usdUtils/sparseValueWriter.h" bodystart="289" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_usd_utils_sparse_value_writer_1abf781cabc07f7dd39ccdd3e0920c04d6" prot="private" static="no" mutable="no">
+        <type>_AttrValueWriterMap</type>
+        <definition>_AttrValueWriterMap _attrValueWriterMap</definition>
+        <argsstring></argsstring>
+        <name>_attrValueWriterMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/sparseValueWriter.h" line="290" column="1" bodyfile="pxr/usd/usdUtils/sparseValueWriter.h" bodystart="290" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_utils_sparse_value_writer_1a8c62ac083e8fe68136f5ded654e137f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDUTILS_API bool</type>
+        <definition>USDUTILS_API bool SetAttribute</definition>
+        <argsstring>(const UsdAttribute &amp;attr, const VtValue &amp;value, const UsdTimeCode time=UsdTimeCode::Default())</argsstring>
+        <name>SetAttribute</name>
+        <param>
+          <type>const <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> &amp;</type>
+          <declname>attr</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_vt_value" kindref="compound">VtValue</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>time</declname>
+          <defval><ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Sets the value of <computeroutput>attr</computeroutput> to <computeroutput>value</computeroutput> at time <computeroutput>time</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The value is written sparsely, i.e., the default value is authored only if it is different from the fallback value or the existing default value, and any redundant time-samples are skipped when the attribute value does not change significantly between consecutive time-samples. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/sparseValueWriter.h" line="237" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_utils_sparse_value_writer_1a1dee70f52c8b76d1455c509e1e7d6749" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDUTILS_API bool</type>
+        <definition>USDUTILS_API bool SetAttribute</definition>
+        <argsstring>(const UsdAttribute &amp;attr, VtValue *value, const UsdTimeCode time=UsdTimeCode::Default())</argsstring>
+        <name>SetAttribute</name>
+        <param>
+          <type>const <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> &amp;</type>
+          <declname>attr</declname>
+        </param>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> *</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>time</declname>
+          <defval><ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. For efficiency, this function swaps out the given <computeroutput>value</computeroutput>, leaving it empty. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The value will be held in memory at least until the next time-sample is written or until the SparseAttrValueWriter instance is destroyed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/sparseValueWriter.h" line="247" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_utils_sparse_value_writer_1aeb1e8606149f4246a38d43f46174d445" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool SetAttribute</definition>
+        <argsstring>(const UsdAttribute &amp;attr, T &amp;value, const UsdTimeCode time=UsdTimeCode::Default())</argsstring>
+        <name>SetAttribute</name>
+        <param>
+          <type>const <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> &amp;</type>
+          <declname>attr</declname>
+        </param>
+        <param>
+          <type>T &amp;</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>time</declname>
+          <defval><ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/sparseValueWriter.h" line="253" column="1" bodyfile="pxr/usd/usdUtils/sparseValueWriter.h" bodystart="253" bodyend="259"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_utils_sparse_value_writer_1ab3f4593be331e8a3a82f6f5f18e6479f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>USDUTILS_API void</type>
+        <definition>USDUTILS_API void Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <briefdescription>
+<para>Clears the internal map, thereby releasing all the memory used by the sparse value-writers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/sparseValueWriter.h" line="264" column="1" bodyfile="pxr/usd/usdUtils/sparseValueWriter.h" bodystart="264" bodyend="266"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_utils_sparse_value_writer_1ad944de371bd9f5df55da3e300651d83e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDUTILS_API std::vector&lt; <ref refid="class_usd_utils_sparse_attr_value_writer" kindref="compound">UsdUtilsSparseAttrValueWriter</ref> &gt;</type>
+        <definition>USDUTILS_API std::vector&lt;UsdUtilsSparseAttrValueWriter&gt; GetSparseAttrValueWriters</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSparseAttrValueWriters</name>
+        <briefdescription>
+<para>Returns a new vector of <ref refid="class_usd_utils_sparse_attr_value_writer" kindref="compound">UsdUtilsSparseAttrValueWriter</ref> populated from the attrValueWriter map. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/sparseValueWriter.h" line="272" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_usd_utils_sparse_value_writer_1abdf639b7283ee2a18f4bc7f4b12fc81b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool _SetAttributeImpl</definition>
+        <argsstring>(const UsdAttribute &amp;attr, T &amp;value, const UsdTimeCode time)</argsstring>
+        <name>_SetAttributeImpl</name>
+        <param>
+          <type>const <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> &amp;</type>
+          <declname>attr</declname>
+        </param>
+        <param>
+          <type>T &amp;</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/sparseValueWriter.h" line="277" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Utility class that manages sparse authoring of a set of UsdAttributes. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>It does this by maintaining a map of UsdAttributes to their corresponding <ref refid="class_usd_utils_sparse_attr_value_writer" kindref="compound">UsdUtilsSparseAttrValueWriter</ref> objects.</para>
+<para>To use this class, simply instantiate an instance of it and invoke the <ref refid="class_usd_utils_sparse_value_writer_1a8c62ac083e8fe68136f5ded654e137f3" kindref="member">SetAttribute()</ref> method with various attributes and their associated time-samples.</para>
+<para><simplesect kind="note"><para>If the attribute has a default value, <ref refid="class_usd_utils_sparse_value_writer_1a8c62ac083e8fe68136f5ded654e137f3" kindref="member">SetAttribute()</ref> must be called with time=Default first (multiple times, if necessary), followed by calls to author time-samples in sequentially increasing time order.</para>
+</simplesect>
+<simplesect kind="note"><para>This class is not threadsafe. In general, authoring to a single USD layer from multiple threads isn&apos;t threadsafe. Hence, there is little value in making this class threadsafe.</para>
+</simplesect>
+Example c++ usage: <programlisting><codeline><highlight class="normal">UsdGeomCylinder<sp/>cylinder<sp/>=<sp/>UsdGeomCylinder::Define(stage,<sp/>SdfPath(&quot;/Cylinder&quot;));</highlight></codeline>
+<codeline><highlight class="normal">UsdAttribute<sp/>radius<sp/>=<sp/>cylinder.CreateRadiusAttr();</highlight></codeline>
+<codeline><highlight class="normal">UsdAttribute<sp/>height<sp/>=<sp/>cylinder.CreateHeightAttr();</highlight></codeline>
+<codeline><highlight class="normal">UsdUtilsSparseValueWriter<sp/>valueWriter;</highlight></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(radius,<sp/>2.0,<sp/>UsdTimeCode::Default());</highlight></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(height,<sp/>2.0,<sp/>UsdTimeCode::Default());</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(radius,<sp/>10.0,<sp/>UsdTimeCode(1.0));</highlight></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(radius,<sp/>20.0,<sp/>UsdTimeCode(2.0));</highlight></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(radius,<sp/>20.0,<sp/>UsdTimeCode(3.0));</highlight></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(radius,<sp/>20.0,<sp/>UsdTimeCode(4.0));</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(height,<sp/>2.0,<sp/>UsdTimeCode(1.0));</highlight></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(height,<sp/>2.0,<sp/>UsdTimeCode(2.0));</highlight></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(height,<sp/>3.0,<sp/>UsdTimeCode(3.0));</highlight></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(height,<sp/>3.0,<sp/>UsdTimeCode(4.0));</highlight></codeline>
+</programlisting></para>
+<para>Equivalent python code: <programlisting filename=".py"><codeline><highlight class="normal">cylinder<sp/>=<sp/>UsdGeom.Cylinder.Define(stage,<sp/>Sdf.Path(</highlight><highlight class="stringliteral">&quot;/Cylinder&quot;</highlight><highlight class="normal">))</highlight></codeline>
+<codeline><highlight class="normal">radius<sp/>=<sp/>cylinder.CreateRadiusAttr()</highlight></codeline>
+<codeline><highlight class="normal">height<sp/>=<sp/>cylinder.CreateHeightAttr()</highlight></codeline>
+<codeline><highlight class="normal">valueWriter<sp/>=<sp/>UsdUtils.SparseValueWriter()</highlight></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(radius,<sp/>2.0,<sp/>Usd.TimeCode.Default())</highlight></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(height,<sp/>2.0,<sp/>Usd.TimeCode.Default())</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(radius,<sp/>10.0,<sp/>1.0)</highlight></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(radius,<sp/>20.0,<sp/>2.0)</highlight></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(radius,<sp/>20.0,<sp/>3.0)</highlight></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(radius,<sp/>20.0,<sp/>4.0)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(height,<sp/>2.0,<sp/>1.0)</highlight></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(height,<sp/>2.0,<sp/>2.0)</highlight></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(height,<sp/>3.0,<sp/>3.0)</highlight></codeline>
+<codeline><highlight class="normal">valueWriter.SetAttribute(height,<sp/>3.0,<sp/>4.0)</highlight></codeline>
+</programlisting></para>
+<para>In the above example, <itemizedlist>
+<listitem>
+<para>The default value of the &quot;height&quot; attribute is not authored into scene description since it matches the fallback value. </para>
+</listitem>
+<listitem>
+<para>Time-samples at time=3.0 and time=4.0 will be skipped for the radius attribute. </para>
+</listitem>
+<listitem>
+<para>For the &quot;height&quot; attribute, the first timesample at time=1.0 will be skipped since it matches the default value. </para>
+</listitem>
+<listitem>
+<para>The last time-sample at time=4.0 will also be skipped for &quot;height&quot; since it matches the previously written value at time=3.0. </para>
+</listitem>
+</itemizedlist>
+</para>
+    </detaileddescription>
+    <location file="pxr/usd/usdUtils/sparseValueWriter.h" line="229" column="1" bodyfile="pxr/usd/usdUtils/sparseValueWriter.h" bodystart="229" bodyend="291"/>
+    <listofallmembers>
+      <member refid="class_usd_utils_sparse_value_writer_1aa541db03e9bb9f5a43c3b455cf53afaf" prot="private" virt="non-virtual"><scope>UsdUtilsSparseValueWriter</scope><name>_AttrValueWriterMap</name></member>
+      <member refid="class_usd_utils_sparse_value_writer_1abf781cabc07f7dd39ccdd3e0920c04d6" prot="private" virt="non-virtual"><scope>UsdUtilsSparseValueWriter</scope><name>_attrValueWriterMap</name></member>
+      <member refid="class_usd_utils_sparse_value_writer_1abdf639b7283ee2a18f4bc7f4b12fc81b" prot="private" virt="non-virtual"><scope>UsdUtilsSparseValueWriter</scope><name>_SetAttributeImpl</name></member>
+      <member refid="class_usd_utils_sparse_value_writer_1ab3f4593be331e8a3a82f6f5f18e6479f" prot="public" virt="non-virtual"><scope>UsdUtilsSparseValueWriter</scope><name>Clear</name></member>
+      <member refid="class_usd_utils_sparse_value_writer_1ad944de371bd9f5df55da3e300651d83e" prot="public" virt="non-virtual"><scope>UsdUtilsSparseValueWriter</scope><name>GetSparseAttrValueWriters</name></member>
+      <member refid="class_usd_utils_sparse_value_writer_1a8c62ac083e8fe68136f5ded654e137f3" prot="public" virt="non-virtual"><scope>UsdUtilsSparseValueWriter</scope><name>SetAttribute</name></member>
+      <member refid="class_usd_utils_sparse_value_writer_1a1dee70f52c8b76d1455c509e1e7d6749" prot="public" virt="non-virtual"><scope>UsdUtilsSparseValueWriter</scope><name>SetAttribute</name></member>
+      <member refid="class_usd_utils_sparse_value_writer_1aeb1e8606149f4246a38d43f46174d445" prot="public" virt="non-virtual"><scope>UsdUtilsSparseValueWriter</scope><name>SetAttribute</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

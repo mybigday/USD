@@ -1,0 +1,227 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_ar_package_resolver" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>ArPackageResolver</compoundname>
+    <includes refid="package_resolver_8h" local="no">packageResolver.h</includes>
+      <sectiondef kind="user-defined">
+      <header>Packaged Path Resolution Operations</header>
+      <memberdef kind="function" id="class_ar_package_resolver_1ad942b5617d755c8bef6ce433bed60932" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>AR_API std::string</type>
+        <definition>virtual AR_API std::string Resolve</definition>
+        <argsstring>(const std::string &amp;resolvedPackagePath, const std::string &amp;packagedPath)=0</argsstring>
+        <name>Resolve</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>resolvedPackagePath</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>packagedPath</declname>
+        </param>
+        <briefdescription>
+<para>Returns the resolved path for the asset located at <computeroutput>packagedPath</computeroutput> in the package specified by <computeroutput>resolvedPackagePath</computeroutput> if it exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the asset does not exist in the package, returns an empty string.</para>
+<para>When <ref refid="class_ar_resolver_1a1b824f00c46b2a5001f492698fd8f5c1" kindref="member">ArResolver::Resolve</ref> is invoked on a package-relative path, the path will be parsed into the outermost package path, and the inner packaged path. The outermost package path will be resolved by the primary resolver. <ref refid="class_ar_package_resolver_1ad942b5617d755c8bef6ce433bed60932" kindref="member">ArPackageResolver::Resolve</ref> will then be called on the corresponding package resolver with that resolved path and the inner packaged path. If the inner packaged path is itself a package-relative path, this process recurses until all paths have been resolved.</para>
+<para><simplesect kind="see"><para><ref refid="class_ar_resolver_1a1b824f00c46b2a5001f492698fd8f5c1" kindref="member">ArResolver::Resolve</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/packageResolver.h" line="125" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Asset-specific Operations</header>
+      <memberdef kind="function" id="class_ar_package_resolver_1a1bf0915e8738d95359384f952dd5ee40" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>AR_API std::shared_ptr&lt; <ref refid="class_ar_asset" kindref="compound">ArAsset</ref> &gt;</type>
+        <definition>virtual AR_API std::shared_ptr&lt;ArAsset&gt; OpenAsset</definition>
+        <argsstring>(const std::string &amp;resolvedPackagePath, const std::string &amp;resolvedPackagedPath)=0</argsstring>
+        <name>OpenAsset</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>resolvedPackagePath</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>resolvedPackagedPath</declname>
+        </param>
+        <briefdescription>
+<para>Returns an <ref refid="class_ar_asset" kindref="compound">ArAsset</ref> object for the asset at <computeroutput>resolvedPackagedPath</computeroutput> located in the package asset at <computeroutput>resolvedPackagePath</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns an invalid std::shared_ptr if object could not be created.</para>
+<para><simplesect kind="see"><para><ref refid="class_ar_resolver_1aa3a964db701e93c26fc8365ac98fb758" kindref="member">ArResolver::OpenAsset</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/packageResolver.h" line="143" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Scoped Resolution Cache</header>
+      <description><para>These functions are called when scoped resolution caches are enabled via <ref refid="class_ar_resolver" kindref="compound">ArResolver</ref>.</para>
+<para><simplesect kind="see"><para><ref refid="class_ar_resolver_1ArResolver_scopedCache" kindref="member">Scoped Resolution Cache</ref> </para>
+</simplesect>
+</para>
+</description>
+      <memberdef kind="function" id="class_ar_package_resolver_1ab3f2a0667232be1cef2cb5d97cf0af83" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>AR_API void</type>
+        <definition>virtual AR_API void BeginCacheScope</definition>
+        <argsstring>(VtValue *cacheScopeData)=0</argsstring>
+        <name>BeginCacheScope</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> *</type>
+          <declname>cacheScopeData</declname>
+        </param>
+        <briefdescription>
+<para>Mark the start of a resolution caching scope. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_ar_resolver_1a522ae6b8a14dc87c9116109e619f062b" kindref="member">ArResolver::BeginCacheScope</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/packageResolver.h" line="161" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ar_package_resolver_1ab992934172276f177821adc2be965bdc" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>AR_API void</type>
+        <definition>virtual AR_API void EndCacheScope</definition>
+        <argsstring>(VtValue *cacheScopeData)=0</argsstring>
+        <name>EndCacheScope</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> *</type>
+          <declname>cacheScopeData</declname>
+        </param>
+        <briefdescription>
+<para>Mark the end of a resolution caching scope. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_ar_resolver_1a266aaced9fc6decb4ae2ad884bd46517" kindref="member">ArResolver::EndCacheScope</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/packageResolver.h" line="168" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ar_package_resolver_1a2613c8e17cf814858b9d676763d326f4" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AR_API</type>
+        <definition>AR_API ArPackageResolver</definition>
+        <argsstring>()</argsstring>
+        <name>ArPackageResolver</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/packageResolver.h" line="173" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_ar_package_resolver_1ad140f1b2389238cd66e709d33d9e5350" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ArPackageResolver</definition>
+        <argsstring>(const ArPackageResolver &amp;)=delete</argsstring>
+        <name>ArPackageResolver</name>
+        <param>
+          <type>const <ref refid="class_ar_package_resolver" kindref="compound">ArPackageResolver</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/packageResolver.h" line="98" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ar_package_resolver_1a2bceeff8dcc808f207ef883fedba08d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_ar_package_resolver" kindref="compound">ArPackageResolver</ref> &amp;</type>
+        <definition>ArPackageResolver&amp; operator=</definition>
+        <argsstring>(const ArPackageResolver &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_ar_package_resolver" kindref="compound">ArPackageResolver</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/packageResolver.h" line="99" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ar_package_resolver_1a94a830ae991f3b49b80457908797c75a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>AR_API</type>
+        <definition>virtual AR_API ~ArPackageResolver</definition>
+        <argsstring>()</argsstring>
+        <name>~ArPackageResolver</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/packageResolver.h" line="102" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Interface for resolving assets within package assets. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A package resolver is responsible for processing particular package asset formats and resolving information about assets stored within that package.</para>
+<para>Each package resolver is associated with particular file formats and is invoked by asset resolution when handling package-relative paths involving those formats. <ref refid="class_ar_package_resolver" kindref="compound">ArPackageResolver</ref> instances are only used internally by Ar and are not directly exposed to clients.</para>
+<sect1 id="class_ar_package_resolver_1ar_implementing_package_resolver">
+<title>Implementing a Package Resolver</title>
+<para>To implement a package resolver, users must create a plugin containing a subclass of <ref refid="class_ar_package_resolver" kindref="compound">ArPackageResolver</ref> and register it with the plugin system so that it can be discovered and instantiated at runtime.</para>
+<para><itemizedlist>
+<listitem><para>Implement an <ref refid="class_ar_package_resolver" kindref="compound">ArPackageResolver</ref> subclass <programlisting filename=".cpp"><codeline><highlight class="keyword">class<sp/></highlight><highlight class="normal">CustomPackageResolver<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_ar_package_resolver" kindref="compound">ArPackageResolver</ref><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>...</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para>In its implementation, register the <ref refid="class_ar_package_resolver" kindref="compound">ArPackageResolver</ref> subclass using <ref refid="define_package_resolver_8h_1a0e7b2848c1f63e81782bd9bae5aecf48" kindref="member">AR_DEFINE_PACKAGE_RESOLVER</ref> <programlisting filename=".cpp"><codeline><highlight class="preprocessor">#<sp/>custom<sp/>resolver&apos;s<sp/>.cpp<sp/>file</highlight></codeline>
+<codeline><highlight class="preprocessor">AR_DEFINE_PACKAGE_RESOLVER(CustomPackageResolver,<sp/>ArPackageResolver);</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para>Declare the <ref refid="class_ar_package_resolver" kindref="compound">ArPackageResolver</ref> subclass in the plugin&apos;s plugInfo.json file. Note that the entry for the subclass must declare the file format it handles in the &apos;extensions&apos; metadata. <programlisting filename=".json"><codeline><highlight class="normal">#<sp/>plugInfo.json</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;Plugins&quot;:<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Info&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Types&quot;<sp/>:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;CustomPackageResolver&quot;<sp/>:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;bases&quot;:<sp/>[<sp/>&quot;ArPackageResolver&quot;<sp/>],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;extensions&quot;:<sp/>[<sp/>&quot;pack&quot;<sp/>]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>...<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="pxr/usd/ar/packageResolver.h" line="96" column="1" bodyfile="pxr/usd/ar/packageResolver.h" bodystart="95" bodyend="174"/>
+    <listofallmembers>
+      <member refid="class_ar_package_resolver_1ad140f1b2389238cd66e709d33d9e5350" prot="public" virt="non-virtual"><scope>ArPackageResolver</scope><name>ArPackageResolver</name></member>
+      <member refid="class_ar_package_resolver_1a2613c8e17cf814858b9d676763d326f4" prot="protected" virt="non-virtual"><scope>ArPackageResolver</scope><name>ArPackageResolver</name></member>
+      <member refid="class_ar_package_resolver_1ab3f2a0667232be1cef2cb5d97cf0af83" prot="public" virt="pure-virtual"><scope>ArPackageResolver</scope><name>BeginCacheScope</name></member>
+      <member refid="class_ar_package_resolver_1ab992934172276f177821adc2be965bdc" prot="public" virt="pure-virtual"><scope>ArPackageResolver</scope><name>EndCacheScope</name></member>
+      <member refid="class_ar_package_resolver_1a1bf0915e8738d95359384f952dd5ee40" prot="public" virt="pure-virtual"><scope>ArPackageResolver</scope><name>OpenAsset</name></member>
+      <member refid="class_ar_package_resolver_1a2bceeff8dcc808f207ef883fedba08d0" prot="public" virt="non-virtual"><scope>ArPackageResolver</scope><name>operator=</name></member>
+      <member refid="class_ar_package_resolver_1ad942b5617d755c8bef6ce433bed60932" prot="public" virt="pure-virtual"><scope>ArPackageResolver</scope><name>Resolve</name></member>
+      <member refid="class_ar_package_resolver_1a94a830ae991f3b49b80457908797c75a" prot="public" virt="virtual"><scope>ArPackageResolver</scope><name>~ArPackageResolver</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

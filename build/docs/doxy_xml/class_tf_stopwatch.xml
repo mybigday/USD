@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_tf_stopwatch" kind="class" language="C++" prot="public">
+    <compoundname>TfStopwatch</compoundname>
+    <includes refid="stopwatch_8h" local="no">stopwatch.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_tf_stopwatch_1abdd15b6c11ae6f49785707e7bb636c4d" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t _nTicks</definition>
+        <argsstring></argsstring>
+        <name>_nTicks</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stopwatch.h" line="139" column="1" bodyfile="pxr/base/tf/stopwatch.h" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_tf_stopwatch_1a6577de99e65af124bb66995b3aed298d" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t _startTick</definition>
+        <argsstring></argsstring>
+        <name>_startTick</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stopwatch.h" line="140" column="1" bodyfile="pxr/base/tf/stopwatch.h" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_tf_stopwatch_1a7e38fe0cb17765b575c0ff6cfc48dcc1" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t _sampleCount</definition>
+        <argsstring></argsstring>
+        <name>_sampleCount</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stopwatch.h" line="141" column="1" bodyfile="pxr/base/tf/stopwatch.h" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_tf_stopwatch_1a07aaf1227e4d645f15e0a964f54ef291" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <briefdescription>
+<para>Record the current time for use by the next <computeroutput><ref refid="class_tf_stopwatch_1a17a237457e57625296e6b24feb19c60a" kindref="member">Stop()</ref></computeroutput> call. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The <computeroutput><ref refid="class_tf_stopwatch_1a07aaf1227e4d645f15e0a964f54ef291" kindref="member">Start()</ref></computeroutput> function records the current time. A subsequent call to <computeroutput><ref refid="class_tf_stopwatch_1a07aaf1227e4d645f15e0a964f54ef291" kindref="member">Start()</ref></computeroutput> before a call to <computeroutput><ref refid="class_tf_stopwatch_1a17a237457e57625296e6b24feb19c60a" kindref="member">Stop()</ref></computeroutput> simply records a later current time, but does not change the accumulated time of the <computeroutput><ref refid="class_tf_stopwatch" kindref="compound">TfStopwatch</ref></computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stopwatch.h" line="65" column="1" bodyfile="pxr/base/tf/stopwatch.h" bodystart="65" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_stopwatch_1a17a237457e57625296e6b24feb19c60a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Stop</definition>
+        <argsstring>()</argsstring>
+        <name>Stop</name>
+        <briefdescription>
+<para>Increases the accumulated time stored in the <computeroutput><ref refid="class_tf_stopwatch" kindref="compound">TfStopwatch</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The <computeroutput><ref refid="class_tf_stopwatch_1a17a237457e57625296e6b24feb19c60a" kindref="member">Stop()</ref></computeroutput> function increases the accumulated time by the duration between the current time and the last time recorded by a <computeroutput><ref refid="class_tf_stopwatch_1a07aaf1227e4d645f15e0a964f54ef291" kindref="member">Start()</ref></computeroutput> call. A subsequent call to <computeroutput><ref refid="class_tf_stopwatch_1a17a237457e57625296e6b24feb19c60a" kindref="member">Stop()</ref></computeroutput> before another call to <computeroutput><ref refid="class_tf_stopwatch_1a07aaf1227e4d645f15e0a964f54ef291" kindref="member">Start()</ref></computeroutput> will therefore double-count time and throw off the results.</para>
+<para>A <computeroutput><ref refid="class_tf_stopwatch" kindref="compound">TfStopwatch</ref></computeroutput> also counts the number of samples it has taken. The &quot;sample count&quot; is simply the number of times that <computeroutput><ref refid="class_tf_stopwatch_1a17a237457e57625296e6b24feb19c60a" kindref="member">Stop()</ref></computeroutput> has been called. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stopwatch.h" line="79" column="1" bodyfile="pxr/base/tf/stopwatch.h" bodystart="79" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_stopwatch_1a372de693ad40b3f42839c8ec6ac845f4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset</definition>
+        <argsstring>()</argsstring>
+        <name>Reset</name>
+        <briefdescription>
+<para>Resets the accumulated time and the sample count to zero. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stopwatch.h" line="85" column="1" bodyfile="pxr/base/tf/stopwatch.h" bodystart="85" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_stopwatch_1a8f6a6095e3d842abf3e8f32dbc93870c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AddFrom</definition>
+        <argsstring>(const TfStopwatch &amp;t)</argsstring>
+        <name>AddFrom</name>
+        <param>
+          <type>const <ref refid="class_tf_stopwatch" kindref="compound">TfStopwatch</ref> &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>Adds the accumulated time and sample count from <computeroutput>t</computeroutput> into the <computeroutput><ref refid="class_tf_stopwatch" kindref="compound">TfStopwatch</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If you have several timers taking measurements, and you wish to combine them together, you can add one timer&apos;s results into another; for example, <computeroutput>t2.AddFrom(t1)</computeroutput> will add <computeroutput>t1</computeroutput> &apos;s time and sample count into <computeroutput>t2</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stopwatch.h" line="97" column="1" bodyfile="pxr/base/tf/stopwatch.h" bodystart="97" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_stopwatch_1a4d44c144602acf9757ef260008ba77b7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t GetNanoseconds</definition>
+        <argsstring>() const</argsstring>
+        <name>GetNanoseconds</name>
+        <briefdescription>
+<para>Return the accumulated time in nanoseconds. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that this number can easily overflow a 32-bit counter, so take care to save the result in an <computeroutput>int64_t</computeroutput>, and not a regular <computeroutput>int</computeroutput> or <computeroutput>long</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stopwatch.h" line="107" column="1" bodyfile="pxr/base/tf/stopwatch.h" bodystart="107" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_stopwatch_1af6b19a9e943497da9edcaf888ecb34e0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t GetMicroseconds</definition>
+        <argsstring>() const</argsstring>
+        <name>GetMicroseconds</name>
+        <briefdescription>
+<para>Return the accumulated time in microseconds. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that 45 minutes will overflow a 32-bit counter, so take care to save the result in an <computeroutput>int64_t</computeroutput>, and not a regular <computeroutput>int</computeroutput> or <computeroutput>long</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stopwatch.h" line="115" column="1" bodyfile="pxr/base/tf/stopwatch.h" bodystart="115" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_stopwatch_1a6d4bd34e0444efe5ff3c398be594e248" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t GetMilliseconds</definition>
+        <argsstring>() const</argsstring>
+        <name>GetMilliseconds</name>
+        <briefdescription>
+<para>Return the accumulated time in milliseconds. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stopwatch.h" line="120" column="1" bodyfile="pxr/base/tf/stopwatch.h" bodystart="120" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_stopwatch_1ae09073c1bb7370565704bb3ef7fceefd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GetSampleCount</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSampleCount</name>
+        <briefdescription>
+<para>Return the current sample count. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The sample count, which is simply the number of calls to <computeroutput><ref refid="class_tf_stopwatch_1a17a237457e57625296e6b24feb19c60a" kindref="member">Stop()</ref></computeroutput> since creation or a call to <computeroutput><ref refid="class_tf_stopwatch_1a372de693ad40b3f42839c8ec6ac845f4" kindref="member">Reset()</ref></computeroutput>, is useful for computing average running times of a repeated task. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stopwatch.h" line="129" column="1" bodyfile="pxr/base/tf/stopwatch.h" bodystart="129" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_stopwatch_1a2f2e4d7de53cadc3b698e194f1bf4035" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetSeconds</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSeconds</name>
+        <briefdescription>
+<para>Return the accumulated time in seconds as a <computeroutput>double</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stopwatch.h" line="134" column="1" bodyfile="pxr/base/tf/stopwatch.h" bodystart="134" bodyend="136"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Low-cost, high-resolution timer datatype. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A <computeroutput><ref refid="class_tf_stopwatch" kindref="compound">TfStopwatch</ref></computeroutput> can be used to perform very precise timings at runtime, even in very tight loops. The cost of &quot;starting&quot; or &quot;stopping&quot; a <computeroutput><ref refid="class_tf_stopwatch" kindref="compound">TfStopwatch</ref></computeroutput> is very small: approximately 40 nanoseconds on a 900 Mhz Pentium III Linux box, 300 nanoseconds on a 400 Mhz Sun, and 200 nanoseconds on a 250 Mhz SGI.</para>
+<para>Note that this class is not thread-safe: if you need to take timings in a multi-threaded region of a process, let each thread have its own <computeroutput><ref refid="class_tf_stopwatch" kindref="compound">TfStopwatch</ref></computeroutput> and then combine results using the <computeroutput><ref refid="class_tf_stopwatch_1a8f6a6095e3d842abf3e8f32dbc93870c" kindref="member">AddFrom()</ref></computeroutput> member function. </para>
+    </detaileddescription>
+    <location file="pxr/base/tf/stopwatch.h" line="56" column="1" bodyfile="pxr/base/tf/stopwatch.h" bodystart="55" bodyend="142"/>
+    <listofallmembers>
+      <member refid="class_tf_stopwatch_1abdd15b6c11ae6f49785707e7bb636c4d" prot="private" virt="non-virtual"><scope>TfStopwatch</scope><name>_nTicks</name></member>
+      <member refid="class_tf_stopwatch_1a7e38fe0cb17765b575c0ff6cfc48dcc1" prot="private" virt="non-virtual"><scope>TfStopwatch</scope><name>_sampleCount</name></member>
+      <member refid="class_tf_stopwatch_1a6577de99e65af124bb66995b3aed298d" prot="private" virt="non-virtual"><scope>TfStopwatch</scope><name>_startTick</name></member>
+      <member refid="class_tf_stopwatch_1a8f6a6095e3d842abf3e8f32dbc93870c" prot="public" virt="non-virtual"><scope>TfStopwatch</scope><name>AddFrom</name></member>
+      <member refid="class_tf_stopwatch_1af6b19a9e943497da9edcaf888ecb34e0" prot="public" virt="non-virtual"><scope>TfStopwatch</scope><name>GetMicroseconds</name></member>
+      <member refid="class_tf_stopwatch_1a6d4bd34e0444efe5ff3c398be594e248" prot="public" virt="non-virtual"><scope>TfStopwatch</scope><name>GetMilliseconds</name></member>
+      <member refid="class_tf_stopwatch_1a4d44c144602acf9757ef260008ba77b7" prot="public" virt="non-virtual"><scope>TfStopwatch</scope><name>GetNanoseconds</name></member>
+      <member refid="class_tf_stopwatch_1ae09073c1bb7370565704bb3ef7fceefd" prot="public" virt="non-virtual"><scope>TfStopwatch</scope><name>GetSampleCount</name></member>
+      <member refid="class_tf_stopwatch_1a2f2e4d7de53cadc3b698e194f1bf4035" prot="public" virt="non-virtual"><scope>TfStopwatch</scope><name>GetSeconds</name></member>
+      <member refid="class_tf_stopwatch_1a372de693ad40b3f42839c8ec6ac845f4" prot="public" virt="non-virtual"><scope>TfStopwatch</scope><name>Reset</name></member>
+      <member refid="class_tf_stopwatch_1a07aaf1227e4d645f15e0a964f54ef291" prot="public" virt="non-virtual"><scope>TfStopwatch</scope><name>Start</name></member>
+      <member refid="class_tf_stopwatch_1a17a237457e57625296e6b24feb19c60a" prot="public" virt="non-virtual"><scope>TfStopwatch</scope><name>Stop</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,226 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="trace_page_detail" kind="page">
+    <compoundname>trace_page_detail</compoundname>
+    <title>Trace Details</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The trace library consists of two main components:</para>
+<para><itemizedlist>
+<listitem><para><ref refid="class_trace_collector" kindref="compound">TraceCollector</ref> is a singleton thread-safe recorder of events. </para>
+</listitem>
+<listitem><para><ref refid="class_trace_reporter" kindref="compound">TraceReporter</ref> is a class which processes events to create meaningful views of the data.</para>
+</listitem>
+</itemizedlist>
+The <ref refid="class_trace_collector" kindref="compound">TraceCollector</ref> class can be used as a recorder for custom events in an application without using TRACE_ macros. </para>
+<sect1 id="trace_page_detail_1trace_detail_contents">
+<title>Contents</title>
+<para><itemizedlist>
+<listitem><para><ref refid="trace_page_detail_1trace_store_data" kindref="member">Recording Events with TraceCollector</ref> </para>
+</listitem>
+<listitem><para><ref refid="trace_page_detail_1trace_data" kindref="member">Accessing Trace Data</ref> </para>
+</listitem>
+<listitem><para><ref refid="trace_page_detail_1trace_custom_example" kindref="member">Example of Custom Category and Reporter</ref></para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+<sect1 id="trace_page_detail_1trace_store_data">
+<title>Recording Events with TraceCollector</title>
+<para>Most of the time TRACE macros are sufficient for instrumentation, however if something more specific is required, the <ref refid="class_trace_collector" kindref="compound">TraceCollector</ref> class can be used directly without using TRACE_ macros. The macros simply invoke API on the <ref refid="class_trace_collector" kindref="compound">TraceCollector</ref>.</para>
+<para><itemizedlist>
+<listitem><para><ref refid="trace_8h_1a5b0af4118bc65ec32e2f5d2558fe90d5" kindref="member">TRACE_FUNCTION()</ref>, <ref refid="trace_8h_1aec9f2bb2b5d0fd9be6ba7cddbce26cf1" kindref="member">TRACE_FUNCTION_SCOPE()</ref>, and <ref refid="trace_8h_1a39c16c77a53bc0aaaf4f2f39cd37f6c0" kindref="member">TRACE_SCOPE()</ref> corresponds to calls to <ref refid="class_trace_collector_1a81f8d63e47276778589f4642747829d7" kindref="member">TraceCollector::Scope</ref> </para>
+</listitem>
+<listitem><para><ref refid="trace_8h_1a23cc37038341ab22266c26144b909a4c" kindref="member">TRACE_COUNTER_DELTA()</ref> corresponds to a call to <ref refid="class_trace_collector_1a19b4d09df7c51c157bebc19f36339faf" kindref="member">TraceCollector::RecordCounterDelta</ref> </para>
+</listitem>
+<listitem><para><ref refid="trace_8h_1aa24afd97283177cabfdc766c8ac77338" kindref="member">TRACE_COUNTER_VALUE()</ref> corresponds to a call to <ref refid="class_trace_collector_1aa30e743a52551ee5fd482dda7b04d894" kindref="member">TraceCollector::RecordCounterValue</ref></para>
+</listitem>
+</itemizedlist>
+Each <ref refid="class_trace_event" kindref="compound">TraceEvent</ref> contains a <ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref>. These ids allow for the events to be filtered. Events recorded by TRACE_ macros have their <ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref> set to TraceCategory::Default.</para>
+<para>Trace categories consist of two parts, a <ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref>, and a function to determine whether or not events for the category should be recorded.</para>
+<para><ref refid="class_trace_category_1a4a14344b5bd6c66eb04727b11fae850b" kindref="member">TraceCategory::CreateTraceCategoryId</ref> can create a <ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref> from hashing a string literal. This is not guaranteed to be unique.</para>
+<para>All of the methods in the <ref refid="class_trace_collector" kindref="compound">TraceCollector</ref> class which record events take an optional Category template parameter. The Category template parameter determines if the event will be recorded and the <ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref> that will be stored in the event. </para>
+<para>A valid Category template parameter must have have the following: <itemizedlist>
+<listitem><para>A thread-safe static method named <bold>GetId</bold> which returns a TraceCategoryId. </para>
+</listitem>
+<listitem><para>A thread-safe static method named <bold>IsEnabled</bold> which returns a bool. </para>
+</listitem>
+</itemizedlist>
+</para>
+<para>If the Category template parameter is not specified, <ref refid="class_trace_collector" kindref="compound">TraceCollector</ref> uses <ref refid="struct_trace_collector_1_1_default_category" kindref="compound">TraceCollector::DefaultCategory</ref>.</para>
+<para>Example of recording an event with a custom category. <programlisting><codeline><highlight class="normal">//<sp/>Define<sp/>a<sp/>custom<sp/>category.</highlight></codeline>
+<codeline><highlight class="normal">struct<sp/>CustomPerfCounterCategory</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>TraceCollector<sp/>function<sp/>calls<sp/>using<sp/>this<sp/>category<sp/>will<sp/>store<sp/>events<sp/>with<sp/>this<sp/>TraceCategoryId.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>static<sp/>constexpr<sp/>TraceCategoryId<sp/>GetId()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>TraceCategory::CreateTraceCategoryId(&quot;CustomPerfCounter&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>TraceCollector<sp/>function<sp/>calls<sp/>using<sp/>this<sp/>category<sp/>will<sp/>store<sp/>events<sp/>only<sp/>if<sp/>this<sp/>function<sp/>returns<sp/>true.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>static<sp/>bool<sp/>IsEnabled();</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>main(int<sp/>argc,<sp/>char<sp/>*argv[])</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Register<sp/>a<sp/>name<sp/>with<sp/>the<sp/>id.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TraceCategory::GetInstance().RegisterCategory(PerfCategory::GetId(),<sp/>&quot;CustomPerfCounter&quot;);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Record<sp/>a<sp/>counter<sp/>delta<sp/>event<sp/>with<sp/>the<sp/>CustomPerfCounterCategory.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TraceCollector::GetInstance().RecordCounterDelta&lt;CustomPerfCounterCategory&gt;(&quot;A<sp/>Counter&quot;,<sp/>1);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="trace_page_detail_1trace_data">
+<title>Accessing Trace Data</title>
+<para>Access to recorded <ref refid="class_trace_event" kindref="compound">TraceEvent</ref> objects is available through the <ref refid="class_trace_collection" kindref="compound">TraceCollection</ref> class and <ref refid="class_trace_collection_available" kindref="compound">TraceCollectionAvailable</ref> notice. When the <ref refid="class_trace_collector" kindref="compound">TraceCollector</ref> produces data through the <ref refid="class_trace_collector_1a6662f531d89c418a2266ecf7487c44a2" kindref="member">TraceCollector::CreateCollection()</ref> method, it will send a <ref refid="class_trace_collection_available" kindref="compound">TraceCollectionAvailable</ref> notice. To access individual events in a <ref refid="class_trace_collection" kindref="compound">TraceCollection</ref> instance, the <ref refid="class_trace_collection_1_1_visitor" kindref="compound">TraceCollection::Visitor</ref> interface can be used. The <ref refid="class_trace_reporter_base" kindref="compound">TraceReporterBase</ref> class encapsulates logic for handling <ref refid="class_trace_collection_available" kindref="compound">TraceCollectionAvailable</ref> notices.</para>
+<para>Example of using <ref refid="class_trace_reporter_base" kindref="compound">TraceReporterBase</ref> class and <ref refid="class_trace_collection_1_1_visitor" kindref="compound">TraceCollection::Visitor</ref> interface. <programlisting><codeline><highlight class="normal">class<sp/>CustomTraceEventProcessor<sp/>:<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>public<sp/>TraceReporterBase,<sp/>TraceCollection::Visitor<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CustomTraceEventProcessor();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>TraceCollection::Visitor<sp/>interface</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>bool<sp/>AcceptsCategory(TraceCategoryId<sp/>id)<sp/>override</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>void<sp/>OnEvent(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>TraceThreadId&amp;,<sp/>const<sp/>TfToken&amp;<sp/>k,<sp/>const<sp/>TraceEvent&amp;<sp/>e)<sp/>override;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>void<sp/>OnBeginCollection()<sp/>override;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>void<sp/>OnEndCollection()<sp/>override;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>void<sp/>OnBeginThread(const<sp/>TraceThreadId&amp;)<sp/>override;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>void<sp/>OnEndThread(const<sp/>TraceThreadId&amp;)<sp/>override;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>Update()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//Call<sp/>base<sp/>class<sp/>update<sp/>to<sp/>get<sp/>the<sp/>latest<sp/>data<sp/>from<sp/>TraceCollector.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_Update();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">protected:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>This<sp/>will<sp/>be<sp/>called<sp/>by<sp/>the<sp/>TraceReporterBase::_Update()<sp/>for<sp/>each</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>TraceCollection<sp/>received.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>_ProcessCollection(const<sp/>CollectionPtr&amp;<sp/>collection)<sp/>override<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Iterate<sp/>over<sp/>the<sp/>TraceCollection<sp/>using<sp/>the<sp/>TraceCollection::Visitor</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>interface.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>collection-&gt;Iterate(*this);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="trace_page_detail_1trace_custom_example">
+<title>Example of Custom Category and Reporter</title>
+<para><programlisting filename=".cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;pxr/base/trace/collector.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;pxr/base/trace/reporterBase.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;atomic&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;map&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">PXR_NAMESPACE_USING_DIRECTIVE</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Custom<sp/>Trace<sp/>category.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">CustomPerfCounterCategory</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TraceCollector<sp/>function<sp/>calls<sp/>using<sp/>this<sp/>category<sp/>will<sp/>store<sp/>events<sp/>with<sp/>this<sp/>TraceCategoryId.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/><ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref><sp/>GetId()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_trace_category_1a4a14344b5bd6c66eb04727b11fae850b" kindref="member">TraceCategory::CreateTraceCategoryId</ref>(</highlight><highlight class="stringliteral">&quot;CustomPerfCounter&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TraceCollector<sp/>function<sp/>calls<sp/>using<sp/>this<sp/>category<sp/>will<sp/>store<sp/>events<sp/>only<sp/>if<sp/>this<sp/>function<sp/>return<sp/>true.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>IsEnabled()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_isEnabled.load(std::memory_order_acquire);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Enable()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_isEnabled.store(</highlight><highlight class="keyword">true</highlight><highlight class="normal">,<sp/>std::memory_order_release);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Disable()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_isEnabled.store(</highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/>std::memory_order_release);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::atomic&lt;bool&gt;<sp/>_isEnabled;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Helper<sp/>macros</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CUSTOM_PERF_COUNTER(name,<sp/>value)<sp/>\</highlight></codeline>
+<codeline><highlight class="preprocessor"><sp/><sp/><sp/><sp/>_CUSTOM_PERF_COUNTER_INSTANCE(__LINE__,<sp/>name,<sp/>value)</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_CUSTOM_PERF_COUNTER_INSTANCE(inst,<sp/>name,<sp/>value)<sp/>\</highlight></codeline>
+<codeline><highlight class="preprocessor"><sp/><sp/><sp/><sp/>static<sp/>constexpr<sp/>TraceStaticKeyData<sp/>customCounterKey<sp/>##<sp/>inst<sp/>(name);<sp/>\</highlight></codeline>
+<codeline><highlight class="preprocessor"><sp/><sp/><sp/><sp/>TraceCollector::GetInstance().RecordCounterDelta&lt;CustomPerfCounterCategory&gt;(customCounterKey<sp/>##<sp/>inst,<sp/>value);</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Custom<sp/>Trace<sp/>reporter.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">CustomTraceEventProcessor<sp/>:<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_trace_reporter_base" kindref="compound">TraceReporterBase</ref>,<sp/><ref refid="class_trace_collection_1_1_visitor" kindref="compound">TraceCollection::Visitor</ref><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CustomTraceEventProcessor(TraceReporterDataSourceBaseRefPtr<sp/>dataSource)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="class_trace_reporter_base" kindref="compound">TraceReporterBase</ref>(dataSource)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Call<sp/>base<sp/>class<sp/>update<sp/>to<sp/>get<sp/>the<sp/>latest<sp/>data<sp/>from<sp/>TraceCollector.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_trace_reporter_base_1a10d708889f4d8c7dc8acfddb77936c51" kindref="member">_Update</ref>();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TraceCollection::Visitor<sp/>interface</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Only<sp/>visit<sp/>events<sp/>marked<sp/>with<sp/>the<sp/>custom<sp/>category.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_trace_collection_1_1_visitor_1a2250f04e7b002aa6c36a168a6e947a01" kindref="member">AcceptsCategory</ref>(<ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal"><sp/>==<sp/>CustomPerfCounterCategory::GetId();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Accumulate<sp/>counter<sp/>deltas.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_trace_collection_1_1_visitor_1ae291c275f770fb50cd9e3d369ebca9e0" kindref="member">OnEvent</ref>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_trace_thread_id" kindref="compound">TraceThreadId</ref>&amp;,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_tf_token" kindref="compound">TfToken</ref>&amp;<sp/>k,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_trace_event" kindref="compound">TraceEvent</ref>&amp;<sp/>e)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(e.<ref refid="class_trace_event_1a7e96dfbae09090e2fa4430f70f9241ea" kindref="member">GetType</ref>()<sp/>==<sp/><ref refid="class_trace_event_1afdf2c10d40c582d9884ac5635a374a34a5ddedfc9ca656d733f66c73f1174aa6e" kindref="member">TraceEvent::EventType::CounterDelta</ref>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_counters[k]<sp/>+=<sp/>e.<ref refid="class_trace_event_1a33f83feda5ff45e1a18e700536ab42e6" kindref="member">GetCounterValue</ref>();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_trace_collection_1_1_visitor_1a3c80c02c9ef4c21cc42fc923138704a8" kindref="member">OnBeginCollection</ref>()</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_trace_collection_1_1_visitor_1a6dfb37e0b38497f0e93dd9f3c5dc4bb3" kindref="member">OnEndCollection</ref>()</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_trace_collection_1_1_visitor_1a40662d18c54cefe17fce74f0d5e5b17d" kindref="member">OnBeginThread</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_trace_thread_id" kindref="compound">TraceThreadId</ref>&amp;)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_trace_collection_1_1_visitor_1a699411304ea70999cea0158fa076b613" kindref="member">OnEndThread</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_trace_thread_id" kindref="compound">TraceThreadId</ref>&amp;)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>will<sp/>be<sp/>called<sp/>by<sp/>the<sp/>TraceReporterBase::_Update()<sp/>for<sp/>each</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TraceCollection<sp/>received.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_trace_reporter_base_1a5271f5249704bb4c54f18a2a7a56e410" kindref="member">_ProcessCollection</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>CollectionPtr&amp;<sp/>collection)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Iterate<sp/>over<sp/>the<sp/>TraceCollection<sp/>using<sp/>the<sp/>TraceCollection::Visitor</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>interface.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>collection-&gt;Iterate(*</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;TfToken,<sp/>double&gt;<sp/>_counters;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Instrumented<sp/>code</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Foo()<sp/></highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CUSTOM_PERF_COUNTER(</highlight><highlight class="stringliteral">&quot;Foo<sp/>Counter&quot;</highlight><highlight class="normal">,1);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">std::atomic&lt;bool&gt;<sp/>CustomPerfCounterCategory::_isEnabled(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*argv[])</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Register<sp/>a<sp/>name<sp/>with<sp/>the<sp/>id.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_trace_category_1a843883928c4ee80ce9d7e0143debaa18" kindref="member">TraceCategory::GetInstance</ref>().<ref refid="class_trace_category_1a8eb33c2cb2b06b0f3e3e8f4f8b0ff9e5" kindref="member">RegisterCategory</ref>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CustomPerfCounterCategory::GetId(),<sp/></highlight><highlight class="stringliteral">&quot;CustomPerfCounter&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Make<sp/>sure<sp/>an<sp/>instance<sp/>of<sp/>the<sp/>processor<sp/>is<sp/>available<sp/>to<sp/>receive<sp/>notices.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CustomTraceEventProcessor<sp/>eventProcessor(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_trace_reporter_data_source_collector_1a52a2a333a89f3e1e5314ef7052815b08" kindref="member">TraceReporterDataSourceCollector::New</ref>());</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Enable<sp/>the<sp/>recording<sp/>of<sp/>events<sp/>for<sp/>the<sp/>category.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CustomPerfCounterCategory::Enable();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Call<sp/>instrumented<sp/>code.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Foo();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Disable<sp/>the<sp/>recording<sp/>of<sp/>events<sp/>for<sp/>the<sp/>category.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CustomPerfCounterCategory::Disable();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Process<sp/>the<sp/>recorded<sp/>events.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>eventProcessor.Update();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

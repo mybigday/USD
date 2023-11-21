@@ -1,0 +1,1057 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_ndr_registry" kind="class" language="C++" prot="public">
+    <compoundname>NdrRegistry</compoundname>
+    <basecompoundref refid="class_tf_weak_base" prot="public" virt="non-virtual">TfWeakBase</basecompoundref>
+    <derivedcompoundref refid="class_sdr_registry" prot="public" virt="non-virtual">SdrRegistry</derivedcompoundref>
+    <includes refid="usd_2ndr_2registry_8h" local="no">registry.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_ndr_registry_1a4d86409a818ebd4d0025e3eee6925c55" prot="public" static="no">
+        <type>NdrDiscoveryPluginRefPtrVector</type>
+        <definition>using DiscoveryPluginRefPtrVec =  NdrDiscoveryPluginRefPtrVector</definition>
+        <argsstring></argsstring>
+        <name>DiscoveryPluginRefPtrVec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="67" column="1" bodyfile="pxr/usd/ndr/registry.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_ndr_registry_1a6be05747a9254c1508ceb9bcfa146050" prot="private" static="no">
+        <type>std::unordered_map&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, <ref refid="class_ndr_parser_plugin" kindref="compound">NdrParserPlugin</ref> *, <ref refid="struct_tf_token_1_1_hash_functor" kindref="compound">TfToken::HashFunctor</ref> &gt;</type>
+        <definition>using _TypeToParserPluginMap =  std::unordered_map&lt;TfToken, NdrParserPlugin*, TfToken::HashFunctor&gt;</definition>
+        <argsstring></argsstring>
+        <name>_TypeToParserPluginMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="304" column="1" bodyfile="pxr/usd/ndr/registry.h" bodystart="305" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_ndr_registry_1a1649895dfc75169ebbe6d6563c7f733a" prot="private" static="no">
+        <type>std::pair&lt; <ref refid="class_tf_token" kindref="compound">NdrIdentifier</ref>, <ref refid="class_tf_token" kindref="compound">TfToken</ref> &gt;</type>
+        <definition>using _NodeMapKey =  std::pair&lt;NdrIdentifier, TfToken&gt;</definition>
+        <argsstring></argsstring>
+        <name>_NodeMapKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="309" column="1" bodyfile="pxr/usd/ndr/registry.h" bodystart="309" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_ndr_registry_1a7745b5d5333c9d0f393a1e275f6b7ffb" prot="private" static="no">
+        <type>std::unordered_map&lt; _NodeMapKey, NdrNodeUniquePtr, <ref refid="class_tf_hash" kindref="compound">TfHash</ref> &gt;</type>
+        <definition>using _NodeMap =  std::unordered_map&lt;_NodeMapKey, NdrNodeUniquePtr, TfHash&gt;</definition>
+        <argsstring></argsstring>
+        <name>_NodeMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="310" column="1" bodyfile="pxr/usd/ndr/registry.h" bodystart="310" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_ndr_registry_1a67bf07dfabce6dcee469ed850df60ab4" prot="private" static="no">
+        <type>std::unordered_multimap&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, <ref refid="struct_ndr_node_discovery_result" kindref="compound">NdrNodeDiscoveryResult</ref>, <ref refid="class_tf_hash" kindref="compound">TfHash</ref> &gt;</type>
+        <definition>using _DiscoveryResultsByIdentifier =  std::unordered_multimap&lt; TfToken, NdrNodeDiscoveryResult, TfHash&gt;</definition>
+        <argsstring></argsstring>
+        <name>_DiscoveryResultsByIdentifier</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="314" column="1" bodyfile="pxr/usd/ndr/registry.h" bodystart="315" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_ndr_registry_1ac851cb222e8f36123db83b20b23ffdc8" prot="private" static="no">
+        <type>std::pair&lt; _DiscoveryResultsByIdentifier::const_iterator, _DiscoveryResultsByIdentifier::const_iterator &gt;</type>
+        <definition>using _DiscoveryResultsByIdentifierRange =  std::pair&lt;_DiscoveryResultsByIdentifier::const_iterator, _DiscoveryResultsByIdentifier::const_iterator&gt;</definition>
+        <argsstring></argsstring>
+        <name>_DiscoveryResultsByIdentifierRange</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="316" column="1" bodyfile="pxr/usd/ndr/registry.h" bodystart="318" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_ndr_registry_1a87d2952e3a260626095c938146bde2ee" prot="private" static="no">
+        <type>std::unordered_multimap&lt; std::string, const <ref refid="struct_ndr_node_discovery_result" kindref="compound">NdrNodeDiscoveryResult</ref> *, <ref refid="class_tf_hash" kindref="compound">TfHash</ref> &gt;</type>
+        <definition>using _DiscoveryResultPtrsByName =  std::unordered_multimap&lt; std::string, const NdrNodeDiscoveryResult *, TfHash&gt;</definition>
+        <argsstring></argsstring>
+        <name>_DiscoveryResultPtrsByName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="323" column="1" bodyfile="pxr/usd/ndr/registry.h" bodystart="324" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_ndr_registry_1aa9fa0868e1262589c1611bfa1188da9b" prot="private" static="no">
+        <type>std::pair&lt; _DiscoveryResultPtrsByName::const_iterator, _DiscoveryResultPtrsByName::const_iterator &gt;</type>
+        <definition>using _DiscoveryResultPtrsByNameRange =  std::pair&lt;_DiscoveryResultPtrsByName::const_iterator, _DiscoveryResultPtrsByName::const_iterator&gt;</definition>
+        <argsstring></argsstring>
+        <name>_DiscoveryResultPtrsByNameRange</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="325" column="1" bodyfile="pxr/usd/ndr/registry.h" bodystart="327" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_ndr_registry_1a046d72a3ef13be4806ba4cfde566a5c9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class _DiscoveryContext</definition>
+        <argsstring></argsstring>
+        <name>_DiscoveryContext</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="302" column="1" bodyfile="pxr/usd/ndr/registry.h" bodystart="301" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_ndr_registry_1a2dc7edbe8f1eeb1ef8c5053373130b61" prot="private" static="no" mutable="yes">
+        <type>std::mutex</type>
+        <definition>std::mutex _discoveryResultMutex</definition>
+        <argsstring></argsstring>
+        <name>_discoveryResultMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="331" column="1" bodyfile="pxr/usd/ndr/registry.h" bodystart="331" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ndr_registry_1ad0fbb827cf0ed965b0d63f8b82fae4d5" prot="private" static="no" mutable="yes">
+        <type>std::mutex</type>
+        <definition>std::mutex _nodeMapMutex</definition>
+        <argsstring></argsstring>
+        <name>_nodeMapMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="335" column="1" bodyfile="pxr/usd/ndr/registry.h" bodystart="335" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ndr_registry_1a9e82e6e2763a63e8ea37c0fd85e3c133" prot="private" static="no" mutable="no">
+        <type>DiscoveryPluginRefPtrVec</type>
+        <definition>DiscoveryPluginRefPtrVec _discoveryPlugins</definition>
+        <argsstring></argsstring>
+        <name>_discoveryPlugins</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="397" column="1" bodyfile="pxr/usd/ndr/registry.h" bodystart="397" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ndr_registry_1a215ce83f7f0d24a1b83a4f8d802253b9" prot="private" static="no" mutable="no">
+        <type>_TypeToParserPluginMap</type>
+        <definition>_TypeToParserPluginMap _parserPluginMap</definition>
+        <argsstring></argsstring>
+        <name>_parserPluginMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="401" column="1" bodyfile="pxr/usd/ndr/registry.h" bodystart="401" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ndr_registry_1a7f422f75ad9779945e745a8cf24bf4c3" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::unique_ptr&lt; <ref refid="class_ndr_parser_plugin" kindref="compound">NdrParserPlugin</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;std::unique_ptr&lt;NdrParserPlugin&gt; &gt; _parserPlugins</definition>
+        <argsstring></argsstring>
+        <name>_parserPlugins</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="404" column="1" bodyfile="pxr/usd/ndr/registry.h" bodystart="404" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ndr_registry_1a8a5f1684f931e356840d862ebeb87791" prot="private" static="no" mutable="no">
+        <type>_DiscoveryResultsByIdentifier</type>
+        <definition>_DiscoveryResultsByIdentifier _discoveryResultsByIdentifier</definition>
+        <argsstring></argsstring>
+        <name>_discoveryResultsByIdentifier</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="409" column="1" bodyfile="pxr/usd/ndr/registry.h" bodystart="409" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ndr_registry_1aa842edfb08faa7ccc11d7ef2ad42a013" prot="private" static="no" mutable="no">
+        <type>_DiscoveryResultPtrsByName</type>
+        <definition>_DiscoveryResultPtrsByName _discoveryResultPtrsByName</definition>
+        <argsstring></argsstring>
+        <name>_discoveryResultPtrsByName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="410" column="1" bodyfile="pxr/usd/ndr/registry.h" bodystart="410" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ndr_registry_1ae7838e81d170698100e895bab3acb2a9" prot="private" static="no" mutable="no">
+        <type><ref refid="class_tf_token_1a1cb3dc318038c0a24f3c39427b05b977" kindref="member">TfToken::Set</ref></type>
+        <definition>TfToken::Set _allSourceTypes</definition>
+        <argsstring></argsstring>
+        <name>_allSourceTypes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="415" column="1" bodyfile="pxr/usd/ndr/registry.h" bodystart="415" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ndr_registry_1a0a009339cbcc8e7a9f27217b65f437cf" prot="private" static="no" mutable="no">
+        <type>_NodeMap</type>
+        <definition>_NodeMap _nodeMap</definition>
+        <argsstring></argsstring>
+        <name>_nodeMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="419" column="1" bodyfile="pxr/usd/ndr/registry.h" bodystart="419" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_ndr_registry_1ab111939c2df38b3e33afd43acc018249" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API void</type>
+        <definition>NDR_API void SetExtraDiscoveryPlugins</definition>
+        <argsstring>(DiscoveryPluginRefPtrVec plugins)</argsstring>
+        <name>SetExtraDiscoveryPlugins</name>
+        <param>
+          <type>DiscoveryPluginRefPtrVec</type>
+          <declname>plugins</declname>
+        </param>
+        <briefdescription>
+<para>Allows the client to set any additional discovery plugins that would otherwise NOT be found through the plugin system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Runs the discovery process for the specified plugins immediately.</para>
+<para>Note that this method cannot be called after any nodes in the registry have been parsed (eg, through GetNode*()), otherwise an error will result. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="77" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a1eb836b69c5e2612564e9711017099d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API void</type>
+        <definition>NDR_API void SetExtraDiscoveryPlugins</definition>
+        <argsstring>(const std::vector&lt; TfType &gt; &amp;pluginTypes)</argsstring>
+        <name>SetExtraDiscoveryPlugins</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_tf_type" kindref="compound">TfType</ref> &gt; &amp;</type>
+          <declname>pluginTypes</declname>
+        </param>
+        <briefdescription>
+<para>Allows the client to set any additional discovery plugins that would otherwise NOT be found through the plugin system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Runs the discovery process for the specified plugins immediately.</para>
+<para>Note that this method cannot be called after any nodes in the registry have been parsed (eg, through GetNode*()), otherwise an error will result. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="87" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a18b5a0d433c3c1150ee638cc1c814121" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API void</type>
+        <definition>NDR_API void AddDiscoveryResult</definition>
+        <argsstring>(NdrNodeDiscoveryResult &amp;&amp;discoveryResult)</argsstring>
+        <name>AddDiscoveryResult</name>
+        <param>
+          <type><ref refid="struct_ndr_node_discovery_result" kindref="compound">NdrNodeDiscoveryResult</ref> &amp;&amp;</type>
+          <declname>discoveryResult</declname>
+        </param>
+        <briefdescription>
+<para>Allows the client to explicitly set additional discovery results that would otherwise NOT be found through the plugin system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For example to support lazily-loaded plugins which cannot be easily discovered in advance.</para>
+<para>This method will not immediately spawn a parse call which will be deferred until a GetNode*() method is called. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="97" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a36b678bc03a457dbfb3773001b80b3d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API void</type>
+        <definition>NDR_API void AddDiscoveryResult</definition>
+        <argsstring>(const NdrNodeDiscoveryResult &amp;discoveryResult)</argsstring>
+        <name>AddDiscoveryResult</name>
+        <param>
+          <type>const <ref refid="struct_ndr_node_discovery_result" kindref="compound">NdrNodeDiscoveryResult</ref> &amp;</type>
+          <declname>discoveryResult</declname>
+        </param>
+        <briefdescription>
+<para>Copy version of the method above. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For performance reasons, one should prefer to use the rvalue reference form. This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="104" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1ad6b6226c83cb2a771d18b8e3b46603e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API void</type>
+        <definition>NDR_API void SetExtraParserPlugins</definition>
+        <argsstring>(const std::vector&lt; TfType &gt; &amp;pluginTypes)</argsstring>
+        <name>SetExtraParserPlugins</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_tf_type" kindref="compound">TfType</ref> &gt; &amp;</type>
+          <declname>pluginTypes</declname>
+        </param>
+        <briefdescription>
+<para>Allows the client to set any additional parser plugins that would otherwise NOT be found through the plugin system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that this method cannot be called after any nodes in the registry have been parsed (eg, through GetNode*()), otherwise an error will result. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="113" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1aaadbd8fe1df4f30bb9dd2e2bb0b4970f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API NdrNodeConstPtr</type>
+        <definition>NDR_API NdrNodeConstPtr GetNodeFromAsset</definition>
+        <argsstring>(const SdfAssetPath &amp;asset, const NdrTokenMap &amp;metadata, const TfToken &amp;subIdentifier=TfToken(), const TfToken &amp;sourceType=TfToken())</argsstring>
+        <name>GetNodeFromAsset</name>
+        <param>
+          <type>const <ref refid="class_sdf_asset_path" kindref="compound">SdfAssetPath</ref> &amp;</type>
+          <declname>asset</declname>
+        </param>
+        <param>
+          <type>const NdrTokenMap &amp;</type>
+          <declname>metadata</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>subIdentifier</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>sourceType</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Parses the given <computeroutput>asset</computeroutput>, constructs a <ref refid="class_ndr_node" kindref="compound">NdrNode</ref> from it and adds it to the registry. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Nodes created from an asset using this API can be looked up by the unique identifier and sourceType of the returned node, or by URI, which will be set to the unresolved asset path value.</para>
+<para><computeroutput>metadata</computeroutput> contains additional metadata needed for parsing and compiling the source code in the file pointed to by <computeroutput>asset</computeroutput> correctly. This metadata supplements the metadata available in the asset and overrides it in cases where there are key collisions.</para>
+<para><computeroutput>subidentifier</computeroutput> is optional, and it would be used to indicate a particular definition in the asset file if the asset contains multiple node definitions.</para>
+<para><computeroutput>sourceType</computeroutput> is optional, and it is only needed to indicate a particular type if the asset file is capable of representing a node definition of multiple source types.</para>
+<para>Returns a valid node if the asset is parsed successfully using one of the registered parser plugins. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="138" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a391e8cb4eeb3223aff3d725920830564" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API NdrNodeConstPtr</type>
+        <definition>NDR_API NdrNodeConstPtr GetNodeFromSourceCode</definition>
+        <argsstring>(const std::string &amp;sourceCode, const TfToken &amp;sourceType, const NdrTokenMap &amp;metadata)</argsstring>
+        <name>GetNodeFromSourceCode</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>sourceCode</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>sourceType</declname>
+        </param>
+        <param>
+          <type>const NdrTokenMap &amp;</type>
+          <declname>metadata</declname>
+        </param>
+        <briefdescription>
+<para>Parses the given <computeroutput>sourceCode</computeroutput> string, constructs a <ref refid="class_ndr_node" kindref="compound">NdrNode</ref> from it and adds it to the registry. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The parser to be used is determined by the specified <computeroutput>sourceType</computeroutput>.</para>
+<para>Nodes created from source code using this API can be looked up by the unique identifier and sourceType of the returned node.</para>
+<para><computeroutput>metadata</computeroutput> contains additional metadata needed for parsing and compiling the source code correctly. This metadata supplements the metadata available in <computeroutput>sourceCode</computeroutput> and overrides it cases where there are key collisions.</para>
+<para>Returns a valid node if the given source code is parsed successfully using the parser plugins that is registered for the specified <computeroutput>sourceType</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="159" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a51ca010b4493ec6ed866619be7984023" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API NdrStringVec</type>
+        <definition>NDR_API NdrStringVec GetSearchURIs</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSearchURIs</name>
+        <briefdescription>
+<para>Get the locations where the registry is searching for nodes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Depending on which discovery plugins were used, this may include non-filesystem paths. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="168" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1ad9ea47727622f4f5cb677b487bbcfa64" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API NdrIdentifierVec</type>
+        <definition>NDR_API NdrIdentifierVec GetNodeIdentifiers</definition>
+        <argsstring>(const TfToken &amp;family=TfToken(), NdrVersionFilter filter=NdrVersionFilterDefaultOnly) const</argsstring>
+        <name>GetNodeIdentifiers</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>family</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <param>
+          <type><ref refid="usd_2ndr_2declare_8h_1a9991becacf778d59c7ff155f24383a21" kindref="member">NdrVersionFilter</ref></type>
+          <declname>filter</declname>
+          <defval>NdrVersionFilterDefaultOnly</defval>
+        </param>
+        <briefdescription>
+<para>Get the identifiers of all the nodes that the registry is aware of. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This will not run the parsing plugins on the nodes that have been discovered, so this method is relatively quick. Optionally, a &quot;family&quot; name can be specified to only get the identifiers of nodes that belong to that family and a filter can be specified to get just the default version (the default) or all versions of the node. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="179" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1aad5c6eb89c893e959d6e66620945295e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API NdrStringVec</type>
+        <definition>NDR_API NdrStringVec GetNodeNames</definition>
+        <argsstring>(const TfToken &amp;family=TfToken()) const</argsstring>
+        <name>GetNodeNames</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>family</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Get the names of all the nodes that the registry is aware of. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This will not run the parsing plugins on the nodes that have been discovered, so this method is relatively quick. Optionally, a &quot;family&quot; name can be specified to only get the names of nodes that belong to that family. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="190" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a5bacc6de8683232867fa5a45121e3780" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API NdrNodeConstPtr</type>
+        <definition>NDR_API NdrNodeConstPtr GetNodeByIdentifier</definition>
+        <argsstring>(const NdrIdentifier &amp;identifier, const NdrTokenVec &amp;sourceTypePriority=NdrTokenVec())</argsstring>
+        <name>GetNodeByIdentifier</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">NdrIdentifier</ref> &amp;</type>
+          <declname>identifier</declname>
+        </param>
+        <param>
+          <type>const NdrTokenVec &amp;</type>
+          <declname>sourceTypePriority</declname>
+          <defval>NdrTokenVec()</defval>
+        </param>
+        <briefdescription>
+<para>Get the node with the specified <computeroutput>identifier</computeroutput>, and an optional <computeroutput>sourceTypePriority</computeroutput> list specifying the set of node SOURCE types (see <computeroutput><ref refid="class_ndr_node_1a552a651875e4dbe319770af335913253" kindref="member">NdrNode::GetSourceType()</ref></computeroutput>) that should be searched. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no sourceTypePriority is specified, the first encountered node with the specified identifier will be returned (first is arbitrary) if found.</para>
+<para>If a sourceTypePriority list is specified, then this will iterate through each source type and try to find a node matching by identifier. This is equivalent to calling <ref refid="class_ndr_registry_1a302de2b47bdf8af387d9273bc797f9a7" kindref="member">NdrRegistry::GetNodeByIdentifierAndType</ref> for each source type until a node is found.</para>
+<para>Nodes of the same identifier but different source type can exist in the registry. If a node &apos;Foo&apos; with source types &apos;abc&apos; and &apos;xyz&apos; exist in the registry, and you want to make sure the &apos;abc&apos; version is fetched before the &apos;xyz&apos; version, the priority list would be specified as [&apos;abc&apos;, &apos;xyz&apos;]. If the &apos;abc&apos; version did not exist in the registry, then the &apos;xyz&apos; version would be returned.</para>
+<para>Returns <computeroutput>nullptr</computeroutput> if a node matching the arguments can&apos;t be found. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="213" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a302de2b47bdf8af387d9273bc797f9a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API NdrNodeConstPtr</type>
+        <definition>NDR_API NdrNodeConstPtr GetNodeByIdentifierAndType</definition>
+        <argsstring>(const NdrIdentifier &amp;identifier, const TfToken &amp;sourceType)</argsstring>
+        <name>GetNodeByIdentifierAndType</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">NdrIdentifier</ref> &amp;</type>
+          <declname>identifier</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>sourceType</declname>
+        </param>
+        <briefdescription>
+<para>Get the node with the specified <computeroutput>identifier</computeroutput> and <computeroutput>sourceType</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If there is no matching node for the sourceType, nullptr is returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="219" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a2b78ea888fcb8cb1fd755d62d551f285" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API NdrNodeConstPtr</type>
+        <definition>NDR_API NdrNodeConstPtr GetNodeByName</definition>
+        <argsstring>(const std::string &amp;name, const NdrTokenVec &amp;sourceTypePriority=NdrTokenVec(), NdrVersionFilter filter=NdrVersionFilterDefaultOnly)</argsstring>
+        <name>GetNodeByName</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const NdrTokenVec &amp;</type>
+          <declname>sourceTypePriority</declname>
+          <defval>NdrTokenVec()</defval>
+        </param>
+        <param>
+          <type><ref refid="usd_2ndr_2declare_8h_1a9991becacf778d59c7ff155f24383a21" kindref="member">NdrVersionFilter</ref></type>
+          <declname>filter</declname>
+          <defval>NdrVersionFilterDefaultOnly</defval>
+        </param>
+        <briefdescription>
+<para>Get the node with the specified name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>An optional priority list specifies the set of node SOURCE types (<simplesect kind="see"><para><ref refid="class_ndr_node_1a552a651875e4dbe319770af335913253" kindref="member">NdrNode::GetSourceType()</ref>) that should be searched and in what order.</para>
+</simplesect>
+Optionally, a filter can be specified to consider just the default versions of nodes matching <computeroutput>name</computeroutput> (the default) or all versions of the nodes.</para>
+<para><simplesect kind="see"><para><ref refid="class_ndr_registry_1a5bacc6de8683232867fa5a45121e3780" kindref="member">GetNodeByIdentifier()</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="232" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1aa2c7d46e4adecc575c28ab686c46ff27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API NdrNodeConstPtr</type>
+        <definition>NDR_API NdrNodeConstPtr GetNodeByNameAndType</definition>
+        <argsstring>(const std::string &amp;name, const TfToken &amp;sourceType, NdrVersionFilter filter=NdrVersionFilterDefaultOnly)</argsstring>
+        <name>GetNodeByNameAndType</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>sourceType</declname>
+        </param>
+        <param>
+          <type><ref refid="usd_2ndr_2declare_8h_1a9991becacf778d59c7ff155f24383a21" kindref="member">NdrVersionFilter</ref></type>
+          <declname>filter</declname>
+          <defval>NdrVersionFilterDefaultOnly</defval>
+        </param>
+        <briefdescription>
+<para>A convenience wrapper around <computeroutput><ref refid="class_ndr_registry_1a2b78ea888fcb8cb1fd755d62d551f285" kindref="member">GetNodeByName()</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Instead of providing a priority list, an exact type is specified, and <computeroutput>nullptr</computeroutput> is returned if a node with the exact identifier and type does not exist.</para>
+<para>Optionally, a filter can be specified to consider just the default versions of nodes matching <computeroutput>name</computeroutput> (the default) or all versions of the nodes. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="245" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a3db1bd9c3d178aaba60718cbaba66486" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API NdrNodeConstPtrVec</type>
+        <definition>NDR_API NdrNodeConstPtrVec GetNodesByIdentifier</definition>
+        <argsstring>(const NdrIdentifier &amp;identifier)</argsstring>
+        <name>GetNodesByIdentifier</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">NdrIdentifier</ref> &amp;</type>
+          <declname>identifier</declname>
+        </param>
+        <briefdescription>
+<para>Get all nodes matching the specified identifier (multiple nodes of the same identifier, but different source types, may exist). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no nodes match the identifier, an empty vector is returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="254" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a5d61c1cf418e9034439ea95681e22323" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API NdrNodeConstPtrVec</type>
+        <definition>NDR_API NdrNodeConstPtrVec GetNodesByName</definition>
+        <argsstring>(const std::string &amp;name, NdrVersionFilter filter=NdrVersionFilterDefaultOnly)</argsstring>
+        <name>GetNodesByName</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="usd_2ndr_2declare_8h_1a9991becacf778d59c7ff155f24383a21" kindref="member">NdrVersionFilter</ref></type>
+          <declname>filter</declname>
+          <defval>NdrVersionFilterDefaultOnly</defval>
+        </param>
+        <briefdescription>
+<para>Get all nodes matching the specified name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Only nodes matching the specified name will be parsed. Optionally, a filter can be specified to get just the default version (the default) or all versions of the node. If no nodes match an empty vector is returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="261" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a5e9a9d1947c1ba283161fc8a8121c3d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API NdrNodeConstPtrVec</type>
+        <definition>NDR_API NdrNodeConstPtrVec GetNodesByFamily</definition>
+        <argsstring>(const TfToken &amp;family=TfToken(), NdrVersionFilter filter=NdrVersionFilterDefaultOnly)</argsstring>
+        <name>GetNodesByFamily</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>family</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <param>
+          <type><ref refid="usd_2ndr_2declare_8h_1a9991becacf778d59c7ff155f24383a21" kindref="member">NdrVersionFilter</ref></type>
+          <declname>filter</declname>
+          <defval>NdrVersionFilterDefaultOnly</defval>
+        </param>
+        <briefdescription>
+<para>Get all nodes from the registry, optionally restricted to the nodes that fall under a specified family and/or the default version. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that this will parse <emphasis>all</emphasis> nodes that the registry is aware of (unless a family is specified), so this may take some time to run the first time it is called. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="272" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a7c451ef8b27fb5858d714b2614d1df93" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API NdrTokenVec</type>
+        <definition>NDR_API NdrTokenVec GetAllNodeSourceTypes</definition>
+        <argsstring>() const</argsstring>
+        <name>GetAllNodeSourceTypes</name>
+        <briefdescription>
+<para>Get a sorted list of all node source types that may be present on the nodes in the registry. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Source types originate from the discovery process, but there is no guarantee that the discovered source types will also have a registered parser plugin. The actual supported source types here depend on the parsers that are available. Also note that some parser plugins may not advertise a source type.</para>
+<para>See the documentation for <computeroutput><ref refid="class_ndr_parser_plugin" kindref="compound">NdrParserPlugin</ref></computeroutput> and <computeroutput><ref refid="class_ndr_node_1a552a651875e4dbe319770af335913253" kindref="member">NdrNode::GetSourceType()</ref></computeroutput> for more information. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="288" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_ndr_registry_1a174ebee0e92922ae7256125beec8ec77" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>NdrRegistry</definition>
+        <argsstring>(const NdrRegistry &amp;)=delete</argsstring>
+        <name>NdrRegistry</name>
+        <param>
+          <type>const <ref refid="class_ndr_registry" kindref="compound">NdrRegistry</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="291" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a52beb5118749a199b34a1196e4f38b3c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_ndr_registry" kindref="compound">NdrRegistry</ref> &amp;</type>
+        <definition>NdrRegistry&amp; operator=</definition>
+        <argsstring>(const NdrRegistry &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_ndr_registry" kindref="compound">NdrRegistry</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="292" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a64586392a0470ad14fe9d01314413100" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API</type>
+        <definition>NDR_API NdrRegistry</definition>
+        <argsstring>()</argsstring>
+        <name>NdrRegistry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="295" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1ae65c1bb482465bf21e49e59e3704fd83" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API</type>
+        <definition>NDR_API ~NdrRegistry</definition>
+        <argsstring>()</argsstring>
+        <name>~NdrRegistry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="298" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_ndr_registry_1afcfa6232eacb5793e65e17cd20eae262" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RunDiscoveryPlugins</definition>
+        <argsstring>(const DiscoveryPluginRefPtrVec &amp;discoveryPlugins)</argsstring>
+        <name>_RunDiscoveryPlugins</name>
+        <param>
+          <type>const DiscoveryPluginRefPtrVec &amp;</type>
+          <declname>discoveryPlugins</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="339" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a52e7f1ddae8281673d1f22ba39f10105" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _AddDiscoveryResultNoLock</definition>
+        <argsstring>(NdrNodeDiscoveryResult &amp;&amp;dr)</argsstring>
+        <name>_AddDiscoveryResultNoLock</name>
+        <param>
+          <type><ref refid="struct_ndr_node_discovery_result" kindref="compound">NdrNodeDiscoveryResult</ref> &amp;&amp;</type>
+          <declname>dr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="343" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a25a1bc014cc23af7851d8b626bd18cde" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _FindAndInstantiateDiscoveryPlugins</definition>
+        <argsstring>()</argsstring>
+        <name>_FindAndInstantiateDiscoveryPlugins</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="346" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1ad1a03ee268c982784f5fbc95bc6030e4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _FindAndInstantiateParserPlugins</definition>
+        <argsstring>()</argsstring>
+        <name>_FindAndInstantiateParserPlugins</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="349" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1afab89fff62b580b955401193501aabd0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _InstantiateParserPlugins</definition>
+        <argsstring>(const std::set&lt; TfType &gt; &amp;parserPluginTypes)</argsstring>
+        <name>_InstantiateParserPlugins</name>
+        <param>
+          <type>const std::set&lt; <ref refid="class_tf_type" kindref="compound">TfType</ref> &gt; &amp;</type>
+          <declname>parserPluginTypes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="353" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1af3538d84c3052728add74cc34cc836f2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NdrNodeConstPtr</type>
+        <definition>NdrNodeConstPtr _ParseNodeFromAssetOrSourceCode</definition>
+        <argsstring>(NdrParserPlugin &amp;parser, NdrNodeDiscoveryResult &amp;&amp;dr)</argsstring>
+        <name>_ParseNodeFromAssetOrSourceCode</name>
+        <param>
+          <type><ref refid="class_ndr_parser_plugin" kindref="compound">NdrParserPlugin</ref> &amp;</type>
+          <declname>parser</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_ndr_node_discovery_result" kindref="compound">NdrNodeDiscoveryResult</ref> &amp;&amp;</type>
+          <declname>dr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="359" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1ac48daf54b8b3e088201dabe814b2ec19" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NdrNodeConstPtr</type>
+        <definition>NdrNodeConstPtr _GetNodeInIdentifierRangeWithSourceType</definition>
+        <argsstring>(_DiscoveryResultsByIdentifierRange range, const TfToken &amp;sourceType)</argsstring>
+        <name>_GetNodeInIdentifierRangeWithSourceType</name>
+        <param>
+          <type>_DiscoveryResultsByIdentifierRange</type>
+          <declname>range</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>sourceType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="364" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1acece9ab03fd37767eea4529ddf93074d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NdrNodeConstPtr</type>
+        <definition>NdrNodeConstPtr _GetNodeInNameRangeWithSourceType</definition>
+        <argsstring>(_DiscoveryResultPtrsByNameRange range, const TfToken &amp;sourceType, NdrVersionFilter filter)</argsstring>
+        <name>_GetNodeInNameRangeWithSourceType</name>
+        <param>
+          <type>_DiscoveryResultPtrsByNameRange</type>
+          <declname>range</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>sourceType</declname>
+        </param>
+        <param>
+          <type><ref refid="usd_2ndr_2declare_8h_1a9991becacf778d59c7ff155f24383a21" kindref="member">NdrVersionFilter</ref></type>
+          <declname>filter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="370" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a189607f13155f096bac06a61dacaf4d8" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>NdrNodeConstPtr</type>
+        <definition>NdrNodeConstPtr _FindNodeInCache</definition>
+        <argsstring>(const _NodeMapKey &amp;key) const</argsstring>
+        <name>_FindNodeInCache</name>
+        <param>
+          <type>const _NodeMapKey &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="375" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a71001678310ce508729aaade5de216e9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NdrNodeConstPtr</type>
+        <definition>NdrNodeConstPtr _InsertNodeInCache</definition>
+        <argsstring>(_NodeMapKey &amp;&amp;key, NdrNodeUniquePtr &amp;&amp;node)</argsstring>
+        <name>_InsertNodeInCache</name>
+        <param>
+          <type>_NodeMapKey &amp;&amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>NdrNodeUniquePtr &amp;&amp;</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="381" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a60080ace52a7d321caf8c6d6e8787290" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NdrNodeConstPtr</type>
+        <definition>NdrNodeConstPtr _FindOrParseNodeInCache</definition>
+        <argsstring>(const NdrNodeDiscoveryResult &amp;dr)</argsstring>
+        <name>_FindOrParseNodeInCache</name>
+        <param>
+          <type>const <ref refid="struct_ndr_node_discovery_result" kindref="compound">NdrNodeDiscoveryResult</ref> &amp;</type>
+          <declname>dr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="388" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_registry_1a3b31f561d10a794fab08ef3cc22b6502" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_ndr_parser_plugin" kindref="compound">NdrParserPlugin</ref> *</type>
+        <definition>NdrParserPlugin* _GetParserForDiscoveryType</definition>
+        <argsstring>(const TfToken &amp;discoveryType) const</argsstring>
+        <name>_GetParserForDiscoveryType</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>discoveryType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/registry.h" line="393" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The registry provides access to node information. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>&quot;Discovery Plugins&quot; are responsible for finding the nodes that should be included in the registry.</para>
+<para>Discovery plugins are found through the plugin system. If additional discovery plugins need to be specified, a client can pass them to <computeroutput><ref refid="class_ndr_registry_1ab111939c2df38b3e33afd43acc018249" kindref="member">SetExtraDiscoveryPlugins()</ref></computeroutput>.</para>
+<para>When the registry is first told about the discovery plugins, the plugins will be asked to discover nodes. These plugins will generate <computeroutput><ref refid="struct_ndr_node_discovery_result" kindref="compound">NdrNodeDiscoveryResult</ref></computeroutput> instances, which only contain basic metadata. Once the client asks for information that would require the node&apos;s contents to be parsed (eg, what its inputs and outputs are), the registry will begin the parsing process on an as-needed basis. See <computeroutput><ref refid="struct_ndr_node_discovery_result" kindref="compound">NdrNodeDiscoveryResult</ref></computeroutput> for the information that can be retrieved without triggering a parse.</para>
+<para>Some methods in this library may allow for a &quot;family&quot; to be provided. A family is simply a generic grouping which is optional. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4319">
+        <label>NdrRegistry</label>
+        <link refid="class_ndr_registry"/>
+        <childnode refid="4320" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4320">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="4321">
+        <label>SdrRegistry</label>
+        <link refid="class_sdr_registry"/>
+        <childnode refid="4319" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4322">
+        <label>NdrRegistry</label>
+        <link refid="class_ndr_registry"/>
+        <childnode refid="4323" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4323">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/usd/ndr/registry.h" line="65" column="1" bodyfile="pxr/usd/ndr/registry.h" bodystart="64" bodyend="420"/>
+    <listofallmembers>
+      <member refid="class_tf_weak_base_1a01aa4c4b93df067f2ec9b9e5fa4c35b3" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>__GetTfWeakBase__</name></member>
+      <member refid="class_ndr_registry_1a52e7f1ddae8281673d1f22ba39f10105" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_AddDiscoveryResultNoLock</name></member>
+      <member refid="class_ndr_registry_1ae7838e81d170698100e895bab3acb2a9" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_allSourceTypes</name></member>
+      <member refid="class_ndr_registry_1a046d72a3ef13be4806ba4cfde566a5c9" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_DiscoveryContext</name></member>
+      <member refid="class_ndr_registry_1a9e82e6e2763a63e8ea37c0fd85e3c133" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_discoveryPlugins</name></member>
+      <member refid="class_ndr_registry_1a2dc7edbe8f1eeb1ef8c5053373130b61" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_discoveryResultMutex</name></member>
+      <member refid="class_ndr_registry_1aa842edfb08faa7ccc11d7ef2ad42a013" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_discoveryResultPtrsByName</name></member>
+      <member refid="class_ndr_registry_1a87d2952e3a260626095c938146bde2ee" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_DiscoveryResultPtrsByName</name></member>
+      <member refid="class_ndr_registry_1aa9fa0868e1262589c1611bfa1188da9b" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_DiscoveryResultPtrsByNameRange</name></member>
+      <member refid="class_ndr_registry_1a67bf07dfabce6dcee469ed850df60ab4" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_DiscoveryResultsByIdentifier</name></member>
+      <member refid="class_ndr_registry_1a8a5f1684f931e356840d862ebeb87791" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_discoveryResultsByIdentifier</name></member>
+      <member refid="class_ndr_registry_1ac851cb222e8f36123db83b20b23ffdc8" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_DiscoveryResultsByIdentifierRange</name></member>
+      <member refid="class_ndr_registry_1a25a1bc014cc23af7851d8b626bd18cde" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_FindAndInstantiateDiscoveryPlugins</name></member>
+      <member refid="class_ndr_registry_1ad1a03ee268c982784f5fbc95bc6030e4" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_FindAndInstantiateParserPlugins</name></member>
+      <member refid="class_ndr_registry_1a189607f13155f096bac06a61dacaf4d8" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_FindNodeInCache</name></member>
+      <member refid="class_ndr_registry_1a60080ace52a7d321caf8c6d6e8787290" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_FindOrParseNodeInCache</name></member>
+      <member refid="class_ndr_registry_1ac48daf54b8b3e088201dabe814b2ec19" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_GetNodeInIdentifierRangeWithSourceType</name></member>
+      <member refid="class_ndr_registry_1acece9ab03fd37767eea4529ddf93074d" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_GetNodeInNameRangeWithSourceType</name></member>
+      <member refid="class_ndr_registry_1a3b31f561d10a794fab08ef3cc22b6502" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_GetParserForDiscoveryType</name></member>
+      <member refid="class_tf_weak_base_1a6a5533162e8efab1be47acd6ccd5254c" prot="protected" virt="non-virtual"><scope>NdrRegistry</scope><name>_HasRemnant</name></member>
+      <member refid="class_ndr_registry_1a71001678310ce508729aaade5de216e9" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_InsertNodeInCache</name></member>
+      <member refid="class_ndr_registry_1afab89fff62b580b955401193501aabd0" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_InstantiateParserPlugins</name></member>
+      <member refid="class_ndr_registry_1a0a009339cbcc8e7a9f27217b65f437cf" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_nodeMap</name></member>
+      <member refid="class_ndr_registry_1a7745b5d5333c9d0f393a1e275f6b7ffb" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_NodeMap</name></member>
+      <member refid="class_ndr_registry_1a1649895dfc75169ebbe6d6563c7f733a" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_NodeMapKey</name></member>
+      <member refid="class_ndr_registry_1ad0fbb827cf0ed965b0d63f8b82fae4d5" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_nodeMapMutex</name></member>
+      <member refid="class_ndr_registry_1af3538d84c3052728add74cc34cc836f2" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_ParseNodeFromAssetOrSourceCode</name></member>
+      <member refid="class_ndr_registry_1a215ce83f7f0d24a1b83a4f8d802253b9" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_parserPluginMap</name></member>
+      <member refid="class_ndr_registry_1a7f422f75ad9779945e745a8cf24bf4c3" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_parserPlugins</name></member>
+      <member refid="class_tf_weak_base_1a95139d2f4d04eb706664a4f47eb93918" prot="protected" virt="non-virtual"><scope>NdrRegistry</scope><name>_Register</name></member>
+      <member refid="class_tf_weak_base_1ac1312732482c8a286522f703f2cf90d1" prot="protected" virt="non-virtual"><scope>NdrRegistry</scope><name>_Register</name></member>
+      <member refid="class_ndr_registry_1afcfa6232eacb5793e65e17cd20eae262" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_RunDiscoveryPlugins</name></member>
+      <member refid="class_ndr_registry_1a6be05747a9254c1508ceb9bcfa146050" prot="private" virt="non-virtual"><scope>NdrRegistry</scope><name>_TypeToParserPluginMap</name></member>
+      <member refid="class_ndr_registry_1a18b5a0d433c3c1150ee638cc1c814121" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>AddDiscoveryResult</name></member>
+      <member refid="class_ndr_registry_1a36b678bc03a457dbfb3773001b80b3d3" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>AddDiscoveryResult</name></member>
+      <member refid="class_ndr_registry_1a4d86409a818ebd4d0025e3eee6925c55" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>DiscoveryPluginRefPtrVec</name></member>
+      <member refid="class_tf_weak_base_1a16f1e27cc0c7c606ffb397b7d970ed10" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>EnableNotification2</name></member>
+      <member refid="class_ndr_registry_1a7c451ef8b27fb5858d714b2614d1df93" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>GetAllNodeSourceTypes</name></member>
+      <member refid="class_ndr_registry_1a5bacc6de8683232867fa5a45121e3780" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>GetNodeByIdentifier</name></member>
+      <member refid="class_ndr_registry_1a302de2b47bdf8af387d9273bc797f9a7" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>GetNodeByIdentifierAndType</name></member>
+      <member refid="class_ndr_registry_1a2b78ea888fcb8cb1fd755d62d551f285" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>GetNodeByName</name></member>
+      <member refid="class_ndr_registry_1aa2c7d46e4adecc575c28ab686c46ff27" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>GetNodeByNameAndType</name></member>
+      <member refid="class_ndr_registry_1aaadbd8fe1df4f30bb9dd2e2bb0b4970f" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>GetNodeFromAsset</name></member>
+      <member refid="class_ndr_registry_1a391e8cb4eeb3223aff3d725920830564" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>GetNodeFromSourceCode</name></member>
+      <member refid="class_ndr_registry_1ad9ea47727622f4f5cb677b487bbcfa64" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>GetNodeIdentifiers</name></member>
+      <member refid="class_ndr_registry_1aad5c6eb89c893e959d6e66620945295e" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>GetNodeNames</name></member>
+      <member refid="class_ndr_registry_1a5e9a9d1947c1ba283161fc8a8121c3d5" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>GetNodesByFamily</name></member>
+      <member refid="class_ndr_registry_1a3db1bd9c3d178aaba60718cbaba66486" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>GetNodesByIdentifier</name></member>
+      <member refid="class_ndr_registry_1a5d61c1cf418e9034439ea95681e22323" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>GetNodesByName</name></member>
+      <member refid="class_ndr_registry_1a51ca010b4493ec6ed866619be7984023" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>GetSearchURIs</name></member>
+      <member refid="class_tf_weak_base_1a3241c32a82fbed0716a77049f6134e1e" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>GetUniqueIdentifier</name></member>
+      <member refid="class_ndr_registry_1a174ebee0e92922ae7256125beec8ec77" prot="protected" virt="non-virtual"><scope>NdrRegistry</scope><name>NdrRegistry</name></member>
+      <member refid="class_ndr_registry_1a64586392a0470ad14fe9d01314413100" prot="protected" virt="non-virtual"><scope>NdrRegistry</scope><name>NdrRegistry</name></member>
+      <member refid="class_ndr_registry_1a52beb5118749a199b34a1196e4f38b3c" prot="protected" virt="non-virtual"><scope>NdrRegistry</scope><name>operator=</name></member>
+      <member refid="class_tf_weak_base_1af890ac314073e903458bf6b2397566b5" prot="public" virt="non-virtual" ambiguityscope="TfWeakBase::"><scope>NdrRegistry</scope><name>operator=</name></member>
+      <member refid="class_ndr_registry_1ab111939c2df38b3e33afd43acc018249" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>SetExtraDiscoveryPlugins</name></member>
+      <member refid="class_ndr_registry_1a1eb836b69c5e2612564e9711017099d4" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>SetExtraDiscoveryPlugins</name></member>
+      <member refid="class_ndr_registry_1ad6b6226c83cb2a771d18b8e3b46603e8" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>SetExtraParserPlugins</name></member>
+      <member refid="class_tf_weak_base_1a6e4abdd663654f8c8019702a464de8d6" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_weak_base_1affc4c00d0bbfdfe4f9e6a8b2e81be368" prot="public" virt="non-virtual"><scope>NdrRegistry</scope><name>TfWeakBase</name></member>
+      <member refid="class_ndr_registry_1ae65c1bb482465bf21e49e59e3704fd83" prot="protected" virt="non-virtual"><scope>NdrRegistry</scope><name>~NdrRegistry</name></member>
+      <member refid="class_tf_weak_base_1a778020f525b66def8a284c6f020592c2" prot="protected" virt="non-virtual"><scope>NdrRegistry</scope><name>~TfWeakBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

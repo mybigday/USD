@@ -1,0 +1,26 @@
+var class_usd_imaging_index_proxy =
+[
+    [ "AddDependency", "class_usd_imaging_index_proxy.html#add09daf49d0517c746887c41242069a5", null ],
+    [ "GetMaterialAdapter", "class_usd_imaging_index_proxy.html#a7a9235c3075800af7ce8b24b19d598c0", null ],
+    [ "InsertBprim", "class_usd_imaging_index_proxy.html#a85104d9046fb17756c7e99565bb83661", null ],
+    [ "InsertInstancer", "class_usd_imaging_index_proxy.html#a444f038edb2fa41f9cb2f7b372d64de7", null ],
+    [ "InsertRprim", "class_usd_imaging_index_proxy.html#aef64c2d7078a8e11b731baa72498508c", null ],
+    [ "InsertSprim", "class_usd_imaging_index_proxy.html#ae3bec1c4481fb980cda4551c3ea1517c", null ],
+    [ "IsBprimTypeSupported", "class_usd_imaging_index_proxy.html#a4c146feeefcf17fad89adbc197c042fb", null ],
+    [ "IsPopulated", "class_usd_imaging_index_proxy.html#a23367827a3bfee2521f0820a7aaa5eea", null ],
+    [ "IsRprimTypeSupported", "class_usd_imaging_index_proxy.html#a58d9e0a1293c37bcc69f00d3edb9e843", null ],
+    [ "IsSprimTypeSupported", "class_usd_imaging_index_proxy.html#ab93174b5862549ddbf46f8c94c43ef58", null ],
+    [ "MarkBprimDirty", "class_usd_imaging_index_proxy.html#a6db3c8439114fb6e2793cb500fbfae19", null ],
+    [ "MarkInstancerDirty", "class_usd_imaging_index_proxy.html#a65757aef0c9e9e6a19584a8397ec2872", null ],
+    [ "MarkRprimDirty", "class_usd_imaging_index_proxy.html#afd8f72f08845727858341cba49118edc", null ],
+    [ "MarkSprimDirty", "class_usd_imaging_index_proxy.html#a2554e192d3bca1f104b0f0934e2b3f22", null ],
+    [ "RemoveBprim", "class_usd_imaging_index_proxy.html#ad5e93446b2b33f8e099a4fc292c9137a", null ],
+    [ "RemoveInstancer", "class_usd_imaging_index_proxy.html#a9699f38c90c7eb92d8d97ed5d18a6a14", null ],
+    [ "RemovePrimInfoDependency", "class_usd_imaging_index_proxy.html#aceb867618e402661a00df0bdb231fffd", null ],
+    [ "RemoveRprim", "class_usd_imaging_index_proxy.html#ad69b7cab9da3f348a8de9ecf05ab846c", null ],
+    [ "RemoveSprim", "class_usd_imaging_index_proxy.html#ad5d94bbad6f6aed721f9d236323cacac", null ],
+    [ "Repopulate", "class_usd_imaging_index_proxy.html#a0412d73dad0dd93b8cd841679cacad0f", null ],
+    [ "RequestTrackVariability", "class_usd_imaging_index_proxy.html#a4165670f221011c1d1d3d23cd4ea4e5a", null ],
+    [ "RequestUpdateForTime", "class_usd_imaging_index_proxy.html#a369cc0eaeb724809a8dc75f7c0fd08ad", null ],
+    [ "UsdImagingDelegate", "class_usd_imaging_index_proxy.html#a81c29264850d8f3f47f8f69ef6564c0f", null ]
+];

@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy" kind="class" language="C++" prot="public">
+    <compoundname>pxr_tsl::rh::power_of_two_growth_policy</compoundname>
+    <includes refid="robin__growth__policy_8h" local="no">robin_growth_policy.h</includes>
+    <templateparamlist>
+      <param>
+        <type>std::size_t</type>
+        <declname>GrowthFactor</declname>
+        <defname>GrowthFactor</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy_1ad1d2e33bd68823e42e752c0c0939189f" prot="protected" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t m_mask</definition>
+        <argsstring></argsstring>
+        <name>m_mask</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" line="176" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy_1ac5f8850509ee16dd08627e4e5694acac" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>power_of_two_growth_policy</definition>
+        <argsstring>(std::size_t &amp;min_bucket_count_in_out)</argsstring>
+        <name>power_of_two_growth_policy</name>
+        <param>
+          <type>std::size_t &amp;</type>
+          <declname>min_bucket_count_in_out</declname>
+        </param>
+        <briefdescription>
+<para>Called on the hash table creation and on rehash. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The number of buckets for the table is passed in parameter. This number is a minimum, the policy may update this value with a higher value if needed (but not lower).</para>
+<para>If 0 is given, min_bucket_count_in_out must still be 0 after the policy creation and bucket_for_hash must always return 0 in this case. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" line="100" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" bodystart="100" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy_1af1f0118280a53f24eb442f648568fe8e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t bucket_for_hash</definition>
+        <argsstring>(std::size_t hash) const noexcept</argsstring>
+        <name>bucket_for_hash</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>Return the bucket [0, bucket_count()) to which the hash belongs. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If bucket_count() is 0, it must always return 0. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" line="119" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" bodystart="119" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy_1a616a31c9d534fd21a0537b0ade05ca69" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t next_bucket_count</definition>
+        <argsstring>() const</argsstring>
+        <name>next_bucket_count</name>
+        <briefdescription>
+<para>Return the number of buckets that should be used on next growth. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" line="126" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" bodystart="126" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy_1a8a00b6bc91baf394c35510939fa1778d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t max_bucket_count</definition>
+        <argsstring>() const</argsstring>
+        <name>max_bucket_count</name>
+        <briefdescription>
+<para>Return the maximum number of buckets supported by the policy. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" line="138" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" bodystart="138" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy_1a03bfacfaaba9195e4498375659f43531" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void clear</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>clear</name>
+        <briefdescription>
+<para>Reset the growth policy as if it was created with a bucket count of 0. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>After a clear, the policy must always return 0 when bucket_for_hash is called. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" line="148" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" bodystart="148" bodyend="148"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy_1a5647acc71ca1a2138031a93637f6d591" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>static std::size_t round_up_to_power_of_two</definition>
+        <argsstring>(std::size_t value)</argsstring>
+        <name>round_up_to_power_of_two</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" line="151" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" bodystart="151" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy_1aee3edf4760605fbc105cedcbfd5dd17b" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr bool</type>
+        <definition>static constexpr bool is_power_of_two</definition>
+        <argsstring>(std::size_t value)</argsstring>
+        <name>is_power_of_two</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" line="168" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" bodystart="168" bodyend="170"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Grow the hash table by a factor of GrowthFactor keeping the bucket count to a power of two. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>It allows the table to use a mask operation instead of a modulo operation to map a hash to a bucket.</para>
+<para>GrowthFactor must be a power of two &gt;= 2. </para>
+    </detaileddescription>
+    <location file="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" line="90" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" bodystart="90" bodyend="177"/>
+    <listofallmembers>
+      <member refid="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy_1af1f0118280a53f24eb442f648568fe8e" prot="public" virt="non-virtual"><scope>pxr_tsl::rh::power_of_two_growth_policy</scope><name>bucket_for_hash</name></member>
+      <member refid="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy_1a03bfacfaaba9195e4498375659f43531" prot="public" virt="non-virtual"><scope>pxr_tsl::rh::power_of_two_growth_policy</scope><name>clear</name></member>
+      <member refid="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy_1aee3edf4760605fbc105cedcbfd5dd17b" prot="private" virt="non-virtual"><scope>pxr_tsl::rh::power_of_two_growth_policy</scope><name>is_power_of_two</name></member>
+      <member refid="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy_1ad1d2e33bd68823e42e752c0c0939189f" prot="protected" virt="non-virtual"><scope>pxr_tsl::rh::power_of_two_growth_policy</scope><name>m_mask</name></member>
+      <member refid="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy_1a8a00b6bc91baf394c35510939fa1778d" prot="public" virt="non-virtual"><scope>pxr_tsl::rh::power_of_two_growth_policy</scope><name>max_bucket_count</name></member>
+      <member refid="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy_1a616a31c9d534fd21a0537b0ade05ca69" prot="public" virt="non-virtual"><scope>pxr_tsl::rh::power_of_two_growth_policy</scope><name>next_bucket_count</name></member>
+      <member refid="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy_1ac5f8850509ee16dd08627e4e5694acac" prot="public" virt="non-virtual"><scope>pxr_tsl::rh::power_of_two_growth_policy</scope><name>power_of_two_growth_policy</name></member>
+      <member refid="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy_1a5647acc71ca1a2138031a93637f6d591" prot="private" virt="non-virtual"><scope>pxr_tsl::rh::power_of_two_growth_policy</scope><name>round_up_to_power_of_two</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

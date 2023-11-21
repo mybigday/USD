@@ -1,0 +1,401 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_utils_time_code_range" kind="class" language="C++" prot="public">
+    <compoundname>UsdUtilsTimeCodeRange</compoundname>
+    <includes refid="time_code_range_8h" local="no">timeCodeRange.h</includes>
+    <innerclass refid="class_usd_utils_time_code_range_1_1const__iterator" prot="public">UsdUtilsTimeCodeRange::const_iterator</innerclass>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_usd_utils_time_code_range_1ab3d10e70baaeac78e76b7abae7e2cf76" prot="public" static="no">
+        <type><ref refid="class_usd_utils_time_code_range_1_1const__iterator" kindref="compound">const_iterator</ref></type>
+        <definition>using iterator =  const_iterator</definition>
+        <argsstring></argsstring>
+        <name>iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="180" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_usd_utils_time_code_range_1a547a8fc9e63aba2b90f1db7f4f5d3386" prot="private" static="no" mutable="no">
+        <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+        <definition>UsdTimeCode _startTimeCode</definition>
+        <argsstring></argsstring>
+        <name>_startTimeCode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="386" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="386" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_usd_utils_time_code_range_1aa7f45c5fffe159b0e59f645d810b5e4f" prot="private" static="no" mutable="no">
+        <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+        <definition>UsdTimeCode _endTimeCode</definition>
+        <argsstring></argsstring>
+        <name>_endTimeCode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="387" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="387" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_usd_utils_time_code_range_1af0c5e6034104d2c8b5136c6ef8c5bcd0" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double _stride</definition>
+        <argsstring></argsstring>
+        <name>_stride</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="388" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="388" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_usd_utils_time_code_range_1a73dba0dedaf8b06ca89dfd0d9c542522" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDUTILS_API <ref refid="class_usd_utils_time_code_range" kindref="compound">UsdUtilsTimeCodeRange</ref></type>
+        <definition>static USDUTILS_API UsdUtilsTimeCodeRange CreateFromFrameSpec</definition>
+        <argsstring>(const std::string &amp;frameSpec)</argsstring>
+        <name>CreateFromFrameSpec</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>frameSpec</declname>
+        </param>
+        <briefdescription>
+<para>Create a time code range from <computeroutput>frameSpec</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A FrameSpec is a compact string representation of a time code range. A FrameSpec may contain up to three floating point values for the start time code, end time code, and stride values of a time code range.</para>
+<para>A FrameSpec containing just a single floating point value represents a time code range containing only that time code.</para>
+<para>A FrameSpec containing two floating point values separated by the range separator (&apos;:&apos;) represents a time code range from the first value as the start time code to the second values as the end time code.</para>
+<para>A FrameSpec that specifies both a start and end time code value may also optionally specify a third floating point value as the stride, separating it from the first two values using the stride separator (&apos;x&apos;).</para>
+<para>The following are examples of valid FrameSpecs: 123 101:105 105:101 101:109x2 101:110x2 101:104x0.5</para>
+<para>An empty string corresponds to an invalid empty time code range.</para>
+<para>A coding error will be issued if the given string is malformed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="212" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_utils_time_code_range_1a329634da0ea6e418e8067b2ed192ed80" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdUtilsTimeCodeRange</definition>
+        <argsstring>()</argsstring>
+        <name>UsdUtilsTimeCodeRange</name>
+        <briefdescription>
+<para>Construct an invalid empty range. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The start time code will be initialized to zero, and any iteration of the range will yield no time codes. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="219" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="219" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_utils_time_code_range_1a1f001ab7f686b9e360c7748b5141d0d7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdUtilsTimeCodeRange</definition>
+        <argsstring>(const UsdTimeCode timeCode)</argsstring>
+        <name>UsdUtilsTimeCodeRange</name>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>timeCode</declname>
+        </param>
+        <briefdescription>
+<para>Construct a range containing only the given <computeroutput>timeCode</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>An iteration of the range will yield only that time code. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="227" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="227" bodyend="230"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_utils_time_code_range_1a54f9f9badfb68283d05f0cd576a1eb21" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdUtilsTimeCodeRange</definition>
+        <argsstring>(const UsdTimeCode startTimeCode, const UsdTimeCode endTimeCode)</argsstring>
+        <name>UsdUtilsTimeCodeRange</name>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>startTimeCode</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>endTimeCode</declname>
+        </param>
+        <briefdescription>
+<para>Construct a range containing the time codes from <computeroutput>startTimeCode</computeroutput> to <computeroutput>endTimeCode</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>endTimeCode</computeroutput> is greater than or equal to <computeroutput>startTimeCode</computeroutput>, then the stride will be 1.0. Otherwise, the stride will be -1.0. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="237" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="237" bodyend="245"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_utils_time_code_range_1aa297b8b4231e9d573553144b99f227f4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdUtilsTimeCodeRange</definition>
+        <argsstring>(const UsdTimeCode startTimeCode, const UsdTimeCode endTimeCode, const double stride)</argsstring>
+        <name>UsdUtilsTimeCodeRange</name>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>startTimeCode</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>endTimeCode</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>stride</declname>
+        </param>
+        <briefdescription>
+<para>Construct a range containing the time codes from <computeroutput>startTimeCode</computeroutput> to <computeroutput>endTimeCode</computeroutput> using the stride value <computeroutput>stride</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="class_usd_time_code_1a4f38fe7a93e620b03fdb37616a4d88b9" kindref="member">UsdTimeCode::EarliestTime()</ref> and <ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default()</ref> cannot be used as <computeroutput>startTimeCode</computeroutput> or <computeroutput>endTimeCode</computeroutput>. If <computeroutput>stride</computeroutput> is a positive value, then <computeroutput>endTimeCode</computeroutput> cannot be less than <computeroutput>startTimeCode</computeroutput>. If <computeroutput>stride</computeroutput> is a negative value, then <computeroutput>endTimeCode</computeroutput> cannot be greater than <computeroutput>startTimeCode</computeroutput>. Finally, the stride value cannot be zero. If any of these conditions are not satisfied, then a coding error will be issued and an invalid empty range will be returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="257" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="257" bodyend="311"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_utils_time_code_range_1a3f991c386dda65c26d88fa54e4ef6948" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+        <definition>UsdTimeCode GetStartTimeCode</definition>
+        <argsstring>() const</argsstring>
+        <name>GetStartTimeCode</name>
+        <briefdescription>
+<para>Return the start time code of this range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="314" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="314" bodyend="316"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_utils_time_code_range_1aedfaaae81c4d7942444402d051a6a430" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+        <definition>UsdTimeCode GetEndTimeCode</definition>
+        <argsstring>() const</argsstring>
+        <name>GetEndTimeCode</name>
+        <briefdescription>
+<para>Return the end time code of this range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="319" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="319" bodyend="321"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_utils_time_code_range_1a6058fd24dec6d233fc2912c4f8a971af" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double GetStride</definition>
+        <argsstring>() const</argsstring>
+        <name>GetStride</name>
+        <briefdescription>
+<para>Return the stride value of this range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="324" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="324" bodyend="326"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_utils_time_code_range_1a0c62c15c8ed609e7e5e9518cf5f5c712" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_usd_utils_time_code_range_1_1const__iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator begin</definition>
+        <argsstring>() const</argsstring>
+        <name>begin</name>
+        <briefdescription>
+<para>Return an iterator to the start of this range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="329" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="329" bodyend="331"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_utils_time_code_range_1a39112ae08f6ffc7ee58c6aa79772e094" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_usd_utils_time_code_range_1_1const__iterator" kindref="compound">const_iterator</ref></type>
+        <definition>const_iterator cbegin</definition>
+        <argsstring>() const</argsstring>
+        <name>cbegin</name>
+        <briefdescription>
+<para>Return a <ref refid="class_usd_utils_time_code_range_1_1const__iterator" kindref="compound">const_iterator</ref> to the start of this range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="334" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="334" bodyend="336"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_utils_time_code_range_1a68b688a51bd0cf6fb5bc2cba292209a8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_usd_utils_time_code_range_1_1const__iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator end</definition>
+        <argsstring>() const</argsstring>
+        <name>end</name>
+        <briefdescription>
+<para>Return the past-the-end iterator for this range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="339" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="339" bodyend="341"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_utils_time_code_range_1a93791e61ab486b4022c389d634b4facc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_usd_utils_time_code_range_1_1const__iterator" kindref="compound">const_iterator</ref></type>
+        <definition>const_iterator cend</definition>
+        <argsstring>() const</argsstring>
+        <name>cend</name>
+        <briefdescription>
+<para>Return the past-the-end <ref refid="class_usd_utils_time_code_range_1_1const__iterator" kindref="compound">const_iterator</ref> for this range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="344" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="344" bodyend="346"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_utils_time_code_range_1a644718bb2fb240de962dc3c9a1fdf0dc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool empty</definition>
+        <argsstring>() const</argsstring>
+        <name>empty</name>
+        <briefdescription>
+<para>Return true if this range contains no time codes, or false otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="349" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="349" bodyend="351"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_utils_time_code_range_1ac532c4b500b1a85ea22217f2c65a70ed" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool IsValid</definition>
+        <argsstring>() const</argsstring>
+        <name>IsValid</name>
+        <briefdescription>
+<para>Return true if this range contains one or more time codes, or false otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="355" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="355" bodyend="357"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_utils_time_code_range_1a67b76affb3b5d35fa419ac234144038b" prot="public" static="no" const="yes" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>operator bool</definition>
+        <argsstring>() const</argsstring>
+        <name>operator bool</name>
+        <briefdescription>
+<para>Return true if this range contains one or more time codes, or false otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="361" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="361" bodyend="363"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_utils_time_code_range_1a495ffe61706cdb84bb51144599904eae" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator==</definition>
+        <argsstring>(const UsdUtilsTimeCodeRange &amp;other) const</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="class_usd_utils_time_code_range" kindref="compound">UsdUtilsTimeCodeRange</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Return true if this range is equivalent to <computeroutput>other</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="366" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="366" bodyend="370"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_utils_time_code_range_1a065dbbc5d132070b081c1841dbae1038" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator !=</definition>
+        <argsstring>(const UsdUtilsTimeCodeRange &amp;other) const</argsstring>
+        <name>operator !=</name>
+        <param>
+          <type>const <ref refid="class_usd_utils_time_code_range" kindref="compound">UsdUtilsTimeCodeRange</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Return true if this range is not equivalent to <computeroutput>other</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="373" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="373" bodyend="375"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_usd_utils_time_code_range_1a448674e8659a0e955e5f246347989fcb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _Invalidate</definition>
+        <argsstring>()</argsstring>
+        <name>_Invalidate</name>
+        <briefdescription>
+<para>Sets the range such that it yields no time codes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdUtils/timeCodeRange.h" line="380" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="380" bodyend="384"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Represents a range of <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> values as start and end time codes and a stride value. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A <ref refid="class_usd_utils_time_code_range" kindref="compound">UsdUtilsTimeCodeRange</ref> can be iterated to retrieve all time code values in the range. The range may be empty, it may contain a single time code, or it may represent multiple time codes from start to end. The interval defined by the start and end time codes is closed on both ends.</para>
+<para>Note that when constructing a <ref refid="class_usd_utils_time_code_range" kindref="compound">UsdUtilsTimeCodeRange</ref>, <ref refid="class_usd_time_code_1a4f38fe7a93e620b03fdb37616a4d88b9" kindref="member">UsdTimeCode::EarliestTime()</ref> and <ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default()</ref> cannot be used as the start or end time codes. Also, the end time code cannot be less than the start time code for positive stride values, and the end time code cannot be greater than the start time code for negative stride values. Finally, the stride value cannot be zero. If any of these conditions are not satisfied, then an invalid empty range will be returned. </para>
+    </detaileddescription>
+    <location file="pxr/usd/usdUtils/timeCodeRange.h" line="74" column="1" bodyfile="pxr/usd/usdUtils/timeCodeRange.h" bodystart="73" bodyend="389"/>
+    <listofallmembers>
+      <member refid="class_usd_utils_time_code_range_1aa7f45c5fffe159b0e59f645d810b5e4f" prot="private" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>_endTimeCode</name></member>
+      <member refid="class_usd_utils_time_code_range_1a448674e8659a0e955e5f246347989fcb" prot="private" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>_Invalidate</name></member>
+      <member refid="class_usd_utils_time_code_range_1a547a8fc9e63aba2b90f1db7f4f5d3386" prot="private" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>_startTimeCode</name></member>
+      <member refid="class_usd_utils_time_code_range_1af0c5e6034104d2c8b5136c6ef8c5bcd0" prot="private" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>_stride</name></member>
+      <member refid="class_usd_utils_time_code_range_1a0c62c15c8ed609e7e5e9518cf5f5c712" prot="public" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>begin</name></member>
+      <member refid="class_usd_utils_time_code_range_1a39112ae08f6ffc7ee58c6aa79772e094" prot="public" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>cbegin</name></member>
+      <member refid="class_usd_utils_time_code_range_1a93791e61ab486b4022c389d634b4facc" prot="public" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>cend</name></member>
+      <member refid="class_usd_utils_time_code_range_1a73dba0dedaf8b06ca89dfd0d9c542522" prot="public" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>CreateFromFrameSpec</name></member>
+      <member refid="class_usd_utils_time_code_range_1a644718bb2fb240de962dc3c9a1fdf0dc" prot="public" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>empty</name></member>
+      <member refid="class_usd_utils_time_code_range_1a68b688a51bd0cf6fb5bc2cba292209a8" prot="public" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>end</name></member>
+      <member refid="class_usd_utils_time_code_range_1aedfaaae81c4d7942444402d051a6a430" prot="public" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>GetEndTimeCode</name></member>
+      <member refid="class_usd_utils_time_code_range_1a3f991c386dda65c26d88fa54e4ef6948" prot="public" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>GetStartTimeCode</name></member>
+      <member refid="class_usd_utils_time_code_range_1a6058fd24dec6d233fc2912c4f8a971af" prot="public" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>GetStride</name></member>
+      <member refid="class_usd_utils_time_code_range_1ac532c4b500b1a85ea22217f2c65a70ed" prot="public" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>IsValid</name></member>
+      <member refid="class_usd_utils_time_code_range_1ab3d10e70baaeac78e76b7abae7e2cf76" prot="public" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>iterator</name></member>
+      <member refid="class_usd_utils_time_code_range_1a065dbbc5d132070b081c1841dbae1038" prot="public" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>operator !=</name></member>
+      <member refid="class_usd_utils_time_code_range_1a67b76affb3b5d35fa419ac234144038b" prot="public" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>operator bool</name></member>
+      <member refid="class_usd_utils_time_code_range_1a495ffe61706cdb84bb51144599904eae" prot="public" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>operator==</name></member>
+      <member refid="class_usd_utils_time_code_range_1a329634da0ea6e418e8067b2ed192ed80" prot="public" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>UsdUtilsTimeCodeRange</name></member>
+      <member refid="class_usd_utils_time_code_range_1a1f001ab7f686b9e360c7748b5141d0d7" prot="public" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>UsdUtilsTimeCodeRange</name></member>
+      <member refid="class_usd_utils_time_code_range_1a54f9f9badfb68283d05f0cd576a1eb21" prot="public" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>UsdUtilsTimeCodeRange</name></member>
+      <member refid="class_usd_utils_time_code_range_1aa297b8b4231e9d573553144b99f227f4" prot="public" virt="non-virtual"><scope>UsdUtilsTimeCodeRange</scope><name>UsdUtilsTimeCodeRange</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_imaging_a_p_i_schema_adapter" kind="class" language="C++" prot="public">
+    <compoundname>UsdImagingAPISchemaAdapter</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">std::enable_shared_from_this&lt; UsdImagingAPISchemaAdapter &gt;</basecompoundref>
+    <derivedcompoundref refid="class_usd_imaging_collection_a_p_i_adapter" prot="public" virt="non-virtual">UsdImagingCollectionAPIAdapter</derivedcompoundref>
+    <derivedcompoundref refid="class_usd_imaging_coord_sys_a_p_i_adapter" prot="public" virt="non-virtual">UsdImagingCoordSysAPIAdapter</derivedcompoundref>
+    <derivedcompoundref refid="class_usd_imaging_geom_model_a_p_i_adapter" prot="public" virt="non-virtual">UsdImagingGeomModelAPIAdapter</derivedcompoundref>
+    <derivedcompoundref refid="class_usd_imaging_light_a_p_i_adapter" prot="public" virt="non-virtual">UsdImagingLightAPIAdapter</derivedcompoundref>
+    <derivedcompoundref refid="class_usd_imaging_material_binding_a_p_i_adapter" prot="public" virt="non-virtual">UsdImagingMaterialBindingAPIAdapter</derivedcompoundref>
+    <includes refid="api_schema_adapter_8h" local="no">apiSchemaAdapter.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_imaging_a_p_i_schema_adapter_1a09c9f637339e2850cb6e6f29f68a638a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>USDIMAGING_API</type>
+        <definition>virtual USDIMAGING_API ~UsdImagingAPISchemaAdapter</definition>
+        <argsstring>()</argsstring>
+        <name>~UsdImagingAPISchemaAdapter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usdImaging/usdImaging/apiSchemaAdapter.h" line="62" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_imaging_a_p_i_schema_adapter_1aca17434fa131399b93ed1eb2376f2281" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>USDIMAGING_API <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref></type>
+        <definition>virtual USDIMAGING_API TfTokenVector GetImagingSubprims</definition>
+        <argsstring>(UsdPrim const &amp;prim, TfToken const &amp;appliedInstanceName)</argsstring>
+        <name>GetImagingSubprims</name>
+        <param>
+          <type><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> const &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>appliedInstanceName</declname>
+        </param>
+        <briefdescription>
+<para>Called to determine whether an API schema defines additional child hydra prims beyond the primary hydra prim representing the USD prim on which the API schema is applied. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The token values returned are appended (as property names) to the <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> which serves as the hydra id of the primary prim. <computeroutput>appliedInstanceName</computeroutput> will be non-empty for multiple-apply schema instance names. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usdImaging/usdImaging/apiSchemaAdapter.h" line="72" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_imaging_a_p_i_schema_adapter_1aca25a9a993dee3f1f8e02eaa21db1275" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>USDIMAGING_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>virtual USDIMAGING_API TfToken GetImagingSubprimType</definition>
+        <argsstring>(UsdPrim const &amp;prim, TfToken const &amp;subprim, TfToken const &amp;appliedInstanceName)</argsstring>
+        <name>GetImagingSubprimType</name>
+        <param>
+          <type><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> const &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>subprim</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>appliedInstanceName</declname>
+        </param>
+        <briefdescription>
+<para>Called to determine whether an API schema specifies the hydra type of a given prim previously defined by a call to GetImagingSubprims. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>subprim</computeroutput> corresponds to an element in the result of a previous call to GetImagingSubprims. <computeroutput>appliedInstanceName</computeroutput> will be non-empty for multiple-apply schema instance names. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usdImaging/usdImaging/apiSchemaAdapter.h" line="83" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_imaging_a_p_i_schema_adapter_1a225dbecf42b4365693ebeb71d1621627" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>USDIMAGING_API HdContainerDataSourceHandle</type>
+        <definition>virtual USDIMAGING_API HdContainerDataSourceHandle GetImagingSubprimData</definition>
+        <argsstring>(UsdPrim const &amp;prim, TfToken const &amp;subprim, TfToken const &amp;appliedInstanceName, const UsdImagingDataSourceStageGlobals &amp;stageGlobals)</argsstring>
+        <name>GetImagingSubprimData</name>
+        <param>
+          <type><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> const &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>subprim</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>appliedInstanceName</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_imaging_data_source_stage_globals" kindref="compound">UsdImagingDataSourceStageGlobals</ref> &amp;</type>
+          <declname>stageGlobals</declname>
+        </param>
+        <briefdescription>
+<para>Returns an HdContainerDataSourceHandle representing the API schema&apos;s contributions to the primary prim (empty <computeroutput>subprim</computeroutput> value) or a specific subprim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The non-null results of the prim adapter and each applied API schema adapter are overlaid (in application order).</para>
+<para>Ideally, data sources within this container are lazily evaluated to avoid doing work until some consumes the data. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usdImaging/usdImaging/apiSchemaAdapter.h" line="96" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_imaging_a_p_i_schema_adapter_1adedfe23951fbcdcab4bac54df7d0b3af" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>USDIMAGING_API <ref refid="class_hd_data_source_locator_set" kindref="compound">HdDataSourceLocatorSet</ref></type>
+        <definition>virtual USDIMAGING_API HdDataSourceLocatorSet InvalidateImagingSubprim</definition>
+        <argsstring>(UsdPrim const &amp;prim, TfToken const &amp;subprim, TfToken const &amp;appliedInstanceName, TfTokenVector const &amp;properties, UsdImagingPropertyInvalidationType invalidationType)</argsstring>
+        <name>InvalidateImagingSubprim</name>
+        <param>
+          <type><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> const &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>subprim</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>appliedInstanceName</declname>
+        </param>
+        <param>
+          <type><ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> const &amp;</type>
+          <declname>properties</declname>
+        </param>
+        <param>
+          <type>UsdImagingPropertyInvalidationType</type>
+          <declname>invalidationType</declname>
+        </param>
+        <briefdescription>
+<para>Given the names of USD properties which have changed, an adapter may provide a <ref refid="class_hd_data_source_locator_set" kindref="compound">HdDataSourceLocatorSet</ref> describing which data sources should be flagged as dirty. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usdImaging/usdImaging/apiSchemaAdapter.h" line="106" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Base class for all API schema adapters. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>These map behavior of applied API schemas to contributions the hydra prims and data sources generated for a given USD prim. </para>
+    </detaileddescription>
+    <location file="pxr/usdImaging/usdImaging/apiSchemaAdapter.h" line="58" column="1" bodyfile="pxr/usdImaging/usdImaging/apiSchemaAdapter.h" bodystart="56" bodyend="112"/>
+    <listofallmembers>
+      <member refid="class_usd_imaging_a_p_i_schema_adapter_1a225dbecf42b4365693ebeb71d1621627" prot="public" virt="virtual"><scope>UsdImagingAPISchemaAdapter</scope><name>GetImagingSubprimData</name></member>
+      <member refid="class_usd_imaging_a_p_i_schema_adapter_1aca17434fa131399b93ed1eb2376f2281" prot="public" virt="virtual"><scope>UsdImagingAPISchemaAdapter</scope><name>GetImagingSubprims</name></member>
+      <member refid="class_usd_imaging_a_p_i_schema_adapter_1aca25a9a993dee3f1f8e02eaa21db1275" prot="public" virt="virtual"><scope>UsdImagingAPISchemaAdapter</scope><name>GetImagingSubprimType</name></member>
+      <member refid="class_usd_imaging_a_p_i_schema_adapter_1adedfe23951fbcdcab4bac54df7d0b3af" prot="public" virt="virtual"><scope>UsdImagingAPISchemaAdapter</scope><name>InvalidateImagingSubprim</name></member>
+      <member refid="class_usd_imaging_a_p_i_schema_adapter_1a09c9f637339e2850cb6e6f29f68a638a" prot="public" virt="virtual"><scope>UsdImagingAPISchemaAdapter</scope><name>~UsdImagingAPISchemaAdapter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

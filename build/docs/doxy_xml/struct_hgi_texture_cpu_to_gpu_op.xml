@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="struct_hgi_texture_cpu_to_gpu_op" kind="struct" language="C++" prot="public">
+    <compoundname>HgiTextureCpuToGpuOp</compoundname>
+    <includes refid="blit_cmds_ops_8h" local="no">blitCmdsOps.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_hgi_texture_cpu_to_gpu_op_1ae37bd68c1f99bbf41d2d92aec367196d" prot="public" static="no" mutable="no">
+        <type>void const  *</type>
+        <definition>void const* cpuSourceBuffer</definition>
+        <argsstring></argsstring>
+        <name>cpuSourceBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/blitCmdsOps.h" line="120" column="1" bodyfile="pxr/imaging/hgi/blitCmdsOps.h" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_hgi_texture_cpu_to_gpu_op_1ae268082dbd2fe4fd4a0d018560fcf4de" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t bufferByteSize</definition>
+        <argsstring></argsstring>
+        <name>bufferByteSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/blitCmdsOps.h" line="121" column="1" bodyfile="pxr/imaging/hgi/blitCmdsOps.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_hgi_texture_cpu_to_gpu_op_1a6a28e908cc9370510e1f2a6e03c74ea1" prot="public" static="no" mutable="no">
+        <type><ref refid="class_gf_vec3i" kindref="compound">GfVec3i</ref></type>
+        <definition>GfVec3i destinationTexelOffset</definition>
+        <argsstring></argsstring>
+        <name>destinationTexelOffset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/blitCmdsOps.h" line="122" column="1" bodyfile="pxr/imaging/hgi/blitCmdsOps.h" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_hgi_texture_cpu_to_gpu_op_1a6bee6dfccd29b97a64df2beb8fe41b58" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t mipLevel</definition>
+        <argsstring></argsstring>
+        <name>mipLevel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/blitCmdsOps.h" line="123" column="1" bodyfile="pxr/imaging/hgi/blitCmdsOps.h" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_hgi_texture_cpu_to_gpu_op_1ae2a8fed4ebb1726760068eb1f310fdb0" prot="public" static="no" mutable="no">
+        <type>HgiTextureHandle</type>
+        <definition>HgiTextureHandle gpuDestinationTexture</definition>
+        <argsstring></argsstring>
+        <name>gpuDestinationTexture</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/blitCmdsOps.h" line="124" column="1" bodyfile="pxr/imaging/hgi/blitCmdsOps.h" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_hgi_texture_cpu_to_gpu_op_1af29bddc7266bd5d07018e6addd391830" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>HgiTextureCpuToGpuOp</definition>
+        <argsstring>()</argsstring>
+        <name>HgiTextureCpuToGpuOp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/blitCmdsOps.h" line="112" column="1" bodyfile="pxr/imaging/hgi/blitCmdsOps.h" bodystart="112" bodyend="118"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Describes the properties needed to copy texture data from CPU to GPU. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This uploads one mip at a time.</para>
+<para>It is the responsibility of the caller to:<itemizedlist>
+<listitem><para>ensure the destination textures is large enough to receive the data.</para>
+</listitem><listitem><para>ensure the source buffer and destination texture are valid at the time the command is executed.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem>
+<para>cpuSourceBuffer: Pointer to CPU source (ie. texels) to copy the data from. </para>
+</listitem>
+<listitem>
+<para>bufferByteSize: Byte size (length) of cpuSourceBuffer. </para>
+</listitem>
+<listitem>
+<para>destinationTexelOffset: The texel offset (width, height, depth) of where to upload the data. If the texture is a 2d_array the third element is the layer/slice. </para>
+</listitem>
+<listitem>
+<para>mipLevel: Mip level to upload into. </para>
+</listitem>
+<listitem>
+<para>gpuDestinationTexture: The GPU texture to upload the data into. </para>
+</listitem>
+</itemizedlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4009">
+        <label>HgiTextureCpuToGpuOp</label>
+        <link refid="struct_hgi_texture_cpu_to_gpu_op"/>
+        <childnode refid="4010" relation="usage">
+          <edgelabel>gpuDestinationTexture</edgelabel>
+        </childnode>
+        <childnode refid="4011" relation="usage">
+          <edgelabel>destinationTexelOffset</edgelabel>
+        </childnode>
+      </node>
+      <node id="4010">
+        <label>HgiHandle&lt; class HgiTexture &gt;</label>
+        <link refid="class_hgi_handle"/>
+      </node>
+      <node id="4011">
+        <label>GfVec3i</label>
+        <link refid="class_gf_vec3i"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/hgi/blitCmdsOps.h" line="111" column="1" bodyfile="pxr/imaging/hgi/blitCmdsOps.h" bodystart="110" bodyend="125"/>
+    <listofallmembers>
+      <member refid="struct_hgi_texture_cpu_to_gpu_op_1ae268082dbd2fe4fd4a0d018560fcf4de" prot="public" virt="non-virtual"><scope>HgiTextureCpuToGpuOp</scope><name>bufferByteSize</name></member>
+      <member refid="struct_hgi_texture_cpu_to_gpu_op_1ae37bd68c1f99bbf41d2d92aec367196d" prot="public" virt="non-virtual"><scope>HgiTextureCpuToGpuOp</scope><name>cpuSourceBuffer</name></member>
+      <member refid="struct_hgi_texture_cpu_to_gpu_op_1a6a28e908cc9370510e1f2a6e03c74ea1" prot="public" virt="non-virtual"><scope>HgiTextureCpuToGpuOp</scope><name>destinationTexelOffset</name></member>
+      <member refid="struct_hgi_texture_cpu_to_gpu_op_1ae2a8fed4ebb1726760068eb1f310fdb0" prot="public" virt="non-virtual"><scope>HgiTextureCpuToGpuOp</scope><name>gpuDestinationTexture</name></member>
+      <member refid="struct_hgi_texture_cpu_to_gpu_op_1af29bddc7266bd5d07018e6addd391830" prot="public" virt="non-virtual"><scope>HgiTextureCpuToGpuOp</scope><name>HgiTextureCpuToGpuOp</name></member>
+      <member refid="struct_hgi_texture_cpu_to_gpu_op_1a6bee6dfccd29b97a64df2beb8fe41b58" prot="public" virt="non-virtual"><scope>HgiTextureCpuToGpuOp</scope><name>mipLevel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

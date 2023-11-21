@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="group___usd_geom_linear_units__group" kind="group">
+    <compoundname>UsdGeomLinearUnits_group</compoundname>
+    <title>Encoding Stage Linear Units</title>
+    <innerclass refid="class_usd_geom_linear_units" prot="public">UsdGeomLinearUnits</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group___usd_geom_linear_units__group_1gae2a143e28507a6ccf045a453faa60e7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API double</type>
+        <definition>USDGEOM_API double UsdGeomGetStageMetersPerUnit</definition>
+        <argsstring>(const UsdStageWeakPtr &amp;stage)</argsstring>
+        <name>UsdGeomGetStageMetersPerUnit</name>
+        <param>
+          <type>const UsdStageWeakPtr &amp;</type>
+          <declname>stage</declname>
+        </param>
+        <briefdescription>
+<para>Return <emphasis>stage</emphasis>&apos;s authored <emphasis>metersPerUnit</emphasis>, or 0.01 if unauthored. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="group___usd_geom_linear_units__group" kindref="compound">Encoding Stage Linear Units</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/metrics.h" line="156" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group___usd_geom_linear_units__group_1ga3d611869f4f979b164d092bc76c6a570" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool UsdGeomStageHasAuthoredMetersPerUnit</definition>
+        <argsstring>(const UsdStageWeakPtr &amp;stage)</argsstring>
+        <name>UsdGeomStageHasAuthoredMetersPerUnit</name>
+        <param>
+          <type>const UsdStageWeakPtr &amp;</type>
+          <declname>stage</declname>
+        </param>
+        <briefdescription>
+<para>Return whether <emphasis>stage</emphasis> has an authored <emphasis>metersPerUnit</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="group___usd_geom_linear_units__group" kindref="compound">Encoding Stage Linear Units</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/metrics.h" line="161" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group___usd_geom_linear_units__group_1ga4a594ddd71b30fb5273d06b5bba38e72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool UsdGeomSetStageMetersPerUnit</definition>
+        <argsstring>(const UsdStageWeakPtr &amp;stage, double metersPerUnit)</argsstring>
+        <name>UsdGeomSetStageMetersPerUnit</name>
+        <param>
+          <type>const UsdStageWeakPtr &amp;</type>
+          <declname>stage</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>metersPerUnit</declname>
+        </param>
+        <briefdescription>
+<para>Author <emphasis>stage</emphasis>&apos;s <emphasis>metersPerUnit</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if metersPerUnit was successfully set. The stage&apos;s <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> must be either its root layer or session layer. </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group___usd_geom_linear_units__group" kindref="compound">Encoding Stage Linear Units</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/metrics.h" line="169" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group___usd_geom_linear_units__group_1ga2c3ad1a29b3091476d3fc2b03b955b98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool UsdGeomLinearUnitsAre</definition>
+        <argsstring>(double authoredUnits, double standardUnits, double epsilon=1e-5)</argsstring>
+        <name>UsdGeomLinearUnitsAre</name>
+        <param>
+          <type>double</type>
+          <declname>authoredUnits</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>standardUnits</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>epsilon</declname>
+          <defval>1e-5</defval>
+        </param>
+        <briefdescription>
+<para>Return <emphasis>true</emphasis> if the two given metrics are within the provided relative <emphasis>epsilon</emphasis> of each other, when you need to know an absolute metric rather than a scaling factor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Use like so: <programlisting><codeline><highlight class="normal">double<sp/>stageUnits<sp/>=<sp/>UsdGeomGetStageMetersPerUnit(stage);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(UsdGeomLinearUnitsAre(stageUnits,<sp/>UsdGeomLinearUnits::meters))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>do<sp/>something<sp/>for<sp/>meters</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>if<sp/>(UsdGeomLinearUnitsAre(stageUnits,<sp/>UsdGeomLinearUnits::feet))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>do<sp/>something<sp/>for<sp/>feet</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="return"><para><emphasis>false</emphasis> if either input is zero or negative, otherwise relative floating-point comparison between the two inputs. </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group___usd_geom_linear_units__group" kindref="compound">Encoding Stage Linear Units</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/metrics.h" line="190" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>As with <ref refid="group___usd_geom_up_axis__group" kindref="compound">Encoding Stage UpAxis</ref>, we restrict the encoding of linear units to be stage-wide; if assembling assets of different metrics, it is the assembler&apos;s responsibility to apply suitable correctives to the referenced data to bring it into the referencing stage&apos;s metric. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>We encode linear measure as <bold>meters per unit</bold> (stage-level metadata <emphasis>metersPerUnit</emphasis>) rather than units-per-meter because it makes it easier to encode precise imperial units (one imperial foot = 0.3048 meters exactly).</para>
+<para>If a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> has no authored <emphasis>metersPerUnit</emphasis> we fall back to the value <ref refid="class_usd_geom_linear_units" kindref="compound">UsdGeomLinearUnits::centimeters</ref>, i.e. 0.01.</para>
+<para>The specified <emphasis>metersPerUnit</emphasis> metric should only be applied to <bold>world space</bold> (i.e. fully transformed) attributes of types:<itemizedlist>
+<listitem><para>point3{h,f,d} (and Arrays thereof)</para>
+</listitem><listitem><para>vector3{h,f,d} (and Arrays thereof)</para>
+</listitem><listitem><para>schema attributes that define a length, such as Sphere.radius and Boundable.extent</para>
+</listitem></itemizedlist>
+</para>
+<para>It may be tempting to interpret raw attribute values, and even xformOp:translate values in the <emphasis>metersPerUnit</emphasis> metric, but because any xformOp:scale transformations will change the metric of the authored attribute, and in fact we <emphasis>require</emphasis> this sort of scale change when referencing assets of differing metrics, it is unreliable to do so. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

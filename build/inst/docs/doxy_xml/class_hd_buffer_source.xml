@@ -1,0 +1,530 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_buffer_source" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>HdBufferSource</compoundname>
+    <derivedcompoundref refid="class_hd_computed_buffer_source" prot="public" virt="non-virtual">HdComputedBufferSource</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_null_buffer_source" prot="public" virt="non-virtual">HdNullBufferSource</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_st_ext_comp_primvar_buffer_source" prot="public" virt="non-virtual">HdStExtCompPrimvarBufferSource</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_vt_buffer_source" prot="public" virt="non-virtual">HdVtBufferSource</derivedcompoundref>
+    <includes refid="buffer_source_8h" local="no">bufferSource.h</includes>
+      <sectiondef kind="user-defined">
+      <header>Chained Buffers</header>
+      <description><para>Buffer sources may be daisy-chained together.</para>
+<para>Pre-chained buffer sources typically represent sources that are inputs to computed buffer sources (e.g. coarse vertex privmar data needing to be quadrangulated or refined) and will be scheduled to be resolved along with their owning buffer sources.</para>
+<para>Post-chained buffer sources typically represent additional results produced by a computation (e.g. primitive param data computed along with index buffer data) and will be scheduled to be committed along with their owning buffer sources. </para>
+</description>
+      <memberdef kind="function" id="class_hd_buffer_source_1a600437657ebeb5a72da71300032e5532" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API bool</type>
+        <definition>virtual HD_API bool HasPreChainedBuffer</definition>
+        <argsstring>() const</argsstring>
+        <name>HasPreChainedBuffer</name>
+        <briefdescription>
+<para>Returns true if this buffer has a pre-chained buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="123" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_source_1a59b78074e9fcc70237524881864f8ad7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API HdBufferSourceSharedPtr</type>
+        <definition>virtual HD_API HdBufferSourceSharedPtr GetPreChainedBuffer</definition>
+        <argsstring>() const</argsstring>
+        <name>GetPreChainedBuffer</name>
+        <briefdescription>
+<para>Returns the pre-chained buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="127" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_source_1a6882660a1cb15d85f6dfece0d1e4e25d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API bool</type>
+        <definition>virtual HD_API bool HasChainedBuffer</definition>
+        <argsstring>() const</argsstring>
+        <name>HasChainedBuffer</name>
+        <briefdescription>
+<para>Returns true if this buffer has any chained buffer(s) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="131" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_source_1aa319054081d8cc83ea80e3b95a18e37b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API HdBufferSourceSharedPtrVector</type>
+        <definition>virtual HD_API HdBufferSourceSharedPtrVector GetChainedBuffers</definition>
+        <argsstring>() const</argsstring>
+        <name>GetChainedBuffers</name>
+        <briefdescription>
+<para>Returns the vector of chained buffers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="135" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="enum" id="class_hd_buffer_source_1a5d74787dedbc4e11c1ab15bf487e61f8" prot="private" static="no" strong="no">
+        <type></type>
+        <name>State</name>
+        <enumvalue id="class_hd_buffer_source_1a5d74787dedbc4e11c1ab15bf487e61f8add34e323cbfc10e56499d492dd2c3a66" prot="private">
+          <name>UNRESOLVED</name>
+          <initializer>=0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_buffer_source_1a5d74787dedbc4e11c1ab15bf487e61f8a336df9af9b6699c97c72fc59222e05d8" prot="private">
+          <name>BEING_RESOLVED</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_buffer_source_1a5d74787dedbc4e11c1ab15bf487e61f8af8f8ee58c2de4e6c08bd266684d5e95d" prot="private">
+          <name>RESOLVED</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_buffer_source_1a5d74787dedbc4e11c1ab15bf487e61f8a51928400d026daeb1211dd7251988ef6" prot="private">
+          <name>RESOLVE_ERROR</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="201" column="1" bodyfile="pxr/imaging/hd/bufferSource.h" bodystart="201" bodyend="201"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_buffer_source_1a2245c174a32afe9ca305ecb61e2d93db" prot="private" static="no" mutable="no">
+        <type>std::atomic&lt; State &gt;</type>
+        <definition>std::atomic&lt;State&gt; _state</definition>
+        <argsstring></argsstring>
+        <name>_state</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="202" column="1" bodyfile="pxr/imaging/hd/bufferSource.h" bodystart="202" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_buffer_source_1aee360bcdc56a9390c0da4dcbd86d6936" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>HdBufferSource</definition>
+        <argsstring>()</argsstring>
+        <name>HdBufferSource</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="58" column="1" bodyfile="pxr/imaging/hd/bufferSource.h" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_source_1a48f26b3afaa40d27e98c6dd91e410df0" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API</type>
+        <definition>virtual HD_API ~HdBufferSource</definition>
+        <argsstring>()</argsstring>
+        <name>~HdBufferSource</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="61" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_source_1a97a114d26c6f6cd975cd1b6814b8d03e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const  &amp;</type>
+        <definition>virtual TfToken const&amp; GetName</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetName</name>
+        <reimplementedby refid="class_hd_st_ext_comp_gpu_primvar_buffer_source_1a4863768db52d4dd224e7414485b4e05e">GetName</reimplementedby>
+        <reimplementedby refid="class_hd_st_ext_comp_primvar_buffer_source_1a004da153eb975796ee16de8f57abb70c">GetName</reimplementedby>
+        <reimplementedby refid="class_hd_st_ext_comp_cpu_computation_1a004da153eb975796ee16de8f57abb70c">GetName</reimplementedby>
+        <reimplementedby refid="class_hd_vt_buffer_source_1aaa88672fe0b6e3c013a11562f15bb595">GetName</reimplementedby>
+        <reimplementedby refid="class_hd_computed_buffer_source_1a0c0702fbc703090d28d34aa9fc210f63">GetName</reimplementedby>
+        <reimplementedby refid="class_hd_null_buffer_source_1a0c0702fbc703090d28d34aa9fc210f63">GetName</reimplementedby>
+        <briefdescription>
+<para>Return the name of this buffer source. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="64" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_source_1a8a168db3ae7e1b0a8e17ed98f40f9f4e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void GetBufferSpecs</definition>
+        <argsstring>(HdBufferSpecVector *specs) const =0</argsstring>
+        <name>GetBufferSpecs</name>
+        <reimplementedby refid="class_hd_st_ext_comp_gpu_primvar_buffer_source_1a6956e540dc762faecff2337312d0cae0">GetBufferSpecs</reimplementedby>
+        <reimplementedby refid="class_hd_st_ext_comp_primvar_buffer_source_1a596df3707c1a0ac69178be8b953a65ab">GetBufferSpecs</reimplementedby>
+        <reimplementedby refid="class_hd_vt_buffer_source_1a872ac8d55925f45fff63e1221bb3859c">GetBufferSpecs</reimplementedby>
+        <reimplementedby refid="class_hd_null_buffer_source_1a49ccfc0b7d908c1a3e6bc28d23dfe7f0">GetBufferSpecs</reimplementedby>
+        <param>
+          <type>HdBufferSpecVector *</type>
+          <declname>specs</declname>
+        </param>
+        <briefdescription>
+<para>Add the buffer spec for this buffer source into given bufferspec vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>note: buffer specs has to be determined before the source resolution. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="68" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_source_1a97126c48679ed74509d0bb54fc2e47ae" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API size_t</type>
+        <definition>virtual HD_API size_t ComputeHash</definition>
+        <argsstring>() const</argsstring>
+        <name>ComputeHash</name>
+        <reimplementedby refid="class_hd_st_ext_comp_gpu_primvar_buffer_source_1a61abd78afd3c71f52d23f6285735feaa">ComputeHash</reimplementedby>
+        <reimplementedby refid="class_hd_st_ext_comp_primvar_buffer_source_1a56b47cf00a43aad26e812492d397242f">ComputeHash</reimplementedby>
+        <reimplementedby refid="class_hd_computed_buffer_source_1ae13441343bea925fd46537fd58a5aef8">ComputeHash</reimplementedby>
+        <reimplementedby refid="class_hd_null_buffer_source_1ae13441343bea925fd46537fd58a5aef8">ComputeHash</reimplementedby>
+        <briefdescription>
+<para>Computes and returns a hash value for the underlying data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="72" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_source_1a31cd8967840ac419b37e8059635896e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool Resolve</definition>
+        <argsstring>()=0</argsstring>
+        <name>Resolve</name>
+        <reimplementedby refid="class_hd_st_ext_comp_gpu_primvar_buffer_source_1ad356b46a8c6b2fd26ba57bdb70f1ef9e">Resolve</reimplementedby>
+        <reimplementedby refid="class_hd_st_ext_comp_primvar_buffer_source_1a0c003c53291d9f86bc7b0981cdd8f820">Resolve</reimplementedby>
+        <reimplementedby refid="class_hd_st_ext_comp_cpu_computation_1a0c003c53291d9f86bc7b0981cdd8f820">Resolve</reimplementedby>
+        <reimplementedby refid="class_hd_vt_buffer_source_1a80a1295c8c072609797886ee421332b1">Resolve</reimplementedby>
+        <briefdescription>
+<para>Prepare the access of <ref refid="class_hd_buffer_source_1a308bd3c4ecd2721502e90069f6025587" kindref="member">GetData()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This process may include some computations (e.g. cpu smooth normals). Note: Resolve may be called in parallel from multiple threads across buffer sources, so be careful if it uses static/shared states among objects. Returns true if it resolved. If the buffer source has to wait some results of other buffer sources, or the buffer source is being resolved by other threads, it returns false. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="82" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_source_1a308bd3c4ecd2721502e90069f6025587" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>void const  *</type>
+        <definition>virtual void const* GetData</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetData</name>
+        <reimplementedby refid="class_hd_st_ext_comp_primvar_buffer_source_1a24438c33c6d7a33da29c23cfc4586438">GetData</reimplementedby>
+        <reimplementedby refid="class_hd_vt_buffer_source_1a924096084852cdbff70cf88c00b6e2b2">GetData</reimplementedby>
+        <reimplementedby refid="class_hd_computed_buffer_source_1ae9d406408fc27fe3ced169e41b5c1e34">GetData</reimplementedby>
+        <reimplementedby refid="class_hd_null_buffer_source_1ae9d406408fc27fe3ced169e41b5c1e34">GetData</reimplementedby>
+        <briefdescription>
+<para>Following interfaces will be called after Resolve. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the raw pointer to the underlying data. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="87" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_source_1a4acce328dc83a1d73a1a62e8e2a2afc3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="struct_hd_tuple_type" kindref="compound">HdTupleType</ref></type>
+        <definition>virtual HdTupleType GetTupleType</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetTupleType</name>
+        <reimplementedby refid="class_hd_st_ext_comp_gpu_primvar_buffer_source_1a34ea05109a9ba9e8aafc804dcbd7e16e">GetTupleType</reimplementedby>
+        <reimplementedby refid="class_hd_st_ext_comp_primvar_buffer_source_1ad2a43993118d83ce78170843f9ba23e9">GetTupleType</reimplementedby>
+        <reimplementedby refid="class_hd_vt_buffer_source_1a4e649c5c2508c1f1dfecf47c8e7442fb">GetTupleType</reimplementedby>
+        <reimplementedby refid="class_hd_computed_buffer_source_1a5ac174b7f9823eebc156c8820389598d">GetTupleType</reimplementedby>
+        <reimplementedby refid="class_hd_null_buffer_source_1a5ac174b7f9823eebc156c8820389598d">GetTupleType</reimplementedby>
+        <briefdescription>
+<para>Returns the data type and count (array size) for this buffer source. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="90" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_source_1a23d40ffcfd073db47f9fb878fb3f67aa" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>size_t</type>
+        <definition>virtual size_t GetNumElements</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetNumElements</name>
+        <reimplementedby refid="class_hd_st_ext_comp_gpu_primvar_buffer_source_1a03003d1fbd49a355dbeb95abe39fd889">GetNumElements</reimplementedby>
+        <reimplementedby refid="class_hd_st_ext_comp_primvar_buffer_source_1a749f69362c62d5a069d921f4d5987ac8">GetNumElements</reimplementedby>
+        <reimplementedby refid="class_hd_st_ext_comp_cpu_computation_1a749f69362c62d5a069d921f4d5987ac8">GetNumElements</reimplementedby>
+        <reimplementedby refid="class_hd_vt_buffer_source_1ad8907a5840d09dff15189ec7082ab78e">GetNumElements</reimplementedby>
+        <reimplementedby refid="class_hd_computed_buffer_source_1aca2f47025f9b58504ed51ec9c2b913d1">GetNumElements</reimplementedby>
+        <reimplementedby refid="class_hd_null_buffer_source_1aca2f47025f9b58504ed51ec9c2b913d1">GetNumElements</reimplementedby>
+        <briefdescription>
+<para>Returns the number of elements (e.g. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>VtVec3dArray().GetLength()) from the source array. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="94" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_source_1a2d798b9f36dd4187831ce00aaf720dd0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool IsResolved</definition>
+        <argsstring>() const</argsstring>
+        <name>IsResolved</name>
+        <briefdescription>
+<para>Returns true it this computation has already been resolved. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="97" column="1" bodyfile="pxr/imaging/hd/bufferSource.h" bodystart="97" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_source_1ae154f9dca5a409c46b8bdaca56b7d58f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool HasResolveError</definition>
+        <argsstring>() const</argsstring>
+        <name>HasResolveError</name>
+        <briefdescription>
+<para>Returns true if an error occurred during resolve. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="102" column="1" bodyfile="pxr/imaging/hd/bufferSource.h" bodystart="102" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_source_1a55323f058382f1585d1e9cb3af59d87f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsValid</definition>
+        <argsstring>() const</argsstring>
+        <name>IsValid</name>
+        <briefdescription>
+<para>Checks the validity of the source buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The function should be called to determine if AddBufferSpec() and <ref refid="class_hd_buffer_source_1a31cd8967840ac419b37e8059635896e7" kindref="member">Resolve()</ref> would return valid results. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="144" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_hd_buffer_source_1aa9d9f62a29664a6353762c968c477c9a" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _SetResolved</definition>
+        <argsstring>()</argsstring>
+        <name>_SetResolved</name>
+        <briefdescription>
+<para>Marks this buffer source as resolved. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>It has to be called at the end of Resolve on concrete implementations. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="149" column="1" bodyfile="pxr/imaging/hd/bufferSource.h" bodystart="149" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_source_1aa93dec2f4f899e2edf89b0b20b9b0408" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _SetResolveError</definition>
+        <argsstring>()</argsstring>
+        <name>_SetResolveError</name>
+        <briefdescription>
+<para>Called during <ref refid="class_hd_buffer_source_1a31cd8967840ac419b37e8059635896e7" kindref="member">Resolve()</ref> to indicate an unrecoverable failure occurred and the results of the computation can not be used. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Further calls to <ref refid="class_hd_buffer_source_1a31cd8967840ac419b37e8059635896e7" kindref="member">Resolve()</ref> will not lead to success.</para>
+<para>This is different from <ref refid="class_hd_buffer_source_1a31cd8967840ac419b37e8059635896e7" kindref="member">Resolve()</ref> returning false, which indicates that additional calls to <ref refid="class_hd_buffer_source_1a31cd8967840ac419b37e8059635896e7" kindref="member">Resolve()</ref> will eventually lead to success.</para>
+<para>This is also later in the pipeline than IsValid, which checks that the buffer is setup such that <ref refid="class_hd_buffer_source_1a31cd8967840ac419b37e8059635896e7" kindref="member">Resolve()</ref> can be successful. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="163" column="1" bodyfile="pxr/imaging/hd/bufferSource.h" bodystart="163" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_source_1a95fa005a2674cf5ab757a2d6baa1beaa" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _TryLock</definition>
+        <argsstring>()</argsstring>
+        <name>_TryLock</name>
+        <briefdescription>
+<para>Non-blocking lock acquisition. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no one else is resolving this buffer source, returns true. In that case the caller needs to call _SetResolved at the end of computation. It returns false if anyone else has already acquired lock. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="173" column="1" bodyfile="pxr/imaging/hd/bufferSource.h" bodystart="173" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_source_1a0f0022a4bdf82e55a38f7aeae7156591" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool _CheckValid</definition>
+        <argsstring>() const =0</argsstring>
+        <name>_CheckValid</name>
+        <reimplementedby refid="class_hd_st_ext_comp_gpu_primvar_buffer_source_1a82e51e412f9647e086e34015d5409499">_CheckValid</reimplementedby>
+        <reimplementedby refid="class_hd_st_ext_comp_primvar_buffer_source_1ac969857fc76553a38db65408d27baa45">_CheckValid</reimplementedby>
+        <reimplementedby refid="class_hd_st_ext_comp_cpu_computation_1ac969857fc76553a38db65408d27baa45">_CheckValid</reimplementedby>
+        <reimplementedby refid="class_hd_vt_buffer_source_1a6cd6625bc9a94411fb3596cc489d46db">_CheckValid</reimplementedby>
+        <briefdescription>
+<para>Checks the validity of the source buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is called by <ref refid="class_hd_buffer_source_1a55323f058382f1585d1e9cb3af59d87f" kindref="member">IsValid()</ref> to do the real checking.</para>
+<para>Should only be implemented in classes at leafs of the class hierarchy (Please place common validation code in a new non-virtual method)</para>
+<para>This code should return false:<itemizedlist>
+<listitem><para>If the buffer would produce an invalid BufferSpec</para>
+</listitem><listitem><para>If a required dependent buffer is invalid For example, return false when: The data type is invalid, causing an invalid BufferSpec.</para>
+</listitem></itemizedlist>
+</para>
+<para>The resolve step requires a &apos;source&apos; buffer and that buffer is invalid.</para>
+<para>If returning false, the buffer will not be registered with the resource registry. AddBufferSpec and Resolve will not be called </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="194" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hd_buffer_source_1a515537eef44ab74ee34e2c3889150f86" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdBufferSource</definition>
+        <argsstring>(const HdBufferSource &amp;)=delete</argsstring>
+        <name>HdBufferSource</name>
+        <param>
+          <type>const <ref refid="class_hd_buffer_source" kindref="compound">HdBufferSource</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="198" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_source_1af415f313dd9cddc53ac89763d8500f8c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hd_buffer_source" kindref="compound">HdBufferSource</ref> &amp;</type>
+        <definition>HdBufferSource&amp; operator=</definition>
+        <argsstring>(const HdBufferSource &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_hd_buffer_source" kindref="compound">HdBufferSource</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferSource.h" line="199" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A transient buffer of data that has not yet been committed. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="class_hd_buffer_source" kindref="compound">HdBufferSource</ref> is an abstract interface class, to be registered to the resource registry with the buffer array range that specifies the destination resource. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1614">
+        <label>HdComputedBufferSource</label>
+        <link refid="class_hd_computed_buffer_source"/>
+        <childnode refid="1613" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1615">
+        <label>HdNullBufferSource</label>
+        <link refid="class_hd_null_buffer_source"/>
+        <childnode refid="1613" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1613">
+        <label>HdBufferSource</label>
+        <link refid="class_hd_buffer_source"/>
+      </node>
+      <node id="1619">
+        <label>HdVtBufferSource</label>
+        <link refid="class_hd_vt_buffer_source"/>
+        <childnode refid="1613" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1616">
+        <label>HdStExtCompCpuComputation</label>
+        <link refid="class_hd_st_ext_comp_cpu_computation"/>
+        <childnode refid="1615" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1617">
+        <label>HdStExtCompGpuPrimvarBufferSource</label>
+        <link refid="class_hd_st_ext_comp_gpu_primvar_buffer_source"/>
+        <childnode refid="1615" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1618">
+        <label>HdStExtCompPrimvarBufferSource</label>
+        <link refid="class_hd_st_ext_comp_primvar_buffer_source"/>
+        <childnode refid="1613" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="pxr/imaging/hd/bufferSource.h" line="56" column="1" bodyfile="pxr/imaging/hd/bufferSource.h" bodystart="55" bodyend="203"/>
+    <listofallmembers>
+      <member refid="class_hd_buffer_source_1a0f0022a4bdf82e55a38f7aeae7156591" prot="protected" virt="pure-virtual"><scope>HdBufferSource</scope><name>_CheckValid</name></member>
+      <member refid="class_hd_buffer_source_1aa9d9f62a29664a6353762c968c477c9a" prot="protected" virt="non-virtual"><scope>HdBufferSource</scope><name>_SetResolved</name></member>
+      <member refid="class_hd_buffer_source_1aa93dec2f4f899e2edf89b0b20b9b0408" prot="protected" virt="non-virtual"><scope>HdBufferSource</scope><name>_SetResolveError</name></member>
+      <member refid="class_hd_buffer_source_1a2245c174a32afe9ca305ecb61e2d93db" prot="private" virt="non-virtual"><scope>HdBufferSource</scope><name>_state</name></member>
+      <member refid="class_hd_buffer_source_1a95fa005a2674cf5ab757a2d6baa1beaa" prot="protected" virt="non-virtual"><scope>HdBufferSource</scope><name>_TryLock</name></member>
+      <member refid="class_hd_buffer_source_1a5d74787dedbc4e11c1ab15bf487e61f8a336df9af9b6699c97c72fc59222e05d8" prot="private" virt="non-virtual"><scope>HdBufferSource</scope><name>BEING_RESOLVED</name></member>
+      <member refid="class_hd_buffer_source_1a97126c48679ed74509d0bb54fc2e47ae" prot="public" virt="virtual"><scope>HdBufferSource</scope><name>ComputeHash</name></member>
+      <member refid="class_hd_buffer_source_1a8a168db3ae7e1b0a8e17ed98f40f9f4e" prot="public" virt="pure-virtual"><scope>HdBufferSource</scope><name>GetBufferSpecs</name></member>
+      <member refid="class_hd_buffer_source_1aa319054081d8cc83ea80e3b95a18e37b" prot="public" virt="virtual"><scope>HdBufferSource</scope><name>GetChainedBuffers</name></member>
+      <member refid="class_hd_buffer_source_1a308bd3c4ecd2721502e90069f6025587" prot="public" virt="pure-virtual"><scope>HdBufferSource</scope><name>GetData</name></member>
+      <member refid="class_hd_buffer_source_1a97a114d26c6f6cd975cd1b6814b8d03e" prot="public" virt="pure-virtual"><scope>HdBufferSource</scope><name>GetName</name></member>
+      <member refid="class_hd_buffer_source_1a23d40ffcfd073db47f9fb878fb3f67aa" prot="public" virt="pure-virtual"><scope>HdBufferSource</scope><name>GetNumElements</name></member>
+      <member refid="class_hd_buffer_source_1a59b78074e9fcc70237524881864f8ad7" prot="public" virt="virtual"><scope>HdBufferSource</scope><name>GetPreChainedBuffer</name></member>
+      <member refid="class_hd_buffer_source_1a4acce328dc83a1d73a1a62e8e2a2afc3" prot="public" virt="pure-virtual"><scope>HdBufferSource</scope><name>GetTupleType</name></member>
+      <member refid="class_hd_buffer_source_1a6882660a1cb15d85f6dfece0d1e4e25d" prot="public" virt="virtual"><scope>HdBufferSource</scope><name>HasChainedBuffer</name></member>
+      <member refid="class_hd_buffer_source_1a600437657ebeb5a72da71300032e5532" prot="public" virt="virtual"><scope>HdBufferSource</scope><name>HasPreChainedBuffer</name></member>
+      <member refid="class_hd_buffer_source_1ae154f9dca5a409c46b8bdaca56b7d58f" prot="public" virt="non-virtual"><scope>HdBufferSource</scope><name>HasResolveError</name></member>
+      <member refid="class_hd_buffer_source_1aee360bcdc56a9390c0da4dcbd86d6936" prot="public" virt="non-virtual"><scope>HdBufferSource</scope><name>HdBufferSource</name></member>
+      <member refid="class_hd_buffer_source_1a515537eef44ab74ee34e2c3889150f86" prot="private" virt="non-virtual"><scope>HdBufferSource</scope><name>HdBufferSource</name></member>
+      <member refid="class_hd_buffer_source_1a2d798b9f36dd4187831ce00aaf720dd0" prot="public" virt="non-virtual"><scope>HdBufferSource</scope><name>IsResolved</name></member>
+      <member refid="class_hd_buffer_source_1a55323f058382f1585d1e9cb3af59d87f" prot="public" virt="non-virtual"><scope>HdBufferSource</scope><name>IsValid</name></member>
+      <member refid="class_hd_buffer_source_1af415f313dd9cddc53ac89763d8500f8c" prot="private" virt="non-virtual"><scope>HdBufferSource</scope><name>operator=</name></member>
+      <member refid="class_hd_buffer_source_1a31cd8967840ac419b37e8059635896e7" prot="public" virt="pure-virtual"><scope>HdBufferSource</scope><name>Resolve</name></member>
+      <member refid="class_hd_buffer_source_1a5d74787dedbc4e11c1ab15bf487e61f8a51928400d026daeb1211dd7251988ef6" prot="private" virt="non-virtual"><scope>HdBufferSource</scope><name>RESOLVE_ERROR</name></member>
+      <member refid="class_hd_buffer_source_1a5d74787dedbc4e11c1ab15bf487e61f8af8f8ee58c2de4e6c08bd266684d5e95d" prot="private" virt="non-virtual"><scope>HdBufferSource</scope><name>RESOLVED</name></member>
+      <member refid="class_hd_buffer_source_1a5d74787dedbc4e11c1ab15bf487e61f8" prot="private" virt="non-virtual"><scope>HdBufferSource</scope><name>State</name></member>
+      <member refid="class_hd_buffer_source_1a5d74787dedbc4e11c1ab15bf487e61f8add34e323cbfc10e56499d492dd2c3a66" prot="private" virt="non-virtual"><scope>HdBufferSource</scope><name>UNRESOLVED</name></member>
+      <member refid="class_hd_buffer_source_1a48f26b3afaa40d27e98c6dd91e410df0" prot="public" virt="virtual"><scope>HdBufferSource</scope><name>~HdBufferSource</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="page_tf__registry_manager" kind="page">
+    <compoundname>page_tf_RegistryManager</compoundname>
+    <title>The TfRegistryManager Registry Initialization System</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="page_tf__registry_manager_1RegistryManagerContents">
+<title>Contents</title>
+<para><itemizedlist>
+<listitem><para><ref refid="page_tf__registry_manager_1RegistryManagerRationale" kindref="member">Rationale</ref> </para>
+</listitem>
+<listitem><para><ref refid="page_tf__registry_manager_1RegistryManagerPushModel" kindref="member">Pushing Data</ref> </para>
+</listitem>
+<listitem><para><ref refid="page_tf__registry_manager_1RegistryManagerPitfalls" kindref="member">Pitfalls of Static Constructors</ref> </para>
+</listitem>
+<listitem><para><ref refid="page_tf__registry_manager_1RegistryManagerDefiningRegistryFunctions" kindref="member">Defining Registry Functions</ref> </para>
+</listitem>
+<listitem><para><ref refid="page_tf__registry_manager_1RegistryManagerSubscribing" kindref="member">Subscribing to Registry Functions</ref> </para>
+</listitem>
+<listitem><para><ref refid="page_tf__registry_manager_1RegistryManagerSingletons" kindref="member">Registry Singletons</ref> </para>
+</listitem>
+<listitem><para><ref refid="page_tf__registry_manager_1RegistryManagerUnloadingCode" kindref="member">Unloading Code</ref></para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+<sect1 id="page_tf__registry_manager_1RegistryManagerRationale">
+<title>Rationale</title>
+<para>A common C++ design pattern is embedding global objects with constructors in libraries, to ensure that certain initialization takes place at program startup time. Often the actual global object is not of any importance; rather, the side-effect of executing the function sometime before main is the goal. This is typically the case when it is necessary to advertise a facility that is not necessarily known to the application (for example, capabilities that a library provides). The <ref refid="class_tf_registry_manager" kindref="compound">TfRegistryManager</ref> was written to avoid the necessity of embedding libraries and binaries with so-called &quot;static constructors,&quot; which is the phrase used to describe any function which is run before main to initialize an object.</para>
+<para>If you want simply want to use <ref refid="class_tf_registry_manager" kindref="compound">TfRegistryManager</ref>, skip the next section and go directly to the <ref refid="page_tf__registry_manager_1tf_RegistryManager_DefiningRegistryFunctions" kindref="member">tf_RegistryManager_DefiningRegistryFunctions</ref> Defining Registry Functions section.</para>
+<para>However, if you want to understand the &quot;traditional&quot; technique that <ref refid="class_tf_registry_manager" kindref="compound">TfRegistryManager</ref> replaces (and why this replacement is necessary), read on!</para>
+</sect1>
+<sect1 id="page_tf__registry_manager_1RegistryManagerPushModel">
+<title>Pushing Data</title>
+<para>As an example, consider a facility for registering image transformation functions:</para>
+<para><programlisting><codeline><highlight class="normal">class<sp/>ImageTransformer;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">class<sp/>ImageTransformerRegistry<sp/></highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>Add(ImageTransformer*,<sp/>const<sp/>std::string&amp;<sp/>name);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ImageTransformer*<sp/>GetByName(const<sp/>std::string&amp;<sp/>name);</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+</programlisting></para>
+<para>Suppose a library Xyz wishes to make available a new image transformation. Imagine that there is a function XyzInit() which you could call to ask the Xyz library to add its image transformations to the registry. This is an example of data &quot;pulling&quot;: given that you explicitly know that library Xyz exists, you can pull its data by calling XyzInit() prior to actually using any of Xyz&apos;s transforms.</para>
+<para>However, you often don&apos;t know what libraries may be linked into our program, and keeping track can be quite difficult. Additionally, a library might not even be linked into a program: it might be loaded manually, as in the case of plugins. The usual solution is to add a static constructor into the Xyz library, to &quot;push&quot; data into the registry at startup time:</para>
+<para><programlisting><codeline><highlight class="normal">class<sp/>XyzTransformer<sp/>:<sp/>public<sp/>ImageTransformer<sp/></highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">void<sp/>XyzInit()<sp/></highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>static<sp/>bool<sp/>initialized<sp/>=<sp/>false;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(initialized)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>XyzTransformer*<sp/>transformer<sp/>=<sp/>new<sp/>XyzTransformer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ImageTransformerRegistry.GetInstance().Add(transformer,<sp/>&quot;XyzTransformer&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>initialized<sp/>=<sp/>true;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">struct<sp/>Xyz_GlobalObject<sp/></highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Xyz_GlobalObject()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>XyzInit();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">static<sp/>Xyz_GlobalObject<sp/>forceInit;</highlight></codeline>
+</programlisting></para>
+<para>Here, the global object forceInit exists only to have the side effect of running XyzInit(). If Xyz is linked into a program, then at program startup-time (that is, sometime before main), Xyz_StartupFunction() will be run. Alternately, if loaded as a plugin, at load time forceInit will be constructed, causing XyzInit() to be run.</para>
+<para>Thus, even without anyone knowing about library Xyz, it has managed to advertise its presence. Is this a good idea?</para>
+</sect1>
+<sect1 id="page_tf__registry_manager_1RegistryManagerPitfalls">
+<title>Pitfalls of Static Constructors</title>
+<para>There are many problems with the approach described above.</para>
+<para>First, the C++ standard is quite vague about exactly when a global object such as forceInit is constructed. While many implementations will construct forceInit before main() if Xyz is linked into an application, other implementations (specifically Darwin) can be quite lazy about it, and will not construct <computeroutput>forceInit</computeroutput> until just before it is first referenced. This can be well after main(), or perhaps even never! (And this behavior is well within the C++ standard.)</para>
+<para>Second, even if forceInit is constructed before main(), it is impossible in any implementation to control precisely when it will be constructed. For an image transformation library, construction &quot;sometime&quot; before main is quite acceptable. However, for more core facilities (a run-time object-type registry, for example) construction of the facility &quot;sometime&quot; before main() is not nearly precise enough. Typically, a variety of facilities all compete for construction before main(), and if the facilities depend on one another, it can be quite difficult to ensure they are initialized in a suitable order.</para>
+<para>Third, suppose that the program never actually makes use of any image transformations. It seems a waste to put information into a registry if the registry is never queried. Even worse, the following call (presumably) creates an ImageTransformerRegistry():</para>
+<para><programlisting><codeline><highlight class="normal">ImageTransformerRegistry.GetInstance().Add(transformer,<sp/>&quot;XyzTransformer&quot;);</highlight></codeline>
+</programlisting></para>
+<para>It would be better to not even create the registry (let alone populate it) if nobody cares. While the savings may seem small, eliminating a large number of these initializations can allow a program to start up much faster.</para>
+<para>Finally, adding insult to injury, the above naive design isn&apos;t thread safe.</para>
+<para><anchor id="page_tf__registry_manager_1tf_RegistryManager_DefiningRegistryFunctions"/></para>
+</sect1>
+<sect1 id="page_tf__registry_manager_1RegistryManagerDefiningRegistryFunctions">
+<title>Defining Registry Functions</title>
+<para>A far better design is for an interested registry to pull data at the time the registry is constructed. The question is how to do this without requiring explicit knowledge of the data available in a program. This is the job of the <ref refid="class_tf_registry_manager" kindref="compound">TfRegistryManager</ref>. Here is how you would use <ref refid="class_tf_registry_manager" kindref="compound">TfRegistryManager</ref> for the case of image transformations and the Xyz library (discussed in the previous section).</para>
+<para>First, let us start with the Xyz library. The library needs to define a function that is only to be run when the image transformation registry asks for it. This is done using the <ref refid="registry_manager_8h_1aaa45cccc805d88e7201906f64f57ca18" kindref="member">TF_REGISTRY_FUNCTION_WITH_TAG()</ref> macro, as follows:</para>
+<para><programlisting><codeline><highlight class="normal">#include<sp/>&quot;pxr/base/tf/registryManager.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">class<sp/>XyzTransformer<sp/>:<sp/>public<sp/>ImageTransformer<sp/></highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">TF_REGISTRY_FUNCTION_WITH_TAG(ImageTransformerRegistry,<sp/>XyzTransformer)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ImageTransformer*<sp/>transformer<sp/>=<sp/>new<sp/>XyzTransformer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ImageTransformerRegistry.GetInstance().Add(transformer,<sp/>&quot;XyzTransformer&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>The first argument to the <ref refid="registry_manager_8h_1aaa45cccc805d88e7201906f64f57ca18" kindref="member">TF_REGISTRY_FUNCTION_WITH_TAG()</ref> macro in the above example marks the function body below as belonging to the domain ImageTransformerRegistry; this function will not be run until the <ref refid="class_tf_registry_manager" kindref="compound">TfRegistryManager</ref> is told to ininitialize this domain. The second parameter must be a type-name, but it does not matter what type-name is used as long as each call of <ref refid="registry_manager_8h_1aaa45cccc805d88e7201906f64f57ca18" kindref="member">TF_REGISTRY_FUNCTION_WITH_TAG(ImageTransformerRegistry,T)</ref> uses a different type T. Also, both type-names used in the macro must be free from using the &quot;&lt;&quot;, &quot;&gt;&quot; or &quot;:&quot; characters (i.e. no templated, nested, or name-space qualified types). Thus, in some other file, we might also have the following:</para>
+<para><programlisting><codeline><highlight class="normal">#include<sp/>&quot;pxr/base/tf/registryManager.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">class<sp/>OtherTransformer<sp/>:<sp/>public<sp/>ImageTransformer<sp/></highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">TF_REGISTRY_FUNCTION_WITH_TAG(ImageTransformerRegistry,<sp/>OtherTransformer)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ImageTransformer*<sp/>transformer<sp/>=<sp/>new<sp/>OtherTransformer;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ImageTransformerRegistry.GetInstance().Add(transformer,<sp/>&quot;OtherTransformer&quot;);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>we<sp/>could<sp/>also<sp/>put<sp/>even<sp/>more<sp/>stuff<sp/>in<sp/>the<sp/>registry<sp/>here</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="page_tf__registry_manager_1RegistryManagerSubscribing">
+<title>Subscribing to Registry Functions</title>
+<para>Now let us see how the ImageTransformerRegistry facility uses <ref refid="class_tf_registry_manager" kindref="compound">TfRegistryManager</ref>. At the time that ImageTransformerRegistry wants the <ref refid="registry_manager_8h_1aaa45cccc805d88e7201906f64f57ca18" kindref="member">TF_REGISTRY_FUNCTION_WITH_TAG()</ref> functions it cares about to run, it makes the following call:</para>
+<para><programlisting><codeline><highlight class="normal">TfRegistryManager::GetInstance().SubscribeTo&lt;ImageTransformerRegistry&gt;();</highlight></codeline>
+</programlisting></para>
+<para>(Note that the class <ref refid="class_tf_registry_manager" kindref="compound">TfRegistryManager</ref> is a singleton and <ref refid="class_tf_registry_manager_1a0c26566e590d0fefdbb5c1d6470e0244" kindref="member">TfRegistryManager::GetInstance()</ref> returns a reference to this singleton.)</para>
+<para>When SubscribeTo&lt;T&gt;() is called it causes all <ref refid="registry_manager_8h_1ab1604c7efa4277ed6ee17fddaf70075f" kindref="member">TF_REGISTRY_FUNCTION()</ref> functions whose first key is T to be run. Additionally, any subsequently loaded code will immediately run all of its <ref refid="registry_manager_8h_1ab1604c7efa4277ed6ee17fddaf70075f" kindref="member">TF_REGISTRY_FUNCTION()</ref> functions whose first key is T. It is safe to multiply describe to the same service, as subsequent subscriptions to the same service are ignored.</para>
+</sect1>
+<sect1 id="page_tf__registry_manager_1RegistryManagerSingletons">
+<title>Registry Singletons</title>
+<para>Usually the registries being managed are singletons. In this case, assuming you are using the <ref refid="class_tf_singleton" kindref="compound">TfSingleton</ref> design pattern, your final code should look like this:</para>
+<para><programlisting><codeline><highlight class="normal">ImageTransformerRegistry&amp;</highlight></codeline>
+<codeline><highlight class="normal">ImageTransformerRegistry::GetInstance()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>TfSingleton&lt;ImageTransformerRegistry&gt;::GetInstance();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ImageTransformerRegistry::ImageTransformerRegistry()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>initialize<sp/>all<sp/>variables,<sp/>etc.<sp/>for<sp/>the<sp/>class</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>this<sp/>next<sp/>call<sp/>makes<sp/>it<sp/>possible<sp/>to<sp/>call</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>ImageTransformerRegistry::GetInstance()<sp/>before<sp/>this<sp/>constructor</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>has<sp/>finished.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TfSingleton&lt;ImageTransformerRegistry&gt;::SetInstanceConstructed(*this);<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>now<sp/>pull<sp/>the<sp/>data<sp/>(i.e.<sp/>run</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/><sp/><sp/><sp/>TF_REGISTRY_FUNCTION_WITH_TAG(ImageTransformerRegistry,T)<sp/>for<sp/>all<sp/>T.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TfRegistryManager::GetInstance().SubscribeTo&lt;ImageTransformerRegistry&gt;();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ImageTransformerRegistry::~ImageTransformerRegistry()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>don&apos;t<sp/>run<sp/>subscriptions<sp/>on<sp/>my<sp/>account<sp/>any<sp/>longer...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TfRegistryManager::GetInstance().UnsubscribeFrom&lt;ImageTransformerRegistry&gt;();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><programlisting><codeline><highlight class="normal">TfSingleton&lt;ImageTransformerRegistry&gt;::SetInstanceConstructed(*this);</highlight></codeline>
+</programlisting></para>
+<para>The line of code above (located just before the call to SubscribeTo() in the previous example) is vital. The reason is that the call to SubscribeTo() will immediately cause various <ref refid="registry_manager_8h_1ab1604c7efa4277ed6ee17fddaf70075f" kindref="member">TF_REGISTRY_FUNCTION()</ref> functions to be called, which in turn will usually call ImageTransformerRegistry::GetInstance(). However, without first calling SetInstanceConstructed(), calling GetInstance() cannot return, since the constructor for ImageTransformerRegistry hasn&apos;t yet completed and the code would deadlock (or fatally abort).</para>
+</sect1>
+<sect1 id="page_tf__registry_manager_1RegistryManagerUnloadingCode">
+<title>Unloading Code</title>
+<para>It may be necessary for a registry to be depopulated when code unloads. In the case of the image transformer library, we probably want to remove items from the registry when plugins defining image transformations are unloaded. This is done as follows:</para>
+<para><programlisting><codeline><highlight class="normal">ImageTransformerRegistry::Remove(const<sp/>string&amp;<sp/>name)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>removes<sp/>name<sp/>as<sp/>a<sp/>known<sp/>transformer<sp/>type</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_transformerMap.erase(name);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ImageTransformerRegistry::Add(ImageTransformer*<sp/>transformer,<sp/>const<sp/>string&amp;<sp/>name)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>add<sp/>data<sp/>into<sp/>table</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_transformerMap[name]<sp/>=<sp/>transformer;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>schedule<sp/>removal:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto<sp/>cl<sp/>=<sp/>std::bind(&amp;ImageTransferRegistry::Remove,<sp/>this,<sp/>name);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TfRegistryManager::GetInstance().AddFunctionForUnload(cl);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>The above call to AddFunctionForUnload() schedules that the given callback (effectively, the call this-&gt;Remove(name)) be run when the code from which Add() was itself called is unloaded. If Add() was called from within a <ref refid="registry_manager_8h_1ab1604c7efa4277ed6ee17fddaf70075f" kindref="member">TF_REGISTRY_FUNCTION()</ref> function, then when the library or module defining this <ref refid="registry_manager_8h_1ab1604c7efa4277ed6ee17fddaf70075f" kindref="member">TF_REGISTRY_FUNCTION()</ref> function is unloaded, the callback is called. (Note however that as an optimization, no callbacks are run when code is unloaded because exit() has been called. Callbacks are executed though, for code that is unloaded without the rest of the program terminating.) </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

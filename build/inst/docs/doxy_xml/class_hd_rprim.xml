@@ -1,0 +1,1015 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_rprim" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>HdRprim</compoundname>
+    <derivedcompoundref refid="class_hd_basis_curves" prot="public" virt="non-virtual">HdBasisCurves</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_mesh" prot="public" virt="non-virtual">HdMesh</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_points" prot="public" virt="non-virtual">HdPoints</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_prman___gprim" prot="public" virt="non-virtual">HdPrman_Gprim&lt; HdRprim &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_volume" prot="public" virt="non-virtual">HdVolume</derivedcompoundref>
+    <includes refid="rprim_8h" local="no">rprim.h</includes>
+    <innerclass refid="struct_hd_rprim_1_1___repr_comparator" prot="protected">HdRprim::_ReprComparator</innerclass>
+    <innerclass refid="struct_hd_rprim_1_1___repr_desc_configs" prot="protected">HdRprim::_ReprDescConfigs</innerclass>
+      <sectiondef kind="user-defined">
+      <header>Rprim Hydra Engine API : Pre-Sync &amp; Sync-Phase</header>
+      <memberdef kind="function" id="class_hd_rprim_1ac05e81662ee475cfe52ce97e84e7205d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>HdDirtyBits</type>
+        <definition>virtual HdDirtyBits GetInitialDirtyBitsMask</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetInitialDirtyBitsMask</name>
+        <reimplementedby refid="class_hd_st_volume_1a59b589b9042f2173054e853d4d58036f">GetInitialDirtyBitsMask</reimplementedby>
+        <reimplementedby refid="class_hd_st_points_1a59b589b9042f2173054e853d4d58036f">GetInitialDirtyBitsMask</reimplementedby>
+        <reimplementedby refid="class_hd_st_mesh_1a59b589b9042f2173054e853d4d58036f">GetInitialDirtyBitsMask</reimplementedby>
+        <reimplementedby refid="class_hd_embree_mesh_1a5a06f66bb03f6494a9ba6f4ae01ca37e">GetInitialDirtyBitsMask</reimplementedby>
+        <reimplementedby refid="class_hd_st_basis_curves_1a59b589b9042f2173054e853d4d58036f">GetInitialDirtyBitsMask</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a857ea8622680f749debfa874a4395330">GetInitialDirtyBitsMask</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a857ea8622680f749debfa874a4395330">GetInitialDirtyBitsMask</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a857ea8622680f749debfa874a4395330">GetInitialDirtyBitsMask</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a857ea8622680f749debfa874a4395330">GetInitialDirtyBitsMask</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a857ea8622680f749debfa874a4395330">GetInitialDirtyBitsMask</reimplementedby>
+        <briefdescription>
+<para>Returns the set of dirty bits that should be added to the change tracker for this prim, when this prim is inserted. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="69" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1ac363dc6fc79936a3e2147e4676b07472" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool CanSkipDirtyBitPropagationAndSync</definition>
+        <argsstring>(HdDirtyBits bits) const</argsstring>
+        <name>CanSkipDirtyBitPropagationAndSync</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>bits</declname>
+        </param>
+        <briefdescription>
+<para>This function gives an Rprim the chance to &quot;early exit&quot; from dirty bit propagation, delegate sync and rprim sync altogether. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>It is a temporary measure to prevent unnecessary work, like in the case of invisible prims. The dirty bits in the change tracker remain the same. See the implementation for the finer details. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="77" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1af80a9b6a6565e86769cf248698122958" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API HdDirtyBits</type>
+        <definition>HD_API HdDirtyBits PropagateRprimDirtyBits</definition>
+        <argsstring>(HdDirtyBits bits)</argsstring>
+        <name>PropagateRprimDirtyBits</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>bits</declname>
+        </param>
+        <briefdescription>
+<para>This function gives an Rprim the chance to set additional dirty bits based on those set in the change tracker, before passing the dirty bits to the scene delegate. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>It calls into _PropagateDirtyBits, which gives the Rprim an opportunity to specify the additional data needed to process the requested changes.</para>
+<para>The return value is the new set of dirty bits. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="87" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1af62f2311f5580ddc32ecd571a0f559d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void InitRepr</definition>
+        <argsstring>(HdSceneDelegate *delegate, TfToken const &amp;reprToken, HdDirtyBits *dirtyBits)</argsstring>
+        <name>InitRepr</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>reprToken</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+<para>Initialize the representation of this Rprim by calling _InitRepr. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is called prior to dirty bit propagation &amp; sync, the first time the repr is used, or when the authored representation is dirty.</para>
+<para>dirtyBits is an in/out value. It is initialized to the dirty bits from the change tracker. InitRepr can then set additional dirty bits if additional data is required from the scene delegate when this repr is synced. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="98" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1accb912c87d0f4772cec8b9b51c6bed89" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void Sync</definition>
+        <argsstring>(HdSceneDelegate *delegate, HdRenderParam *renderParam, HdDirtyBits *dirtyBits, TfToken const &amp;reprToken)=0</argsstring>
+        <name>Sync</name>
+        <reimplementedby refid="class_hd_st_volume_1a072a970822c6880f78f513372dab87c2">Sync</reimplementedby>
+        <reimplementedby refid="class_hd_st_points_1a072a970822c6880f78f513372dab87c2">Sync</reimplementedby>
+        <reimplementedby refid="class_hd_st_mesh_1a072a970822c6880f78f513372dab87c2">Sync</reimplementedby>
+        <reimplementedby refid="class_hd_st_basis_curves_1a072a970822c6880f78f513372dab87c2">Sync</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a8bcc1098dd0f816d1efafa9f519b97e8">Sync</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a8bcc1098dd0f816d1efafa9f519b97e8">Sync</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a8bcc1098dd0f816d1efafa9f519b97e8">Sync</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a8bcc1098dd0f816d1efafa9f519b97e8">Sync</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a8bcc1098dd0f816d1efafa9f519b97e8">Sync</reimplementedby>
+        <reimplementedby refid="class_hd_embree_mesh_1a107d87885299e595bb0906b323392eb7">Sync</reimplementedby>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>reprToken</declname>
+        </param>
+        <briefdescription>
+<para>Pull invalidated scene data and prepare/update the renderable representation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is told which scene data to pull through the dirtyBits parameter. The first time it&apos;s called, dirtyBits comes from _GetInitialDirtyBits(), which provides initial dirty state, but after that it&apos;s driven by invalidation tracking in the scene delegate.</para>
+<para>The contract for this function is that the prim can only pull on scene delegate buffers that are marked dirty. Scene delegates can and do implement just-in-time data schemes that mean that pulling on clean data will be at best incorrect, and at worst a crash.</para>
+<para>This function is called in parallel from worker threads, so it needs to be threadsafe; calls into <ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> are ok.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sceneDelegate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The data source for this geometry item. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>renderParam</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A render delegate object that holds rendering parameters that scene geometry may use. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dirtyBits</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A specifier for which scene data has changed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>reprToken</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The representation that needs to be updated. This is useful for backends that support multiple display representations for an rprim. A given representation may choose to pull on a subset of the dirty state. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dirtyBits</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>On input specifies which state is dirty and can be pulled from the scene delegate. On output specifies which bits are still dirty and were not cleaned by the sync. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="131" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1a6ab9057a8d24d811a6f99f8cfb2fc0fd" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>HdDirtyBits</type>
+        <definition>virtual HdDirtyBits _PropagateDirtyBits</definition>
+        <argsstring>(HdDirtyBits bits) const =0</argsstring>
+        <name>_PropagateDirtyBits</name>
+        <reimplementedby refid="class_hd_st_points_1a1e965b1d836f1868947bb1a54439bbba">_PropagateDirtyBits</reimplementedby>
+        <reimplementedby refid="class_hd_st_volume_1a04b208502c8ebe4ff8946f8d5b5be064">_PropagateDirtyBits</reimplementedby>
+        <reimplementedby refid="class_hd_st_mesh_1a1e965b1d836f1868947bb1a54439bbba">_PropagateDirtyBits</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a04b208502c8ebe4ff8946f8d5b5be064">_PropagateDirtyBits</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a04b208502c8ebe4ff8946f8d5b5be064">_PropagateDirtyBits</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a04b208502c8ebe4ff8946f8d5b5be064">_PropagateDirtyBits</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a04b208502c8ebe4ff8946f8d5b5be064">_PropagateDirtyBits</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a04b208502c8ebe4ff8946f8d5b5be064">_PropagateDirtyBits</reimplementedby>
+        <reimplementedby refid="class_hd_st_basis_curves_1a1e965b1d836f1868947bb1a54439bbba">_PropagateDirtyBits</reimplementedby>
+        <reimplementedby refid="class_hd_embree_mesh_1afe1f320d311e9bdad2013aec4d2af6bd">_PropagateDirtyBits</reimplementedby>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>bits</declname>
+        </param>
+        <briefdescription>
+<para>This callback from Rprim gives the prim an opportunity to set additional dirty bits based on those already set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is done before the dirty bits are passed to the scene delegate, so can be used to communicate that extra information is needed by the prim to process the changes.</para>
+<para>The return value is the new set of dirty bits, which replaces the bits passed in.</para>
+<para>See <ref refid="class_hd_rprim_1af80a9b6a6565e86769cf248698122958" kindref="member">HdRprim::PropagateRprimDirtyBits()</ref> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="249" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1ae8808b3a20d4f5c297884e53490eafdc" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void _InitRepr</definition>
+        <argsstring>(TfToken const &amp;reprToken, HdDirtyBits *dirtyBits)=0</argsstring>
+        <name>_InitRepr</name>
+        <reimplementedby refid="class_hd_st_points_1a3b198b2ed119be2418d2efc679a12d39">_InitRepr</reimplementedby>
+        <reimplementedby refid="class_hd_st_volume_1aaff1f31f3a8de2a19c2914877542925d">_InitRepr</reimplementedby>
+        <reimplementedby refid="class_hd_st_mesh_1a3b198b2ed119be2418d2efc679a12d39">_InitRepr</reimplementedby>
+        <reimplementedby refid="class_hd_st_basis_curves_1a3b198b2ed119be2418d2efc679a12d39">_InitRepr</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1aaff1f31f3a8de2a19c2914877542925d">_InitRepr</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1aaff1f31f3a8de2a19c2914877542925d">_InitRepr</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1aaff1f31f3a8de2a19c2914877542925d">_InitRepr</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1aaff1f31f3a8de2a19c2914877542925d">_InitRepr</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1aaff1f31f3a8de2a19c2914877542925d">_InitRepr</reimplementedby>
+        <reimplementedby refid="class_hd_embree_mesh_1a77b739e190ba086a85ea51671e984682">_InitRepr</reimplementedby>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>reprToken</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+<para>Initialize the given representation of this Rprim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is called prior to syncing the prim, the first time the repr is used.</para>
+<para>reprToken is the name of the representation to initalize.</para>
+<para>dirtyBits is an in/out value. It is initialized to the dirty bits from the change tracker. InitRepr can then set additional dirty bits if additional data is required from the scene delegate when this repr is synced. InitRepr occurs before dirty bit propagation.</para>
+<para>See <ref refid="class_hd_rprim_1af62f2311f5580ddc32ecd571a0f559d4" kindref="member">HdRprim::InitRepr()</ref> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="263" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Rprim Hydra Engine API : Execute Phase</header>
+      <memberdef kind="function" id="class_hd_rprim_1acdeab568daeb62af72f3cf5f7359f216" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API const HdRepr::DrawItemUniquePtrVector &amp;</type>
+        <definition>HD_API const HdRepr::DrawItemUniquePtrVector&amp; GetDrawItems</definition>
+        <argsstring>(TfToken const &amp;reprToken) const</argsstring>
+        <name>GetDrawItems</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>reprToken</declname>
+        </param>
+        <briefdescription>
+<para>Returns the draw items for the requested repr token, if any. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>These draw items should be constructed and cached beforehand by <ref refid="class_hd_rprim_1accb912c87d0f4772cec8b9b51c6bed89" kindref="member">Sync()</ref>. If no draw items exist, or reprToken cannot be found, nullptr will be returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="145" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Rprim Hydra Engine API : Cleanup</header>
+      <memberdef kind="function" id="class_hd_rprim_1a385eed04c15e636796b187bfdf0fcbf0" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API void</type>
+        <definition>virtual HD_API void Finalize</definition>
+        <argsstring>(HdRenderParam *renderParam)</argsstring>
+        <name>Finalize</name>
+        <reimplementedby refid="class_hd_st_volume_1afacd7217dce1f83fe450e78b1624a8b4">Finalize</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a96f70f13c9750967f0b70db1e2de1403">Finalize</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a96f70f13c9750967f0b70db1e2de1403">Finalize</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a96f70f13c9750967f0b70db1e2de1403">Finalize</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a96f70f13c9750967f0b70db1e2de1403">Finalize</reimplementedby>
+        <reimplementedby refid="class_hd_prman___gprim_1a96f70f13c9750967f0b70db1e2de1403">Finalize</reimplementedby>
+        <reimplementedby refid="class_hd_st_points_1afacd7217dce1f83fe450e78b1624a8b4">Finalize</reimplementedby>
+        <reimplementedby refid="class_hd_st_mesh_1afacd7217dce1f83fe450e78b1624a8b4">Finalize</reimplementedby>
+        <reimplementedby refid="class_hd_st_basis_curves_1afacd7217dce1f83fe450e78b1624a8b4">Finalize</reimplementedby>
+        <reimplementedby refid="class_hd_embree_mesh_1ab6be581d151f59624df35eebdb4f90f4">Finalize</reimplementedby>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <briefdescription>
+<para>Finalizes object resources. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function might not delete resources, but it should deal with resource ownership so that the rprim is deletable. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="154" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Rprim Data API</header>
+      <memberdef kind="function" id="class_hd_rprim_1a9301243d9273afcba6395e86047490ab" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const  &amp;</type>
+        <definition>SdfPath const&amp; GetId</definition>
+        <argsstring>() const</argsstring>
+        <name>GetId</name>
+        <briefdescription>
+<para>Returns the identifier of this Rprim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is both used in the RenderIndex and the SceneDelegate and acts as the associative key for the Rprim in both contexts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="163" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="163" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1ae37ae1625cd178d6d940eebcea42698f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int32_t</type>
+        <definition>int32_t GetPrimId</definition>
+        <argsstring>() const</argsstring>
+        <name>GetPrimId</name>
+        <briefdescription>
+<para>Return the unique instance id. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="166" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="166" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1a348af2854c0f8c81d848ed55795a1751" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void SetPrimId</definition>
+        <argsstring>(int32_t primId)</argsstring>
+        <name>SetPrimId</name>
+        <param>
+          <type>int32_t</type>
+          <declname>primId</declname>
+        </param>
+        <briefdescription>
+<para>Set the unique instance id. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="170" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1a7119f60143f27b3e561ffa04464c1ca7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const  &amp;</type>
+        <definition>SdfPath const&amp; GetInstancerId</definition>
+        <argsstring>() const</argsstring>
+        <name>GetInstancerId</name>
+        <briefdescription>
+<para>Returns the identifier of the instancer (if any) for this Rprim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If this Rprim is not instanced, an empty <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> will be returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="174" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="174" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1a8124f95bf477fa1aedd20bbb2dbf589e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const  &amp;</type>
+        <definition>SdfPath const&amp; GetMaterialId</definition>
+        <argsstring>() const</argsstring>
+        <name>GetMaterialId</name>
+        <briefdescription>
+<para>Returns the path of the material to which this Rprim is bound. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The material object itself can be fetched from the RenderIndex using this identifier. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="179" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="179" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1a9fc27f601b7bb56ab9f7c62f76bcb6fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void SetMaterialId</definition>
+        <argsstring>(SdfPath const &amp;materialId)</argsstring>
+        <name>SetMaterialId</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>materialId</declname>
+        </param>
+        <briefdescription>
+<para>Sets a new material binding to be used by this rprim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="183" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1ae0a7b4f61b90ca488a28a7b075543612" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_hd_repr_selector" kindref="compound">HdReprSelector</ref> const  &amp;</type>
+        <definition>HdReprSelector const&amp; GetReprSelector</definition>
+        <argsstring>() const</argsstring>
+        <name>GetReprSelector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="185" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="185" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1ad69d62d157f59712c736b827eb212100" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const  &amp;</type>
+        <definition>TfToken const&amp; GetRenderTag</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRenderTag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="189" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="189" bodyend="191"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1ac759696985c687f4047ed065c999c3c1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>TfToken GetRenderTag</definition>
+        <argsstring>(HdSceneDelegate *delegate) const</argsstring>
+        <name>GetRenderTag</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <briefdescription>
+<para>Returns the render tag associated to this rprim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="194" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="352" bodyend="355"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1a606da02b739d7eb4d1b19fe04d985f2e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_gf_range3d" kindref="compound">GfRange3d</ref></type>
+        <definition>GfRange3d GetExtent</definition>
+        <argsstring>(HdSceneDelegate *delegate) const</argsstring>
+        <name>GetExtent</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <briefdescription>
+<para>Returns the bounds of the rprim in local, untransformed space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="197" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="358" bodyend="361"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1a6d78d1d22dab6a2e814277c49f77d8da" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>HdPrimvarDescriptorVector</type>
+        <definition>HdPrimvarDescriptorVector GetPrimvarDescriptors</definition>
+        <argsstring>(HdSceneDelegate *delegate, HdInterpolation interpolation) const</argsstring>
+        <name>GetPrimvarDescriptors</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type>HdInterpolation</type>
+          <declname>interpolation</declname>
+        </param>
+        <briefdescription>
+<para>Primvar Query. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="201" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="364" bodyend="368"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1a4519b1980cee05e92e43544d6b6c01e1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>HD_API <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> const  &amp;</type>
+        <definition>virtual HD_API TfTokenVector const&amp; GetBuiltinPrimvarNames</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetBuiltinPrimvarNames</name>
+        <reimplementedby refid="class_hd_volume_1a9538b3d6f03d3ff12f61734caaa559a9">GetBuiltinPrimvarNames</reimplementedby>
+        <reimplementedby refid="class_hd_points_1a9538b3d6f03d3ff12f61734caaa559a9">GetBuiltinPrimvarNames</reimplementedby>
+        <reimplementedby refid="class_hd_basis_curves_1a9538b3d6f03d3ff12f61734caaa559a9">GetBuiltinPrimvarNames</reimplementedby>
+        <reimplementedby refid="class_hd_st_basis_curves_1a97acb2b7c2622c006880ef3b05932903">GetBuiltinPrimvarNames</reimplementedby>
+        <reimplementedby refid="class_hd_mesh_1a9538b3d6f03d3ff12f61734caaa559a9">GetBuiltinPrimvarNames</reimplementedby>
+        <briefdescription>
+<para>Returns the names of built-in primvars, i.e. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>primvars that are part of the core geometric schema for this prim. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="207" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1a9065fe959f49db479d2e37e6daed9b2d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_vt_value" kindref="compound">VtValue</ref></type>
+        <definition>VtValue GetPrimvar</definition>
+        <argsstring>(HdSceneDelegate *delegate, const TfToken &amp;name) const</argsstring>
+        <name>GetPrimvar</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="210" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="371" bodyend="374"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1a81f906afa368c0de559aba39fc57bff8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_vt_value" kindref="compound">VtValue</ref></type>
+        <definition>VtValue GetIndexedPrimvar</definition>
+        <argsstring>(HdSceneDelegate *delegate, const TfToken &amp;name, VtIntArray *indices) const</argsstring>
+        <name>GetIndexedPrimvar</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>VtIntArray *</type>
+          <declname>indices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="213" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="377" bodyend="381"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1a8b6da4a9d65f37cc07b2647808093bbe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API VtMatrix4dArray</type>
+        <definition>HD_API VtMatrix4dArray GetInstancerTransforms</definition>
+        <argsstring>(HdSceneDelegate *delegate)</argsstring>
+        <name>GetInstancerTransforms</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="217" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1a894cef8181ed5adf7abc88616c3a8e94" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsDirty</definition>
+        <argsstring>(HdChangeTracker &amp;changeTracker) const</argsstring>
+        <name>IsDirty</name>
+        <param>
+          <type><ref refid="class_hd_change_tracker" kindref="compound">HdChangeTracker</ref> &amp;</type>
+          <declname>changeTracker</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if any dirty flags are set for this rprim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="221" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1a638cd13b75c2dd9d1ccd84e9dd311d6f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool IsVisible</definition>
+        <argsstring>() const</argsstring>
+        <name>IsVisible</name>
+        <briefdescription>
+<para>Is the prim itself visible. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="224" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="224" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1af70add9253213db0665940375da392a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void UpdateReprSelector</definition>
+        <argsstring>(HdSceneDelegate *delegate, HdDirtyBits *dirtyBits)</argsstring>
+        <name>UpdateReprSelector</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="227" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1af4ab6abf1e3c972387514dca88ebddce" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API void</type>
+        <definition>virtual HD_API void UpdateRenderTag</definition>
+        <argsstring>(HdSceneDelegate *delegate, HdRenderParam *renderParam)</argsstring>
+        <name>UpdateRenderTag</name>
+        <reimplementedby refid="class_hd_st_volume_1a1dd447a19bfb779147fe23a7cd152852">UpdateRenderTag</reimplementedby>
+        <reimplementedby refid="class_hd_st_points_1a1dd447a19bfb779147fe23a7cd152852">UpdateRenderTag</reimplementedby>
+        <reimplementedby refid="class_hd_st_mesh_1a1dd447a19bfb779147fe23a7cd152852">UpdateRenderTag</reimplementedby>
+        <reimplementedby refid="class_hd_st_basis_curves_1a1dd447a19bfb779147fe23a7cd152852">UpdateRenderTag</reimplementedby>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="231" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Rprim Shared API</header>
+      <memberdef kind="typedef" id="class_hd_rprim_1aad438bd2af17cf2eafbfbd90cc2a2db1" prot="protected" static="no">
+        <type>std::vector&lt; std::pair&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, HdReprSharedPtr &gt; &gt;</type>
+        <definition>using _ReprVector =  std::vector&lt;std::pair&lt;TfToken, HdReprSharedPtr&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>_ReprVector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="299" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="299" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_rprim_1a5634c4e3c3f4a2a867919d03fc18fd46" prot="private" static="no" mutable="no">
+        <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SdfPath _instancerId</definition>
+        <argsstring></argsstring>
+        <name>_instancerId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="281" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="281" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_rprim_1af31ab82826eef16822af02724446131a" prot="private" static="no" mutable="no">
+        <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SdfPath _materialId</definition>
+        <argsstring></argsstring>
+        <name>_materialId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="282" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="282" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_rprim_1a29459bce633282950a712df91c7a58ec" prot="private" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t _primId</definition>
+        <argsstring></argsstring>
+        <name>_primId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="285" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="285" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_rprim_1ab47ac9b77df39ee8de77b10486ea24c5" prot="protected" static="no" mutable="no">
+        <type>HdRprimSharedData</type>
+        <definition>HdRprimSharedData _sharedData</definition>
+        <argsstring></argsstring>
+        <name>_sharedData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="289" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="289" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_rprim_1af99cc7d4b20df2fd31786a21ebe68331" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_hd_repr_selector" kindref="compound">HdReprSelector</ref></type>
+        <definition>HdReprSelector _authoredReprSelector</definition>
+        <argsstring></argsstring>
+        <name>_authoredReprSelector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="292" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="292" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_rprim_1ad83e4473062b97f26cf76c844bf7a3a1" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>TfToken _renderTag</definition>
+        <argsstring></argsstring>
+        <name>_renderTag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="295" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="295" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_rprim_1a136710a8b140e2e6350f01f80f1d85a4" prot="protected" static="no" mutable="no">
+        <type>_ReprVector</type>
+        <definition>_ReprVector _reprs</definition>
+        <argsstring></argsstring>
+        <name>_reprs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="300" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="300" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1a7536f2dc14a09b5e59047a845435d895" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API HdReprSharedPtr const  &amp;</type>
+        <definition>HD_API HdReprSharedPtr const&amp; _GetRepr</definition>
+        <argsstring>(TfToken const &amp;reprToken) const</argsstring>
+        <name>_GetRepr</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>reprToken</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="270" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1a2a2640835d0c96bfa94425428ec00633" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void _UpdateVisibility</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdDirtyBits *dirtyBits)</argsstring>
+        <name>_UpdateVisibility</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="273" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1a07b717bf883db5ca574acb6a17b0c192" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void _UpdateInstancer</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdDirtyBits *dirtyBits)</argsstring>
+        <name>_UpdateInstancer</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="277" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_rprim_1a3a4bcc257ba5af64bf9627291cc7ddb5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API HdRprim</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>HdRprim</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="58" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_rprim_1a84054b7edae1ba797c1bd4f8b121001c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API</type>
+        <definition>virtual HD_API ~HdRprim</definition>
+        <argsstring>()</argsstring>
+        <name>~HdRprim</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rprim.h" line="61" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The render engine state for a given rprim from the scene graph. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>All data access (aside from local caches) is delegated to the <ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref>. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2691">
+        <label>HdStBasisCurves</label>
+        <link refid="class_hd_st_basis_curves"/>
+        <childnode refid="2689" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2689">
+        <label>HdBasisCurves</label>
+        <link refid="class_hd_basis_curves"/>
+        <childnode refid="2688" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2697">
+        <label>HdPrman_Gprim&lt; HdPoints &gt;</label>
+        <link refid="class_hd_prman___gprim"/>
+        <childnode refid="2696" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2694">
+        <label>HdPrman_Gprim&lt; HdMesh &gt;</label>
+        <link refid="class_hd_prman___gprim"/>
+        <childnode refid="2692" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2688">
+        <label>HdRprim</label>
+        <link refid="class_hd_rprim"/>
+      </node>
+      <node id="2700">
+        <label>HdVolume</label>
+        <link refid="class_hd_volume"/>
+        <childnode refid="2688" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2699">
+        <label>HdPrman_Gprim&lt; HdRprim &gt;</label>
+        <link refid="class_hd_prman___gprim"/>
+        <childnode refid="2688" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2695">
+        <label>HdStMesh</label>
+        <link refid="class_hd_st_mesh"/>
+        <childnode refid="2692" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2692">
+        <label>HdMesh</label>
+        <link refid="class_hd_mesh"/>
+        <childnode refid="2688" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2701">
+        <label>HdPrman_Gprim&lt; HdVolume &gt;</label>
+        <link refid="class_hd_prman___gprim"/>
+        <childnode refid="2700" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2690">
+        <label>HdPrman_Gprim&lt; HdBasisCurves &gt;</label>
+        <link refid="class_hd_prman___gprim"/>
+        <childnode refid="2689" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2693">
+        <label>HdEmbreeMesh</label>
+        <link refid="class_hd_embree_mesh"/>
+        <childnode refid="2692" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2702">
+        <label>HdStVolume</label>
+        <link refid="class_hd_st_volume"/>
+        <childnode refid="2700" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2696">
+        <label>HdPoints</label>
+        <link refid="class_hd_points"/>
+        <childnode refid="2688" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2698">
+        <label>HdStPoints</label>
+        <link refid="class_hd_st_points"/>
+        <childnode refid="2696" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2703">
+        <label>HdRprim</label>
+        <link refid="class_hd_rprim"/>
+        <childnode refid="2704" relation="usage">
+          <edgelabel>_renderTag</edgelabel>
+        </childnode>
+        <childnode refid="2705" relation="usage">
+          <edgelabel>_authoredReprSelector</edgelabel>
+        </childnode>
+      </node>
+      <node id="2704">
+        <label>TfToken</label>
+        <link refid="class_tf_token"/>
+      </node>
+      <node id="2705">
+        <label>HdReprSelector</label>
+        <link refid="class_hd_repr_selector"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/hd/rprim.h" line="55" column="1" bodyfile="pxr/imaging/hd/rprim.h" bodystart="54" bodyend="345"/>
+    <listofallmembers>
+      <member refid="class_hd_rprim_1af99cc7d4b20df2fd31786a21ebe68331" prot="protected" virt="non-virtual"><scope>HdRprim</scope><name>_authoredReprSelector</name></member>
+      <member refid="class_hd_rprim_1a7536f2dc14a09b5e59047a845435d895" prot="protected" virt="non-virtual"><scope>HdRprim</scope><name>_GetRepr</name></member>
+      <member refid="class_hd_rprim_1ae8808b3a20d4f5c297884e53490eafdc" prot="protected" virt="pure-virtual"><scope>HdRprim</scope><name>_InitRepr</name></member>
+      <member refid="class_hd_rprim_1a5634c4e3c3f4a2a867919d03fc18fd46" prot="private" virt="non-virtual"><scope>HdRprim</scope><name>_instancerId</name></member>
+      <member refid="class_hd_rprim_1af31ab82826eef16822af02724446131a" prot="private" virt="non-virtual"><scope>HdRprim</scope><name>_materialId</name></member>
+      <member refid="class_hd_rprim_1a29459bce633282950a712df91c7a58ec" prot="private" virt="non-virtual"><scope>HdRprim</scope><name>_primId</name></member>
+      <member refid="class_hd_rprim_1a6ab9057a8d24d811a6f99f8cfb2fc0fd" prot="protected" virt="pure-virtual"><scope>HdRprim</scope><name>_PropagateDirtyBits</name></member>
+      <member refid="class_hd_rprim_1ad83e4473062b97f26cf76c844bf7a3a1" prot="protected" virt="non-virtual"><scope>HdRprim</scope><name>_renderTag</name></member>
+      <member refid="class_hd_rprim_1a136710a8b140e2e6350f01f80f1d85a4" prot="protected" virt="non-virtual"><scope>HdRprim</scope><name>_reprs</name></member>
+      <member refid="class_hd_rprim_1aad438bd2af17cf2eafbfbd90cc2a2db1" prot="protected" virt="non-virtual"><scope>HdRprim</scope><name>_ReprVector</name></member>
+      <member refid="class_hd_rprim_1ab47ac9b77df39ee8de77b10486ea24c5" prot="protected" virt="non-virtual"><scope>HdRprim</scope><name>_sharedData</name></member>
+      <member refid="class_hd_rprim_1a07b717bf883db5ca574acb6a17b0c192" prot="protected" virt="non-virtual"><scope>HdRprim</scope><name>_UpdateInstancer</name></member>
+      <member refid="class_hd_rprim_1a2a2640835d0c96bfa94425428ec00633" prot="protected" virt="non-virtual"><scope>HdRprim</scope><name>_UpdateVisibility</name></member>
+      <member refid="class_hd_rprim_1ac363dc6fc79936a3e2147e4676b07472" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>CanSkipDirtyBitPropagationAndSync</name></member>
+      <member refid="class_hd_rprim_1a385eed04c15e636796b187bfdf0fcbf0" prot="public" virt="virtual"><scope>HdRprim</scope><name>Finalize</name></member>
+      <member refid="class_hd_rprim_1a4519b1980cee05e92e43544d6b6c01e1" prot="public" virt="pure-virtual"><scope>HdRprim</scope><name>GetBuiltinPrimvarNames</name></member>
+      <member refid="class_hd_rprim_1acdeab568daeb62af72f3cf5f7359f216" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>GetDrawItems</name></member>
+      <member refid="class_hd_rprim_1a606da02b739d7eb4d1b19fe04d985f2e" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>GetExtent</name></member>
+      <member refid="class_hd_rprim_1a9301243d9273afcba6395e86047490ab" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>GetId</name></member>
+      <member refid="class_hd_rprim_1a81f906afa368c0de559aba39fc57bff8" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>GetIndexedPrimvar</name></member>
+      <member refid="class_hd_rprim_1ac05e81662ee475cfe52ce97e84e7205d" prot="public" virt="pure-virtual"><scope>HdRprim</scope><name>GetInitialDirtyBitsMask</name></member>
+      <member refid="class_hd_rprim_1a7119f60143f27b3e561ffa04464c1ca7" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>GetInstancerId</name></member>
+      <member refid="class_hd_rprim_1a8b6da4a9d65f37cc07b2647808093bbe" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>GetInstancerTransforms</name></member>
+      <member refid="class_hd_rprim_1a8124f95bf477fa1aedd20bbb2dbf589e" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>GetMaterialId</name></member>
+      <member refid="class_hd_rprim_1ae37ae1625cd178d6d940eebcea42698f" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>GetPrimId</name></member>
+      <member refid="class_hd_rprim_1a9065fe959f49db479d2e37e6daed9b2d" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>GetPrimvar</name></member>
+      <member refid="class_hd_rprim_1a6d78d1d22dab6a2e814277c49f77d8da" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>GetPrimvarDescriptors</name></member>
+      <member refid="class_hd_rprim_1ad69d62d157f59712c736b827eb212100" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>GetRenderTag</name></member>
+      <member refid="class_hd_rprim_1ac759696985c687f4047ed065c999c3c1" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>GetRenderTag</name></member>
+      <member refid="class_hd_rprim_1ae0a7b4f61b90ca488a28a7b075543612" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>GetReprSelector</name></member>
+      <member refid="class_hd_rprim_1a3a4bcc257ba5af64bf9627291cc7ddb5" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>HdRprim</name></member>
+      <member refid="class_hd_rprim_1af62f2311f5580ddc32ecd571a0f559d4" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>InitRepr</name></member>
+      <member refid="class_hd_rprim_1a894cef8181ed5adf7abc88616c3a8e94" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>IsDirty</name></member>
+      <member refid="class_hd_rprim_1a638cd13b75c2dd9d1ccd84e9dd311d6f" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>IsVisible</name></member>
+      <member refid="class_hd_rprim_1af80a9b6a6565e86769cf248698122958" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>PropagateRprimDirtyBits</name></member>
+      <member refid="class_hd_rprim_1a9fc27f601b7bb56ab9f7c62f76bcb6fb" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>SetMaterialId</name></member>
+      <member refid="class_hd_rprim_1a348af2854c0f8c81d848ed55795a1751" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>SetPrimId</name></member>
+      <member refid="class_hd_rprim_1accb912c87d0f4772cec8b9b51c6bed89" prot="public" virt="pure-virtual"><scope>HdRprim</scope><name>Sync</name></member>
+      <member refid="class_hd_rprim_1af4ab6abf1e3c972387514dca88ebddce" prot="public" virt="virtual"><scope>HdRprim</scope><name>UpdateRenderTag</name></member>
+      <member refid="class_hd_rprim_1af70add9253213db0665940375da392a0" prot="public" virt="non-virtual"><scope>HdRprim</scope><name>UpdateReprSelector</name></member>
+      <member refid="class_hd_rprim_1a84054b7edae1ba797c1bd4f8b121001c" prot="public" virt="virtual"><scope>HdRprim</scope><name>~HdRprim</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

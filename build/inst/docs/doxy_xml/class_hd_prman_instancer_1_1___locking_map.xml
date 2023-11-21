@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_prman_instancer_1_1___locking_map" kind="class" language="C++" prot="private">
+    <compoundname>HdPrmanInstancer::_LockingMap</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename</type>
+        <declname>Key</declname>
+        <defname>Key</defname>
+      </param>
+      <param>
+        <type>typename</type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+      <param>
+        <type>typename</type>
+        <declname>Hash</declname>
+        <defname>Hash</defname>
+        <defval>std::hash&lt;Key&gt;</defval>
+      </param>
+      <param>
+        <type>typename</type>
+        <declname>KeyEqual</declname>
+        <defname>KeyEqual</defname>
+        <defval>std::equal_to&lt;Key&gt;</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_prman_instancer_1_1___locking_map_1a69b82288083d7d9f9274c6411717c03b" prot="private" static="no" mutable="no">
+        <type>tbb::concurrent_unordered_map&lt; Key, T, Hash, KeyEqual &gt;</type>
+        <definition>tbb::concurrent_unordered_map&lt;Key, T, Hash, KeyEqual&gt; _map</definition>
+        <argsstring></argsstring>
+        <name>_map</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdPrman/instancer.h" line="439" column="1" bodyfile="pxr/imaging/hdPrman/instancer.h" bodystart="439" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_prman_instancer_1_1___locking_map_1a0829237c98eabf9ce37eeefa2226d65f" prot="private" static="no" mutable="yes">
+        <type>std::shared_mutex</type>
+        <definition>std::shared_mutex _mutex</definition>
+        <argsstring></argsstring>
+        <name>_mutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdPrman/instancer.h" line="440" column="1" bodyfile="pxr/imaging/hdPrman/instancer.h" bodystart="440" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_prman_instancer_1_1___locking_map_1a1707af66d4227e27deed3b34f8f4936d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool has</definition>
+        <argsstring>(const Key &amp;key) const</argsstring>
+        <name>has</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdPrman/instancer.h" line="352" column="1" bodyfile="pxr/imaging/hdPrman/instancer.h" bodystart="352" bodyend="357"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prman_instancer_1_1___locking_map_1ab9b6f231457c085eb021b01309ea2d7e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T &amp;</type>
+        <definition>T&amp; get</definition>
+        <argsstring>(const Key &amp;key)</argsstring>
+        <name>get</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdPrman/instancer.h" line="362" column="1" bodyfile="pxr/imaging/hdPrman/instancer.h" bodystart="362" bodyend="376"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prman_instancer_1_1___locking_map_1a871e1384889654e4c1cce350527724a2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool set</definition>
+        <argsstring>(const Key &amp;key, T &amp;val)</argsstring>
+        <name>set</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>T &amp;</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdPrman/instancer.h" line="380" column="1" bodyfile="pxr/imaging/hdPrman/instancer.h" bodystart="380" bodyend="395"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prman_instancer_1_1___locking_map_1a85dbc0c54d843a1388758fc7abfde5f3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void iterate</definition>
+        <argsstring>(std::function&lt; void(const Key &amp;, T &amp;)&gt; fn)</argsstring>
+        <name>iterate</name>
+        <param>
+          <type>std::function&lt; void(const Key &amp;, T &amp;)&gt;</type>
+          <declname>fn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdPrman/instancer.h" line="398" column="1" bodyfile="pxr/imaging/hdPrman/instancer.h" bodystart="398" bodyend="405"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prman_instancer_1_1___locking_map_1a2a2cdd9b3c55a87ff3b97ad744eacb85" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void citerate</definition>
+        <argsstring>(std::function&lt; void(const Key &amp;, const T &amp;)&gt; fn) const</argsstring>
+        <name>citerate</name>
+        <param>
+          <type>std::function&lt; void(const Key &amp;, const T &amp;)&gt;</type>
+          <declname>fn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdPrman/instancer.h" line="408" column="1" bodyfile="pxr/imaging/hdPrman/instancer.h" bodystart="408" bodyend="414"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prman_instancer_1_1___locking_map_1a259cb5a711406a8c3e5d937eb9350cca" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdPrman/instancer.h" line="417" column="1" bodyfile="pxr/imaging/hdPrman/instancer.h" bodystart="417" bodyend="421"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prman_instancer_1_1___locking_map_1ae1364dfb8a0155951a6f429588d0de68" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void erase</definition>
+        <argsstring>(const Key &amp;key)</argsstring>
+        <name>erase</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdPrman/instancer.h" line="424" column="1" bodyfile="pxr/imaging/hdPrman/instancer.h" bodystart="424" bodyend="429"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prman_instancer_1_1___locking_map_1ac8bb3912a3ce86b15842e79d0b421204" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdPrman/instancer.h" line="432" column="1" bodyfile="pxr/imaging/hdPrman/instancer.h" bodystart="432" bodyend="437"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="pxr/imaging/hdPrman/instancer.h" line="348" column="1" bodyfile="pxr/imaging/hdPrman/instancer.h" bodystart="347" bodyend="441"/>
+    <listofallmembers>
+      <member refid="class_hd_prman_instancer_1_1___locking_map_1a69b82288083d7d9f9274c6411717c03b" prot="private" virt="non-virtual"><scope>HdPrmanInstancer::_LockingMap</scope><name>_map</name></member>
+      <member refid="class_hd_prman_instancer_1_1___locking_map_1a0829237c98eabf9ce37eeefa2226d65f" prot="private" virt="non-virtual"><scope>HdPrmanInstancer::_LockingMap</scope><name>_mutex</name></member>
+      <member refid="class_hd_prman_instancer_1_1___locking_map_1a2a2cdd9b3c55a87ff3b97ad744eacb85" prot="public" virt="non-virtual"><scope>HdPrmanInstancer::_LockingMap</scope><name>citerate</name></member>
+      <member refid="class_hd_prman_instancer_1_1___locking_map_1ac8bb3912a3ce86b15842e79d0b421204" prot="public" virt="non-virtual"><scope>HdPrmanInstancer::_LockingMap</scope><name>clear</name></member>
+      <member refid="class_hd_prman_instancer_1_1___locking_map_1ae1364dfb8a0155951a6f429588d0de68" prot="public" virt="non-virtual"><scope>HdPrmanInstancer::_LockingMap</scope><name>erase</name></member>
+      <member refid="class_hd_prman_instancer_1_1___locking_map_1ab9b6f231457c085eb021b01309ea2d7e" prot="public" virt="non-virtual"><scope>HdPrmanInstancer::_LockingMap</scope><name>get</name></member>
+      <member refid="class_hd_prman_instancer_1_1___locking_map_1a1707af66d4227e27deed3b34f8f4936d" prot="public" virt="non-virtual"><scope>HdPrmanInstancer::_LockingMap</scope><name>has</name></member>
+      <member refid="class_hd_prman_instancer_1_1___locking_map_1a85dbc0c54d843a1388758fc7abfde5f3" prot="public" virt="non-virtual"><scope>HdPrmanInstancer::_LockingMap</scope><name>iterate</name></member>
+      <member refid="class_hd_prman_instancer_1_1___locking_map_1a871e1384889654e4c1cce350527724a2" prot="public" virt="non-virtual"><scope>HdPrmanInstancer::_LockingMap</scope><name>set</name></member>
+      <member refid="class_hd_prman_instancer_1_1___locking_map_1a259cb5a711406a8c3e5d937eb9350cca" prot="public" virt="non-virtual"><scope>HdPrmanInstancer::_LockingMap</scope><name>size</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

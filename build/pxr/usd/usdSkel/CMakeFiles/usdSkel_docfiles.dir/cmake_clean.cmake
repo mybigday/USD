@@ -1,0 +1,40 @@
+file(REMOVE_RECURSE
+  "../../../docs/include/pxr/usd/usdSkel/animMapper.h"
+  "../../../docs/include/pxr/usd/usdSkel/animQuery.h"
+  "../../../docs/include/pxr/usd/usdSkel/animation.h"
+  "../../../docs/include/pxr/usd/usdSkel/api.h"
+  "../../../docs/include/pxr/usd/usdSkel/bakeSkinning.h"
+  "../../../docs/include/pxr/usd/usdSkel/binding.h"
+  "../../../docs/include/pxr/usd/usdSkel/bindingAPI.h"
+  "../../../docs/include/pxr/usd/usdSkel/blendShape.h"
+  "../../../docs/include/pxr/usd/usdSkel/blendShapeQuery.h"
+  "../../../docs/include/pxr/usd/usdSkel/cache.h"
+  "../../../docs/include/pxr/usd/usdSkel/debugCodes.h"
+  "../../../docs/include/pxr/usd/usdSkel/doxygen/apiIntro.dox"
+  "../../../docs/include/pxr/usd/usdSkel/doxygen/bestPractices.dox"
+  "../../../docs/include/pxr/usd/usdSkel/doxygen/instancing.dox"
+  "../../../docs/include/pxr/usd/usdSkel/doxygen/intro.dox"
+  "../../../docs/include/pxr/usd/usdSkel/doxygen/objectModel.dox"
+  "../../../docs/include/pxr/usd/usdSkel/doxygen/schemaOverview.dox"
+  "../../../docs/include/pxr/usd/usdSkel/doxygen/schemas.dox"
+  "../../../docs/include/pxr/usd/usdSkel/doxygen/skinnedArm.usda"
+  "../../../docs/include/pxr/usd/usdSkel/images/blendshapes.svg"
+  "../../../docs/include/pxr/usd/usdSkel/images/blendshapesWithInbetweens.svg"
+  "../../../docs/include/pxr/usd/usdSkel/images/influencesPrimvarLayout.svg"
+  "../../../docs/include/pxr/usd/usdSkel/images/unboundedInterpolationExample.svg"
+  "../../../docs/include/pxr/usd/usdSkel/inbetweenShape.h"
+  "../../../docs/include/pxr/usd/usdSkel/overview.dox"
+  "../../../docs/include/pxr/usd/usdSkel/root.h"
+  "../../../docs/include/pxr/usd/usdSkel/skeleton.h"
+  "../../../docs/include/pxr/usd/usdSkel/skeletonQuery.h"
+  "../../../docs/include/pxr/usd/usdSkel/skinningQuery.h"
+  "../../../docs/include/pxr/usd/usdSkel/tokens.h"
+  "../../../docs/include/pxr/usd/usdSkel/topology.h"
+  "../../../docs/include/pxr/usd/usdSkel/utils.h"
+  "CMakeFiles/usdSkel_docfiles"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang )
+  include(CMakeFiles/usdSkel_docfiles.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

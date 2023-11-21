@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="_usd_skel__instancing" kind="page">
+    <compoundname>UsdSkel_Instancing</compoundname>
+    <title>Instancing in UsdSkel</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="_usd_skel__instancing_1UsdSkel_Instancing_BindState">
+<title>Instancing the &quot;Bind State&quot;</title>
+<para>A critical component of scalability when attempting to encode a crowd is that a model&apos;s <computeroutput>Bind State</computeroutput> must be <emphasis>instanced</emphasis> across similar models. For example, suppose that a crowd has multiple copies of a particular model: Each of those copies will typically have a different root transform, and different set of joint transforms. Visually, the skinned models may all look entirely unique, but most of the contents of each copy of that model is identical: The topology of each geometric primitive within the model is the same. The primvars within the model are the same. The only properties that are not changed when skinning a copy of the model are <emphasis>points</emphasis> and <emphasis>normals</emphasis> of the skinned geometry.</para>
+<para>Scalability when encoding many such copies of characters depends on ensuring that those properties of each character that can be shared, are shared. So what is really meant when talking about <emphasis>instancing</emphasis> in UsdSkel is this notion of instancing the <emphasis>bind state</emphasis> of a skeletally posed model. It is important that that level of instancing can be encoded in USD.</para>
+<para>UsdSkel encodes this concept using a combination of inherited properties and <ulink url="https://openusd.org/release/glossary.html#usdglossary-instancing">scene graph instancing</ulink>.</para>
+<sect2 id="_usd_skel__instancing_1UsdSkel_Instancing_Example">
+<title>Instancing Example</title>
+<para>This section contains a simple example of <emphasis>bind state instancing</emphasis>. We will begin with the complete example, before breaking it into parts:</para>
+<para><programlisting><codeline><highlight class="normal">def<sp/>Xform<sp/>&quot;Model&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>instanceable<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:skeleton<sp/>=<sp/>&lt;Skel&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Mesh<sp/>&quot;Mesh&quot;<sp/>{}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Skeleton<sp/>&quot;Skel&quot;<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>SkelAnimation<sp/>&quot;ModelAnim_1&quot;<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">def<sp/>SkelAnimation<sp/>&quot;ModelAnim_N&quot;<sp/>{}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">over<sp/>Model_1<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>add<sp/>references<sp/>=<sp/>&lt;/Model&gt;</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:animationSource<sp/>=<sp/>&lt;/ModelAnim_1&gt;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">over<sp/>Model_N<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>add<sp/>references<sp/>=<sp/>&lt;/Model&gt;</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:animationSource<sp/>=<sp/>&lt;/ModelAnim_N&gt;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>This example begins with the definition of an instanceable model, which contains a Skeleton:</para>
+<para><programlisting><codeline><highlight class="normal">def<sp/>Xform<sp/>&quot;Model&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>instanceable<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:skeleton<sp/>=<sp/>&lt;Skel&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Mesh<sp/>&quot;Mesh&quot;<sp/>{}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Skeleton<sp/>&quot;Skel&quot;<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>Typically, the <computeroutput>&lt;/Model&gt;</computeroutput> primitive would be defined in a separate file, and the reference that is added at each model instance would target that file.</para>
+<para>Since this model has <computeroutput>instanceable</computeroutput> to <computeroutput>true</computeroutput>, when another primitive is created that references <computeroutput>&lt;/Model&gt;</computeroutput>, USD will <emphasis>instance</emphasis> the scene graph beneath the model.</para>
+<para>The contents of <computeroutput>&lt;/Model&gt;</computeroutput> consist of a mesh (often <emphasis>many</emphasis> meshes), which has been bound to a Skeleton. This encapsulates the entire <emphasis>bind state</emphasis> of the model as an instanced scene graph location.</para>
+<para><programlisting><codeline><highlight class="normal">def<sp/>SkelAnimation<sp/>&quot;ModelAnim_1&quot;<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">def<sp/>SkelAnimation<sp/>&quot;ModelAnim_N&quot;<sp/>{}</highlight></codeline>
+</programlisting></para>
+<para>Here, we encode unique joint animations, so that we can bind them to the copies of <computeroutput>&lt;/Model&gt;</computeroutput> that will follow.</para>
+<para>Note that when a scene graph location is instanced in USD, it is not possible to add additional primitives beneath that scene graph location.</para>
+<para>So we cannot add the SkelAnimation primitives as children of each copy of <computeroutput>&lt;/Model&gt;</computeroutput>.</para>
+<para>Having defined unique animations, we then proceed to make copies of <computeroutput>&lt;/Model&gt;</computeroutput>:</para>
+<para><programlisting><codeline><highlight class="normal">over<sp/>Model_1<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>add<sp/>references<sp/>=<sp/>&lt;/Model&gt;</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:animationSource<sp/>=<sp/>&lt;/ModelAnim_1&gt;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">over<sp/>Model_N<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>add<sp/>references<sp/>=<sp/>&lt;/Model&gt;</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:animationSource<sp/>=<sp/>&lt;/ModelAnim_N&gt;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>As discussed in other sections, such as the <ref refid="_usd_skel__schema_overview_1UsdSkel_SchemaOverview_SkelAnimations" kindref="member">skel animation overview</ref>, the <emphasis>skel:animationSource</emphasis> relationship is &quot;inherited&quot; down namespace, onto Skeleton primitives. This inheritance property passes down into instances as well. So each instanced Skeleton beneath our <computeroutput>&lt;/Model_1&gt;, ... &lt;/Model_N&gt;</computeroutput> instances adopts the SkelAnimation that has been assigned on the instance itself.</para>
+<para>Note that this ability to specify overrides on an instance is not unique to UsdSkel: Primvars in USD work the same way.</para>
+<para>The net result of this encoding: The entire bind state of <computeroutput>&lt;/Model&gt;</computeroutput> has been instanced to different scene graph locations, each of which has specified a unique SkelAnimation to apply to the underlying Skeleton(s). </para>
+</sect2>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

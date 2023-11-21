@@ -1,0 +1,2815 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_change_tracker" kind="class" language="C++" prot="public">
+    <compoundname>HdChangeTracker</compoundname>
+    <includes refid="change_tracker_8h" local="no">changeTracker.h</includes>
+    <innerclass refid="struct_hd_change_tracker_1_1___path_hash_compare" prot="private">HdChangeTracker::_PathHashCompare</innerclass>
+      <sectiondef kind="user-defined">
+      <header>Rprim Object Tracking</header>
+      <memberdef kind="function" id="class_hd_change_tracker_1acf222231ed870c156ee132ee66ffc02e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void RprimInserted</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits initialDirtyState)</argsstring>
+        <name>RprimInserted</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>initialDirtyState</declname>
+        </param>
+        <briefdescription>
+<para>Start tracking Rprim with the given <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="115" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1af3cb1e97a6b46f6dcb6c88c409e537b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void RprimRemoved</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>RprimRemoved</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Stop tracking Rprim with the given <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="119" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Rprim State Tracking</header>
+      <memberdef kind="function" id="class_hd_change_tracker_1a0bf7cf013abfdce1d6500407d07df780" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API HdDirtyBits</type>
+        <definition>HD_API HdDirtyBits GetRprimDirtyBits</definition>
+        <argsstring>(SdfPath const &amp;id) const</argsstring>
+        <name>GetRprimDirtyBits</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns the dirty bits for the rprim with <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="129" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1ac7f7f45627de561f1a3461e64ba2fd77" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void MarkRprimDirty</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits bits=AllDirty)</argsstring>
+        <name>MarkRprimDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>bits</declname>
+          <defval>AllDirty</defval>
+        </param>
+        <briefdescription>
+<para>Flag the Rprim with the given <computeroutput>id</computeroutput> as being dirty. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Multiple calls with different dirty bits accumulate. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="134" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a6533d0fbd31fe618bc01129b28ce670e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void MarkRprimClean</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits newBits=Clean)</argsstring>
+        <name>MarkRprimClean</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>newBits</declname>
+          <defval>Clean</defval>
+        </param>
+        <briefdescription>
+<para>Clear the dirty flags for an <ref refid="class_hd_rprim" kindref="compound">HdRprim</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>if inSync is true, set OutOfSync flag to notify dirtyList will discover the prim to sync the residual data for new repr. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="140" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1af3d2e2af980e63c59aad0c7aa3daacf0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void MarkPrimvarDirty</definition>
+        <argsstring>(SdfPath const &amp;id, TfToken const &amp;name)</argsstring>
+        <name>MarkPrimvarDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Mark the primvar for the rprim with <computeroutput>id</computeroutput> as being dirty. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="144" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a1bcf3e01b6ca5de650c43c41af4d2a44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void MarkAllRprimsDirty</definition>
+        <argsstring>(HdDirtyBits bits)</argsstring>
+        <name>MarkAllRprimsDirty</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>bits</declname>
+        </param>
+        <briefdescription>
+<para>Flag all the Rprim with the given <computeroutput>id</computeroutput> as being dirty. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Multiple calls with different dirty bits accumulate. Doesn&apos;t touch varying state. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="150" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a861627500b20b88ee6ac7d887a4cd4b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void ResetVaryingState</definition>
+        <argsstring>()</argsstring>
+        <name>ResetVaryingState</name>
+        <briefdescription>
+<para>Clear Varying bit of all prims. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The idea is that from frame to frame (update iteration), the set of dirty rprims and their dirty bits do not change; that is, the same rprims get dirtied with the same dirty bits.. The change tracker can leverage this help build a stable dirty list and reduce the overall cost of an update iteration. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="160" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1aa0133ed5205e7534f5de48450d5d3c97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void ResetRprimVaryingState</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>ResetRprimVaryingState</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Reset the varying state on one Rprim This is done for Rprims, where we choose not to clean them (due to state like invisibility). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="166" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a0a3b9cef033c575309b47c8b5ce08e42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsRprimDirty</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>IsRprimDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the rprim identified by <computeroutput>id</computeroutput> has any dirty flags set. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="173" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a3ba28f74f865e521c1914cc1c9830057" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsExtentDirty</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>IsExtentDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the rprim identified by <computeroutput>id</computeroutput> has a dirty extent. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="177" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a3f1ac6bef5fbe04bad3623ea82703445" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsDisplayStyleDirty</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>IsDisplayStyleDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the rprim identified by <computeroutput>id</computeroutput> has a dirty display style. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="181" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a6e58eb714f603f415f389db1fa264ae9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsPrimvarDirty</definition>
+        <argsstring>(SdfPath const &amp;id, TfToken const &amp;name)</argsstring>
+        <name>IsPrimvarDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the rprim identified by <computeroutput>id</computeroutput> with primvar <computeroutput>name</computeroutput> is dirty. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="186" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a67786904a3acc559a7a70ca3c332d374" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsAnyPrimvarDirty</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>IsAnyPrimvarDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the rprim identified by <computeroutput>id</computeroutput> has any dirty primvars. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="190" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a47f8ced7fd78b5ec80b65f209d9a1ff3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsTopologyDirty</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>IsTopologyDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the rprim identified by <computeroutput>id</computeroutput> has a dirty topology. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="194" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a76da65f5d71392e48e687df6142ec68d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsDoubleSidedDirty</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>IsDoubleSidedDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the rprim identified by <computeroutput>id</computeroutput> has dirty doubleSided state. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="198" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a9bcbc2701949f8541d183f52b87e3d47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsCullStyleDirty</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>IsCullStyleDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the rprim identified by <computeroutput>id</computeroutput> has dirty cullstyle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="202" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a1aafdc17291594de19bb72716a2b7721" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsSubdivTagsDirty</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>IsSubdivTagsDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the rprim identified by <computeroutput>id</computeroutput> has a dirty subdiv tags. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="206" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a12b4fd054bfa1ec08a77b0eae3b21b35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsTransformDirty</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>IsTransformDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the rprim identified by <computeroutput>id</computeroutput> has a dirty transform. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="210" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a89061682e0f5513bc7c636e9e1f037ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsVisibilityDirty</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>IsVisibilityDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the rprim identified by <computeroutput>id</computeroutput> has dirty visibility. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="214" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a18c9a9c9962881a8ab54ce87824bd6ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsPrimIdDirty</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>IsPrimIdDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the rprim identified by <computeroutput>id</computeroutput> has a dirty primID. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="218" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1aca02047b311a37451d42f6921077ff20" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool IsDirty</definition>
+        <argsstring>(HdDirtyBits dirtyBits)</argsstring>
+        <name>IsDirty</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the dirtyBits has any flags set other than the varying flag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="222" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="222" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1aecefceb1a1cec529065e27f93d624190" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool IsClean</definition>
+        <argsstring>(HdDirtyBits dirtyBits)</argsstring>
+        <name>IsClean</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the dirtyBits has no flags set except the varying flag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="227" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="227" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a1f65aca32b96de683b987b9cbe849613" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool IsVarying</definition>
+        <argsstring>(HdDirtyBits dirtyBits)</argsstring>
+        <name>IsVarying</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the varying flag is set. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="232" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="232" bodyend="234"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1adeaa21073259f4a3dabfb3c97d1577d3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>static HD_API bool IsExtentDirty</definition>
+        <argsstring>(HdDirtyBits dirtyBits, SdfPath const &amp;id)</argsstring>
+        <name>IsExtentDirty</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the dirtyBits has a dirty extent. id is for perflog. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="238" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a934a47ce6d20bd83fdf45557eda6ad94" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>static HD_API bool IsDisplayStyleDirty</definition>
+        <argsstring>(HdDirtyBits dirtyBits, SdfPath const &amp;id)</argsstring>
+        <name>IsDisplayStyleDirty</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the dirtyBits has a dirty display style. id is for perflog. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="242" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1ae51d1c0bbf91ccdda2dfacb2b5aa1682" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>static HD_API bool IsSubdivTagsDirty</definition>
+        <argsstring>(HdDirtyBits dirtyBits, SdfPath const &amp;id)</argsstring>
+        <name>IsSubdivTagsDirty</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the dirtyBits has a dirty subdiv tags. id is for perflog. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="246" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1add2195f9551d2833fb328ccbac445884" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>static HD_API bool IsPrimvarDirty</definition>
+        <argsstring>(HdDirtyBits dirtyBits, SdfPath const &amp;id, TfToken const &amp;name)</argsstring>
+        <name>IsPrimvarDirty</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the dirtyBits has a dirty primvar <computeroutput>name</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>id is for perflog. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="251" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1ab4b85366b96c8fb1aac6ab4e8a16bfa7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>static HD_API bool IsAnyPrimvarDirty</definition>
+        <argsstring>(HdDirtyBits dirtyBits, SdfPath const &amp;id)</argsstring>
+        <name>IsAnyPrimvarDirty</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the dirtyBits has any dirty primvars. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>id is for perflog. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="257" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a30282357692663c652d75fb3dfe9bafd" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>static HD_API bool IsTopologyDirty</definition>
+        <argsstring>(HdDirtyBits dirtyBits, SdfPath const &amp;id)</argsstring>
+        <name>IsTopologyDirty</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the dirtyBits has a dirty topology. id is for perflog. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="261" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a3876d14cfa0754297bccf4ad602ae99f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>static HD_API bool IsDoubleSidedDirty</definition>
+        <argsstring>(HdDirtyBits dirtyBits, SdfPath const &amp;id)</argsstring>
+        <name>IsDoubleSidedDirty</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the dirtyBits has dirty doubleSided state. id is for perflog. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="265" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a5aafae627b0e415831a449ebbeb02f1a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>static HD_API bool IsCullStyleDirty</definition>
+        <argsstring>(HdDirtyBits dirtyBits, SdfPath const &amp;id)</argsstring>
+        <name>IsCullStyleDirty</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the dirtyBits has dirty cullstyle. id is for perflog. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="269" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1ad5c53a6733a4e51870a6715322db2cd6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>static HD_API bool IsTransformDirty</definition>
+        <argsstring>(HdDirtyBits dirtyBits, SdfPath const &amp;id)</argsstring>
+        <name>IsTransformDirty</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the dirtyBits has a dirty transform. id is for perflog. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="273" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a24577256d63493f68864cd0125071b0f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>static HD_API bool IsVisibilityDirty</definition>
+        <argsstring>(HdDirtyBits dirtyBits, SdfPath const &amp;id)</argsstring>
+        <name>IsVisibilityDirty</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the dirtyBits has dirty visibility. id is for perflog. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="277" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1aad1dc9df362646268b3fbf885568c14e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>static HD_API bool IsPrimIdDirty</definition>
+        <argsstring>(HdDirtyBits dirtyBits, SdfPath const &amp;id)</argsstring>
+        <name>IsPrimIdDirty</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the dirtyBits has a dirty primID. id is for perflog. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="281" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a78b7816334ba38bbbfa3b5ba9ec9e0fc" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>static HD_API bool IsInstancerDirty</definition>
+        <argsstring>(HdDirtyBits dirtyBits, SdfPath const &amp;id)</argsstring>
+        <name>IsInstancerDirty</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the dirtyBits has a dirty instancer. id is for perflog. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="285" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1ac21272d4d467268c3fc1629b3b37affe" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>static HD_API bool IsInstanceIndexDirty</definition>
+        <argsstring>(HdDirtyBits dirtyBits, SdfPath const &amp;id)</argsstring>
+        <name>IsInstanceIndexDirty</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the dirtyBits has a dirty instance index. id is for perflog. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="289" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a4e0302a7e8ce1b946e68b00dfeb9395d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>static HD_API bool IsReprDirty</definition>
+        <argsstring>(HdDirtyBits dirtyBits, SdfPath const &amp;id)</argsstring>
+        <name>IsReprDirty</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="292" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a8fa896eeec85601f08242858ad9a0e8d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>static HD_API void MarkPrimvarDirty</definition>
+        <argsstring>(HdDirtyBits *dirtyBits, TfToken const &amp;name)</argsstring>
+        <name>MarkPrimvarDirty</name>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Set the primvar dirty flag to <computeroutput>dirtyBits</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="298" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Task Object Tracking</header>
+      <memberdef kind="function" id="class_hd_change_tracker_1ac4059c1f94da526910071e0292b55390" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void TaskInserted</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits initialDirtyState)</argsstring>
+        <name>TaskInserted</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>initialDirtyState</declname>
+        </param>
+        <briefdescription>
+<para>Start tracking Task with the given <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="308" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1afa56bd34da03940a86fb447d48f7f5d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void TaskRemoved</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>TaskRemoved</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Stop tracking Task with the given <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="312" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1ae5eaf6725d951cea143fd769a3569f27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void MarkTaskDirty</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits bits=AllDirty)</argsstring>
+        <name>MarkTaskDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>bits</declname>
+          <defval>AllDirty</defval>
+        </param>
+        <briefdescription>
+<para>Set the dirty flags to <computeroutput>bits</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="316" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a176f21278eb81a7d22f516016bcf43d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API HdDirtyBits</type>
+        <definition>HD_API HdDirtyBits GetTaskDirtyBits</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>GetTaskDirtyBits</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Get the dirty bits for Task with the given <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="320" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a13ee888255bb5bbc2ff30943208edf22" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void MarkTaskClean</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits newBits=Clean)</argsstring>
+        <name>MarkTaskClean</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>newBits</declname>
+          <defval>Clean</defval>
+        </param>
+        <briefdescription>
+<para>Set the dirty flags to <computeroutput>newBits</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="324" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1aedf7769b4826f6d3e736b5a74572deeb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API unsigned</type>
+        <definition>HD_API unsigned GetRenderTagVersion</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRenderTagVersion</name>
+        <briefdescription>
+<para>Retrieve the current version number of the rprim render tag set XXX Rename to GetRprimRenderTagVersion. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="329" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1ae7c86cbac5ee3394d0acb13e633c73ad" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API unsigned</type>
+        <definition>HD_API unsigned GetTaskRenderTagsVersion</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTaskRenderTagsVersion</name>
+        <briefdescription>
+<para>Retrieve the current version number of the task&apos;s render tags opinion. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="333" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Instancer State Tracking</header>
+      <memberdef kind="function" id="class_hd_change_tracker_1a3c27909f0568f595aa3baba42b12b621" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void InstancerInserted</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits initialDirtyState)</argsstring>
+        <name>InstancerInserted</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>initialDirtyState</declname>
+        </param>
+        <briefdescription>
+<para>Start tracking Instancer with the given <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="343" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a5dd363f3c6c44b3d0e6bd4cf6b2abbe9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void InstancerRemoved</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>InstancerRemoved</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Stop tracking Instancer with the given <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="347" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a0f81e6bbe97a441bd46431bbf9ed826e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API HdDirtyBits</type>
+        <definition>HD_API HdDirtyBits GetInstancerDirtyBits</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>GetInstancerDirtyBits</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns the dirty bits for the instancer with <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="351" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1aadcb01f873c84809bca269a44cb3b6fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void MarkInstancerDirty</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits bits=AllDirty)</argsstring>
+        <name>MarkInstancerDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>bits</declname>
+          <defval>AllDirty</defval>
+        </param>
+        <briefdescription>
+<para>Flag the Instancer with the given <computeroutput>id</computeroutput> as being dirty. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Multiple calls with different dirty bits accumulate. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="356" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a1b19d8b3963dd2d0e358a247ade3da2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void MarkInstancerClean</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits newBits=Clean)</argsstring>
+        <name>MarkInstancerClean</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>newBits</declname>
+          <defval>Clean</defval>
+        </param>
+        <briefdescription>
+<para>Clean the specified dirty bits for the instancer with <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="360" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a2c9fde21901d9d367f8362c2e4eeab56" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void AddInstancerRprimDependency</definition>
+        <argsstring>(SdfPath const &amp;instancerId, SdfPath const &amp;rprimId)</argsstring>
+        <name>AddInstancerRprimDependency</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>instancerId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>rprimId</declname>
+        </param>
+        <briefdescription>
+<para>Insert a dependency between <computeroutput>rprimId</computeroutput> and parent instancer <computeroutput>instancerId</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Changes to the latter mark the former with DirtyInstancer. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="366" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a454d5a3647a2ac6b345b986d702b478c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void RemoveInstancerRprimDependency</definition>
+        <argsstring>(SdfPath const &amp;instancerId, SdfPath const &amp;rprimId)</argsstring>
+        <name>RemoveInstancerRprimDependency</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>instancerId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>rprimId</declname>
+        </param>
+        <briefdescription>
+<para>Remove a dependency between <computeroutput>rprimId</computeroutput> and parent instancer <computeroutput>instancerId</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="372" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1af1300e3f0fd57f49616814a2fb7e83e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void AddInstancerInstancerDependency</definition>
+        <argsstring>(SdfPath const &amp;parentInstancerId, SdfPath const &amp;instancerId)</argsstring>
+        <name>AddInstancerInstancerDependency</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>parentInstancerId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>instancerId</declname>
+        </param>
+        <briefdescription>
+<para>Insert a dependency between <computeroutput>instancerId</computeroutput> and parent instancer <computeroutput>parentInstancerId</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Changes to the latter mark the former with DirtyInstancer. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="379" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1afcf570b7ce7ac42a8d725abcb336141a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void RemoveInstancerInstancerDependency</definition>
+        <argsstring>(SdfPath const &amp;parentInstancerId, SdfPath const &amp;instancerId)</argsstring>
+        <name>RemoveInstancerInstancerDependency</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>parentInstancerId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>instancerId</declname>
+        </param>
+        <briefdescription>
+<para>Remove a dependency between <computeroutput>instancerId</computeroutput> and parent instancer <computeroutput>parentInstancerId</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="385" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Sprim (scene state prim: camera, light, ...) state Tracking</header>
+      <memberdef kind="function" id="class_hd_change_tracker_1a15852921c15a3186d42b565f7df4f585" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void SprimInserted</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits initialDirtyState)</argsstring>
+        <name>SprimInserted</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>initialDirtyState</declname>
+        </param>
+        <briefdescription>
+<para>Start tracking sprim with the given <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="396" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1aee3d09e4d0a5834673d28975b4c3cf2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void SprimRemoved</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>SprimRemoved</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Stop tracking sprim with the given <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="400" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a7e50607c1c49fa2070b34b2481a08281" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API HdDirtyBits</type>
+        <definition>HD_API HdDirtyBits GetSprimDirtyBits</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>GetSprimDirtyBits</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Get the dirty bits for sprim with the given <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="404" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a0718c2e3a33ad9239a7b99768c1014d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void MarkSprimDirty</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits bits)</argsstring>
+        <name>MarkSprimDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>bits</declname>
+        </param>
+        <briefdescription>
+<para>Set the dirty flags to <computeroutput>bits</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="408" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a292cb764062c86b4ac7fcd642c6ff84d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void MarkSprimClean</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits newBits=Clean)</argsstring>
+        <name>MarkSprimClean</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>newBits</declname>
+          <defval>Clean</defval>
+        </param>
+        <briefdescription>
+<para>Set the dirty flags to <computeroutput>newBits</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="412" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a7bef2f18723943b8bdec819b2774ac3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void AddInstancerSprimDependency</definition>
+        <argsstring>(SdfPath const &amp;instancerId, SdfPath const &amp;sprimId)</argsstring>
+        <name>AddInstancerSprimDependency</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>instancerId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>sprimId</declname>
+        </param>
+        <briefdescription>
+<para>Insert a dependency between <computeroutput>sprimId</computeroutput> and parent instancer <computeroutput>instancerId</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Changes to the latter mark the former with DirtyInstancer. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="418" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a6963236253ad74592c169f74b4ace474" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void RemoveInstancerSprimDependency</definition>
+        <argsstring>(SdfPath const &amp;instancerId, SdfPath const &amp;sprimId)</argsstring>
+        <name>RemoveInstancerSprimDependency</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>instancerId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>sprimId</declname>
+        </param>
+        <briefdescription>
+<para>Remove a dependency between <computeroutput>sprimId</computeroutput> and parent instancer <computeroutput>instancerId</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="424" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a45fd042265d8a0cac86b1731f4b618e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void AddSprimSprimDependency</definition>
+        <argsstring>(SdfPath const &amp;parentSprimId, SdfPath const &amp;sprimId)</argsstring>
+        <name>AddSprimSprimDependency</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>parentSprimId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>sprimId</declname>
+        </param>
+        <briefdescription>
+<para>Insert a dependency between <computeroutput>sprimId</computeroutput> and parent sprim <computeroutput>parentSprimId</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="430" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a228d7cac3d612c90f420692b2239d627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void RemoveSprimSprimDependency</definition>
+        <argsstring>(SdfPath const &amp;parentSprimId, SdfPath const &amp;sprimId)</argsstring>
+        <name>RemoveSprimSprimDependency</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>parentSprimId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>sprimId</declname>
+        </param>
+        <briefdescription>
+<para>Remove a dependency between <computeroutput>sprimId</computeroutput> and parent sprim <computeroutput>parentSprimId</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="436" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a5eca92ae0073df8f8af3acaf950f3f92" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void RemoveSprimFromSprimSprimDependencies</definition>
+        <argsstring>(SdfPath const &amp;sprimId)</argsstring>
+        <name>RemoveSprimFromSprimSprimDependencies</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>sprimId</declname>
+        </param>
+        <briefdescription>
+<para>Remove all dependencies involving <computeroutput>sprimId</computeroutput> as a parent or child. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="441" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Bprim (buffer prim: texture, buffer, ...) state Tracking</header>
+      <memberdef kind="function" id="class_hd_change_tracker_1a361814771ba692d73d34b9d8eefd104c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void BprimInserted</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits initialDirtyState)</argsstring>
+        <name>BprimInserted</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>initialDirtyState</declname>
+        </param>
+        <briefdescription>
+<para>Start tracking bprim with the given <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="451" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a87441c4f61b48ede81be4b49a486609a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void BprimRemoved</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>BprimRemoved</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Stop tracking bprim with the given <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="455" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1aba59206f139799b212d6a266dcead855" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API HdDirtyBits</type>
+        <definition>HD_API HdDirtyBits GetBprimDirtyBits</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>GetBprimDirtyBits</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Get the dirty bits for bprim with the given <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="459" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1aaf5d2e5878f5545f5829bc94aada2934" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void MarkBprimDirty</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits bits)</argsstring>
+        <name>MarkBprimDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>bits</declname>
+        </param>
+        <briefdescription>
+<para>Set the dirty flags to <computeroutput>bits</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="463" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a253742ebaab44143ec0476e53ac2c3a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void MarkBprimClean</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits newBits=Clean)</argsstring>
+        <name>MarkBprimClean</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>newBits</declname>
+          <defval>Clean</defval>
+        </param>
+        <briefdescription>
+<para>Set the dirty flags to <computeroutput>newBits</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="467" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>RprimCollection Tracking</header>
+      <memberdef kind="function" id="class_hd_change_tracker_1a27f9086638c028c6d6fb2ff8193768eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void AddCollection</definition>
+        <argsstring>(TfToken const &amp;collectionName)</argsstring>
+        <name>AddCollection</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>collectionName</declname>
+        </param>
+        <briefdescription>
+<para>Adds a named collection for tracking. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="477" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1ad123ffcf3ac5ff0eaa3751a084587a41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void MarkCollectionDirty</definition>
+        <argsstring>(TfToken const &amp;collectionName)</argsstring>
+        <name>MarkCollectionDirty</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>collectionName</declname>
+        </param>
+        <briefdescription>
+<para>Marks a named collection as being dirty, this bumps the version of the collection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="482" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1adb52b4a449bab35686d16ea0ecd33545" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API unsigned</type>
+        <definition>HD_API unsigned GetCollectionVersion</definition>
+        <argsstring>(TfToken const &amp;collectionName) const</argsstring>
+        <name>GetCollectionVersion</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>collectionName</declname>
+        </param>
+        <briefdescription>
+<para>Returns the current version of the named collection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="486" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a5b682cb305d5e248b6cd44e6e7e885af" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API unsigned</type>
+        <definition>HD_API unsigned GetVisibilityChangeCount</definition>
+        <argsstring>() const</argsstring>
+        <name>GetVisibilityChangeCount</name>
+        <briefdescription>
+<para>Returns the number of changes to visibility. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is intended to be used to detect when visibility has changed for <emphasis>any</emphasis> Rprim. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="491" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1acda94fa29c301ebaaaa25578a7101ceb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API unsigned</type>
+        <definition>HD_API unsigned GetInstanceIndicesChangeCount</definition>
+        <argsstring>() const</argsstring>
+        <name>GetInstanceIndicesChangeCount</name>
+        <briefdescription>
+<para>Returns the number of changes to instance index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is intended to be used to detect when instance indices changed for <emphasis>any</emphasis> Rprim. Use in with <ref refid="class_hd_change_tracker_1a5fffda0d22de7b2795cc043baf461290" kindref="member">GetInstancerIndexVersion()</ref> to detect all changes to instance indices. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="497" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a8fbe49ed63dd729be17f23df0fdb65c9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned</type>
+        <definition>unsigned GetVaryingStateVersion</definition>
+        <argsstring>() const</argsstring>
+        <name>GetVaryingStateVersion</name>
+        <briefdescription>
+<para>Returns the current version of varying state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is used to refresh cached DirtyLists </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="501" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="501" bodyend="503"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Render Index Versioning</header>
+      <memberdef kind="function" id="class_hd_change_tracker_1a14454489f35c37307bb438782b9f1e19" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned</type>
+        <definition>unsigned GetRprimIndexVersion</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRprimIndexVersion</name>
+        <briefdescription>
+<para>Returns the current version of the Render Index&apos;s RPrim set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This version number changes when Rprims are inserted or removed from the render index. Invalidating any cached gather operations. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="514" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="514" bodyend="516"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a5835919343315a82135d79f38f3019d1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned</type>
+        <definition>unsigned GetSprimIndexVersion</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSprimIndexVersion</name>
+        <briefdescription>
+<para>Returns the current version of the Render Index&apos;s SPrim set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This version number changes when Sprims are inserted or removed from the render index. Invalidating any cached gather operations. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="521" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="521" bodyend="523"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a16ecb47e891cb46bf771a82b814b5386" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned</type>
+        <definition>unsigned GetBprimIndexVersion</definition>
+        <argsstring>() const</argsstring>
+        <name>GetBprimIndexVersion</name>
+        <briefdescription>
+<para>Returns the current version of the Render Index&apos;s BPrim set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This version number changes when Bprims are inserted or removed from the render index. Invalidating any cached gather operations. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="528" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="528" bodyend="530"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a5fffda0d22de7b2795cc043baf461290" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned</type>
+        <definition>unsigned GetInstancerIndexVersion</definition>
+        <argsstring>() const</argsstring>
+        <name>GetInstancerIndexVersion</name>
+        <briefdescription>
+<para>Returns the current version of the Render Index&apos;s Instancer set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This version number changes when Instancers are inserted or removed from the render index. Invalidating any cached gather operations. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="535" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="535" bodyend="537"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a388b88aa3fdd7ee1689f4325b9399445" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned</type>
+        <definition>unsigned GetSceneStateVersion</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSceneStateVersion</name>
+        <briefdescription>
+<para>Returns the current version of the scene state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This version number changes whenever any prims are inserted, removed or marked dirty. The use case is to detect that nothing has changed, so the Sync phase can be avoided. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="545" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="545" bodyend="547"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>General state tracking</header>
+      <memberdef kind="function" id="class_hd_change_tracker_1a1b860c80ad5a686dc8f8f3b300fce52f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void AddState</definition>
+        <argsstring>(TfToken const &amp;name)</argsstring>
+        <name>AddState</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Adds a named state for tracking. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="557" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a29d117e35eff034cc4d149870f0f0e9a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void MarkStateDirty</definition>
+        <argsstring>(TfToken const &amp;name)</argsstring>
+        <name>MarkStateDirty</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Marks a named state as being dirty., this bumps the version of the state. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="562" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a5ccf497f2a7393bb138662a7d969251b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API unsigned</type>
+        <definition>HD_API unsigned GetStateVersion</definition>
+        <argsstring>(TfToken const &amp;name) const</argsstring>
+        <name>GetStateVersion</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Returns the current version of the named state. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="566" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Debug</header>
+      <memberdef kind="function" id="class_hd_change_tracker_1a7bbb96dd197d48623dae286f229fc29e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API std::string</type>
+        <definition>static HD_API std::string StringifyDirtyBits</definition>
+        <argsstring>(HdDirtyBits dirtyBits)</argsstring>
+        <name>StringifyDirtyBits</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="574" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1af2e91d720f425b9bf3128a0d17598a3f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>static HD_API void DumpDirtyBits</definition>
+        <argsstring>(HdDirtyBits dirtyBits)</argsstring>
+        <name>DumpDirtyBits</name>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="577" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57" prot="public" static="no" strong="no">
+        <type>HdDirtyBits</type>
+        <name>RprimDirtyBits</name>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57accea35f717039c64bc6ea05604ecddc0" prot="public">
+          <name>Clean</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a28cc9606fd9467850ed97fa627721346" prot="public">
+          <name>InitRepr</name>
+          <initializer>= 1 &lt;&lt; 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57afe3f4c8fe9968b66aa1afca7daf1e4eb" prot="public">
+          <name>Varying</name>
+          <initializer>= 1 &lt;&lt; 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a6f2ec4167b47e7269ed7b56e1928e731" prot="public">
+          <name>AllDirty</name>
+          <initializer>= ~Varying</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57ac5cb73b4cd3173bc513bbb5d9ef0e305" prot="public">
+          <name>DirtyPrimID</name>
+          <initializer>= 1 &lt;&lt; 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a60d4d31a61d69c04b4c21cb9a933057f" prot="public">
+          <name>DirtyExtent</name>
+          <initializer>= 1 &lt;&lt; 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57ad54c335036a5bb15c4c66b5e6b7d5930" prot="public">
+          <name>DirtyDisplayStyle</name>
+          <initializer>= 1 &lt;&lt; 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a81e3b7c23193de515a98d9eca5212b92" prot="public">
+          <name>DirtyPoints</name>
+          <initializer>= 1 &lt;&lt; 5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57af25458bd0e1095ca9f61a4a09719eb47" prot="public">
+          <name>DirtyPrimvar</name>
+          <initializer>= 1 &lt;&lt; 6</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a58b42ad3a174a8a3a0335dc22bbea990" prot="public">
+          <name>DirtyMaterialId</name>
+          <initializer>= 1 &lt;&lt; 7</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a39771468aaacc173f7ceb675adee7204" prot="public">
+          <name>DirtyTopology</name>
+          <initializer>= 1 &lt;&lt; 8</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a3eaf7284f82a6abc25f2a02244014eb6" prot="public">
+          <name>DirtyTransform</name>
+          <initializer>= 1 &lt;&lt; 9</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a927198669c30277bcab14cdcf9eb76df" prot="public">
+          <name>DirtyVisibility</name>
+          <initializer>= 1 &lt;&lt; 10</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a93c464283ba347c16cc1f13ee61d4635" prot="public">
+          <name>DirtyNormals</name>
+          <initializer>= 1 &lt;&lt; 11</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57abf405da452e0ad6a9f78c8a7bd314284" prot="public">
+          <name>DirtyDoubleSided</name>
+          <initializer>= 1 &lt;&lt; 12</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57aebdbac9c61eafd3ca8db3a26b8863326" prot="public">
+          <name>DirtyCullStyle</name>
+          <initializer>= 1 &lt;&lt; 13</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57afdabe6fafea9efaca9abd7b3300b3276" prot="public">
+          <name>DirtySubdivTags</name>
+          <initializer>= 1 &lt;&lt; 14</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57ae22b16530cf198e6f99e654512123eb3" prot="public">
+          <name>DirtyWidths</name>
+          <initializer>= 1 &lt;&lt; 15</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a3a1395b08795cf00558a6944e1630daf" prot="public">
+          <name>DirtyInstancer</name>
+          <initializer>= 1 &lt;&lt; 16</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57af8086ad91abd1ccfde457a9f1d3f5bd1" prot="public">
+          <name>DirtyInstanceIndex</name>
+          <initializer>= 1 &lt;&lt; 17</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57aad2c2fe396d05ad0913f200214b789d6" prot="public">
+          <name>DirtyRepr</name>
+          <initializer>= 1 &lt;&lt; 18</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a9005bbd3c1afbb075cd75ce015a278ad" prot="public">
+          <name>DirtyRenderTag</name>
+          <initializer>= 1 &lt;&lt; 19</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57aa01e5b123723adb7b4bf866b041d0e18" prot="public">
+          <name>DirtyComputationPrimvarDesc</name>
+          <initializer>= 1 &lt;&lt; 20</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a591d509394ef8bc38129f08c366a2adb" prot="public">
+          <name>DirtyCategories</name>
+          <initializer>= 1 &lt;&lt; 21</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a423ebdf6ee72044e8ddd6242f212fbbc" prot="public">
+          <name>DirtyVolumeField</name>
+          <initializer>= 1 &lt;&lt; 22</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57ab476d8e593a5aa9b97d8392126ed45a9" prot="public">
+          <name>AllSceneDirtyBits</name>
+          <initializer>= ((1&lt;&lt;23) - 1)</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a03880a2442f1d75d8adb29d8f7f2860a" prot="public">
+          <name>NewRepr</name>
+          <initializer>= 1 &lt;&lt; 23</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a4ee68d5ffb3824c2c535e3417c329533" prot="public">
+          <name>CustomBitsBegin</name>
+          <initializer>= 1 &lt;&lt; 24</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57af9b82712a8a37cfd297458e7ca4a98df" prot="public">
+          <name>CustomBitsEnd</name>
+          <initializer>= 1 &lt;&lt; 30</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57ae44adc5c995c151c505ef81204b3507e" prot="public">
+          <name>CustomBitsMask</name>
+          <initializer>= 0x7f &lt;&lt; 24</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="57" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="57" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="enum" id="class_hd_change_tracker_1a8217779b8a58e6b3772ead9882352271" prot="public" static="no" strong="no">
+        <type>HdDirtyBits</type>
+        <name>TaskDirtyBits</name>
+        <enumvalue id="class_hd_change_tracker_1a8217779b8a58e6b3772ead9882352271ae10a6f0d75a0571b8a6a5b77561740c6" prot="public">
+          <name>DirtyParams</name>
+          <initializer>= 1 &lt;&lt; 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a8217779b8a58e6b3772ead9882352271a24a75d5ea1dbb8aefbc609b1d9f8515b" prot="public">
+          <name>DirtyCollection</name>
+          <initializer>= 1 &lt;&lt; 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_change_tracker_1a8217779b8a58e6b3772ead9882352271aba7a61f1a8f0d4ca22651f1672365b0c" prot="public">
+          <name>DirtyRenderTags</name>
+          <initializer>= 1 &lt;&lt; 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="97" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="97" bodyend="101"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_hd_change_tracker_1abd071cff77310a176a171128c50d2239" prot="private" static="no">
+        <type>TfHashMap&lt; <ref refid="class_sdf_path" kindref="compound">SdfPath</ref>, HdDirtyBits, SdfPath::Hash &gt;</type>
+        <definition>typedef TfHashMap&lt;SdfPath, HdDirtyBits, SdfPath::Hash&gt; _IDStateMap</definition>
+        <argsstring></argsstring>
+        <name>_IDStateMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="591" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="591" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hd_change_tracker_1a6d9c7436cae56b7b196482cc35d23179" prot="private" static="no">
+        <type>TfHashMap&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, int, <ref refid="struct_tf_token_1_1_hash_functor" kindref="compound">TfToken::HashFunctor</ref> &gt;</type>
+        <definition>typedef TfHashMap&lt;TfToken, int, TfToken::HashFunctor&gt; _CollectionStateMap</definition>
+        <argsstring></argsstring>
+        <name>_CollectionStateMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="592" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="592" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hd_change_tracker_1a130e2e2fe96dae6aae78dac91fb09e72" prot="private" static="no">
+        <type>TfHashMap&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, unsigned, <ref refid="struct_tf_token_1_1_hash_functor" kindref="compound">TfToken::HashFunctor</ref> &gt;</type>
+        <definition>typedef TfHashMap&lt;TfToken, unsigned, TfToken::HashFunctor&gt; _GeneralStateMap</definition>
+        <argsstring></argsstring>
+        <name>_GeneralStateMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="593" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="593" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hd_change_tracker_1a01238319f7fdfe6f2100b22140d8f287" prot="private" static="no">
+        <type>tbb::concurrent_hash_map&lt; <ref refid="class_sdf_path" kindref="compound">SdfPath</ref>, SdfPathSet, _PathHashCompare &gt;</type>
+        <definition>typedef tbb::concurrent_hash_map&lt;SdfPath, SdfPathSet, _PathHashCompare&gt; _DependencyMap</definition>
+        <argsstring></argsstring>
+        <name>_DependencyMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="603" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="603" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_change_tracker_1a54684ea1e1b1e5b1593091dbc64200cf" prot="private" static="no" mutable="no">
+        <type>_IDStateMap</type>
+        <definition>_IDStateMap _rprimState</definition>
+        <argsstring></argsstring>
+        <name>_rprimState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="606" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="606" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1a31683b612c908507ef94c33626983bc6" prot="private" static="no" mutable="no">
+        <type>_IDStateMap</type>
+        <definition>_IDStateMap _instancerState</definition>
+        <argsstring></argsstring>
+        <name>_instancerState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="607" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="607" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1a3ec30e526e0870d02ec5976d52c437c0" prot="private" static="no" mutable="no">
+        <type>_IDStateMap</type>
+        <definition>_IDStateMap _taskState</definition>
+        <argsstring></argsstring>
+        <name>_taskState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="608" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="608" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1a718a775f4b7b304dcce2bb98f7c1af89" prot="private" static="no" mutable="no">
+        <type>_IDStateMap</type>
+        <definition>_IDStateMap _sprimState</definition>
+        <argsstring></argsstring>
+        <name>_sprimState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="609" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="609" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1a384fb7c42762fde8a7d11f9ee40e1ba3" prot="private" static="no" mutable="no">
+        <type>_IDStateMap</type>
+        <definition>_IDStateMap _bprimState</definition>
+        <argsstring></argsstring>
+        <name>_bprimState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="610" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="610" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1ac43492ededbf8a75c6d6d70b7b73415d" prot="private" static="no" mutable="no">
+        <type>_GeneralStateMap</type>
+        <definition>_GeneralStateMap _generalState</definition>
+        <argsstring></argsstring>
+        <name>_generalState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="611" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="611" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1a9a4a96b4440780f242a6fa35f8336a3a" prot="private" static="no" mutable="no">
+        <type>_CollectionStateMap</type>
+        <definition>_CollectionStateMap _collectionState</definition>
+        <argsstring></argsstring>
+        <name>_collectionState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="614" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="614" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1a83a9f01809597124abc65d3467d361b7" prot="private" static="no" mutable="no">
+        <type>_DependencyMap</type>
+        <definition>_DependencyMap _instancerRprimDependencies</definition>
+        <argsstring></argsstring>
+        <name>_instancerRprimDependencies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="618" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="618" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1a01bbc6cb6c792fda828a9af42beabd6c" prot="private" static="no" mutable="no">
+        <type>_DependencyMap</type>
+        <definition>_DependencyMap _instancerSprimDependencies</definition>
+        <argsstring></argsstring>
+        <name>_instancerSprimDependencies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="619" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="619" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1a33a0e395df3a15dce10153845154e19f" prot="private" static="no" mutable="no">
+        <type>_DependencyMap</type>
+        <definition>_DependencyMap _instancerInstancerDependencies</definition>
+        <argsstring></argsstring>
+        <name>_instancerInstancerDependencies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="620" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="620" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1aaaee98c7c6d9278c13526751659d9da8" prot="private" static="no" mutable="no">
+        <type>_DependencyMap</type>
+        <definition>_DependencyMap _sprimSprimTargetDependencies</definition>
+        <argsstring></argsstring>
+        <name>_sprimSprimTargetDependencies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="626" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="626" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1a39359f665e4d264ee3f4b164cbd6a574" prot="private" static="no" mutable="no">
+        <type>_DependencyMap</type>
+        <definition>_DependencyMap _sprimSprimSourceDependencies</definition>
+        <argsstring></argsstring>
+        <name>_sprimSprimSourceDependencies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="628" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="628" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1a197129f8bb42584d6ba99020f44e97ca" prot="private" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned _varyingStateVersion</definition>
+        <argsstring></argsstring>
+        <name>_varyingStateVersion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="640" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="640" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1abaa55a18059f0961b046473ba146b7a9" prot="private" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned _rprimIndexVersion</definition>
+        <argsstring></argsstring>
+        <name>_rprimIndexVersion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="645" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="645" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1a208c11015d1b16788f48532a7fb738b2" prot="private" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned _sprimIndexVersion</definition>
+        <argsstring></argsstring>
+        <name>_sprimIndexVersion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="646" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="646" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1ab9f047b562596f520131fc2c89a58bee" prot="private" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned _bprimIndexVersion</definition>
+        <argsstring></argsstring>
+        <name>_bprimIndexVersion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="647" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="647" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1a2257aba8912d93af1ab273bdb55b9bcf" prot="private" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned _instancerIndexVersion</definition>
+        <argsstring></argsstring>
+        <name>_instancerIndexVersion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="648" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="648" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1a696caa01af22dcc57771942beff5608f" prot="private" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned _sceneStateVersion</definition>
+        <argsstring></argsstring>
+        <name>_sceneStateVersion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="653" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="653" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1a91eae3b109ad3946036d451f6bbdccf3" prot="private" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned _visChangeCount</definition>
+        <argsstring></argsstring>
+        <name>_visChangeCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="656" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="656" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1ad6d18457d4c16f1134441d7a883795c8" prot="private" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned _instanceIndicesChangeCount</definition>
+        <argsstring></argsstring>
+        <name>_instanceIndicesChangeCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="659" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="659" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1ad3c7e5fd78deb10ca7146a5f2b5a6d5c" prot="private" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned _rprimRenderTagVersion</definition>
+        <argsstring></argsstring>
+        <name>_rprimRenderTagVersion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="662" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="662" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1abf32e1fc95d119a2e15ed57045d1fdd8" prot="private" static="no" mutable="no">
+        <type>unsigned</type>
+        <definition>unsigned _taskRenderTagsVersion</definition>
+        <argsstring></argsstring>
+        <name>_taskRenderTagsVersion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="665" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="665" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_change_tracker_1ab5e8b19c47302328cd6506a8b9f0d296" prot="private" static="no" mutable="no">
+        <type><ref refid="class_hd_retained_scene_index" kindref="compound">HdRetainedSceneIndex</ref> *</type>
+        <definition>HdRetainedSceneIndex* _emulationSceneIndex</definition>
+        <argsstring></argsstring>
+        <name>_emulationSceneIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="674" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="674" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_hd_change_tracker_1a8200fed22d7d6392428510bcbb9ce232" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class HdRenderIndex</definition>
+        <argsstring></argsstring>
+        <name>HdRenderIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="671" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="671" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_hd_change_tracker_1aca108de0a096ab42035c5030b76831f8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class HdSceneIndexAdapterSceneDelegate</definition>
+        <argsstring></argsstring>
+        <name>HdSceneIndexAdapterSceneDelegate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="685" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="685" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_change_tracker_1a74f7390f361d3d36fcce20cb2b359b91" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API HdChangeTracker</definition>
+        <argsstring>()</argsstring>
+        <name>HdChangeTracker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="104" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1af427ff54c7d5f0c9762b40d295d05435" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API</type>
+        <definition>virtual HD_API ~HdChangeTracker</definition>
+        <argsstring>()</argsstring>
+        <name>~HdChangeTracker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="106" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hd_change_tracker_1a1239520d14372985d6783ce3a1248142" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdChangeTracker</definition>
+        <argsstring>(const HdChangeTracker &amp;)=delete</argsstring>
+        <name>HdChangeTracker</name>
+        <param>
+          <type>const <ref refid="class_hd_change_tracker" kindref="compound">HdChangeTracker</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="584" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a2d707097244790e06127acfda0c36a9d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hd_change_tracker" kindref="compound">HdChangeTracker</ref> &amp;</type>
+        <definition>HdChangeTracker&amp; operator=</definition>
+        <argsstring>(const HdChangeTracker &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_hd_change_tracker" kindref="compound">HdChangeTracker</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="585" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1aca1ea880c376077323f8b2eafc17a977" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _AddDependency</definition>
+        <argsstring>(_DependencyMap &amp;depMap, SdfPath const &amp;parent, SdfPath const &amp;child)</argsstring>
+        <name>_AddDependency</name>
+        <param>
+          <type>_DependencyMap &amp;</type>
+          <declname>depMap</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>child</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="631" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1ab0a16b4bfd34984fb778786d1ce27a15" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RemoveDependency</definition>
+        <argsstring>(_DependencyMap &amp;depMap, SdfPath const &amp;parent, SdfPath const &amp;child)</argsstring>
+        <name>_RemoveDependency</name>
+        <param>
+          <type>_DependencyMap &amp;</type>
+          <declname>depMap</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>child</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="633" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a14eec643d10da7c53d1383e1ea999378" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _SetTargetSceneIndex</definition>
+        <argsstring>(HdRetainedSceneIndex *emulationSceneIndex)</argsstring>
+        <name>_SetTargetSceneIndex</name>
+        <param>
+          <type><ref refid="class_hd_retained_scene_index" kindref="compound">HdRetainedSceneIndex</ref> *</type>
+          <declname>emulationSceneIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="675" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1ae8196d32b30f256abe70a3839d7f602b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _MarkRprimDirty</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits bits=AllDirty)</argsstring>
+        <name>_MarkRprimDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>bits</declname>
+          <defval>AllDirty</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="686" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a28468b2601519d974156982a5f20e736" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _MarkSprimDirty</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits bits=AllDirty)</argsstring>
+        <name>_MarkSprimDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>bits</declname>
+          <defval>AllDirty</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="687" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1a41822464792332ea2fdbe17621d63e55" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _MarkBprimDirty</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits bits=AllDirty)</argsstring>
+        <name>_MarkBprimDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>bits</declname>
+          <defval>AllDirty</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="688" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_change_tracker_1aba9ed288435d3399a8fd9b67fc2da450" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _MarkInstancerDirty</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits bits=AllDirty)</argsstring>
+        <name>_MarkInstancerDirty</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>bits</declname>
+          <defval>AllDirty</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="689" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_hd_change_tracker_1aeb088cace78e0a10994668051bcda367" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void _LogCacheAccess</definition>
+        <argsstring>(TfToken const &amp;cacheName, SdfPath const &amp;id, bool hit)</argsstring>
+        <name>_LogCacheAccess</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>cacheName</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>hit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/changeTracker.h" line="588" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Tracks changes from the <ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref>, providing invalidation cues to the render engine. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Changes flagged here are accumulated until the next time resource associated with the change is required, at which point the resource is updated and the flag is cleared. </para>
+    </detaileddescription>
+    <location file="pxr/imaging/hd/changeTracker.h" line="52" column="1" bodyfile="pxr/imaging/hd/changeTracker.h" bodystart="51" bodyend="690"/>
+    <listofallmembers>
+      <member refid="class_hd_change_tracker_1aca1ea880c376077323f8b2eafc17a977" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_AddDependency</name></member>
+      <member refid="class_hd_change_tracker_1ab9f047b562596f520131fc2c89a58bee" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_bprimIndexVersion</name></member>
+      <member refid="class_hd_change_tracker_1a384fb7c42762fde8a7d11f9ee40e1ba3" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_bprimState</name></member>
+      <member refid="class_hd_change_tracker_1a9a4a96b4440780f242a6fa35f8336a3a" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_collectionState</name></member>
+      <member refid="class_hd_change_tracker_1a6d9c7436cae56b7b196482cc35d23179" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_CollectionStateMap</name></member>
+      <member refid="class_hd_change_tracker_1a01238319f7fdfe6f2100b22140d8f287" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_DependencyMap</name></member>
+      <member refid="class_hd_change_tracker_1ab5e8b19c47302328cd6506a8b9f0d296" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_emulationSceneIndex</name></member>
+      <member refid="class_hd_change_tracker_1ac43492ededbf8a75c6d6d70b7b73415d" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_generalState</name></member>
+      <member refid="class_hd_change_tracker_1a130e2e2fe96dae6aae78dac91fb09e72" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_GeneralStateMap</name></member>
+      <member refid="class_hd_change_tracker_1abd071cff77310a176a171128c50d2239" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_IDStateMap</name></member>
+      <member refid="class_hd_change_tracker_1ad6d18457d4c16f1134441d7a883795c8" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_instanceIndicesChangeCount</name></member>
+      <member refid="class_hd_change_tracker_1a2257aba8912d93af1ab273bdb55b9bcf" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_instancerIndexVersion</name></member>
+      <member refid="class_hd_change_tracker_1a33a0e395df3a15dce10153845154e19f" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_instancerInstancerDependencies</name></member>
+      <member refid="class_hd_change_tracker_1a83a9f01809597124abc65d3467d361b7" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_instancerRprimDependencies</name></member>
+      <member refid="class_hd_change_tracker_1a01bbc6cb6c792fda828a9af42beabd6c" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_instancerSprimDependencies</name></member>
+      <member refid="class_hd_change_tracker_1a31683b612c908507ef94c33626983bc6" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_instancerState</name></member>
+      <member refid="class_hd_change_tracker_1aeb088cace78e0a10994668051bcda367" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_LogCacheAccess</name></member>
+      <member refid="class_hd_change_tracker_1a41822464792332ea2fdbe17621d63e55" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_MarkBprimDirty</name></member>
+      <member refid="class_hd_change_tracker_1aba9ed288435d3399a8fd9b67fc2da450" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_MarkInstancerDirty</name></member>
+      <member refid="class_hd_change_tracker_1ae8196d32b30f256abe70a3839d7f602b" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_MarkRprimDirty</name></member>
+      <member refid="class_hd_change_tracker_1a28468b2601519d974156982a5f20e736" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_MarkSprimDirty</name></member>
+      <member refid="class_hd_change_tracker_1ab0a16b4bfd34984fb778786d1ce27a15" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_RemoveDependency</name></member>
+      <member refid="class_hd_change_tracker_1abaa55a18059f0961b046473ba146b7a9" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_rprimIndexVersion</name></member>
+      <member refid="class_hd_change_tracker_1ad3c7e5fd78deb10ca7146a5f2b5a6d5c" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_rprimRenderTagVersion</name></member>
+      <member refid="class_hd_change_tracker_1a54684ea1e1b1e5b1593091dbc64200cf" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_rprimState</name></member>
+      <member refid="class_hd_change_tracker_1a696caa01af22dcc57771942beff5608f" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_sceneStateVersion</name></member>
+      <member refid="class_hd_change_tracker_1a14eec643d10da7c53d1383e1ea999378" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_SetTargetSceneIndex</name></member>
+      <member refid="class_hd_change_tracker_1a208c11015d1b16788f48532a7fb738b2" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_sprimIndexVersion</name></member>
+      <member refid="class_hd_change_tracker_1a39359f665e4d264ee3f4b164cbd6a574" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_sprimSprimSourceDependencies</name></member>
+      <member refid="class_hd_change_tracker_1aaaee98c7c6d9278c13526751659d9da8" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_sprimSprimTargetDependencies</name></member>
+      <member refid="class_hd_change_tracker_1a718a775f4b7b304dcce2bb98f7c1af89" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_sprimState</name></member>
+      <member refid="class_hd_change_tracker_1abf32e1fc95d119a2e15ed57045d1fdd8" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_taskRenderTagsVersion</name></member>
+      <member refid="class_hd_change_tracker_1a3ec30e526e0870d02ec5976d52c437c0" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_taskState</name></member>
+      <member refid="class_hd_change_tracker_1a197129f8bb42584d6ba99020f44e97ca" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_varyingStateVersion</name></member>
+      <member refid="class_hd_change_tracker_1a91eae3b109ad3946036d451f6bbdccf3" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>_visChangeCount</name></member>
+      <member refid="class_hd_change_tracker_1a27f9086638c028c6d6fb2ff8193768eb" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>AddCollection</name></member>
+      <member refid="class_hd_change_tracker_1af1300e3f0fd57f49616814a2fb7e83e7" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>AddInstancerInstancerDependency</name></member>
+      <member refid="class_hd_change_tracker_1a2c9fde21901d9d367f8362c2e4eeab56" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>AddInstancerRprimDependency</name></member>
+      <member refid="class_hd_change_tracker_1a7bef2f18723943b8bdec819b2774ac3f" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>AddInstancerSprimDependency</name></member>
+      <member refid="class_hd_change_tracker_1a45fd042265d8a0cac86b1731f4b618e9" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>AddSprimSprimDependency</name></member>
+      <member refid="class_hd_change_tracker_1a1b860c80ad5a686dc8f8f3b300fce52f" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>AddState</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a6f2ec4167b47e7269ed7b56e1928e731" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>AllDirty</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57ab476d8e593a5aa9b97d8392126ed45a9" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>AllSceneDirtyBits</name></member>
+      <member refid="class_hd_change_tracker_1a361814771ba692d73d34b9d8eefd104c" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>BprimInserted</name></member>
+      <member refid="class_hd_change_tracker_1a87441c4f61b48ede81be4b49a486609a" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>BprimRemoved</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57accea35f717039c64bc6ea05604ecddc0" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>Clean</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a4ee68d5ffb3824c2c535e3417c329533" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>CustomBitsBegin</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57af9b82712a8a37cfd297458e7ca4a98df" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>CustomBitsEnd</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57ae44adc5c995c151c505ef81204b3507e" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>CustomBitsMask</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a591d509394ef8bc38129f08c366a2adb" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyCategories</name></member>
+      <member refid="class_hd_change_tracker_1a8217779b8a58e6b3772ead9882352271a24a75d5ea1dbb8aefbc609b1d9f8515b" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyCollection</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57aa01e5b123723adb7b4bf866b041d0e18" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyComputationPrimvarDesc</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57aebdbac9c61eafd3ca8db3a26b8863326" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyCullStyle</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57ad54c335036a5bb15c4c66b5e6b7d5930" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyDisplayStyle</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57abf405da452e0ad6a9f78c8a7bd314284" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyDoubleSided</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a60d4d31a61d69c04b4c21cb9a933057f" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyExtent</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57af8086ad91abd1ccfde457a9f1d3f5bd1" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyInstanceIndex</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a3a1395b08795cf00558a6944e1630daf" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyInstancer</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a58b42ad3a174a8a3a0335dc22bbea990" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyMaterialId</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a93c464283ba347c16cc1f13ee61d4635" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyNormals</name></member>
+      <member refid="class_hd_change_tracker_1a8217779b8a58e6b3772ead9882352271ae10a6f0d75a0571b8a6a5b77561740c6" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyParams</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a81e3b7c23193de515a98d9eca5212b92" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyPoints</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57ac5cb73b4cd3173bc513bbb5d9ef0e305" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyPrimID</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57af25458bd0e1095ca9f61a4a09719eb47" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyPrimvar</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a9005bbd3c1afbb075cd75ce015a278ad" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyRenderTag</name></member>
+      <member refid="class_hd_change_tracker_1a8217779b8a58e6b3772ead9882352271aba7a61f1a8f0d4ca22651f1672365b0c" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyRenderTags</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57aad2c2fe396d05ad0913f200214b789d6" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyRepr</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57afdabe6fafea9efaca9abd7b3300b3276" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtySubdivTags</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a39771468aaacc173f7ceb675adee7204" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyTopology</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a3eaf7284f82a6abc25f2a02244014eb6" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyTransform</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a927198669c30277bcab14cdcf9eb76df" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyVisibility</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a423ebdf6ee72044e8ddd6242f212fbbc" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyVolumeField</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57ae22b16530cf198e6f99e654512123eb3" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DirtyWidths</name></member>
+      <member refid="class_hd_change_tracker_1af2e91d720f425b9bf3128a0d17598a3f" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>DumpDirtyBits</name></member>
+      <member refid="class_hd_change_tracker_1aba59206f139799b212d6a266dcead855" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>GetBprimDirtyBits</name></member>
+      <member refid="class_hd_change_tracker_1a16ecb47e891cb46bf771a82b814b5386" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>GetBprimIndexVersion</name></member>
+      <member refid="class_hd_change_tracker_1adb52b4a449bab35686d16ea0ecd33545" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>GetCollectionVersion</name></member>
+      <member refid="class_hd_change_tracker_1acda94fa29c301ebaaaa25578a7101ceb" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>GetInstanceIndicesChangeCount</name></member>
+      <member refid="class_hd_change_tracker_1a0f81e6bbe97a441bd46431bbf9ed826e" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>GetInstancerDirtyBits</name></member>
+      <member refid="class_hd_change_tracker_1a5fffda0d22de7b2795cc043baf461290" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>GetInstancerIndexVersion</name></member>
+      <member refid="class_hd_change_tracker_1aedf7769b4826f6d3e736b5a74572deeb" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>GetRenderTagVersion</name></member>
+      <member refid="class_hd_change_tracker_1a0bf7cf013abfdce1d6500407d07df780" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>GetRprimDirtyBits</name></member>
+      <member refid="class_hd_change_tracker_1a14454489f35c37307bb438782b9f1e19" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>GetRprimIndexVersion</name></member>
+      <member refid="class_hd_change_tracker_1a388b88aa3fdd7ee1689f4325b9399445" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>GetSceneStateVersion</name></member>
+      <member refid="class_hd_change_tracker_1a7e50607c1c49fa2070b34b2481a08281" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>GetSprimDirtyBits</name></member>
+      <member refid="class_hd_change_tracker_1a5835919343315a82135d79f38f3019d1" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>GetSprimIndexVersion</name></member>
+      <member refid="class_hd_change_tracker_1a5ccf497f2a7393bb138662a7d969251b" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>GetStateVersion</name></member>
+      <member refid="class_hd_change_tracker_1a176f21278eb81a7d22f516016bcf43d3" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>GetTaskDirtyBits</name></member>
+      <member refid="class_hd_change_tracker_1ae7c86cbac5ee3394d0acb13e633c73ad" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>GetTaskRenderTagsVersion</name></member>
+      <member refid="class_hd_change_tracker_1a8fbe49ed63dd729be17f23df0fdb65c9" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>GetVaryingStateVersion</name></member>
+      <member refid="class_hd_change_tracker_1a5b682cb305d5e248b6cd44e6e7e885af" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>GetVisibilityChangeCount</name></member>
+      <member refid="class_hd_change_tracker_1a74f7390f361d3d36fcce20cb2b359b91" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>HdChangeTracker</name></member>
+      <member refid="class_hd_change_tracker_1a1239520d14372985d6783ce3a1248142" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>HdChangeTracker</name></member>
+      <member refid="class_hd_change_tracker_1a8200fed22d7d6392428510bcbb9ce232" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>HdRenderIndex</name></member>
+      <member refid="class_hd_change_tracker_1aca108de0a096ab42035c5030b76831f8" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>HdSceneIndexAdapterSceneDelegate</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a28cc9606fd9467850ed97fa627721346" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>InitRepr</name></member>
+      <member refid="class_hd_change_tracker_1a3c27909f0568f595aa3baba42b12b621" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>InstancerInserted</name></member>
+      <member refid="class_hd_change_tracker_1a5dd363f3c6c44b3d0e6bd4cf6b2abbe9" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>InstancerRemoved</name></member>
+      <member refid="class_hd_change_tracker_1a67786904a3acc559a7a70ca3c332d374" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsAnyPrimvarDirty</name></member>
+      <member refid="class_hd_change_tracker_1ab4b85366b96c8fb1aac6ab4e8a16bfa7" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsAnyPrimvarDirty</name></member>
+      <member refid="class_hd_change_tracker_1aecefceb1a1cec529065e27f93d624190" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsClean</name></member>
+      <member refid="class_hd_change_tracker_1a9bcbc2701949f8541d183f52b87e3d47" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsCullStyleDirty</name></member>
+      <member refid="class_hd_change_tracker_1a5aafae627b0e415831a449ebbeb02f1a" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsCullStyleDirty</name></member>
+      <member refid="class_hd_change_tracker_1aca02047b311a37451d42f6921077ff20" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsDirty</name></member>
+      <member refid="class_hd_change_tracker_1a3f1ac6bef5fbe04bad3623ea82703445" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsDisplayStyleDirty</name></member>
+      <member refid="class_hd_change_tracker_1a934a47ce6d20bd83fdf45557eda6ad94" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsDisplayStyleDirty</name></member>
+      <member refid="class_hd_change_tracker_1a76da65f5d71392e48e687df6142ec68d" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsDoubleSidedDirty</name></member>
+      <member refid="class_hd_change_tracker_1a3876d14cfa0754297bccf4ad602ae99f" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsDoubleSidedDirty</name></member>
+      <member refid="class_hd_change_tracker_1a3ba28f74f865e521c1914cc1c9830057" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsExtentDirty</name></member>
+      <member refid="class_hd_change_tracker_1adeaa21073259f4a3dabfb3c97d1577d3" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsExtentDirty</name></member>
+      <member refid="class_hd_change_tracker_1ac21272d4d467268c3fc1629b3b37affe" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsInstanceIndexDirty</name></member>
+      <member refid="class_hd_change_tracker_1a78b7816334ba38bbbfa3b5ba9ec9e0fc" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsInstancerDirty</name></member>
+      <member refid="class_hd_change_tracker_1a18c9a9c9962881a8ab54ce87824bd6ad" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsPrimIdDirty</name></member>
+      <member refid="class_hd_change_tracker_1aad1dc9df362646268b3fbf885568c14e" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsPrimIdDirty</name></member>
+      <member refid="class_hd_change_tracker_1a6e58eb714f603f415f389db1fa264ae9" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsPrimvarDirty</name></member>
+      <member refid="class_hd_change_tracker_1add2195f9551d2833fb328ccbac445884" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsPrimvarDirty</name></member>
+      <member refid="class_hd_change_tracker_1a4e0302a7e8ce1b946e68b00dfeb9395d" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsReprDirty</name></member>
+      <member refid="class_hd_change_tracker_1a0a3b9cef033c575309b47c8b5ce08e42" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsRprimDirty</name></member>
+      <member refid="class_hd_change_tracker_1a1aafdc17291594de19bb72716a2b7721" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsSubdivTagsDirty</name></member>
+      <member refid="class_hd_change_tracker_1ae51d1c0bbf91ccdda2dfacb2b5aa1682" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsSubdivTagsDirty</name></member>
+      <member refid="class_hd_change_tracker_1a47f8ced7fd78b5ec80b65f209d9a1ff3" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsTopologyDirty</name></member>
+      <member refid="class_hd_change_tracker_1a30282357692663c652d75fb3dfe9bafd" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsTopologyDirty</name></member>
+      <member refid="class_hd_change_tracker_1a12b4fd054bfa1ec08a77b0eae3b21b35" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsTransformDirty</name></member>
+      <member refid="class_hd_change_tracker_1ad5c53a6733a4e51870a6715322db2cd6" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsTransformDirty</name></member>
+      <member refid="class_hd_change_tracker_1a1f65aca32b96de683b987b9cbe849613" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsVarying</name></member>
+      <member refid="class_hd_change_tracker_1a89061682e0f5513bc7c636e9e1f037ab" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsVisibilityDirty</name></member>
+      <member refid="class_hd_change_tracker_1a24577256d63493f68864cd0125071b0f" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>IsVisibilityDirty</name></member>
+      <member refid="class_hd_change_tracker_1a1bcf3e01b6ca5de650c43c41af4d2a44" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>MarkAllRprimsDirty</name></member>
+      <member refid="class_hd_change_tracker_1a253742ebaab44143ec0476e53ac2c3a9" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>MarkBprimClean</name></member>
+      <member refid="class_hd_change_tracker_1aaf5d2e5878f5545f5829bc94aada2934" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>MarkBprimDirty</name></member>
+      <member refid="class_hd_change_tracker_1ad123ffcf3ac5ff0eaa3751a084587a41" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>MarkCollectionDirty</name></member>
+      <member refid="class_hd_change_tracker_1a1b19d8b3963dd2d0e358a247ade3da2b" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>MarkInstancerClean</name></member>
+      <member refid="class_hd_change_tracker_1aadcb01f873c84809bca269a44cb3b6fd" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>MarkInstancerDirty</name></member>
+      <member refid="class_hd_change_tracker_1af3d2e2af980e63c59aad0c7aa3daacf0" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>MarkPrimvarDirty</name></member>
+      <member refid="class_hd_change_tracker_1a8fa896eeec85601f08242858ad9a0e8d" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>MarkPrimvarDirty</name></member>
+      <member refid="class_hd_change_tracker_1a6533d0fbd31fe618bc01129b28ce670e" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>MarkRprimClean</name></member>
+      <member refid="class_hd_change_tracker_1ac7f7f45627de561f1a3461e64ba2fd77" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>MarkRprimDirty</name></member>
+      <member refid="class_hd_change_tracker_1a292cb764062c86b4ac7fcd642c6ff84d" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>MarkSprimClean</name></member>
+      <member refid="class_hd_change_tracker_1a0718c2e3a33ad9239a7b99768c1014d8" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>MarkSprimDirty</name></member>
+      <member refid="class_hd_change_tracker_1a29d117e35eff034cc4d149870f0f0e9a" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>MarkStateDirty</name></member>
+      <member refid="class_hd_change_tracker_1a13ee888255bb5bbc2ff30943208edf22" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>MarkTaskClean</name></member>
+      <member refid="class_hd_change_tracker_1ae5eaf6725d951cea143fd769a3569f27" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>MarkTaskDirty</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57a03880a2442f1d75d8adb29d8f7f2860a" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>NewRepr</name></member>
+      <member refid="class_hd_change_tracker_1a2d707097244790e06127acfda0c36a9d" prot="private" virt="non-virtual"><scope>HdChangeTracker</scope><name>operator=</name></member>
+      <member refid="class_hd_change_tracker_1afcf570b7ce7ac42a8d725abcb336141a" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>RemoveInstancerInstancerDependency</name></member>
+      <member refid="class_hd_change_tracker_1a454d5a3647a2ac6b345b986d702b478c" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>RemoveInstancerRprimDependency</name></member>
+      <member refid="class_hd_change_tracker_1a6963236253ad74592c169f74b4ace474" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>RemoveInstancerSprimDependency</name></member>
+      <member refid="class_hd_change_tracker_1a5eca92ae0073df8f8af3acaf950f3f92" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>RemoveSprimFromSprimSprimDependencies</name></member>
+      <member refid="class_hd_change_tracker_1a228d7cac3d612c90f420692b2239d627" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>RemoveSprimSprimDependency</name></member>
+      <member refid="class_hd_change_tracker_1aa0133ed5205e7534f5de48450d5d3c97" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>ResetRprimVaryingState</name></member>
+      <member refid="class_hd_change_tracker_1a861627500b20b88ee6ac7d887a4cd4b9" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>ResetVaryingState</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>RprimDirtyBits</name></member>
+      <member refid="class_hd_change_tracker_1acf222231ed870c156ee132ee66ffc02e" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>RprimInserted</name></member>
+      <member refid="class_hd_change_tracker_1af3cb1e97a6b46f6dcb6c88c409e537b6" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>RprimRemoved</name></member>
+      <member refid="class_hd_change_tracker_1a15852921c15a3186d42b565f7df4f585" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>SprimInserted</name></member>
+      <member refid="class_hd_change_tracker_1aee3d09e4d0a5834673d28975b4c3cf2b" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>SprimRemoved</name></member>
+      <member refid="class_hd_change_tracker_1a7bbb96dd197d48623dae286f229fc29e" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>StringifyDirtyBits</name></member>
+      <member refid="class_hd_change_tracker_1a8217779b8a58e6b3772ead9882352271" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>TaskDirtyBits</name></member>
+      <member refid="class_hd_change_tracker_1ac4059c1f94da526910071e0292b55390" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>TaskInserted</name></member>
+      <member refid="class_hd_change_tracker_1afa56bd34da03940a86fb447d48f7f5d4" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>TaskRemoved</name></member>
+      <member refid="class_hd_change_tracker_1a964154c0269b796347a8fe190ed8ea57afe3f4c8fe9968b66aa1afca7daf1e4eb" prot="public" virt="non-virtual"><scope>HdChangeTracker</scope><name>Varying</name></member>
+      <member refid="class_hd_change_tracker_1af427ff54c7d5f0c9762b40d295d05435" prot="public" virt="virtual"><scope>HdChangeTracker</scope><name>~HdChangeTracker</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

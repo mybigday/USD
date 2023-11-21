@@ -1,0 +1,480 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_prim_composition_query_arc" kind="class" language="C++" prot="public">
+    <compoundname>UsdPrimCompositionQueryArc</compoundname>
+    <includes refid="prim_composition_query_8h" local="no">primCompositionQuery.h</includes>
+      <sectiondef kind="user-defined">
+      <header>Target and Introducing Nodes</header>
+      <description><para>These functions access either the target or the introducing nodes in the composition graph that this arc represents.</para>
+<para>The returned node from <ref refid="class_usd_prim_composition_query_arc_1ad567c54613b6ae7651ac82578d584923" kindref="member">GetTargetNode()</ref>, along with a layer obtained from the layer stack accessible through the node&apos;s GetLayerStack() function, can be used to create a <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> to direct edits to the target of the arc. The same can be done with the introducing node but there are additional functions below that are more convenient for directly editing the included arcs.</para>
+<para>It is important to be aware that the nodes returned by <ref refid="class_usd_prim_composition_query_arc_1ad567c54613b6ae7651ac82578d584923" kindref="member">GetTargetNode()</ref> and <ref refid="class_usd_prim_composition_query_arc_1a2200eec34086a6b300ebc6f9172d04a0" kindref="member">GetIntroducingNode()</ref> are only valid through the collective lifetime of the UsdCompositionQuery and all the UsdPrimCompositionQueryArcs the query returns. After the query and all the arcs have gone out of scope every <ref refid="class_pcp_node_ref" kindref="compound">PcpNodeRef</ref> returned by these two functions will become immediately invalid and its behavior will be undefined. </para>
+</description>
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1ad567c54613b6ae7651ac82578d584923" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_pcp_node_ref" kindref="compound">PcpNodeRef</ref></type>
+        <definition>USD_API PcpNodeRef GetTargetNode</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTargetNode</name>
+        <briefdescription>
+<para>Returns the targeted node of this composition arc. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="78" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1a2200eec34086a6b300ebc6f9172d04a0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_pcp_node_ref" kindref="compound">PcpNodeRef</ref></type>
+        <definition>USD_API PcpNodeRef GetIntroducingNode</definition>
+        <argsstring>() const</argsstring>
+        <name>GetIntroducingNode</name>
+        <briefdescription>
+<para>Returns the node that introduces this arc into composition graph. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the node where the authored composition opinion exists and is not necessarily the target node&apos;s parent. If this arc is the <ref refid="class_usd_prim_composition_query_arc_1UsdQueryRootArc" kindref="member">root arc</ref> then this function returns the same node as GetTargetNode which is the root node of the composition graph. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="86" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Arc Target Details</header>
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1aa8224f54d60d29c07cbb181348281651" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API SdfLayerHandle</type>
+        <definition>USD_API SdfLayerHandle GetTargetLayer</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTargetLayer</name>
+        <briefdescription>
+<para>Returns the root layer of the layer stack that holds the prim spec targeted by this composition arc. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="96" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1a887279efdbaef6d7104336965469221a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>USD_API SdfPath GetTargetPrimPath</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTargetPrimPath</name>
+        <briefdescription>
+<para>Returns the path of the prim spec that is targeted by this composition arc in the target layer stack. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="101" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1ad532d45d26b318c33557ed4521386424" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_usd_resolve_target" kindref="compound">UsdResolveTarget</ref></type>
+        <definition>USD_API UsdResolveTarget MakeResolveTargetUpTo</definition>
+        <argsstring>(const SdfLayerHandle &amp;subLayer=nullptr) const</argsstring>
+        <name>MakeResolveTargetUpTo</name>
+        <param>
+          <type>const SdfLayerHandle &amp;</type>
+          <declname>subLayer</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Creates and returns a resolve target that, when passed to a <ref refid="class_usd_attribute_query" kindref="compound">UsdAttributeQuery</ref> for one of this prim&apos;s attributes, causes value resolution to only consider node sites weaker than this arc, up to and and including this arc&apos;s site itself. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>subLayer</computeroutput> is provided, it must be a layer in this arc&apos;s layer stack and it will further limit value resolution to only the weaker layers up to and including <computeroutput>subLayer</computeroutput> within this layer stack. (This is only with respect to this arc; all layers will still be considered in the arcs weaker than this arc). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="114" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1ad54fb026b6077ce77e42f687e935f9be" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_usd_resolve_target" kindref="compound">UsdResolveTarget</ref></type>
+        <definition>USD_API UsdResolveTarget MakeResolveTargetStrongerThan</definition>
+        <argsstring>(const SdfLayerHandle &amp;subLayer=nullptr) const</argsstring>
+        <name>MakeResolveTargetStrongerThan</name>
+        <param>
+          <type>const SdfLayerHandle &amp;</type>
+          <declname>subLayer</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Creates and returns a resolve target that, when passed to a <ref refid="class_usd_attribute_query" kindref="compound">UsdAttributeQuery</ref> for one of this prim&apos;s attributes, causes value resolution to only consider node sites stronger than this arc, not including this arc itself (unless <computeroutput>subLayer</computeroutput> is provided). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>subLayer</computeroutput> is provided, it must be a layer in this arc&apos;s layer stack and it will cause value resolution to additionally consider layers in this arc but only if they are stronger than subLayer within this arc&apos;s layer stack. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="127" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Arc Editing</header>
+      <description><para>This set of functions returns information about where the specific opinions are authored that cause this arc to be included in the composition graph.</para>
+<para>They can be used to edit the composition arcs themselves. </para>
+</description>
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1a0d2592f2cf712f212187449851c809de" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API SdfLayerHandle</type>
+        <definition>USD_API SdfLayerHandle GetIntroducingLayer</definition>
+        <argsstring>() const</argsstring>
+        <name>GetIntroducingLayer</name>
+        <briefdescription>
+<para>Returns the specific layer in the layer stack that adds this arc to the composition graph. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This layer combined with the path returned from GetIntroducingPrimPath can be used to find the prim spec which owns the field that ultimately causes this arc to exist. If this arc is the <ref refid="class_usd_prim_composition_query_arc_1UsdQueryRootArc" kindref="member">root arc</ref> of the composition graph, it is not an authored composition arc and this returns a null layer handle. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="146" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1a8384ceffb2b3f4393e8a7f4acaa0b779" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>USD_API SdfPath GetIntroducingPrimPath</definition>
+        <argsstring>() const</argsstring>
+        <name>GetIntroducingPrimPath</name>
+        <briefdescription>
+<para>Returns the path of the prim that introduces this arc to the composition graph within the layer in which the composition opinion is authored. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This path combined with the layer returned from GetIntroducingLayer can be used to find the prim spec which owns the field that ultimately causes this arc to exist. If this arc is the <ref refid="class_usd_prim_composition_query_arc_1UsdQueryRootArc" kindref="member">root arc</ref> of the composition graph, it is not an authored composition arc and this returns an empty path. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="156" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1a6afda45fcd6c2e61d81b669b3793ad70" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool GetIntroducingListEditor</definition>
+        <argsstring>(SdfReferenceEditorProxy *editor, SdfReference *ref) const</argsstring>
+        <name>GetIntroducingListEditor</name>
+        <param>
+          <type><ref refid="class_sdf_list_editor_proxy" kindref="compound">SdfReferenceEditorProxy</ref> *</type>
+          <declname>editor</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_reference" kindref="compound">SdfReference</ref> *</type>
+          <declname>ref</declname>
+        </param>
+        <briefdescription>
+<para>Gets the list editor and authored <ref refid="class_sdf_reference" kindref="compound">SdfReference</ref> value that introduces this arc to the composition graph for reference arcs. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If this arc&apos;s type is reference, <computeroutput>editor</computeroutput> will be set to the reference list editor of the introducing prim spec and <computeroutput>ref</computeroutput> will be set to the authored value of the <ref refid="class_sdf_reference" kindref="compound">SdfReference</ref> in the reference list.</para>
+<para>This returns true if the <ref refid="class_usd_prim_composition_query_arc_1ad270f3101879c67dc6ee7e135bf057c7" kindref="member">arc type</ref> is <ref refid="usd_2pcp_2types_8h_1a4fd9e1415db6758f742df202058eeab9" kindref="member">reference</ref> and there are no errors; it returns false for all other arc types. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="168" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1addfc45f5a9999a0288e22325807d3098" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool GetIntroducingListEditor</definition>
+        <argsstring>(SdfPayloadEditorProxy *editor, SdfPayload *payload) const</argsstring>
+        <name>GetIntroducingListEditor</name>
+        <param>
+          <type><ref refid="class_sdf_list_editor_proxy" kindref="compound">SdfPayloadEditorProxy</ref> *</type>
+          <declname>editor</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_payload" kindref="compound">SdfPayload</ref> *</type>
+          <declname>payload</declname>
+        </param>
+        <briefdescription>
+<para>Gets the list editor and authored <ref refid="class_sdf_payload" kindref="compound">SdfPayload</ref> value that introduces this arc to the composition graph for payload arcs. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If this arc&apos;s type is payload, <computeroutput>editor</computeroutput> will be set to the payload list editor of the introducing prim spec and <computeroutput>payload</computeroutput> will be set to the authored value of the <ref refid="class_sdf_payload" kindref="compound">SdfPayload</ref> in the payload list.</para>
+<para>This returns true if the <ref refid="class_usd_prim_composition_query_arc_1ad270f3101879c67dc6ee7e135bf057c7" kindref="member">arc type</ref> is <ref refid="usd_2pcp_2types_8h_1a4fd9e1415db6758f742df202058eeab9" kindref="member">payload</ref> and there are no errors; it returns false for all other arc types. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="181" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1aba500d430d8d9daa4e2c7b4e82de3e42" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool GetIntroducingListEditor</definition>
+        <argsstring>(SdfPathEditorProxy *editor, SdfPath *path) const</argsstring>
+        <name>GetIntroducingListEditor</name>
+        <param>
+          <type><ref refid="class_sdf_list_editor_proxy" kindref="compound">SdfPathEditorProxy</ref> *</type>
+          <declname>editor</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> *</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Gets the list editor and authored <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> value that introduced this arc to the composition graph for class arcs. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If this arc&apos;s type is inherit or specialize, <computeroutput>editor</computeroutput> will be set to the corresponding path list editor of the introducing prim spec and <computeroutput>path</computeroutput> will be set to the authored value of the <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> in the path list.</para>
+<para>This returns true if the <ref refid="class_usd_prim_composition_query_arc_1ad270f3101879c67dc6ee7e135bf057c7" kindref="member">arc type</ref> is either <ref refid="usd_2pcp_2types_8h_1a4fd9e1415db6758f742df202058eeab9" kindref="member">inherit</ref> or <ref refid="usd_2pcp_2types_8h_1a4fd9e1415db6758f742df202058eeab9" kindref="member">specialize</ref> and there are no errors; it returns false for all other arc types. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="194" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1a8c8a111123594f9802ec35f83bf0c33c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool GetIntroducingListEditor</definition>
+        <argsstring>(SdfNameEditorProxy *editor, std::string *name) const</argsstring>
+        <name>GetIntroducingListEditor</name>
+        <param>
+          <type><ref refid="class_sdf_list_editor_proxy" kindref="compound">SdfNameEditorProxy</ref> *</type>
+          <declname>editor</declname>
+        </param>
+        <param>
+          <type>std::string *</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Gets the list editor and authored string value that introduces this arc to the composition graph for variant arcs. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If this arc&apos;s type is variant, <computeroutput>editor</computeroutput> will be set to the name list editor of the introducing prim spec and <computeroutput>name</computeroutput> will be set to the authored value of the variant set name in the name list.</para>
+<para>This returns true if the <ref refid="class_usd_prim_composition_query_arc_1ad270f3101879c67dc6ee7e135bf057c7" kindref="member">arc type</ref> is <ref refid="usd_2pcp_2types_8h_1a4fd9e1415db6758f742df202058eeab9" kindref="member">variant</ref> and there are no errors; it returns false for all other arc types. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="207" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Arc classification</header>
+      <description><para>Queries about the arc that are useful for classifying the arc for filtering. </para>
+</description>
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1ad270f3101879c67dc6ee7e135bf057c7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="usd_2pcp_2types_8h_1a4fd9e1415db6758f742df202058eeab9" kindref="member">PcpArcType</ref></type>
+        <definition>USD_API PcpArcType GetArcType</definition>
+        <argsstring>() const</argsstring>
+        <name>GetArcType</name>
+        <briefdescription>
+<para>Returns the arc type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="219" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1a461461b2ba96fe92e23149086a37f2ce" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool IsImplicit</definition>
+        <argsstring>() const</argsstring>
+        <name>IsImplicit</name>
+        <briefdescription>
+<para>Returns whether this arc was implicitly added to this prim meaning it exists because of the introduction of another composition arc. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>These will typically exist due to inherits or specializes that are authored across a reference. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="226" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1a22c812e89da957f54871478bcd654c7d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool IsAncestral</definition>
+        <argsstring>() const</argsstring>
+        <name>IsAncestral</name>
+        <briefdescription>
+<para>Returns whether this arc is ancestral, i.e. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>it exists because it was composed in by a namespace parent&apos;s prim index. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="231" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1aaae8328e4412bc761d7786fc7155a969" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool HasSpecs</definition>
+        <argsstring>() const</argsstring>
+        <name>HasSpecs</name>
+        <briefdescription>
+<para>Returns whether the target node of this arc contributes any local spec opinions that are composed for the prim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="236" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1aad528d262445a268798f99c6b16e2156" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool IsIntroducedInRootLayerStack</definition>
+        <argsstring>() const</argsstring>
+        <name>IsIntroducedInRootLayerStack</name>
+        <briefdescription>
+<para>Returns whether the composition opinion that introduces this arc is authored in the root layer stack. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This returns true for any arcs where the composition opinion can be authored in the root layer stack. This is always true for the root arc. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="243" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1aa5082c54c5d65672cb4d41acb08734cd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool IsIntroducedInRootLayerPrimSpec</definition>
+        <argsstring>() const</argsstring>
+        <name>IsIntroducedInRootLayerPrimSpec</name>
+        <briefdescription>
+<para>Returns whether the composition opinion that introduces this arc is authored directly on the prim&apos;s prim spec within the root layer stack. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is always true for the root arc. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="249" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_usd_prim_composition_query_arc_1a40131229c4dc8ab59ec87e4313378860" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class UsdPrimCompositionQuery</definition>
+        <argsstring></argsstring>
+        <name>UsdPrimCompositionQuery</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="255" column="1" bodyfile="pxr/usd/usd/primCompositionQuery.h" bodystart="255" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_usd_prim_composition_query_arc_1a9e796c2728b038987d7224e5b3850c45" prot="private" static="no" mutable="no">
+        <type><ref refid="class_pcp_node_ref" kindref="compound">PcpNodeRef</ref></type>
+        <definition>PcpNodeRef _node</definition>
+        <argsstring></argsstring>
+        <name>_node</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="258" column="1" bodyfile="pxr/usd/usd/primCompositionQuery.h" bodystart="258" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_usd_prim_composition_query_arc_1a67cb395fa9737cdce4a1829bfd83219b" prot="private" static="no" mutable="no">
+        <type><ref refid="class_pcp_node_ref" kindref="compound">PcpNodeRef</ref></type>
+        <definition>PcpNodeRef _originalIntroducedNode</definition>
+        <argsstring></argsstring>
+        <name>_originalIntroducedNode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="259" column="1" bodyfile="pxr/usd/usd/primCompositionQuery.h" bodystart="259" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_usd_prim_composition_query_arc_1aae18a076d5ad6b0cb5f1ada9d0ce2707" prot="private" static="no" mutable="no">
+        <type><ref refid="class_pcp_node_ref" kindref="compound">PcpNodeRef</ref></type>
+        <definition>PcpNodeRef _introducingNode</definition>
+        <argsstring></argsstring>
+        <name>_introducingNode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="260" column="1" bodyfile="pxr/usd/usd/primCompositionQuery.h" bodystart="260" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_usd_prim_composition_query_arc_1a4ee21467776bc21a0001aff18d087632" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="class_pcp_prim_index" kindref="compound">PcpPrimIndex</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;PcpPrimIndex&gt; _primIndex</definition>
+        <argsstring></argsstring>
+        <name>_primIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="262" column="1" bodyfile="pxr/usd/usd/primCompositionQuery.h" bodystart="262" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1a85dbdc62e3f4b427a57b1223c95a63e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>~UsdPrimCompositionQueryArc</definition>
+        <argsstring>()=default</argsstring>
+        <name>~UsdPrimCompositionQueryArc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="56" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_usd_prim_composition_query_arc_1ace68a82e3b19d46c948f299ba18e806a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>UsdPrimCompositionQueryArc</definition>
+        <argsstring>(const PcpNodeRef &amp;node)</argsstring>
+        <name>UsdPrimCompositionQueryArc</name>
+        <param>
+          <type>const <ref refid="class_pcp_node_ref" kindref="compound">PcpNodeRef</ref> &amp;</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primCompositionQuery.h" line="256" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This represents a composition arc that is returned by a <ref refid="class_usd_prim_composition_query" kindref="compound">UsdPrimCompositionQuery</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>It contains the node in the composition graph that is the target of this arc as well as access to information about how the arc was introduced to the composition graph.</para>
+<sect1 id="class_usd_prim_composition_query_arc_1UsdQueryRootArc">
+<title>Root Arc</title>
+<para>If this arc&apos;s <ref refid="class_usd_prim_composition_query_arc_1ad270f3101879c67dc6ee7e135bf057c7" kindref="member">arc type</ref> is <ref refid="usd_2pcp_2types_8h_1a4fd9e1415db6758f742df202058eeab9" kindref="member">PcpArcTypeRoot</ref>, then this arc represents the root node of the graph. The composition graph&apos;s root arc is not an authored arc; it exists to target the root node of the graph which represents any local opinions that may be defined for the prim in the root layer stack. </para>
+</sect1>
+    </detaileddescription>
+    <location file="pxr/usd/usd/primCompositionQuery.h" line="54" column="1" bodyfile="pxr/usd/usd/primCompositionQuery.h" bodystart="53" bodyend="263"/>
+    <listofallmembers>
+      <member refid="class_usd_prim_composition_query_arc_1aae18a076d5ad6b0cb5f1ada9d0ce2707" prot="private" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>_introducingNode</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1a9e796c2728b038987d7224e5b3850c45" prot="private" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>_node</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1a67cb395fa9737cdce4a1829bfd83219b" prot="private" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>_originalIntroducedNode</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1a4ee21467776bc21a0001aff18d087632" prot="private" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>_primIndex</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1ad270f3101879c67dc6ee7e135bf057c7" prot="public" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>GetArcType</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1a0d2592f2cf712f212187449851c809de" prot="public" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>GetIntroducingLayer</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1a6afda45fcd6c2e61d81b669b3793ad70" prot="public" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>GetIntroducingListEditor</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1addfc45f5a9999a0288e22325807d3098" prot="public" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>GetIntroducingListEditor</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1aba500d430d8d9daa4e2c7b4e82de3e42" prot="public" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>GetIntroducingListEditor</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1a8c8a111123594f9802ec35f83bf0c33c" prot="public" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>GetIntroducingListEditor</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1a2200eec34086a6b300ebc6f9172d04a0" prot="public" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>GetIntroducingNode</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1a8384ceffb2b3f4393e8a7f4acaa0b779" prot="public" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>GetIntroducingPrimPath</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1aa8224f54d60d29c07cbb181348281651" prot="public" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>GetTargetLayer</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1ad567c54613b6ae7651ac82578d584923" prot="public" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>GetTargetNode</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1a887279efdbaef6d7104336965469221a" prot="public" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>GetTargetPrimPath</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1aaae8328e4412bc761d7786fc7155a969" prot="public" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>HasSpecs</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1a22c812e89da957f54871478bcd654c7d" prot="public" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>IsAncestral</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1a461461b2ba96fe92e23149086a37f2ce" prot="public" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>IsImplicit</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1aa5082c54c5d65672cb4d41acb08734cd" prot="public" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>IsIntroducedInRootLayerPrimSpec</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1aad528d262445a268798f99c6b16e2156" prot="public" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>IsIntroducedInRootLayerStack</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1ad54fb026b6077ce77e42f687e935f9be" prot="public" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>MakeResolveTargetStrongerThan</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1ad532d45d26b318c33557ed4521386424" prot="public" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>MakeResolveTargetUpTo</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1a40131229c4dc8ab59ec87e4313378860" prot="private" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>UsdPrimCompositionQuery</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1ace68a82e3b19d46c948f299ba18e806a" prot="private" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>UsdPrimCompositionQueryArc</name></member>
+      <member refid="class_usd_prim_composition_query_arc_1a85dbdc62e3f4b427a57b1223c95a63e0" prot="public" virt="non-virtual"><scope>UsdPrimCompositionQueryArc</scope><name>~UsdPrimCompositionQueryArc</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="daemon_8h" kind="file" language="C++">
+    <compoundname>daemon.h</compoundname>
+    <includes refid="pxr_8h" local="yes">pxr/pxr.h</includes>
+    <includes refid="base_2arch_2api_8h" local="yes">pxr/base/arch/api.h</includes>
+    <incdepgraph>
+      <node id="10432">
+        <label>pxr/base/arch/export.h</label>
+        <link refid="export_8h"/>
+        <childnode refid="10433" relation="include">
+        </childnode>
+      </node>
+      <node id="10429">
+        <label>pxr/base/arch/daemon.h</label>
+        <link refid="daemon_8h"/>
+        <childnode refid="10430" relation="include">
+        </childnode>
+        <childnode refid="10431" relation="include">
+        </childnode>
+      </node>
+      <node id="10430">
+        <label>pxr/pxr.h</label>
+        <link refid="pxr_8h"/>
+      </node>
+      <node id="10433">
+        <label>pxr/base/arch/defines.h</label>
+        <link refid="defines_8h_source"/>
+      </node>
+      <node id="10431">
+        <label>pxr/base/arch/api.h</label>
+        <link refid="base_2arch_2api_8h_source"/>
+        <childnode refid="10432" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__group__arch___multithreading_1ga391d9b859b6f855f79ef6e071f362067" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ARCH_API int</type>
+        <definition>ARCH_API int ArchCloseAllFiles</definition>
+        <argsstring>(int nExcept, const int *exceptFds)</argsstring>
+        <name>ArchCloseAllFiles</name>
+        <param>
+          <type>int</type>
+          <declname>nExcept</declname>
+        </param>
+        <param>
+          <type>const int *</type>
+          <declname>exceptFds</declname>
+        </param>
+        <briefdescription>
+<para>Close all file descriptors (with possible exceptions) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>ArchCloseAllFiles</computeroutput> will close all file descriptors open in the current process. Occasionally you&apos;d like to close all files except for some small subset (like 0, 1, and 2). The <computeroutput>nExcept</computeroutput> and <computeroutput>exceptFds</computeroutput> arguments can be used to provide the list of exceptions. <computeroutput>ArchDaemonizeProcess</computeroutput> uses this method to close all unwanted file descriptors in the daemon process.</para>
+<para><computeroutput>nExcept</computeroutput> should be the number of elements in the <computeroutput>exceptFds</computeroutput> array. Invalid file descriptors in exceptFds are ignored.</para>
+<para><simplesect kind="note"><para>Be <bold>very</bold> careful when using this routine. It is intended to be used after a <computeroutput>fork(2)</computeroutput> call to close <bold>all</bold> unwanted file descriptors. However, it does not flush stdio buffers, wait for processes opened with popen, shut down the X11 display connection, or anything. It just slams closed all the file descriptors. This is appropriate following a <computeroutput>fork(2)</computeroutput> call as all these file descriptors are duplicates of the ones in the parent process and shutting down the X11 display connection would mess up the parent&apos;s X11 display. But you shouldn&apos;t use <computeroutput>ArchCloseAllFiles</computeroutput> unless you know what you are doing.</para>
+</simplesect>
+<simplesect kind="return"><para>-1 on error and <computeroutput>errno</computeroutput> will be set to an appropriate value. Returns 0 on success. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/daemon.h" line="64" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Create background or daemon processes. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>2016<sp/>Pixar</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>&quot;Apache<sp/>License&quot;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>with<sp/>the<sp/>following<sp/>modification;<sp/>you<sp/>may<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>compliance<sp/>with<sp/>the<sp/>Apache<sp/>License<sp/>and<sp/>the<sp/>following<sp/>modification<sp/>to<sp/>it:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Section<sp/>6.<sp/>Trademarks.<sp/>is<sp/>deleted<sp/>and<sp/>replaced<sp/>with:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>6.<sp/>Trademarks.<sp/>This<sp/>License<sp/>does<sp/>not<sp/>grant<sp/>permission<sp/>to<sp/>use<sp/>the<sp/>trade</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>names,<sp/>trademarks,<sp/>service<sp/>marks,<sp/>or<sp/>product<sp/>names<sp/>of<sp/>the<sp/>Licensor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>and<sp/>its<sp/>affiliates,<sp/>except<sp/>as<sp/>required<sp/>to<sp/>comply<sp/>with<sp/>Section<sp/>4(c)<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>the<sp/>License<sp/>and<sp/>to<sp/>reproduce<sp/>the<sp/>content<sp/>of<sp/>the<sp/>NOTICE<sp/>file.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>Apache<sp/>License<sp/>at</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>http://www.apache.org/licenses/LICENSE-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>distributed<sp/>under<sp/>the<sp/>Apache<sp/>License<sp/>with<sp/>the<sp/>above<sp/>modification<sp/>is</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>distributed<sp/>on<sp/>an<sp/>&quot;AS<sp/>IS&quot;<sp/>BASIS,<sp/>WITHOUT<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.<sp/>See<sp/>the<sp/>Apache<sp/>License<sp/>for<sp/>the<sp/>specific</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>language<sp/>governing<sp/>permissions<sp/>and<sp/>limitations<sp/>under<sp/>the<sp/>Apache<sp/>License.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>PXR_BASE_ARCH_DAEMON_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PXR_BASE_ARCH_DAEMON_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pxr_8h" kindref="compound">pxr/pxr.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;pxr/base/arch/api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">PXR_NAMESPACE_OPEN_SCOPE</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal">ARCH_API<sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__group__arch___multithreading_1ga391d9b859b6f855f79ef6e071f362067" kindref="member">ArchCloseAllFiles</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nExcept,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>exceptFds);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal">PXR_NAMESPACE_CLOSE_SCOPE</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>PXR_BASE_ARCH_DAEMON_H<sp/></highlight></codeline>
+    </programlisting>
+    <location file="pxr/base/arch/daemon.h"/>
+  </compounddef>
+</doxygen>

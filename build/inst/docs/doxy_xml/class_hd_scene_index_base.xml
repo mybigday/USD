@@ -1,0 +1,770 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_scene_index_base" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>HdSceneIndexBase</compoundname>
+    <basecompoundref refid="class_tf_ref_base" prot="public" virt="non-virtual">TfRefBase</basecompoundref>
+    <basecompoundref refid="class_tf_weak_base" prot="public" virt="non-virtual">TfWeakBase</basecompoundref>
+    <derivedcompoundref refid="class_hd_filtering_scene_index_base" prot="public" virt="non-virtual">HdFilteringSceneIndexBase</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_retained_scene_index" prot="public" virt="non-virtual">HdRetainedSceneIndex</derivedcompoundref>
+    <derivedcompoundref refid="class_usd_imaging_stage_scene_index" prot="public" virt="non-virtual">UsdImagingStageSceneIndex</derivedcompoundref>
+    <includes refid="scene_index_8h" local="no">sceneIndex.h</includes>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_hd_scene_index_base_1a3e20a2cd23734fb1503042ea6537c813" prot="private" static="no">
+        <type>std::vector&lt; HdSceneIndexObserverPtr &gt;</type>
+        <definition>using _Observers =  std::vector&lt;HdSceneIndexObserverPtr&gt;</definition>
+        <argsstring></argsstring>
+        <name>_Observers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="222" column="1" bodyfile="pxr/imaging/hd/sceneIndex.h" bodystart="222" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hd_scene_index_base_1a1b249f6d5d8e1df887681f84e6efdf33" prot="private" static="no">
+        <type><ref refid="class_tf_dense_hash_set" kindref="compound">TfDenseHashSet</ref>&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, <ref refid="class_tf_hash" kindref="compound">TfHash</ref>, std::equal_to&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref> &gt;, 8 &gt;</type>
+        <definition>using _TagSet =  TfDenseHashSet&lt;TfToken, TfHash, std::equal_to&lt;TfToken&gt;, 8&gt;</definition>
+        <argsstring></argsstring>
+        <name>_TagSet</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="235" column="1" bodyfile="pxr/imaging/hd/sceneIndex.h" bodystart="235" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_scene_index_base_1abc9b7709983431431290438cd7981ef6" prot="private" static="no" mutable="no">
+        <type>_Observers</type>
+        <definition>_Observers _observers</definition>
+        <argsstring></argsstring>
+        <name>_observers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="223" column="1" bodyfile="pxr/imaging/hd/sceneIndex.h" bodystart="223" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_scene_index_base_1afb3c6a5ddd921d4207f1aed1cb4a14db" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int _notifyDepth</definition>
+        <argsstring></argsstring>
+        <name>_notifyDepth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="226" column="1" bodyfile="pxr/imaging/hd/sceneIndex.h" bodystart="226" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_scene_index_base_1a1b400e012f374800c613c964d7b15e6f" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _shouldRemoveExpiredObservers</definition>
+        <argsstring></argsstring>
+        <name>_shouldRemoveExpiredObservers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="229" column="1" bodyfile="pxr/imaging/hd/sceneIndex.h" bodystart="229" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_scene_index_base_1a7ad773cc4d37c9cbab0462f727cae0a7" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string _displayName</definition>
+        <argsstring></argsstring>
+        <name>_displayName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="232" column="1" bodyfile="pxr/imaging/hd/sceneIndex.h" bodystart="232" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_scene_index_base_1a1e20f074b3ea36b71c1fb6cb70debf74" prot="private" static="no" mutable="no">
+        <type><ref refid="class_tf_dense_hash_set" kindref="compound">_TagSet</ref></type>
+        <definition>_TagSet _tags</definition>
+        <argsstring></argsstring>
+        <name>_tags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="236" column="1" bodyfile="pxr/imaging/hd/sceneIndex.h" bodystart="236" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_scene_index_base_1a2450ffd6e3314b82b50c8b5090dfdf4c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API HdSceneIndexBase</definition>
+        <argsstring>()</argsstring>
+        <name>HdSceneIndexBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="68" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_base_1a28d69ae317c87d23851c198c0ccbf0d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API ~HdSceneIndexBase</definition>
+        <argsstring>() override</argsstring>
+        <name>~HdSceneIndexBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="71" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_base_1a3e9408d451e386dae6530ebb7f171fa6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void AddObserver</definition>
+        <argsstring>(const HdSceneIndexObserverPtr &amp;observer)</argsstring>
+        <name>AddObserver</name>
+        <param>
+          <type>const HdSceneIndexObserverPtr &amp;</type>
+          <declname>observer</declname>
+        </param>
+        <briefdescription>
+<para>Adds an observer to this scene index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The given observer will be sent notices for prims added, removed, or dirtied after it is added as an observer. It will not be sent notices for prims already in the scene index; the calling code is responsible for updating observer state if the scene index has already been populated. This function is not threadsafe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="84" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_base_1a3483e1a165f156162974f44c4375e833" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void RemoveObserver</definition>
+        <argsstring>(const HdSceneIndexObserverPtr &amp;observer)</argsstring>
+        <name>RemoveObserver</name>
+        <param>
+          <type>const HdSceneIndexObserverPtr &amp;</type>
+          <declname>observer</declname>
+        </param>
+        <briefdescription>
+<para>Removes an observer from this scene index; the given observer will no longer be forwarded notices. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that the observer won&apos;t get any notices as a result of being detached from this scene index. If <computeroutput>observer</computeroutput> is not registered on this scene index, this call does nothing. This function is not threadsafe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="92" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_base_1abd7fb68e635586e7cabb74b1dd0ddc0e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="struct_hd_scene_index_prim" kindref="compound">HdSceneIndexPrim</ref></type>
+        <definition>virtual HdSceneIndexPrim GetPrim</definition>
+        <argsstring>(const SdfPath &amp;primPath) const =0</argsstring>
+        <name>GetPrim</name>
+        <reimplementedby refid="class_hd_material_filtering_scene_index_base_1ac9a18e021999e6f634359aa413560d52">GetPrim</reimplementedby>
+        <reimplementedby refid="class_usd_imaging_render_settings_flattening_scene_index_1a4838527885ff92539845ba52882d2a56">GetPrim</reimplementedby>
+        <reimplementedby refid="class_hdsi_nurbs_approximating_scene_index_1a780cc0202dca9d47cdf048d6f8117a5a">GetPrim</reimplementedby>
+        <reimplementedby refid="class_hdsi_material_binding_resolving_scene_index_1a780cc0202dca9d47cdf048d6f8117a5a">GetPrim</reimplementedby>
+        <reimplementedby refid="class_usd_imaging_unloaded_draw_mode_scene_index_1a4838527885ff92539845ba52882d2a56">GetPrim</reimplementedby>
+        <reimplementedby refid="class_usd_imaging_root_overrides_scene_index_1a4838527885ff92539845ba52882d2a56">GetPrim</reimplementedby>
+        <reimplementedby refid="class_hd_prefixing_scene_index_1a39f98bdd08c514ee46bcd09e0b54867c">GetPrim</reimplementedby>
+        <reimplementedby refid="class_usd_imaging_selection_scene_index_1a4838527885ff92539845ba52882d2a56">GetPrim</reimplementedby>
+        <reimplementedby refid="class_hdsi_legacy_display_style_override_scene_index_1a780cc0202dca9d47cdf048d6f8117a5a">GetPrim</reimplementedby>
+        <reimplementedby refid="class_hdsi_material_primvar_transfer_scene_index_1a780cc0202dca9d47cdf048d6f8117a5a">GetPrim</reimplementedby>
+        <reimplementedby refid="class_hdsi_implicit_surface_scene_index_1a780cc0202dca9d47cdf048d6f8117a5a">GetPrim</reimplementedby>
+        <reimplementedby refid="class_hd_si_ext_computation_primvar_pruning_scene_index_1a82836bbef9c21f1f5f00aed3416e5b36">GetPrim</reimplementedby>
+        <reimplementedby refid="class_usd_imaging_rerooting_scene_index_1a4838527885ff92539845ba52882d2a56">GetPrim</reimplementedby>
+        <reimplementedby refid="class_hdsi_pinned_curve_expanding_scene_index_1a82836bbef9c21f1f5f00aed3416e5b36">GetPrim</reimplementedby>
+        <reimplementedby refid="class_hdsi_scene_globals_scene_index_1a82836bbef9c21f1f5f00aed3416e5b36">GetPrim</reimplementedby>
+        <reimplementedby refid="class_usd_imaging_draw_mode_scene_index_1a4838527885ff92539845ba52882d2a56">GetPrim</reimplementedby>
+        <reimplementedby refid="class_hdsi_render_settings_filtering_scene_index_1a780cc0202dca9d47cdf048d6f8117a5a">GetPrim</reimplementedby>
+        <reimplementedby refid="class_hd_merging_scene_index_1a39f98bdd08c514ee46bcd09e0b54867c">GetPrim</reimplementedby>
+        <reimplementedby refid="class_usd_imaging_extent_resolving_scene_index_1a4838527885ff92539845ba52882d2a56">GetPrim</reimplementedby>
+        <reimplementedby refid="class_hdsi_prim_type_pruning_scene_index_1a780cc0202dca9d47cdf048d6f8117a5a">GetPrim</reimplementedby>
+        <reimplementedby refid="class_hd_flattening_scene_index_1a39f98bdd08c514ee46bcd09e0b54867c">GetPrim</reimplementedby>
+        <reimplementedby refid="class_hd_gp_generative_procedural_resolving_scene_index_1aa14502e1eea4545aae3d838592b2a07c">GetPrim</reimplementedby>
+        <reimplementedby refid="class_hd_retained_scene_index_1a39f98bdd08c514ee46bcd09e0b54867c">GetPrim</reimplementedby>
+        <reimplementedby refid="class_hdsi_coord_sys_prim_scene_index_1a780cc0202dca9d47cdf048d6f8117a5a">GetPrim</reimplementedby>
+        <reimplementedby refid="class_hdsi_prim_type_notice_batching_scene_index_1a780cc0202dca9d47cdf048d6f8117a5a">GetPrim</reimplementedby>
+        <reimplementedby refid="class_usd_imaging_ni_prototype_propagating_scene_index_1a4838527885ff92539845ba52882d2a56">GetPrim</reimplementedby>
+        <reimplementedby refid="class_usd_imaging_pi_prototype_propagating_scene_index_1a4838527885ff92539845ba52882d2a56">GetPrim</reimplementedby>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>primPath</declname>
+        </param>
+        <briefdescription>
+<para>Returns a pair of (prim type, datasource) for the object at <computeroutput>primPath</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no such object exists, the type will be the empty token and the datasource will be null. This function is expected to be threadsafe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="102" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_base_1a15f110d26e84bc60a48a201f8c8315c2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>SdfPathVector</type>
+        <definition>virtual SdfPathVector GetChildPrimPaths</definition>
+        <argsstring>(const SdfPath &amp;primPath) const =0</argsstring>
+        <name>GetChildPrimPaths</name>
+        <reimplementedby refid="class_hd_material_filtering_scene_index_base_1aa7dd77cf92f6d1bae10170626d6a3dc2">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_usd_imaging_render_settings_flattening_scene_index_1a33d8098e368b10320813798c8beda58e">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_hdsi_nurbs_approximating_scene_index_1ad4c5ffbe67dde0445c711ed2caa0dd2e">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_hdsi_material_binding_resolving_scene_index_1ad4c5ffbe67dde0445c711ed2caa0dd2e">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_usd_imaging_unloaded_draw_mode_scene_index_1a33d8098e368b10320813798c8beda58e">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_usd_imaging_root_overrides_scene_index_1a33d8098e368b10320813798c8beda58e">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_hd_prefixing_scene_index_1ad80be717b3adf427003b98df701df4c4">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_usd_imaging_selection_scene_index_1a33d8098e368b10320813798c8beda58e">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_hdsi_legacy_display_style_override_scene_index_1ad4c5ffbe67dde0445c711ed2caa0dd2e">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_hdsi_implicit_surface_scene_index_1ad4c5ffbe67dde0445c711ed2caa0dd2e">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_hdsi_material_primvar_transfer_scene_index_1ad4c5ffbe67dde0445c711ed2caa0dd2e">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_hd_si_ext_computation_primvar_pruning_scene_index_1afe2854dc15ecb05ef3a2c1f3e10481eb">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_usd_imaging_rerooting_scene_index_1a33d8098e368b10320813798c8beda58e">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_hdsi_pinned_curve_expanding_scene_index_1afe2854dc15ecb05ef3a2c1f3e10481eb">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_usd_imaging_draw_mode_scene_index_1a33d8098e368b10320813798c8beda58e">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_hdsi_scene_globals_scene_index_1afe2854dc15ecb05ef3a2c1f3e10481eb">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_hdsi_render_settings_filtering_scene_index_1ad4c5ffbe67dde0445c711ed2caa0dd2e">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_hd_merging_scene_index_1ad80be717b3adf427003b98df701df4c4">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_usd_imaging_extent_resolving_scene_index_1a33d8098e368b10320813798c8beda58e">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_hdsi_prim_type_pruning_scene_index_1ad4c5ffbe67dde0445c711ed2caa0dd2e">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_hd_flattening_scene_index_1ad80be717b3adf427003b98df701df4c4">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_hd_gp_generative_procedural_resolving_scene_index_1ad9b792c12a79af5716e355e2a85b3feb">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_hd_retained_scene_index_1ad80be717b3adf427003b98df701df4c4">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_hdsi_coord_sys_prim_scene_index_1ad4c5ffbe67dde0445c711ed2caa0dd2e">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_hdsi_prim_type_notice_batching_scene_index_1ad4c5ffbe67dde0445c711ed2caa0dd2e">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_usd_imaging_ni_prototype_propagating_scene_index_1a33d8098e368b10320813798c8beda58e">GetChildPrimPaths</reimplementedby>
+        <reimplementedby refid="class_usd_imaging_pi_prototype_propagating_scene_index_1a33d8098e368b10320813798c8beda58e">GetChildPrimPaths</reimplementedby>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>primPath</declname>
+        </param>
+        <briefdescription>
+<para>Returns the paths of all scene index prims located immediately below <computeroutput>primPath</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function can be used to traverse the scene by recursing from <computeroutput><ref refid="class_sdf_path_1a9e77b565c10268c2b55f92559f621606" kindref="member">SdfPath::AbsoluteRootPath()</ref></computeroutput>; such a traversal is expected to give the same set of prims as the flattening of the scene index&apos;s <computeroutput>PrimsAdded</computeroutput> and <computeroutput>PrimsRemoved</computeroutput> messages. This function is expected to be threadsafe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="110" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_base_1a00f5bb082b3df6056ae34e990c90b915" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>HdDataSourceBaseHandle</type>
+        <definition>HdDataSourceBaseHandle GetDataSource</definition>
+        <argsstring>(const SdfPath &amp;primPath, const HdDataSourceLocator &amp;locator) const</argsstring>
+        <name>GetDataSource</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>primPath</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_hd_data_source_locator" kindref="compound">HdDataSourceLocator</ref> &amp;</type>
+          <declname>locator</declname>
+        </param>
+        <briefdescription>
+<para>A convenience function: look up the object at <computeroutput>primPath</computeroutput>, and if successful return the datasource at <computeroutput>locator</computeroutput> within that prim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is equivalent to calling <computeroutput>GetPrim(primPath)</computeroutput>, and then calling <computeroutput><ref refid="class_hd_container_data_source_1a5ea374e59f93fea74e4b151e2effd4e1" kindref="member">HdContainerDataSource::Get</ref></computeroutput>(prim.dataSource, locator). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="116" column="1" bodyfile="pxr/imaging/hd/sceneIndex.h" bodystart="116" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_base_1a6427ae8edac920bdba22e03b2bd26b76" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API std::string</type>
+        <definition>HD_API std::string GetDisplayName</definition>
+        <argsstring>() const</argsstring>
+        <name>GetDisplayName</name>
+        <briefdescription>
+<para>Returns a value previously set by SetDisplayName. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no value (or an empty string) was last set, this returns a symbol-demangled version of the class type itself. This is in service of user interfaces with views of scene index chains or graphs. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="133" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_base_1ae0b32e5db6a18d55dcbb753e2159d472" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void SetDisplayName</definition>
+        <argsstring>(const std::string &amp;n)</argsstring>
+        <name>SetDisplayName</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Allows for scene index instances to be identified in a more contextually relevant way. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is in service of user interfaces with views of scene index chains or graphs. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="139" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_base_1a8646777300af4dabb1646cc413ba74c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void AddTag</definition>
+        <argsstring>(const TfToken &amp;tag)</argsstring>
+        <name>AddTag</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>tag</declname>
+        </param>
+        <briefdescription>
+<para>Adds a specified tag token to a scene index instance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is in service of user interfaces which want to filter views of a scene index chain or graph. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="145" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_base_1af5404412acb326a31b22ce693129e4f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void RemoveTag</definition>
+        <argsstring>(const TfToken &amp;tag)</argsstring>
+        <name>RemoveTag</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>tag</declname>
+        </param>
+        <briefdescription>
+<para>Removes a specified tag token to a scene index instance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is in service of user interfaces which want to filter views of a scene index chain or graph. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="151" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_base_1aca3881af587f5e1f09fb0549b48c7ed3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool HasTag</definition>
+        <argsstring>(const TfToken &amp;tag) const</argsstring>
+        <name>HasTag</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>tag</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if a specified tag token has been added to a scene index instance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is in service of user interfaces which want to filter views of a scene index chain or graph. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="157" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_base_1a901e14a5ed6b0b161c9ba7ca823900b2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref></type>
+        <definition>HD_API TfTokenVector GetTags</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTags</name>
+        <briefdescription>
+<para>Returns all tag tokens currently added to a scene index instance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is in service of user interfaces which want to filter views of a scene index chain or graph. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="163" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_hd_scene_index_base_1a566958f83fe2054d86628e4c4e2f841e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void _SendPrimsAdded</definition>
+        <argsstring>(const HdSceneIndexObserver::AddedPrimEntries &amp;entries)</argsstring>
+        <name>_SendPrimsAdded</name>
+        <param>
+          <type>const <ref refid="class_tf_small_vector" kindref="compound">HdSceneIndexObserver::AddedPrimEntries</ref> &amp;</type>
+          <declname>entries</declname>
+        </param>
+        <briefdescription>
+<para>Notify attached observers of prims added to the scene. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The set of scene prims compiled from added/removed notices should match the set from a traversal based on <computeroutput>GetChildPrimNames</computeroutput>. Each prim has a path and type. It&apos;s possible for <computeroutput>PrimsAdded</computeroutput> to be called for prims that already exist; in that case, observers should be sure to update the prim type, in case it changed, and resync the prim. This function is not threadsafe; some observers expect it to be called from a single thread. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="176" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_base_1a16e280a551530aaba14f7ce5df20389a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void _SendPrimsRemoved</definition>
+        <argsstring>(const HdSceneIndexObserver::RemovedPrimEntries &amp;entries)</argsstring>
+        <name>_SendPrimsRemoved</name>
+        <param>
+          <type>const <ref refid="class_tf_small_vector" kindref="compound">HdSceneIndexObserver::RemovedPrimEntries</ref> &amp;</type>
+          <declname>entries</declname>
+        </param>
+        <briefdescription>
+<para>Notify attached observers of prims removed from the scene. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that this message is considered hierarchical: if <computeroutput>/Path</computeroutput> is removed, <computeroutput>/Path/child</computeroutput> is considered removed as well. This function is not threadsafe; some observers expect it to be called from a single thread. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="184" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_base_1a9c1dac2d67ffd966dfbcd412a22c1179" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void _SendPrimsDirtied</definition>
+        <argsstring>(const HdSceneIndexObserver::DirtiedPrimEntries &amp;entries)</argsstring>
+        <name>_SendPrimsDirtied</name>
+        <param>
+          <type>const <ref refid="class_tf_small_vector" kindref="compound">HdSceneIndexObserver::DirtiedPrimEntries</ref> &amp;</type>
+          <declname>entries</declname>
+        </param>
+        <briefdescription>
+<para>Notify attached observers of datasource invalidations from the scene. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This message is not considered hierarchical on <computeroutput>primPath</computeroutput>; if <computeroutput>/Path</computeroutput> is dirtied, <computeroutput>/Path/child</computeroutput> is not necessarily dirtied. However, locators are considered hierarchical: if <computeroutput>primvars</computeroutput> is dirtied on a prim, <computeroutput>primvars/color</computeroutput> is considered dirtied as well. This function is not threadsafe; some observers expect it to be called from a single thread. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="195" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_base_1a3375e09c9ad141da11cebb7d3d7f23e3" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void _SendPrimsRenamed</definition>
+        <argsstring>(const HdSceneIndexObserver::RenamedPrimEntries &amp;entries)</argsstring>
+        <name>_SendPrimsRenamed</name>
+        <param>
+          <type>const <ref refid="class_tf_small_vector" kindref="compound">HdSceneIndexObserver::RenamedPrimEntries</ref> &amp;</type>
+          <declname>entries</declname>
+        </param>
+        <briefdescription>
+<para>Notify attached observers of prims (and their descendents) which have been renamed or reparented. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is not threadsafe; some observers expect it to be called from a single thread. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="204" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_base_1a4c16c67e47002938f665bbef4897e777" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool _IsObserved</definition>
+        <argsstring>() const</argsstring>
+        <name>_IsObserved</name>
+        <briefdescription>
+<para>Returns whether the scene index has any registered observers; this information can be used to skip work preparing notices when there are no observers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="212" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hd_scene_index_base_1a172c7ba0413e53de097c11c95cf0f190" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RemoveExpiredObservers</definition>
+        <argsstring>()</argsstring>
+        <name>_RemoveExpiredObservers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndex.h" line="215" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Abstract interface to scene data. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class can be queried for scene data directly, and it can also register observers to be notified about scene changes (see <ref refid="class_hd_scene_index_observer" kindref="compound">HdSceneIndexObserver</ref>). </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2777">
+        <label>UsdImagingSelectionSceneIndex</label>
+        <link refid="class_usd_imaging_selection_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2774">
+        <label>UsdImagingRenderSettingsFlatteningSceneIndex</label>
+        <link refid="class_usd_imaging_render_settings_flattening_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2755">
+        <label>HdSingleInputFilteringSceneIndexBase</label>
+        <link refid="class_hd_single_input_filtering_scene_index_base"/>
+        <childnode refid="2753" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2782">
+        <label>HdLegacyPrimSceneIndex</label>
+        <link refid="class_hd_legacy_prim_scene_index"/>
+        <childnode refid="2781" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2760">
+        <label>HdsiCoordSysPrimSceneIndex</label>
+        <link refid="class_hdsi_coord_sys_prim_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2770">
+        <label>HdsiRenderSettingsFilteringSceneIndex</label>
+        <link refid="class_hdsi_render_settings_filtering_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2778">
+        <label>UsdImagingUnloadedDrawModeSceneIndex</label>
+        <link refid="class_usd_imaging_unloaded_draw_mode_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2776">
+        <label>UsdImagingRootOverridesSceneIndex</label>
+        <link refid="class_usd_imaging_root_overrides_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2761">
+        <label>HdSiExtComputationPrimvarPruningSceneIndex</label>
+        <link refid="class_hd_si_ext_computation_primvar_pruning_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2752">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="2758">
+        <label>HdMaterialFilteringSceneIndexBase</label>
+        <link refid="class_hd_material_filtering_scene_index_base"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2772">
+        <label>UsdImagingDrawModeSceneIndex</label>
+        <link refid="class_usd_imaging_draw_mode_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2764">
+        <label>HdsiMaterialBindingResolvingSceneIndex</label>
+        <link refid="class_hdsi_material_binding_resolving_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2781">
+        <label>HdRetainedSceneIndex</label>
+        <link refid="class_hd_retained_scene_index"/>
+        <childnode refid="2750" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2754">
+        <label>HdMergingSceneIndex</label>
+        <link refid="class_hd_merging_scene_index"/>
+        <childnode refid="2753" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2771">
+        <label>HdsiSceneGlobalsSceneIndex</label>
+        <link refid="class_hdsi_scene_globals_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2773">
+        <label>UsdImagingExtentResolvingSceneIndex</label>
+        <link refid="class_usd_imaging_extent_resolving_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2762">
+        <label>HdsiImplicitSurfaceSceneIndex</label>
+        <link refid="class_hdsi_implicit_surface_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2763">
+        <label>HdsiLegacyDisplayStyleOverrideSceneIndex</label>
+        <link refid="class_hdsi_legacy_display_style_override_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2759">
+        <label>HdPrefixingSceneIndex</label>
+        <link refid="class_hd_prefixing_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2775">
+        <label>UsdImagingRerootingSceneIndex</label>
+        <link refid="class_usd_imaging_rerooting_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2768">
+        <label>HdsiPrimTypeNoticeBatchingSceneIndex</label>
+        <link refid="class_hdsi_prim_type_notice_batching_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2756">
+        <label>HdFlatteningSceneIndex</label>
+        <link refid="class_hd_flattening_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2766">
+        <label>HdsiNurbsApproximatingSceneIndex</label>
+        <link refid="class_hdsi_nurbs_approximating_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2767">
+        <label>HdsiPinnedCurveExpandingSceneIndex</label>
+        <link refid="class_hdsi_pinned_curve_expanding_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2753">
+        <label>HdFilteringSceneIndexBase</label>
+        <link refid="class_hd_filtering_scene_index_base"/>
+        <childnode refid="2750" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2757">
+        <label>HdGpGenerativeProceduralResolvingSceneIndex</label>
+        <link refid="class_hd_gp_generative_procedural_resolving_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2779">
+        <label>UsdImagingNiPrototypePropagatingSceneIndex</label>
+        <link refid="class_usd_imaging_ni_prototype_propagating_scene_index"/>
+        <childnode refid="2753" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2780">
+        <label>UsdImagingPiPrototypePropagatingSceneIndex</label>
+        <link refid="class_usd_imaging_pi_prototype_propagating_scene_index"/>
+        <childnode refid="2753" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2751">
+        <label>TfRefBase</label>
+        <link refid="class_tf_ref_base"/>
+      </node>
+      <node id="2750">
+        <label>HdSceneIndexBase</label>
+        <link refid="class_hd_scene_index_base"/>
+        <childnode refid="2751" relation="public-inheritance">
+        </childnode>
+        <childnode refid="2752" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2769">
+        <label>HdsiPrimTypePruningSceneIndex</label>
+        <link refid="class_hdsi_prim_type_pruning_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2765">
+        <label>HdsiMaterialPrimvarTransferSceneIndex</label>
+        <link refid="class_hdsi_material_primvar_transfer_scene_index"/>
+        <childnode refid="2755" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2785">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="2784">
+        <label>TfRefBase</label>
+        <link refid="class_tf_ref_base"/>
+      </node>
+      <node id="2783">
+        <label>HdSceneIndexBase</label>
+        <link refid="class_hd_scene_index_base"/>
+        <childnode refid="2784" relation="public-inheritance">
+        </childnode>
+        <childnode refid="2785" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/hd/sceneIndex.h" line="65" column="1" bodyfile="pxr/imaging/hd/sceneIndex.h" bodystart="64" bodyend="237"/>
+    <listofallmembers>
+      <member refid="class_tf_weak_base_1a01aa4c4b93df067f2ec9b9e5fa4c35b3" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>__GetTfWeakBase__</name></member>
+      <member refid="class_hd_scene_index_base_1a7ad773cc4d37c9cbab0462f727cae0a7" prot="private" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>_displayName</name></member>
+      <member refid="class_tf_weak_base_1a6a5533162e8efab1be47acd6ccd5254c" prot="protected" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>_HasRemnant</name></member>
+      <member refid="class_hd_scene_index_base_1a4c16c67e47002938f665bbef4897e777" prot="protected" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>_IsObserved</name></member>
+      <member refid="class_hd_scene_index_base_1afb3c6a5ddd921d4207f1aed1cb4a14db" prot="private" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>_notifyDepth</name></member>
+      <member refid="class_hd_scene_index_base_1a3e20a2cd23734fb1503042ea6537c813" prot="private" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>_Observers</name></member>
+      <member refid="class_hd_scene_index_base_1abc9b7709983431431290438cd7981ef6" prot="private" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>_observers</name></member>
+      <member refid="class_tf_weak_base_1a95139d2f4d04eb706664a4f47eb93918" prot="protected" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>_Register</name></member>
+      <member refid="class_tf_weak_base_1ac1312732482c8a286522f703f2cf90d1" prot="protected" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>_Register</name></member>
+      <member refid="class_hd_scene_index_base_1a172c7ba0413e53de097c11c95cf0f190" prot="private" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>_RemoveExpiredObservers</name></member>
+      <member refid="class_hd_scene_index_base_1a566958f83fe2054d86628e4c4e2f841e" prot="protected" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>_SendPrimsAdded</name></member>
+      <member refid="class_hd_scene_index_base_1a9c1dac2d67ffd966dfbcd412a22c1179" prot="protected" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>_SendPrimsDirtied</name></member>
+      <member refid="class_hd_scene_index_base_1a16e280a551530aaba14f7ce5df20389a" prot="protected" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>_SendPrimsRemoved</name></member>
+      <member refid="class_hd_scene_index_base_1a3375e09c9ad141da11cebb7d3d7f23e3" prot="protected" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>_SendPrimsRenamed</name></member>
+      <member refid="class_hd_scene_index_base_1a1b400e012f374800c613c964d7b15e6f" prot="private" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>_shouldRemoveExpiredObservers</name></member>
+      <member refid="class_hd_scene_index_base_1a1e20f074b3ea36b71c1fb6cb70debf74" prot="private" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>_tags</name></member>
+      <member refid="class_hd_scene_index_base_1a1b249f6d5d8e1df887681f84e6efdf33" prot="private" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>_TagSet</name></member>
+      <member refid="class_hd_scene_index_base_1a3e9408d451e386dae6530ebb7f171fa6" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>AddObserver</name></member>
+      <member refid="class_hd_scene_index_base_1a8646777300af4dabb1646cc413ba74c0" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>AddTag</name></member>
+      <member refid="class_tf_weak_base_1a16f1e27cc0c7c606ffb397b7d970ed10" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>EnableNotification2</name></member>
+      <member refid="class_hd_scene_index_base_1a15f110d26e84bc60a48a201f8c8315c2" prot="public" virt="pure-virtual"><scope>HdSceneIndexBase</scope><name>GetChildPrimPaths</name></member>
+      <member refid="class_tf_ref_base_1abcd501e4bb37d7a93faa4e625e96ecf7" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>GetCurrentCount</name></member>
+      <member refid="class_hd_scene_index_base_1a00f5bb082b3df6056ae34e990c90b915" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>GetDataSource</name></member>
+      <member refid="class_hd_scene_index_base_1a6427ae8edac920bdba22e03b2bd26b76" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>GetDisplayName</name></member>
+      <member refid="class_hd_scene_index_base_1abd7fb68e635586e7cabb74b1dd0ddc0e" prot="public" virt="pure-virtual"><scope>HdSceneIndexBase</scope><name>GetPrim</name></member>
+      <member refid="class_tf_ref_base_1abc1926aa1f9b1ad25c5c583b92bcf14b" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>GetRefCount</name></member>
+      <member refid="class_hd_scene_index_base_1a901e14a5ed6b0b161c9ba7ca823900b2" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>GetTags</name></member>
+      <member refid="class_tf_weak_base_1a3241c32a82fbed0716a77049f6134e1e" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>GetUniqueIdentifier</name></member>
+      <member refid="class_hd_scene_index_base_1aca3881af587f5e1f09fb0549b48c7ed3" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>HasTag</name></member>
+      <member refid="class_hd_scene_index_base_1a2450ffd6e3314b82b50c8b5090dfdf4c" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>HdSceneIndexBase</name></member>
+      <member refid="class_tf_ref_base_1aab8bc91cf9cff7c6e1da23dc59f5ad1f" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>IsUnique</name></member>
+      <member refid="class_tf_weak_base_1af890ac314073e903458bf6b2397566b5" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>operator=</name></member>
+      <member refid="class_hd_scene_index_base_1a3483e1a165f156162974f44c4375e833" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>RemoveObserver</name></member>
+      <member refid="class_hd_scene_index_base_1af5404412acb326a31b22ce693129e4f2" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>RemoveTag</name></member>
+      <member refid="class_hd_scene_index_base_1ae0b32e5db6a18d55dcbb753e2159d472" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>SetDisplayName</name></member>
+      <member refid="class_tf_ref_base_1a6ee7fb6df1df9be9afbda405643ecb6c" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>SetShouldInvokeUniqueChangedListener</name></member>
+      <member refid="class_tf_ref_base_1a33e6c8ffe0caf7dac94ba5c4a4485fbd" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>SetUniqueChangedListener</name></member>
+      <member refid="class_tf_ref_base_1aa2d330100c1dde0a28658bbd0bd7e7bd" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>TfRefBase</name></member>
+      <member refid="class_tf_weak_base_1a6e4abdd663654f8c8019702a464de8d6" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_weak_base_1affc4c00d0bbfdfe4f9e6a8b2e81be368" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_ref_base_1a86baed63f8017038997266bdd638f65e" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>UniqueChangedFuncPtr</name></member>
+      <member refid="class_hd_scene_index_base_1a28d69ae317c87d23851c198c0ccbf0d1" prot="public" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>~HdSceneIndexBase</name></member>
+      <member refid="class_tf_ref_base_1abc8b2a655b2693dacab986b70c30f28a" prot="protected" virt="virtual"><scope>HdSceneIndexBase</scope><name>~TfRefBase</name></member>
+      <member refid="class_tf_weak_base_1a778020f525b66def8a284c6f020592c2" prot="protected" virt="non-virtual"><scope>HdSceneIndexBase</scope><name>~TfWeakBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_st_sampler_object" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>HdStSamplerObject</compoundname>
+    <derivedcompoundref refid="class_hd_st_field_sampler_object" prot="public" virt="non-virtual">HdStFieldSamplerObject</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_st_ptex_sampler_object" prot="public" virt="non-virtual">HdStPtexSamplerObject</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_st_udim_sampler_object" prot="public" virt="non-virtual">HdStUdimSamplerObject</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_st_uv_sampler_object" prot="public" virt="non-virtual">HdStUvSamplerObject</derivedcompoundref>
+    <includes refid="sampler_object_8h" local="no">samplerObject.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_hd_st_sampler_object_1a054160753bd9857c421b50caeb36af03" prot="protected" static="no" mutable="no">
+        <type>HdSt_SamplerObjectRegistry *const</type>
+        <definition>HdSt_SamplerObjectRegistry* const _samplerObjectRegistry</definition>
+        <argsstring></argsstring>
+        <name>_samplerObjectRegistry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/samplerObject.h" line="75" column="1" bodyfile="pxr/imaging/hdSt/samplerObject.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_st_sampler_object_1ac1b445a5410a4c519b4c01132b314d2d" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type></type>
+        <definition>virtual ~HdStSamplerObject</definition>
+        <argsstring>()=0</argsstring>
+        <name>~HdStSamplerObject</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/samplerObject.h" line="68" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_hd_st_sampler_object_1a4bf6154ba2dd59bd3f7f3c7551c44ae7" prot="protected" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdStSamplerObject</definition>
+        <argsstring>(HdSt_SamplerObjectRegistry *samplerObjectRegistry)</argsstring>
+        <name>HdStSamplerObject</name>
+        <param>
+          <type>HdSt_SamplerObjectRegistry *</type>
+          <declname>samplerObjectRegistry</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/samplerObject.h" line="71" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_sampler_object_1a191cbdff485c80feeb0825317154413c" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hgi" kindref="compound">Hgi</ref> *</type>
+        <definition>Hgi* _GetHgi</definition>
+        <argsstring>() const</argsstring>
+        <name>_GetHgi</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/samplerObject.h" line="74" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A base class encapsulating a GPU sampler object. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The subclasses of <ref refid="class_hd_st_sampler_object" kindref="compound">HdStSamplerObject</ref> mirror the subclasses of <ref refid="class_hd_st_texture_object" kindref="compound">HdStTextureObject</ref> with the intention that they will be used in conjunction (e.g., the not yet existing <ref refid="class_hd_st_ptex_sampler_object" kindref="compound">HdStPtexSamplerObject</ref> will have two samplers and texture sampler handles for the texels and layout texture in a <ref refid="class_hd_st_ptex_texture_object" kindref="compound">HdStPtexTextureObject</ref>).</para>
+<para>The GPU resources is con-/destructed immediately in the c&apos;tor/d&apos;tor. By going through the HdSt_SamplerObjectRegistry, we can obtain a shared pointer that can safely be dropped in a different thread. The HdSt_SamplerObjectRegistry is also dispatching by texture type to construct the corresponding sampler type. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3313">
+        <label>HdStUvSamplerObject</label>
+        <link refid="class_hd_st_uv_sampler_object"/>
+        <childnode refid="3309" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3311">
+        <label>HdStPtexSamplerObject</label>
+        <link refid="class_hd_st_ptex_sampler_object"/>
+        <childnode refid="3309" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3312">
+        <label>HdStUdimSamplerObject</label>
+        <link refid="class_hd_st_udim_sampler_object"/>
+        <childnode refid="3309" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3310">
+        <label>HdStFieldSamplerObject</label>
+        <link refid="class_hd_st_field_sampler_object"/>
+        <childnode refid="3309" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3309">
+        <label>HdStSamplerObject</label>
+        <link refid="class_hd_st_sampler_object"/>
+      </node>
+    </inheritancegraph>
+    <location file="pxr/imaging/hdSt/samplerObject.h" line="66" column="1" bodyfile="pxr/imaging/hdSt/samplerObject.h" bodystart="65" bodyend="76"/>
+    <listofallmembers>
+      <member refid="class_hd_st_sampler_object_1a191cbdff485c80feeb0825317154413c" prot="protected" virt="non-virtual"><scope>HdStSamplerObject</scope><name>_GetHgi</name></member>
+      <member refid="class_hd_st_sampler_object_1a054160753bd9857c421b50caeb36af03" prot="protected" virt="non-virtual"><scope>HdStSamplerObject</scope><name>_samplerObjectRegistry</name></member>
+      <member refid="class_hd_st_sampler_object_1a4bf6154ba2dd59bd3f7f3c7551c44ae7" prot="protected" virt="non-virtual"><scope>HdStSamplerObject</scope><name>HdStSamplerObject</name></member>
+      <member refid="class_hd_st_sampler_object_1ac1b445a5410a4c519b4c01132b314d2d" prot="public" virt="pure-virtual"><scope>HdStSamplerObject</scope><name>~HdStSamplerObject</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

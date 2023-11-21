@@ -1,0 +1,323 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="_usd__page__dynamic_file_format" kind="page">
+    <compoundname>Usd_Page_DynamicFileFormat</compoundname>
+    <title>Dynamic File Formats</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="_usd__page__dynamic_file_format_1Usd_DynamicFileFormat_Overview">
+<title>Overview</title>
+<para>A dynamic file format is an <ref refid="class_sdf_file_format" kindref="compound">SdfFileFormat</ref> that allows the contents of its layers to be generated dynamically, when <ref refid="_usd__page__dynamic_file_format_1Usd_DynamicFileFormat_DynamicPayloads" kindref="member">included as a payload</ref>, within the context of the prim in which it is included. This feature relies on the fact that all layer file paths can optionally have file format arguments that are appended to the layer asset path and are passed to the file format when the layer is opened and read (see <ref refid="class_sdf_layer_1a0193260dcb2b4dec6be9d39e4daefea7" kindref="member">SdfLayer::GetFileFormatArguments</ref>, <ref refid="class_sdf_layer_1a945800f72e30b5b425b26a4ee6f46ffc" kindref="member">SdfLayer::CreateIdentifier</ref>, <ref refid="class_sdf_layer_1a3d1926f596211786a3f0b2b2a234257c" kindref="member">SdfLayer::SplitIdentifier</ref>). Any file format can use these arguments to guide how it will translate the contents of the referenced data file into a valid USD layer. What makes a <emphasis>dynamic</emphasis> file format unique is that it is able to <bold>compose values of prim fields or attribute defaults</bold> to generate the file format arguments within the context where the layer will be included. When the values of any of the composed fields or attribute defaults change, the prim automatically regenerates the file format arguments and creates new layer contents.</para>
+</sect1>
+<sect1 id="_usd__page__dynamic_file_format_1Usd_DynamicFileFormat_Creation">
+<title>Creating a Dynamic File Format</title>
+<para>To create a dynamic file format, we first create a plugin library that implements a new derived subclass of <ref refid="class_sdf_file_format" kindref="compound">SdfFileFormat</ref>, just like we would for any other custom file format, and add the type to the library&apos;s pluginInfo.json.</para>
+<para>For an example in this document, we&apos;ll start with a new file format, MyDynamicFileFormat:</para>
+<para><programlisting><codeline><highlight class="normal">class<sp/>MyDynamicFileFormat<sp/>:<sp/>public<sp/>SdfFileFormat</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Required<sp/>SdfFileFormat<sp/>overrides.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>CanRead(const<sp/>std::string<sp/>&amp;file)<sp/>const<sp/>override;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>Read(SdfLayer<sp/>*layer,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>std::string&amp;<sp/>resolvedPath,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bool<sp/>metadataOnly)<sp/>const<sp/>override;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">protected:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>SDF_FILE_FORMAT_FACTORY_ACCESS;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>virtual<sp/>~MyDynamicFileFormat();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>MyDynamicFileFormat()<sp/>:<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SdfFileFormat(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TfToken(&quot;MyDynamicFileFormat&quot;),<sp/>//<sp/>formatId</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TfToken(&quot;1.0&quot;),<sp/>//<sp/>versionString</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TfToken(&quot;usd&quot;),<sp/>//<sp/>target</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;mydynamicfile&quot;)<sp/>//<sp/>extension</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><programlisting><codeline><highlight class="normal">###<sp/>plugInfo.json</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;Plugins&quot;:<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Info&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Types&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;MyDynamicFileFormat&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;bases&quot;:<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;SdfFileFormat&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;displayName&quot;:<sp/>&quot;Dynamic<sp/>File<sp/>Format&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;extensions&quot;:<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;mydynamicfile&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;formatId&quot;:<sp/>&quot;MyDynamicFileFormat&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;primary&quot;:<sp/>true,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;target&quot;:<sp/>&quot;usd&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;LibraryPath&quot;:<sp/>&quot;@PLUG_INFO_LIBRARY_PATH@&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Name&quot;:<sp/>&quot;myDynamicFileFormat&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;ResourcePath&quot;:<sp/>&quot;@PLUG_INFO_RESOURCE_PATH@&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Root&quot;:<sp/>&quot;@PLUG_INFO_ROOT@&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Type&quot;:<sp/>&quot;library&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>An essential piece of implementing a dynamic file format, that will not be covered in depth here, is using file format arguments that can be appended to the layer&apos;s file path to generate or alter some portion of the contents of the layer when the file is read. This can be done by using the file format arguments in the implementation of the Read function or, in the case of a fully procedural layer, creating a custom subclass of <ref refid="class_sdf_abstract_data" kindref="compound">SdfAbstractData</ref> that utilizes the arguments. The file format arguments are also part of the identity of the layer, meaning layers opened with the same asset path but different arguments are opened as separate layers. Refer to the included <ref refid="_usd__page__dynamic_file_format_1Usd_DynamicFileFormat_Examples" kindref="member">examples</ref> for detailed methods of creating dynamic content.</para>
+<para>Assume that for this example we wrote the implementation of MyDynamicFileFormat::Read to use <ref refid="class_sdf_layer_1a0193260dcb2b4dec6be9d39e4daefea7" kindref="member">SdfLayer::GetFileFormatArguments</ref> to get the file format arguments from the asset path of the <computeroutput>layer</computeroutput> it is reading (these would be the same <computeroutput>args</computeroutput> that are passed to <ref refid="class_sdf_layer_1aa01062bf4dde3f28c1fc617a1acaf35e" kindref="member">SdfLayer::FindOrOpen</ref> when the layer is opened). Also assume our Read function uses the values of the arguments <emphasis>dynamicName</emphasis> and <emphasis>isPositive</emphasis> to alter the contents of the <computeroutput>layer</computeroutput>.</para>
+<para>Now to make this file format dynamic, we must also have this class derive from <ref refid="class_pcp_dynamic_file_format_interface" kindref="compound">PcpDynamicFileFormatInterface</ref> and implement ComposeFieldsForFileFormatArguments, and optionally implement CanFieldChangeAffectFileFormatArguments and/or CanAttributeDefaultValueChangeAffectFileFormatArguments.</para>
+<para><programlisting><codeline><highlight class="normal">class<sp/>MyDynamicFileFormat<sp/>:<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>public<sp/>SdfFileFormat,<sp/>public<sp/>PcpDynamicFileFormatInterface</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Required<sp/>PcpDynamicFileFormatInterface<sp/>overrides</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>ComposeFieldsForFileFormatArguments(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>std::string&amp;<sp/>assetPath,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>PcpDynamicFileFormatContext&amp;<sp/>context,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FileFormatArguments*<sp/>args,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VtValue<sp/>*dependencyContextData)<sp/>const<sp/>override;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Optional<sp/>overrides</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>CanFieldChangeAffectFileFormatArguments(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>TfToken&amp;<sp/>field,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>VtValue&amp;<sp/>oldValue,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>VtValue&amp;<sp/>newValue,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>VtValue<sp/>&amp;dependencyContextData)<sp/>const<sp/>override;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>CanAttributeDefaultValueChangeAffectFileFormatArguments(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>TfToken<sp/>&amp;attributeName,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>VtValue<sp/>&amp;oldValue,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>VtValue<sp/>&amp;newValue,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>VtValue<sp/>&amp;dependencyContextData)<sp/>const<sp/>override;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>The default implementation of CanFieldChangeAffectFileFormatArguments returns true, indicating that any value change for a passed in field will require file format arguments to be recomputed. Derived classes should override this function if there are scenarios where field value changes do not need to recompute arguments. This will reduce the number of unnecessary recompositions of dynamic payloads. See <ref refid="_usd__page__dynamic_file_format_1Usd_DynamicFileFormat_ChangeManagement" kindref="member">Dependencies and Change Management</ref> for an explanation of how this function is used and implemented.</para>
+<para>The default implementation of CanAttributeDefaultValueChangeAffectFileFormatArguments also returns true. This method is similar in concept to CanFieldChangeAffectFileFormatArguments, but used for situations where changes to an attribute&apos;s default value will require recomputing file format arguments. Derived classes should override this function if there are scenarios where attribute default changes do not need to recompute arguments.</para>
+<para>Now, because this file format implements <ref refid="class_pcp_dynamic_file_format_interface" kindref="compound">PcpDynamicFileFormatInterface</ref>, <ref refid="class_pcp_dynamic_file_format_interface_1a4af0bb04b1f5f6e5f708ee07892fb090" kindref="member">ComposeFieldsForFileFormatArguments</ref> will be called while composing the prim whenever a prim spec includes a payload to a file with the extension &quot;.mydynamicfile&quot;. This is called before the file is opened to generate additional file format arguments that will be added to the file asset path. The function can use the given <ref refid="class_pcp_dynamic_file_format_context" kindref="compound">PcpDynamicFileFormatContext</ref> to compose the value of the strongest opinion of a field or attribute default on the prim being indexed at the point in which the payload is being included. Currently the only metadata fields that are allowed to be evaluated by the context are</para>
+<para>defined plugin metadata fields, so we&apos;ll have to define the fields we plan to use in our plugInfo.json. This restriction may be lifted in the future to include builtin fields like <emphasis>variantSelection</emphasis> but for now those fields cannot be used. The context can also be used to evaluate attribute defaults, as described in <ref refid="_usd__page__dynamic_file_format_1Usd_DynamicFileFormat_Attributes" kindref="member">Using Attributes To Compute Arguments</ref>.</para>
+<para>So, in our example plugInfo.json, we&apos;ll also define some new SdfMetadata fields, <emphasis>dynamicName</emphasis> and <emphasis>dynamicNumber</emphasis> that we can use to compute file format arguments:</para>
+<para><programlisting><codeline><highlight class="normal">###<sp/>plugInfo.json</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;Plugins&quot;:<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Info&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;SdfMetadata&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;dynamicName&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;type&quot;:<sp/>&quot;string&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;default&quot;:<sp/>&quot;&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;displayGroup&quot;:<sp/>&quot;Core&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;appliesTo&quot;:<sp/>[&quot;prims&quot;],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;documentation:&quot;:<sp/>&quot;Example<sp/>custom<sp/>string<sp/>metadata.&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;dynamicNumber&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;type&quot;:<sp/>&quot;int&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;default&quot;:<sp/>1,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;displayGroup&quot;:<sp/>&quot;Core&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;appliesTo&quot;:<sp/>[&quot;prims&quot;],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;documentation:&quot;:<sp/>&quot;Example<sp/>custom<sp/>number<sp/>metadata&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>In our <ref refid="class_pcp_dynamic_file_format_interface_1a4af0bb04b1f5f6e5f708ee07892fb090" kindref="member">ComposeFieldsForFileFormatArguments</ref> implementation we&apos;ll use the <computeroutput>context</computeroutput> to compose the strongest value of the <emphasis>dynamicName</emphasis> and <emphasis>dynamicNumber</emphasis> metadata fields to generate file format arguments to add to <computeroutput>args:</computeroutput> </para>
+<para><programlisting><codeline><highlight class="normal">void<sp/>MyDynamicFileFormat::ComposeFieldsForFileFormatArguments(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>std::string&amp;<sp/>assetPath,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>PcpDynamicFileFormatContext&amp;<sp/>context,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>FileFormatArguments*<sp/>args,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>VtValue<sp/>*dependencyContextData)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>static<sp/>const<sp/>TfToken<sp/>dynamicNameToken(&quot;dynamicName&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>VtValue<sp/>dynamicNameValue;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(context.ComposeValue(dynamicNameToken,<sp/>&amp;dynamicNameValue))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*args)[dynamicNameToken]<sp/>=<sp/>TfStringify(dynamicNameValue);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>static<sp/>const<sp/>TfToken<sp/>dynamicNumberToken(&quot;dynamicNumber&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>static<sp/>const<sp/>TfToken<sp/>isPositiveToken(&quot;isPositive&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>VtValue<sp/>dynamicNumberValue;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(context.ComposeValue(dynamicNumberToken,<sp/>&amp;dynamicNumberValue))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(dynamicNumberValue.IsHolding&lt;int&gt;()<sp/>&amp;&amp;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dynamicNumberValue.UncheckedGet&lt;int&gt;()<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*args)[isPositiveToken]<sp/>=<sp/>&quot;true&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*args)[isPositiveToken]<sp/>=<sp/>&quot;false&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>For <emphasis>dynamicName</emphasis>, we add its computed string value into the <computeroutput>args</computeroutput> with the key <emphasis>dynamicName</emphasis>. However it&apos;s not necessary to always directly transpose field values into <computeroutput>args</computeroutput> using the field or attribute name as the key. For <emphasis>dynamicNumber</emphasis> we compute its composed value to check if it is a positive integer and write either &quot;true&quot; or &quot;false&quot; into <computeroutput>args</computeroutput> with the key <emphasis>isPositive</emphasis> instead.</para>
+<para>For an example implementation of ComposeFieldsForFileFormatArguments that composes attribute defaults for <emphasis>dynamicName</emphasis> and <emphasis>dynamicNumber</emphasis>, see <ref refid="_usd__page__dynamic_file_format_1Usd_DynamicFileFormat_Attributes" kindref="member">Using Attributes To Compute Arguments</ref>. Note that you should avoid composing both field values and attribute defaults for computing the same file format argument in your ComposeFieldsForFileFormatArguments implementation.</para>
+<para>With the plugin complete, here&apos;s how the dynamic file format would work in practice. Let&apos;s say we have the following usd file:</para>
+<para><programlisting><codeline><highlight class="normal">###<sp/>root.usd</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;Root&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>references<sp/>=<sp/>&lt;/Params&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>payload<sp/>=<sp/>@./dynamic.mydynamicfile@</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;Params&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>dynamicName<sp/>=<sp/>&quot;Foo&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>dynamicNumber<sp/>=<sp/>8</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>The prim <emphasis>Root</emphasis> has a reference to the <emphasis>Params</emphasis> prim which has value opinions for the plugin fields <emphasis>dynamicName</emphasis> and <emphasis>dynamicNumber</emphasis>. <emphasis>Root</emphasis> also has a payload to a file with the &quot;.mydynamicfile&quot; extension. When the prim index is computed for <emphasis>Root</emphasis>, and the indexer gets to composing the payload, it will see that file format is <emphasis>MyDynamicFileFormat</emphasis> and it will call the format&apos;s ComposeFieldsForFileFormatArguments function to produce the file format arguments. At this point in composition, the <computeroutput>context</computeroutput> includes the reference to <emphasis>Params</emphasis> and will get its values for <emphasis>dynamicName</emphasis> and <emphasis>dynamicNumber</emphasis> as those fields&apos; strongest opinions to produce the fileformat arguments: <itemizedlist>
+<listitem><para><emphasis>dynamicName</emphasis> = &quot;Foo&quot; </para>
+</listitem>
+<listitem><para><emphasis>isPositive</emphasis> = &quot;true&quot;</para>
+</listitem>
+</itemizedlist>
+These args are added to the asset path of the payload layer that will be read giving the resolved layer path: <linebreak/>
+<bold>dynamic.mydynamicfile:SDF_FORMAT_ARGS:dynamicName=Foo:isPositive=true</bold> </para>
+<para>As mentioned above MyDynamicFileFormat&apos;s Read function uses these arguments to generate the identity and contents of the layer. Now say we update root.usd and add the <emphasis>dynamicName</emphasis> field to <emphasis>Root</emphasis> with the value &quot;Bar&quot;:</para>
+<para><programlisting><codeline><highlight class="normal">###<sp/>root.usd</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;Root&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>dynamicName<sp/>=<sp/>&quot;Bar&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>references<sp/>=<sp/>&lt;/Params&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>payload<sp/>=<sp/>@./dynamic.mydynamicfile@</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;Params&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>dynamicName<sp/>=<sp/>&quot;Foo&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>dynamicNumber<sp/>=<sp/>8</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>When <emphasis>Root</emphasis> is prim composed again, the stongest opinion for <emphasis>dynamicName</emphasis>, in the <computeroutput>context</computeroutput> where payload is composed, will come from <emphasis>Root</emphasis> giving us the file format arguments:</para>
+<para><itemizedlist>
+<listitem><para><emphasis>dynamicName</emphasis> = &quot;Bar&quot; </para>
+</listitem>
+<listitem><para><emphasis>isPositive</emphasis> = &quot;true&quot;</para>
+</listitem>
+</itemizedlist>
+Note that the strongest opinion for <emphasis>dynamicNumber</emphasis> still comes from <emphasis>Params</emphasis>. The resolved payload layer path is now: <linebreak/>
+<bold>dynamic.mydynamicfile:SDF_FORMAT_ARGS:dynamicName=Bar:isPositive=true</bold> </para>
+<para>We have new layer with a different identity and contents from the same payload field without changing the payload declaration itself.</para>
+<sect2 id="_usd__page__dynamic_file_format_1Usd_DynamicFileFormat_Attributes">
+<title>Using Attributes To Compute Arguments</title>
+<para>Your dynamic file format plugin can also use uniform attribute defaults instead of metadata fields to compute file format arguments. Unlike metadata fields, these attributes do not need to be registered in your plugInfo.json. Only the default value of an attribute can be used and the attribute should be declared uniform in the USD data.</para>
+<para>If you wanted to modify the MyDynamicFileFormat plugin example described earlier to use attribute defaults instead of fields, you would change the implementation of <ref refid="class_pcp_dynamic_file_format_interface_1a4af0bb04b1f5f6e5f708ee07892fb090" kindref="member">ComposeFieldsForFileFormatArguments</ref> to use ComposeAttributeDefaultValue to compose the strongest <emphasis>dynamicName</emphasis> and <emphasis>dynamicNumber</emphasis> attribute defaults.</para>
+<para><programlisting><codeline><highlight class="normal">void<sp/>MyDynamicFileFormat::ComposeFieldsForFileFormatArguments(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>std::string&amp;<sp/>assetPath,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>PcpDynamicFileFormatContext&amp;<sp/>context,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>FileFormatArguments*<sp/>args,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>VtValue<sp/>*dependencyContextData)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>static<sp/>const<sp/>TfToken<sp/>dynamicNameToken(&quot;dynamicName&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>VtValue<sp/>dynamicNameValue;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(context.ComposeAttributeDefaultValue(dynamicNameToken,<sp/>&amp;dynamicNameValue))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*args)[dynamicNameToken]<sp/>=<sp/>TfStringify(dynamicNameValue);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>static<sp/>const<sp/>TfToken<sp/>dynamicNumberToken(&quot;dynamicNumber&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>static<sp/>const<sp/>TfToken<sp/>isPositiveToken(&quot;isPositive&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>VtValue<sp/>dynamicNumberValue;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(context.ComposeAttributeDefaultValue(dynamicNumberToken,<sp/>&amp;dynamicNumberValue))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(dynamicNumberValue.IsHolding&lt;int&gt;()<sp/>&amp;&amp;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dynamicNumberValue.UncheckedGet&lt;int&gt;()<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*args)[isPositiveToken]<sp/>=<sp/>&quot;true&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*args)[isPositiveToken]<sp/>=<sp/>&quot;false&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>In general, while USD supports composing both field values and attribute defaults in your ComposeFieldsForFileFormatArguments implementation, you should avoid using both field and attribute defaults in your plugin if possible.</para>
+<para>If you want to filter out attribute default changes that would not require recomputing the file format arguments, you can implement CanAttributeDefaultValueChangeAffectFileFormatArguments and add your logic for determining which default value changes require recomputing the appropriate argument.</para>
+<para>USD data that would use the uniform attribute defaults for this plugin would look like:</para>
+<para><programlisting><codeline><highlight class="normal">###<sp/>root.usd</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;Root&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>references<sp/>=<sp/>&lt;/Params&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>payload<sp/>=<sp/>@./dynamic.mydynamicfile@</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;Params&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uniform<sp/>string<sp/>dynamicName<sp/>=<sp/>&quot;Foo&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uniform<sp/>int<sp/>dynamicNumber<sp/>=<sp/>8</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="_usd__page__dynamic_file_format_1Usd_DynamicFileFormat_Examples">
+<title>Advanced Examples</title>
+<para>We include two examples of dynamic file format plugins in pxr/extras/usd/examples. One ot the major differences between these examples that&apos;s worth highlighting is how the scene description is represented. <ref refid="class_sdf_abstract_data" kindref="compound">SdfAbstractData</ref> is the base class for all scene description represented by a layer and we have a choice when writing a file format as to whether we want use the default <ref refid="class_sdf_data" kindref="compound">SdfData</ref> class for our scene description or if we want to write our own custom data representation. <itemizedlist>
+<listitem><para><bold>usdRecursivePayloadsExample</bold> - This example uses file format arguments to recursively generate prims with payloads targeting the same file but with a different set of arguments. It uses the default <ref refid="class_sdf_data" kindref="compound">SdfData</ref> representation provided by <ref refid="class_sdf_file_format_1a7e6fe1b90e69c2f271c631b2e0597b23" kindref="member">SdfFileFormat::InitData</ref>, just like the text based sdf and usda file formats, and creates prim specs in its Read function through the standard <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref> API. The generated scene description is pretty simple and minimal so it doesn&apos;t warrant the complexity of a custom <ref refid="class_sdf_abstract_data" kindref="compound">SdfAbstractData</ref> type. </para>
+</listitem>
+<listitem><para><bold>usdDancingCubesExample</bold> - This example generates a cube made up of animated cubes backed by a completely procedural scene description representation. It implements its own <ref refid="class_sdf_abstract_data" kindref="compound">SdfAbstractData</ref> subclass that is returned by overriding <ref refid="class_sdf_file_format_1a7e6fe1b90e69c2f271c631b2e0597b23" kindref="member">SdfFileFormat::InitData</ref>. The file format generates a small set of parameters from the file format arguments and provides them to the data implementation of the layer. The <ref refid="class_sdf_abstract_data" kindref="compound">SdfAbstractData</ref> subclass uses these parameters to cache some information about the scene and provides the API that generates spec data on the fly when requested. This example greatly benefits from a customized <ref refid="class_sdf_abstract_data" kindref="compound">SdfAbstractData</ref> implementation as it avoids having to precompute every time sample for every prim when the layer is opened.</para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+<sect1 id="_usd__page__dynamic_file_format_1Usd_DynamicFileFormat_DynamicPayloads">
+<title>Dynamic Payloads</title>
+<para>As mentioned above, the composition of prim fields or attribute defaults into file format arguments only occurs when a dynamic asset is included as a payload. We refer to such a payload as a <emphasis>dynamic payload</emphasis>. This behavior is intentionally exclusive to payloads, as opposed to references, for a couple of reasons: <itemizedlist>
+<listitem><para>Payloads are the weakest composition arcs that read in layer files. The effect of this is that when prim indexing encounters a dynamic payload, the context used for composing fields will have access to all local or referenced opinions on those fields, giving the most complete context with which to process the dynamic file&apos;s arguments. </para>
+</listitem>
+<listitem><para>Payloads can be loaded and unloaded providing a convenient way to recompute dynamic layers whose contents depend on factors other than just file format arguments alone.</para>
+</listitem>
+</itemizedlist>
+A prim index can have multiple payload arcs with any number of them being dynamic. Opinions from stronger payloads are included in the context for weaker dynamic payloads when computing file format arguments.</para>
+</sect1>
+<sect1 id="_usd__page__dynamic_file_format_1Usd_DynamicFileFormat_ChangeManagement">
+<title>Dependencies and Change Management</title>
+<para>When the <ref refid="class_pcp_dynamic_file_format_context" kindref="compound">PcpDynamicFileFormatContext</ref> is used to compute a field value in <ref refid="class_pcp_dynamic_file_format_interface_1a4af0bb04b1f5f6e5f708ee07892fb090" kindref="member">ComposeFieldsForFileFormatArguments</ref> using <ref refid="class_pcp_dynamic_file_format_context_1a7c6232095b5a3cc0761f1ae751d12254" kindref="member">ComposeValue</ref> (or <ref refid="class_pcp_dynamic_file_format_context_1ab5c80398ec5a7a298b088d22fc2216d5" kindref="member">ComposeValueStack</ref>) during prim indexing, a dependency is automatically registered for that payload arc on that field value. This means that change management in Pcp knows which fields were used to generate file format arguments for the payload&apos;s layer and therefore may need to invalidate the prim index that includes the payload if any of those fields change. It is recommended when writing an implementation of <ref refid="class_pcp_dynamic_file_format_interface_1a4af0bb04b1f5f6e5f708ee07892fb090" kindref="member">ComposeFieldsForFileFormatArguments</ref> to only call ComposeValue on fields as needed if the use of any fields are conditional as it prevents unnecessary change dependencies on unused fields. The same guidance applies when using <ref refid="class_pcp_dynamic_file_format_context_1abaf3b506c81e8e00e1f4c2018283bebb" kindref="member">ComposeAttributeDefaultValue</ref> in your ComposeFieldsForFileFormatArguments to compute attribute defaults.</para>
+<para>Since prim indexes that include dynamic payloads automatically have a dependency on changes to the computed fields, the other interface function <ref refid="class_pcp_dynamic_file_format_interface_1a1a8d904695c0922ff74507d0afd1df8f" kindref="member">CanFieldChangeAffectFileFormatArguments</ref> exists to filter out field changes that we know will not alter the file format arguments. Looking at <emphasis>MyDynamicFileFormat</emphasis> still, the <emphasis>dynamicNumber</emphasis> field holds an integer value that is used to populate the boolean <emphasis>isPositive</emphasis> argument. There are multiple values of <emphasis>dynamicNumber</emphasis> that produce the same arguments so we can write <ref refid="class_pcp_dynamic_file_format_interface_1a1a8d904695c0922ff74507d0afd1df8f" kindref="member">CanFieldChangeAffectFileFormatArguments</ref> to take advantage of this:</para>
+<para><programlisting><codeline><highlight class="normal">bool<sp/>MyDynamicFileFormat::CanFieldChangeAffectFileFormatArguments(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>TfToken&amp;<sp/>field,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>VtValue&amp;<sp/>oldValue,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>VtValue&amp;<sp/>newValue,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/>VtValue<sp/>&amp;dependencyContextData)<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>static<sp/>const<sp/>TfToken<sp/>dynamicNumberToken(&quot;dynamicNumber&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(field<sp/>==<sp/>dynamicNumberToken)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(oldValue.IsEmpty()<sp/>!=<sp/>newValue.IsEmpty())<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>true;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>bool<sp/>oldIsPositive<sp/>=<sp/>(oldValue.IsHolding&lt;int&gt;()<sp/>&amp;&amp;<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oldValue.UncheckedGet&lt;int&gt;()<sp/>&gt;<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>bool<sp/>newIsPositive<sp/>=<sp/>(newValue.IsHolding&lt;int&gt;()<sp/>&amp;&amp;<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newValue.UncheckedGet&lt;int&gt;()<sp/>&gt;<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>oldIsPositive<sp/>!=<sp/>newIsPositive;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>true;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>Here if the field is <emphasis>dynamicNumber</emphasis> we check if the old and new values would produce the same isPositive argument, and return false if they would, thus telling Pcp change management that we don&apos;t need to invalidate the prim index that includes the payload.</para>
+<para>There is one more parameter <computeroutput>dependencyContextData</computeroutput> that exists in both <ref refid="class_pcp_dynamic_file_format_interface_1a4af0bb04b1f5f6e5f708ee07892fb090" kindref="member">ComposeFieldsForFileFormatArguments</ref> and <ref refid="class_pcp_dynamic_file_format_interface_1a1a8d904695c0922ff74507d0afd1df8f" kindref="member">CanFieldChangeAffectFileFormatArguments</ref>. This is an arbitrary typed <ref refid="class_vt_value" kindref="compound">VtValue</ref> that can be populated in <ref refid="class_pcp_dynamic_file_format_interface_1a4af0bb04b1f5f6e5f708ee07892fb090" kindref="member">ComposeFieldsForFileFormatArguments</ref> if there&apos;s specific information that would be helpful in determining if a field value change is relevant. The <computeroutput>dependencyContextData</computeroutput> is stored and passed back to <ref refid="class_pcp_dynamic_file_format_interface_1a1a8d904695c0922ff74507d0afd1df8f" kindref="member">CanFieldChangeAffectFileFormatArguments</ref> when processing a field change within the same prim index context. See <ref refid="_usd__page__dynamic_file_format_1Usd_DynamicFileFormat_Examples" kindref="member">usdRecursivePayloadsExample</ref> for a very basic example of how this can be used. </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

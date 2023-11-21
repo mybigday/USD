@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_tf_ref_count" kind="class" language="C++" prot="public">
+    <compoundname>TfRefCount</compoundname>
+    <includes refid="ref_count_8h" local="no">refCount.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_tf_ref_count_1a8b8f50936c6a26e816ff097447dae425" prot="private" static="no" mutable="yes">
+        <type>std::atomic&lt; int &gt;</type>
+        <definition>std::atomic&lt;int&gt; _counter</definition>
+        <argsstring></argsstring>
+        <name>_counter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refCount.h" line="105" column="1" bodyfile="pxr/base/tf/refCount.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_tf_ref_count_1a4dde82568da13e4198f0c1d6289a766a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>friend class</type>
+        <definition>friend class TfRefPtr</definition>
+        <argsstring></argsstring>
+        <name>TfRefPtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refCount.h" line="106" column="1" bodyfile="pxr/base/tf/refCount.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_tf_ref_count_1aa04bc421b0fab1d61989f294b9151896" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfRefCount</definition>
+        <argsstring>()</argsstring>
+        <name>TfRefCount</name>
+        <briefdescription>
+<para>Initialize counter to one. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refCount.h" line="74" column="1" bodyfile="pxr/base/tf/refCount.h" bodystart="74" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_count_1aeef191a55c41c05c0e1415d8976ba7c8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfRefCount</definition>
+        <argsstring>(const TfRefCount &amp;)</argsstring>
+        <name>TfRefCount</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_count" kindref="compound">TfRefCount</ref> &amp;</type>
+        </param>
+        <briefdescription>
+<para>Initialize counter to one. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Even if you copy from a reference counter, you want the newly constructed counter to start at one. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refCount.h" line="81" column="1" bodyfile="pxr/base/tf/refCount.h" bodystart="81" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_count_1a68de63958b6f45d6f20db9e5dadbd0d9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Get</definition>
+        <argsstring>() const</argsstring>
+        <name>Get</name>
+        <briefdescription>
+<para>Returns counter&apos;s value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refCount.h" line="85" column="1" bodyfile="pxr/base/tf/refCount.h" bodystart="85" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_count_1a40fe9321ce1941e22a7cdcb2ad4991eb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_tf_ref_count" kindref="compound">TfRefCount</ref> &amp;</type>
+        <definition>const TfRefCount&amp; operator=</definition>
+        <argsstring>(const TfRefCount &amp;) const</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_count" kindref="compound">TfRefCount</ref> &amp;</type>
+        </param>
+        <briefdescription>
+<para>Assignment to a reference counter has no effect. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refCount.h" line="90" column="1" bodyfile="pxr/base/tf/refCount.h" bodystart="90" bodyend="92"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_tf_ref_count_1adef4f8841595c9543c35f06e04f6e741" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _DecrementAndTestIfZero</definition>
+        <argsstring>() const</argsstring>
+        <name>_DecrementAndTestIfZero</name>
+        <briefdescription>
+<para>Decrements counter by <computeroutput>1</computeroutput>, returning true if the result is 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refCount.h" line="95" column="1" bodyfile="pxr/base/tf/refCount.h" bodystart="95" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_count_1a979189d0a37d8116b12f0d5add9a7f11" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int _FetchAndAdd</definition>
+        <argsstring>(int amount) const</argsstring>
+        <name>_FetchAndAdd</name>
+        <param>
+          <type>int</type>
+          <declname>amount</declname>
+        </param>
+        <briefdescription>
+<para>Adds <computeroutput>amount</computeroutput> to the count, returning the prior value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refCount.h" line="100" column="1" bodyfile="pxr/base/tf/refCount.h" bodystart="100" bodyend="102"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Reference counter class. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class is intended to be embedded in other classes, for use as a reference counter. Unless you need to provide extraordinary customization, you should forgo direct use of this class and instead make use of the base class <computeroutput><ref refid="class_tf_ref_base" kindref="compound">TfRefBase</ref></computeroutput>.</para>
+<para>Initialization of a reference counter is somewhat counterintuitive. Consider an object T with a reference counter R. When T is initialized, R should be initialized to one, even if T is copy-constructed. This implies that <emphasis>all</emphasis> constructors of <computeroutput><ref refid="class_tf_ref_count" kindref="compound">TfRefCount</ref></computeroutput> set the counter to one, even the copy constructor.</para>
+<para>Conversely, if T is assigned to, the reference counter R in T should not change. This implies that the assignment operator for <computeroutput><ref refid="class_tf_ref_count" kindref="compound">TfRefCount</ref></computeroutput> does not change the counter&apos;s value.</para>
+<para>Finally, for thread-safety, the counter should be atomic.</para>
+<para>This class was written primarily for use in classes whose access is encapsulated by means of the <computeroutput><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref></computeroutput> interface; such classes require reference counting semantics as described above. Note that the behavior of a <computeroutput><ref refid="class_tf_ref_count" kindref="compound">TfRefCount</ref></computeroutput> in a class T is invariant with respect to T&apos;s copy constructors and assignment operators.</para>
+<para>Again, please do not directly embed a <computeroutput><ref refid="class_tf_ref_count" kindref="compound">TfRefCount</ref></computeroutput> in a structure unless the functionality of <computeroutput><ref refid="class_tf_ref_base" kindref="compound">TfRefBase</ref></computeroutput> is insufficient for your needs. </para>
+    </detaileddescription>
+    <location file="pxr/base/tf/refCount.h" line="71" column="1" bodyfile="pxr/base/tf/refCount.h" bodystart="71" bodyend="109"/>
+    <listofallmembers>
+      <member refid="class_tf_ref_count_1a8b8f50936c6a26e816ff097447dae425" prot="private" virt="non-virtual"><scope>TfRefCount</scope><name>_counter</name></member>
+      <member refid="class_tf_ref_count_1adef4f8841595c9543c35f06e04f6e741" prot="private" virt="non-virtual"><scope>TfRefCount</scope><name>_DecrementAndTestIfZero</name></member>
+      <member refid="class_tf_ref_count_1a979189d0a37d8116b12f0d5add9a7f11" prot="private" virt="non-virtual"><scope>TfRefCount</scope><name>_FetchAndAdd</name></member>
+      <member refid="class_tf_ref_count_1a68de63958b6f45d6f20db9e5dadbd0d9" prot="public" virt="non-virtual"><scope>TfRefCount</scope><name>Get</name></member>
+      <member refid="class_tf_ref_count_1a40fe9321ce1941e22a7cdcb2ad4991eb" prot="public" virt="non-virtual"><scope>TfRefCount</scope><name>operator=</name></member>
+      <member refid="class_tf_ref_count_1aa04bc421b0fab1d61989f294b9151896" prot="public" virt="non-virtual"><scope>TfRefCount</scope><name>TfRefCount</name></member>
+      <member refid="class_tf_ref_count_1aeef191a55c41c05c0e1415d8976ba7c8" prot="public" virt="non-virtual"><scope>TfRefCount</scope><name>TfRefCount</name></member>
+      <member refid="class_tf_ref_count_1a4dde82568da13e4198f0c1d6289a766a" prot="private" virt="non-virtual"><scope>TfRefCount</scope><name>TfRefPtr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

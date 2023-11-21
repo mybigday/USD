@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="group___usd_geom_up_axis__group" kind="group">
+    <compoundname>UsdGeomUpAxis_group</compoundname>
+    <title>Encoding Stage UpAxis</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group___usd_geom_up_axis__group_1ga480f2539b4bf73920215e08623e80320" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>USDGEOM_API TfToken UsdGeomGetStageUpAxis</definition>
+        <argsstring>(const UsdStageWeakPtr &amp;stage)</argsstring>
+        <name>UsdGeomGetStageUpAxis</name>
+        <param>
+          <type>const UsdStageWeakPtr &amp;</type>
+          <declname>stage</declname>
+        </param>
+        <briefdescription>
+<para>Fetch and return <computeroutput>stage</computeroutput> &apos;s upAxis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If unauthored, will return the value provided by <ref refid="group___usd_geom_up_axis__group_1gaf16b05f297f696c58a086dacc1e288b5" kindref="member">UsdGeomGetFallbackUpAxis()</ref>. Exporters, however, are strongly encouraged to always set the upAxis for every USD file they create.</para>
+<para><simplesect kind="return"><para>one of: UsdGeomTokens-&gt;y or UsdGeomTokens-&gt;z, unless there was an error, in which case returns an empty <ref refid="class_tf_token" kindref="compound">TfToken</ref></para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group___usd_geom_up_axis__group" kindref="compound">Encoding Stage UpAxis</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/metrics.h" line="91" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group___usd_geom_up_axis__group_1gac59d89f9563d1af609f80c34e2afdbf7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool UsdGeomSetStageUpAxis</definition>
+        <argsstring>(const UsdStageWeakPtr &amp;stage, const TfToken &amp;axis)</argsstring>
+        <name>UsdGeomSetStageUpAxis</name>
+        <param>
+          <type>const UsdStageWeakPtr &amp;</type>
+          <declname>stage</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+<para>Set <computeroutput>stage</computeroutput> &apos;s upAxis to <computeroutput>axis</computeroutput>, which must be one of UsdGeomTokens-&gt;y or UsdGeomTokens-&gt;z. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>UpAxis is stage-level metadata, therefore see <ref refid="class_usd_stage_1a1a5325c3bfad050926f03f867a803c03" kindref="member">UsdStage::SetMetadata()</ref>.</para>
+<para><simplesect kind="return"><para>true if upAxis was successfully set. The stage&apos;s <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> must be either its root layer or session layer. </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group___usd_geom_up_axis__group" kindref="compound">Encoding Stage UpAxis</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/metrics.h" line="102" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group___usd_geom_up_axis__group_1gaf16b05f297f696c58a086dacc1e288b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>USDGEOM_API TfToken UsdGeomGetFallbackUpAxis</definition>
+        <argsstring>()</argsstring>
+        <name>UsdGeomGetFallbackUpAxis</name>
+        <briefdescription>
+<para>Return the site-level fallback up axis as a <ref refid="class_tf_token" kindref="compound">TfToken</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>In a generic installation of USD, the fallback will be &quot;Y&quot;. This can be changed to &quot;Z&quot; by adding, in a plugInfo.json file discoverable by USD&apos;s <ref refid="class_plug_plugin" kindref="compound">PlugPlugin</ref> mechanism: <programlisting filename=".json"><codeline><highlight class="normal">&quot;UsdGeomMetrics&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;upAxis&quot;:<sp/>&quot;Z&quot;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>If more than one such entry is discovered and the values for upAxis differ, we will issue a warning during the first call to this function, and ignore all of them, so that we devolve to deterministic behavior of Y up axis until the problem is rectified. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/metrics.h" line="120" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Even if all <ref refid="class_usd_geom_camera" kindref="compound">UsdGeomCamera</ref> objects in a scene are encoded with a transformation that assumes the Y axis is up, that cannot always imply that the geometry contained in the scene was modeled with the Y axis pointing up, since some modeling applications assume Z is up, and others allow you to configure whether Y or Z is up. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Rather than impose one axis or the other on all UsdGeom scenes - which would require either transposing point coordinates into and out of some applications, or making assumptions about where a -90 degree rotation has been applied and effectively, mysteriously swapping the roles of Y and Z coordinates - we allow each stage to carry, in its root layer, a declaration of the up axis for all the geometry contained in the stage, and require applications to consult it if they wish to create new cameras to view the scene in its intended orientation.</para>
+<para>Note that because you can make only a Stage-level declaration of up axis, it must hold true for all referenced geometry and assets. A conscientious set/environment-construction tool could examine the up axis of referenced assets as they are being referenced, and apply a corrective rotation on the referencing prim as it is being added to the scene, when the referenced up axis differs from the set&apos;s.</para>
+<para>We provide free functions for setting (<ref refid="group___usd_geom_up_axis__group_1gac59d89f9563d1af609f80c34e2afdbf7" kindref="member">UsdGeomSetStageUpAxis()</ref>), retrieving (<ref refid="group___usd_geom_up_axis__group_1ga480f2539b4bf73920215e08623e80320" kindref="member">UsdGeomGetStageUpAxis()</ref>), and declaring a site-level fallback up axis (<ref refid="group___usd_geom_up_axis__group_1gaf16b05f297f696c58a086dacc1e288b5" kindref="member">UsdGeomGetFallbackUpAxis()</ref>) that can be configured with a <ref refid="class_plug_plugin" kindref="compound">PlugPlugin</ref> plugInfo.json file. See the individual methods for details.</para>
+<para>The stage up axis is encoded as stage metadatum <emphasis>upAxis</emphasis>, whose legal values are &quot;Y&quot; and &quot;Z&quot;, as represented by UsdGeomTokens-&gt;y and UsdGeomTokens-&gt;z. Of course, constructing a correct camera view of a scene depends not only on the up axis, but also on the handedness of the coordinate system. Like OpenGL and the fallback for <ref refid="class_usd_geom_gprim_1a6d7f451cf0aa27125cc118b030ebb735" kindref="member">UsdGeomGprim::GetOrientationAttr()</ref>, <bold>UsdGeom stipulates a right-handed coordinate system.</bold> Therefore, when viewing a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> with a &quot;Y&quot; up axis, the stage&apos;s Z axis will be pointing out of the screen, and when viewing a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> with a &quot;Z&quot; up axis, the stage&apos;s Y axis will be pointing into the screen. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

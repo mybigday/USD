@@ -1,0 +1,474 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_tf_malloc_tag" kind="class" language="C++" prot="public">
+    <compoundname>TfMallocTag</compoundname>
+    <includes refid="malloc_tag_8h" local="no">mallocTag.h</includes>
+    <innerclass refid="class_tf_malloc_tag_1_1_auto" prot="public">TfMallocTag::Auto</innerclass>
+    <innerclass refid="struct_tf_malloc_tag_1_1_call_stack_info" prot="public">TfMallocTag::CallStackInfo</innerclass>
+    <innerclass refid="struct_tf_malloc_tag_1_1_call_tree" prot="public">TfMallocTag::CallTree</innerclass>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_tf_malloc_tag_1ad03bd353d1af575f07e11ab058266feb" prot="public" static="no">
+        <type><ref refid="class_tf_malloc_tag_1_1_auto" kindref="compound">Auto</ref></type>
+        <definition>using Auto2 =  Auto</definition>
+        <argsstring></argsstring>
+        <name>Auto2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="338" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="338" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_tf_malloc_tag_1aee3d46de06464c3ae59cc460c018b793" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend struct</type>
+        <definition>friend struct _TemporaryDisabler</definition>
+        <argsstring></argsstring>
+        <name>_TemporaryDisabler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="419" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="419" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_tf_malloc_tag_1a4592302e58cf1ecdc24e660713fd2c27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class TfMallocTag::Auto</definition>
+        <argsstring></argsstring>
+        <name>TfMallocTag::Auto</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="441" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="441" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_tf_malloc_tag_1a9cb345fd4a53f596f565300e99046825" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class TfMallocTag::Tls</definition>
+        <argsstring></argsstring>
+        <name>TfMallocTag::Tls</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="443" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="442" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_tf_malloc_tag_1ac9bbaf3787e519eb7f6a7b14ee0fbefb" prot="private" static="yes" mutable="no">
+        <type>TF_API std::atomic&lt; bool &gt;</type>
+        <definition>TF_API std::atomic&lt;bool&gt; _isInitialized</definition>
+        <argsstring></argsstring>
+        <name>_isInitialized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="444" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="444" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_tf_malloc_tag_1a9ce0eae963544ac6d083e4f95d4a9b36" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API bool</type>
+        <definition>static TF_API bool Initialize</definition>
+        <argsstring>(std::string *errMsg)</argsstring>
+        <name>Initialize</name>
+        <param>
+          <type>std::string *</type>
+          <declname>errMsg</declname>
+        </param>
+        <briefdescription>
+<para>Initialize the memory tagging system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function returns <computeroutput>true</computeroutput> if the memory tagging system can be successfully initialized or it has already been initialized. Otherwise, <computeroutput>*errMsg</computeroutput> is set with an explanation for the failure.</para>
+<para>Until the system is initialized, the various memory reporting calls will indicate that no memory has been allocated. Note also that memory allocated prior to calling <computeroutput><ref refid="class_tf_malloc_tag_1a9ce0eae963544ac6d083e4f95d4a9b36" kindref="member">Initialize()</ref></computeroutput> is not tracked i.e. all data refers to allocations that happen subsequent to calling <computeroutput><ref refid="class_tf_malloc_tag_1a9ce0eae963544ac6d083e4f95d4a9b36" kindref="member">Initialize()</ref></computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="188" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_malloc_tag_1ab2c217951b4362bb6661a1e863105320" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool IsInitialized</definition>
+        <argsstring>()</argsstring>
+        <name>IsInitialized</name>
+        <briefdescription>
+<para>Return true if the tagging system is active. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput><ref refid="class_tf_malloc_tag_1a9ce0eae963544ac6d083e4f95d4a9b36" kindref="member">Initialize()</ref></computeroutput> has been successfully called, this function returns <computeroutput>true</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="194" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="194" bodyend="196"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_malloc_tag_1a94043f2dbe14589226a577f501eb384f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API size_t</type>
+        <definition>static TF_API size_t GetTotalBytes</definition>
+        <argsstring>()</argsstring>
+        <name>GetTotalBytes</name>
+        <briefdescription>
+<para>Return total number of allocated bytes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The current total memory that has been allocated and not freed is returned. Memory allocated before calling <computeroutput><ref refid="class_tf_malloc_tag_1a9ce0eae963544ac6d083e4f95d4a9b36" kindref="member">Initialize()</ref></computeroutput> is not accounted for. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="203" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_malloc_tag_1ac8d8deee10ce6a113a4174bcc6ed7d28" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API size_t</type>
+        <definition>static TF_API size_t GetMaxTotalBytes</definition>
+        <argsstring>()</argsstring>
+        <name>GetMaxTotalBytes</name>
+        <briefdescription>
+<para>Return the maximum total number of bytes that have ever been allocated at one time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is simply the maximum value of <ref refid="class_tf_malloc_tag_1a94043f2dbe14589226a577f501eb384f" kindref="member">GetTotalBytes()</ref> since <ref refid="class_tf_malloc_tag_1a9ce0eae963544ac6d083e4f95d4a9b36" kindref="member">Initialize()</ref> was called. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="210" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_malloc_tag_1ac05c3ae7dfa19d9034a1b5f4737548e8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API bool</type>
+        <definition>static TF_API bool GetCallTree</definition>
+        <argsstring>(CallTree *tree, bool skipRepeated=true)</argsstring>
+        <name>GetCallTree</name>
+        <param>
+          <type><ref refid="struct_tf_malloc_tag_1_1_call_tree" kindref="compound">CallTree</ref> *</type>
+          <declname>tree</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>skipRepeated</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Return a snapshot of memory usage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns a snapshot by writing into <computeroutput>*tree</computeroutput>. See the <computeroutput>C</computeroutput> *tree structure for documentation. If <computeroutput><ref refid="class_tf_malloc_tag_1a9ce0eae963544ac6d083e4f95d4a9b36" kindref="member">Initialize()</ref></computeroutput> has not been called, \ *tree is set to a rather blank structure (empty vectors, empty strings, zero in all integral fields) and <computeroutput>false</computeroutput> is returned; otherwise, <computeroutput>*tree</computeroutput> is set with the contents of the current memory snapshot and <computeroutput>true</computeroutput> is returned. It is fine to call this function on the same <computeroutput>*tree</computeroutput> instance; each call simply overwrites the data from the last call. If /p skipRepeated is <computeroutput>true</computeroutput>, then any repeated callsite is skipped. See the <computeroutput><ref refid="struct_tf_malloc_tag_1_1_call_tree" kindref="compound">CallTree</ref></computeroutput> documentation for more details. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="224" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_malloc_tag_1a74ab306ad41ec3ea17f4082be70bd60d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Push</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>Push</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Manually push a tag onto the stack. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This call has the same effect as the constructor for <computeroutput><ref refid="class_tf_malloc_tag_1_1_auto" kindref="compound">TfMallocTag::Auto</ref></computeroutput> (aka <computeroutput>TfAutoMallocTag</computeroutput>), however a matching call to <computeroutput><ref refid="class_tf_malloc_tag_1ab7dd1bc7d631e417135051f4405ee177" kindref="member">Pop()</ref></computeroutput> is required.</para>
+<para>Note that initializing the tagging system between matching calls to <computeroutput><ref refid="class_tf_malloc_tag_1a74ab306ad41ec3ea17f4082be70bd60d" kindref="member">Push()</ref></computeroutput> and <computeroutput><ref refid="class_tf_malloc_tag_1ab7dd1bc7d631e417135051f4405ee177" kindref="member">Pop()</ref></computeroutput> is ill-advised, which is yet another reason to prefer using <computeroutput>TfAutoMallocTag</computeroutput> whenever possible. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="349" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="349" bodyend="351"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_malloc_tag_1a2c427c120b46f7a9276b37c9e0387042" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Push</definition>
+        <argsstring>(const char *name)</argsstring>
+        <name>Push</name>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="354" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="354" bodyend="356"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_malloc_tag_1ab7dd1bc7d631e417135051f4405ee177" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Pop</definition>
+        <argsstring>()</argsstring>
+        <name>Pop</name>
+        <briefdescription>
+<para>Manually pop a tag from the stack. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This call has the same effect as the destructor for <computeroutput><ref refid="class_tf_malloc_tag_1_1_auto" kindref="compound">TfMallocTag::Auto</ref></computeroutput>; it must properly nest with a matching call to <computeroutput><ref refid="class_tf_malloc_tag_1a74ab306ad41ec3ea17f4082be70bd60d" kindref="member">Push()</ref></computeroutput>, of course. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="363" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="363" bodyend="367"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_malloc_tag_1a4f8a036498f3d112baa00f0c5d094fa4" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>static TF_API void SetDebugMatchList</definition>
+        <argsstring>(const std::string &amp;matchList)</argsstring>
+        <name>SetDebugMatchList</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>matchList</declname>
+        </param>
+        <briefdescription>
+<para>Sets the tags to trap in the debugger. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>When memory is allocated or freed for any tag that matches <computeroutput>matchList</computeroutput> the debugger trap is invoked. If a debugger is attached the program will stop in the debugger, otherwise the program will continue to run. See <computeroutput><ref refid="debugger_8h_1a0cc38181fefe49fe7038675bcc6707ab" kindref="member">ArchDebuggerTrap()</ref></computeroutput> and <computeroutput><ref refid="debugger_8h_1a99ede52ab8e0b3a5c5272c3b8b3e4e1c" kindref="member">ArchDebuggerWait()</ref></computeroutput>.</para>
+<para><computeroutput>matchList</computeroutput> is a comma, tab or newline separated list of malloc tag names. The names can have internal spaces but leading and trailing spaces are stripped. If a name ends in &apos;*&apos; then the suffix is wildcarded. A name can have a leading &apos;-&apos; or &apos;+&apos; to prevent or allow a match. Each name is considered in order and later matches override earlier matches. For example, &apos;Csd*, -CsdScene::_Populate*, +CsdScene::_PopulatePrimCacheLocal&apos; matches any malloc tag starting with &apos;Csd&apos; but nothing starting with &apos;CsdScene::_Populate&apos; except &apos;CsdScene::_PopulatePrimCacheLocal&apos;. Use the empty string to disable debugging traps. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="386" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_malloc_tag_1a59072cc65b32e9a2e909905366b48a36" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>static TF_API void SetCapturedMallocStacksMatchList</definition>
+        <argsstring>(const std::string &amp;matchList)</argsstring>
+        <name>SetCapturedMallocStacksMatchList</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>matchList</declname>
+        </param>
+        <briefdescription>
+<para>Sets the tags to trace. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>When memory is allocated for any tag that matches <computeroutput>matchList</computeroutput> a stack trace is recorded. When that memory is released the stack trace is discarded. Clients can call <computeroutput><ref refid="class_tf_malloc_tag_1ac6b9a5b7a7d03009b5c54dc428bef9ac" kindref="member">GetCapturedMallocStacks()</ref></computeroutput> to get a list of all recorded stack traces. This is useful for finding leaks.</para>
+<para>Traces recorded for any tag that will no longer be matched are discarded by this call. Traces recorded for tags that continue to be matched are retained.</para>
+<para><computeroutput>matchList</computeroutput> is a comma, tab or newline separated list of malloc tag names. The names can have internal spaces but leading and trailing spaces are stripped. If a name ends in &apos;*&apos; then the suffix is wildcarded. A name can have a leading &apos;-&apos; or &apos;+&apos; to prevent or allow a match. Each name is considered in order and later matches override earlier matches. For example, &apos;Csd*, -CsdScene::_Populate*, +CsdScene::_PopulatePrimCacheLocal&apos; matches any malloc tag starting with &apos;Csd&apos; but nothing starting with &apos;CsdScene::_Populate&apos; except &apos;CsdScene::_PopulatePrimCacheLocal&apos;. Use the empty string to disable stack capturing. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="409" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_malloc_tag_1ac6b9a5b7a7d03009b5c54dc428bef9ac" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::vector&lt; std::vector&lt; uintptr_t &gt; &gt;</type>
+        <definition>static TF_API std::vector&lt;std::vector&lt;uintptr_t&gt; &gt; GetCapturedMallocStacks</definition>
+        <argsstring>()</argsstring>
+        <name>GetCapturedMallocStacks</name>
+        <briefdescription>
+<para>Returns the captured malloc stack traces for allocations billed to the malloc tags passed to <ref refid="class_tf_malloc_tag_1a59072cc65b32e9a2e909905366b48a36" kindref="member">SetCapturedMallocStacksMatchList()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This method also clears the internally held set of captured stacks. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="416" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_tf_malloc_tag_1adb15c9b8af9823da9615a249e7300d7b" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool _Initialize</definition>
+        <argsstring>(std::string *errMsg)</argsstring>
+        <name>_Initialize</name>
+        <param>
+          <type>std::string *</type>
+          <declname>errMsg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="423" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_malloc_tag_1a818ecb372c6102d9bbbdb3eb01d7dbce" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>_ThreadData *</type>
+        <definition>static _ThreadData* _Push</definition>
+        <argsstring>(char const *name)</argsstring>
+        <name>_Push</name>
+        <param>
+          <type>char const *</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="425" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="425" bodyend="430"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_malloc_tag_1a4d0a78d8499ed0fcdea1032978f07038" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API _ThreadData *</type>
+        <definition>static TF_API _ThreadData* _Begin</definition>
+        <argsstring>(char const *name, _ThreadData *threadData=nullptr)</argsstring>
+        <name>_Begin</name>
+        <param>
+          <type>char const *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>_ThreadData *</type>
+          <declname>threadData</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="432" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_malloc_tag_1abfa811fba5a7804e711abc5be0be35a3" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>static TF_API void _End</definition>
+        <argsstring>(_ThreadData *threadData=nullptr)</argsstring>
+        <name>_End</name>
+        <param>
+          <type>_ThreadData *</type>
+          <declname>threadData</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="434" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_malloc_tag_1af4805d4e43114b3ac5ee3690f6c960b5" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>static void* _MallocWrapper</definition>
+        <argsstring>(size_t, const void *)</argsstring>
+        <name>_MallocWrapper</name>
+        <param>
+          <type>size_t</type>
+        </param>
+        <param>
+          <type>const void *</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="436" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_malloc_tag_1a17d9828e3857c59accdef9e1ba2864f6" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>static void* _ReallocWrapper</definition>
+        <argsstring>(void *, size_t, const void *)</argsstring>
+        <name>_ReallocWrapper</name>
+        <param>
+          <type>void *</type>
+        </param>
+        <param>
+          <type>size_t</type>
+        </param>
+        <param>
+          <type>const void *</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="437" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_malloc_tag_1a68002f97ae498f6399ab97737f605790" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>static void* _MemalignWrapper</definition>
+        <argsstring>(size_t, size_t, const void *)</argsstring>
+        <name>_MemalignWrapper</name>
+        <param>
+          <type>size_t</type>
+        </param>
+        <param>
+          <type>size_t</type>
+        </param>
+        <param>
+          <type>const void *</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="438" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_malloc_tag_1a0193f65eea96d5a4731f8aeb12a1cdfe" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void _FreeWrapper</definition>
+        <argsstring>(void *, const void *)</argsstring>
+        <name>_FreeWrapper</name>
+        <param>
+          <type>void *</type>
+        </param>
+        <param>
+          <type>const void *</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="439" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Top-down memory tagging system. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>See <ref refid="page_tf__malloc_tag" kindref="compound">The TfMallocTag Memory Tagging System</ref> for a detailed description. </para>
+    </detaileddescription>
+    <location file="pxr/base/tf/mallocTag.h" line="50" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="50" bodyend="445"/>
+    <listofallmembers>
+      <member refid="class_tf_malloc_tag_1a4d0a78d8499ed0fcdea1032978f07038" prot="private" virt="non-virtual"><scope>TfMallocTag</scope><name>_Begin</name></member>
+      <member refid="class_tf_malloc_tag_1abfa811fba5a7804e711abc5be0be35a3" prot="private" virt="non-virtual"><scope>TfMallocTag</scope><name>_End</name></member>
+      <member refid="class_tf_malloc_tag_1a0193f65eea96d5a4731f8aeb12a1cdfe" prot="private" virt="non-virtual"><scope>TfMallocTag</scope><name>_FreeWrapper</name></member>
+      <member refid="class_tf_malloc_tag_1adb15c9b8af9823da9615a249e7300d7b" prot="private" virt="non-virtual"><scope>TfMallocTag</scope><name>_Initialize</name></member>
+      <member refid="class_tf_malloc_tag_1ac9bbaf3787e519eb7f6a7b14ee0fbefb" prot="private" virt="non-virtual"><scope>TfMallocTag</scope><name>_isInitialized</name></member>
+      <member refid="class_tf_malloc_tag_1af4805d4e43114b3ac5ee3690f6c960b5" prot="private" virt="non-virtual"><scope>TfMallocTag</scope><name>_MallocWrapper</name></member>
+      <member refid="class_tf_malloc_tag_1a68002f97ae498f6399ab97737f605790" prot="private" virt="non-virtual"><scope>TfMallocTag</scope><name>_MemalignWrapper</name></member>
+      <member refid="class_tf_malloc_tag_1a818ecb372c6102d9bbbdb3eb01d7dbce" prot="private" virt="non-virtual"><scope>TfMallocTag</scope><name>_Push</name></member>
+      <member refid="class_tf_malloc_tag_1a17d9828e3857c59accdef9e1ba2864f6" prot="private" virt="non-virtual"><scope>TfMallocTag</scope><name>_ReallocWrapper</name></member>
+      <member refid="class_tf_malloc_tag_1aee3d46de06464c3ae59cc460c018b793" prot="private" virt="non-virtual"><scope>TfMallocTag</scope><name>_TemporaryDisabler</name></member>
+      <member refid="class_tf_malloc_tag_1ad03bd353d1af575f07e11ab058266feb" prot="public" virt="non-virtual"><scope>TfMallocTag</scope><name>Auto2</name></member>
+      <member refid="class_tf_malloc_tag_1ac05c3ae7dfa19d9034a1b5f4737548e8" prot="public" virt="non-virtual"><scope>TfMallocTag</scope><name>GetCallTree</name></member>
+      <member refid="class_tf_malloc_tag_1ac6b9a5b7a7d03009b5c54dc428bef9ac" prot="public" virt="non-virtual"><scope>TfMallocTag</scope><name>GetCapturedMallocStacks</name></member>
+      <member refid="class_tf_malloc_tag_1ac8d8deee10ce6a113a4174bcc6ed7d28" prot="public" virt="non-virtual"><scope>TfMallocTag</scope><name>GetMaxTotalBytes</name></member>
+      <member refid="class_tf_malloc_tag_1a94043f2dbe14589226a577f501eb384f" prot="public" virt="non-virtual"><scope>TfMallocTag</scope><name>GetTotalBytes</name></member>
+      <member refid="class_tf_malloc_tag_1a9ce0eae963544ac6d083e4f95d4a9b36" prot="public" virt="non-virtual"><scope>TfMallocTag</scope><name>Initialize</name></member>
+      <member refid="class_tf_malloc_tag_1ab2c217951b4362bb6661a1e863105320" prot="public" virt="non-virtual"><scope>TfMallocTag</scope><name>IsInitialized</name></member>
+      <member refid="class_tf_malloc_tag_1ab7dd1bc7d631e417135051f4405ee177" prot="public" virt="non-virtual"><scope>TfMallocTag</scope><name>Pop</name></member>
+      <member refid="class_tf_malloc_tag_1a74ab306ad41ec3ea17f4082be70bd60d" prot="public" virt="non-virtual"><scope>TfMallocTag</scope><name>Push</name></member>
+      <member refid="class_tf_malloc_tag_1a2c427c120b46f7a9276b37c9e0387042" prot="public" virt="non-virtual"><scope>TfMallocTag</scope><name>Push</name></member>
+      <member refid="class_tf_malloc_tag_1a59072cc65b32e9a2e909905366b48a36" prot="public" virt="non-virtual"><scope>TfMallocTag</scope><name>SetCapturedMallocStacksMatchList</name></member>
+      <member refid="class_tf_malloc_tag_1a4f8a036498f3d112baa00f0c5d094fa4" prot="public" virt="non-virtual"><scope>TfMallocTag</scope><name>SetDebugMatchList</name></member>
+      <member refid="class_tf_malloc_tag_1a4592302e58cf1ecdc24e660713fd2c27" prot="public" virt="non-virtual"><scope>TfMallocTag</scope><name>TfMallocTag::Auto</name></member>
+      <member refid="class_tf_malloc_tag_1a9cb345fd4a53f596f565300e99046825" prot="public" virt="non-virtual"><scope>TfMallocTag</scope><name>TfMallocTag::Tls</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

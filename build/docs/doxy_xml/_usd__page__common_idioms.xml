@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="_usd__page__common_idioms" kind="page">
+    <compoundname>Usd_Page_CommonIdioms</compoundname>
+    <title>Common Idioms and Examples</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="_usd__page__common_idioms_1Usd_StageTraversal">
+<title>Traversing a Stage</title>
+<para>The Usd API provides a number of methods for fast, configurable traversal of a stage or sub-trees of prims on a stage. The two categories of traversal are recursion and iteration. Common to both is the ability to specify a &quot;predicate&quot; that governs which prims will actually be yielded by the API during a traversal, and which will be skipped. Predicates are conjunctions, disjunctions, and negations of a set of tests of core properties of <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> that are cached for speedy access during stage population. See <ref refid="prim_flags_8h_1Usd_PrimFlags" kindref="member">Prim Flags</ref> for more detail and examples.</para>
+<sect2 id="_usd__page__common_idioms_1Usd_StageTraversal_Recursion">
+<title>Traversing with Recursion</title>
+<para><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> provides a number of methods for accessing its direct children via a &quot;range&quot;, with which one can construct very efficient recursive functions. The standard <ref refid="class_usd_prim_1a2619563fc9180d8ead597944fd7f6ec7" kindref="member">UsdPrim::GetChildren()</ref> uses the &quot;canonical traversal predicate,&quot; which implies all active, loaded, defined, non-abstract children. <ref refid="class_usd_prim_1a41fba977a56f9a6c1c8e2ed1e98c337d" kindref="member">UsdPrim::GetFilteredChildren()</ref> allows specification of a custom predicate.</para>
+</sect2>
+<sect2 id="_usd__page__common_idioms_1Usd_StageTraversal_Ieration">
+<title>Traversing with Iteration</title>
+<para><ref refid="class_usd_prim_1a2c7f60d23da06f334e0d298c82eb4a5d" kindref="member">UsdPrim::GetDescendants()</ref> returns a range for all of a prim&apos;s &quot;canonical&quot; decendants, and <ref refid="class_usd_prim_1a35097b9294275723ef886d39f12d0546" kindref="member">UsdPrim::GetFilteredDescendants()</ref> allows the range&apos;s predicate to be specified.</para>
+<para><ref refid="class_usd_prim_range" kindref="compound">UsdPrimRange</ref> enables highly customized iterations, adding the ability to perform pre-and-post-order traversals, and to prune subtrees.</para>
+<para>The convenience method <ref refid="class_usd_stage_1adba675b55f41cc1b305bed414fc4f178" kindref="member">UsdStage::Traverse()</ref> returns a <ref refid="class_usd_prim_range" kindref="compound">UsdPrimRange</ref> that visits all descendants of the pseudo-root, but not the pseudo-root itself.</para>
+</sect2>
+</sect1>
+<sect1 id="_usd__page__common_idioms_1Usd_WorkingWithSchemas">
+<title>Working With Schema Classes</title>
+<para>Later we&apos;ll talk about how to create new schema classes...</para>
+<sect2 id="_usd__page__common_idioms_1Usd_Create_Or_Get_Property">
+<title>Create vs Get Property Methods</title>
+<para>For a <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> named &quot;points&quot; defined in a schema class, you will find two access methods in the schema class in C++ and python: <itemizedlist>
+<listitem><para>GetPointsAttr() </para>
+</listitem>
+<listitem><para>CreatePointsAttr()</para>
+</listitem>
+</itemizedlist>
+What is the difference between these two methods, and when should you use each? GetPointsAttr() simply returns a <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> object, without authoring any scene description. It is therefore threadsafe, and it should be your choice in any code that may be executed in a multithreaded, &quot;multiple readers&quot; section. Of course, the <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> it returns has an API that includes mutating methods that <bold>will</bold> author scene description, and those methods should be avoided in multi-threaded sections. However, there is no guarantee that the <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> returned by GetPointsAttr() will be <emphasis>valid</emphasis> for use in authoring scene description, because there may not be any definition available for the attribute in the Stage&apos;s scene description, which means (for example) the Set() method might not know what the attribute&apos;s datatype is. CreatePointsAttr(), by contrast, will actually create a typed definition for the attribute in the current <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> if no definition for the attribute yet exists - it follows that it is legal and safe to call CreatePointsAttr() even if the attribute is already defined in the current <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget()</ref>.</para>
+<para>In general, you should use CreateXXXAttr() when authoring scene description, and GetXXXAttr() when reading/importing scene description. CreateXXXAttr() also allows you to specify a default value to assign to the attribute, which you can specify to author sparsely, which means that we will refrain from authoring the provided value iff: <itemizedlist>
+<listitem><para>there is currently no authored value for the attribute on the composed prim </para>
+</listitem>
+<listitem><para>the attribute has a fallback value on the composed prim, and the fallback value matches the provided value. If the prim has no composed typeName (i.e. in the authoring context, the prim is a pure override), then <emphasis>no</emphasis> attribute on the prim will possess a fallback, since fallbacks apply via the prim&apos;s typeName.</para>
+</listitem>
+</itemizedlist>
+The same pattern holds for relationships, except that CreateXXXRel() does not allow specification of a default target, because relationships are <emphasis>list-edited</emphasis>, and it would be unclear whether to <emphasis>add</emphasis> or <emphasis>set</emphasis> the target when there are already authored target opinions.</para>
+<para><simplesect kind="note"><para><bold>USDeeper: Schema Registry of IsA Schemas.</bold> <emphasis>IsA</emphasis> schemas are registered in the <ref refid="class_usd_schema_registry" kindref="compound">UsdSchemaRegistry</ref>, which provides automatic (also directly queryable) access to the typed definition of each property listed in a schema&apos;s definition in its originating schema.usda file. The properties defined in each <emphasis>IsA</emphasis> schema are called &quot;builtins&quot;, which means they are considered present on prims of that type even when unauthored, and builtin attributes can be provided a <emphasis>fallback</emphasis> value that will be returned by <ref refid="class_usd_attribute_1a9d41bc223be86408ba7d7f74df7c35a9" kindref="member">UsdAttribute::Get()</ref> when the attribute possesses no authored scene description. Therefore, when authoring builtin properties on a defined, typed prim, one is technically not required to use the CreateXXXAttr() method, because the core consults the schema registry using the prim typeName and the property name to define the property, if no definition has yet been authored. Note also that when querying the typeName of a builtin, <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> will always consult only the property definition in the schema registry, even if one has attempted to change the attribute&apos;s type in a stringer layer. However, <emphasis>HasA</emphasis> schemas record no typename on prims, nor are they present in the schema registry. So one <emphasis>must</emphasis> use CreateXXXAttr() when authoring scene description using <emphasis>HasA</emphasis> schemas. CreateXXXAttr() is also useful with <emphasis>IsA</emphasis> schemas for authoring onto an untyped, &quot;pure override&quot; prim that the author knows will later compose onto a typed prim of a compatible schema type (though of course, care should be exercised). However, code that consistently uses CreateXXXAttr() for authoring will be easier to maintain since it will help distinguish reader sections from writer sections.</para>
+</simplesect>
+</para>
+</sect2>
+</sect1>
+<sect1 id="_usd__page__common_idioms_1Usd_BoolReturns">
+<title>Bool Return Values and Safe Operator Bool</title>
+</sect1>
+<sect1 id="_usd__page__common_idioms_1Usd_ErrorReporting">
+<title>Error Reporting Policy and Control</title>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

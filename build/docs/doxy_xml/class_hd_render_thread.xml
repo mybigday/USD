@@ -1,0 +1,643 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_render_thread" kind="class" language="C++" prot="public">
+    <compoundname>HdRenderThread</compoundname>
+    <includes refid="render_thread_8h" local="no">renderThread.h</includes>
+      <sectiondef kind="user-defined">
+      <header>API for thread management</header>
+      <description><para><anchor id="class_hd_render_thread_1Management"/></para>
+<para>Methods to configure, start, and stop the render thread. These functions are not threadsafe. </para>
+</description>
+      <memberdef kind="function" id="class_hd_render_thread_1ade0915553d48ce695b8f715eb93687be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void SetRenderCallback</definition>
+        <argsstring>(std::function&lt; void()&gt; renderCallback)</argsstring>
+        <name>SetRenderCallback</name>
+        <param>
+          <type>std::function&lt; void()&gt;</type>
+          <declname>renderCallback</declname>
+        </param>
+        <briefdescription>
+<para>Set the rendering callback for the render thread to use. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="165" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_thread_1a8cbc3e39de4b0d29f623655dda9cf9ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void SetShutdownCallback</definition>
+        <argsstring>(std::function&lt; void()&gt; shutdownCallback)</argsstring>
+        <name>SetShutdownCallback</name>
+        <param>
+          <type>std::function&lt; void()&gt;</type>
+          <declname>shutdownCallback</declname>
+        </param>
+        <briefdescription>
+<para>Set the shutdown callback for the render thread to use. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This will be called once, right before the render thread exits, regardless of whether the render callback has been called. This can be used to clean up thread-specific rendering resources. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="172" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_thread_1a95da12b4b6c328ee411acfae9fe5f246" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void StartThread</definition>
+        <argsstring>()</argsstring>
+        <name>StartThread</name>
+        <briefdescription>
+<para>Start the rendering background thread. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note: it&apos;s an error to call this function when the render thread is already running, but it&apos;s acceptable to stop the render thread and then start it again. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="179" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_thread_1a055764dfec3b153bd9c849a952ca7a3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void StopThread</definition>
+        <argsstring>()</argsstring>
+        <name>StopThread</name>
+        <briefdescription>
+<para>Stop the rendering background thread. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function will ask the render thread to transition to StateTerminated, and then join on the thread, so it will block. After this function returns, the rendering state machine will be back in its initial state, and the render thread can be started again. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="187" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_thread_1a5c6cd1242afed4f4889c22618cdbcfc7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsThreadRunning</definition>
+        <argsstring>()</argsstring>
+        <name>IsThreadRunning</name>
+        <briefdescription>
+<para>Check whether the background thread is running (i.e. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>StartThread was called successfully, but StopThread has not been). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="192" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>API for hydra threads</header>
+      <description><para><anchor id="class_hd_render_thread_1RenderThreadAPI"/></para>
+<para>Methods for the render thread to communicate with hydra. These should only be called from the render thread, from inside the render callback. </para>
+</description>
+      <memberdef kind="function" id="class_hd_render_thread_1a2debd29c921e26925e71ce4b06c1e8c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void StartRender</definition>
+        <argsstring>()</argsstring>
+        <name>StartRender</name>
+        <briefdescription>
+<para>Ask the render thread to start rendering. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This call is a no-op if the render thread is already rendering. Otherwise, it may block briefly. This is threadsafe against the render thread, but it shouldn&apos;t be called at the same time as <ref refid="class_hd_render_thread_1aff5f8c3137eb62de866474ac651affbd" kindref="member">StopRender()</ref>, and it shouldn&apos;t be called from multiple hydra threads at once. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="210" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_thread_1aff5f8c3137eb62de866474ac651affbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void StopRender</definition>
+        <argsstring>()</argsstring>
+        <name>StopRender</name>
+        <briefdescription>
+<para>Ask the render thread to stop rendering, and block until the render thread is idle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is fully threadsafe, and can be called from multiple hydra threads at once. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="216" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_thread_1ad1e59c32193feb6ed74c01db09c59ad9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsRendering</definition>
+        <argsstring>()</argsstring>
+        <name>IsRendering</name>
+        <briefdescription>
+<para>Query whether the render thread is currently rendering. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is set by <ref refid="class_hd_render_thread_1a2debd29c921e26925e71ce4b06c1e8c2" kindref="member">StartRender()</ref> and reset after the render callback exits, or reset by <ref refid="class_hd_render_thread_1aff5f8c3137eb62de866474ac651affbd" kindref="member">StopRender()</ref> if the render callback never runs. This does not block, and is fully threadsafe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="223" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_thread_1abc9ed1a2edb5894bb6e6901d508ab4c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void PauseRender</definition>
+        <argsstring>()</argsstring>
+        <name>PauseRender</name>
+        <briefdescription>
+<para>Ask the render thread to pause rendering. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The speed at which the renderer actually enters the pause state depends on the delegate. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="228" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_thread_1af6c685826ba4bb6c1cf8bf0f7649e035" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void ResumeRender</definition>
+        <argsstring>()</argsstring>
+        <name>ResumeRender</name>
+        <briefdescription>
+<para>Ask the render thread to resume rendering. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Pause and Resume calls do not need to be paired. The last call (to Pause or Resume) decides the current state. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="234" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_thread_1ae0a4c40ddb6dbb4f4eee255c2ef8a770" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsStopRequested</definition>
+        <argsstring>()</argsstring>
+        <name>IsStopRequested</name>
+        <briefdescription>
+<para>Query whether hydra has asked to interrupt the current frame since the last time <ref refid="class_hd_render_thread_1a2debd29c921e26925e71ce4b06c1e8c2" kindref="member">StartRender()</ref> was called. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The render callback can check this to determine whether to cancel rendering. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="250" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_thread_1a35078def7afac6dc6cd155eb6aa37f70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsPauseRequested</definition>
+        <argsstring>()</argsstring>
+        <name>IsPauseRequested</name>
+        <briefdescription>
+<para>Query whether hydra has asked to pause rendering. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This will continue to return true until a request has been made for rendering to resume. Remember to check for a stop request while paused. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="256" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_thread_1a2fcb3b9e928a9011d71db68aeb514160" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsPauseDirty</definition>
+        <argsstring>()</argsstring>
+        <name>IsPauseDirty</name>
+        <briefdescription>
+<para>Query whether the pause/resume state has changed since the last time we called IsPauseDirty. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="261" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>API for both hydra and render threads</header>
+      <description><para><anchor id="class_hd_render_thread_1CommonAPI"/></para>
+<para>Methods for both hydra and the render threads to synchronize access to other data. </para>
+</description>
+      <memberdef kind="function" id="class_hd_render_thread_1af5e71b4e7e348591d53b54cb6060e6ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API std::unique_lock&lt; std::mutex &gt;</type>
+        <definition>HD_API std::unique_lock&lt;std::mutex&gt; LockFramebuffer</definition>
+        <argsstring>()</argsstring>
+        <name>LockFramebuffer</name>
+        <briefdescription>
+<para>Return a scoped lock on the render delegate&apos;s framebuffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Hydra and the render thread can use this to synchronize blits between render-thread owned resources, and application-owned resources. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="277" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="enum" id="class_hd_render_thread_1a5d74787dedbc4e11c1ab15bf487e61f8" prot="private" static="no" strong="no">
+        <type></type>
+        <name>State</name>
+        <enumvalue id="class_hd_render_thread_1a5d74787dedbc4e11c1ab15bf487e61f8a3b1bd5060aa16ea83e098191a5db33cc" prot="private">
+          <name>StateInitial</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_render_thread_1a5d74787dedbc4e11c1ab15bf487e61f8a2d7bab55eaf66666dc6866ceb72e51b9" prot="private">
+          <name>StateIdle</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_render_thread_1a5d74787dedbc4e11c1ab15bf487e61f8a455d6fd958902a4667cfcdb1346a4bf2" prot="private">
+          <name>StateRendering</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_render_thread_1a5d74787dedbc4e11c1ab15bf487e61f8ad0bd8f85f6fd9a464492ec82f96bbee8" prot="private">
+          <name>StateTerminated</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="305" column="1" bodyfile="pxr/imaging/hd/renderThread.h" bodystart="305" bodyend="315"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_render_thread_1a454c2b16e885e74a2251ab082f26697b" prot="private" static="no" mutable="no">
+        <type>std::function&lt; void()&gt;</type>
+        <definition>std::function&lt;void()&gt; _renderCallback</definition>
+        <argsstring></argsstring>
+        <name>_renderCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="290" column="1" bodyfile="pxr/imaging/hd/renderThread.h" bodystart="290" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_thread_1a4f2718fdeb0e486dff81251c540f31b6" prot="private" static="no" mutable="no">
+        <type>std::function&lt; void()&gt;</type>
+        <definition>std::function&lt;void()&gt; _shutdownCallback</definition>
+        <argsstring></argsstring>
+        <name>_shutdownCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="295" column="1" bodyfile="pxr/imaging/hd/renderThread.h" bodystart="295" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_thread_1aab759409dedb7412df5560f64830cff2" prot="private" static="no" mutable="no">
+        <type>State</type>
+        <definition>State _requestedState</definition>
+        <argsstring></argsstring>
+        <name>_requestedState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="325" column="1" bodyfile="pxr/imaging/hd/renderThread.h" bodystart="325" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_thread_1a36bb0742de94a6e2428c0c12754ace1f" prot="private" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex _requestedStateMutex</definition>
+        <argsstring></argsstring>
+        <name>_requestedStateMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="326" column="1" bodyfile="pxr/imaging/hd/renderThread.h" bodystart="326" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_thread_1a9497d1cfb48f47d2a25735e5f932a1d4" prot="private" static="no" mutable="no">
+        <type>std::condition_variable</type>
+        <definition>std::condition_variable _requestedStateCV</definition>
+        <argsstring></argsstring>
+        <name>_requestedStateCV</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="327" column="1" bodyfile="pxr/imaging/hd/renderThread.h" bodystart="327" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_thread_1a4286f82f521b1dda44c010158011ecd3" prot="private" static="no" mutable="no">
+        <type>std::atomic_flag</type>
+        <definition>std::atomic_flag _enableRender</definition>
+        <argsstring></argsstring>
+        <name>_enableRender</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="334" column="1" bodyfile="pxr/imaging/hd/renderThread.h" bodystart="334" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_thread_1ac6a98712d9cf4b1ffbc12c1ec4c7b235" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _stopRequested</definition>
+        <argsstring></argsstring>
+        <name>_stopRequested</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="338" column="1" bodyfile="pxr/imaging/hd/renderThread.h" bodystart="338" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_thread_1af9070901867825668b98dcb50d90e60f" prot="private" static="no" mutable="no">
+        <type>std::atomic&lt; bool &gt;</type>
+        <definition>std::atomic&lt;bool&gt; _pauseRender</definition>
+        <argsstring></argsstring>
+        <name>_pauseRender</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="343" column="1" bodyfile="pxr/imaging/hd/renderThread.h" bodystart="343" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_thread_1a1292390f6023a776bb05b945c240684a" prot="private" static="no" mutable="no">
+        <type>std::atomic&lt; bool &gt;</type>
+        <definition>std::atomic&lt;bool&gt; _pauseDirty</definition>
+        <argsstring></argsstring>
+        <name>_pauseDirty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="348" column="1" bodyfile="pxr/imaging/hd/renderThread.h" bodystart="348" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_thread_1a097a228bd05203c627737e462a2e030c" prot="private" static="no" mutable="no">
+        <type>std::atomic&lt; bool &gt;</type>
+        <definition>std::atomic&lt;bool&gt; _rendering</definition>
+        <argsstring></argsstring>
+        <name>_rendering</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="354" column="1" bodyfile="pxr/imaging/hd/renderThread.h" bodystart="354" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_thread_1ac919b7627a63c20e0265664a5a9d9c58" prot="private" static="no" mutable="no">
+        <type>std::thread</type>
+        <definition>std::thread _renderThread</definition>
+        <argsstring></argsstring>
+        <name>_renderThread</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="357" column="1" bodyfile="pxr/imaging/hd/renderThread.h" bodystart="357" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_thread_1a0cfc53705525358f7b0933ad55ccbf2b" prot="private" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex _frameBufferMutex</definition>
+        <argsstring></argsstring>
+        <name>_frameBufferMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="362" column="1" bodyfile="pxr/imaging/hd/renderThread.h" bodystart="362" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_render_thread_1ac277cf4efaf30fc1921af236d16311e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API HdRenderThread</definition>
+        <argsstring>()</argsstring>
+        <name>HdRenderThread</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="150" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_thread_1adb22df7da58ede30a72e1715a73b42f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API ~HdRenderThread</definition>
+        <argsstring>()</argsstring>
+        <name>~HdRenderThread</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="153" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hd_render_thread_1af344d0fd0f9d6a9ec6838e977c7fd1f7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RenderLoop</definition>
+        <argsstring>()</argsstring>
+        <name>_RenderLoop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="286" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_hd_render_thread_1a8f9121e98579cb819941f5b2b4d076f9" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void _DefaultRenderCallback</definition>
+        <argsstring>()</argsstring>
+        <name>_DefaultRenderCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="298" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_thread_1a2573c47717bcd1f8c8e57a24c29cc6ae" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void _DefaultShutdownCallback</definition>
+        <argsstring>()</argsstring>
+        <name>_DefaultShutdownCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderThread.h" line="301" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="class_hd_render_thread" kindref="compound">HdRenderThread</ref> is a utility that specific render delegates can choose to use depending on their needs. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>It provides a system for rendering in a background thread, and synchronizing between hydra (either in the main thread, or the sync threadpool) and the rendering thread.</para>
+<sect1 id="class_hd_render_thread_1HdRenderThread_StateMachine">
+<title>State Machine</title>
+<para>The render thread is implemented in terms of a state machine, and hydra requests to the render thread are implemented in terms of transitions on that state machine.</para>
+<para>States:<itemizedlist>
+<listitem><para><emphasis>StateInitial</emphasis> - indicates the render thread hasn&apos;t been started.</para>
+</listitem><listitem><para><emphasis>StateIdle</emphasis> - indicates the render thread is running, but not rendering.</para>
+</listitem><listitem><para><emphasis>StateRendering</emphasis> - indicates the render thread is rendering.</para>
+</listitem><listitem><para><emphasis>StateTerminated</emphasis> - indicates the render thread is shutting down.</para>
+</listitem></itemizedlist>
+</para>
+<para>Transitions:<itemizedlist>
+<listitem><para><ref refid="class_hd_render_thread_1a95da12b4b6c328ee411acfae9fe5f246" kindref="member">StartThread()</ref>: StateInitial =&gt; StateIdle</para>
+</listitem><listitem><para><ref refid="class_hd_render_thread_1a2debd29c921e26925e71ce4b06c1e8c2" kindref="member">StartRender()</ref>: StateIdle, StateRendering =&gt; StateRendering</para>
+</listitem><listitem><para><ref refid="class_hd_render_thread_1aff5f8c3137eb62de866474ac651affbd" kindref="member">StopRender()</ref>: StateIdle, StateRendering =&gt; StateIdle</para>
+</listitem><listitem><para><ref refid="class_hd_render_thread_1a055764dfec3b153bd9c849a952ca7a3d" kindref="member">StopThread()</ref>: StateIdle, StateRendering =&gt; StateTerminated</para>
+</listitem><listitem><para><ref refid="class_hd_render_thread_1a055764dfec3b153bd9c849a952ca7a3d" kindref="member">StopThread()</ref>: StateTerminated =&gt; StateInitial</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="class_hd_render_thread_1HdRenderThread_Usage">
+<title>Example Usage</title>
+<para><programlisting filename=".cpp"><codeline><highlight class="keyword">class<sp/></highlight><highlight class="normal">ExampleRenderDelegate<sp/>:<sp/>HdRenderDelegate<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ExampleRenderDelegate()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>_renderThread.SetRenderCallback(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::bind(&amp;ExampleRenderDelegate::_RenderCallback,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>_renderThread.StartThread();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>~ExampleRenderDelegate()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>_renderThread.StopThread();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>_RenderCallback()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>renderComplete<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(!renderComplete)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>if<sp/>we<sp/>have<sp/>been<sp/>asked<sp/>to<sp/>pause.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(_renderThread.IsPauseRequested())<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(_renderThread.IsStopRequested())<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::this_thread::sleep_for(std::chrono::milliseconds(10));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(_renderThread.IsStopRequested())<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>generate<sp/>N<sp/>pixels.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>lock<sp/>=<sp/>_renderThread.LockFramebuffer();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>resolve<sp/>pixels<sp/>to<sp/>shared<sp/>buffer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>renderComplete<sp/>=<sp/>true<sp/>when<sp/>finished<sp/>rendering.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_hd_render_thread" kindref="compound">HdRenderThread</ref><sp/>_renderThread;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">ExampleRenderParam<sp/>:<sp/><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ExampleRenderParam(<ref refid="class_hd_render_thread" kindref="compound">HdRenderThread</ref>*<sp/>renderThread,<sp/>SceneData<sp/>*scene);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>SceneData*<sp/>AcquireSceneForEdit()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>_renderThread-&gt;StopRender();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_scene;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">ExamplePrim<sp/>:<sp/><ref refid="class_hd_mesh" kindref="compound">HdMesh</ref><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Sync(...)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>SceneData<sp/>*scene<sp/>=<sp/>renderParam-&gt;AcquireSceneForEdit();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">ExampleRenderPass<sp/>:<sp/><ref refid="class_hd_render_pass" kindref="compound">HdRenderPass</ref><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ExampleRenderPass(<ref refid="class_hd_render_thread" kindref="compound">HdRenderThread</ref><sp/>*renderThread);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>_Execute(...)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>_renderThread-&gt;StartRendering();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>lock<sp/>=<sp/>_renderThread-&gt;LockFramebuffer();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>blit<sp/>pixels<sp/>from<sp/>shared<sp/>to<sp/>application<sp/>buffer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+</programlisting></para>
+<para>Having a locked and shared framebuffer is important if you want to avoid tearing, or if the rendering API disallows multithreaded access to buffers (for example, if your framebuffers are on a GPU). It might be unnecessary for some renderers.</para>
+<para>Stopping the render only when you&apos;re about to make a scene edit means that long-running renders aren&apos;t interrupted if the scene is static. Hiding the renderer&apos;s scene data handle behind AcquireSceneForEdit helps callers use the synchronization mechanisms correctly.</para>
+<para>The render is restarted at the last possible second, in the render pass, after we know scene edits are done.</para>
+<para>The render callback should use <ref refid="class_hd_render_thread_1ae0a4c40ddb6dbb4f4eee255c2ef8a770" kindref="member">IsStopRequested()</ref> as a cancellation mechanism. </para>
+</sect1>
+    </detaileddescription>
+    <location file="pxr/imaging/hd/renderThread.h" line="146" column="1" bodyfile="pxr/imaging/hd/renderThread.h" bodystart="146" bodyend="363"/>
+    <listofallmembers>
+      <member refid="class_hd_render_thread_1a8f9121e98579cb819941f5b2b4d076f9" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>_DefaultRenderCallback</name></member>
+      <member refid="class_hd_render_thread_1a2573c47717bcd1f8c8e57a24c29cc6ae" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>_DefaultShutdownCallback</name></member>
+      <member refid="class_hd_render_thread_1a4286f82f521b1dda44c010158011ecd3" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>_enableRender</name></member>
+      <member refid="class_hd_render_thread_1a0cfc53705525358f7b0933ad55ccbf2b" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>_frameBufferMutex</name></member>
+      <member refid="class_hd_render_thread_1a1292390f6023a776bb05b945c240684a" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>_pauseDirty</name></member>
+      <member refid="class_hd_render_thread_1af9070901867825668b98dcb50d90e60f" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>_pauseRender</name></member>
+      <member refid="class_hd_render_thread_1a454c2b16e885e74a2251ab082f26697b" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>_renderCallback</name></member>
+      <member refid="class_hd_render_thread_1a097a228bd05203c627737e462a2e030c" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>_rendering</name></member>
+      <member refid="class_hd_render_thread_1af344d0fd0f9d6a9ec6838e977c7fd1f7" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>_RenderLoop</name></member>
+      <member refid="class_hd_render_thread_1ac919b7627a63c20e0265664a5a9d9c58" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>_renderThread</name></member>
+      <member refid="class_hd_render_thread_1aab759409dedb7412df5560f64830cff2" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>_requestedState</name></member>
+      <member refid="class_hd_render_thread_1a9497d1cfb48f47d2a25735e5f932a1d4" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>_requestedStateCV</name></member>
+      <member refid="class_hd_render_thread_1a36bb0742de94a6e2428c0c12754ace1f" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>_requestedStateMutex</name></member>
+      <member refid="class_hd_render_thread_1a4f2718fdeb0e486dff81251c540f31b6" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>_shutdownCallback</name></member>
+      <member refid="class_hd_render_thread_1ac6a98712d9cf4b1ffbc12c1ec4c7b235" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>_stopRequested</name></member>
+      <member refid="class_hd_render_thread_1ac277cf4efaf30fc1921af236d16311e9" prot="public" virt="non-virtual"><scope>HdRenderThread</scope><name>HdRenderThread</name></member>
+      <member refid="class_hd_render_thread_1a2fcb3b9e928a9011d71db68aeb514160" prot="public" virt="non-virtual"><scope>HdRenderThread</scope><name>IsPauseDirty</name></member>
+      <member refid="class_hd_render_thread_1a35078def7afac6dc6cd155eb6aa37f70" prot="public" virt="non-virtual"><scope>HdRenderThread</scope><name>IsPauseRequested</name></member>
+      <member refid="class_hd_render_thread_1ad1e59c32193feb6ed74c01db09c59ad9" prot="public" virt="non-virtual"><scope>HdRenderThread</scope><name>IsRendering</name></member>
+      <member refid="class_hd_render_thread_1ae0a4c40ddb6dbb4f4eee255c2ef8a770" prot="public" virt="non-virtual"><scope>HdRenderThread</scope><name>IsStopRequested</name></member>
+      <member refid="class_hd_render_thread_1a5c6cd1242afed4f4889c22618cdbcfc7" prot="public" virt="non-virtual"><scope>HdRenderThread</scope><name>IsThreadRunning</name></member>
+      <member refid="class_hd_render_thread_1af5e71b4e7e348591d53b54cb6060e6ce" prot="public" virt="non-virtual"><scope>HdRenderThread</scope><name>LockFramebuffer</name></member>
+      <member refid="class_hd_render_thread_1abc9ed1a2edb5894bb6e6901d508ab4c0" prot="public" virt="non-virtual"><scope>HdRenderThread</scope><name>PauseRender</name></member>
+      <member refid="class_hd_render_thread_1af6c685826ba4bb6c1cf8bf0f7649e035" prot="public" virt="non-virtual"><scope>HdRenderThread</scope><name>ResumeRender</name></member>
+      <member refid="class_hd_render_thread_1ade0915553d48ce695b8f715eb93687be" prot="public" virt="non-virtual"><scope>HdRenderThread</scope><name>SetRenderCallback</name></member>
+      <member refid="class_hd_render_thread_1a8cbc3e39de4b0d29f623655dda9cf9ac" prot="public" virt="non-virtual"><scope>HdRenderThread</scope><name>SetShutdownCallback</name></member>
+      <member refid="class_hd_render_thread_1a2debd29c921e26925e71ce4b06c1e8c2" prot="public" virt="non-virtual"><scope>HdRenderThread</scope><name>StartRender</name></member>
+      <member refid="class_hd_render_thread_1a95da12b4b6c328ee411acfae9fe5f246" prot="public" virt="non-virtual"><scope>HdRenderThread</scope><name>StartThread</name></member>
+      <member refid="class_hd_render_thread_1a5d74787dedbc4e11c1ab15bf487e61f8" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>State</name></member>
+      <member refid="class_hd_render_thread_1a5d74787dedbc4e11c1ab15bf487e61f8a2d7bab55eaf66666dc6866ceb72e51b9" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>StateIdle</name></member>
+      <member refid="class_hd_render_thread_1a5d74787dedbc4e11c1ab15bf487e61f8a3b1bd5060aa16ea83e098191a5db33cc" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>StateInitial</name></member>
+      <member refid="class_hd_render_thread_1a5d74787dedbc4e11c1ab15bf487e61f8a455d6fd958902a4667cfcdb1346a4bf2" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>StateRendering</name></member>
+      <member refid="class_hd_render_thread_1a5d74787dedbc4e11c1ab15bf487e61f8ad0bd8f85f6fd9a464492ec82f96bbee8" prot="private" virt="non-virtual"><scope>HdRenderThread</scope><name>StateTerminated</name></member>
+      <member refid="class_hd_render_thread_1aff5f8c3137eb62de866474ac651affbd" prot="public" virt="non-virtual"><scope>HdRenderThread</scope><name>StopRender</name></member>
+      <member refid="class_hd_render_thread_1a055764dfec3b153bd9c849a952ca7a3d" prot="public" virt="non-virtual"><scope>HdRenderThread</scope><name>StopThread</name></member>
+      <member refid="class_hd_render_thread_1adb22df7da58ede30a72e1715a73b42f7" prot="public" virt="non-virtual"><scope>HdRenderThread</scope><name>~HdRenderThread</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

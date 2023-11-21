@@ -1,0 +1,418 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="path_utils_8h" kind="file" language="C++">
+    <compoundname>pathUtils.h</compoundname>
+    <includes refid="pxr_8h" local="yes">pxr/pxr.h</includes>
+    <includes refid="base_2tf_2api_8h" local="yes">pxr/base/tf/api.h</includes>
+    <includes refid="file_system_8h" local="yes">pxr/base/arch/fileSystem.h</includes>
+    <includes local="no">string</includes>
+    <includes local="no">vector</includes>
+    <incdepgraph>
+      <node id="65892">
+        <label>sys/stat.h</label>
+      </node>
+      <node id="65881">
+        <label>pxr/base/arch/fileSystem.h</label>
+        <link refid="file_system_8h"/>
+        <childnode refid="65877" relation="include">
+        </childnode>
+        <childnode refid="65882" relation="include">
+        </childnode>
+        <childnode refid="65880" relation="include">
+        </childnode>
+        <childnode refid="65883" relation="include">
+        </childnode>
+        <childnode refid="65887" relation="include">
+        </childnode>
+        <childnode refid="65888" relation="include">
+        </childnode>
+        <childnode refid="65889" relation="include">
+        </childnode>
+        <childnode refid="65890" relation="include">
+        </childnode>
+        <childnode refid="65891" relation="include">
+        </childnode>
+        <childnode refid="65886" relation="include">
+        </childnode>
+        <childnode refid="65892" relation="include">
+        </childnode>
+        <childnode refid="65893" relation="include">
+        </childnode>
+      </node>
+      <node id="65883">
+        <label>pxr/base/arch/inttypes.h</label>
+        <link refid="inttypes_8h"/>
+        <childnode refid="65884" relation="include">
+        </childnode>
+        <childnode refid="65885" relation="include">
+        </childnode>
+        <childnode refid="65877" relation="include">
+        </childnode>
+        <childnode refid="65880" relation="include">
+        </childnode>
+        <childnode refid="65886" relation="include">
+        </childnode>
+      </node>
+      <node id="65879">
+        <label>pxr/base/arch/export.h</label>
+        <link refid="export_8h"/>
+        <childnode refid="65880" relation="include">
+        </childnode>
+      </node>
+      <node id="65885">
+        <label>cstdint</label>
+      </node>
+      <node id="65891">
+        <label>fcntl.h</label>
+      </node>
+      <node id="65889">
+        <label>string</label>
+      </node>
+      <node id="65884">
+        <label>cinttypes</label>
+      </node>
+      <node id="65877">
+        <label>pxr/pxr.h</label>
+        <link refid="pxr_8h"/>
+      </node>
+      <node id="65886">
+        <label>sys/types.h</label>
+      </node>
+      <node id="65888">
+        <label>cstdio</label>
+      </node>
+      <node id="65894">
+        <label>vector</label>
+      </node>
+      <node id="65893">
+        <label>sys/param.h</label>
+      </node>
+      <node id="65878">
+        <label>pxr/base/tf/api.h</label>
+        <link refid="base_2tf_2api_8h_source"/>
+        <childnode refid="65879" relation="include">
+        </childnode>
+      </node>
+      <node id="65880">
+        <label>pxr/base/arch/defines.h</label>
+        <link refid="defines_8h_source"/>
+      </node>
+      <node id="65876">
+        <label>pxr/base/tf/pathUtils.h</label>
+        <link refid="path_utils_8h"/>
+        <childnode refid="65877" relation="include">
+        </childnode>
+        <childnode refid="65878" relation="include">
+        </childnode>
+        <childnode refid="65881" relation="include">
+        </childnode>
+        <childnode refid="65889" relation="include">
+        </childnode>
+        <childnode refid="65894" relation="include">
+        </childnode>
+      </node>
+      <node id="65890">
+        <label>set</label>
+      </node>
+      <node id="65882">
+        <label>pxr/base/arch/api.h</label>
+        <link refid="base_2arch_2api_8h_source"/>
+        <childnode refid="65879" relation="include">
+        </childnode>
+      </node>
+      <node id="65887">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="path_utils_8h_1afd5d608990f1f5531d0e602288b907be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfRealPath</definition>
+        <argsstring>(std::string const &amp;path, bool allowInaccessibleSuffix=false, std::string *error=0)</argsstring>
+        <name>TfRealPath</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>allowInaccessibleSuffix</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>std::string *</type>
+          <declname>error</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Returns the canonical path of the specified filename, eliminating any symbolic links encountered in the path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is a wrapper to realpath(3), which caters for situations where the real realpath() would return a NULL string, such as the case where the path is really just a program name. The memory allocated by realpath is managed internally.</para>
+<para>If <emphasis>allowInaccessibleSuffix</emphasis> is true, then this function will only invoke realpath on the longest accessible prefix of <emphasis>path</emphasis>, and then append the inaccessible suffix.</para>
+<para>If <emphasis>error</emphasis> is provided, it is set to the error reason should an error occur while computing the real path. If no error occurs, the string is cleared. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pathUtils.h" line="58" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="path_utils_8h_1ac6520db61c60525b0a0deb1822ed3014" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfNormPath</definition>
+        <argsstring>(std::string const &amp;path, bool stripDriveSpecifier=false)</argsstring>
+        <name>TfNormPath</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>stripDriveSpecifier</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Normalizes the specified path, eliminating double slashes, etc. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This canonicalizes paths, removing any double slashes, and eliminiating &apos;.&apos;, and &apos;..&apos; components of the path. This emulates the behavior of os.path.normpath in Python.</para>
+<para>On Windows, all backslashes are converted to forward slashes and drive specifiers (e.g., &quot;C:&quot;) are lower-cased. If <computeroutput>stripDriveSpecifier</computeroutput> is <computeroutput>true</computeroutput>, these drive specifiers are removed from the path. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pathUtils.h" line="72" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="path_utils_8h_1a4ec01d812c1bbf9d4d4cf485843349f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string::size_type</type>
+        <definition>TF_API std::string::size_type TfFindLongestAccessiblePrefix</definition>
+        <argsstring>(std::string const &amp;path, std::string *error=0)</argsstring>
+        <name>TfFindLongestAccessiblePrefix</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>std::string *</type>
+          <declname>error</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Return the index delimiting the longest accessible prefix of <emphasis>path</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The returned value is safe to use to split the string via it&apos;s generalized copy constructor. If the entire path is accessible, return the length of the input string. If none of the path is accessible, return 0. Otherwise the index points to the path separator that delimits the existing prefix from the non-existing suffix.</para>
+<para>Examples: suppose the paths /, /usr, and /usr/anim exist, but no other paths exist.</para>
+<para>TfFindLongestAccessiblePrefix(&apos;/usr/anim&apos;) -&gt; 9 TfFindLongestAccessiblePrefix(&apos;/usr/anim/foo&apos;) -&gt; 9 TfFindLongestAccessiblePrefix(&apos;/foo/bar&apos;) -&gt; 0</para>
+<para>If an error occurs, and the <emphasis>error</emphasis> string is not null, it is set to the reason for the error. If the error string is set, the returned index is the path separator before the element at which the error occurred. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pathUtils.h" line="95" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="path_utils_8h_1a2c4e842e7d4fda6f85aa64721ab3abec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfAbsPath</definition>
+        <argsstring>(std::string const &amp;path)</argsstring>
+        <name>TfAbsPath</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Returns the canonical absolute path of the specified filename. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This makes the specified path absolute, by prepending the current working directory. If the path is already absolute, it is returned unmodified. This function differs from TfRealPath in that the path may point to a symlink, or not exist at all, and still result in an absolute path, rather than an empty string. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pathUtils.h" line="105" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="path_utils_8h_1afce63816402c663b45815113291da616" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfGetExtension</definition>
+        <argsstring>(std::string const &amp;path)</argsstring>
+        <name>TfGetExtension</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Returns the extension for a file path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>path</computeroutput> is a directory path, an empty path, or a dotfile path, return the empty string. Otherwise return <computeroutput>path</computeroutput> &apos;s dot-separated extension as a string(dot not included).</para>
+<para>Examples:</para>
+<para>TfGetExtension(&apos;/foo/bar&apos;) -&gt; &apos;&apos; TfGetExtension(&apos;/foo/bar/foo.baz&apos;) -&gt; &apos;baz&apos; TfGetExtension(&apos;/foo.bar/foo.baz&apos;) -&gt; &apos;baz&apos; TfGetExtension(&apos;/foo/bar/foo.101.baz&apos;) -&gt; &apos;baz&apos; TfGetExtension(&apos;/foo/bar/.foo.baz&apos;) -&gt; &apos;baz&apos; TfGetExtension(&apos;/foo/bar/.foo&apos;) -&gt; &apos;&apos; </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pathUtils.h" line="122" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="path_utils_8h_1aa3c72bc5e34fcdca42e27149b1689ccc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfReadLink</definition>
+        <argsstring>(std::string const &amp;path)</argsstring>
+        <name>TfReadLink</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Returns the value of a symbolic link. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the empty string on error or if path is not a symbolic link. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pathUtils.h" line="127" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="path_utils_8h_1acc67c0664e72d4e76396c2aff07bc1cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API bool</type>
+        <definition>TF_API bool TfIsRelativePath</definition>
+        <argsstring>(std::string const &amp;path)</argsstring>
+        <name>TfIsRelativePath</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Return true if and only if a path is relative (not absolute). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pathUtils.h" line="131" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="path_utils_8h_1ad46fa30821a93c10a30fee196bc0e909" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::vector&lt; std::string &gt;</type>
+        <definition>TF_API std::vector&lt;std::string&gt; TfGlob</definition>
+        <argsstring>(std::vector&lt; std::string &gt; const &amp;paths, unsigned int flags=ARCH_GLOB_DEFAULT)</argsstring>
+        <name>TfGlob</name>
+        <param>
+          <type>std::vector&lt; std::string &gt; const &amp;</type>
+          <declname>paths</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>flags</declname>
+          <defval>ARCH_GLOB_DEFAULT</defval>
+        </param>
+        <briefdescription>
+<para>Expands one or more shell glob patterns. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is a wrapper to glob(3), which manages the C structures necessary to glob a pattern, returning a std::vector of results. If no flags are specified, the GLOB_MARK and GLOB_NOCHECK flags are set by default. GLOB_MARK marks directories which match the glob pattern with a trailing slash. GLOB_NOCHECK returns any unexpanded patterns in the result. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pathUtils.h" line="141" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="path_utils_8h_1a4b3a61de7ae160835ff4e422822bca82" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::vector&lt; std::string &gt;</type>
+        <definition>TF_API std::vector&lt;std::string&gt; TfGlob</definition>
+        <argsstring>(std::string const &amp;path, unsigned int flags=ARCH_GLOB_DEFAULT)</argsstring>
+        <name>TfGlob</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>flags</declname>
+          <defval>ARCH_GLOB_DEFAULT</defval>
+        </param>
+        <briefdescription>
+<para>Expands a shell glob pattern. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This form of Glob calls TfGlob. For efficiency reasons, if expanding more than one pattern, use the vector form. As with the vector form of TfGlob, if flags is not set, the default glob flags are GLOB_MARK and GLOB_NOCHECK. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pathUtils.h" line="151" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Definitions of basic path utilities in tf. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>These are utilities that operate on paths (represented by strings as something like: &quot;/chars/Buzz/Torso&quot;. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>2016<sp/>Pixar</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>&quot;Apache<sp/>License&quot;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>with<sp/>the<sp/>following<sp/>modification;<sp/>you<sp/>may<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>compliance<sp/>with<sp/>the<sp/>Apache<sp/>License<sp/>and<sp/>the<sp/>following<sp/>modification<sp/>to<sp/>it:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Section<sp/>6.<sp/>Trademarks.<sp/>is<sp/>deleted<sp/>and<sp/>replaced<sp/>with:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>6.<sp/>Trademarks.<sp/>This<sp/>License<sp/>does<sp/>not<sp/>grant<sp/>permission<sp/>to<sp/>use<sp/>the<sp/>trade</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>names,<sp/>trademarks,<sp/>service<sp/>marks,<sp/>or<sp/>product<sp/>names<sp/>of<sp/>the<sp/>Licensor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>and<sp/>its<sp/>affiliates,<sp/>except<sp/>as<sp/>required<sp/>to<sp/>comply<sp/>with<sp/>Section<sp/>4(c)<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>the<sp/>License<sp/>and<sp/>to<sp/>reproduce<sp/>the<sp/>content<sp/>of<sp/>the<sp/>NOTICE<sp/>file.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>Apache<sp/>License<sp/>at</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>http://www.apache.org/licenses/LICENSE-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>distributed<sp/>under<sp/>the<sp/>Apache<sp/>License<sp/>with<sp/>the<sp/>above<sp/>modification<sp/>is</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>distributed<sp/>on<sp/>an<sp/>&quot;AS<sp/>IS&quot;<sp/>BASIS,<sp/>WITHOUT<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.<sp/>See<sp/>the<sp/>Apache<sp/>License<sp/>for<sp/>the<sp/>specific</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>language<sp/>governing<sp/>permissions<sp/>and<sp/>limitations<sp/>under<sp/>the<sp/>Apache<sp/>License.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>PXR_BASE_TF_PATH_UTILS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PXR_BASE_TF_PATH_UTILS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pxr_8h" kindref="compound">pxr/pxr.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;pxr/base/tf/api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="file_system_8h" kindref="compound">pxr/base/arch/fileSystem.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">PXR_NAMESPACE_OPEN_SCOPE</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"></codeline>
+<codeline lineno="57"><highlight class="normal">TF_API</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">std::string<sp/><ref refid="path_utils_8h_1afd5d608990f1f5531d0e602288b907be" kindref="member">TfRealPath</ref>(std::string<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/>path,</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>allowInaccessibleSuffix<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string*<sp/>error<sp/>=<sp/>0);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal">TF_API</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">std::string<sp/><ref refid="path_utils_8h_1ac6520db61c60525b0a0deb1822ed3014" kindref="member">TfNormPath</ref>(std::string<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/>path,<sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>stripDriveSpecifier<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal">TF_API</highlight></codeline>
+<codeline lineno="94"><highlight class="normal">std::string::size_type</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><ref refid="path_utils_8h_1a4ec01d812c1bbf9d4d4cf485843349f9" kindref="member">TfFindLongestAccessiblePrefix</ref>(std::string<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;path,<sp/>std::string*<sp/>error<sp/>=<sp/>0);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal">TF_API</highlight></codeline>
+<codeline lineno="105"><highlight class="normal">std::string<sp/><ref refid="path_utils_8h_1a2c4e842e7d4fda6f85aa64721ab3abec" kindref="member">TfAbsPath</ref>(std::string<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/>path);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal">TF_API</highlight></codeline>
+<codeline lineno="122"><highlight class="normal">std::string<sp/><ref refid="path_utils_8h_1afce63816402c663b45815113291da616" kindref="member">TfGetExtension</ref>(std::string<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/>path);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal">TF_API</highlight></codeline>
+<codeline lineno="127"><highlight class="normal">std::string<sp/><ref refid="path_utils_8h_1aa3c72bc5e34fcdca42e27149b1689ccc" kindref="member">TfReadLink</ref>(std::string<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/>path);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal">TF_API</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="path_utils_8h_1acc67c0664e72d4e76396c2aff07bc1cd" kindref="member">TfIsRelativePath</ref>(std::string<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/>path);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal">TF_API</highlight></codeline>
+<codeline lineno="141"><highlight class="normal">std::vector&lt;std::string&gt;<sp/><ref refid="path_utils_8h_1ad46fa30821a93c10a30fee196bc0e909" kindref="member">TfGlob</ref>(std::vector&lt;std::string&gt;<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/>paths,</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flags=ARCH_GLOB_DEFAULT);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal">TF_API</highlight></codeline>
+<codeline lineno="151"><highlight class="normal">std::vector&lt;std::string&gt;<sp/><ref refid="path_utils_8h_1ad46fa30821a93c10a30fee196bc0e909" kindref="member">TfGlob</ref>(std::string<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/>path,</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flags=ARCH_GLOB_DEFAULT);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal">PXR_NAMESPACE_CLOSE_SCOPE</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>PXR_BASE_TF_PATH_UTILS_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="pxr/base/tf/pathUtils.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_vector_data_source" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>HdVectorDataSource</compoundname>
+    <basecompoundref refid="class_hd_data_source_base" prot="public" virt="non-virtual">HdDataSourceBase</basecompoundref>
+    <derivedcompoundref refid="class_hd_retained_small_vector_data_source" prot="public" virt="non-virtual">HdRetainedSmallVectorDataSource</derivedcompoundref>
+    <includes refid="data_source_8h" local="no">dataSource.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_vector_data_source_1a8b1449cc44a1baee0f07651c66d89aad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HD_DECLARE_DATASOURCE_ABSTRACT</definition>
+        <argsstring>(HdVectorDataSource)</argsstring>
+        <name>HD_DECLARE_DATASOURCE_ABSTRACT</name>
+        <param>
+          <type><ref refid="class_hd_vector_data_source" kindref="compound">HdVectorDataSource</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/dataSource.h" line="150" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_vector_data_source_1a7c090ce1507674aec73bad7094bdccab" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>size_t</type>
+        <definition>virtual size_t GetNumElements</definition>
+        <argsstring>()=0</argsstring>
+        <name>GetNumElements</name>
+        <reimplementedby refid="class_hd_retained_small_vector_data_source_1a4abcbe2a58290e87ab6bc12f61b4e6e5">GetNumElements</reimplementedby>
+        <briefdescription>
+<para>Return the number of elements in this datasource. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This call is expected to be threadsafe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/dataSource.h" line="154" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_vector_data_source_1acb159d1b13089393edc8aba22e162aab" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HdDataSourceBaseHandle</type>
+        <definition>virtual HdDataSourceBaseHandle GetElement</definition>
+        <argsstring>(size_t element)=0</argsstring>
+        <name>GetElement</name>
+        <reimplementedby refid="class_hd_retained_small_vector_data_source_1a359bf1004a2d510c1adc799be964e319">GetElement</reimplementedby>
+        <param>
+          <type>size_t</type>
+          <declname>element</declname>
+        </param>
+        <briefdescription>
+<para>Return the element at position <computeroutput>element</computeroutput> in this datasource. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is expected to return non-null for the range [0, <computeroutput>numElements</computeroutput>). This call is expected to be threadsafe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/dataSource.h" line="159" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A datasource representing indexed data. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This should be used when a scene index is expected to manipulate the indexing; for array-valued data, a <computeroutput><ref refid="class_hd_sampled_data_source" kindref="compound">HdSampledDataSource</ref></computeroutput> can be used instead. Note that implementations are responsible for providing cache invalidation, if necessary. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3461">
+        <label>HdVectorDataSource</label>
+        <link refid="class_hd_vector_data_source"/>
+        <childnode refid="3462" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3463">
+        <label>HdRetainedSmallVectorDataSource</label>
+        <link refid="class_hd_retained_small_vector_data_source"/>
+        <childnode refid="3461" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3462">
+        <label>HdDataSourceBase</label>
+        <link refid="class_hd_data_source_base"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3464">
+        <label>HdVectorDataSource</label>
+        <link refid="class_hd_vector_data_source"/>
+        <childnode refid="3465" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3465">
+        <label>HdDataSourceBase</label>
+        <link refid="class_hd_data_source_base"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/hd/dataSource.h" line="148" column="1" bodyfile="pxr/imaging/hd/dataSource.h" bodystart="147" bodyend="160"/>
+    <listofallmembers>
+      <member refid="class_hd_vector_data_source_1acb159d1b13089393edc8aba22e162aab" prot="public" virt="pure-virtual"><scope>HdVectorDataSource</scope><name>GetElement</name></member>
+      <member refid="class_hd_vector_data_source_1a7c090ce1507674aec73bad7094bdccab" prot="public" virt="pure-virtual"><scope>HdVectorDataSource</scope><name>GetNumElements</name></member>
+      <member refid="class_hd_vector_data_source_1a8b1449cc44a1baee0f07651c66d89aad" prot="public" virt="non-virtual"><scope>HdVectorDataSource</scope><name>HD_DECLARE_DATASOURCE_ABSTRACT</name></member>
+      <member refid="class_hd_data_source_base_1a0e9f38acfe7894ade111a24f131b37f8" prot="public" virt="pure-virtual"><scope>HdVectorDataSource</scope><name>~HdDataSourceBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

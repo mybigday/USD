@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hgi_interop" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>HgiInterop</compoundname>
+    <includes refid="hgi_interop_8h" local="no">hgiInterop.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hgi_interop_1a04e97dd41e21666f466306f3ec6fb56c" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; HgiInteropOpenGL &gt;</type>
+        <definition>std::unique_ptr&lt;HgiInteropOpenGL&gt; _openGLToOpenGL</definition>
+        <argsstring></argsstring>
+        <name>_openGLToOpenGL</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiInterop/hgiInterop.h" line="108" column="1" bodyfile="pxr/imaging/hgiInterop/hgiInterop.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hgi_interop_1acd424323978e524901c3b7da638957f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HGIINTEROP_API</type>
+        <definition>HGIINTEROP_API HgiInterop</definition>
+        <argsstring>()</argsstring>
+        <name>HgiInterop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiInterop/hgiInterop.h" line="54" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_interop_1ab8db41e5938d47e035333146aca51bf5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HGIINTEROP_API</type>
+        <definition>HGIINTEROP_API ~HgiInterop</definition>
+        <argsstring>()</argsstring>
+        <name>~HgiInterop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiInterop/hgiInterop.h" line="57" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_interop_1ac5fe190183275e3a95414394f6d8ae24" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HGIINTEROP_API void</type>
+        <definition>HGIINTEROP_API void TransferToApp</definition>
+        <argsstring>(Hgi *srcHgi, HgiTextureHandle const &amp;srcColor, HgiTextureHandle const &amp;srcDepth, TfToken const &amp;dstApi, VtValue const &amp;dstFramebuffer, GfVec4i const &amp;dstRegion)</argsstring>
+        <name>TransferToApp</name>
+        <param>
+          <type><ref refid="class_hgi" kindref="compound">Hgi</ref> *</type>
+          <declname>srcHgi</declname>
+        </param>
+        <param>
+          <type>HgiTextureHandle const &amp;</type>
+          <declname>srcColor</declname>
+        </param>
+        <param>
+          <type>HgiTextureHandle const &amp;</type>
+          <declname>srcDepth</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>dstApi</declname>
+        </param>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>dstFramebuffer</declname>
+        </param>
+        <param>
+          <type><ref refid="class_gf_vec4i" kindref="compound">GfVec4i</ref> const &amp;</type>
+          <declname>dstRegion</declname>
+        </param>
+        <briefdescription>
+<para>Composite the provided textures over the application / viewer&apos;s framebuffer contents. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>srcHgi</computeroutput>: Determines the source format/platform of the textures. Eg. if hgi is of type HgiMetal, the textures are HgiMetalTexture. <computeroutput>srcColor</computeroutput>: is the source color aov texture to composite to screen. <computeroutput>srcDepth</computeroutput>: (optional) is the depth aov texture to composite to screen. <computeroutput>dstApi</computeroutput>: Determines what target format/platform the application is using. E.g. If hgi==HgiMetal and dstApi==OpenGL then TransferToApp will present the metal textures to the gl application. <computeroutput>dstFramebuffer</computeroutput>: The framebuffer that the source textures are presented into. This is a <ref refid="class_vt_value" kindref="compound">VtValue</ref> that encoding a framebuffer in a dstApi specific way. E.g., a uint32_t (aka GLuint) for framebuffer object for dstApi==OpenGL. For backwards compatibility, the currently bound framebuffer is used when the <ref refid="class_vt_value" kindref="compound">VtValue</ref> is empty.</para>
+<para><computeroutput>dstRegion</computeroutput>: Subrect region of the framebuffer over which to composite. Coordinates are (left, BOTTOM, width, height) which is the same convention as OpenGL viewport coordinates.</para>
+<para>Note: To composite correctly, blending is enabled. If <computeroutput>srcDepth</computeroutput> is provided, depth testing is enabled. As a result, the contents of the application framebuffer matter. In order to use the contents of <computeroutput>srcColor</computeroutput> and <computeroutput>srcDepth</computeroutput> as-is (i.e., blit), the color attachment should be cleared to (0,0,0,0) and the depth attachment needs to be cleared to 1. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiInterop/hgiInterop.h" line="91" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hgi_interop_1a67fe7b981847ccef9f535753b77ac00f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hgi_interop" kindref="compound">HgiInterop</ref> &amp;</type>
+        <definition>HgiInterop&amp; operator=</definition>
+        <argsstring>(const HgiInterop &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_hgi_interop" kindref="compound">HgiInterop</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiInterop/hgiInterop.h" line="100" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_interop_1af66bf94d88e55d5e48b2eb978098669a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HgiInterop</definition>
+        <argsstring>(const HgiInterop &amp;)=delete</argsstring>
+        <name>HgiInterop</name>
+        <param>
+          <type>const <ref refid="class_hgi_interop" kindref="compound">HgiInterop</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiInterop/hgiInterop.h" line="101" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Hydra Graphics Interface Interop. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="class_hgi_interop" kindref="compound">HgiInterop</ref> provides functionality to transfer render targets between supported APIs as efficiently as possible. </para>
+    </detaileddescription>
+    <location file="pxr/imaging/hgiInterop/hgiInterop.h" line="51" column="1" bodyfile="pxr/imaging/hgiInterop/hgiInterop.h" bodystart="50" bodyend="110"/>
+    <listofallmembers>
+      <member refid="class_hgi_interop_1a04e97dd41e21666f466306f3ec6fb56c" prot="private" virt="non-virtual"><scope>HgiInterop</scope><name>_openGLToOpenGL</name></member>
+      <member refid="class_hgi_interop_1acd424323978e524901c3b7da638957f7" prot="public" virt="non-virtual"><scope>HgiInterop</scope><name>HgiInterop</name></member>
+      <member refid="class_hgi_interop_1af66bf94d88e55d5e48b2eb978098669a" prot="private" virt="non-virtual"><scope>HgiInterop</scope><name>HgiInterop</name></member>
+      <member refid="class_hgi_interop_1a67fe7b981847ccef9f535753b77ac00f" prot="private" virt="non-virtual"><scope>HgiInterop</scope><name>operator=</name></member>
+      <member refid="class_hgi_interop_1ac5fe190183275e3a95414394f6d8ae24" prot="public" virt="non-virtual"><scope>HgiInterop</scope><name>TransferToApp</name></member>
+      <member refid="class_hgi_interop_1ab8db41e5938d47e035333146aca51bf5" prot="public" virt="non-virtual"><scope>HgiInterop</scope><name>~HgiInterop</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hgi_g_l_sampler" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>HgiGLSampler</compoundname>
+    <basecompoundref refid="class_hgi_sampler" prot="public" virt="non-virtual">HgiSampler</basecompoundref>
+    <includes refid="hgi_g_l_2sampler_8h" local="no">sampler.h</includes>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_hgi_g_l_sampler_1a459c65427f4c47c738022928ea52ecae" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class HgiGL</definition>
+        <argsstring></argsstring>
+        <name>HgiGL</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/sampler.h" line="60" column="1" bodyfile="pxr/imaging/hgiGL/sampler.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hgi_g_l_sampler_1a01b13236473c83dd2042d6b840df4505" prot="private" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t _samplerId</definition>
+        <argsstring></argsstring>
+        <name>_samplerId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/sampler.h" line="71" column="1" bodyfile="pxr/imaging/hgiGL/sampler.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hgi_g_l_sampler_1a78a45f9f91e02d59c93aab11bebff61b" prot="private" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t _bindlessTextureId</definition>
+        <argsstring></argsstring>
+        <name>_bindlessTextureId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/sampler.h" line="72" column="1" bodyfile="pxr/imaging/hgiGL/sampler.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hgi_g_l_sampler_1af509f3b4f9ca1990e6e3b67d94f2b6ff" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t _bindlessHandle</definition>
+        <argsstring></argsstring>
+        <name>_bindlessHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/sampler.h" line="73" column="1" bodyfile="pxr/imaging/hgiGL/sampler.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hgi_g_l_sampler_1abcbe7ce3b4667b036c8658ef943be0f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HGIGL_API</type>
+        <definition>HGIGL_API ~HgiGLSampler</definition>
+        <argsstring>() override</argsstring>
+        <name>~HgiGLSampler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/sampler.h" line="46" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_g_l_sampler_1adc3ffb4c04b3ab04225e25cf3f7dfe05" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HGIGL_API uint64_t</type>
+        <definition>HGIGL_API uint64_t GetRawResource</definition>
+        <argsstring>() const override</argsstring>
+        <name>GetRawResource</name>
+        <reimplements refid="class_hgi_sampler_1a1c1b84de203362af87c23d73c8f8d395">GetRawResource</reimplements>
+        <briefdescription>
+<para>This function returns the handle to the <ref refid="class_hgi" kindref="compound">Hgi</ref> backend&apos;s gpu resource, cast to a uint64_t. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Clients should avoid using this function and instead use <ref refid="class_hgi" kindref="compound">Hgi</ref> base classes so that client code works with any <ref refid="class_hgi" kindref="compound">Hgi</ref> platform. For transitioning code to <ref refid="class_hgi" kindref="compound">Hgi</ref>, it can however we useful to directly access a platform&apos;s internal resource handles. There is no safety provided in using this. If you by accident pass a HgiMetal resource into an OpenGL call, bad things may happen. In OpenGL this returns the GLuint resource name. In Metal this returns the id&lt;MTLSamplerState&gt; as uint64_t. In Vulkan this returns the VkSampler as uint64_t. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/sampler.h" line="49" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_g_l_sampler_1ad88c79a14f94b2d732e746bfda663304" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HGIGL_API uint32_t</type>
+        <definition>HGIGL_API uint32_t GetSamplerId</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSamplerId</name>
+        <briefdescription>
+<para>Returns the gl resource id of the sampler. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/sampler.h" line="53" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_g_l_sampler_1a8d32b3b7d5eb415a58f60dce97d7e8cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HGIGL_API uint64_t</type>
+        <definition>HGIGL_API uint64_t GetBindlessHandle</definition>
+        <argsstring>(HgiTextureHandle const &amp;textureHandle)</argsstring>
+        <name>GetBindlessHandle</name>
+        <param>
+          <type>HgiTextureHandle const &amp;</type>
+          <declname>textureHandle</declname>
+        </param>
+        <briefdescription>
+<para>Returns the bindless gpu handle (caller must verify extension support) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/sampler.h" line="57" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_hgi_g_l_sampler_1a3a664d293342bbe25b8cacb4b3420a70" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HGIGL_API</type>
+        <definition>HGIGL_API HgiGLSampler</definition>
+        <argsstring>(HgiSamplerDesc const &amp;desc)</argsstring>
+        <name>HgiGLSampler</name>
+        <param>
+          <type><ref refid="struct_hgi_sampler_desc" kindref="compound">HgiSamplerDesc</ref> const &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/sampler.h" line="63" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hgi_g_l_sampler_1a9b0f6d957eeb20f0db1a746f1fe30029" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HgiGLSampler</definition>
+        <argsstring>()=delete</argsstring>
+        <name>HgiGLSampler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/sampler.h" line="66" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_g_l_sampler_1aa53f9cf8f3eb551d70ade466badfe74e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hgi_g_l_sampler" kindref="compound">HgiGLSampler</ref> &amp;</type>
+        <definition>HgiGLSampler&amp; operator=</definition>
+        <argsstring>(const HgiGLSampler &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_hgi_g_l_sampler" kindref="compound">HgiGLSampler</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/sampler.h" line="67" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_g_l_sampler_1a4ae9638931c907996455362058d60024" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HgiGLSampler</definition>
+        <argsstring>(const HgiGLSampler &amp;)=delete</argsstring>
+        <name>HgiGLSampler</name>
+        <param>
+          <type>const <ref refid="class_hgi_g_l_sampler" kindref="compound">HgiGLSampler</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/sampler.h" line="68" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>OpenGL implementation of <ref refid="class_hgi_sampler" kindref="compound">HgiSampler</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3852">
+        <label>HgiSampler</label>
+        <link refid="class_hgi_sampler"/>
+      </node>
+      <node id="3851">
+        <label>HgiGLSampler</label>
+        <link refid="class_hgi_g_l_sampler"/>
+        <childnode refid="3852" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3854">
+        <label>HgiSampler</label>
+        <link refid="class_hgi_sampler"/>
+        <childnode refid="3855" relation="usage">
+          <edgelabel>_descriptor</edgelabel>
+        </childnode>
+      </node>
+      <node id="3855">
+        <label>HgiSamplerDesc</label>
+        <link refid="struct_hgi_sampler_desc"/>
+      </node>
+      <node id="3853">
+        <label>HgiGLSampler</label>
+        <link refid="class_hgi_g_l_sampler"/>
+        <childnode refid="3854" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/hgiGL/sampler.h" line="43" column="1" bodyfile="pxr/imaging/hgiGL/sampler.h" bodystart="42" bodyend="74"/>
+    <listofallmembers>
+      <member refid="class_hgi_g_l_sampler_1af509f3b4f9ca1990e6e3b67d94f2b6ff" prot="private" virt="non-virtual"><scope>HgiGLSampler</scope><name>_bindlessHandle</name></member>
+      <member refid="class_hgi_g_l_sampler_1a78a45f9f91e02d59c93aab11bebff61b" prot="private" virt="non-virtual"><scope>HgiGLSampler</scope><name>_bindlessTextureId</name></member>
+      <member refid="class_hgi_sampler_1a64eaf83b1bcfbc71280c5e2c12170168" prot="protected" virt="non-virtual"><scope>HgiGLSampler</scope><name>_descriptor</name></member>
+      <member refid="class_hgi_g_l_sampler_1a01b13236473c83dd2042d6b840df4505" prot="private" virt="non-virtual"><scope>HgiGLSampler</scope><name>_samplerId</name></member>
+      <member refid="class_hgi_g_l_sampler_1a8d32b3b7d5eb415a58f60dce97d7e8cb" prot="public" virt="non-virtual"><scope>HgiGLSampler</scope><name>GetBindlessHandle</name></member>
+      <member refid="class_hgi_sampler_1a8b66805391ea68842368825747acc7f5" prot="public" virt="non-virtual"><scope>HgiGLSampler</scope><name>GetDescriptor</name></member>
+      <member refid="class_hgi_g_l_sampler_1adc3ffb4c04b3ab04225e25cf3f7dfe05" prot="public" virt="virtual"><scope>HgiGLSampler</scope><name>GetRawResource</name></member>
+      <member refid="class_hgi_g_l_sampler_1ad88c79a14f94b2d732e746bfda663304" prot="public" virt="non-virtual"><scope>HgiGLSampler</scope><name>GetSamplerId</name></member>
+      <member refid="class_hgi_g_l_sampler_1a459c65427f4c47c738022928ea52ecae" prot="protected" virt="non-virtual"><scope>HgiGLSampler</scope><name>HgiGL</name></member>
+      <member refid="class_hgi_g_l_sampler_1a3a664d293342bbe25b8cacb4b3420a70" prot="protected" virt="non-virtual"><scope>HgiGLSampler</scope><name>HgiGLSampler</name></member>
+      <member refid="class_hgi_g_l_sampler_1a9b0f6d957eeb20f0db1a746f1fe30029" prot="private" virt="non-virtual"><scope>HgiGLSampler</scope><name>HgiGLSampler</name></member>
+      <member refid="class_hgi_g_l_sampler_1a4ae9638931c907996455362058d60024" prot="private" virt="non-virtual"><scope>HgiGLSampler</scope><name>HgiGLSampler</name></member>
+      <member refid="class_hgi_sampler_1a7fe35a8979c47312fe498bb0facaee9f" prot="protected" virt="non-virtual"><scope>HgiGLSampler</scope><name>HgiSampler</name></member>
+      <member refid="class_hgi_g_l_sampler_1aa53f9cf8f3eb551d70ade466badfe74e" prot="private" virt="non-virtual"><scope>HgiGLSampler</scope><name>operator=</name></member>
+      <member refid="class_hgi_g_l_sampler_1abcbe7ce3b4667b036c8658ef943be0f5" prot="public" virt="non-virtual"><scope>HgiGLSampler</scope><name>~HgiGLSampler</name></member>
+      <member refid="class_hgi_sampler_1a1735535cf7372283db29a6e253320a76" prot="public" virt="virtual"><scope>HgiGLSampler</scope><name>~HgiSampler</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

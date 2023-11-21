@@ -1,0 +1,1202 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_geom_model_a_p_i" kind="class" language="C++" prot="public">
+    <compoundname>UsdGeomModelAPI</compoundname>
+    <basecompoundref refid="class_usd_a_p_i_schema_base" prot="public" virt="non-virtual">UsdAPISchemaBase</basecompoundref>
+    <includes refid="eom_2model_a_p_i_8h" local="no">modelAPI.h</includes>
+      <sectiondef kind="user-defined">
+      <header>Model Extents Hint API</header>
+      <description><para><anchor id="class_usd_geom_model_a_p_i_1UsdGeomModelAPIExtentsHint"/></para>
+<para>Methods for querying, authoring and computing the model&apos;s &quot;extentsHint&quot;. </para>
+</description>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a4aa8b1f29a3097fe08da868bd2b8b259" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool GetExtentsHint</definition>
+        <argsstring>(VtVec3fArray *extents, const UsdTimeCode &amp;time=UsdTimeCode::Default()) const</argsstring>
+        <name>GetExtentsHint</name>
+        <param>
+          <type>VtVec3fArray *</type>
+          <declname>extents</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> &amp;</type>
+          <declname>time</declname>
+          <defval><ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Retrieve the authored value (if any) of this model&apos;s &quot;extentsHint&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Persistent caching of bounds in USD is a potentially perilous endeavor, given that: <itemizedlist>
+<listitem><para>It is very easy to add overrides in new super-layers that invalidate the cached bounds, and no practical way to automatically detect when this happens </para>
+</listitem>
+<listitem><para>It is possible for references to be allowed to &quot;float&quot;, so that asset updates can flow directly into cached scenes. Such changes in referenced scene description can also invalidate cached bounds in referencing layers.</para>
+</listitem>
+</itemizedlist>
+For these reasons, as a general rule, we only persistently cache leaf gprim extents in object space. However, even with cached gprim extents, computing bounds can be expensive. Since model-level bounds are so useful to many graphics applications, we make an exception, with some caveats. The &quot;extentsHint&quot; should be considered entirely optional (whereas gprim extent is not); if authored, it should contains the extents for various values of gprim purposes. The extents for different values of purpose are stored in a linear Vec3f array as pairs of <ref refid="class_gf_vec3f" kindref="compound">GfVec3f</ref> values in the order specified by <ref refid="class_usd_geom_imageable_1ac7d41ddd5b5d274785f4a109a7cebad5" kindref="member">UsdGeomImageable::GetOrderedPurposeTokens()</ref>. This list is trimmed to only include non-empty extents. i.e., if a model has only default and render geoms, then it will only have 4 <ref refid="class_gf_vec3f" kindref="compound">GfVec3f</ref> values in its extentsHint array. We do not skip over zero extents, so if a model has only default and proxy geom, we will author six <ref refid="class_gf_vec3f" kindref="compound">GfVec3f</ref>&apos;s, the middle two representing an zero extent for render geometry.</para>
+<para>A <ref refid="class_usd_geom_b_box_cache" kindref="compound">UsdGeomBBoxCache</ref> can be configured to first consult the cached extents when evaluating model roots, rather than descending into the models for the full computation. This is not the default behavior, and gives us a convenient way to validate that the cached extentsHint is still valid.</para>
+<para><simplesect kind="return"><para><computeroutput>true</computeroutput> if a value was fetched; <computeroutput>false</computeroutput> if no value was authored, or on error. It is an error to make this query of a prim that is not a model root.</para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_geom_imageable_1acff531252fb2787a973eb028f2b04bdd" kindref="member">UsdGeomImageable::GetPurposeAttr()</ref>, <ref refid="class_usd_geom_imageable_1ac7d41ddd5b5d274785f4a109a7cebad5" kindref="member">UsdGeomImageable::GetOrderedPurposeTokens()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="565" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1afcce401d09740d3559711cd6e892f76b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool SetExtentsHint</definition>
+        <argsstring>(VtVec3fArray const &amp;extents, const UsdTimeCode &amp;time=UsdTimeCode::Default()) const</argsstring>
+        <name>SetExtentsHint</name>
+        <param>
+          <type>VtVec3fArray const &amp;</type>
+          <declname>extents</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> &amp;</type>
+          <declname>time</declname>
+          <defval><ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Authors the extentsHint array for this model at the given time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_usd_geom_model_a_p_i_1a4aa8b1f29a3097fe08da868bd2b8b259" kindref="member">GetExtentsHint()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="573" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a0923ea946724d71e9bdbe496562850d1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetExtentsHintAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetExtentsHintAttr</name>
+        <briefdescription>
+<para>Returns the custom &apos;extentsHint&apos; attribute if it exits. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="578" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1aac5775c427df6f0afe886d94a2450a7d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API VtVec3fArray</type>
+        <definition>USDGEOM_API VtVec3fArray ComputeExtentsHint</definition>
+        <argsstring>(UsdGeomBBoxCache &amp;bboxCache) const</argsstring>
+        <name>ComputeExtentsHint</name>
+        <param>
+          <type><ref refid="class_usd_geom_b_box_cache" kindref="compound">UsdGeomBBoxCache</ref> &amp;</type>
+          <declname>bboxCache</declname>
+        </param>
+        <briefdescription>
+<para>Compute a value suitable for passing to <ref refid="class_usd_geom_model_a_p_i_1afcce401d09740d3559711cd6e892f76b" kindref="member">SetExtentsHint()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If this model is a <ref refid="class_usd_geom_boundable" kindref="compound">UsdGeomBoundable</ref>, call <ref refid="class_usd_geom_boundable_1a413c9eb5b4e1d8fddd627cf33ed4a106" kindref="member">UsdGeomBoundable::ComputeExtentFromPlugins()</ref> with the <computeroutput>bboxCache</computeroutput> &apos;s time code. If that function returns true, then populate the returned array with the min and max repeated according to the number of tokens in <ref refid="class_usd_geom_imageable_1ac7d41ddd5b5d274785f4a109a7cebad5" kindref="member">UsdGeomImageable::GetOrderedPurposeTokens()</ref>. Otherwise return an array with a single empty range.</para>
+<para>If this model is not a <ref refid="class_usd_geom_boundable" kindref="compound">UsdGeomBoundable</ref>, populate the return value by calling <ref refid="class_usd_geom_b_box_cache_1ad83e536dfdafb804039f3347f08feeb8" kindref="member">UsdGeomBBoxCache::ComputeUntransformedBound()</ref> (and <ref refid="class_gf_b_box3d_1aca5eb3958e87f185cdce528526d46a35" kindref="member">GfBBox3d::ComputeAlignedBox()</ref> on that result) for each token in <ref refid="class_usd_geom_imageable_1ac7d41ddd5b5d274785f4a109a7cebad5" kindref="member">UsdGeomImageable::GetOrderedPurposeTokens()</ref>.</para>
+<para>In either case the, Nth successive pair of entries in the returned array will be the min and max coordinates of the extent corresponding to the Nth token in <ref refid="class_usd_geom_imageable_1ac7d41ddd5b5d274785f4a109a7cebad5" kindref="member">UsdGeomImageable::GetOrderedPurposeTokens()</ref>, except trailing empty boxes are omitted, unless all boxes are empty in which case the result is a single empty box.</para>
+<para>For example, if GetOrderedPurposeTokens() is [default, render, proxy, guide] and this function returns [(0,0,0), (1,1,1), (+FLT_MAX), (-FLT_MIN), (0,0,0), (1,1,1)] then this means that the computed extents for &apos;default&apos; and &apos;proxy&apos; purpose are [(0,0,0), (1,1,1)] and the extents for &apos;render&apos; and &apos;guide&apos; purposes are empty.</para>
+<para>This function modifies <computeroutput>bboxCache&apos;s</computeroutput> included purposes.</para>
+<para><simplesect kind="note"><para><computeroutput>bboxCache</computeroutput> must not be used concurrently during the execution of this function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="611" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Model Constraint Targets API</header>
+      <description><para><anchor id="class_usd_geom_model_a_p_i_1UsdGeomModelAPIConstraintTargets"/></para>
+<para>Methods for adding and listing constraint targets. </para>
+</description>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a90fdb7c2b764d114b1c14ffd7ed2bde7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_geom_constraint_target" kindref="compound">UsdGeomConstraintTarget</ref></type>
+        <definition>USDGEOM_API UsdGeomConstraintTarget GetConstraintTarget</definition>
+        <argsstring>(const std::string &amp;constraintName) const</argsstring>
+        <name>GetConstraintTarget</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>constraintName</declname>
+        </param>
+        <briefdescription>
+<para>Get the constraint target with the given name, <computeroutput>constraintName</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the requested constraint target does not exist, then an invalid UsdConstraintTarget object is returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="628" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1ab77715b7fd7989c71bae225b137381aa" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_geom_constraint_target" kindref="compound">UsdGeomConstraintTarget</ref></type>
+        <definition>USDGEOM_API UsdGeomConstraintTarget CreateConstraintTarget</definition>
+        <argsstring>(const std::string &amp;constraintName) const</argsstring>
+        <name>CreateConstraintTarget</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>constraintName</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new constraint target with the given name, <computeroutput>constraintName</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the constraint target already exists, then the existing target is returned. If it does not exist, a new one is created and returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="637" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a4912a3e8ff5129f61fa70fccec59246e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API std::vector&lt; <ref refid="class_usd_geom_constraint_target" kindref="compound">UsdGeomConstraintTarget</ref> &gt;</type>
+        <definition>USDGEOM_API std::vector&lt;UsdGeomConstraintTarget&gt; GetConstraintTargets</definition>
+        <argsstring>() const</argsstring>
+        <name>GetConstraintTargets</name>
+        <briefdescription>
+<para>Returns all the constraint targets belonging to the model. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Only valid constraint targets in the &quot;constraintTargets&quot; namespace are returned by this method. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="646" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_usd_geom_model_a_p_i_1a3e5fc43aea5aea4908c3ce980fdf8908" prot="public" static="yes" mutable="no">
+        <type>const <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref></type>
+        <definition>const UsdSchemaKind schemaKind</definition>
+        <argsstring></argsstring>
+        <name>schemaKind</name>
+        <initializer>= <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741aa02d2addc2bb693dde0851595872f1aa" kindref="member">UsdSchemaKind::SingleApplyAPI</ref></initializer>
+        <briefdescription>
+<para>Compile time constant representing what kind of schema this class is. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="159" column="1" bodyfile="pxr/usd/usdGeom/modelAPI.h" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_usd_geom_model_a_p_i_1aff8b8d83211f127c6c4cba48fb7d3334" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class UsdSchemaRegistry</definition>
+        <argsstring></argsstring>
+        <name>UsdSchemaRegistry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="251" column="1" bodyfile="pxr/usd/usdGeom/modelAPI.h" bodystart="251" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1ac89ab361ba8866f26f5ee296371a4429" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdGeomModelAPI</definition>
+        <argsstring>(const UsdPrim &amp;prim=UsdPrim())</argsstring>
+        <name>UsdGeomModelAPI</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+          <defval><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="class_usd_geom_model_a_p_i" kindref="compound">UsdGeomModelAPI</ref> on <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> <computeroutput>prim</computeroutput> . </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Equivalent to <ref refid="class_usd_geom_model_a_p_i_1aed4ed9f135a7142af90c7132b51bc6c7" kindref="member">UsdGeomModelAPI::Get</ref>(prim.GetStage(), prim.GetPath()) for a <emphasis>valid</emphasis> <computeroutput>prim</computeroutput>, but will not immediately throw an error for an invalid <computeroutput>prim</computeroutput> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="165" column="1" bodyfile="pxr/usd/usdGeom/modelAPI.h" bodystart="165" bodyend="168"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1ad3dd3345a2be77277fd93f996596dd45" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdGeomModelAPI</definition>
+        <argsstring>(const UsdSchemaBase &amp;schemaObj)</argsstring>
+        <name>UsdGeomModelAPI</name>
+        <param>
+          <type>const <ref refid="class_usd_schema_base" kindref="compound">UsdSchemaBase</ref> &amp;</type>
+          <declname>schemaObj</declname>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="class_usd_geom_model_a_p_i" kindref="compound">UsdGeomModelAPI</ref> on the prim held by <computeroutput>schemaObj</computeroutput> . </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Should be preferred over <ref refid="class_usd_geom_model_a_p_i" kindref="compound">UsdGeomModelAPI</ref>(schemaObj.GetPrim()), as it preserves SchemaBase state. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="173" column="1" bodyfile="pxr/usd/usdGeom/modelAPI.h" bodystart="173" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a9ef2e8de1d647f51ff2fd8f3a7947f4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>USDGEOM_API</type>
+        <definition>virtual USDGEOM_API ~UsdGeomModelAPI</definition>
+        <argsstring>()</argsstring>
+        <name>~UsdGeomModelAPI</name>
+        <briefdescription>
+<para>Destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="180" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a07bd91c0affd3ae0091a80b5b71a8aaf" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetModelDrawModeAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetModelDrawModeAttr</name>
+        <briefdescription>
+<para>Alternate imaging mode; applied to this prim or child prims where <emphasis>model:applyDrawMode</emphasis> is true, or where the prim has kind <emphasis>component</emphasis> and <emphasis>model:applyDrawMode</emphasis> is not authored. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>See <ref refid="class_usd_geom_model_a_p_i_1UsdGeomModelAPI_drawMode" kindref="member">Draw Modes</ref> for mode descriptions.</para>
+<para><table rows="6" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>uniform token model:drawMode = &quot;inherited&quot;</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_tf_token" kindref="compound">TfToken</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Token   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="usd_2sdf_2types_8h_1a71cdb29b28ede8b72fcf36fa6f8d320f" kindref="member">Variability</ref>  </para>
+</entry><entry thead="no"><para>SdfVariabilityUniform   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="usd_2usd_geom_2tokens_8h_1ad9e3544e015f99ed697804fd6bfe1a88" kindref="member">Allowed Values</ref>  </para>
+</entry><entry thead="no"><para>origin, bounds, cards, default, inherited   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="279" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a119afdfd2d6058b6326a606367d203a8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateModelDrawModeAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateModelDrawModeAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_model_a_p_i_1a07bd91c0affd3ae0091a80b5b71a8aaf" kindref="member">GetModelDrawModeAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="287" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a4036b648f2a0b7ea0003af2c8e36cc68" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetModelApplyDrawModeAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetModelApplyDrawModeAttr</name>
+        <briefdescription>
+<para>If true, and the resolved value of <emphasis>model:drawMode</emphasis> is non-default, apply an alternate imaging mode to this prim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>See <ref refid="class_usd_geom_model_a_p_i_1UsdGeomModelAPI_drawMode" kindref="member">Draw Modes</ref>.</para>
+<para><table rows="5" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>uniform bool model:applyDrawMode = 0</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para>bool   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Bool   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="usd_2sdf_2types_8h_1a71cdb29b28ede8b72fcf36fa6f8d320f" kindref="member">Variability</ref>  </para>
+</entry><entry thead="no"><para>SdfVariabilityUniform   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="304" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1adc074f4ab94bfa762fb4fed9685f9d14" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateModelApplyDrawModeAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateModelApplyDrawModeAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_model_a_p_i_1a4036b648f2a0b7ea0003af2c8e36cc68" kindref="member">GetModelApplyDrawModeAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="312" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a8316bb72ea49ef4df238ad1f569ba5a9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetModelDrawModeColorAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetModelDrawModeColorAttr</name>
+        <briefdescription>
+<para>The base color of imaging prims inserted for alternate imaging modes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For <emphasis>origin</emphasis> and <emphasis>bounds</emphasis> modes, this controls line color; for <emphasis>cards</emphasis> mode, this controls the fallback quad color.</para>
+<para><table rows="5" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>uniform float3 model:drawModeColor = (0.18, 0.18, 0.18)</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec3f" kindref="compound">GfVec3f</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Float3   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="usd_2sdf_2types_8h_1a71cdb29b28ede8b72fcf36fa6f8d320f" kindref="member">Variability</ref>  </para>
+</entry><entry thead="no"><para>SdfVariabilityUniform   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="330" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a3dd24b419c2ebb6f5ab2eb110903ce62" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateModelDrawModeColorAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateModelDrawModeColorAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_model_a_p_i_1a8316bb72ea49ef4df238ad1f569ba5a9" kindref="member">GetModelDrawModeColorAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="338" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a3995c97179a6c1bc3dadce43e34e836a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetModelCardGeometryAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetModelCardGeometryAttr</name>
+        <briefdescription>
+<para>The geometry to generate for imaging prims inserted for <emphasis>cards</emphasis> imaging mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>See <ref refid="class_usd_geom_model_a_p_i_1UsdGeomModelAPI_cardGeometry" kindref="member">Cards Geometry</ref> for geometry descriptions.</para>
+<para><table rows="6" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>uniform token model:cardGeometry = &quot;cross&quot;</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_tf_token" kindref="compound">TfToken</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Token   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="usd_2sdf_2types_8h_1a71cdb29b28ede8b72fcf36fa6f8d320f" kindref="member">Variability</ref>  </para>
+</entry><entry thead="no"><para>SdfVariabilityUniform   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="usd_2usd_geom_2tokens_8h_1ad9e3544e015f99ed697804fd6bfe1a88" kindref="member">Allowed Values</ref>  </para>
+</entry><entry thead="no"><para>cross, box, fromTexture   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="356" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a60ba672f88d84742b99123c53c9b4c03" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateModelCardGeometryAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateModelCardGeometryAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_model_a_p_i_1a3995c97179a6c1bc3dadce43e34e836a" kindref="member">GetModelCardGeometryAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="364" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a0d667fed53600d918def015b14f21cf7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetModelCardTextureXPosAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetModelCardTextureXPosAttr</name>
+        <briefdescription>
+<para>In <emphasis>cards</emphasis> imaging mode, the texture applied to the X+ quad. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The texture axes (s,t) are mapped to model-space axes (-y, -z).</para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>asset model:cardTextureXPos</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_sdf_asset_path" kindref="compound">SdfAssetPath</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Asset   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="379" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a8da819ccc708acd1b59cf599bb8689e3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateModelCardTextureXPosAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateModelCardTextureXPosAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_model_a_p_i_1a0d667fed53600d918def015b14f21cf7" kindref="member">GetModelCardTextureXPosAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="387" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a5885f67be83ae70eb7de83c3adf1aca2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetModelCardTextureYPosAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetModelCardTextureYPosAttr</name>
+        <briefdescription>
+<para>In <emphasis>cards</emphasis> imaging mode, the texture applied to the Y+ quad. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The texture axes (s,t) are mapped to model-space axes (x, -z).</para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>asset model:cardTextureYPos</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_sdf_asset_path" kindref="compound">SdfAssetPath</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Asset   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="402" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a97a5cbf0d863b93f0d8948dbeec6b632" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateModelCardTextureYPosAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateModelCardTextureYPosAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_model_a_p_i_1a5885f67be83ae70eb7de83c3adf1aca2" kindref="member">GetModelCardTextureYPosAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="410" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a470c8404e12c57e854a75c58779fcf05" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetModelCardTextureZPosAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetModelCardTextureZPosAttr</name>
+        <briefdescription>
+<para>In <emphasis>cards</emphasis> imaging mode, the texture applied to the Z+ quad. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The texture axes (s,t) are mapped to model-space axes (x, -y).</para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>asset model:cardTextureZPos</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_sdf_asset_path" kindref="compound">SdfAssetPath</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Asset   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="425" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1ab27e52f6c79b9ea3a0245aa85b7970aa" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateModelCardTextureZPosAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateModelCardTextureZPosAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_model_a_p_i_1a470c8404e12c57e854a75c58779fcf05" kindref="member">GetModelCardTextureZPosAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="433" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a61c0ce776cd928733fca44f5ab0239e6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetModelCardTextureXNegAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetModelCardTextureXNegAttr</name>
+        <briefdescription>
+<para>In <emphasis>cards</emphasis> imaging mode, the texture applied to the X- quad. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The texture axes (s,t) are mapped to model-space axes (y, -z).</para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>asset model:cardTextureXNeg</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_sdf_asset_path" kindref="compound">SdfAssetPath</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Asset   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="448" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1ab70ebf3e5554cc3455b2ae887bb9346d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateModelCardTextureXNegAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateModelCardTextureXNegAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_model_a_p_i_1a61c0ce776cd928733fca44f5ab0239e6" kindref="member">GetModelCardTextureXNegAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="456" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1ad6da60f657519fe1ba55bff15f0d1646" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetModelCardTextureYNegAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetModelCardTextureYNegAttr</name>
+        <briefdescription>
+<para>In <emphasis>cards</emphasis> imaging mode, the texture applied to the Y- quad. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The texture axes (s,t) are mapped to model-space axes (-x, -z).</para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>asset model:cardTextureYNeg</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_sdf_asset_path" kindref="compound">SdfAssetPath</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Asset   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="471" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1ad3867d8f7efb33562ecf6a6bd9fbe4d9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateModelCardTextureYNegAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateModelCardTextureYNegAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_model_a_p_i_1ad6da60f657519fe1ba55bff15f0d1646" kindref="member">GetModelCardTextureYNegAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="479" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a6277390b6650ca6503b94a8deeb21ace" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetModelCardTextureZNegAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetModelCardTextureZNegAttr</name>
+        <briefdescription>
+<para>In <emphasis>cards</emphasis> imaging mode, the texture applied to the Z- quad. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The texture axes (s,t) are mapped to model-space axes (-x, -y).</para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>asset model:cardTextureZNeg</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_sdf_asset_path" kindref="compound">SdfAssetPath</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Asset   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="494" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a6953ec84057566b90822ee888956f74c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateModelCardTextureZNegAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateModelCardTextureZNegAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_model_a_p_i_1a6277390b6650ca6503b94a8deeb21ace" kindref="member">GetModelCardTextureZNegAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="502" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a3af8267961c7e8ec7c9fed3712ca5083" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>USDGEOM_API TfToken ComputeModelDrawMode</definition>
+        <argsstring>(const TfToken &amp;parentDrawMode=TfToken()) const</argsstring>
+        <name>ComputeModelDrawMode</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>parentDrawMode</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Calculate the effective model:drawMode of this prim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the draw mode is authored on this prim, it&apos;s used. Otherwise, the fallback value is &quot;inherited&quot;, which defers to the parent opinion. The first non-inherited opinion found walking from this prim towards the root is used. If the attribute isn&apos;t set on any ancestors, we return &quot;default&quot; (meaning, disable &quot;drawMode&quot; geometry).</para>
+<para>If this function is being called in a traversal context to compute the draw mode of an entire hierarchy of prims, it would be beneficial to cache and pass in the computed parent draw-mode via the <computeroutput>parentDrawMode</computeroutput> parameter. This avoids repeated upward traversal to look for ancestor opinions.</para>
+<para>When <computeroutput>parentDrawMode</computeroutput> is empty (or unspecified), this function does an upward traversal to find the closest ancestor with an authored model:drawMode.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_geom_model_a_p_i_1a07bd91c0affd3ae0091a80b5b71a8aaf" kindref="member">GetModelDrawModeAttr()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="670" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1ae40ae43320babff8a254a3a8107a255a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+        <definition>static USDGEOM_API const TfTokenVector&amp; GetSchemaAttributeNames</definition>
+        <argsstring>(bool includeInherited=true)</argsstring>
+        <name>GetSchemaAttributeNames</name>
+        <param>
+          <type>bool</type>
+          <declname>includeInherited</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Return a vector of names of all pre-declared attributes for this schema class and all its ancestor classes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does not include attributes that may be authored by custom/extended methods of the schemas involved. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="187" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1aed4ed9f135a7142af90c7132b51bc6c7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_geom_model_a_p_i" kindref="compound">UsdGeomModelAPI</ref></type>
+        <definition>static USDGEOM_API UsdGeomModelAPI Get</definition>
+        <argsstring>(const UsdStagePtr &amp;stage, const SdfPath &amp;path)</argsstring>
+        <name>Get</name>
+        <param>
+          <type>const UsdStagePtr &amp;</type>
+          <declname>stage</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Return a <ref refid="class_usd_geom_model_a_p_i" kindref="compound">UsdGeomModelAPI</ref> holding the prim adhering to this schema at <computeroutput>path</computeroutput> on <computeroutput>stage</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no prim exists at <computeroutput>path</computeroutput> on <computeroutput>stage</computeroutput>, or if the prim at that path does not adhere to this schema, return an invalid schema object. This is shorthand for the following:</para>
+<para><programlisting><codeline><highlight class="normal">UsdGeomModelAPI(stage-&gt;GetPrimAtPath(path));</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="200" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a5282a74a6b9a05373d5c3e3e193eefa1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>static USDGEOM_API bool CanApply</definition>
+        <argsstring>(const UsdPrim &amp;prim, std::string *whyNot=nullptr)</argsstring>
+        <name>CanApply</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <param>
+          <type>std::string *</type>
+          <declname>whyNot</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Returns true if this <bold>single-apply</bold> API schema can be applied to the given <computeroutput>prim</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If this schema can not be a applied to the prim, this returns false and, if provided, populates <computeroutput>whyNot</computeroutput> with the reason it can not be applied.</para>
+<para>Note that if CanApply returns false, that does not necessarily imply that calling Apply will fail. Callers are expected to call CanApply before calling Apply if they want to ensure that it is valid to apply a schema.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_prim_1a42cfbef37f98df2c20c15044c333fe4a" kindref="member">UsdPrim::GetAppliedSchemas()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_prim_1a582b449631f9e073e0e04582c66ce04a" kindref="member">UsdPrim::HasAPI()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_prim_1a2e4b59a7cf7fa0d677270163ea6ad029" kindref="member">UsdPrim::CanApplyAPI()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_prim_1ad3ef9d2cec618a0f43fce5295b5b176e" kindref="member">UsdPrim::ApplyAPI()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_prim_1aab70d4fa20d53a6675734205ded2da22" kindref="member">UsdPrim::RemoveAPI()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="221" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1ad72b6d9ee2ff72ea244c6452d4297263" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_geom_model_a_p_i" kindref="compound">UsdGeomModelAPI</ref></type>
+        <definition>static USDGEOM_API UsdGeomModelAPI Apply</definition>
+        <argsstring>(const UsdPrim &amp;prim)</argsstring>
+        <name>Apply</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <briefdescription>
+<para>Applies this <bold>single-apply</bold> API schema to the given <computeroutput>prim</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This information is stored by adding &quot;GeomModelAPI&quot; to the token-valued, listOp metadata <emphasis>apiSchemas</emphasis> on the prim.</para>
+<para><simplesect kind="return"><para>A valid <ref refid="class_usd_geom_model_a_p_i" kindref="compound">UsdGeomModelAPI</ref> object is returned upon success. An invalid (or empty) <ref refid="class_usd_geom_model_a_p_i" kindref="compound">UsdGeomModelAPI</ref> object is returned upon failure. See <ref refid="class_usd_prim_1ad3ef9d2cec618a0f43fce5295b5b176e" kindref="member">UsdPrim::ApplyAPI()</ref> for conditions resulting in failure.</para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_prim_1a42cfbef37f98df2c20c15044c333fe4a" kindref="member">UsdPrim::GetAppliedSchemas()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_prim_1a582b449631f9e073e0e04582c66ce04a" kindref="member">UsdPrim::HasAPI()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_prim_1a2e4b59a7cf7fa0d677270163ea6ad029" kindref="member">UsdPrim::CanApplyAPI()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_prim_1ad3ef9d2cec618a0f43fce5295b5b176e" kindref="member">UsdPrim::ApplyAPI()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_prim_1aab70d4fa20d53a6675734205ded2da22" kindref="member">UsdPrim::RemoveAPI()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="240" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a71a1af4672754da617b8cb537f29c5f4" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USDGEOM_API <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref></type>
+        <definition>USDGEOM_API UsdSchemaKind _GetSchemaKind</definition>
+        <argsstring>() const override</argsstring>
+        <name>_GetSchemaKind</name>
+        <reimplements refid="class_usd_a_p_i_schema_base_1a408aa7d080a2672e88403126cc197095">_GetSchemaKind</reimplements>
+        <briefdescription>
+<para>Returns the kind of schema this class belongs to. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="247" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1ad32bf70dffbb431c0fa883d5fbc1802d" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+        <definition>static USDGEOM_API const TfType&amp; _GetStaticTfType</definition>
+        <argsstring>()</argsstring>
+        <name>_GetStaticTfType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="253" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1abbc02364dd87e9f147201cbd8d260d43" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool _IsTypedSchema</definition>
+        <argsstring>()</argsstring>
+        <name>_IsTypedSchema</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="255" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_usd_geom_model_a_p_i_1a1e6b9f0da5624212c58019b749c21286" prot="private" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USDGEOM_API const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+        <definition>USDGEOM_API const TfType&amp; _GetTfType</definition>
+        <argsstring>() const override</argsstring>
+        <name>_GetTfType</name>
+        <reimplements refid="class_usd_a_p_i_schema_base_1a6f7a3688b0129a59c6e70e925d7ac732">_GetTfType</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/modelAPI.h" line="259" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="class_usd_geom_model_a_p_i" kindref="compound">UsdGeomModelAPI</ref> extends the generic <ref refid="class_usd_model_a_p_i" kindref="compound">UsdModelAPI</ref> schema with geometry specific concepts such as cached extents for the entire model, constraint targets, and geometry-inspired extensions to the payload lofting process. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>As described in <ref refid="class_usd_geom_model_a_p_i_1a4aa8b1f29a3097fe08da868bd2b8b259" kindref="member">GetExtentsHint()</ref> below, it is useful to cache extents at the model level. <ref refid="class_usd_geom_model_a_p_i" kindref="compound">UsdGeomModelAPI</ref> provides schema for computing and storing these cached extents, which can be consumed by <ref refid="class_usd_geom_b_box_cache" kindref="compound">UsdGeomBBoxCache</ref> to provide fast access to precomputed extents that will be used as the model&apos;s bounds ( see <ref refid="class_usd_geom_b_box_cache_1ad4dbc60e68f738ff79c437fec435322d" kindref="member">UsdGeomBBoxCache::UsdGeomBBoxCache()</ref> ).</para>
+<sect1 id="class_usd_geom_model_a_p_i_1UsdGeomModelAPI_drawMode">
+<title>Draw Modes</title>
+<para>Draw modes provide optional alternate imaging behavior for USD subtrees with kind model. <emphasis>model:drawMode</emphasis> (which is inheritable) and <emphasis>model:applyDrawMode</emphasis> (which is not) are resolved into a decision to stop traversing the scene graph at a certain point, and replace a USD subtree with proxy geometry.</para>
+<para>The value of <emphasis>model:drawMode</emphasis> determines the type of proxy geometry:<itemizedlist>
+<listitem><para><emphasis>origin</emphasis> - Draw the model-space basis vectors of the replaced prim.</para>
+</listitem><listitem><para><emphasis>bounds</emphasis> - Draw the model-space bounding box of the replaced prim.</para>
+</listitem><listitem><para><emphasis>cards</emphasis> - Draw textured quads as a placeholder for the replaced prim.</para>
+</listitem><listitem><para><emphasis>default</emphasis> - An explicit opinion to draw the USD subtree as normal.</para>
+</listitem><listitem><para><emphasis>inherited</emphasis> - Defer to the parent opinion.</para>
+</listitem></itemizedlist>
+</para>
+<para><emphasis>model:drawMode</emphasis> falls back to <emphasis>inherited</emphasis> so that a whole scene, a large group, or all prototypes of a model hierarchy PointInstancer can be assigned a draw mode with a single attribute edit. If no draw mode is explicitly set in a hierarchy, the resolved value is <emphasis>default</emphasis>.</para>
+<para><emphasis>model:applyDrawMode</emphasis> is meant to be written when an asset is authored, and provides flexibility for different asset types. For example, a character assembly (composed of character, clothes, etc) might have <emphasis>model:applyDrawMode</emphasis> set at the top of the subtree so the whole group can be drawn as a single card object. An effects subtree might have <emphasis>model:applyDrawMode</emphasis> set at a lower level so each particle group draws individually.</para>
+<para>Models of kind component are automatically treated as if <emphasis>model:applyDrawMode</emphasis> were true if <emphasis>model:applyDrawMode</emphasis> is not authored on the component prim. A component prim will be drawn drawn with a simplified representation when the prim has kind component, <emphasis>model:applyDrawMode</emphasis> is not authored (or authored to be true), and the resolved (i.e. inherited down namespace) value for <emphasis>model:drawMode</emphasis> is not <emphasis>default</emphasis>. If you don&apos;t want component prims to use the resolved non-default drawMode, you must apply the <ref refid="class_usd_geom_model_a_p_i" kindref="compound">UsdGeomModelAPI</ref> schema on the prim and explicitly set <emphasis>model:applyDrawMode</emphasis> to false.</para>
+</sect1>
+<sect1 id="class_usd_geom_model_a_p_i_1UsdGeomModelAPI_cardGeometry">
+<title>Cards Geometry</title>
+<para>The specific geometry used in cards mode is controlled by the <emphasis>model:cardGeometry</emphasis> attribute:<itemizedlist>
+<listitem><para><emphasis>cross</emphasis> - Generate a quad normal to each basis direction and negative. Locate each quad so that it bisects the model extents.</para>
+</listitem><listitem><para><emphasis>box</emphasis> - Generate a quad normal to each basis direction and negative. Locate each quad on a face of the model extents, facing out.</para>
+</listitem><listitem><para><emphasis>fromTexture</emphasis> - Generate a quad for each supplied texture from attributes stored in that texture&apos;s metadata.</para>
+</listitem></itemizedlist>
+</para>
+<para>For <emphasis>cross</emphasis> and <emphasis>box</emphasis> mode, the extents are calculated for purposes <emphasis>default</emphasis>, <emphasis>proxy</emphasis>, and <emphasis>render</emphasis>, at their earliest authored time. If the model has no textures, all six card faces are rendered using <emphasis>model:drawModeColor</emphasis>. If one or more textures are present, only axes with one or more textures assigned are drawn. For each axis, if both textures (positive and negative) are specified, they&apos;ll be used on the corresponding card faces; if only one texture is specified, it will be mapped to the opposite card face after being flipped on the texture&apos;s s-axis. Any card faces with invalid asset paths will be drawn with <emphasis>model:drawModeColor</emphasis>.</para>
+<para>Both <emphasis>model:cardGeometry</emphasis> and <emphasis>model:drawModeColor</emphasis> should be authored on the prim where the draw mode takes effect, since these attributes are not inherited.</para>
+<para>For <emphasis>fromTexture</emphasis> mode, only card faces with valid textures assigned are drawn. The geometry is generated by pulling the <emphasis>worldtoscreen</emphasis> attribute out of texture metadata. This is expected to be a 4x4 matrix mapping the model-space position of the card quad to the clip-space quad with corners (-1,-1,0) and (1,1,0). The card vertices are generated by transforming the clip-space corners by the inverse of <emphasis>worldtoscreen</emphasis>. Textures are mapped so that (s) and (t) map to (+x) and (+y) in clip space. If the metadata cannot be read in the right format, or the matrix can&apos;t be inverted, the card face is not drawn.</para>
+<para>All card faces are drawn and textured as single-sided.</para>
+<para>For any described attribute <emphasis>Fallback</emphasis> <emphasis>Value</emphasis> or <emphasis>Allowed</emphasis> <emphasis>Values</emphasis> below that are text/tokens, the actual token is published and defined in <ref refid="usd_2usd_geom_2tokens_8h_1ad9e3544e015f99ed697804fd6bfe1a88" kindref="member">UsdGeomTokens</ref>. So to set an attribute to the value &quot;rightHanded&quot;, use UsdGeomTokens-&gt;rightHanded as the value. </para>
+</sect1>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="6352">
+        <label>UsdSchemaBase</label>
+        <link refid="class_usd_schema_base"/>
+      </node>
+      <node id="6351">
+        <label>UsdAPISchemaBase</label>
+        <link refid="class_usd_a_p_i_schema_base"/>
+        <childnode refid="6352" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6350">
+        <label>UsdGeomModelAPI</label>
+        <link refid="class_usd_geom_model_a_p_i"/>
+        <childnode refid="6351" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="6355">
+        <label>UsdSchemaBase</label>
+        <link refid="class_usd_schema_base"/>
+      </node>
+      <node id="6354">
+        <label>UsdAPISchemaBase</label>
+        <link refid="class_usd_a_p_i_schema_base"/>
+        <childnode refid="6355" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6353">
+        <label>UsdGeomModelAPI</label>
+        <link refid="class_usd_geom_model_a_p_i"/>
+        <childnode refid="6354" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/usd/usdGeom/modelAPI.h" line="154" column="1" bodyfile="pxr/usd/usdGeom/modelAPI.h" bodystart="153" bodyend="671"/>
+    <listofallmembers>
+      <member refid="class_usd_schema_base_1ad99ec8284868478b50e8fc3475880dab" prot="protected" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>_CreateAttr</name></member>
+      <member refid="class_usd_a_p_i_schema_base_1aa27e613f624c34d85fc17cbf58956245" prot="protected" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>_GetInstanceName</name></member>
+      <member refid="class_usd_a_p_i_schema_base_1aaf34e3836e442b3a04d517febdb69cc3" prot="protected" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>_GetMultipleApplyInstanceNames</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a71a1af4672754da617b8cb537f29c5f4" prot="protected" virt="virtual"><scope>UsdGeomModelAPI</scope><name>_GetSchemaKind</name></member>
+      <member refid="class_usd_schema_base_1a6c51fb3251d5fde5ffa9fe7a998ce970" prot="protected" virt="virtual"><scope>UsdGeomModelAPI</scope><name>_GetSchemaType</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1ad32bf70dffbb431c0fa883d5fbc1802d" prot="private" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>_GetStaticTfType</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a1e6b9f0da5624212c58019b749c21286" prot="private" virt="virtual"><scope>UsdGeomModelAPI</scope><name>_GetTfType</name></member>
+      <member refid="class_usd_schema_base_1aa29ea4c951d8debfd8085a28c6aa80ca" prot="protected" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>_GetType</name></member>
+      <member refid="class_usd_a_p_i_schema_base_1ad91204cc9fb92f0306372e074052190f" prot="protected" virt="virtual"><scope>UsdGeomModelAPI</scope><name>_IsCompatible</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1abbc02364dd87e9f147201cbd8d260d43" prot="private" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>_IsTypedSchema</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1ad72b6d9ee2ff72ea244c6452d4297263" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>Apply</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a5282a74a6b9a05373d5c3e3e193eefa1" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>CanApply</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1aac5775c427df6f0afe886d94a2450a7d" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>ComputeExtentsHint</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a3af8267961c7e8ec7c9fed3712ca5083" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>ComputeModelDrawMode</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1ab77715b7fd7989c71bae225b137381aa" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>CreateConstraintTarget</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1adc074f4ab94bfa762fb4fed9685f9d14" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>CreateModelApplyDrawModeAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a60ba672f88d84742b99123c53c9b4c03" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>CreateModelCardGeometryAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1ab70ebf3e5554cc3455b2ae887bb9346d" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>CreateModelCardTextureXNegAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a8da819ccc708acd1b59cf599bb8689e3" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>CreateModelCardTextureXPosAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1ad3867d8f7efb33562ecf6a6bd9fbe4d9" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>CreateModelCardTextureYNegAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a97a5cbf0d863b93f0d8948dbeec6b632" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>CreateModelCardTextureYPosAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a6953ec84057566b90822ee888956f74c" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>CreateModelCardTextureZNegAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1ab27e52f6c79b9ea3a0245aa85b7970aa" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>CreateModelCardTextureZPosAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a119afdfd2d6058b6326a606367d203a8" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>CreateModelDrawModeAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a3dd24b419c2ebb6f5ab2eb110903ce62" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>CreateModelDrawModeColorAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1aed4ed9f135a7142af90c7132b51bc6c7" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>Get</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a90fdb7c2b764d114b1c14ffd7ed2bde7" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>GetConstraintTarget</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a4912a3e8ff5129f61fa70fccec59246e" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>GetConstraintTargets</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a4aa8b1f29a3097fe08da868bd2b8b259" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>GetExtentsHint</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a0923ea946724d71e9bdbe496562850d1" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>GetExtentsHintAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a4036b648f2a0b7ea0003af2c8e36cc68" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>GetModelApplyDrawModeAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a3995c97179a6c1bc3dadce43e34e836a" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>GetModelCardGeometryAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a61c0ce776cd928733fca44f5ab0239e6" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>GetModelCardTextureXNegAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a0d667fed53600d918def015b14f21cf7" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>GetModelCardTextureXPosAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1ad6da60f657519fe1ba55bff15f0d1646" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>GetModelCardTextureYNegAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a5885f67be83ae70eb7de83c3adf1aca2" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>GetModelCardTextureYPosAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a6277390b6650ca6503b94a8deeb21ace" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>GetModelCardTextureZNegAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a470c8404e12c57e854a75c58779fcf05" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>GetModelCardTextureZPosAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a07bd91c0affd3ae0091a80b5b71a8aaf" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>GetModelDrawModeAttr</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a8316bb72ea49ef4df238ad1f569ba5a9" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>GetModelDrawModeColorAttr</name></member>
+      <member refid="class_usd_schema_base_1a936bfb1e341cc81184c64af44763c433" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>GetPath</name></member>
+      <member refid="class_usd_schema_base_1a4ba10e023e7f3f3c93131bc7fc3146b7" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>GetPrim</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1ae40ae43320babff8a254a3a8107a255a" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>GetSchemaAttributeNames</name></member>
+      <member refid="class_usd_schema_base_1a030d03e2a9839d9c3da0fbca8c3722d4" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>GetSchemaClassPrimDefinition</name></member>
+      <member refid="class_usd_schema_base_1aeac68c5514faebb20c5ae3cb930170de" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>GetSchemaKind</name></member>
+      <member refid="class_usd_schema_base_1ad658b6730d4246ee1f903ce4ce18fdfe" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>IsAPISchema</name></member>
+      <member refid="class_usd_schema_base_1a68e867971cc992c5b03e73725c405c05" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>IsAppliedAPISchema</name></member>
+      <member refid="class_usd_schema_base_1ae2c90cefba1b2e09dc117a7d972009cb" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>IsConcrete</name></member>
+      <member refid="class_usd_schema_base_1af752510dea0c7106aa89832e60dfa3d5" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>IsMultipleApplyAPISchema</name></member>
+      <member refid="class_usd_schema_base_1afa15659f4fa280e4c0772173d7471920" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>IsTyped</name></member>
+      <member refid="class_usd_schema_base_1a586531d84339318108c817f91367e626" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>operator bool</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a3e5fc43aea5aea4908c3ce980fdf8908" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>schemaKind</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1afcce401d09740d3559711cd6e892f76b" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>SetExtentsHint</name></member>
+      <member refid="class_usd_a_p_i_schema_base_1a693760be7357b341ca92cae42af89a2a" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>UsdAPISchemaBase</name></member>
+      <member refid="class_usd_a_p_i_schema_base_1aa02eade67d6ca4c0d58fe3b7e5a4cc9a" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>UsdAPISchemaBase</name></member>
+      <member refid="class_usd_a_p_i_schema_base_1ae1aaced053a4cc13c21b444b27130c75" prot="protected" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>UsdAPISchemaBase</name></member>
+      <member refid="class_usd_a_p_i_schema_base_1ac9df31df96c3346f55ba31be7472f106" prot="protected" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>UsdAPISchemaBase</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1ac89ab361ba8866f26f5ee296371a4429" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>UsdGeomModelAPI</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1ad3dd3345a2be77277fd93f996596dd45" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>UsdGeomModelAPI</name></member>
+      <member refid="class_usd_schema_base_1a32e0a9b0465ecf201fb501753baa8587" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>UsdSchemaBase</name></member>
+      <member refid="class_usd_schema_base_1a73921308189043c86867d6bd9012b4af" prot="public" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>UsdSchemaBase</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1aff8b8d83211f127c6c4cba48fb7d3334" prot="private" virt="non-virtual"><scope>UsdGeomModelAPI</scope><name>UsdSchemaRegistry</name></member>
+      <member refid="class_usd_a_p_i_schema_base_1a426f2a53141cc3eefa43fce755f83108" prot="public" virt="pure-virtual"><scope>UsdGeomModelAPI</scope><name>~UsdAPISchemaBase</name></member>
+      <member refid="class_usd_geom_model_a_p_i_1a9ef2e8de1d647f51ff2fd8f3a7947f4d" prot="public" virt="virtual"><scope>UsdGeomModelAPI</scope><name>~UsdGeomModelAPI</name></member>
+      <member refid="class_usd_schema_base_1a3e97b9a7311478da9f2d168bea29560e" prot="public" virt="virtual"><scope>UsdGeomModelAPI</scope><name>~UsdSchemaBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

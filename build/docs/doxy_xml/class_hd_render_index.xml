@@ -1,0 +1,2022 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_render_index" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>HdRenderIndex</compoundname>
+    <includes refid="render_index_8h" local="no">renderIndex.h</includes>
+    <innerclass refid="struct_hd_render_index_1_1___rprim_info" prot="private">HdRenderIndex::_RprimInfo</innerclass>
+    <innerclass refid="struct_hd_render_index_1_1___task_info" prot="private">HdRenderIndex::_TaskInfo</innerclass>
+      <sectiondef kind="user-defined">
+      <header>Synchronization</header>
+      <memberdef kind="function" id="class_hd_render_index_1a375fd2060b6b8ad23692774c92445184" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void EnqueueCollectionToSync</definition>
+        <argsstring>(HdRprimCollection const &amp;collection)</argsstring>
+        <name>EnqueueCollectionToSync</name>
+        <param>
+          <type><ref refid="class_hd_rprim_collection" kindref="compound">HdRprimCollection</ref> const &amp;</type>
+          <declname>collection</declname>
+        </param>
+        <briefdescription>
+<para>Hydra&apos;s core currently needs to know the collections used by tasks to aggregate the reprs that need to be synced for the dirty Rprims. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="171" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a4c0c8384764f03418660e24b66fa4c90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void SyncAll</definition>
+        <argsstring>(HdTaskSharedPtrVector *tasks, HdTaskContext *taskContext)</argsstring>
+        <name>SyncAll</name>
+        <param>
+          <type>HdTaskSharedPtrVector *</type>
+          <declname>tasks</declname>
+        </param>
+        <param>
+          <type>HdTaskContext *</type>
+          <declname>taskContext</declname>
+        </param>
+        <briefdescription>
+<para>Syncs input tasks, B &amp; S prims, (external) computations and updates the Rprim dirty list to then sync the Rprims. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>At the end of this step, all the resources that need to be updated have handles to their data sources. This is the first phase in Hydra&apos;s execution. See <ref refid="class_hd_engine_1a75a0815239165c0bf1826a09415013a5" kindref="member">HdEngine::Execute</ref> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="179" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Execution</header>
+      <memberdef kind="function" id="class_hd_render_index_1a9a12ab3dcec7825e0068a59f88830bfe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API HdDrawItemPtrVector</type>
+        <definition>HD_API HdDrawItemPtrVector GetDrawItems</definition>
+        <argsstring>(HdRprimCollection const &amp;collection, TfTokenVector const &amp;renderTags)</argsstring>
+        <name>GetDrawItems</name>
+        <param>
+          <type><ref refid="class_hd_rprim_collection" kindref="compound">HdRprimCollection</ref> const &amp;</type>
+          <declname>collection</declname>
+        </param>
+        <param>
+          <type><ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> const &amp;</type>
+          <declname>renderTags</declname>
+        </param>
+        <briefdescription>
+<para>Returns a list of relevant draw items that match the criteria specified. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The is typically called during render pass execution, which is the final phase in the Hydra&apos;s execution. See <ref refid="class_hd_render_pass_1a6bad9788a8700f9bfa9bd622bbe5de9d" kindref="member">HdRenderPass::Execute</ref> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="190" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Change Tracker</header>
+      <memberdef kind="function" id="class_hd_render_index_1a22c0b6103375653a23ae93605f0da7b7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_hd_change_tracker" kindref="compound">HdChangeTracker</ref> &amp;</type>
+        <definition>HdChangeTracker&amp; GetChangeTracker</definition>
+        <argsstring>()</argsstring>
+        <name>GetChangeTracker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="197" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="197" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1aa3eddc1b2ceda24207cc83b511278c17" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_hd_change_tracker" kindref="compound">HdChangeTracker</ref> const  &amp;</type>
+        <definition>HdChangeTracker const&amp; GetChangeTracker</definition>
+        <argsstring>() const</argsstring>
+        <name>GetChangeTracker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="198" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="198" bodyend="198"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Renderable prims (e.g. meshes, basis curves)</header>
+      <memberdef kind="function" id="class_hd_render_index_1a4d8985c05bf39485319d172e2d97afaf" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsRprimTypeSupported</definition>
+        <argsstring>(TfToken const &amp;typeId) const</argsstring>
+        <name>IsRprimTypeSupported</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <briefdescription>
+<para>Returns whether the rprim type is supported by this render index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="206" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1aaa49377f918b6d74c12eb90254d4ba16" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void InsertRprim</definition>
+        <argsstring>(TfToken const &amp;typeId, HdSceneDelegate *sceneDelegate, SdfPath const &amp;rprimId)</argsstring>
+        <name>InsertRprim</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>rprimId</declname>
+        </param>
+        <briefdescription>
+<para>Insert a rprim into index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="210" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a15eacd24aa28c6e443676112bd27d461" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void RemoveRprim</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>RemoveRprim</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Remove a rprim from index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="216" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a68538cb8f4d79ac212dac0d1680eb47e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool HasRprim</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>HasRprim</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if rprim <computeroutput>id</computeroutput> exists in index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="219" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="219" bodyend="221"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a490ba582bd7848c5134b3a7d737ee959" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API <ref refid="class_hd_rprim" kindref="compound">HdRprim</ref> const  *</type>
+        <definition>HD_API HdRprim const* GetRprim</definition>
+        <argsstring>(SdfPath const &amp;id) const</argsstring>
+        <name>GetRprim</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns the rprim of id. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="225" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1aabb98b6a1778e734a0e454a11172c2f3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API <ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+        <definition>HD_API HdSceneDelegate* GetSceneDelegateForRprim</definition>
+        <argsstring>(SdfPath const &amp;id) const</argsstring>
+        <name>GetSceneDelegateForRprim</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns the scene delegate for the given rprim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="229" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1ae43df5b251c9548e5de9bacfec1626c3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool GetSceneDelegateAndInstancerIds</definition>
+        <argsstring>(SdfPath const &amp;id, SdfPath *sceneDelegateId, SdfPath *instancerId) const</argsstring>
+        <name>GetSceneDelegateAndInstancerIds</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> *</type>
+          <declname>sceneDelegateId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> *</type>
+          <declname>instancerId</declname>
+        </param>
+        <briefdescription>
+<para>Query function to return the id&apos;s of the scene delegate and instancer associated with the Rprim at the given path. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="234" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1aa8b5ba2b318f95514398a9d9924e7c5e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>HD_API TfToken GetRenderTag</definition>
+        <argsstring>(SdfPath const &amp;id) const</argsstring>
+        <name>GetRenderTag</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns the render tag for the given rprim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="240" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a248dd77b3c44caa4139aa02540e78b77" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>TfToken UpdateRenderTag</definition>
+        <argsstring>(SdfPath const &amp;id, HdDirtyBits bits)</argsstring>
+        <name>UpdateRenderTag</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>bits</declname>
+        </param>
+        <briefdescription>
+<para>Like GetRenderTag, but updates the render tag if dirty. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="243" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1af923113510d910f1d1a898a21ce87232" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>HD_API const SdfPathVector &amp;</type>
+        <definition>HD_API const SdfPathVector&amp; GetRprimIds</definition>
+        <argsstring>()</argsstring>
+        <name>GetRprimIds</name>
+        <briefdescription>
+<para>Returns a sorted list of all Rprims in the render index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The list is sorted by std::less&lt;SdfPath&gt; </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="249" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="249" bodyend="249"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1ad68a6edfc4c3e8eb358c5d0dbb2db24c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API SdfPathVector</type>
+        <definition>HD_API SdfPathVector GetRprimSubtree</definition>
+        <argsstring>(SdfPath const &amp;root)</argsstring>
+        <name>GetRprimSubtree</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>root</declname>
+        </param>
+        <briefdescription>
+<para>Returns the subtree rooted under the given path. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="254" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Instancer Support</header>
+      <memberdef kind="function" id="class_hd_render_index_1ae58e564712943fde79da6f5592271877" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void InsertInstancer</definition>
+        <argsstring>(HdSceneDelegate *delegate, SdfPath const &amp;id)</argsstring>
+        <name>InsertInstancer</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Insert an instancer into index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="263" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a1a84e689071c151c327e0287ed904d1c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void RemoveInstancer</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>RemoveInstancer</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Remove an instancer from index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="268" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1ad078299f9bd83b75442d3572972d7893" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool HasInstancer</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>HasInstancer</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if instancer <computeroutput>id</computeroutput> exists in index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="271" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="271" bodyend="273"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a36463d1fe1250b9ee4c35d0516993bb1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API <ref refid="class_hd_instancer" kindref="compound">HdInstancer</ref> *</type>
+        <definition>HD_API HdInstancer* GetInstancer</definition>
+        <argsstring>(SdfPath const &amp;id) const</argsstring>
+        <name>GetInstancer</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns the instancer of id. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="277" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Task Support</header>
+      <memberdef kind="function" id="class_hd_render_index_1a23b3fdbd1986c9e818a35a1333331e80" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void InsertTask</definition>
+        <argsstring>(HdSceneDelegate *delegate, SdfPath const &amp;id)</argsstring>
+        <name>InsertTask</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Inserts a new task into the render index with an identifier of <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="285" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="594" bodyend="601"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a1bdaf8f6bc23b7ca81dbc21d4cd488d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void RemoveTask</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>RemoveTask</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Removes the given task from the RenderIndex. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="289" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1acdc45e8e75e96376898dc4250d0bf1d6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool HasTask</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>HasTask</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if a task exists in the index with the given <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="292" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="292" bodyend="294"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1ac80604050ebd8a4b82ebc910e3be8c9c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API HdTaskSharedPtr const  &amp;</type>
+        <definition>HD_API HdTaskSharedPtr const&amp; GetTask</definition>
+        <argsstring>(SdfPath const &amp;id) const</argsstring>
+        <name>GetTask</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns the task for the given <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="298" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Scene state prims (e.g. camera, light)</header>
+      <memberdef kind="function" id="class_hd_render_index_1ad41d7817c8dbab0c6826e62aa141413c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsSprimTypeSupported</definition>
+        <argsstring>(TfToken const &amp;typeId) const</argsstring>
+        <name>IsSprimTypeSupported</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <briefdescription>
+<para>Returns whether the sprim type is supported by this render index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="306" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1afa5d6a6984fb32dc754e02d140c425c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void InsertSprim</definition>
+        <argsstring>(TfToken const &amp;typeId, HdSceneDelegate *delegate, SdfPath const &amp;sprimId)</argsstring>
+        <name>InsertSprim</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>sprimId</declname>
+        </param>
+        <briefdescription>
+<para>Insert a sprim into index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="310" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a4aa842d6a98add0a07622a86365399ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void RemoveSprim</definition>
+        <argsstring>(TfToken const &amp;typeId, SdfPath const &amp;id)</argsstring>
+        <name>RemoveSprim</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="315" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a4ce8f093030dd842c3bedf28ed899398" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API <ref refid="class_hd_sprim" kindref="compound">HdSprim</ref> *</type>
+        <definition>HD_API HdSprim* GetSprim</definition>
+        <argsstring>(TfToken const &amp;typeId, SdfPath const &amp;id) const</argsstring>
+        <name>GetSprim</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="318" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1af4a2c83a163af9fd36e1f45703de2c79" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API SdfPathVector</type>
+        <definition>HD_API SdfPathVector GetSprimSubtree</definition>
+        <argsstring>(TfToken const &amp;typeId, SdfPath const &amp;root)</argsstring>
+        <name>GetSprimSubtree</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>root</declname>
+        </param>
+        <briefdescription>
+<para>Returns the subtree rooted under the given path for the given sprim type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="323" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a25a752305008e1e202b4c784875f344c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API <ref refid="class_hd_sprim" kindref="compound">HdSprim</ref> *</type>
+        <definition>HD_API HdSprim* GetFallbackSprim</definition>
+        <argsstring>(TfToken const &amp;typeId) const</argsstring>
+        <name>GetFallbackSprim</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <briefdescription>
+<para>Returns the fullback prim for the Sprim of the given type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="328" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Buffer prims (e.g. textures, buffers)</header>
+      <memberdef kind="function" id="class_hd_render_index_1a29e7a6fbe70652c6b82494233122f8ff" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsBprimTypeSupported</definition>
+        <argsstring>(TfToken const &amp;typeId) const</argsstring>
+        <name>IsBprimTypeSupported</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <briefdescription>
+<para>Returns whether the bprim type is supported by this render index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="337" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a3940211cee02a3065ae89d8aab6e8282" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void InsertBprim</definition>
+        <argsstring>(TfToken const &amp;typeId, HdSceneDelegate *delegate, SdfPath const &amp;bprimId)</argsstring>
+        <name>InsertBprim</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>bprimId</declname>
+        </param>
+        <briefdescription>
+<para>Insert a bprim into index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="341" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a319cf8d718878fbd3559d78c0f6369d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void RemoveBprim</definition>
+        <argsstring>(TfToken const &amp;typeId, SdfPath const &amp;id)</argsstring>
+        <name>RemoveBprim</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="346" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1abfcb714b5717a0dc3a6813e535853bae" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API <ref refid="class_hd_bprim" kindref="compound">HdBprim</ref> *</type>
+        <definition>HD_API HdBprim* GetBprim</definition>
+        <argsstring>(TfToken const &amp;typeId, SdfPath const &amp;id) const</argsstring>
+        <name>GetBprim</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="349" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a1a8f719829546a1b11c3bcca37473075" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API SdfPathVector</type>
+        <definition>HD_API SdfPathVector GetBprimSubtree</definition>
+        <argsstring>(TfToken const &amp;typeId, SdfPath const &amp;root)</argsstring>
+        <name>GetBprimSubtree</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>root</declname>
+        </param>
+        <briefdescription>
+<para>Returns the subtree rooted under the given path for the given bprim type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="354" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a2525f11baf1cc309f64c3edaafa2c259" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API <ref refid="class_hd_bprim" kindref="compound">HdBprim</ref> *</type>
+        <definition>HD_API HdBprim* GetFallbackBprim</definition>
+        <argsstring>(TfToken const &amp;typeId) const</argsstring>
+        <name>GetFallbackBprim</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <briefdescription>
+<para>Returns the fallback prim for the Bprim of the given type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="359" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Scene indices</header>
+      <memberdef kind="function" id="class_hd_render_index_1a58c61b8b8af88c55b10629020dd1b8a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void InsertSceneIndex</definition>
+        <argsstring>(const HdSceneIndexBaseRefPtr &amp;inputScene, SdfPath const &amp;scenePathPrefix, bool needsPrefixing=true)</argsstring>
+        <name>InsertSceneIndex</name>
+        <param>
+          <type>const HdSceneIndexBaseRefPtr &amp;</type>
+          <declname>inputScene</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>scenePathPrefix</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>needsPrefixing</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="365" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a7e02608460cd1d7fe349b70f1091dae1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void RemoveSceneIndex</definition>
+        <argsstring>(const HdSceneIndexBaseRefPtr &amp;inputScene)</argsstring>
+        <name>RemoveSceneIndex</name>
+        <param>
+          <type>const HdSceneIndexBaseRefPtr &amp;</type>
+          <declname>inputScene</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="371" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a61d21f2cf4b772b308177a2f994ff7f9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API HdSceneIndexBaseRefPtr</type>
+        <definition>HD_API HdSceneIndexBaseRefPtr GetTerminalSceneIndex</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTerminalSceneIndex</name>
+        <briefdescription>
+<para>The terminal scene index that is driving what is in the render index through emulation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="377" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Render Delegate</header>
+      <memberdef kind="typedef" id="class_hd_render_index_1aa13112a0f4a5ccdc6380c0e8f7afe375" prot="private" static="no">
+        <type>std::unordered_map&lt; <ref refid="class_sdf_path" kindref="compound">SdfPath</ref>, _TaskInfo, SdfPath::Hash &gt;</type>
+        <definition>typedef std::unordered_map&lt;SdfPath, _TaskInfo, SdfPath::Hash&gt; _TaskMap</definition>
+        <argsstring></argsstring>
+        <name>_TaskMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="524" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="524" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hd_render_index_1a444f6ba86dd222e2dab7b09101110e29" prot="private" static="no">
+        <type>TfHashMap&lt; <ref refid="class_sdf_path" kindref="compound">SdfPath</ref>, _RprimInfo, SdfPath::Hash &gt;</type>
+        <definition>typedef TfHashMap&lt;SdfPath, _RprimInfo, SdfPath::Hash&gt; _RprimMap</definition>
+        <argsstring></argsstring>
+        <name>_RprimMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="525" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="525" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hd_render_index_1afe7748e006c7065557732d2cf4639e66" prot="private" static="no">
+        <type>std::vector&lt; <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &gt;</type>
+        <definition>typedef std::vector&lt;SdfPath&gt; _RprimPrimIDVector</definition>
+        <argsstring></argsstring>
+        <name>_RprimPrimIDVector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="526" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="526" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hd_render_index_1ad5e7b060bdc5fb3af44eadadec57882b" prot="private" static="no">
+        <type>Hd_PrimTypeIndex&lt; <ref refid="class_hd_sprim" kindref="compound">HdSprim</ref> &gt;</type>
+        <definition>typedef Hd_PrimTypeIndex&lt;HdSprim&gt; _SprimIndex</definition>
+        <argsstring></argsstring>
+        <name>_SprimIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="528" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="528" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hd_render_index_1ab6fb0a813abc834a11fb5f36af7f870e" prot="private" static="no">
+        <type>Hd_PrimTypeIndex&lt; <ref refid="class_hd_bprim" kindref="compound">HdBprim</ref> &gt;</type>
+        <definition>typedef Hd_PrimTypeIndex&lt;HdBprim&gt; _BprimIndex</definition>
+        <argsstring></argsstring>
+        <name>_BprimIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="529" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="529" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hd_render_index_1ade9f3325e2c6d493b82b9f379116d1fc" prot="private" static="no">
+        <type>TfHashMap&lt; <ref refid="class_sdf_path" kindref="compound">SdfPath</ref>, <ref refid="class_hd_instancer" kindref="compound">HdInstancer</ref> *, SdfPath::Hash &gt;</type>
+        <definition>typedef TfHashMap&lt;SdfPath, HdInstancer*, SdfPath::Hash&gt; _InstancerMap</definition>
+        <argsstring></argsstring>
+        <name>_InstancerMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="543" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="543" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hd_render_index_1af8c2a4bba29b5ecf3c8d7ecb45fc2710" prot="private" static="no">
+        <type>tbb::enumerable_thread_specific&lt; HdDrawItemPtrVector &gt;</type>
+        <definition>typedef tbb::enumerable_thread_specific&lt;HdDrawItemPtrVector&gt; _ConcurrentDrawItems</definition>
+        <argsstring></argsstring>
+        <name>_ConcurrentDrawItems</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="570" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="570" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_hd_render_index_1aca108de0a096ab42035c5030b76831f8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class HdSceneIndexAdapterSceneDelegate</definition>
+        <argsstring></argsstring>
+        <name>HdSceneIndexAdapterSceneDelegate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="474" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="474" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_index_1ae02da14593775812a42d5686c79f6e1c" prot="private" static="no" mutable="no">
+        <type>HdLegacyPrimSceneIndexRefPtr</type>
+        <definition>HdLegacyPrimSceneIndexRefPtr _emulationSceneIndex</definition>
+        <argsstring></argsstring>
+        <name>_emulationSceneIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="510" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="510" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_index_1a64241d71699563d0af64045190695c16" prot="private" static="no" mutable="no">
+        <type>HdNoticeBatchingSceneIndexRefPtr</type>
+        <definition>HdNoticeBatchingSceneIndexRefPtr _emulationNoticeBatchingSceneIndex</definition>
+        <argsstring></argsstring>
+        <name>_emulationNoticeBatchingSceneIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="511" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="511" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_index_1a64d6900750d337df96836eb80bffe7bc" prot="private" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int _noticeBatchingDepth</definition>
+        <argsstring></argsstring>
+        <name>_noticeBatchingDepth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="512" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="512" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_index_1afe2a5d1c0002acd2bcc2218113798f87" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; class <ref refid="class_hd_scene_index_adapter_scene_delegate" kindref="compound">HdSceneIndexAdapterSceneDelegate</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;class HdSceneIndexAdapterSceneDelegate&gt; _siSd</definition>
+        <argsstring></argsstring>
+        <name>_siSd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="514" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="514" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_index_1a4b0811f8b0390881b216d2347e2e3bc5" prot="private" static="no" mutable="no">
+        <type>HdMergingSceneIndexRefPtr</type>
+        <definition>HdMergingSceneIndexRefPtr _mergingSceneIndex</definition>
+        <argsstring></argsstring>
+        <name>_mergingSceneIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="516" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="516" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_index_1a310a7fcde13ca6c4213d71d1f5129006" prot="private" static="no" mutable="no">
+        <type>HdSceneIndexBaseRefPtr</type>
+        <definition>HdSceneIndexBaseRefPtr _terminalSceneIndex</definition>
+        <argsstring></argsstring>
+        <name>_terminalSceneIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="517" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="517" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_index_1a19d7ff014f160d5eaafadfce02f805f9" prot="private" static="no" mutable="no">
+        <type>_RprimMap</type>
+        <definition>_RprimMap _rprimMap</definition>
+        <argsstring></argsstring>
+        <name>_rprimMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="531" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="531" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_index_1aa44f0dc2cca038797f110d436c2c3b5b" prot="private" static="no" mutable="no">
+        <type>Hd_SortedIds</type>
+        <definition>Hd_SortedIds _rprimIds</definition>
+        <argsstring></argsstring>
+        <name>_rprimIds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="532" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="532" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_index_1acb7a39d456a4ced3bb7bf050ec2d2679" prot="private" static="no" mutable="no">
+        <type>_RprimPrimIDVector</type>
+        <definition>_RprimPrimIDVector _rprimPrimIdMap</definition>
+        <argsstring></argsstring>
+        <name>_rprimPrimIdMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="534" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="534" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_index_1ad15ad60d70c2aa2835f19d261976db2d" prot="private" static="no" mutable="no">
+        <type>_TaskMap</type>
+        <definition>_TaskMap _taskMap</definition>
+        <argsstring></argsstring>
+        <name>_taskMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="536" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="536" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_index_1a1de58d30d031f77e47d01e17281c3f58" prot="private" static="no" mutable="no">
+        <type>_SprimIndex</type>
+        <definition>_SprimIndex _sprimIndex</definition>
+        <argsstring></argsstring>
+        <name>_sprimIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="538" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="538" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_index_1acd6ad5e22b3ebe13a1f0348b21800c24" prot="private" static="no" mutable="no">
+        <type>_BprimIndex</type>
+        <definition>_BprimIndex _bprimIndex</definition>
+        <argsstring></argsstring>
+        <name>_bprimIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="539" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="539" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_index_1ac72c7f4888e95884ca528fd2b0a94924" prot="private" static="no" mutable="no">
+        <type><ref refid="class_hd_change_tracker" kindref="compound">HdChangeTracker</ref></type>
+        <definition>HdChangeTracker _tracker</definition>
+        <argsstring></argsstring>
+        <name>_tracker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="541" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="541" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_index_1a57020bbfd54e2f95b85b66bf6faba283" prot="private" static="no" mutable="no">
+        <type>_InstancerMap</type>
+        <definition>_InstancerMap _instancerMap</definition>
+        <argsstring></argsstring>
+        <name>_instancerMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="544" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="544" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_index_1ae0561d00cc5697e493c12e4d120ff838" prot="private" static="no" mutable="no">
+        <type>HdRenderDelegate *</type>
+        <definition>HdRenderDelegate* _renderDelegate</definition>
+        <argsstring></argsstring>
+        <name>_renderDelegate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="546" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="546" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_index_1a6adf624c26c33373b595b224a6a10d3e" prot="private" static="no" mutable="no">
+        <type>HdDriverVector</type>
+        <definition>HdDriverVector _drivers</definition>
+        <argsstring></argsstring>
+        <name>_drivers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="547" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="547" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_index_1a5f084f6ef2b5bf1cebcaa4b7f1de134a" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string _instanceName</definition>
+        <argsstring></argsstring>
+        <name>_instanceName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="550" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="550" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_index_1a9fcc4fd6ce80430ea42f26a931b759bb" prot="private" static="no" mutable="no">
+        <type>HdRprimCollectionVector</type>
+        <definition>HdRprimCollectionVector _collectionsToSync</definition>
+        <argsstring></argsstring>
+        <name>_collectionsToSync</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="555" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="555" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_index_1a9212e12b07efa852950c40120c017623" prot="private" static="no" mutable="no">
+        <type><ref refid="class_hd_dirty_list" kindref="compound">HdDirtyList</ref></type>
+        <definition>HdDirtyList _rprimDirtyList</definition>
+        <argsstring></argsstring>
+        <name>_rprimDirtyList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="556" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="556" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a8ff084111b60c84a6ac45df2e355f1e3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>static HD_API bool IsSceneIndexEmulationEnabled</definition>
+        <argsstring>()</argsstring>
+        <name>IsSceneIndexEmulationEnabled</name>
+        <briefdescription>
+<para>Returns true if scene index features are available This is true by default but can be controlled via an HD_ENABLE_SCENE_INDEX_EMULATION environment variable. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="402" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a2c9847a233f70b56fb02dcd9197369cd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API HdRenderDelegate *</type>
+        <definition>HD_API HdRenderDelegate* GetRenderDelegate</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRenderDelegate</name>
+        <briefdescription>
+<para>Currently, a render index only supports connection to one type of render delegate, due to the inserted information and change tracking being specific to that delegate type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="386" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a4b017390842d8f6fc095903b77d6039e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API HdDriverVector const  &amp;</type>
+        <definition>HD_API HdDriverVector const&amp; GetDrivers</definition>
+        <argsstring>() const</argsstring>
+        <name>GetDrivers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="391" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1ab2020e882c7f7c89585cf9eb59a6ff29" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API HdResourceRegistrySharedPtr</type>
+        <definition>HD_API HdResourceRegistrySharedPtr GetResourceRegistry</definition>
+        <argsstring>() const</argsstring>
+        <name>GetResourceRegistry</name>
+        <briefdescription>
+<para>Returns a shared ptr to the resource registry of the current render delegate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="396" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a778efb92dd4774cee3c12ee6118e68ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void SceneIndexEmulationNoticeBatchBegin</definition>
+        <argsstring>()</argsstring>
+        <name>SceneIndexEmulationNoticeBatchBegin</name>
+        <briefdescription>
+<para>An application or legacy scene delegate may prefer for the scene index observer notices generated from its prim insertions, removals, or invalidations to be consolidated into vectorized batches. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Calling this will cause subsequent notices to be be queued.</para>
+<para>NOTE: This tracks depth internally and is safe to call in nested contexts. It is not safe to call from multiple threads, though. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="412" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a8d866fedbc1e35e671aa70a35f5edc89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void SceneIndexEmulationNoticeBatchEnd</definition>
+        <argsstring>()</argsstring>
+        <name>SceneIndexEmulationNoticeBatchEnd</name>
+        <briefdescription>
+<para>Flushes any queued scene index observer notices and disables further queueing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>NOTE: This tracks depth internally and is safe to call in nested contexts. It is not safe to call from multiple threads, though. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="420" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1aadc9537bc52c1644077e42075fbecc2d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API std::string</type>
+        <definition>HD_API std::string GetInstanceName</definition>
+        <argsstring>() const</argsstring>
+        <name>GetInstanceName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="423" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a35e1a02984ce6b607eb3d65fa39bce8f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdRenderIndex</definition>
+        <argsstring>(HdRenderDelegate *renderDelegate, HdDriverVector const &amp;drivers, const std::string &amp;instanceName=std::string())</argsstring>
+        <name>HdRenderIndex</name>
+        <param>
+          <type>HdRenderDelegate *</type>
+          <declname>renderDelegate</declname>
+        </param>
+        <param>
+          <type>HdDriverVector const &amp;</type>
+          <declname>drivers</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>instanceName</declname>
+          <defval>std::string()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="428" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a9fbca4dca1beef9480245ea828b4af3f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _CompactPrimIds</definition>
+        <argsstring>()</argsstring>
+        <name>_CompactPrimIds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="439" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a3e8b08c3c2e8f4566b6761f7c2a3b4a0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _AllocatePrimId</definition>
+        <argsstring>(HdRprim *prim)</argsstring>
+        <name>_AllocatePrimId</name>
+        <param>
+          <type><ref refid="class_hd_rprim" kindref="compound">HdRprim</ref> *</type>
+          <declname>prim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="442" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a0a9713498e0392b2c88512b4adf5f516" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void _TrackDelegateTask</definition>
+        <argsstring>(HdSceneDelegate *delegate, SdfPath const &amp;taskId, HdTaskSharedPtr const &amp;task)</argsstring>
+        <name>_TrackDelegateTask</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>taskId</declname>
+        </param>
+        <param>
+          <type>HdTaskSharedPtr const &amp;</type>
+          <declname>task</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="448" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a72ffe1813994ceeb233e56a6e7a00cfc" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _InsertRprim</definition>
+        <argsstring>(TfToken const &amp;typeId, HdSceneDelegate *sceneDelegate, SdfPath const &amp;rprimId)</argsstring>
+        <name>_InsertRprim</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>rprimId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="475" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a82afd356f4b096ce2dab34bc357ecba0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _InsertSprim</definition>
+        <argsstring>(TfToken const &amp;typeId, HdSceneDelegate *delegate, SdfPath const &amp;sprimId)</argsstring>
+        <name>_InsertSprim</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>sprimId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="478" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1abecfc69f91009c8892ce6fe829810439" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _InsertBprim</definition>
+        <argsstring>(TfToken const &amp;typeId, HdSceneDelegate *delegate, SdfPath const &amp;bprimId)</argsstring>
+        <name>_InsertBprim</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>bprimId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="481" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1aa4c0f3f5419b9d228d95bf831a974782" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _InsertInstancer</definition>
+        <argsstring>(HdSceneDelegate *delegate, SdfPath const &amp;id)</argsstring>
+        <name>_InsertInstancer</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="484" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a40c582c35852f23afa50cf312734fba8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RemoveRprim</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>_RemoveRprim</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="487" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a4629adba3f56051e451616660b6a8f1f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RemoveSprim</definition>
+        <argsstring>(TfToken const &amp;typeId, SdfPath const &amp;id)</argsstring>
+        <name>_RemoveSprim</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="488" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a58d434ee35e067cfa9b4ddf7905ace49" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RemoveBprim</definition>
+        <argsstring>(TfToken const &amp;typeId, SdfPath const &amp;id)</argsstring>
+        <name>_RemoveBprim</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="489" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1ae0af2fb2265e605498468a403aa101e5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RemoveInstancer</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>_RemoveInstancer</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="490" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a4719f49f82855b252add30bda491d842" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RemoveSubtree</definition>
+        <argsstring>(SdfPath const &amp;id, HdSceneDelegate *sceneDelegate)</argsstring>
+        <name>_RemoveSubtree</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="491" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1acf67084a98db9c7096850b0aae4af943" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RemoveRprimSubtree</definition>
+        <argsstring>(const SdfPath &amp;root, HdSceneDelegate *sceneDelegate)</argsstring>
+        <name>_RemoveRprimSubtree</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="492" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a4fc19ea2f9e9bc12f710c17fb350b11c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RemoveInstancerSubtree</definition>
+        <argsstring>(const SdfPath &amp;root, HdSceneDelegate *sceneDelegate)</argsstring>
+        <name>_RemoveInstancerSubtree</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="494" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1ad2d6fb3457a6a41ec8bd25db98fbe248" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RemoveExtComputationSubtree</definition>
+        <argsstring>(const SdfPath &amp;root, HdSceneDelegate *sceneDelegate)</argsstring>
+        <name>_RemoveExtComputationSubtree</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="496" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a9c0a4effdbf19ed711a10fce852aac48" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RemoveTaskSubtree</definition>
+        <argsstring>(const SdfPath &amp;root, HdSceneDelegate *sceneDelegate)</argsstring>
+        <name>_RemoveTaskSubtree</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="498" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a27f3771a68ae90c1ed341baa6cf5cecd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _Clear</definition>
+        <argsstring>()</argsstring>
+        <name>_Clear</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="500" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a0d99af811e23acd159f878643e05c053" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _InitPrimTypes</definition>
+        <argsstring>()</argsstring>
+        <name>_InitPrimTypes</name>
+        <briefdescription>
+<para>Register the render delegate&apos;s list of supported prim types. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="561" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a79324872700ddf4dfe6a67ecc0d60d61" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _CreateFallbackPrims</definition>
+        <argsstring>()</argsstring>
+        <name>_CreateFallbackPrims</name>
+        <briefdescription>
+<para>Creates fallback prims for each supported prim type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="564" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1abd757a9e1c80e61570fe2d409bd6e3b7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _DestroyFallbackPrims</definition>
+        <argsstring>()</argsstring>
+        <name>_DestroyFallbackPrims</name>
+        <briefdescription>
+<para>Release the fallback prims. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="567" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a04813d794bcfe933354cc958da555e4b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _AppendDrawItems</definition>
+        <argsstring>(const SdfPathVector &amp;rprimIds, size_t begin, size_t end, HdRprimCollection const &amp;collection, _ConcurrentDrawItems *result)</argsstring>
+        <name>_AppendDrawItems</name>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>rprimIds</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>begin</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>end</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_rprim_collection" kindref="compound">HdRprimCollection</ref> const &amp;</type>
+          <declname>collection</declname>
+        </param>
+        <param>
+          <type>_ConcurrentDrawItems *</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="572" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a441d39d5c00c0d965f7505c4ea2d9054" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdRenderIndex</definition>
+        <argsstring>()=delete</argsstring>
+        <name>HdRenderIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="584" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a0aa2aa52b263227b79a02913489ea23d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdRenderIndex</definition>
+        <argsstring>(const HdRenderIndex &amp;)=delete</argsstring>
+        <name>HdRenderIndex</name>
+        <param>
+          <type>const <ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="587" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a141193860442f0eb035ae906f765c28e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> &amp;</type>
+        <definition>HdRenderIndex&amp; operator=</definition>
+        <argsstring>(const HdRenderIndex &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="588" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a5bd61d9337224c74d93e461295c4da93" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+        <definition>static const TfToken&amp; _GetTypeId</definition>
+        <argsstring>()</argsstring>
+        <name>_GetTypeId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="453" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1af784c21c47b59e03a55213d749661d01" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void _ConfigureReprs</definition>
+        <argsstring>()</argsstring>
+        <name>_ConfigureReprs</name>
+        <briefdescription>
+<para>Register core hydra reprs. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Only ever called once, the first time a render index is created. XXX: This code should move to the application layer. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="581" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_hd_render_index_1aabc181fb133f5a096bba8637a17b4c78" prot="public" static="no">
+        <type>std::vector&lt; <ref refid="class_hd_draw_item" kindref="compound">HdDrawItem</ref> const  * &gt;</type>
+        <definition>typedef std::vector&lt;HdDrawItem const*&gt; HdDrawItemPtrVector</definition>
+        <argsstring></argsstring>
+        <name>HdDrawItemPtrVector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="123" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_hd_render_index_1aaa534e526004e86396541427bf17798f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API <ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> *</type>
+        <definition>static HD_API HdRenderIndex* New</definition>
+        <argsstring>(HdRenderDelegate *renderDelegate, HdDriverVector const &amp;drivers, const std::string &amp;instanceName=std::string())</argsstring>
+        <name>New</name>
+        <param>
+          <type>HdRenderDelegate *</type>
+          <declname>renderDelegate</declname>
+        </param>
+        <param>
+          <type>HdDriverVector const &amp;</type>
+          <declname>drivers</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>instanceName</declname>
+          <defval>std::string()</defval>
+        </param>
+        <briefdescription>
+<para>Create a render index with the given render delegate. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns null if renderDelegate is null. The render delegate and render tasks may require access to a renderer&apos;s device provided by the application. The objects can be passed in as &apos;drivers&apos;. <ref refid="class_hgi" kindref="compound">Hgi</ref> is an example of a <ref refid="class_hd_driver" kindref="compound">HdDriver</ref>. &quot;instanceName&quot; is an optional identifier useful for applications to associate this render index with related resources (such as the scene index instances). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="138" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_render_index_1a0f5038acbf2d194b8395f30e3433ffe6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API ~HdRenderIndex</definition>
+        <argsstring>()</argsstring>
+        <name>~HdRenderIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="144" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a3fde2d6e82e2df69ff2704963a388614" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <briefdescription>
+<para>Clear all r (render), s (state) and b (buffer) prims. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="148" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1a7ab76d94d9d3e3ec44a9d2d803c7d692" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void RemoveSubtree</definition>
+        <argsstring>(const SdfPath &amp;root, HdSceneDelegate *sceneDelegate)</argsstring>
+        <name>RemoveSubtree</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <briefdescription>
+<para>Clear all entries in the render index under the given root and belong to a specified delegate. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Used for example to unload a delegate. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="155" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_index_1aac0205094f9c9d6f7d115139ec03e6b4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>HD_API SdfPath GetRprimPathFromPrimId</definition>
+        <argsstring>(int primId) const</argsstring>
+        <name>GetRprimPathFromPrimId</name>
+        <param>
+          <type>int</type>
+          <declname>primId</declname>
+        </param>
+        <briefdescription>
+<para>Given a prim id, returns the path of the corresponding rprim or an empty path if none is found. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderIndex.h" line="161" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The Hydra render index is a flattened representation of the client scene graph, which may be composed of several self-contained scene graphs, each of which provides a <ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> adapter for data access. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Thus, multiple <ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref>&apos;s may be tied to the same <ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref>.</para>
+<para>The render index, however, is tied to a single HdRenderDelegate, which handles the actual creation and deletion of Hydra scene primitives. These include geometry and non-drawable objects (such as the camera and texture buffers). The render index simply holds a handle to these primitives, and tracks any changes to them via the <ref refid="class_hd_change_tracker" kindref="compound">HdChangeTracker</ref>. It also tracks computations and tasks that may update resources and render a subset of the renderable primitives.</para>
+<para>The render index orchestrates the &quot;syncing&quot; of scene primitives, by providing the relevant scene delegate for data access, and leaves resource management to the rendering backend (via <ref refid="class_hd_resource_registry" kindref="compound">HdResourceRegistry</ref>).</para>
+<para>It also provides &quot;execution&quot; functionality for application facing Hydra concepts (such as HdTask/HdRenderPass) in computing the set of HdDrawItems for a given <ref refid="class_hd_rprim_collection" kindref="compound">HdRprimCollection</ref>, for rendering.</para>
+<para><simplesect kind="see"><para><ref refid="class_hd_change_tracker" kindref="compound">HdChangeTracker</ref> <ref refid="class_hd_draw_item" kindref="compound">HdDrawItem</ref> HdRenderDelegate <ref refid="class_hd_rprim_collection" kindref="compound">HdRprimCollection</ref> <ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref></para>
+</simplesect>
+<simplesect kind="note"><para>The current design ties a <ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> to a HdRenderDelegate. However, the <ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> isn&apos;t tied to a viewer (viewport). It is common to have multiple viewers image the composed scene (for example, with different cameras), in which case the <ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> and HdRenderDelegate are shared by the viewers.</para>
+</simplesect>
+If two viewers use different HdRenderDelegate&apos;s, then it may unfortunately require populating two <ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref>&apos;s. </para>
+    </detaileddescription>
+    <location file="pxr/imaging/hd/renderIndex.h" line="121" column="1" bodyfile="pxr/imaging/hd/renderIndex.h" bodystart="120" bodyend="590"/>
+    <listofallmembers>
+      <member refid="class_hd_render_index_1a3e8b08c3c2e8f4566b6761f7c2a3b4a0" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_AllocatePrimId</name></member>
+      <member refid="class_hd_render_index_1a04813d794bcfe933354cc958da555e4b" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_AppendDrawItems</name></member>
+      <member refid="class_hd_render_index_1ab6fb0a813abc834a11fb5f36af7f870e" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_BprimIndex</name></member>
+      <member refid="class_hd_render_index_1acd6ad5e22b3ebe13a1f0348b21800c24" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_bprimIndex</name></member>
+      <member refid="class_hd_render_index_1a27f3771a68ae90c1ed341baa6cf5cecd" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_Clear</name></member>
+      <member refid="class_hd_render_index_1a9fcc4fd6ce80430ea42f26a931b759bb" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_collectionsToSync</name></member>
+      <member refid="class_hd_render_index_1a9fbca4dca1beef9480245ea828b4af3f" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_CompactPrimIds</name></member>
+      <member refid="class_hd_render_index_1af8c2a4bba29b5ecf3c8d7ecb45fc2710" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_ConcurrentDrawItems</name></member>
+      <member refid="class_hd_render_index_1af784c21c47b59e03a55213d749661d01" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_ConfigureReprs</name></member>
+      <member refid="class_hd_render_index_1a79324872700ddf4dfe6a67ecc0d60d61" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_CreateFallbackPrims</name></member>
+      <member refid="class_hd_render_index_1abd757a9e1c80e61570fe2d409bd6e3b7" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_DestroyFallbackPrims</name></member>
+      <member refid="class_hd_render_index_1a6adf624c26c33373b595b224a6a10d3e" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_drivers</name></member>
+      <member refid="class_hd_render_index_1a64241d71699563d0af64045190695c16" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_emulationNoticeBatchingSceneIndex</name></member>
+      <member refid="class_hd_render_index_1ae02da14593775812a42d5686c79f6e1c" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_emulationSceneIndex</name></member>
+      <member refid="class_hd_render_index_1a5bd61d9337224c74d93e461295c4da93" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_GetTypeId</name></member>
+      <member refid="class_hd_render_index_1a0d99af811e23acd159f878643e05c053" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_InitPrimTypes</name></member>
+      <member refid="class_hd_render_index_1abecfc69f91009c8892ce6fe829810439" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_InsertBprim</name></member>
+      <member refid="class_hd_render_index_1aa4c0f3f5419b9d228d95bf831a974782" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_InsertInstancer</name></member>
+      <member refid="class_hd_render_index_1a72ffe1813994ceeb233e56a6e7a00cfc" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_InsertRprim</name></member>
+      <member refid="class_hd_render_index_1a82afd356f4b096ce2dab34bc357ecba0" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_InsertSprim</name></member>
+      <member refid="class_hd_render_index_1a5f084f6ef2b5bf1cebcaa4b7f1de134a" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_instanceName</name></member>
+      <member refid="class_hd_render_index_1a57020bbfd54e2f95b85b66bf6faba283" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_instancerMap</name></member>
+      <member refid="class_hd_render_index_1ade9f3325e2c6d493b82b9f379116d1fc" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_InstancerMap</name></member>
+      <member refid="class_hd_render_index_1a4b0811f8b0390881b216d2347e2e3bc5" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_mergingSceneIndex</name></member>
+      <member refid="class_hd_render_index_1a64d6900750d337df96836eb80bffe7bc" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_noticeBatchingDepth</name></member>
+      <member refid="class_hd_render_index_1a58d434ee35e067cfa9b4ddf7905ace49" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_RemoveBprim</name></member>
+      <member refid="class_hd_render_index_1ad2d6fb3457a6a41ec8bd25db98fbe248" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_RemoveExtComputationSubtree</name></member>
+      <member refid="class_hd_render_index_1ae0af2fb2265e605498468a403aa101e5" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_RemoveInstancer</name></member>
+      <member refid="class_hd_render_index_1a4fc19ea2f9e9bc12f710c17fb350b11c" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_RemoveInstancerSubtree</name></member>
+      <member refid="class_hd_render_index_1a40c582c35852f23afa50cf312734fba8" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_RemoveRprim</name></member>
+      <member refid="class_hd_render_index_1acf67084a98db9c7096850b0aae4af943" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_RemoveRprimSubtree</name></member>
+      <member refid="class_hd_render_index_1a4629adba3f56051e451616660b6a8f1f" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_RemoveSprim</name></member>
+      <member refid="class_hd_render_index_1a4719f49f82855b252add30bda491d842" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_RemoveSubtree</name></member>
+      <member refid="class_hd_render_index_1a9c0a4effdbf19ed711a10fce852aac48" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_RemoveTaskSubtree</name></member>
+      <member refid="class_hd_render_index_1ae0561d00cc5697e493c12e4d120ff838" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_renderDelegate</name></member>
+      <member refid="class_hd_render_index_1a9212e12b07efa852950c40120c017623" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_rprimDirtyList</name></member>
+      <member refid="class_hd_render_index_1aa44f0dc2cca038797f110d436c2c3b5b" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_rprimIds</name></member>
+      <member refid="class_hd_render_index_1a19d7ff014f160d5eaafadfce02f805f9" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_rprimMap</name></member>
+      <member refid="class_hd_render_index_1a444f6ba86dd222e2dab7b09101110e29" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_RprimMap</name></member>
+      <member refid="class_hd_render_index_1acb7a39d456a4ced3bb7bf050ec2d2679" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_rprimPrimIdMap</name></member>
+      <member refid="class_hd_render_index_1afe7748e006c7065557732d2cf4639e66" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_RprimPrimIDVector</name></member>
+      <member refid="class_hd_render_index_1afe2a5d1c0002acd2bcc2218113798f87" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_siSd</name></member>
+      <member refid="class_hd_render_index_1a1de58d30d031f77e47d01e17281c3f58" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_sprimIndex</name></member>
+      <member refid="class_hd_render_index_1ad5e7b060bdc5fb3af44eadadec57882b" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_SprimIndex</name></member>
+      <member refid="class_hd_render_index_1ad15ad60d70c2aa2835f19d261976db2d" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_taskMap</name></member>
+      <member refid="class_hd_render_index_1aa13112a0f4a5ccdc6380c0e8f7afe375" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_TaskMap</name></member>
+      <member refid="class_hd_render_index_1a310a7fcde13ca6c4213d71d1f5129006" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_terminalSceneIndex</name></member>
+      <member refid="class_hd_render_index_1a0a9713498e0392b2c88512b4adf5f516" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_TrackDelegateTask</name></member>
+      <member refid="class_hd_render_index_1ac72c7f4888e95884ca528fd2b0a94924" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>_tracker</name></member>
+      <member refid="class_hd_render_index_1a3fde2d6e82e2df69ff2704963a388614" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>Clear</name></member>
+      <member refid="class_hd_render_index_1a375fd2060b6b8ad23692774c92445184" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>EnqueueCollectionToSync</name></member>
+      <member refid="class_hd_render_index_1abfcb714b5717a0dc3a6813e535853bae" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetBprim</name></member>
+      <member refid="class_hd_render_index_1a1a8f719829546a1b11c3bcca37473075" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetBprimSubtree</name></member>
+      <member refid="class_hd_render_index_1a22c0b6103375653a23ae93605f0da7b7" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetChangeTracker</name></member>
+      <member refid="class_hd_render_index_1aa3eddc1b2ceda24207cc83b511278c17" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetChangeTracker</name></member>
+      <member refid="class_hd_render_index_1a9a12ab3dcec7825e0068a59f88830bfe" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetDrawItems</name></member>
+      <member refid="class_hd_render_index_1a4b017390842d8f6fc095903b77d6039e" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetDrivers</name></member>
+      <member refid="class_hd_render_index_1a2525f11baf1cc309f64c3edaafa2c259" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetFallbackBprim</name></member>
+      <member refid="class_hd_render_index_1a25a752305008e1e202b4c784875f344c" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetFallbackSprim</name></member>
+      <member refid="class_hd_render_index_1aadc9537bc52c1644077e42075fbecc2d" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetInstanceName</name></member>
+      <member refid="class_hd_render_index_1a36463d1fe1250b9ee4c35d0516993bb1" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetInstancer</name></member>
+      <member refid="class_hd_render_index_1a2c9847a233f70b56fb02dcd9197369cd" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetRenderDelegate</name></member>
+      <member refid="class_hd_render_index_1aa8b5ba2b318f95514398a9d9924e7c5e" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetRenderTag</name></member>
+      <member refid="class_hd_render_index_1ab2020e882c7f7c89585cf9eb59a6ff29" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetResourceRegistry</name></member>
+      <member refid="class_hd_render_index_1a490ba582bd7848c5134b3a7d737ee959" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetRprim</name></member>
+      <member refid="class_hd_render_index_1af923113510d910f1d1a898a21ce87232" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetRprimIds</name></member>
+      <member refid="class_hd_render_index_1aac0205094f9c9d6f7d115139ec03e6b4" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetRprimPathFromPrimId</name></member>
+      <member refid="class_hd_render_index_1ad68a6edfc4c3e8eb358c5d0dbb2db24c" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetRprimSubtree</name></member>
+      <member refid="class_hd_render_index_1ae43df5b251c9548e5de9bacfec1626c3" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetSceneDelegateAndInstancerIds</name></member>
+      <member refid="class_hd_render_index_1aabb98b6a1778e734a0e454a11172c2f3" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetSceneDelegateForRprim</name></member>
+      <member refid="class_hd_render_index_1a4ce8f093030dd842c3bedf28ed899398" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetSprim</name></member>
+      <member refid="class_hd_render_index_1af4a2c83a163af9fd36e1f45703de2c79" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetSprimSubtree</name></member>
+      <member refid="class_hd_render_index_1ac80604050ebd8a4b82ebc910e3be8c9c" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetTask</name></member>
+      <member refid="class_hd_render_index_1a61d21f2cf4b772b308177a2f994ff7f9" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>GetTerminalSceneIndex</name></member>
+      <member refid="class_hd_render_index_1ad078299f9bd83b75442d3572972d7893" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>HasInstancer</name></member>
+      <member refid="class_hd_render_index_1a68538cb8f4d79ac212dac0d1680eb47e" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>HasRprim</name></member>
+      <member refid="class_hd_render_index_1acdc45e8e75e96376898dc4250d0bf1d6" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>HasTask</name></member>
+      <member refid="class_hd_render_index_1aabc181fb133f5a096bba8637a17b4c78" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>HdDrawItemPtrVector</name></member>
+      <member refid="class_hd_render_index_1a35e1a02984ce6b607eb3d65fa39bce8f" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>HdRenderIndex</name></member>
+      <member refid="class_hd_render_index_1a441d39d5c00c0d965f7505c4ea2d9054" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>HdRenderIndex</name></member>
+      <member refid="class_hd_render_index_1a0aa2aa52b263227b79a02913489ea23d" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>HdRenderIndex</name></member>
+      <member refid="class_hd_render_index_1aca108de0a096ab42035c5030b76831f8" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>HdSceneIndexAdapterSceneDelegate</name></member>
+      <member refid="class_hd_render_index_1a3940211cee02a3065ae89d8aab6e8282" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>InsertBprim</name></member>
+      <member refid="class_hd_render_index_1ae58e564712943fde79da6f5592271877" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>InsertInstancer</name></member>
+      <member refid="class_hd_render_index_1aaa49377f918b6d74c12eb90254d4ba16" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>InsertRprim</name></member>
+      <member refid="class_hd_render_index_1a58c61b8b8af88c55b10629020dd1b8a0" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>InsertSceneIndex</name></member>
+      <member refid="class_hd_render_index_1afa5d6a6984fb32dc754e02d140c425c3" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>InsertSprim</name></member>
+      <member refid="class_hd_render_index_1a23b3fdbd1986c9e818a35a1333331e80" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>InsertTask</name></member>
+      <member refid="class_hd_render_index_1a29e7a6fbe70652c6b82494233122f8ff" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>IsBprimTypeSupported</name></member>
+      <member refid="class_hd_render_index_1a4d8985c05bf39485319d172e2d97afaf" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>IsRprimTypeSupported</name></member>
+      <member refid="class_hd_render_index_1a8ff084111b60c84a6ac45df2e355f1e3" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>IsSceneIndexEmulationEnabled</name></member>
+      <member refid="class_hd_render_index_1ad41d7817c8dbab0c6826e62aa141413c" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>IsSprimTypeSupported</name></member>
+      <member refid="class_hd_render_index_1aaa534e526004e86396541427bf17798f" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>New</name></member>
+      <member refid="class_hd_render_index_1a141193860442f0eb035ae906f765c28e" prot="private" virt="non-virtual"><scope>HdRenderIndex</scope><name>operator=</name></member>
+      <member refid="class_hd_render_index_1a319cf8d718878fbd3559d78c0f6369d7" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>RemoveBprim</name></member>
+      <member refid="class_hd_render_index_1a1a84e689071c151c327e0287ed904d1c" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>RemoveInstancer</name></member>
+      <member refid="class_hd_render_index_1a15eacd24aa28c6e443676112bd27d461" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>RemoveRprim</name></member>
+      <member refid="class_hd_render_index_1a7e02608460cd1d7fe349b70f1091dae1" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>RemoveSceneIndex</name></member>
+      <member refid="class_hd_render_index_1a4aa842d6a98add0a07622a86365399ef" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>RemoveSprim</name></member>
+      <member refid="class_hd_render_index_1a7ab76d94d9d3e3ec44a9d2d803c7d692" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>RemoveSubtree</name></member>
+      <member refid="class_hd_render_index_1a1bdaf8f6bc23b7ca81dbc21d4cd488d0" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>RemoveTask</name></member>
+      <member refid="class_hd_render_index_1a778efb92dd4774cee3c12ee6118e68ad" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>SceneIndexEmulationNoticeBatchBegin</name></member>
+      <member refid="class_hd_render_index_1a8d866fedbc1e35e671aa70a35f5edc89" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>SceneIndexEmulationNoticeBatchEnd</name></member>
+      <member refid="class_hd_render_index_1a4c0c8384764f03418660e24b66fa4c90" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>SyncAll</name></member>
+      <member refid="class_hd_render_index_1a248dd77b3c44caa4139aa02540e78b77" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>UpdateRenderTag</name></member>
+      <member refid="class_hd_render_index_1a0f5038acbf2d194b8395f30e3433ffe6" prot="public" virt="non-virtual"><scope>HdRenderIndex</scope><name>~HdRenderIndex</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

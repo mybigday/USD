@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_tf_singleton" kind="class" language="C++" prot="public">
+    <compoundname>TfSingleton</compoundname>
+    <includes refid="singleton_8h" local="no">singleton.h</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_tf_singleton_1add6f51be614df5617e627fc74119d80a" prot="private" static="yes" mutable="no">
+        <type>std::atomic&lt; T * &gt;</type>
+        <definition>std::atomic&lt; T * &gt; _instance</definition>
+        <argsstring></argsstring>
+        <name>_instance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/singleton.h" line="198" column="1" bodyfile="pxr/base/tf/singleton.h" bodystart="198" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_tf_singleton_1a0866aab4257483326c469dcef942f0e1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T &amp;</type>
+        <definition>static T&amp; GetInstance</definition>
+        <argsstring>()</argsstring>
+        <name>GetInstance</name>
+        <briefdescription>
+<para>Return a reference to an object of type <computeroutput>T</computeroutput>, creating it if necessary. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>When <computeroutput><ref refid="class_tf_singleton_1a0866aab4257483326c469dcef942f0e1" kindref="member">GetInstance()</ref></computeroutput> is called for the first time, it creates an object of type <computeroutput>T</computeroutput>, and returns a reference to it. The type in question must have a default constructor (i.e. a constructor taking no arguments).</para>
+<para>Subsequent calls to <computeroutput><ref refid="class_tf_singleton_1a0866aab4257483326c469dcef942f0e1" kindref="member">GetInstance()</ref></computeroutput> return a reference to the same object. This call is threadsafe; simultaneous attempts to create an object result in only one object being created; locking beyond this (for example, letting only one thread at a time call a member function) are the responsibility of the class author. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/singleton.h" line="137" column="1" bodyfile="pxr/base/tf/singleton.h" bodystart="137" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_singleton_1a5ec126c795627830fbc482076a4cc071" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool CurrentlyExists</definition>
+        <argsstring>()</argsstring>
+        <name>CurrentlyExists</name>
+        <briefdescription>
+<para>Return whether or not the single object of type <computeroutput>T</computeroutput> is currently in existence. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This call tests whether or not the singleton currently exists. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/singleton.h" line="155" column="1" bodyfile="pxr/base/tf/singleton.h" bodystart="155" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_singleton_1a26a188beb27db06db83e59ef88bf563f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SetInstanceConstructed</definition>
+        <argsstring>(T &amp;instance)</argsstring>
+        <name>SetInstanceConstructed</name>
+        <param>
+          <type>T &amp;</type>
+          <declname>instance</declname>
+        </param>
+        <briefdescription>
+<para>Indicate that the sole instance object has already been created. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is public, but can only be called usefully from within the class T itself. This function is used to allow the constructor of T to indicate that the sole instance of T has been created, and that future calls to <computeroutput><ref refid="class_tf_singleton_1a0866aab4257483326c469dcef942f0e1" kindref="member">GetInstance()</ref></computeroutput> can immediately return <computeroutput>instance</computeroutput>.</para>
+<para>The need for this function occurs when the constructor of <computeroutput>T</computeroutput> generates a call chain that leads to calling <computeroutput><ref refid="class_tf_singleton_1a0866aab4257483326c469dcef942f0e1" kindref="member">TfSingleton&lt;T&gt;::GetInstance()</ref></computeroutput>. Until the constructor for <computeroutput>T</computeroutput> has finished, however, <computeroutput><ref refid="class_tf_singleton_1a0866aab4257483326c469dcef942f0e1" kindref="member">TfSingleton&lt;T&gt;::GetInstance()</ref></computeroutput> is unable to return a value. Calling <computeroutput><ref refid="class_tf_singleton_1a26a188beb27db06db83e59ef88bf563f" kindref="member">SetInstanceConstructed()</ref></computeroutput> allows future calls to <computeroutput><ref refid="class_tf_singleton_1a0866aab4257483326c469dcef942f0e1" kindref="member">TfSingleton&lt;T&gt;::GetInstance()</ref></computeroutput> to return before <computeroutput>T&apos;s</computeroutput> constructor has finished.</para>
+<para>Be sure that <computeroutput>T</computeroutput> has been constructed (enough) before calling this function. Calling this function anyplace but within the call chain of <computeroutput>T&apos;s</computeroutput> constructor will generate a fatal coding error. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/singleton.h" line="183" column="1" bodyfile="pxr/base/tf/instantiateSingleton.h" bodystart="53" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_singleton_1a1951d8e577133f45991c826129d6f2bd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void DeleteInstance</definition>
+        <argsstring>()</argsstring>
+        <name>DeleteInstance</name>
+        <briefdescription>
+<para>Destroy the sole instance object of type <computeroutput>T</computeroutput>, if it exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A singleton can be destroyed by a call to <computeroutput>DeleteInstance</computeroutput>. This call is threadsafe in the sense that competing simultaneous calls will not result in double deletion; however, it is up to the user to ensure that the instance is not being used in one thread during an attempt to delete the instance from another thread. After being destroyed, a call to <computeroutput><ref refid="class_tf_singleton_1a0866aab4257483326c469dcef942f0e1" kindref="member">GetInstance()</ref></computeroutput> will create a new instance. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/singleton.h" line="193" column="1" bodyfile="pxr/base/tf/instantiateSingleton.h" bodystart="104" bodyend="113"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_tf_singleton_1a09f4b5c4d7f331a0e5947aaa37d0eef5" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>T *</type>
+        <definition>T * _CreateInstance</definition>
+        <argsstring>(std::atomic&lt; T * &gt; &amp;instance)</argsstring>
+        <name>_CreateInstance</name>
+        <param>
+          <type>std::atomic&lt; T * &gt; &amp;</type>
+          <declname>instance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/singleton.h" line="196" column="1" bodyfile="pxr/base/tf/instantiateSingleton.h" bodystart="64" bodyend="100"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Manage a single instance of an object (see. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="singleton_8h_1TfSingleton_typicalUse" kindref="member">Typical Use</ref> for a canonical example). </para>
+    </detaileddescription>
+    <location file="pxr/base/tf/singleton.h" line="122" column="1" bodyfile="pxr/base/tf/singleton.h" bodystart="122" bodyend="199"/>
+    <listofallmembers>
+      <member refid="class_tf_singleton_1a09f4b5c4d7f331a0e5947aaa37d0eef5" prot="private" virt="non-virtual"><scope>TfSingleton</scope><name>_CreateInstance</name></member>
+      <member refid="class_tf_singleton_1add6f51be614df5617e627fc74119d80a" prot="private" virt="non-virtual"><scope>TfSingleton</scope><name>_instance</name></member>
+      <member refid="class_tf_singleton_1a5ec126c795627830fbc482076a4cc071" prot="public" virt="non-virtual"><scope>TfSingleton</scope><name>CurrentlyExists</name></member>
+      <member refid="class_tf_singleton_1a1951d8e577133f45991c826129d6f2bd" prot="public" virt="non-virtual"><scope>TfSingleton</scope><name>DeleteInstance</name></member>
+      <member refid="class_tf_singleton_1a0866aab4257483326c469dcef942f0e1" prot="public" virt="non-virtual"><scope>TfSingleton</scope><name>GetInstance</name></member>
+      <member refid="class_tf_singleton_1a26a188beb27db06db83e59ef88bf563f" prot="public" virt="non-virtual"><scope>TfSingleton</scope><name>SetInstanceConstructed</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

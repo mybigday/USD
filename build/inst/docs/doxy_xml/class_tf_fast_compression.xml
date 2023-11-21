@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_tf_fast_compression" kind="class" language="C++" prot="public">
+    <compoundname>TfFastCompression</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_tf_fast_compression_1a58e79538b632380930a14f08a7e8aad4" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API size_t</type>
+        <definition>static TF_API size_t GetMaxInputSize</definition>
+        <argsstring>()</argsstring>
+        <name>GetMaxInputSize</name>
+        <briefdescription>
+<para>Return the largest input buffer size that can be compressed with these functions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Guaranteed to be at least 200 GB. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/fastCompression.h" line="44" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_fast_compression_1aa269eb799be3ea7364baacedd40819c8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API size_t</type>
+        <definition>static TF_API size_t GetCompressedBufferSize</definition>
+        <argsstring>(size_t inputSize)</argsstring>
+        <name>GetCompressedBufferSize</name>
+        <param>
+          <type>size_t</type>
+          <declname>inputSize</declname>
+        </param>
+        <briefdescription>
+<para>Return the largest possible compressed size for the given <computeroutput>inputSize</computeroutput> in the worst case (input is not compressible). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is larger than <computeroutput>inputSize</computeroutput>. If inputSize is larger than GetMaxInputSize(), return 0. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/fastCompression.h" line="50" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_fast_compression_1a8ff66e9342b9b9e9f9876202876b2325" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API size_t</type>
+        <definition>static TF_API size_t CompressToBuffer</definition>
+        <argsstring>(char const *input, char *compressed, size_t inputSize)</argsstring>
+        <name>CompressToBuffer</name>
+        <param>
+          <type>char const *</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>compressed</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>inputSize</declname>
+        </param>
+        <briefdescription>
+<para>Compress <computeroutput>inputSize</computeroutput> bytes in <computeroutput>input</computeroutput> and store the result in <computeroutput>compressed</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The <computeroutput>compressed</computeroutput> buffer must point to at least GetCompressedBufferSize(uncompressedSize) bytes. Return the number of bytes written to the <computeroutput>compressed</computeroutput> buffer. Issue a runtime error and return ~0 in case of an error. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/fastCompression.h" line="58" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_fast_compression_1a3f758221e7dd9b3366078232b3d727f7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API size_t</type>
+        <definition>static TF_API size_t DecompressFromBuffer</definition>
+        <argsstring>(char const *compressed, char *output, size_t compressedSize, size_t maxOutputSize)</argsstring>
+        <name>DecompressFromBuffer</name>
+        <param>
+          <type>char const *</type>
+          <declname>compressed</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>compressedSize</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>maxOutputSize</declname>
+        </param>
+        <briefdescription>
+<para>Decompress <computeroutput>compressedSize</computeroutput> bytes in <computeroutput>compressed</computeroutput> and store the result in <computeroutput>output</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>No more than <computeroutput>maxOutputSize</computeroutput> bytes will be written to <computeroutput>output</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/fastCompression.h" line="64" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="pxr/base/tf/fastCompression.h" line="39" column="1" bodyfile="pxr/base/tf/fastCompression.h" bodystart="38" bodyend="66"/>
+    <listofallmembers>
+      <member refid="class_tf_fast_compression_1a8ff66e9342b9b9e9f9876202876b2325" prot="public" virt="non-virtual"><scope>TfFastCompression</scope><name>CompressToBuffer</name></member>
+      <member refid="class_tf_fast_compression_1a3f758221e7dd9b3366078232b3d727f7" prot="public" virt="non-virtual"><scope>TfFastCompression</scope><name>DecompressFromBuffer</name></member>
+      <member refid="class_tf_fast_compression_1aa269eb799be3ea7364baacedd40819c8" prot="public" virt="non-virtual"><scope>TfFastCompression</scope><name>GetCompressedBufferSize</name></member>
+      <member refid="class_tf_fast_compression_1a58e79538b632380930a14f08a7e8aad4" prot="public" virt="non-virtual"><scope>TfFastCompression</scope><name>GetMaxInputSize</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

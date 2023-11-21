@@ -1,0 +1,900 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_tf_ref_ptr" kind="class" language="C++" prot="public">
+    <compoundname>TfRefPtr</compoundname>
+    <includes refid="ref_ptr_8h" local="no">refPtr.h</includes>
+    <innerclass refid="class_tf_ref_ptr_1_1___create_ref_ptr" prot="private">TfRefPtr::_CreateRefPtr</innerclass>
+    <innerclass refid="struct_tf_ref_ptr_1_1_rebind" prot="public">TfRefPtr::Rebind</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_tf_ref_ptr_1a26ec17ae1c3a95be5a67c464b2f9f7dc" prot="private" static="no">
+        <type>typename std::conditional&lt; Tf_SupportsUniqueChanged&lt; T &gt;::Value &amp;&amp;!std::is_convertible&lt; T *, <ref refid="class_tf_simple_ref_base" kindref="compound">TfSimpleRefBase</ref> * &gt;::value, Tf_RefPtr_UniqueChangedCounter, Tf_RefPtr_Counter &gt;::type</type>
+        <definition>using _Counter =  typename std::conditional&lt; Tf_SupportsUniqueChanged&lt;T&gt;::Value &amp;&amp; !std::is_convertible&lt;T*, TfSimpleRefBase*&gt;::value, Tf_RefPtr_UniqueChangedCounter, Tf_RefPtr_Counter&gt;::type</definition>
+        <argsstring></argsstring>
+        <name>_Counter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="578" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="582" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_tf_ref_ptr_1afe400d3f662f42fab8f065a689ba9a4a" prot="public" static="no">
+        <type>T</type>
+        <definition>typedef T DataType</definition>
+        <argsstring></argsstring>
+        <name>DataType</name>
+        <briefdescription>
+<para>Convenience type accessor to underlying type <computeroutput>T</computeroutput> for template code. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="586" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="586" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_tf_ref_ptr_1ad5d6f5b68cfac022d885b3a90cabcd67" prot="private" static="no" mutable="no">
+        <type>const <ref refid="class_tf_ref_base" kindref="compound">TfRefBase</ref> *</type>
+        <definition>const TfRefBase* _refBase</definition>
+        <argsstring></argsstring>
+        <name>_refBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="969" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="969" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_tf_ref_ptr_1a6dabafb6658409eebdd7195f7399443f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class TfWeakBase</definition>
+        <argsstring></argsstring>
+        <name>TfWeakBase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="1118" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="1118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_tf_ref_ptr_1a8a1f63452b7c862198d700ba3b8ad380" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref></type>
+        <definition>TfRefPtr TfCreateRefPtr</definition>
+        <argsstring>(T *)</argsstring>
+        <name>TfCreateRefPtr</name>
+        <param>
+          <type>T *</type>
+        </param>
+        <briefdescription>
+<para>Transfer a raw pointer to a reference-counted pointer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The <computeroutput><ref refid="class_tf_ref_ptr_1a8a1f63452b7c862198d700ba3b8ad380" kindref="member">TfCreateRefPtr()</ref></computeroutput> function should only be used from within a static <computeroutput>New()</computeroutput> function (or similarly, a <computeroutput>Clone()</computeroutput> function) of a reference-counted class. Reference-counted objects have their reference count initially set to one to account for the fact that a newly created object must always persist at least until its <computeroutput>New()</computeroutput> function returns. Therefore, the transfer of the pointer returned by <computeroutput>new</computeroutput> into a reference pointer must <emphasis>not</emphasis> increase the reference count. The transfer of the raw pointer returned by <computeroutput>new</computeroutput> into the object returned by <computeroutput>New()</computeroutput> is a &quot;transfer of ownership&quot; and does not represent an additional reference to the object.</para>
+<para>In summary, this code is wrong, and will return an object that can never be destroyed:</para>
+<para><programlisting><codeline><highlight class="normal">SimpleRefPtr<sp/>Simple::New()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>SimpleRefPtr(new<sp/>Simple);<sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>legal,<sp/>but<sp/>leaks<sp/>memory:<sp/>beware!!</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>The correct form is</para>
+<para><programlisting><codeline><highlight class="normal">SimpleRefPtr<sp/>Simple::New()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>TfCreateRefPtr(new<sp/>Simple);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>Note also that a function which is essentially like <computeroutput>New()</computeroutput>, for example <computeroutput>Clone()</computeroutput>, would also want to use <computeroutput><ref refid="class_tf_ref_ptr_1a8a1f63452b7c862198d700ba3b8ad380" kindref="member">TfCreateRefPtr()</ref></computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="665" column="1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_tf_ref_ptr_1a85f0d82124c92cd519f85d940185053e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class HashState</type>
+          </param>
+          <param>
+            <type>class U</type>
+          </param>
+        </templateparamlist>
+        <type>friend void</type>
+        <definition>void TfHashAppend</definition>
+        <argsstring>(HashState &amp;, const TfRefPtr&lt; U &gt; &amp;)</argsstring>
+        <name>TfHashAppend</name>
+        <param>
+          <type>HashState &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; U &gt; &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="972" column="1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_tf_ref_ptr_1a0725681202e2f2dcb0838e36e6a293f6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class U</type>
+          </param>
+        </templateparamlist>
+        <type>friend size_t</type>
+        <definition>size_t hash_value</definition>
+        <argsstring>(const TfRefPtr&lt; U &gt; &amp;)</argsstring>
+        <name>hash_value</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; U &gt; &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="974" column="1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_tf_ref_ptr_1ae4c21e26f246f8065aa1bd1dc5e0e262" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend T *</type>
+        <definition>T* get_pointer</definition>
+        <argsstring>(TfRefPtr const &amp;p)</argsstring>
+        <name>get_pointer</name>
+        <param>
+          <type><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref> const &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="976" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="976" bodyend="978"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_tf_ref_ptr_1a33867ccc5d837124fb08eff87e027c80" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class D</type>
+          </param>
+        </templateparamlist>
+        <type>friend <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; D &gt;</type>
+        <definition>TfRefPtr&lt;D&gt; TfDynamic_cast</definition>
+        <argsstring>(const TfRefPtr&lt; T &gt; &amp;)</argsstring>
+        <name>TfDynamic_cast</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; T &gt; &amp;</type>
+        </param>
+        <briefdescription>
+<para>Allows dynamic casting of a <computeroutput><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If it is legal to dynamically cast a <computeroutput>T*</computeroutput> to a <computeroutput>D*</computeroutput> , then the following is also legal: <programlisting><codeline><highlight class="normal">TfRefPtr&lt;T&gt;<sp/>tPtr<sp/>=<sp/>...<sp/>;</highlight></codeline>
+<codeline><highlight class="normal">TfRefPtr&lt;D&gt;<sp/>dPtr;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(!(dPtr<sp/>=<sp/>TfDynamic_cast&lt;<sp/>TfRefPtr&lt;D&gt;<sp/>&gt;(tPtr)))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...;<sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>cast<sp/>failed</highlight></codeline>
+</programlisting> The runtime performance of this function is exactly the same as a <computeroutput>dynamic_cast</computeroutput> (i.e. one virtual function call). If the pointer being cast is NULL or does not point to an object of the requisite type, the result is a <computeroutput><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref></computeroutput> pointing to NULL. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="1013" column="1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_tf_ref_ptr_1afe6d36e3754da224ba3f0093c0b64fa3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class D</type>
+          </param>
+        </templateparamlist>
+        <type>friend <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; D &gt;</type>
+        <definition>TfRefPtr&lt;D&gt; TfStatic_cast</definition>
+        <argsstring>(const TfRefPtr&lt; T &gt; &amp;)</argsstring>
+        <name>TfStatic_cast</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; T &gt; &amp;</type>
+        </param>
+        <briefdescription>
+<para>Allows static casting of a <computeroutput><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If it is legal to statically cast a <computeroutput>T*</computeroutput> to a <computeroutput>D*</computeroutput> , then the following is also legal: <programlisting><codeline><highlight class="normal">TfRefPtr&lt;T&gt;<sp/>tPtr<sp/>=<sp/>...<sp/>;</highlight></codeline>
+<codeline><highlight class="normal">TfRefPtr&lt;D&gt;<sp/>dPtr;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">dPtr<sp/>=<sp/>TfStatic_cast&lt;<sp/>TfRefPtr&lt;D&gt;<sp/>&gt;(tPtr);</highlight></codeline>
+</programlisting> The runtime performance of this function is exactly the same as a regular <computeroutput><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref></computeroutput> initialization, since the cost of the underlying <computeroutput>static_cast</computeroutput> is zero. Of course, a <computeroutput>TfDynamic_cast</computeroutput> is preferred, assuming the underlying types are polymorphic (i.e. have virtual functions). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="1043" column="1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_tf_ref_ptr_1ae090e00181e4bc38bee64e5542c7e1d6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class D</type>
+          </param>
+        </templateparamlist>
+        <type>friend <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; D &gt;</type>
+        <definition>TfRefPtr&lt;D&gt; TfConst_cast</definition>
+        <argsstring>(const TfRefPtr&lt; const D &gt; &amp;)</argsstring>
+        <name>TfConst_cast</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; const D &gt; &amp;</type>
+        </param>
+        <briefdescription>
+<para>Allows const casting of a <computeroutput><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The following is always legal: <programlisting><codeline><highlight class="normal">TfRefPtr&lt;const<sp/>T&gt;<sp/>cPtr<sp/>=<sp/>...;</highlight></codeline>
+<codeline><highlight class="normal">TfRefPtr&lt;T&gt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/>tPtr;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">tPtr<sp/>=<sp/>TfConst_cast&lt;<sp/>TfRefPtr&lt;T&gt;<sp/>&gt;(cPtr);</highlight></codeline>
+</programlisting> As with the C++ <computeroutput>const_cast</computeroutput> operator, use of this function is discouraged. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="1065" column="1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_tf_ref_ptr_1a928f24fab0d243b7270a2ce7f92f8921" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class U</type>
+          </param>
+        </templateparamlist>
+        <type>friend const std::type_info &amp;</type>
+        <definition>const std::type_info&amp; TfTypeid</definition>
+        <argsstring>(const TfRefPtr&lt; U &gt; &amp;ptr)</argsstring>
+        <name>TfTypeid</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; U &gt; &amp;</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+<para>Call <computeroutput>typeid</computeroutput> on the object pointed to by a <computeroutput><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>ptr</computeroutput> is a <computeroutput><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref></computeroutput>, <computeroutput>typeid(ptr)</computeroutput> will return type information about the <computeroutput><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref></computeroutput>. To access type information about the object pointed to by a <computeroutput><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref></computeroutput>, one can use <computeroutput>TfTypeid</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="1094" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_tf_ref_ptr_1ad2fbc9f5fab0deca1d46de73896a484f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfRefPtr</definition>
+        <argsstring>()</argsstring>
+        <name>TfRefPtr</name>
+        <briefdescription>
+<para>Initialize pointer to nullptr. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The default constructor leaves the pointer initialized to point to the NULL object. Attempts to use the <computeroutput>-&gt;</computeroutput> operator will cause an abort until the pointer is given a value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="598" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="598" bodyend="600"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1a37b016d2605e95703bb7fd61c4c4c730" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfRefPtr</definition>
+        <argsstring>(TfRefPtr&lt; T &gt; &amp;&amp;p)</argsstring>
+        <name>TfRefPtr</name>
+        <param>
+          <type><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; T &gt; &amp;&amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Moves the pointer managed by <computeroutput>p</computeroutput> to <computeroutput>*this</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>After construction, <computeroutput>*this</computeroutput> will point to the object <computeroutput>p</computeroutput> had been pointing at and <computeroutput>p</computeroutput> will be pointing at the NULL object. The reference count of the object being pointed at does not change. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="608" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="608" bodyend="613"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1aadb607015dc6fd449caf6a77ce316445" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfRefPtr</definition>
+        <argsstring>(const TfRefPtr&lt; T &gt; &amp;p)</argsstring>
+        <name>TfRefPtr</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; T &gt; &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Initializes <computeroutput>*this</computeroutput> to point at <computeroutput>p&apos;s</computeroutput> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Increments <computeroutput>p&apos;s</computeroutput> object&apos;s reference count. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="618" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="618" bodyend="621"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1a4b14e349bbd7efe78f5e4d9394fd427f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>template&lt; class &gt; class</type>
+            <declname>X</declname>
+            <defname>X</defname>
+          </param>
+          <param>
+            <type>class U</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>TfRefPtr</definition>
+        <argsstring>(const TfWeakPtrFacade&lt; X, U &gt; &amp;p, typename std::enable_if&lt; std::is_convertible&lt; U *, T * &gt;::value &gt;::type *=0)</argsstring>
+        <name>TfRefPtr</name>
+        <param>
+          <type>const TfWeakPtrFacade&lt; X, U &gt; &amp;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>typename std::enable_if&lt; std::is_convertible&lt; U *, T * &gt;::value &gt;::type *</type>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Initializes <computeroutput>*this</computeroutput> to point at <computeroutput>gp&apos;s</computeroutput> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Increments <computeroutput>gp&apos;s</computeroutput> object&apos;s reference count. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="627" column="1" bodyfile="pxr/base/tf/weakPtrFacade.h" bodystart="362" bodyend="370"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1a80f00837444702c7ea589a7a96ec80fa" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class U</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>TfRefPtr</definition>
+        <argsstring>(U *ptr, typename std::enable_if&lt; std::is_convertible&lt; U *, T * &gt;::value &gt;::type *=nullptr)</argsstring>
+        <name>TfRefPtr</name>
+        <param>
+          <type>U *</type>
+          <declname>ptr</declname>
+        </param>
+        <param>
+          <type>typename std::enable_if&lt; std::is_convertible&lt; U *, T * &gt;::value &gt;::type *</type>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Initializes to point at <computeroutput>*ptr</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Increments <computeroutput>*ptr&apos;s</computeroutput> reference count. Note that newly constructed objects start with a reference count of one. Therefore, you should <emphasis>NOT</emphasis> use this constructor (either implicitly or explicitly) from within a <computeroutput>New()</computeroutput> function. Use <computeroutput><ref refid="class_tf_ref_ptr_1a8a1f63452b7c862198d700ba3b8ad380" kindref="member">TfCreateRefPtr()</ref></computeroutput> instead. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="678" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="678" bodyend="685"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1aa437dcac2e6393797505de3be6cbf010" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfRefPtr</definition>
+        <argsstring>(TfNullPtrType)</argsstring>
+        <name>TfRefPtr</name>
+        <param>
+          <type>TfNullPtrType</type>
+        </param>
+        <briefdescription>
+<para>Implicit conversion from <emphasis>TfNullPtr</emphasis> to <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="688" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="688" bodyend="691"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1af3c8389306a23e6e828f44529c888c1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfRefPtr</definition>
+        <argsstring>(std::nullptr_t)</argsstring>
+        <name>TfRefPtr</name>
+        <param>
+          <type>std::nullptr_t</type>
+        </param>
+        <briefdescription>
+<para>Implicit conversion from <emphasis>nullptr</emphasis> to <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="694" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="694" bodyend="697"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1a58ebd6e7db873f660498eae68f96528c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; T &gt; &amp;</type>
+        <definition>TfRefPtr&lt;T&gt;&amp; operator=</definition>
+        <argsstring>(const TfRefPtr&lt; T &gt; &amp;p)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; T &gt; &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Assigns pointer to point at <computeroutput>p&apos;s</computeroutput> object, and increments reference count. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The object (if any) pointed at before the assignment has its reference count decremented, while the object newly pointed at has its reference count incremented. If the object previously pointed to now has nobody left to point at it, the object will typically be destroyed at this point.</para>
+<para>An assignment <programlisting><codeline><highlight class="normal">ptr<sp/>=<sp/>TfNullPtr;</highlight></codeline>
+</programlisting></para>
+<para>can be used to make <computeroutput>ptr</computeroutput> &quot;forget&quot; where it is pointing; note however that this has an important side effect, since it decrements the reference count of the object previously pointed to by <computeroutput>ptr</computeroutput>, possibly triggering destruction of that object. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="717" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="717" bodyend="737"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1a79110afc36318a217b8747ddacd95bbb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; T &gt; &amp;</type>
+        <definition>TfRefPtr&lt;T&gt;&amp; operator=</definition>
+        <argsstring>(TfRefPtr&lt; T &gt; &amp;&amp;p)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; T &gt; &amp;&amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Moves the pointer managed by <computeroutput>p</computeroutput> to <computeroutput>*this</computeroutput> and leaves <computeroutput>p</computeroutput> pointing at the NULL object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The object (if any) pointed at before the assignment has its reference count decremented, while the reference count of the object newly pointed at is not changed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="745" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="745" bodyend="758"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1a4c127a68abb58485ca93cc93cbcbc315" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>~TfRefPtr</definition>
+        <argsstring>()</argsstring>
+        <name>~TfRefPtr</name>
+        <briefdescription>
+<para>Decrements reference count of object being pointed to. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the reference count of the object (if any) that was just pointed at reaches zero, the object will typically be destroyed at this point. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="764" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="764" bodyend="767"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1ae2a72ffad18f4bd51d1b9c8359712a61" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfRefPtr</definition>
+        <argsstring>(const TfRefPtr&lt; U &gt; &amp;p)</argsstring>
+        <name>TfRefPtr</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; U &gt; &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Initializes to point at <computeroutput>p&apos;s</computeroutput> object, and increments reference count. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This initialization is legal only if <programlisting><codeline><highlight class="normal">U*<sp/>uPtr;</highlight></codeline>
+<codeline><highlight class="normal">T*<sp/>tPtr<sp/>=<sp/>uPtr;</highlight></codeline>
+</programlisting> is legal. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="780" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="780" bodyend="784"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1ad59871465a56e3ba5751a0df193bfe78" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfRefPtr</definition>
+        <argsstring>(TfRefPtr&lt; U &gt; &amp;&amp;p)</argsstring>
+        <name>TfRefPtr</name>
+        <param>
+          <type><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; U &gt; &amp;&amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Moves the pointer managed by <computeroutput>p</computeroutput> to <computeroutput>*this</computeroutput> and leaves <computeroutput>p</computeroutput> pointing at the NULL object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The reference count of the object being pointed to is not changed.</para>
+<para>This initialization is legal only if <programlisting><codeline><highlight class="normal">U*<sp/>uPtr;</highlight></codeline>
+<codeline><highlight class="normal">T*<sp/>tPtr<sp/>=<sp/>uPtr;</highlight></codeline>
+</programlisting> is legal. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="799" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="799" bodyend="805"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1ac572a39d34606471f22108798561bc46" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; T &gt; &amp;</type>
+        <definition>TfRefPtr&lt;T&gt;&amp; operator=</definition>
+        <argsstring>(const TfRefPtr&lt; U &gt; &amp;p)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; U &gt; &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Assigns pointer to point at <computeroutput>p&apos;s</computeroutput> object, and increments reference count. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This assignment is legal only if <programlisting><codeline><highlight class="normal">U*<sp/>uPtr;</highlight></codeline>
+<codeline><highlight class="normal">T*<sp/>tPtr;</highlight></codeline>
+<codeline><highlight class="normal">tPtr<sp/>=<sp/>uPtr;</highlight></codeline>
+</programlisting> is legal. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="820" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="820" bodyend="831"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1a670f7f34961d6412ffa3888e5567c0ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; T &gt; &amp;</type>
+        <definition>TfRefPtr&lt;T&gt;&amp; operator=</definition>
+        <argsstring>(TfRefPtr&lt; U &gt; &amp;&amp;p)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; U &gt; &amp;&amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Moves the pointer managed by <computeroutput>p</computeroutput> to <computeroutput>*this</computeroutput> and leaves <computeroutput>p</computeroutput> pointing at the NULL object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The reference count of the object being pointed to is not changed.</para>
+<para>This assignment is legal only if <programlisting><codeline><highlight class="normal">U*<sp/>uPtr;</highlight></codeline>
+<codeline><highlight class="normal">T*<sp/>tPtr;</highlight></codeline>
+<codeline><highlight class="normal">tPtr<sp/>=<sp/>uPtr;</highlight></codeline>
+</programlisting> is legal. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="847" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="847" bodyend="861"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1a0cf528f98b109e720fffdc2a273f7937" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto operator==</definition>
+        <argsstring>(const TfRefPtr&lt; U &gt; &amp;p) const -&gt; decltype(std::declval&lt; T * &gt;()==std::declval&lt; U * &gt;(), bool())</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; U &gt; &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if <computeroutput>*this</computeroutput> and <computeroutput>p</computeroutput> point to the same object (or if they both point to NULL). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The comparison is legal only if a <computeroutput>T*</computeroutput> and a <computeroutput>U*</computeroutput> are comparable. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="870" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="870" bodyend="873"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1abf3873f48a2806208484a4d39ca00c40" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto operator!=</definition>
+        <argsstring>(const TfRefPtr&lt; U &gt; &amp;p) const -&gt; decltype(std::declval&lt; T * &gt;() !=std::declval&lt; U * &gt;(), bool())</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; U &gt; &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if <computeroutput>*this</computeroutput> and <computeroutput>p</computeroutput> do not point to the same object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The comparison is legal only if a <computeroutput>T*</computeroutput> and a <computeroutput>U*</computeroutput> are comparable. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="881" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="881" bodyend="884"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1aeaf71084107e6a32783cfe6c6f1d4fa3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto operator&lt;</definition>
+        <argsstring>(const TfRefPtr&lt; U &gt; &amp;p) const -&gt; decltype(std::declval&lt; T * &gt;()&lt; std::declval&lt; U * &gt;(), bool())</argsstring>
+        <name>operator&lt;</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; U &gt; &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the address of the object pointed to by <computeroutput>*this</computeroutput> compares less than the address of the object pointed to by <computeroutput>p</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The comparison is legal only if a <computeroutput>T*</computeroutput> and a <computeroutput>U*</computeroutput> are comparable. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="893" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="893" bodyend="896"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1acccee7073006a10421c5b9b1e6c45c82" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto operator&gt;</definition>
+        <argsstring>(const TfRefPtr&lt; U &gt; &amp;p) const -&gt; decltype(std::declval&lt; T * &gt;() &gt; std::declval&lt; U * &gt;(), bool())</argsstring>
+        <name>operator&gt;</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; U &gt; &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="901" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="901" bodyend="904"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1a8c331d736d3dcb094e73e899f10eac43" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto operator&lt;=</definition>
+        <argsstring>(const TfRefPtr&lt; U &gt; &amp;p) const -&gt; decltype(std::declval&lt; T * &gt;()&lt;=std::declval&lt; U * &gt;(), bool())</argsstring>
+        <name>operator&lt;=</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; U &gt; &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="909" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="909" bodyend="912"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1acb22d742a7dd7a7b2ad796b1818a1421" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto operator&gt;=</definition>
+        <argsstring>(const TfRefPtr&lt; U &gt; &amp;p) const -&gt; decltype(std::declval&lt; T * &gt;() &gt;=std::declval&lt; U * &gt;(), bool())</argsstring>
+        <name>operator&gt;=</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt; U &gt; &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="917" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="917" bodyend="920"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1a5c1735ebb61cb9b40f6d0ed30be8a288" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T *</type>
+        <definition>T* operator-&gt;</definition>
+        <argsstring>() const</argsstring>
+        <name>operator-&gt;</name>
+        <briefdescription>
+<para>Accessor to <computeroutput>T&apos;s</computeroutput> public members. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="923" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="923" bodyend="929"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1a2477b013cf44492b54afd64d151de6aa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T &amp;</type>
+        <definition>T&amp; operator *</definition>
+        <argsstring>() const</argsstring>
+        <name>operator *</name>
+        <briefdescription>
+<para>Dereferences the stored pointer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="932" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="932" bodyend="934"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1a10c79bb09aeb8efbd9b01ee1fbde0061" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>operator UnspecifiedBoolType</definition>
+        <argsstring>() const</argsstring>
+        <name>operator UnspecifiedBoolType</name>
+        <briefdescription>
+<para>True if the pointer points to an object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="941" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="941" bodyend="943"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1a45a49470b17aeb71f23c5a2ca7bff5fa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator !</definition>
+        <argsstring>() const</argsstring>
+        <name>operator !</name>
+        <briefdescription>
+<para>True if the pointer points to <computeroutput>NULL</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="946" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="946" bodyend="948"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1a720afd959893c637eb1aa2dfd879dcfd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void swap</definition>
+        <argsstring>(TfRefPtr &amp;other)</argsstring>
+        <name>swap</name>
+        <param>
+          <type><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Swap this pointer with <emphasis>other</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>After this operation, this pointer will point to what <emphasis>other</emphasis> formerly pointed to, and <emphasis>other</emphasis> will point to what this pointer formerly pointed to. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="954" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="954" bodyend="960"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1a372de693ad40b3f42839c8ec6ac845f4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset</definition>
+        <argsstring>()</argsstring>
+        <name>Reset</name>
+        <briefdescription>
+<para>Set this pointer to point to no object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Equivalent to assignment with TfNullPtr. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="964" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="964" bodyend="966"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_tf_ref_ptr_1a5d26cff9e5702f1d0ea236ac534f8713" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfRefPtr</definition>
+        <argsstring>(T *ptr, _CreateRefPtr)</argsstring>
+        <name>TfRefPtr</name>
+        <param>
+          <type>T *</type>
+          <declname>ptr</declname>
+        </param>
+        <param>
+          <type>_CreateRefPtr</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="984" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="984" bodyend="990"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1ad016b2ea628da5f52fc05a2d19350571" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T *</type>
+        <definition>T* _GetData</definition>
+        <argsstring>() const</argsstring>
+        <name>_GetData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="1072" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="1072" bodyend="1074"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1a4f7039fc2081f79e78c3e95077451bdb" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T *</type>
+        <definition>T* _GetObjectForTracking</definition>
+        <argsstring>() const</argsstring>
+        <name>_GetObjectForTracking</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="1082" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="1082" bodyend="1084"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1a6e7d967eb68402fa7112b75ec28263a6" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _AddRef</definition>
+        <argsstring>() const</argsstring>
+        <name>_AddRef</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="1096" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="1096" bodyend="1098"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_1af2f8538044d65cede18842ac0262cf3f" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RemoveRef</definition>
+        <argsstring>(const TfRefBase *ptr) const</argsstring>
+        <name>_RemoveRef</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_base" kindref="compound">TfRefBase</ref> *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtr.h" line="1100" column="1" bodyfile="pxr/base/tf/refPtr.h" bodystart="1100" bodyend="1106"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Reference-counted smart pointer utility class. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The <computeroutput><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref></computeroutput> class implements a reference counting on objects that inherit from <computeroutput><ref refid="class_tf_ref_base" kindref="compound">TfRefBase</ref></computeroutput>.</para>
+<para>For more information, see either the <ref refid="ref_ptr_8h_1refPtr_QuickStart" kindref="member">Quick Start</ref> example or read the <ref refid="ref_ptr_8h_1refPtr_DetailedDiscussion" kindref="member">detailed discussion</ref>. </para>
+    </detaileddescription>
+    <location file="pxr/base/tf/refBase.h" line="37" column="1" bodyfile="pxr/base/tf/refBase.h" bodystart="37" bodyend="-1"/>
+    <listofallmembers>
+      <member refid="class_tf_ref_ptr_1a6e7d967eb68402fa7112b75ec28263a6" prot="private" virt="non-virtual"><scope>TfRefPtr</scope><name>_AddRef</name></member>
+      <member refid="class_tf_ref_ptr_1a26ec17ae1c3a95be5a67c464b2f9f7dc" prot="private" virt="non-virtual"><scope>TfRefPtr</scope><name>_Counter</name></member>
+      <member refid="class_tf_ref_ptr_1ad016b2ea628da5f52fc05a2d19350571" prot="private" virt="non-virtual"><scope>TfRefPtr</scope><name>_GetData</name></member>
+      <member refid="class_tf_ref_ptr_1a4f7039fc2081f79e78c3e95077451bdb" prot="private" virt="non-virtual"><scope>TfRefPtr</scope><name>_GetObjectForTracking</name></member>
+      <member refid="class_tf_ref_ptr_1ad5d6f5b68cfac022d885b3a90cabcd67" prot="private" virt="non-virtual"><scope>TfRefPtr</scope><name>_refBase</name></member>
+      <member refid="class_tf_ref_ptr_1af2f8538044d65cede18842ac0262cf3f" prot="private" virt="non-virtual"><scope>TfRefPtr</scope><name>_RemoveRef</name></member>
+      <member refid="class_tf_ref_ptr_1afe400d3f662f42fab8f065a689ba9a4a" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>DataType</name></member>
+      <member refid="class_tf_ref_ptr_1ae4c21e26f246f8065aa1bd1dc5e0e262" prot="private" virt="non-virtual"><scope>TfRefPtr</scope><name>get_pointer</name></member>
+      <member refid="class_tf_ref_ptr_1a0725681202e2f2dcb0838e36e6a293f6" prot="private" virt="non-virtual"><scope>TfRefPtr</scope><name>hash_value</name></member>
+      <member refid="class_tf_ref_ptr_1a45a49470b17aeb71f23c5a2ca7bff5fa" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>operator !</name></member>
+      <member refid="class_tf_ref_ptr_1a2477b013cf44492b54afd64d151de6aa" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>operator *</name></member>
+      <member refid="class_tf_ref_ptr_1a10c79bb09aeb8efbd9b01ee1fbde0061" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>operator UnspecifiedBoolType</name></member>
+      <member refid="class_tf_ref_ptr_1abf3873f48a2806208484a4d39ca00c40" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>operator!=</name></member>
+      <member refid="class_tf_ref_ptr_1a5c1735ebb61cb9b40f6d0ed30be8a288" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>operator-&gt;</name></member>
+      <member refid="class_tf_ref_ptr_1aeaf71084107e6a32783cfe6c6f1d4fa3" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>operator&lt;</name></member>
+      <member refid="class_tf_ref_ptr_1a8c331d736d3dcb094e73e899f10eac43" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>operator&lt;=</name></member>
+      <member refid="class_tf_ref_ptr_1a58ebd6e7db873f660498eae68f96528c" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>operator=</name></member>
+      <member refid="class_tf_ref_ptr_1a79110afc36318a217b8747ddacd95bbb" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>operator=</name></member>
+      <member refid="class_tf_ref_ptr_1ac572a39d34606471f22108798561bc46" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>operator=</name></member>
+      <member refid="class_tf_ref_ptr_1a670f7f34961d6412ffa3888e5567c0ee" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>operator=</name></member>
+      <member refid="class_tf_ref_ptr_1a0cf528f98b109e720fffdc2a273f7937" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>operator==</name></member>
+      <member refid="class_tf_ref_ptr_1acccee7073006a10421c5b9b1e6c45c82" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>operator&gt;</name></member>
+      <member refid="class_tf_ref_ptr_1acb22d742a7dd7a7b2ad796b1818a1421" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>operator&gt;=</name></member>
+      <member refid="class_tf_ref_ptr_1a372de693ad40b3f42839c8ec6ac845f4" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>Reset</name></member>
+      <member refid="class_tf_ref_ptr_1a720afd959893c637eb1aa2dfd879dcfd" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>swap</name></member>
+      <member refid="class_tf_ref_ptr_1ae090e00181e4bc38bee64e5542c7e1d6" prot="private" virt="non-virtual"><scope>TfRefPtr</scope><name>TfConst_cast</name></member>
+      <member refid="class_tf_ref_ptr_1a8a1f63452b7c862198d700ba3b8ad380" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>TfCreateRefPtr</name></member>
+      <member refid="class_tf_ref_ptr_1a33867ccc5d837124fb08eff87e027c80" prot="private" virt="non-virtual"><scope>TfRefPtr</scope><name>TfDynamic_cast</name></member>
+      <member refid="class_tf_ref_ptr_1a85f0d82124c92cd519f85d940185053e" prot="private" virt="non-virtual"><scope>TfRefPtr</scope><name>TfHashAppend</name></member>
+      <member refid="class_tf_ref_ptr_1ad2fbc9f5fab0deca1d46de73896a484f" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>TfRefPtr</name></member>
+      <member refid="class_tf_ref_ptr_1a37b016d2605e95703bb7fd61c4c4c730" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>TfRefPtr</name></member>
+      <member refid="class_tf_ref_ptr_1aadb607015dc6fd449caf6a77ce316445" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>TfRefPtr</name></member>
+      <member refid="class_tf_ref_ptr_1a4b14e349bbd7efe78f5e4d9394fd427f" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>TfRefPtr</name></member>
+      <member refid="class_tf_ref_ptr_1a80f00837444702c7ea589a7a96ec80fa" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>TfRefPtr</name></member>
+      <member refid="class_tf_ref_ptr_1aa437dcac2e6393797505de3be6cbf010" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>TfRefPtr</name></member>
+      <member refid="class_tf_ref_ptr_1af3c8389306a23e6e828f44529c888c1b" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>TfRefPtr</name></member>
+      <member refid="class_tf_ref_ptr_1ae2a72ffad18f4bd51d1b9c8359712a61" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>TfRefPtr</name></member>
+      <member refid="class_tf_ref_ptr_1ad59871465a56e3ba5751a0df193bfe78" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>TfRefPtr</name></member>
+      <member refid="class_tf_ref_ptr_1a5d26cff9e5702f1d0ea236ac534f8713" prot="private" virt="non-virtual"><scope>TfRefPtr</scope><name>TfRefPtr</name></member>
+      <member refid="class_tf_ref_ptr_1afe6d36e3754da224ba3f0093c0b64fa3" prot="private" virt="non-virtual"><scope>TfRefPtr</scope><name>TfStatic_cast</name></member>
+      <member refid="class_tf_ref_ptr_1a928f24fab0d243b7270a2ce7f92f8921" prot="private" virt="non-virtual"><scope>TfRefPtr</scope><name>TfTypeid</name></member>
+      <member refid="class_tf_ref_ptr_1a6dabafb6658409eebdd7195f7399443f" prot="private" virt="non-virtual"><scope>TfRefPtr</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_ref_ptr_1a4c127a68abb58485ca93cc93cbcbc315" prot="public" virt="non-virtual"><scope>TfRefPtr</scope><name>~TfRefPtr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

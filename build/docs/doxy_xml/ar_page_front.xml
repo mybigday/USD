@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="ar_page_front" kind="page">
+    <compoundname>ar_page_front</compoundname>
+    <title>Ar: Asset Resolution</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="ar_page_front_1ar_overview">
+<title>Overview</title>
+<para>The Ar (Asset Resolution) library is responsible for querying, reading, and writing asset data. It provides several interfaces that allow USD to access an asset without knowing how that asset is physically stored.</para>
+<para>Ar ships with implementations based on a traditional filesystem. However, users can provide custom implementations to integrate their own asset storage system and behaviors with USD. For example, a user might have an asset system that stores assets in a database and uses special identifiers to address those assets. That user could create a custom implementation of the <ref refid="class_ar_resolver" kindref="compound">ArResolver</ref> interface that interprets those identifiers and a custom implementation of the <ref refid="class_ar_asset" kindref="compound">ArAsset</ref> interface that reads data straight from the database. This would allow the user to use those identifiers for references, payloads, and sublayer composition arcs and other places throughout USD.</para>
+</sect1>
+<sect1 id="ar_page_front_1ar_resolver">
+<title>ArResolver</title>
+<para><ref refid="class_ar_resolver" kindref="compound">ArResolver</ref> is the central interface for asset operations in Ar. Clients can implement subclasses of this interface to customize behaviors for their asset system.</para>
+<para>Ar manages a set of <ref refid="class_ar_resolver" kindref="compound">ArResolver</ref> subclasses for handling different asset paths, which are described below. These subclasses are discovered and instantiated via the plugin system and managed internally by Ar. Instead of using these subclasses directly, clients just use a single resolver that is accessed by calling <ref refid="ar_2resolver_8h_1ab0913ebfd579684add6b59b44983a633" kindref="member">ArGetResolver</ref>. When methods are called on this resolver, Ar will determine the appropriate subclass for handling the given input paths and forward the call to that subclass.</para>
+<sect2 id="ar_page_front_1ar_primary_resolver">
+<title>Primary Resolver</title>
+<para>The primary resolver is the <ref refid="class_ar_resolver" kindref="compound">ArResolver</ref> subclass that Ar uses to handle all asset paths that are not handled by the other resolvers described below.</para>
+<para>To create a custom primary resolver:</para>
+<para><itemizedlist>
+<listitem><para>Implement an <ref refid="class_ar_resolver" kindref="compound">ArResolver</ref> subclass <programlisting filename=".cpp"><codeline><highlight class="keyword">class<sp/></highlight><highlight class="normal">CustomResolver<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_ar_resolver" kindref="compound">ArResolver</ref><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>...</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para>Use <ref refid="define_resolver_8h_1a57f69ee744b21cbf5d4b2e13215117ba" kindref="member">AR_DEFINE_RESOLVER</ref> to define the subclass as a resolver <programlisting filename=".cpp"><codeline><highlight class="preprocessor">#<sp/>In<sp/>the<sp/>custom<sp/>resolver&apos;s<sp/>.cpp<sp/>file</highlight></codeline>
+<codeline><highlight class="preprocessor">AR_DEFINE_RESOLVER(CustomResolver,<sp/>ArResolver);</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para>Declare the subclass in the plugin&apos;s plugInfo.json file. See <ref refid="class_plug_registry" kindref="compound">PlugRegistry</ref> for more details. <programlisting filename=".json"><codeline><highlight class="normal">#<sp/>plugInfo.json</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;Plugins&quot;:<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Info&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Types&quot;<sp/>:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;CustomResolver&quot;<sp/>:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;bases&quot;:<sp/>[<sp/>&quot;ArResolver&quot;<sp/>]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para>Ensure that the resolver plugin is located where the plugin system can find it.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para>Ar does not support custom resolvers implemented in Python to avoid performance issues, especially for multi-threaded consumers.</para>
+</simplesect>
+At runtime Ar will query the plugin system to discover any classes that have <ref refid="class_ar_resolver" kindref="compound">ArResolver</ref> or another subclass of <ref refid="class_ar_resolver" kindref="compound">ArResolver</ref> declared as a base type, then instantiate that class when needed. Keep in mind that the class may be constructed at any time; at a minimum, the class will be constructed during the first call to <ref refid="ar_2resolver_8h_1ab0913ebfd579684add6b59b44983a633" kindref="member">ArGetResolver</ref>.</para>
+<para>If no custom resolver is found, Ar will use <ref refid="class_ar_default_resolver" kindref="compound">ArDefaultResolver</ref> as the primary resolver. This resolver assumes all asset paths it encounters are filesystem paths. <ref refid="class_ar_default_resolver" kindref="compound">ArDefaultResolver</ref> also performs simple search path-based resolution that will search for an asset in a specified list of directories. See documentation on <ref refid="class_ar_default_resolver" kindref="compound">ArDefaultResolver</ref> for more information on configuring this behavior.</para>
+</sect2>
+<sect2 id="ar_page_front_1ar_uri_resolvers">
+<title>URI/IRI Resolvers</title>
+<para>URI/IRI resolvers are <ref refid="class_ar_resolver" kindref="compound">ArResolver</ref> subclasses that are associated with particular resource identifier schemes.</para>
+<para><simplesect kind="note"><para>IRIs are URIs which support unicode characters in certain components of the identifier. All URIs are IRIs, and compliant IRIs can be idempotently converted to URIs through percent encoding.</para>
+</simplesect>
+When Ar encounters an asset path or resolved path of the form &quot;&lt;scheme&gt;:...&quot;, it will check if any <ref refid="class_ar_resolver" kindref="compound">ArResolver</ref> subclasses have been registered for the scheme. If so, it will dispatch the path to that subclass for handling. If not, it will dispatch the path to the primary resolver for handling. Schemes should adhere to the URI/IRI specification and are ASCII only.</para>
+<para>For example, if there were an HTTPResolver subclass of <ref refid="class_ar_resolver" kindref="compound">ArResolver</ref> that was registered to handle the &quot;http&quot; scheme. If the following was called:</para>
+<para><programlisting filename=".cpp"><codeline><highlight class="normal"><ref refid="ar_2resolver_8h_1ab0913ebfd579684add6b59b44983a633" kindref="member">ArGetResolver</ref>().<ref refid="class_ar_resolver_1a1b824f00c46b2a5001f492698fd8f5c1" kindref="member">Resolve</ref>(</highlight><highlight class="stringliteral">&quot;http://mynetwork/model.usd&quot;</highlight><highlight class="normal">)</highlight></codeline>
+</programlisting></para>
+<para>Ar would inspect the given path, find the &quot;http&quot; scheme and determine that &quot;http&quot; was associated with HTTPResolver. Ar would create an instance of the HTTPResolver (if one had not already been created), then call HTTPResolver::Resolve on that instance with the given path.</para>
+<para>To create a URI/IRI resolver:</para>
+<para><itemizedlist>
+<listitem><para>Implement a subclass of <ref refid="class_ar_resolver" kindref="compound">ArResolver</ref> as described in the <ref refid="ar_page_front_1ar_primary_resolver" kindref="member">Primary Resolver</ref> section above.</para>
+</listitem><listitem><para>In the entry for the subclass in the plugin&apos;s plugInfo.json file, add a &quot;uriSchemes&quot; key with a list of schemes associated with the resolver. <programlisting filename=".json"><codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;Plugins&quot;:<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Info&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Types&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;HTTPResolver&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;bases&quot;:<sp/>[&quot;ArResolver&quot;],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;uriSchemes&quot;:<sp/>[&quot;http&quot;,<sp/>&quot;https&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</listitem></itemizedlist>
+</para>
+<para><computeroutput>uriSchemes</computeroutput> may be used to register resolvers which support non-percent encoded IRIs. Unicode characters in asset path strings should be UTF-8 encoded.</para>
+<para>Resolvers are ultimately responsible for validation, normalization, and parsing of asset paths. USD does not attempt to validate or parse resource identifiers beyond what&apos;s needed for dispatching via &apos;scheme&apos;. When a resolver is working with a protocol that strictly requires percent-encoded URIs, it&apos;s acceptable for the resolver to accept UTF-8 encoded IRIs and internally handle percent encoding.</para>
+</sect2>
+</sect1>
+<sect1 id="ar_page_front_1ar_resolution">
+<title>Asset Path Resolution</title>
+<para>An asset path is a string that describes the location of an asset in a user&apos;s system. These paths are used extensively throughout USD; for example, asset paths are used to specify sublayers, references, and payloads in scene description.</para>
+<para>One of <ref refid="class_ar_resolver" kindref="compound">ArResolver</ref>&apos;s primary responsibilities is to resolve an input asset path by determining if an asset exists at the given path and, if so, returning a resolved path that may be used by other <ref refid="class_ar_resolver" kindref="compound">ArResolver</ref> API and in other parts of the system. This is done via calls to <ref refid="class_ar_resolver_1a1b824f00c46b2a5001f492698fd8f5c1" kindref="member">ArResolver::Resolve</ref>. This process allows <ref refid="class_ar_resolver" kindref="compound">ArResolver</ref> subclasses to apply custom logic to determine the actual asset that a logical asset path refers to.</para>
+<para>For example, the filesystem-based <ref refid="class_ar_default_resolver" kindref="compound">ArDefaultResolver</ref> implements search-path logic in its asset path resolution. When <ref refid="class_ar_default_resolver" kindref="compound">ArDefaultResolver</ref> is given a relative filesystem asset path to resolve like &quot;Foo/Bar/Baz.usd&quot;, it will look for that file relative to the current working directory, then relative to a set of search paths. Once it finds an existing file, it will return the absolute path to that file as the resolved path.</para>
+<para>For more details, see:<itemizedlist>
+<listitem><para><ref refid="class_ar_resolver_1ArResolver_resolution" kindref="member">Path Resolution Operations</ref></para>
+</listitem><listitem><para><ref refid="class_ar_resolver_1ArResolver_implementation" kindref="member">Implementation</ref></para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="ar_page_front_1ar_resolver_contexts">
+<title>Resolver Contexts</title>
+<para>A resolver context is an object that stores configuration or other information that can be used by a resolver to guide path resolution and other operations. Resolver contexts can be bound within blocks of code to affect resolver operations within that scope via an <ref refid="class_ar_resolver_context_binder" kindref="compound">ArResolverContextBinder</ref>. <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> uses this functionality heavily to allow different stages to resolve asset paths differently.</para>
+<para>For example, <ref refid="class_ar_default_resolver" kindref="compound">ArDefaultResolver</ref> has a context object <ref refid="class_ar_default_resolver_context" kindref="compound">ArDefaultResolverContext</ref> that contains a set of search paths for use during resolution that prepend <ref refid="class_ar_default_resolver" kindref="compound">ArDefaultResolver</ref>&apos;s list of global search paths. A client might use this to set up stages that look in different locations for assets:</para>
+<para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Configure<sp/>ArDefaultResolver&apos;s<sp/>global<sp/>search<sp/>paths.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="class_ar_default_resolver_1aa800e0f25ecd6949b00477243ce0c6a7" kindref="member">ArDefaultResolver::SetDefaultSearchPath</ref>({</highlight><highlight class="stringliteral">&quot;/Global/assets&quot;</highlight><highlight class="normal">});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Create<sp/>a<sp/>resolver<sp/>context<sp/>with<sp/>an<sp/>additional<sp/>search<sp/>path<sp/>and</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>use<sp/>it<sp/>for<sp/>opening<sp/>the<sp/>UsdStage<sp/>for<sp/>ShotA.usd.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>If<sp/>ShotA.usd<sp/>contains<sp/>an<sp/>asset<sp/>path<sp/>like<sp/>&quot;Foo/Bar/Baz.usd&quot;,</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ArDefaultResolver<sp/>will<sp/>search<sp/>for<sp/>this<sp/>file<sp/>at:<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>-<sp/>&lt;current<sp/>working<sp/>dir&gt;/Foo/Bar/Baz.usd</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>-<sp/>/ShotA/assets/Foo/Bar/Baz.usd</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>-<sp/>/Global/assets/Foo/Bar/Baz.usd</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="class_ar_default_resolver_context" kindref="compound">ArDefaultResolverContext</ref><sp/>shotACtx({</highlight><highlight class="stringliteral">&quot;/ShotA/assets&quot;</highlight><highlight class="normal">})</highlight></codeline>
+<codeline><highlight class="normal">UsdStageRefPtr<sp/>shotA<sp/>=<sp/><ref refid="class_usd_stage_1abd74eb9ec70572c2dadaf4cd07144380" kindref="member">UsdStage::Open</ref>(</highlight><highlight class="stringliteral">&quot;ShotA.usd&quot;</highlight><highlight class="normal">,<sp/>shotACtx);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Create<sp/>a<sp/>resolver<sp/>context<sp/>with<sp/>an<sp/>additional<sp/>search<sp/>path<sp/>and</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>use<sp/>it<sp/>for<sp/>opening<sp/>the<sp/>UsdStage<sp/>for<sp/>ShotB.usd.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>If<sp/>ShotB.usd<sp/>contains<sp/>the<sp/>same<sp/>asset<sp/>path<sp/>as<sp/>above<sp/>in<sp/>ShotA,</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>ArDefaultResolver<sp/>will<sp/>search<sp/>for<sp/>this<sp/>file<sp/>at:<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>-<sp/>&lt;current<sp/>working<sp/>dir&gt;/Foo/Bar/Baz.usd</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>-<sp/>/ShotB/assets/Foo/Bar/Baz.usd</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>-<sp/>/Global/assets/Foo/Bar/Baz.usd</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="class_ar_default_resolver_context" kindref="compound">ArDefaultResolverContext</ref><sp/>shotBCtx({</highlight><highlight class="stringliteral">&quot;/ShotB/assets&quot;</highlight><highlight class="normal">})</highlight></codeline>
+<codeline><highlight class="normal">UsdStageRefPtr<sp/>shotB<sp/>=<sp/><ref refid="class_usd_stage_1abd74eb9ec70572c2dadaf4cd07144380" kindref="member">UsdStage::Open</ref>(</highlight><highlight class="stringliteral">&quot;ShotB.usd&quot;</highlight><highlight class="normal">,<sp/>shotBCtx);</highlight></codeline>
+</programlisting></para>
+<para>It&apos;s important to note that any information in a resolver context that is used during path resolution should be factored into the resulting resolved path. This is because resolved paths may be passed to downstream clients or external libraries that will not (or can not) have a context object bound when the resolved path is used to open an asset. Put another way: a resolved path should be usable by downstream clients that do not have a resolver context bound.</para>
+<para>Context binding and unbinding are thread-specific. If you bind a context in a thread, that binding will only be visible to that thread. If you want to use the same context to resolve asset paths in multiple threads, you’ll need to bind the context in multiple threads.</para>
+<para>For more details, see:</para>
+<para><itemizedlist>
+<listitem><para><ref refid="class_ar_resolver_context" kindref="compound">ArResolverContext</ref></para>
+</listitem><listitem><para><ref refid="class_ar_resolver_context_binder" kindref="compound">ArResolverContextBinder</ref></para>
+</listitem><listitem><para><ref refid="class_ar_resolver_1ArResolver_context" kindref="member">Asset Resolver Context Operations</ref></para>
+</listitem><listitem><para><ref refid="class_ar_resolver_1ArResolver_contextImplementation" kindref="member">Context Operations Implementation</ref></para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="ar_page_front_1ar_resolver_scoped_cache">
+<title>Resolver Scoped Caches</title>
+<para>A resolver scoped cache is a cache of asset resolution results that is active during a given block of code. Clients can activate a scoped cache by using an <ref refid="class_ar_resolver_scoped_cache" kindref="compound">ArResolverScopedCache</ref> object.</para>
+<para>Resolving asset paths may be expensive and a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> may need to resolve hundreds to thousands of asset paths (or more) depending on the complexity of the scene, many of which may be repeated. A scoped cache helps to minimize that expense. A scoped cache also ensures that resolving a given asset path multiple times returns the same result, which is important for consistency and correctness.</para>
+<para>Ar provides default scoped cache behaviors for all <ref refid="class_ar_resolver" kindref="compound">ArResolver</ref> subclasses. However, this default behavior is very basic. Subclasses may provide their own scoped cache implementations that can take advantage of implementation details of their underlying asset system to maximize efficiency. For such cases Ar provides an <ref refid="class_ar_thread_local_scoped_cache" kindref="compound">ArThreadLocalScopedCache</ref> utility class to help with this.</para>
+<para>For more details, see:</para>
+<para><itemizedlist>
+<listitem><para><ref refid="class_ar_resolver_1ArResolver_scopedCache" kindref="member">Scoped Resolution Cache</ref></para>
+</listitem><listitem><para><ref refid="class_ar_resolver_1ArResolver_scopedCacheImplementation" kindref="member">Scoped Resolution Cache Implementation</ref></para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="ar_page_front_1ar_paths">
+<title>Asset Paths and Resolved Paths</title>
+<para>In general, Ar does not impose any requirements or restrictions on the format of an asset path or resolved path. Users are free to use whatever path syntax they want as long as they are supported by their underlying resolver implementations. For example, the filesystem-based <ref refid="class_ar_default_resolver" kindref="compound">ArDefaultResolver</ref> simply uses filesystem paths, but other implementations might use special URIs or database identifiers.</para>
+<para>Ar reserves trailing bracket-enclosed paths as syntax for package-relative asset paths. For example, paths like:</para>
+<para><itemizedlist>
+<listitem><para>&quot;/foo/baz.usdz[file.usd]&quot;</para>
+</listitem><listitem><para>&quot;my-uri://foo/baz.usdz[file.usd]&quot;</para>
+</listitem></itemizedlist>
+</para>
+<para>will be recognized by Ar as a package-relative asset path and will be split so that <ref refid="class_ar_resolver" kindref="compound">ArResolver</ref> subclasses will only see the path &quot;/foo/baz.usdz&quot; or &quot;my-uri://foo/baz.usdz&quot;. For more details, see <ref refid="package_utils_8h_1Ar_packagePaths" kindref="member">Package Relative Paths</ref> </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

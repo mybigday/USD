@@ -1,0 +1,792 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_tf_dense_hash_set" kind="class" language="C++" prot="public">
+    <compoundname>TfDenseHashSet</compoundname>
+    <includes refid="dense_hash_set_8h" local="no">denseHashSet.h</includes>
+    <innerclass refid="struct_tf_dense_hash_set_1_1___compressed_storage" prot="private">TfDenseHashSet::_CompressedStorage</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>Element</declname>
+        <defname>Element</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>HashFn</declname>
+        <defname>HashFn</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>EqualElement</declname>
+        <defname>EqualElement</defname>
+        <defval>std::equal_to&lt;Element&gt;</defval>
+      </param>
+      <param>
+        <type>unsigned</type>
+        <declname>Threshold</declname>
+        <defname>Threshold</defname>
+        <defval>128</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_tf_dense_hash_set_1a02bfdb9fd305b46f492e4d7d2ef4e0b0" prot="public" static="no">
+        <type>Element</type>
+        <definition>typedef Element value_type</definition>
+        <argsstring></argsstring>
+        <name>value_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="59" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_tf_dense_hash_set_1aee1bb806f3c64abc7c0e8be705c00128" prot="public" static="no">
+        <type>_Vector::const_iterator</type>
+        <definition>typedef _Vector::const_iterator iterator</definition>
+        <argsstring></argsstring>
+        <name>iterator</name>
+        <briefdescription>
+<para>An iterator type for this set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that this one is const as well, as we can&apos;t allow in-place modification of elements due to the potentially allocated hash map. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="78" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_tf_dense_hash_set_1abae83d2b975d312a1d35691c87397297" prot="public" static="no">
+        <type>_Vector::const_iterator</type>
+        <definition>typedef _Vector::const_iterator const_iterator</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <briefdescription>
+<para>A const_iterator type for this set. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="81" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_tf_dense_hash_set_1a887c3e50a99b920fb36fcbbc18cc7279" prot="public" static="no">
+        <type>std::pair&lt; <ref refid="class_tf_dense_hash_set_1abae83d2b975d312a1d35691c87397297" kindref="member">const_iterator</ref>, bool &gt;</type>
+        <definition>typedef std::pair&lt;const_iterator, bool&gt; insert_result</definition>
+        <argsstring></argsstring>
+        <name>insert_result</name>
+        <briefdescription>
+<para>Return type for <ref refid="class_tf_dense_hash_set_1abf9a8c1f302217731dea0f3d4e0bd429" kindref="member">insert()</ref> method. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="84" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_tf_dense_hash_set_1a9d295d02d463e349cf0180bcf8b628e5" prot="private" static="no">
+        <type>std::vector&lt; Element &gt;</type>
+        <definition>typedef std::vector&lt;Element&gt; _Vector</definition>
+        <argsstring></argsstring>
+        <name>_Vector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="66" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_tf_dense_hash_set_1a74696f4fa6baad4e8c3f051cd38079e4" prot="private" static="no">
+        <type>TfHashMap&lt; Element, size_t, HashFn, EqualElement &gt;</type>
+        <definition>typedef TfHashMap&lt;Element, size_t, HashFn, EqualElement&gt; _HashMap</definition>
+        <argsstring></argsstring>
+        <name>_HashMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="69" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_tf_dense_hash_set_1ac35b7a45dd76a71459998a7a934d9324" prot="private" static="no" mutable="no">
+        <type>_CompressedStorage</type>
+        <definition>_CompressedStorage _storage</definition>
+        <argsstring></argsstring>
+        <name>_storage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="456" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="456" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_tf_dense_hash_set_1aced4ff51ae6a0f8b95ae65a9dc26acbf" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; _HashMap &gt;</type>
+        <definition>std::unique_ptr&lt;_HashMap&gt; _h</definition>
+        <argsstring></argsstring>
+        <name>_h</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="459" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="459" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a532fb6d2b77f1288f27c914d8cd644fc" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfDenseHashSet</definition>
+        <argsstring>(const HashFn &amp;hashFn=HashFn(), const EqualElement &amp;equalElement=EqualElement())</argsstring>
+        <name>TfDenseHashSet</name>
+        <param>
+          <type>const HashFn &amp;</type>
+          <declname>hashFn</declname>
+          <defval>HashFn()</defval>
+        </param>
+        <param>
+          <type>const EqualElement &amp;</type>
+          <declname>equalElement</declname>
+          <defval>EqualElement()</defval>
+        </param>
+        <briefdescription>
+<para>Ctor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="90" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="90" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1af55c81ed852462a09d3a45fa7406ab8f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfDenseHashSet</definition>
+        <argsstring>(const TfDenseHashSet &amp;rhs)</argsstring>
+        <name>TfDenseHashSet</name>
+        <param>
+          <type>const <ref refid="class_tf_dense_hash_set" kindref="compound">TfDenseHashSet</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Copy Ctor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="100" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="100" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a2b2aa30627a10e2df40b00f8134e8d51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TfDenseHashSet</definition>
+        <argsstring>(TfDenseHashSet &amp;&amp;rhs)=default</argsstring>
+        <name>TfDenseHashSet</name>
+        <param>
+          <type><ref refid="class_tf_dense_hash_set" kindref="compound">TfDenseHashSet</ref> &amp;&amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Move Ctor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="109" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a2ec67abf262019900886552568b3340d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Iterator</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>TfDenseHashSet</definition>
+        <argsstring>(Iterator begin, Iterator end)</argsstring>
+        <name>TfDenseHashSet</name>
+        <param>
+          <type>Iterator</type>
+          <declname>begin</declname>
+        </param>
+        <param>
+          <type>Iterator</type>
+          <declname>end</declname>
+        </param>
+        <briefdescription>
+<para>Construct from range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="114" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="114" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a8f87b71accb88be03283db285683878e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfDenseHashSet</definition>
+        <argsstring>(std::initializer_list&lt; Element &gt; l)</argsstring>
+        <name>TfDenseHashSet</name>
+        <param>
+          <type>std::initializer_list&lt; Element &gt;</type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+<para>Construct from an initializer_list. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="120" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="120" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1ac443e270882db6f680d32379a92ac5bb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_dense_hash_set" kindref="compound">TfDenseHashSet</ref> &amp;</type>
+        <definition>TfDenseHashSet&amp; operator=</definition>
+        <argsstring>(const TfDenseHashSet &amp;rhs)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_tf_dense_hash_set" kindref="compound">TfDenseHashSet</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Copy assignment operator. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="126" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="126" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a6f6df07340ac79884be0229788f796d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_tf_dense_hash_set" kindref="compound">TfDenseHashSet</ref> &amp;</type>
+        <definition>TfDenseHashSet&amp; operator=</definition>
+        <argsstring>(TfDenseHashSet &amp;&amp;rhs)=default</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="class_tf_dense_hash_set" kindref="compound">TfDenseHashSet</ref> &amp;&amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Move assignment operator. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="136" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a3ab07571fd3579c01c0459d2cae16061" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_dense_hash_set" kindref="compound">TfDenseHashSet</ref> &amp;</type>
+        <definition>TfDenseHashSet&amp; operator=</definition>
+        <argsstring>(std::initializer_list&lt; Element &gt; l)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>std::initializer_list&lt; Element &gt;</type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+<para>Assignment from an initializer_list. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="140" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="140" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1abe0ce6886bbbff1c2a1b57b2c4bca2f8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator==</definition>
+        <argsstring>(const TfDenseHashSet &amp;rhs) const</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="class_tf_dense_hash_set" kindref="compound">TfDenseHashSet</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Equality operator. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="148" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="148" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a8a24694ce3af7673ffa42b462c71d40c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator!=</definition>
+        <argsstring>(const TfDenseHashSet &amp;rhs) const</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type>const <ref refid="class_tf_dense_hash_set" kindref="compound">TfDenseHashSet</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="164" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="164" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1ac8bb3912a3ce86b15842e79d0b421204" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <briefdescription>
+<para>Erases all of the elements. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="170" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="170" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a8260ecbf623a40187c4cafda19aaf5c6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void swap</definition>
+        <argsstring>(TfDenseHashSet &amp;rhs)</argsstring>
+        <name>swap</name>
+        <param>
+          <type><ref refid="class_tf_dense_hash_set" kindref="compound">TfDenseHashSet</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Swaps the contents of two sets. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="177" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="177" bodyend="180"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a644718bb2fb240de962dc3c9a1fdf0dc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool empty</definition>
+        <argsstring>() const</argsstring>
+        <name>empty</name>
+        <briefdescription>
+<para><computeroutput>true</computeroutput> if the <computeroutput>set&apos;s</computeroutput> size is 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="184" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="184" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a259cb5a711406a8c3e5d937eb9350cca" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <briefdescription>
+<para>Returns the size of the set. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="190" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="190" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a29305669b60ca1680752e2fc3592ba99" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_dense_hash_set_1abae83d2b975d312a1d35691c87397297" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator begin</definition>
+        <argsstring>() const</argsstring>
+        <name>begin</name>
+        <briefdescription>
+<para>Returns an const_iterator pointing to the beginning of the set. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="196" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="196" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1accf9a4bd0c34d4a5f6a7dab66ea10cdc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_dense_hash_set_1abae83d2b975d312a1d35691c87397297" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator end</definition>
+        <argsstring>() const</argsstring>
+        <name>end</name>
+        <briefdescription>
+<para>Returns an const_iterator pointing to the end of the set. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="202" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="202" bodyend="204"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a8bd6ed0be5783d9dd85b4f2c1395c210" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_dense_hash_set_1abae83d2b975d312a1d35691c87397297" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator find</definition>
+        <argsstring>(const Element &amp;k) const</argsstring>
+        <name>find</name>
+        <param>
+          <type>const Element &amp;</type>
+          <declname>k</declname>
+        </param>
+        <briefdescription>
+<para>Finds the element with key <computeroutput>k</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="208" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="208" bodyend="225"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a50bf15af593e4df67875f8e44d6a2e83" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t count</definition>
+        <argsstring>(const Element &amp;k) const</argsstring>
+        <name>count</name>
+        <param>
+          <type>const Element &amp;</type>
+          <declname>k</declname>
+        </param>
+        <briefdescription>
+<para>Returns the number of elements with key <computeroutput>k</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Which is either 0 or 1. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="229" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="229" bodyend="231"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1abf9a8c1f302217731dea0f3d4e0bd429" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_dense_hash_set_1a887c3e50a99b920fb36fcbbc18cc7279" kindref="member">insert_result</ref></type>
+        <definition>insert_result insert</definition>
+        <argsstring>(const value_type &amp;v)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>const value_type &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+<para>Returns a pair of &lt;iterator, bool&gt; where iterator points to the element in the list and bool is true if a new element was inserted. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="236" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="236" bodyend="262"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a4dc81021f31a69b7388000bf67c4d53d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class IteratorType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void insert</definition>
+        <argsstring>(IteratorType i0, IteratorType i1)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>IteratorType</type>
+          <declname>i0</declname>
+        </param>
+        <param>
+          <type>IteratorType</type>
+          <declname>i1</declname>
+        </param>
+        <briefdescription>
+<para>Insert a range into the hash set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that <computeroutput>i0</computeroutput> and <computeroutput>i1</computeroutput> can&apos;t point into the hash set. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="268" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="268" bodyend="279"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1acc57ffc33ddac4a5d15a48c96ca772a3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Iterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void insert_unique</definition>
+        <argsstring>(Iterator begin, Iterator end)</argsstring>
+        <name>insert_unique</name>
+        <param>
+          <type>Iterator</type>
+          <declname>begin</declname>
+        </param>
+        <param>
+          <type>Iterator</type>
+          <declname>end</declname>
+        </param>
+        <briefdescription>
+<para>Insert a range of unique elements into the container. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>[begin, end) <emphasis>must not</emphasis> contain any duplicate elements. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="285" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="285" bodyend="294"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a07fa7e609af4c6464c6769ccf6c055d3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t erase</definition>
+        <argsstring>(const Element &amp;k)</argsstring>
+        <name>erase</name>
+        <param>
+          <type>const Element &amp;</type>
+          <declname>k</declname>
+        </param>
+        <briefdescription>
+<para>Erase element with key <computeroutput>k</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the number of elements erased. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="298" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="298" bodyend="306"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a7141824657e2ff88f95ab43e1bcdffb6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void erase</definition>
+        <argsstring>(const iterator &amp;iter)</argsstring>
+        <name>erase</name>
+        <param>
+          <type>const <ref refid="class_tf_dense_hash_set_1aee1bb806f3c64abc7c0e8be705c00128" kindref="member">iterator</ref> &amp;</type>
+          <declname>iter</declname>
+        </param>
+        <briefdescription>
+<para>Erases element pointed to by <computeroutput>iter</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="310" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="310" bodyend="331"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a6b6f4c240e6de70c969fde9c9848be56" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void erase</definition>
+        <argsstring>(const iterator &amp;i0, const iterator &amp;i1)</argsstring>
+        <name>erase</name>
+        <param>
+          <type>const <ref refid="class_tf_dense_hash_set_1aee1bb806f3c64abc7c0e8be705c00128" kindref="member">iterator</ref> &amp;</type>
+          <declname>i0</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_dense_hash_set_1aee1bb806f3c64abc7c0e8be705c00128" kindref="member">iterator</ref> &amp;</type>
+          <declname>i1</declname>
+        </param>
+        <briefdescription>
+<para>Erases a range from the set. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="335" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="335" bodyend="348"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a5f16304f80b6fb253c7b0ead3e16dd18" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void shrink_to_fit</definition>
+        <argsstring>()</argsstring>
+        <name>shrink_to_fit</name>
+        <briefdescription>
+<para>Optimize storage space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="352" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="352" bodyend="374"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1ab9c3de425823fed6a8146e2c2e3b57c7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Element &amp;</type>
+        <definition>const Element&amp; operator[]</definition>
+        <argsstring>(size_t index) const</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Index into set via <computeroutput>index</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="378" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="378" bodyend="381"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a9058cd028b7d8b1b66ca05eb4a4ca422" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>_Vector &amp;</type>
+        <definition>_Vector&amp; _vec</definition>
+        <argsstring>()</argsstring>
+        <name>_vec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="388" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="388" bodyend="390"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a2c9b9c34c47bd25d7a3268ed69387090" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>HashFn &amp;</type>
+        <definition>HashFn&amp; _hash</definition>
+        <argsstring>()</argsstring>
+        <name>_hash</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="393" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="393" bodyend="395"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a3a7e63deaec38543f2de7fb7cff1d141" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>EqualElement &amp;</type>
+        <definition>EqualElement&amp; _equ</definition>
+        <argsstring>()</argsstring>
+        <name>_equ</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="398" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="398" bodyend="400"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1acd2159df5d91bd66cfc032584a05434e" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const _Vector &amp;</type>
+        <definition>const _Vector&amp; _vec</definition>
+        <argsstring>() const</argsstring>
+        <name>_vec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="403" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="403" bodyend="405"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a90fddc80f4d09645a922fa65a3eb831d" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const HashFn &amp;</type>
+        <definition>const HashFn&amp; _hash</definition>
+        <argsstring>() const</argsstring>
+        <name>_hash</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="408" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="408" bodyend="410"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1a77a19ed229b224b8de7af6558b24bb99" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const EqualElement &amp;</type>
+        <definition>const EqualElement&amp; _equ</definition>
+        <argsstring>() const</argsstring>
+        <name>_equ</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="413" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="413" bodyend="415"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1abcf3b884249c9f5da9174f79b5583534" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _CreateTableIfNeeded</definition>
+        <argsstring>()</argsstring>
+        <name>_CreateTableIfNeeded</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="418" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="418" bodyend="422"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_dense_hash_set_1ac0480fa49796b160a2229c59b1b8ab9a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _CreateTable</definition>
+        <argsstring>()</argsstring>
+        <name>_CreateTable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/denseHashSet.h" line="426" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="426" bodyend="432"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This is a space efficient container that mimics the TfHashSet API that uses a vector for storage when the size of the set is small. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>When the set gets bigger than <computeroutput>Threshold</computeroutput> a TfHashMap is allocated that is used to accelerate lookup in the vector.</para>
+<para><simplesect kind="warning"><para>This differs from a TfHashSet in so far that inserting and removing elements invalidate all iterators of the container. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="pxr/base/tf/denseHashSet.h" line="56" column="1" bodyfile="pxr/base/tf/denseHashSet.h" bodystart="55" bodyend="460"/>
+    <listofallmembers>
+      <member refid="class_tf_dense_hash_set_1ac0480fa49796b160a2229c59b1b8ab9a" prot="private" virt="non-virtual"><scope>TfDenseHashSet</scope><name>_CreateTable</name></member>
+      <member refid="class_tf_dense_hash_set_1abcf3b884249c9f5da9174f79b5583534" prot="private" virt="non-virtual"><scope>TfDenseHashSet</scope><name>_CreateTableIfNeeded</name></member>
+      <member refid="class_tf_dense_hash_set_1a3a7e63deaec38543f2de7fb7cff1d141" prot="private" virt="non-virtual"><scope>TfDenseHashSet</scope><name>_equ</name></member>
+      <member refid="class_tf_dense_hash_set_1a77a19ed229b224b8de7af6558b24bb99" prot="private" virt="non-virtual"><scope>TfDenseHashSet</scope><name>_equ</name></member>
+      <member refid="class_tf_dense_hash_set_1aced4ff51ae6a0f8b95ae65a9dc26acbf" prot="private" virt="non-virtual"><scope>TfDenseHashSet</scope><name>_h</name></member>
+      <member refid="class_tf_dense_hash_set_1a2c9b9c34c47bd25d7a3268ed69387090" prot="private" virt="non-virtual"><scope>TfDenseHashSet</scope><name>_hash</name></member>
+      <member refid="class_tf_dense_hash_set_1a90fddc80f4d09645a922fa65a3eb831d" prot="private" virt="non-virtual"><scope>TfDenseHashSet</scope><name>_hash</name></member>
+      <member refid="class_tf_dense_hash_set_1a74696f4fa6baad4e8c3f051cd38079e4" prot="private" virt="non-virtual"><scope>TfDenseHashSet</scope><name>_HashMap</name></member>
+      <member refid="class_tf_dense_hash_set_1ac35b7a45dd76a71459998a7a934d9324" prot="private" virt="non-virtual"><scope>TfDenseHashSet</scope><name>_storage</name></member>
+      <member refid="class_tf_dense_hash_set_1a9058cd028b7d8b1b66ca05eb4a4ca422" prot="private" virt="non-virtual"><scope>TfDenseHashSet</scope><name>_vec</name></member>
+      <member refid="class_tf_dense_hash_set_1acd2159df5d91bd66cfc032584a05434e" prot="private" virt="non-virtual"><scope>TfDenseHashSet</scope><name>_vec</name></member>
+      <member refid="class_tf_dense_hash_set_1a9d295d02d463e349cf0180bcf8b628e5" prot="private" virt="non-virtual"><scope>TfDenseHashSet</scope><name>_Vector</name></member>
+      <member refid="class_tf_dense_hash_set_1a29305669b60ca1680752e2fc3592ba99" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>begin</name></member>
+      <member refid="class_tf_dense_hash_set_1ac8bb3912a3ce86b15842e79d0b421204" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>clear</name></member>
+      <member refid="class_tf_dense_hash_set_1abae83d2b975d312a1d35691c87397297" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>const_iterator</name></member>
+      <member refid="class_tf_dense_hash_set_1a50bf15af593e4df67875f8e44d6a2e83" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>count</name></member>
+      <member refid="class_tf_dense_hash_set_1a644718bb2fb240de962dc3c9a1fdf0dc" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>empty</name></member>
+      <member refid="class_tf_dense_hash_set_1accf9a4bd0c34d4a5f6a7dab66ea10cdc" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>end</name></member>
+      <member refid="class_tf_dense_hash_set_1a07fa7e609af4c6464c6769ccf6c055d3" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>erase</name></member>
+      <member refid="class_tf_dense_hash_set_1a7141824657e2ff88f95ab43e1bcdffb6" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>erase</name></member>
+      <member refid="class_tf_dense_hash_set_1a6b6f4c240e6de70c969fde9c9848be56" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>erase</name></member>
+      <member refid="class_tf_dense_hash_set_1a8bd6ed0be5783d9dd85b4f2c1395c210" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>find</name></member>
+      <member refid="class_tf_dense_hash_set_1abf9a8c1f302217731dea0f3d4e0bd429" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>insert</name></member>
+      <member refid="class_tf_dense_hash_set_1a4dc81021f31a69b7388000bf67c4d53d" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>insert</name></member>
+      <member refid="class_tf_dense_hash_set_1a887c3e50a99b920fb36fcbbc18cc7279" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>insert_result</name></member>
+      <member refid="class_tf_dense_hash_set_1acc57ffc33ddac4a5d15a48c96ca772a3" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>insert_unique</name></member>
+      <member refid="class_tf_dense_hash_set_1aee1bb806f3c64abc7c0e8be705c00128" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>iterator</name></member>
+      <member refid="class_tf_dense_hash_set_1a8a24694ce3af7673ffa42b462c71d40c" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>operator!=</name></member>
+      <member refid="class_tf_dense_hash_set_1ac443e270882db6f680d32379a92ac5bb" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>operator=</name></member>
+      <member refid="class_tf_dense_hash_set_1a6f6df07340ac79884be0229788f796d0" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>operator=</name></member>
+      <member refid="class_tf_dense_hash_set_1a3ab07571fd3579c01c0459d2cae16061" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>operator=</name></member>
+      <member refid="class_tf_dense_hash_set_1abe0ce6886bbbff1c2a1b57b2c4bca2f8" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>operator==</name></member>
+      <member refid="class_tf_dense_hash_set_1ab9c3de425823fed6a8146e2c2e3b57c7" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>operator[]</name></member>
+      <member refid="class_tf_dense_hash_set_1a5f16304f80b6fb253c7b0ead3e16dd18" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>shrink_to_fit</name></member>
+      <member refid="class_tf_dense_hash_set_1a259cb5a711406a8c3e5d937eb9350cca" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>size</name></member>
+      <member refid="class_tf_dense_hash_set_1a8260ecbf623a40187c4cafda19aaf5c6" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>swap</name></member>
+      <member refid="class_tf_dense_hash_set_1a532fb6d2b77f1288f27c914d8cd644fc" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>TfDenseHashSet</name></member>
+      <member refid="class_tf_dense_hash_set_1af55c81ed852462a09d3a45fa7406ab8f" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>TfDenseHashSet</name></member>
+      <member refid="class_tf_dense_hash_set_1a2b2aa30627a10e2df40b00f8134e8d51" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>TfDenseHashSet</name></member>
+      <member refid="class_tf_dense_hash_set_1a2ec67abf262019900886552568b3340d" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>TfDenseHashSet</name></member>
+      <member refid="class_tf_dense_hash_set_1a8f87b71accb88be03283db285683878e" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>TfDenseHashSet</name></member>
+      <member refid="class_tf_dense_hash_set_1a02bfdb9fd305b46f492e4d7d2ef4e0b0" prot="public" virt="non-virtual"><scope>TfDenseHashSet</scope><name>value_type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

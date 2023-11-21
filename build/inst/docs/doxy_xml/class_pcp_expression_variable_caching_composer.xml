@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_pcp_expression_variable_caching_composer" kind="class" language="C++" prot="public">
+    <compoundname>PcpExpressionVariableCachingComposer</compoundname>
+    <includes refid="expression_variables_8h" local="no">expressionVariables.h</includes>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_pcp_expression_variable_caching_composer_1a983ce79af2c4ec740b5838f8704f7be1" prot="private" static="no">
+        <type>std::unordered_map&lt; <ref refid="class_pcp_layer_stack_identifier" kindref="compound">PcpLayerStackIdentifier</ref>, <ref refid="class_pcp_expression_variables" kindref="compound">PcpExpressionVariables</ref>, <ref refid="class_tf_hash" kindref="compound">TfHash</ref> &gt;</type>
+        <definition>using _IdentifierToExpressionVarsMap =  std::unordered_map&lt; PcpLayerStackIdentifier, PcpExpressionVariables, TfHash&gt;</definition>
+        <argsstring></argsstring>
+        <name>_IdentifierToExpressionVarsMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/expressionVariables.h" line="138" column="1" bodyfile="pxr/usd/pcp/expressionVariables.h" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_pcp_expression_variable_caching_composer_1aec3e24d4419f6b998d0e885a2cf4e946" prot="private" static="no" mutable="no">
+        <type><ref refid="class_pcp_layer_stack_identifier" kindref="compound">PcpLayerStackIdentifier</ref></type>
+        <definition>PcpLayerStackIdentifier _rootLayerStackId</definition>
+        <argsstring></argsstring>
+        <name>_rootLayerStackId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/expressionVariables.h" line="136" column="1" bodyfile="pxr/usd/pcp/expressionVariables.h" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pcp_expression_variable_caching_composer_1a4e8daa5127db098594ced0260d22057f" prot="private" static="no" mutable="no">
+        <type>_IdentifierToExpressionVarsMap</type>
+        <definition>_IdentifierToExpressionVarsMap _identifierToExpressionVars</definition>
+        <argsstring></argsstring>
+        <name>_identifierToExpressionVars</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/expressionVariables.h" line="140" column="1" bodyfile="pxr/usd/pcp/expressionVariables.h" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pcp_expression_variable_caching_composer_1a1105a53537b02af7756eb1efa5b4742d" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type>PCP_API</type>
+        <definition>PCP_API PcpExpressionVariableCachingComposer</definition>
+        <argsstring>(const PcpLayerStackIdentifier &amp;rootLayerStackIdentifier)</argsstring>
+        <name>PcpExpressionVariableCachingComposer</name>
+        <param>
+          <type>const <ref refid="class_pcp_layer_stack_identifier" kindref="compound">PcpLayerStackIdentifier</ref> &amp;</type>
+          <declname>rootLayerStackIdentifier</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/expressionVariables.h" line="125" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_expression_variable_caching_composer_1aa4ef6435a0c2ae5eb090fdcff84e20b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API const <ref refid="class_pcp_expression_variables" kindref="compound">PcpExpressionVariables</ref> &amp;</type>
+        <definition>PCP_API const PcpExpressionVariables&amp; ComputeExpressionVariables</definition>
+        <argsstring>(const PcpLayerStackIdentifier &amp;id)</argsstring>
+        <name>ComputeExpressionVariables</name>
+        <param>
+          <type>const <ref refid="class_pcp_layer_stack_identifier" kindref="compound">PcpLayerStackIdentifier</ref> &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Compute the composed expression variables for the layer stack with the given <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This will recursively compute the overriding expression variables specified in <computeroutput>id</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/expressionVariables.h" line="133" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Helper object for computing PcpExpressionVariable objects. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This gives the same results as <ref refid="class_pcp_expression_variables_1ab73a5bce7bb55759586a1bcf08e11c35" kindref="member">PcpExpressionVariables::Compute</ref>, but caches the results of the recursive override computations so they can be reused by subsequent computations. </para>
+    </detaileddescription>
+    <location file="pxr/usd/pcp/expressionVariables.h" line="122" column="1" bodyfile="pxr/usd/pcp/expressionVariables.h" bodystart="121" bodyend="141"/>
+    <listofallmembers>
+      <member refid="class_pcp_expression_variable_caching_composer_1a4e8daa5127db098594ced0260d22057f" prot="private" virt="non-virtual"><scope>PcpExpressionVariableCachingComposer</scope><name>_identifierToExpressionVars</name></member>
+      <member refid="class_pcp_expression_variable_caching_composer_1a983ce79af2c4ec740b5838f8704f7be1" prot="private" virt="non-virtual"><scope>PcpExpressionVariableCachingComposer</scope><name>_IdentifierToExpressionVarsMap</name></member>
+      <member refid="class_pcp_expression_variable_caching_composer_1aec3e24d4419f6b998d0e885a2cf4e946" prot="private" virt="non-virtual"><scope>PcpExpressionVariableCachingComposer</scope><name>_rootLayerStackId</name></member>
+      <member refid="class_pcp_expression_variable_caching_composer_1aa4ef6435a0c2ae5eb090fdcff84e20b5" prot="public" virt="non-virtual"><scope>PcpExpressionVariableCachingComposer</scope><name>ComputeExpressionVariables</name></member>
+      <member refid="class_pcp_expression_variable_caching_composer_1a1105a53537b02af7756eb1efa5b4742d" prot="public" virt="non-virtual"><scope>PcpExpressionVariableCachingComposer</scope><name>PcpExpressionVariableCachingComposer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

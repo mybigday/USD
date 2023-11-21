@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="pcp_page_front" kind="page">
+    <compoundname>pcp_page_front</compoundname>
+    <title>Pcp : PrimCache Population (Composition)</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="pcp_page_front_1pcp_Intro">
+<title>Introduction</title>
+<para>Pcp implements the core scenegraph composition semantics <mdash/> the behavior informally referred to as <emphasis>Layering &amp; Referencing</emphasis>.</para>
+<para>Pcp specializes in providing low-level composition services on behalf of higher-level scenegraph libraries (Usd, Csd, Mf) that instantiate scenegraph objects based on the results. Most clients will typically use one of those libraries, rather than consulting Pcp directly. The name &quot;Pcp&quot; stands for <emphasis>Prim Cache Population</emphasis>, a historical term for this area of the system.</para>
+</sect1>
+<sect1 id="pcp_page_front_1pcp_Motivation">
+<title>Motivation</title>
+<para>Objects in the scenegraph are backed by scene description <ndash/> authored data describing those objects.</para>
+<para>A single file of scene description is sufficient to describe a hierarchy of objects. However, it is also useful to organize that data across multiple files. For one thing, this provides a way for multiple people (such as in different departments) to collaborate while keeping their contributions distinct. For another, this provides a means of re-use: an asset like a rig or model can be built once, then used many times as needed.</para>
+<para>This instancing is expressed as a &quot;reference arc&quot; that points at the external file. The Pcp runtime detects and interprets these arcs to bring together the disparate files into a single combined set of opinions. By using a reference arc, the underlying external asset can be continually worked on, with improvements automatically being picked up in downstream assets.</para>
+<para>There are other kinds of arcs that provide variations of this behavior. Pcp provides the service of identifying and interpreting these composition arcs.</para>
+</sect1>
+<sect1 id="pcp_page_front_1pcp_Capabilities">
+<title>Capabilities</title>
+<para>Pcp implements the following composition semantics:</para>
+<para><itemizedlist>
+<listitem><para>sublayers </para>
+</listitem>
+<listitem><para>list-editing </para>
+</listitem>
+<listitem><para>references </para>
+</listitem>
+<listitem><para>payloads </para>
+</listitem>
+<listitem><para>inherits / classes </para>
+</listitem>
+<listitem><para>variants </para>
+</listitem>
+<listitem><para>&quot;standin&quot; variant preferences </para>
+</listitem>
+<listitem><para>relocates </para>
+</listitem>
+<listitem><para>permissions</para>
+</listitem>
+</itemizedlist>
+</para>
+<para>In support of this, the runtime provides these features:</para>
+<para><itemizedlist>
+<listitem><para>caching and cache invalidation </para>
+</listitem>
+<listitem><para>change processing </para>
+</listitem>
+<listitem><para>dependency tracking </para>
+</listitem>
+<listitem><para>namespace editing support </para>
+</listitem>
+<listitem><para>path translation </para>
+</listitem>
+<listitem><para>error detection </para>
+</listitem>
+<listitem><para>payload inclusion control </para>
+</listitem>
+<listitem><para>diagnostic output</para>
+</listitem>
+</itemizedlist>
+Pcp is all about finding sources of opinions that contribute to objects. It has little to do with the interpretation of those opinions. As a result, there are some higher-level features which are sometimes thought of as part of composition, but which are not part of Pcp:</para>
+<para><itemizedlist>
+<listitem><para>model hierarchy </para>
+</listitem>
+<listitem><para>scenegraph structure, objects and their identity </para>
+</listitem>
+<listitem><para>value resolution </para>
+</listitem>
+<listitem><para>symmetry</para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+<sect1 id="pcp_page_front_1pcp_Usage">
+<title>Usage</title>
+<sect2 id="pcp_page_front_1pcp_PcpCache">
+<title>The PcpCache</title>
+<para>The main entrypoint to the Pcp algorithm is the <ref refid="class_pcp_cache" kindref="compound">PcpCache</ref>. It provides a context to specify the key parameters that configure how composition should be performed. It also provides storage for caching the results of composition queries.</para>
+<para>The input parameters to the composition algorithm are:</para>
+<para><itemizedlist>
+<listitem><para>a root layer </para>
+</listitem>
+<listitem><para>a session layer (optional) </para>
+</listitem>
+<listitem><para>a path resolver context </para>
+</listitem>
+<listitem><para>standin preferences (ex: render, anim, etc.) </para>
+</listitem>
+<listitem><para>payload inclusion set <ndash/> paths for which payloads should be included</para>
+</listitem>
+</itemizedlist>
+Most of these are fixed when a <ref refid="class_pcp_cache" kindref="compound">PcpCache</ref> is created. The payload inclusion set can be modified at runtime to bring payloads into and out of the working set.</para>
+</sect2>
+<sect2 id="pcp_page_front_1pcp_Queries">
+<title>Computation Queries</title>
+<para>Once a cache has been created, it can service composition queries. These apply composition algorithms to the underlying scene description data. See the ComputeXXX methods on <ref refid="class_pcp_cache" kindref="compound">PcpCache</ref>. The most fundamental queries are <ref refid="class_pcp_cache_1a316a2ebde2a1f18e3ffd14c3c6e662d8" kindref="member">PcpCache::ComputeLayerStack()</ref> and <ref refid="class_pcp_cache_1a65e7a19d2c33d5dd2de28423299b85ae" kindref="member">PcpCache::ComputePrimIndex()</ref>. These two provide the majority of the composition semantics and are the basis for the other queries. Different queries return different types of result values.</para>
+</sect2>
+<sect2 id="pcp_page_front_1pcp_Errors">
+<title>Errors</title>
+<para>The process of composition may discover errors in the structure of the scene. For example, a reference arc might target a file that cannot be found (resolved), or it might create a reference cycle.</para>
+<para>These errors get first-class treatment in Pcp. That is, errors are not a side-effect; they are treated as a formal output of the composition algorithms and returned alongside the primary results describing the structure of the scene. Pcp does not embed any error handling or reporting policy. It is entirely up to Pcp clients to dispatch errors.</para>
+<para><simplesect kind="note"><para>Pcp <bold>does</bold> participate in the <ref refid="class_tf_error" kindref="compound">TfError</ref> reporting system when it encounters API misuse (coding errors), as do the lower-level modules it uses. Pcp only treats errors in authored scene description specially.</para>
+</simplesect>
+Errors are represented as instances of a <ref refid="class_pcp_error_base" kindref="compound">PcpErrorBase</ref> base class. Each error sub-type contains semantic information about the source and exact details of the error, as would be required to report the error to the user, check if the error still applies, or programmatically address it.</para>
+<para>Each Pcp computation stores a &quot;local&quot; set of errors that are specific to that computation. If one computation requires recursive computation <ndash/> such as one prim needing to compute a layer stack across a reference arc <ndash/> the errors for the nested computation will be stored locally with that nested computation. Each Pcp result provides a GetLocalErrors() API to examine its local errors. Since errors are first-class results of Pcp and stored as part of the primary composition outputs, they are cached along with those outputs.</para>
+<para>Clients of Pcp typically want to report errors when they are first discovered. They want to do this without needing knowledge about the cache hit/miss behavior or the recursive nature of composition queries. To facilitate this common usage, Pcp API provides an &quot;allErrors&quot; output argument that will accumulate any newly discovered errors. In the case of cache hits, existing errors will not be reported.</para>
+<para>For simple cases where you just want to raise Pcp errors as Tf runtime errors, see PcpRaiseErrors().</para>
+</sect2>
+<sect2 id="pcp_page_front_1pcp_Dependencies">
+<title>Dependencies</title>
+<para>In addition to the primary result and errors, computations also internally retain the dependencies discovered by a cached computation result. For example, computing a <ref refid="class_pcp_prim_index" kindref="compound">PcpPrimIndex</ref> that contains a reference will internally record a dependency representing that reference. This dependency internally retains the scene description layer across the reference. Dependencies also provide a means to analyze and propagate changes to the scene, as well as to implement namespace editing (rename, reparent, and delete operations), which want to fix up dependent scene opinions accordingly. <ref refid="class_pcp_cache" kindref="compound">PcpCache</ref> has API to query dependencies; for example, see PcpCache::GetPathsUsingSite().</para>
+</sect2>
+<sect2 id="pcp_page_front_1pcp_NamespaceEditing">
+<title>Namespace Editing</title>
+<para>The phrase &quot;namespace editing&quot; means operations that edit namespace: renaming, reparenting, or removing composed objects. Although Pcp does not maintain a scenegraph of composed objects, it does provide utilities for such a library to implement these operations, making use of the Pcp dependencies to build a list of necessary edits to the underlying layers that keep them consistent with one another. See PcpCache::ComputeNamespaceEdits().</para>
+</sect2>
+<sect2 id="pcp_page_front_1pcp_ChangeProcessing">
+<title>Change Processing</title>
+<para>Pcp caches computation results derived from the underlying scene description data. When that underlying data changes, those computations are no longer valid. Pcp provides assistance to determine which computations have been invalidated, and to re-compute them as desired. <ref refid="class_pcp_changes" kindref="compound">PcpChanges</ref> represents the effect that a set of changes to scene description have on a <ref refid="class_pcp_cache" kindref="compound">PcpCache</ref>. Processing changes has two phases: the first is to build up the list of changes, (including chasing dependencies to find all the affected caches); the second is to apply those changes, invalidating the internal caches. It is up to the client to re-pull on any affected caches. Since dependencies are dropped when the cached computations that yielded them are invalidated, <ref refid="class_pcp_lifeboat" kindref="compound">PcpLifeboat</ref> provides a way to retain the underlying referenced data for the duration of time until the client can re-pull on the cached computations.</para>
+<para>Every <ref refid="class_pcp_changes" kindref="compound">PcpChanges</ref> object requested by a scenegraph client contains a <ref refid="class_pcp_lifeboat" kindref="compound">PcpLifeboat</ref>, so clients should rarely need to interact with one directly.</para>
+</sect2>
+<sect2 id="pcp_page_front_1pcp_PathTranslation">
+<title>Path Translation</title>
+<para>Composition arcs pull together scene description from different places in layers. Part of this process requires rebinding those opinions to new paths. For example, a model at the path <computeroutput> &lt;/World/anim/chars/MeridaGroup/Merida&gt; </computeroutput> may reference a model at the source path <computeroutput> &lt;/Merida&gt; </computeroutput>. Now imagine a relationship authored within <computeroutput> &lt;/Merida/rig/FaceRig&gt; </computeroutput> to <computeroutput> &lt;/Merida/anim/Face&gt;. </computeroutput> To resolve that relationship path, composition needs to transform the authored values flowing across the arc so that they re-bind to the new namespace position of Merida, in <computeroutput> &lt;/World/anim/chars/MeridaGroup/Merida/anim/Face&gt; </computeroutput>. This process is known as &quot;path translation&quot;, and is one of the more subtle and important behaviors of Pcp. See <ref refid="path_translation_8h_1aac0d3b0296eb726e76d81fdd4e69b2b7" kindref="member">PcpTranslatePathFromNodeToRoot()</ref> and <ref refid="path_translation_8h_1a7ac9fcfa3b15058379f75daf75fda373" kindref="member">PcpTranslatePathFromRootToNode()</ref>.</para>
+</sect2>
+<sect2 id="pcp_page_front_1pcp_Diagnostics">
+<title>Diagnostics</title>
+<para>Composition is a large subsystem and have can have complicated results. To help analyze the system we provide a few features:</para>
+<para><itemizedlist>
+<listitem><para><ref refid="class_pcp_prim_index_1a04007d783df319a8101b20e99bbdddd5" kindref="member">PcpPrimIndex::DumpToString()</ref> - to dump out a prim&apos;s structure </para>
+</listitem>
+<listitem><para><ref refid="class_pcp_prim_index_1ae930cda55ec639abd1e9e723553b9a0d" kindref="member">PcpPrimIndex::PrintStatistics()</ref> - to analyze a prim&apos;s structure </para>
+</listitem>
+<listitem><para><ref refid="class_pcp_cache_1ae930cda55ec639abd1e9e723553b9a0d" kindref="member">PcpCache::PrintStatistics()</ref> - to analyze a cache&apos;s overall footprint </para>
+</listitem>
+<listitem><para>TF_DEBUG runtime debugging flags <ndash/> see pcp/debugCodes.h </para>
+</listitem>
+<listitem><para>Optional additional runtime validation that must be compiled in: <computeroutput>PCP_DIAGNOSTIC_VALIDATION</computeroutput> </para>
+</listitem>
+</itemizedlist>
+</para>
+</sect2>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

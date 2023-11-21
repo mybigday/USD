@@ -1,0 +1,383 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="sdf_page_front" kind="page">
+    <compoundname>sdf_page_front</compoundname>
+    <title>Sdf : Scene Description Foundations</title>
+    <innerpage refid="_sdf__page__file_format_plugin">Creating a File Format Plugin</innerpage>
+    <innerpage refid="_sdf__page__variable_expressions">Variable Expressions</innerpage>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Sdf provides the foundations for serializing scene description to a reference text format, or a multitude of plugin-defined formats. It also provides the primitive abstractions for interacting with scene description, such as <ref refid="class_sdf_path" kindref="compound">SdfPath</ref>, <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref>, <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref>.</para>
+<sect1 id="sdf_page_front_1sdf_overview">
+<title>Overview</title>
+<para>Implements scene description <emphasis>layers</emphasis> in USD. In USD, a complete scene description is composed from partial scene description stored in <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> objects. The primary unit of scene description within a layer is a <emphasis>prim</emphasis> <emphasis>spec</emphasis>, represented by the <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref> class. A complete <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> on a stage is a composition of the prim&apos;s built-in fallback values and all of the prim spec objects specified in Sdf layers. (For an overview of prims and stages, see the <ref refid="usd_page_front" kindref="compound">Usd library overview</ref>.)</para>
+<para>Use methods on an <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> object to export and save a layer to a file, or to load a file from disk. Scene description files are stored in <computeroutput>.usd</computeroutput> format (one layer per file, text or binary). Other features abstracted at the layer level include undo/redo functionality and logging, which can be customized by subclassing <ref refid="class_sdf_layer_state_delegate_base" kindref="compound">SdfLayerStateDelegateBase</ref> .</para>
+<para>You should primarily work with scene description using the classes in the Usd library. The <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> object not only represents a complete scene; it also knows how each of the partial scene descriptions were combined to form the complete scene. For example, the <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> object has the context to know how the path of a <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> object on the stage relates to the paths of each <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref> object in each layer that contributes a partial description to the complete prim. <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> objects do not have the context to know how they relate to other layers.</para>
+</sect1>
+<sect1 id="sdf_page_front_1sdf_layering">
+<title>Layering and Referencing</title>
+<para>An <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref> object is named and forms a namespace hierarchy with other prims. Each layer contains one or more root prims, each of which may have a hierarchy of children. The <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> class provides methods to manipulate paths for all of the objects that comprise a layer&apos;s scene description. For example, <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> assigns unique paths for each of the objects in a namespace hierarchy; this includes paths to scene description that &quot;lives inside of&quot; particular variants of a VariantSet.</para>
+<para>Layers can be combined in several ways. An <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> can have <emphasis>sublayers</emphasis>. When layering, the <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref> objects in an <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> object merge over the prims at the same namespace path in the layer. An <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref> object can also reference another prim within its own layer or a prim from another layer. When referencing, a prim and its name children merge over the other prim that it references.</para>
+<para>Note that layering and referencing means that multiple <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref> objects may contribute partial descriptions for the same logical prim. The full description of the prim in a given scene comes only from combining or <emphasis>composing</emphasis> the contributions of each of the <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref> objects.</para>
+</sect1>
+<sect1 id="sdf_page_front_1sdf_layers_opinions">
+<title>Layers and Opinions</title>
+<para>You can think of the partial scene spec in an <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> object as one <emphasis>opinion</emphasis> on an aspect of a complete scene. Several properties at the layer level determine how or whether the opinion offered at a particular layer is considered when the system composes a complete prim on a stage. For example, the <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref> and <ref refid="class_sdf_property_spec" kindref="compound">SdfPropertySpec</ref> classes have an access permission property (SdfPermission) that you can use to specify whether a layer is public or private.</para>
+</sect1>
+<sect1 id="sdf_page_front_1sdf_primSpec">
+<title>Prim Spec</title>
+<para>There are many different kinds of prims, but at the level of scene description they are all represented by an <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref> object. An <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref> object represents a partial description of an individual prim in a scene. It does not require values for every property it contains. In addition, the list of properties that an <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref> object owns may be sparse. An <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref> object that describes a Cylinder may have a radius but no height, relying on either another <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref> object or the prim&apos;s fallback definition to provide the height. Similarly, the list of name children on an <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref> object may be sparse.</para>
+<para><ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref> properties are represented by the <ref refid="class_sdf_property_spec" kindref="compound">SdfPropertySpec</ref> class. Property specs also represent partial scene description. The <ref refid="class_sdf_property_spec" kindref="compound">SdfPropertySpec</ref> subclasses represent the basic types of properties that prims can have:</para>
+<para><itemizedlist>
+<listitem>
+<para><bold><ref refid="class_sdf_attribute_spec" kindref="compound">SdfAttributeSpec</ref>.</bold> Represents values, which can be scalar or array-valued. For example, the <computeroutput>radius</computeroutput> attribute of a Sphere gprim holds a scalar value; the <computeroutput>points</computeroutput> attribute of a Mesh gprim holds an array value.  </para>
+</listitem>
+<listitem>
+<para><bold><ref refid="class_sdf_relationship_spec" kindref="compound">SdfRelationshipSpec</ref>.</bold> Represents a relationship to other prims, attributes, or relationships, such as the <computeroutput>material:binding</computeroutput> relationship that assigns Materials to Gprims.  </para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+<sect1 id="sdf_page_front_1sdf_plugin_metadata">
+<title>Plugin Metadata</title>
+<para>Plugins can extend scene description to store additional plugin-specific metadata by registering custom metadata fields. Consumers can query and author data for these fields in the same way as the built-in metadata fields in Sdf. This data will be serialized to and read from layers just like all other scene description.</para>
+<para>Plugin metadata fields must be defined in a dictionary called &quot;SdfMetadata&quot; in the &quot;Info&quot; section of the plugin&apos;s <computeroutput>plugInfo.json</computeroutput> file. Each entry in the dictionary defines a single field and has the following syntax:</para>
+<para><programlisting><codeline><highlight class="normal">&quot;&lt;field_name&gt;&quot;<sp/>:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;appliesTo&quot;:<sp/>&quot;&lt;Optional<sp/>comma-separated<sp/>list<sp/>of<sp/>spec<sp/>types<sp/>this<sp/>field<sp/>applies<sp/>to&gt;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;default&quot;:<sp/>&quot;&lt;Optional<sp/>default<sp/>value<sp/>for<sp/>field&gt;&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;displayGroup&quot;:<sp/>&quot;&lt;Optional<sp/>name<sp/>of<sp/>associated<sp/>display<sp/>group&gt;&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;type&quot;:<sp/>&quot;&lt;Required<sp/>name<sp/>indicating<sp/>field<sp/>type&gt;&quot;,</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>For example:</para>
+<para><programlisting><codeline><highlight class="normal">#<sp/>plugInfo.json</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;Plugins&quot;:<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Info&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;SdfMetadata&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;custom_double&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;type&quot;:<sp/>&quot;double&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;appliesTo&quot;:<sp/>&quot;prims&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;custom_string&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;type&quot;:<sp/>&quot;string&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;default&quot;:<sp/>&quot;default<sp/>metadata<sp/>value&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="note"><para>Plugin metadata in a layer will remain intact and will round-trip properly even if the definition for that metadata is unavailable when the layer is opened. However, this metadata will not be inspectable using the normal Sdf API.</para>
+</simplesect>
+</para>
+<sect2 id="sdf_page_front_1sdf_metadata_types">
+<title>Types</title>
+<para>The &quot;type&quot; entry for a metadata field must be one of the types listed below.</para>
+<para><table rows="1" cols="3"><row>
+<entry thead="no"><para><table rows="15" cols="2"><row>
+<entry thead="yes"><para>Scalar Types </para>
+</entry></row>
+<row>
+<entry thead="yes"><para>&quot;type&quot; value</para>
+</entry><entry thead="yes"><para>C++ type </para>
+</entry></row>
+<row>
+<entry thead="no"><para>asset</para>
+</entry><entry thead="no"><para><ref refid="class_sdf_asset_path" kindref="compound">SdfAssetPath</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>bool</para>
+</entry><entry thead="no"><para>bool </para>
+</entry></row>
+<row>
+<entry thead="no"><para>double</para>
+</entry><entry thead="no"><para>double </para>
+</entry></row>
+<row>
+<entry thead="no"><para>float</para>
+</entry><entry thead="no"><para>float </para>
+</entry></row>
+<row>
+<entry thead="no"><para>half</para>
+</entry><entry thead="no"><para>GfHalf </para>
+</entry></row>
+<row>
+<entry thead="no"><para>int</para>
+</entry><entry thead="no"><para>int </para>
+</entry></row>
+<row>
+<entry thead="no"><para>int64</para>
+</entry><entry thead="no"><para>int64_t </para>
+</entry></row>
+<row>
+<entry thead="no"><para>string</para>
+</entry><entry thead="no"><para>std::string </para>
+</entry></row>
+<row>
+<entry thead="no"><para>timecode</para>
+</entry><entry thead="no"><para><ref refid="class_sdf_time_code" kindref="compound">SdfTimeCode</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>token</para>
+</entry><entry thead="no"><para><ref refid="class_tf_token" kindref="compound">TfToken</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>uchar</para>
+</entry><entry thead="no"><para>unsigned char </para>
+</entry></row>
+<row>
+<entry thead="no"><para>uint</para>
+</entry><entry thead="no"><para>unsigned int </para>
+</entry></row>
+<row>
+<entry thead="no"><para>uint64</para>
+</entry><entry thead="no"><para>uint64_t </para>
+</entry></row>
+</table>
+</para>
+</entry><entry thead="no"><para><table rows="20" cols="2"><row>
+<entry thead="yes"><para>Dimensioned Types </para>
+</entry></row>
+<row>
+<entry thead="yes"><para>&quot;type&quot; value</para>
+</entry><entry thead="yes"><para>C++ type </para>
+</entry></row>
+<row>
+<entry thead="no"><para>double2</para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec2d" kindref="compound">GfVec2d</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>double3</para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec3d" kindref="compound">GfVec3d</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>double4</para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec4d" kindref="compound">GfVec4d</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>float2</para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec2f" kindref="compound">GfVec2f</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>float3</para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec3f" kindref="compound">GfVec3f</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>float4</para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec4f" kindref="compound">GfVec4f</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>half2</para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec2h" kindref="compound">GfVec2h</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>half3</para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec3h" kindref="compound">GfVec3h</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>half4</para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec4h" kindref="compound">GfVec4h</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>int2</para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec2i" kindref="compound">GfVec2i</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>int3</para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec3i" kindref="compound">GfVec3i</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>int4</para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec4i" kindref="compound">GfVec4i</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>matrix2d</para>
+</entry><entry thead="no"><para><ref refid="class_gf_matrix2d" kindref="compound">GfMatrix2d</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>matrix3d</para>
+</entry><entry thead="no"><para><ref refid="class_gf_matrix3d" kindref="compound">GfMatrix3d</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>matrix4d</para>
+</entry><entry thead="no"><para><ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>quatd</para>
+</entry><entry thead="no"><para><ref refid="class_gf_quatd" kindref="compound">GfQuatd</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>quatf</para>
+</entry><entry thead="no"><para><ref refid="class_gf_quatf" kindref="compound">GfQuatf</ref> </para>
+</entry></row>
+<row>
+<entry thead="no"><para>quath</para>
+</entry><entry thead="no"><para><ref refid="class_gf_quath" kindref="compound">GfQuath</ref> </para>
+</entry></row>
+</table>
+</para>
+</entry><entry thead="no"><para><table rows="18" cols="2"><row>
+<entry thead="yes"><para>Array Types </para>
+</entry></row>
+<row>
+<entry thead="yes"><para>&quot;type&quot; value</para>
+</entry><entry thead="yes"><para>C++ type </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Element type name + &quot;[]&quot;</para>
+</entry><entry thead="no"><para><ref refid="class_vt_array" kindref="compound">VtArray</ref>&lt;Element C++ type&gt; </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Any scalar type + &quot;[]&quot;</para>
+</entry><entry thead="no"><para><ref refid="class_vt_array" kindref="compound">VtArray</ref>&lt;C++ type&gt;  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><nonbreakablespace/><nonbreakablespace/>ex: string[]</para>
+</entry><entry thead="no"><para><nonbreakablespace/><nonbreakablespace/>ex: <ref refid="class_vt_array" kindref="compound">VtArray</ref>&lt;std::string&gt;  </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Any dimensioned type + &quot;[]&quot;</para>
+</entry><entry thead="no"><para><ref refid="class_vt_array" kindref="compound">VtArray</ref>&lt;C++ type&gt;  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><nonbreakablespace/><nonbreakablespace/>ex: float2[]</para>
+</entry><entry thead="no"><para><nonbreakablespace/><nonbreakablespace/>ex: <ref refid="class_vt_array" kindref="compound">VtArray</ref>&lt;<ref refid="class_gf_vec2f" kindref="compound">GfVec2f</ref>&gt;  </para>
+</entry></row>
+<row>
+<entry thead="yes"><para>Dictionary Types </para>
+</entry></row>
+<row>
+<entry thead="yes"><para>&quot;type&quot; value</para>
+</entry><entry thead="yes"><para>C++ type </para>
+</entry></row>
+<row>
+<entry thead="no"><para>dictionary</para>
+</entry><entry thead="no"><para><ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> </para>
+</entry></row>
+<row>
+<entry thead="yes"><para>List Operation Types </para>
+</entry></row>
+<row>
+<entry thead="yes"><para>&quot;type&quot; value</para>
+</entry><entry thead="yes"><para>C++ type </para>
+</entry></row>
+<row>
+<entry thead="no"><para>intlistop</para>
+</entry><entry thead="no"><para>SdfIntListOp </para>
+</entry></row>
+<row>
+<entry thead="no"><para>int64listop</para>
+</entry><entry thead="no"><para>SdfInt64ListOp</para>
+<para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>uintlistop</para>
+</entry><entry thead="no"><para>SdfUIntListOp </para>
+</entry></row>
+<row>
+<entry thead="no"><para>uint64listop</para>
+</entry><entry thead="no"><para>SdfUInt64ListOp</para>
+<para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>stringlistop</para>
+</entry><entry thead="no"><para>SdfStringListOp</para>
+<para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>tokenlistop</para>
+</entry><entry thead="no"><para>SdfTokenListOp</para>
+<para></para>
+</entry></row>
+</table>
+</para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="sdf_page_front_1sdf_metadata_defaults">
+<title>Default Values</title>
+<para>If not specified, the default value for plugin metadata fields is the default value for the associated scene description type. However, plugins may specify default values for each field. The current implementation allows default values to be specified using a double, an int, a string, or a flat list of one of these types. For example:</para>
+<para><programlisting><codeline><highlight class="normal">&quot;SdfMetadata&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>Defines<sp/>a<sp/>field<sp/>named<sp/>&quot;double_single_default&quot;<sp/>with<sp/>default<sp/>value<sp/>of<sp/>1.0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;double_single_default&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;type&quot;:<sp/>&quot;double&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;default&quot;:<sp/>1.0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>Defines<sp/>a<sp/>field<sp/>named<sp/>&quot;double_shaped_default&quot;<sp/>with<sp/>default<sp/>value<sp/>of<sp/>VtArray&lt;double&gt;:<sp/>{0.0,<sp/>1.0}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;double_array_with_default&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;type&quot;:<sp/>&quot;double[]&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;default&quot;:<sp/>[0.0,<sp/>1.0]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>Defines<sp/>a<sp/>field<sp/>named<sp/>&quot;double2_single_default&quot;<sp/>with<sp/>default<sp/>value<sp/>of<sp/>GfVec2d(0.0,<sp/>1.0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;double2_single_default&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;type&quot;:<sp/>&quot;double2&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;default&quot;:<sp/>[0.0,<sp/>1.0]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>Defines<sp/>a<sp/>field<sp/>named<sp/>&quot;matrix4d_single_default&quot;<sp/>with<sp/>default<sp/>value<sp/>of<sp/>GfMatrix4d(0.5,<sp/>1.5,<sp/>2.5,<sp/>3.5,<sp/>...)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;matrix4d_single_default&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;type&quot;:<sp/>&quot;matrix4d&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;default&quot;:<sp/>[0.5,<sp/>1.5,<sp/>2.5,<sp/>3.5,<sp/>4.5,<sp/>5.5,<sp/>6.5,<sp/>7.5,<sp/>8.5,<sp/>9.5,<sp/>10.5,<sp/>11.5,<sp/>12.5,<sp/>13.5,<sp/>14.5,<sp/>15.5]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>Default values may not be specified for list operation types and dictionary types.</para>
+<para>Clients can query the default value for a plugin metadata field by calling <ref refid="class_sdf_schema_base_1a98a6d2e4f27f55fb6d5ebe3dd3f5b089" kindref="member">SdfSchema::GetFallback</ref>.</para>
+</sect2>
+<sect2 id="sdf_page_front_1sdf_metadata_applies">
+<title>Limiting to Specific Spec Types</title>
+<para>By default, a plugin metadata field can be used with any spec type. However, this can be limited by setting the &quot;appliesTo&quot; field to a comma-separated list of values from the table below:</para>
+<para><table rows="7" cols="2"><row>
+<entry thead="yes"><para>&quot;appliesTo&quot; value  </para>
+</entry><entry thead="yes"><para>Spec type   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>layers  </para>
+</entry><entry thead="no"><para><ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> (SdfPseudoRootSpec)   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>prims  </para>
+</entry><entry thead="no"><para><ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref>, <ref refid="class_sdf_variant_spec" kindref="compound">SdfVariantSpec</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>properties  </para>
+</entry><entry thead="no"><para><ref refid="class_sdf_property_spec" kindref="compound">SdfPropertySpec</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>attributes  </para>
+</entry><entry thead="no"><para><ref refid="class_sdf_attribute_spec" kindref="compound">SdfAttributeSpec</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>relationships  </para>
+</entry><entry thead="no"><para><ref refid="class_sdf_relationship_spec" kindref="compound">SdfRelationshipSpec</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>variants  </para>
+</entry><entry thead="no"><para><ref refid="class_sdf_variant_spec" kindref="compound">SdfVariantSpec</ref>   </para>
+</entry></row>
+</table>
+</para>
+<para>Note that metadata that &quot;appliesTo&quot; prims also applies to variants, as variants can hold the same scene description as prims.</para>
+</sect2>
+<sect2 id="sdf_page_front_1sdf_metadata_displayGroup">
+<title>Display Groups</title>
+<para>A plugin metadata field may be associated with a display group by specifying a value for the &quot;displayGroup&quot; field. This is purely an affordance to allow external applications to group metadata fields together for display purposes. Sdf does not consume this data itself.</para>
+</sect2>
+</sect1>
+<sect1 id="sdf_page_front_1sdf_file_format_plugins">
+<title>File Format Plugins</title>
+<para>See <ref refid="_sdf__page__file_format_plugin" kindref="compound">Creating a File Format Plugin</ref> for information about creating file format plugins..</para>
+</sect1>
+<sect1 id="sdf_page_front_1sdf_variable_expressions">
+<title>Variable Expressions</title>
+<para>See <ref refid="_sdf__page__variable_expressions" kindref="compound">Variable Expressions</ref> for information about variable expressions. </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="py_arg_8h" kind="file" language="C++">
+    <compoundname>pyArg.h</compoundname>
+    <includes refid="pxr_8h" local="yes">pxr/pxr.h</includes>
+    <includes refid="base_2tf_2api_8h" local="yes">pxr/base/tf/api.h</includes>
+    <includes local="no">boost/python/dict.hpp</includes>
+    <includes local="no">boost/python/tuple.hpp</includes>
+    <includes local="no">string</includes>
+    <includes local="no">vector</includes>
+    <incdepgraph>
+      <node id="68655">
+        <label>pxr/base/arch/export.h</label>
+        <link refid="export_8h"/>
+        <childnode refid="68656" relation="include">
+        </childnode>
+      </node>
+      <node id="68659">
+        <label>string</label>
+      </node>
+      <node id="68653">
+        <label>pxr/pxr.h</label>
+        <link refid="pxr_8h"/>
+      </node>
+      <node id="68657">
+        <label>boost/python/dict.hpp</label>
+      </node>
+      <node id="68658">
+        <label>boost/python/tuple.hpp</label>
+      </node>
+      <node id="68652">
+        <label>pxr/base/tf/pyArg.h</label>
+        <link refid="py_arg_8h"/>
+        <childnode refid="68653" relation="include">
+        </childnode>
+        <childnode refid="68654" relation="include">
+        </childnode>
+        <childnode refid="68657" relation="include">
+        </childnode>
+        <childnode refid="68658" relation="include">
+        </childnode>
+        <childnode refid="68659" relation="include">
+        </childnode>
+        <childnode refid="68660" relation="include">
+        </childnode>
+      </node>
+      <node id="68660">
+        <label>vector</label>
+      </node>
+      <node id="68654">
+        <label>pxr/base/tf/api.h</label>
+        <link refid="base_2tf_2api_8h_source"/>
+        <childnode refid="68655" relation="include">
+        </childnode>
+      </node>
+      <node id="68656">
+        <label>pxr/base/arch/defines.h</label>
+        <link refid="defines_8h_source"/>
+      </node>
+    </incdepgraph>
+    <innerclass refid="class_tf_py_arg" prot="public">TfPyArg</innerclass>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="py_arg_8h_1aeaff9b469b3dcbc44add9e37bee2a6f3" prot="public" static="no">
+        <type>std::vector&lt; <ref refid="class_tf_py_arg" kindref="compound">TfPyArg</ref> &gt;</type>
+        <definition>typedef std::vector&lt;TfPyArg&gt; TfPyArgs</definition>
+        <argsstring></argsstring>
+        <name>TfPyArgs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pyArg.h" line="73" column="1" bodyfile="pxr/base/tf/pyArg.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="py_arg_8h_1a88c0621fa793bc286761671a2791de42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::pair&lt; boost::python::tuple, boost::python::dict &gt;</type>
+        <definition>TF_API std::pair&lt;boost::python::tuple, boost::python::dict&gt; TfPyProcessOptionalArgs</definition>
+        <argsstring>(const boost::python::tuple &amp;args, const boost::python::dict &amp;kwargs, const TfPyArgs &amp;expectedArgs, bool allowExtraArgs=false)</argsstring>
+        <name>TfPyProcessOptionalArgs</name>
+        <param>
+          <type>const boost::python::tuple &amp;</type>
+          <declname>args</declname>
+        </param>
+        <param>
+          <type>const boost::python::dict &amp;</type>
+          <declname>kwargs</declname>
+        </param>
+        <param>
+          <type>const TfPyArgs &amp;</type>
+          <declname>expectedArgs</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>allowExtraArgs</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Helper function for processing optional arguments given as a tuple of positional arguments and a dictionary of keyword arguments. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function will match the given positional arguments in <computeroutput>args</computeroutput> with the ordered list of allowed arguments in <computeroutput>optionalArgs</computeroutput>. Arguments that are matched up in this way will be stored as (name, value) pairs and merged with <computeroutput>kwargs</computeroutput> in the returned dictionary.</para>
+<para>If <computeroutput>allowExtraArgs</computeroutput> is <computeroutput>false</computeroutput>, any unrecognized keyword or positional arguments will cause a Python TypeError to be emitted. Otherwise, unmatched arguments will be added to the returned tuple or dict. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pyArg.h" line="88" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="py_arg_8h_1a7450c6fc0eb98394cbd204987a79c7df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfPyCreateFunctionDocString</definition>
+        <argsstring>(const std::string &amp;functionName, const TfPyArgs &amp;requiredArguments=TfPyArgs(), const TfPyArgs &amp;optionalArguments=TfPyArgs(), const std::string &amp;description=std::string())</argsstring>
+        <name>TfPyCreateFunctionDocString</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>functionName</declname>
+        </param>
+        <param>
+          <type>const TfPyArgs &amp;</type>
+          <declname>requiredArguments</declname>
+          <defval>TfPyArgs()</defval>
+        </param>
+        <param>
+          <type>const TfPyArgs &amp;</type>
+          <declname>optionalArguments</declname>
+          <defval>TfPyArgs()</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>description</declname>
+          <defval>std::string()</defval>
+        </param>
+        <briefdescription>
+<para>Create a doc string for a function with the given <computeroutput>functionName</computeroutput>, <computeroutput>requiredArguments</computeroutput> and <computeroutput>optionalArguments</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>An extra <computeroutput>description</computeroutput> may also be supplied. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pyArg.h" line="98" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>2016<sp/>Pixar</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>&quot;Apache<sp/>License&quot;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>with<sp/>the<sp/>following<sp/>modification;<sp/>you<sp/>may<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>compliance<sp/>with<sp/>the<sp/>Apache<sp/>License<sp/>and<sp/>the<sp/>following<sp/>modification<sp/>to<sp/>it:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Section<sp/>6.<sp/>Trademarks.<sp/>is<sp/>deleted<sp/>and<sp/>replaced<sp/>with:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>6.<sp/>Trademarks.<sp/>This<sp/>License<sp/>does<sp/>not<sp/>grant<sp/>permission<sp/>to<sp/>use<sp/>the<sp/>trade</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>names,<sp/>trademarks,<sp/>service<sp/>marks,<sp/>or<sp/>product<sp/>names<sp/>of<sp/>the<sp/>Licensor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>and<sp/>its<sp/>affiliates,<sp/>except<sp/>as<sp/>required<sp/>to<sp/>comply<sp/>with<sp/>Section<sp/>4(c)<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>the<sp/>License<sp/>and<sp/>to<sp/>reproduce<sp/>the<sp/>content<sp/>of<sp/>the<sp/>NOTICE<sp/>file.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>Apache<sp/>License<sp/>at</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>http://www.apache.org/licenses/LICENSE-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>distributed<sp/>under<sp/>the<sp/>Apache<sp/>License<sp/>with<sp/>the<sp/>above<sp/>modification<sp/>is</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>distributed<sp/>on<sp/>an<sp/>&quot;AS<sp/>IS&quot;<sp/>BASIS,<sp/>WITHOUT<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.<sp/>See<sp/>the<sp/>Apache<sp/>License<sp/>for<sp/>the<sp/>specific</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>language<sp/>governing<sp/>permissions<sp/>and<sp/>limitations<sp/>under<sp/>the<sp/>Apache<sp/>License.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>PXR_BASE_TF_PY_ARG_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PXR_BASE_TF_PY_ARG_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pxr_8h" kindref="compound">pxr/pxr.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;pxr/base/tf/api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;boost/python/dict.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;boost/python/tuple.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal">PXR_NAMESPACE_OPEN_SCOPE</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="class_tf_py_arg" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_tf_py_arg" kindref="compound">TfPyArg</ref></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="49" refid="class_tf_py_arg_1a5d017acc357cb4ce88490876f374ad10" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_tf_py_arg_1a5d017acc357cb4ce88490876f374ad10" kindref="member">TfPyArg</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>name,<sp/></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>typeDoc<sp/>=<sp/>std::string(),</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>defaultValueDoc<sp/>=<sp/>std::string())</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>_name(name),<sp/>_typeDoc(typeDoc),<sp/>_defaultValueDoc(defaultValueDoc)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="class_tf_py_arg_1a5b52ba705bd2cbff2d8ba9a1fb0b39d8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/><ref refid="class_tf_py_arg_1a5b52ba705bd2cbff2d8ba9a1fb0b39d8" kindref="member">GetName</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="57"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_name;<sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="class_tf_py_arg_1a4ec4c836197cbcb715dae83f0ae2e7cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/><ref refid="class_tf_py_arg_1a4ec4c836197cbcb715dae83f0ae2e7cd" kindref="member">GetDefaultValueDoc</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight></codeline>
+<codeline lineno="61"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_defaultValueDoc;<sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="class_tf_py_arg_1ad1adb2e6701c1b3b1c65ce5226921fec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/><ref refid="class_tf_py_arg_1ad1adb2e6701c1b3b1c65ce5226921fec" kindref="member">GetTypeDoc</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="65"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_typeDoc;<sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>_name;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>_typeDoc;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>_defaultValueDoc;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::vector&lt;TfPyArg&gt;<sp/>TfPyArgs;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal">TF_API</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">std::pair&lt;boost::python::tuple,<sp/>boost::python::dict&gt;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal">TfPyProcessOptionalArgs(</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>boost::python::tuple&amp;<sp/>args,<sp/></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>boost::python::dict&amp;<sp/>kwargs,</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>TfPyArgs&amp;<sp/>expectedArgs,</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>allowExtraArgs<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal">TF_API</highlight></codeline>
+<codeline lineno="98"><highlight class="normal">std::string<sp/>TfPyCreateFunctionDocString(</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>functionName,</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>TfPyArgs&amp;<sp/>requiredArguments<sp/>=<sp/>TfPyArgs(),<sp/></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>TfPyArgs&amp;<sp/>optionalArguments<sp/>=<sp/>TfPyArgs(),</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>description<sp/>=<sp/>std::string());</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal">PXR_NAMESPACE_CLOSE_SCOPE</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>PXR_BASE_TF_PY_ARG_H</highlight></codeline>
+    </programlisting>
+    <location file="pxr/base/tf/pyArg.h"/>
+  </compounddef>
+</doxygen>

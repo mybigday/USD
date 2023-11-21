@@ -1,0 +1,299 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="reduce_8h" kind="file" language="C++">
+    <compoundname>reduce.h</compoundname>
+    <includes refid="pxr_8h" local="yes">pxr/pxr.h</includes>
+    <includes refid="thread_limits_8h" local="yes">pxr/base/work/threadLimits.h</includes>
+    <includes refid="base_2work_2api_8h" local="yes">pxr/base/work/api.h</includes>
+    <includes local="no">tbb/blocked_range.h</includes>
+    <includes local="no">tbb/parallel_reduce.h</includes>
+    <includes local="no">tbb/task_group.h</includes>
+    <incdepgraph>
+      <node id="97524">
+        <label>pxr/base/arch/export.h</label>
+        <link refid="export_8h"/>
+        <childnode refid="97525" relation="include">
+        </childnode>
+      </node>
+      <node id="97527">
+        <label>tbb/parallel_reduce.h</label>
+      </node>
+      <node id="97521">
+        <label>pxr/pxr.h</label>
+        <link refid="pxr_8h"/>
+      </node>
+      <node id="97526">
+        <label>tbb/blocked_range.h</label>
+      </node>
+      <node id="97523">
+        <label>pxr/base/work/api.h</label>
+        <link refid="base_2work_2api_8h_source"/>
+        <childnode refid="97524" relation="include">
+        </childnode>
+      </node>
+      <node id="97528">
+        <label>tbb/task_group.h</label>
+      </node>
+      <node id="97520">
+        <label>pxr/base/work/reduce.h</label>
+        <link refid="reduce_8h"/>
+        <childnode refid="97521" relation="include">
+        </childnode>
+        <childnode refid="97522" relation="include">
+        </childnode>
+        <childnode refid="97523" relation="include">
+        </childnode>
+        <childnode refid="97526" relation="include">
+        </childnode>
+        <childnode refid="97527" relation="include">
+        </childnode>
+        <childnode refid="97528" relation="include">
+        </childnode>
+      </node>
+      <node id="97522">
+        <label>pxr/base/work/threadLimits.h</label>
+        <link refid="thread_limits_8h"/>
+        <childnode refid="97521" relation="include">
+        </childnode>
+        <childnode refid="97523" relation="include">
+        </childnode>
+      </node>
+      <node id="97525">
+        <label>pxr/base/arch/defines.h</label>
+        <link refid="defines_8h_source"/>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="reduce_8h_1a1c6ae2acef210b90dc7a5ad51a7da644" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Fn</type>
+          </param>
+          <param>
+            <type>typename Rn</type>
+          </param>
+          <param>
+            <type>typename V</type>
+          </param>
+        </templateparamlist>
+        <type>V</type>
+        <definition>V WorkParallelReduceN</definition>
+        <argsstring>(const V &amp;identity, size_t n, Fn &amp;&amp;loopCallback, Rn &amp;&amp;reductionCallback, size_t grainSize)</argsstring>
+        <name>WorkParallelReduceN</name>
+        <param>
+          <type>const V &amp;</type>
+          <declname>identity</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>Fn &amp;&amp;</type>
+          <declname>loopCallback</declname>
+        </param>
+        <param>
+          <type>Rn &amp;&amp;</type>
+          <declname>reductionCallback</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>grainSize</declname>
+        </param>
+        <briefdescription>
+<para>Recursively splits the range [0, <computeroutput>n</computeroutput>) into subranges, which are then reduced by invoking <computeroutput>loopCallback</computeroutput> in parallel. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Each invocation of <computeroutput>loopCallback</computeroutput> returns a single value that is the result of joining the elements in the respective subrange. These values are then further joined using the binary operator <computeroutput>reductionCallback</computeroutput>, until only a single value remains. This single value is then the result of joining all elements over the entire range [0, <computeroutput>n</computeroutput>).</para>
+<para>The <computeroutput>loopCallback</computeroutput> must be of the form: <verbatim>V LoopCallback(size_t begin, size_t end, const V &amp;identity);
+</verbatim></para>
+<para>The <computeroutput>reductionCallback</computeroutput> must be of the form: <verbatim>V ReductionCallback(const V &amp;lhs, const V &amp;rhs);
+</verbatim></para>
+<para>For example, the following code reduces an array of mesh points into a single bounding box:</para>
+<para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Get<sp/>the<sp/>mesh<sp/>points<sp/>from<sp/>which<sp/>we<sp/>are<sp/>going<sp/>to<sp/>generate<sp/>the<sp/>bounding<sp/>box.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Vector3&gt;<sp/>&amp;points<sp/>=<sp/>GetMeshPoints();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Generate<sp/>the<sp/>bounding<sp/>box<sp/>by<sp/>parallel<sp/>reducing<sp/>the<sp/>points.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">BoundingBox<sp/>bbox<sp/>=<sp/><ref refid="reduce_8h_1a1c6ae2acef210b90dc7a5ad51a7da644" kindref="member">WorkParallelReduceN</ref>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>BoundingBox(),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>points.size(),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>[&amp;points](</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>b,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>e,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BoundingBox<sp/>&amp;identity){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BoundingBox<sp/>bbox(identity);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Insert<sp/>each<sp/>point<sp/>in<sp/>this<sp/>subrange<sp/>into<sp/>the<sp/>local<sp/>bounding<sp/>box.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>b;<sp/>i<sp/>!=<sp/>e;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bbox.InsertPoint(points[i]);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Return<sp/>the<sp/>local<sp/>bounding<sp/>box,<sp/>which<sp/>now<sp/>encapsulates<sp/>all<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>points<sp/>in<sp/>this<sp/>subrange.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>bbox;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>[](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BoundingBox<sp/>&amp;lhs,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BoundingBox<sp/>&amp;rhs){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Join<sp/>two<sp/>bounding<sp/>boxes<sp/>into<sp/>a<sp/>single<sp/>bounding<sp/>box.<sp/>The</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>algorithm<sp/>will<sp/>apply<sp/>this<sp/>reduction<sp/>step<sp/>recursively<sp/>until<sp/>there</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>is<sp/>only<sp/>a<sp/>single<sp/>bounding<sp/>box<sp/>left.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BoundingBox<sp/>bbox(lhs);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bbox.UnionWith(rhs);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>bbox;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">);</highlight></codeline>
+</programlisting></para>
+<para><computeroutput>grainSize</computeroutput> specifies a minimum amount of work to be done per-thread. There is overhead to launching a task and a typical guideline is that you want to have at least 10,000 instructions to count for the overhead of launching that task. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/reduce.h" line="100" column="1" bodyfile="pxr/base/work/reduce.h" bodystart="100" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="reduce_8h_1af132651ac2bd3dffbda1cee74981af7c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Fn</type>
+          </param>
+          <param>
+            <type>typename Rn</type>
+          </param>
+          <param>
+            <type>typename V</type>
+          </param>
+        </templateparamlist>
+        <type>V</type>
+        <definition>V WorkParallelReduceN</definition>
+        <argsstring>(const V &amp;identity, size_t n, Fn &amp;&amp;loopCallback, Rn &amp;&amp;reductionCallback)</argsstring>
+        <name>WorkParallelReduceN</name>
+        <param>
+          <type>const V &amp;</type>
+          <declname>identity</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>Fn &amp;&amp;</type>
+          <declname>loopCallback</declname>
+        </param>
+        <param>
+          <type>Rn &amp;&amp;</type>
+          <declname>reductionCallback</declname>
+        </param>
+        <briefdescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</para>
+<para>This overload does not accept a grain size parameter and instead attempts to automatically deduce a grain size that is optimal for the current resource utilization and provided workload. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/reduce.h" line="157" column="1" bodyfile="pxr/base/work/reduce.h" bodystart="157" bodyend="164"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>2018<sp/>Pixar</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>&quot;Apache<sp/>License&quot;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>with<sp/>the<sp/>following<sp/>modification;<sp/>you<sp/>may<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>compliance<sp/>with<sp/>the<sp/>Apache<sp/>License<sp/>and<sp/>the<sp/>following<sp/>modification<sp/>to<sp/>it:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Section<sp/>6.<sp/>Trademarks.<sp/>is<sp/>deleted<sp/>and<sp/>replaced<sp/>with:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>6.<sp/>Trademarks.<sp/>This<sp/>License<sp/>does<sp/>not<sp/>grant<sp/>permission<sp/>to<sp/>use<sp/>the<sp/>trade</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>names,<sp/>trademarks,<sp/>service<sp/>marks,<sp/>or<sp/>product<sp/>names<sp/>of<sp/>the<sp/>Licensor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>and<sp/>its<sp/>affiliates,<sp/>except<sp/>as<sp/>required<sp/>to<sp/>comply<sp/>with<sp/>Section<sp/>4(c)<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>the<sp/>License<sp/>and<sp/>to<sp/>reproduce<sp/>the<sp/>content<sp/>of<sp/>the<sp/>NOTICE<sp/>file.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>Apache<sp/>License<sp/>at</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>http://www.apache.org/licenses/LICENSE-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>distributed<sp/>under<sp/>the<sp/>Apache<sp/>License<sp/>with<sp/>the<sp/>above<sp/>modification<sp/>is</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>distributed<sp/>on<sp/>an<sp/>&quot;AS<sp/>IS&quot;<sp/>BASIS,<sp/>WITHOUT<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.<sp/>See<sp/>the<sp/>Apache<sp/>License<sp/>for<sp/>the<sp/>specific</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>language<sp/>governing<sp/>permissions<sp/>and<sp/>limitations<sp/>under<sp/>the<sp/>Apache<sp/>License.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>PXR_BASE_WORK_REDUCE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PXR_BASE_WORK_REDUCE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pxr_8h" kindref="compound">pxr/pxr.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="thread_limits_8h" kindref="compound">pxr/base/work/threadLimits.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;pxr/base/work/api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tbb/blocked_range.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tbb/parallel_reduce.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tbb/task_group.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">PXR_NAMESPACE_OPEN_SCOPE</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Fn,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Rn,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>V&gt;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">V</highlight></codeline>
+<codeline lineno="100" refid="reduce_8h_1a1c6ae2acef210b90dc7a5ad51a7da644" refkind="member"><highlight class="normal"><ref refid="reduce_8h_1a1c6ae2acef210b90dc7a5ad51a7da644" kindref="member">WorkParallelReduceN</ref>(</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>V<sp/>&amp;identity,</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n,</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>Fn<sp/>&amp;&amp;loopCallback,</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>Rn<sp/>&amp;&amp;reductionCallback,</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>grainSize)</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(n<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>identity;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Don&apos;t<sp/>bother<sp/>with<sp/>parallel_reduce,<sp/>if<sp/>concurrency<sp/>is<sp/>limited<sp/>to<sp/>1.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="thread_limits_8h_1abd1f84f7d2d9817fc49606ad76e52ed7" kindref="member">WorkHasConcurrency</ref>())<sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Work_Body_TBB</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Work_Body_TBB(Fn<sp/>&amp;fn)<sp/>:<sp/>_fn(fn)<sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>V<sp/>operator()(</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>tbb::blocked_range&lt;size_t&gt;<sp/>&amp;r,</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>V<sp/>&amp;value)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Note<sp/>that<sp/>we<sp/>std::forward<sp/>_fn<sp/>using<sp/>Fn<sp/>in<sp/>order<sp/>get<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>right<sp/>operator().</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>We<sp/>maintain<sp/>the<sp/>right<sp/>type<sp/>in<sp/>this<sp/>way:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>If<sp/>Fn<sp/>is<sp/>T&amp;,<sp/>then<sp/>reference<sp/>collapsing<sp/>gives<sp/>us<sp/>T&amp;<sp/>for<sp/>_fn</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>If<sp/>Fn<sp/>is<sp/>T,<sp/>then<sp/>std::forward<sp/>correctly<sp/>gives<sp/>us<sp/>T&amp;&amp;<sp/>for<sp/>_fn</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::forward&lt;Fn&gt;(_fn)(r.begin(),<sp/>r.end(),<sp/>value);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Fn<sp/>&amp;_fn;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>In<sp/>most<sp/>cases<sp/>we<sp/>do<sp/>not<sp/>want<sp/>to<sp/>inherit<sp/>cancellation<sp/>state<sp/>from<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>parent<sp/>context,<sp/>so<sp/>we<sp/>create<sp/>an<sp/>isolated<sp/>task<sp/>group<sp/>context.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tbb::task_group_context<sp/>ctx(tbb::task_group_context::isolated);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>tbb::parallel_reduce(tbb::blocked_range&lt;size_t&gt;(0,n,grainSize),</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>identity,</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Work_Body_TBB(loopCallback),</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::forward&lt;Rn&gt;(reductionCallback),</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tbb::auto_partitioner(),</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ctx);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>concurrency<sp/>is<sp/>limited<sp/>to<sp/>1,<sp/>execute<sp/>serially.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::forward&lt;Fn&gt;(loopCallback)(0,<sp/>n,<sp/>identity);</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Fn,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Rn,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>V&gt;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal">V</highlight></codeline>
+<codeline lineno="157" refid="reduce_8h_1af132651ac2bd3dffbda1cee74981af7c" refkind="member"><highlight class="normal"><ref refid="reduce_8h_1a1c6ae2acef210b90dc7a5ad51a7da644" kindref="member">WorkParallelReduceN</ref>(</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>V<sp/>&amp;identity,</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n,</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>Fn<sp/>&amp;&amp;loopCallback,</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>Rn<sp/>&amp;&amp;reductionCallback)</highlight></codeline>
+<codeline lineno="162"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="reduce_8h_1a1c6ae2acef210b90dc7a5ad51a7da644" kindref="member">WorkParallelReduceN</ref>(identity,<sp/>n,<sp/>loopCallback,<sp/>reductionCallback,<sp/>1);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal">PXR_NAMESPACE_CLOSE_SCOPE</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>PXR_BASE_WORK_REDUCE_H</highlight></codeline>
+    </programlisting>
+    <location file="pxr/base/work/reduce.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,758 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_shade_node_def_a_p_i" kind="class" language="C++" prot="public">
+    <compoundname>UsdShadeNodeDefAPI</compoundname>
+    <basecompoundref refid="class_usd_a_p_i_schema_base" prot="public" virt="non-virtual">UsdAPISchemaBase</basecompoundref>
+    <includes refid="node_def_a_p_i_8h" local="no">nodeDefAPI.h</includes>
+      <sectiondef kind="user-defined">
+      <header>Shader Source API</header>
+      <description><para><anchor id="class_usd_shade_node_def_a_p_i_1UsdShadeNodeDefAPI_ImplementationSource"/></para>
+<para>This section provides API for identifying the source of a shader&apos;s implementation. </para>
+</description>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1a926a68f38f43c290f8e6175ab3d20bee" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>USDSHADE_API TfToken GetImplementationSource</definition>
+        <argsstring>() const</argsstring>
+        <name>GetImplementationSource</name>
+        <briefdescription>
+<para>Reads the value of info:implementationSource attribute and returns a token identifying the attribute that must be consulted to identify the shader&apos;s source program. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This returns<itemizedlist>
+<listitem><para><bold>id</bold>, to indicate that the &quot;info:id&quot; attribute must be consulted.</para>
+</listitem><listitem><para><bold>sourceAsset</bold> to indicate that the asset-valued &quot;info:{sourceType}:sourceAsset&quot; attribute associated with the desired <bold>sourceType</bold> should be consulted to locate the asset with the shader&apos;s source.</para>
+</listitem><listitem><para><bold>sourceCode</bold> to indicate that the string-valued &quot;info:{sourceType}:sourceCode&quot; attribute associated with the desired <bold>sourceType</bold> should be read to get shader&apos;s source.</para>
+</listitem></itemizedlist>
+</para>
+<para>This issues a warning and returns <bold>id</bold> if the <emphasis>info:implementationSource</emphasis> attribute has an invalid value.</para>
+<para><emphasis>{sourceType}</emphasis> above is a place holder for a token that identifies the type of shader source or its implementation. For example: osl, glslfx, riCpp etc. This allows a shader to specify different sourceAsset (or sourceCode) values for different sourceTypes. The sourceType tokens usually correspond to the sourceType value of the <ref refid="class_ndr_parser_plugin" kindref="compound">NdrParserPlugin</ref> that&apos;s used to parse the shader source (NdrParserPlugin::SourceType).</para>
+<para>When sourceType is empty, the corresponding sourceAsset or sourceCode is considered to be &quot;universal&quot; (or fallback), which is represented by the empty-valued token UsdShadeTokens-&gt;universalSourceType. When the sourceAsset (or sourceCode) corresponding to a specific, requested sourceType is unavailable, the universal sourceAsset (or sourceCode) is returned by GetSourceAsset (and GetSourceCode} API, if present.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_node_def_a_p_i_1ad12ad85a043f42d00360eeeac8cb171a" kindref="member">GetShaderId()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_shade_node_def_a_p_i_1a1be994f4511e96bd4438b1589781ad87" kindref="member">GetSourceAsset()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_shade_node_def_a_p_i_1a110a867a04c19f23db8e0fca09cb74ff" kindref="member">GetSourceCode()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="318" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1a65e38b3676550b61feb2360f68de396b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool SetShaderId</definition>
+        <argsstring>(const TfToken &amp;id) const</argsstring>
+        <name>SetShaderId</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Sets the shader&apos;s ID value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This also sets the <emphasis>info:implementationSource</emphasis> attribute on the shader to <bold>UsdShadeTokens-&gt;id</bold>, if the existing value is different. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="324" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1ad12ad85a043f42d00360eeeac8cb171a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool GetShaderId</definition>
+        <argsstring>(TfToken *id) const</argsstring>
+        <name>GetShaderId</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> *</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Fetches the shader&apos;s ID value from the <emphasis>info:id</emphasis> attribute, if the shader&apos;s <emphasis>info:implementationSource</emphasis> is <bold>id</bold>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns <bold>true</bold> if the shader&apos;s implementation source is <bold>id</bold> and the value was fetched properly into <computeroutput>id</computeroutput>. Returns false otherwise.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_node_def_a_p_i_1a926a68f38f43c290f8e6175ab3d20bee" kindref="member">GetImplementationSource()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="334" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1a2744a59d6a29ce10f785579a7bb11caa" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool SetSourceAsset</definition>
+        <argsstring>(const SdfAssetPath &amp;sourceAsset, const TfToken &amp;sourceType=UsdShadeTokens-&gt;universalSourceType) const</argsstring>
+        <name>SetSourceAsset</name>
+        <param>
+          <type>const <ref refid="class_sdf_asset_path" kindref="compound">SdfAssetPath</ref> &amp;</type>
+          <declname>sourceAsset</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>sourceType</declname>
+          <defval><ref refid="usd_2usd_shade_2tokens_8h_1acd5d180f50410c958d4a0b2a88de0ac5" kindref="member">UsdShadeTokens</ref>-&gt;universalSourceType</defval>
+        </param>
+        <briefdescription>
+<para>Sets the shader&apos;s source-asset path value to <computeroutput>sourceAsset</computeroutput> for the given source type, <computeroutput>sourceType</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This also sets the <emphasis>info:implementationSource</emphasis> attribute on the shader to <bold>UsdShadeTokens-&gt;sourceAsset</bold>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="342" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1a1be994f4511e96bd4438b1589781ad87" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool GetSourceAsset</definition>
+        <argsstring>(SdfAssetPath *sourceAsset, const TfToken &amp;sourceType=UsdShadeTokens-&gt;universalSourceType) const</argsstring>
+        <name>GetSourceAsset</name>
+        <param>
+          <type><ref refid="class_sdf_asset_path" kindref="compound">SdfAssetPath</ref> *</type>
+          <declname>sourceAsset</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>sourceType</declname>
+          <defval><ref refid="usd_2usd_shade_2tokens_8h_1acd5d180f50410c958d4a0b2a88de0ac5" kindref="member">UsdShadeTokens</ref>-&gt;universalSourceType</defval>
+        </param>
+        <briefdescription>
+<para>Fetches the shader&apos;s source asset value for the specified <computeroutput>sourceType</computeroutput> value from the <bold>info:<emphasis>sourceType:</emphasis>sourceAsset</bold> attribute, if the shader&apos;s <emphasis>info:implementationSource</emphasis> is <bold>sourceAsset</bold>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the <emphasis>sourceAsset</emphasis> attribute corresponding to the requested <emphasis>sourceType</emphasis> isn&apos;t present on the shader, then the <emphasis>universal</emphasis> <emphasis>fallback</emphasis> sourceAsset attribute, i.e. <emphasis>info:sourceAsset</emphasis> is consulted, if present, to get the source asset path.</para>
+<para>Returns <bold>true</bold> if the shader&apos;s implementation source is <bold>sourceAsset</bold> and the source asset path value was fetched successfully into <computeroutput>sourceAsset</computeroutput>. Returns false otherwise.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_node_def_a_p_i_1a926a68f38f43c290f8e6175ab3d20bee" kindref="member">GetImplementationSource()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="362" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1abb83b17c47d74320499c2936a9305458" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool SetSourceAssetSubIdentifier</definition>
+        <argsstring>(const TfToken &amp;subIdentifier, const TfToken &amp;sourceType=UsdShadeTokens-&gt;universalSourceType) const</argsstring>
+        <name>SetSourceAssetSubIdentifier</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>subIdentifier</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>sourceType</declname>
+          <defval><ref refid="usd_2usd_shade_2tokens_8h_1acd5d180f50410c958d4a0b2a88de0ac5" kindref="member">UsdShadeTokens</ref>-&gt;universalSourceType</defval>
+        </param>
+        <briefdescription>
+<para>Set a sub-identifier to be used with a source asset of the given source type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This sets the <bold>info:<emphasis>sourceType:</emphasis>sourceAsset:subIdentifier </bold>.</para>
+<para>This also sets the <emphasis>info:implementationSource</emphasis> attribute on the shader to <bold>UsdShadeTokens-&gt;sourceAsset</bold> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="373" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1ab22d34597f22b0dbdefdd4fe1d694a38" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool GetSourceAssetSubIdentifier</definition>
+        <argsstring>(TfToken *subIdentifier, const TfToken &amp;sourceType=UsdShadeTokens-&gt;universalSourceType) const</argsstring>
+        <name>GetSourceAssetSubIdentifier</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> *</type>
+          <declname>subIdentifier</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>sourceType</declname>
+          <defval><ref refid="usd_2usd_shade_2tokens_8h_1acd5d180f50410c958d4a0b2a88de0ac5" kindref="member">UsdShadeTokens</ref>-&gt;universalSourceType</defval>
+        </param>
+        <briefdescription>
+<para>Fetches the shader&apos;s sub-identifier for the source asset with the specified <computeroutput>sourceType</computeroutput> value from the <bold>info:<emphasis>sourceType:</emphasis> sourceAsset:subIdentifier</bold> attribute, if the shader&apos;s <emphasis>info: implementationSource</emphasis> is <bold>sourceAsset</bold>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the <emphasis>subIdentifier</emphasis> attribute corresponding to the requested <emphasis>sourceType</emphasis> isn&apos;t present on the shader, then the <emphasis>universal</emphasis> <emphasis>fallback</emphasis> sub-identifier attribute, i.e. <emphasis>info:sourceAsset: subIdentifier</emphasis> is consulted, if present, to get the sub-identifier name.</para>
+<para>Returns <bold>true</bold> if the shader&apos;s implementation source is <bold>sourceAsset</bold> and the sub-identifier for the given source type was fetched successfully into <computeroutput>subIdentifier</computeroutput>. Returns false otherwise. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="392" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1a91aea679c54f340f64eaea09c9c3bae7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool SetSourceCode</definition>
+        <argsstring>(const std::string &amp;sourceCode, const TfToken &amp;sourceType=UsdShadeTokens-&gt;universalSourceType) const</argsstring>
+        <name>SetSourceCode</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>sourceCode</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>sourceType</declname>
+          <defval><ref refid="usd_2usd_shade_2tokens_8h_1acd5d180f50410c958d4a0b2a88de0ac5" kindref="member">UsdShadeTokens</ref>-&gt;universalSourceType</defval>
+        </param>
+        <briefdescription>
+<para>Sets the shader&apos;s source-code value to <computeroutput>sourceCode</computeroutput> for the given source type, <computeroutput>sourceType</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This also sets the <emphasis>info:implementationSource</emphasis> attribute on the shader to <bold>UsdShadeTokens-&gt;sourceCode</bold>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="402" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1a110a867a04c19f23db8e0fca09cb74ff" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool GetSourceCode</definition>
+        <argsstring>(std::string *sourceCode, const TfToken &amp;sourceType=UsdShadeTokens-&gt;universalSourceType) const</argsstring>
+        <name>GetSourceCode</name>
+        <param>
+          <type>std::string *</type>
+          <declname>sourceCode</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>sourceType</declname>
+          <defval><ref refid="usd_2usd_shade_2tokens_8h_1acd5d180f50410c958d4a0b2a88de0ac5" kindref="member">UsdShadeTokens</ref>-&gt;universalSourceType</defval>
+        </param>
+        <briefdescription>
+<para>Fetches the shader&apos;s source code for the specified <computeroutput>sourceType</computeroutput> value by reading the <bold>info:<emphasis>sourceType:</emphasis>sourceCode</bold> attribute, if the shader&apos;s <emphasis>info:implementationSource</emphasis> is <bold>sourceCode</bold>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the <emphasis>sourceCode</emphasis> attribute corresponding to the requested <emphasis>sourceType</emphasis> isn&apos;t present on the shader, then the <emphasis>universal</emphasis> or <emphasis>fallback</emphasis> sourceCode attribute (i.e. <emphasis>info:sourceCode</emphasis>) is consulted, if present, to get the source code.</para>
+<para>Returns <bold>true</bold> if the shader&apos;s implementation source is <bold>sourceCode</bold> and the source code string was fetched successfully into <computeroutput>sourceCode</computeroutput>. Returns false otherwise.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_node_def_a_p_i_1a926a68f38f43c290f8e6175ab3d20bee" kindref="member">GetImplementationSource()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="422" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_usd_shade_node_def_a_p_i_1a3e5fc43aea5aea4908c3ce980fdf8908" prot="public" static="yes" mutable="no">
+        <type>const <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref></type>
+        <definition>const UsdSchemaKind schemaKind</definition>
+        <argsstring></argsstring>
+        <name>schemaKind</name>
+        <initializer>= <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741aa02d2addc2bb693dde0851595872f1aa" kindref="member">UsdSchemaKind::SingleApplyAPI</ref></initializer>
+        <briefdescription>
+<para>Compile time constant representing what kind of schema this class is. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="90" column="1" bodyfile="pxr/usd/usdShade/nodeDefAPI.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_usd_shade_node_def_a_p_i_1aff8b8d83211f127c6c4cba48fb7d3334" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class UsdSchemaRegistry</definition>
+        <argsstring></argsstring>
+        <name>UsdSchemaRegistry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="182" column="1" bodyfile="pxr/usd/usdShade/nodeDefAPI.h" bodystart="182" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1a8b26a982b7956420567632e2abc91f78" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdShadeNodeDefAPI</definition>
+        <argsstring>(const UsdPrim &amp;prim=UsdPrim())</argsstring>
+        <name>UsdShadeNodeDefAPI</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+          <defval><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="class_usd_shade_node_def_a_p_i" kindref="compound">UsdShadeNodeDefAPI</ref> on <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> <computeroutput>prim</computeroutput> . </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Equivalent to <ref refid="class_usd_shade_node_def_a_p_i_1a7fb2a1d37de1157f663f6205bb15d75b" kindref="member">UsdShadeNodeDefAPI::Get</ref>(prim.GetStage(), prim.GetPath()) for a <emphasis>valid</emphasis> <computeroutput>prim</computeroutput>, but will not immediately throw an error for an invalid <computeroutput>prim</computeroutput> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="96" column="1" bodyfile="pxr/usd/usdShade/nodeDefAPI.h" bodystart="96" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1a71dbb4f82dfeaa71f5d01b13da6fdceb" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdShadeNodeDefAPI</definition>
+        <argsstring>(const UsdSchemaBase &amp;schemaObj)</argsstring>
+        <name>UsdShadeNodeDefAPI</name>
+        <param>
+          <type>const <ref refid="class_usd_schema_base" kindref="compound">UsdSchemaBase</ref> &amp;</type>
+          <declname>schemaObj</declname>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="class_usd_shade_node_def_a_p_i" kindref="compound">UsdShadeNodeDefAPI</ref> on the prim held by <computeroutput>schemaObj</computeroutput> . </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Should be preferred over <ref refid="class_usd_shade_node_def_a_p_i" kindref="compound">UsdShadeNodeDefAPI</ref>(schemaObj.GetPrim()), as it preserves SchemaBase state. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="104" column="1" bodyfile="pxr/usd/usdShade/nodeDefAPI.h" bodystart="104" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1a74b8163578abb489a76096d5f5a8a8dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>USDSHADE_API</type>
+        <definition>virtual USDSHADE_API ~UsdShadeNodeDefAPI</definition>
+        <argsstring>()</argsstring>
+        <name>~UsdShadeNodeDefAPI</name>
+        <briefdescription>
+<para>Destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="111" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1a25ddcdc718d150d64952223f1fe66ac6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDSHADE_API UsdAttribute GetImplementationSourceAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetImplementationSourceAttr</name>
+        <briefdescription>
+<para>Specifies the attribute that should be consulted to get the shader&apos;s implementation or its source code. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>If set to &quot;id&quot;, the &quot;info:id&quot; attribute&apos;s value is used to determine the shader source from the shader registry.</para>
+</listitem><listitem><para>If set to &quot;sourceAsset&quot;, the resolved value of the &quot;info:sourceAsset&quot; attribute corresponding to the desired implementation (or source-type) is used to locate the shader source. A source asset file may also specify multiple shader definitions, so there is an optional attribute &quot;info:sourceAsset:subIdentifier&quot; whose value should be used to indicate a particular shader definition from a source asset file.</para>
+</listitem><listitem><para>If set to &quot;sourceCode&quot;, the value of &quot;info:sourceCode&quot; attribute corresponding to the desired implementation (or source type) is used as the shader source.</para>
+</listitem></itemizedlist>
+</para>
+<para><table rows="6" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>uniform token info:implementationSource = &quot;id&quot;</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_tf_token" kindref="compound">TfToken</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Token   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="usd_2sdf_2types_8h_1a71cdb29b28ede8b72fcf36fa6f8d320f" kindref="member">Variability</ref>  </para>
+</entry><entry thead="no"><para>SdfVariabilityUniform   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="usd_2usd_shade_2tokens_8h_1acd5d180f50410c958d4a0b2a88de0ac5" kindref="member">Allowed Values</ref>  </para>
+</entry><entry thead="no"><para>id, sourceAsset, sourceCode   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="220" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1a70c989409e58cc969e5ab4d9c3138ec6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDSHADE_API UsdAttribute CreateImplementationSourceAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateImplementationSourceAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_shade_node_def_a_p_i_1a25ddcdc718d150d64952223f1fe66ac6" kindref="member">GetImplementationSourceAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="228" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1ae1ed1426c1b8b73ce62425e3f989b197" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDSHADE_API UsdAttribute GetIdAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetIdAttr</name>
+        <briefdescription>
+<para>The id is an identifier for the type or purpose of the shader. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>E.g.: Texture or FractalFloat. The use of this id will depend on the render context: some will turn it into an actual shader path, some will use it to generate shader source code dynamically.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_node_def_a_p_i_1a65e38b3676550b61feb2360f68de396b" kindref="member">SetShaderId()</ref></para>
+</simplesect>
+<table rows="5" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>uniform token info:id</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_tf_token" kindref="compound">TfToken</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Token   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="usd_2sdf_2types_8h_1a71cdb29b28ede8b72fcf36fa6f8d320f" kindref="member">Variability</ref>  </para>
+</entry><entry thead="no"><para>SdfVariabilityUniform   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="250" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1ae35b1802fb52d4d1701d9c7baa54e422" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDSHADE_API UsdAttribute CreateIdAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateIdAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_shade_node_def_a_p_i_1ae1ed1426c1b8b73ce62425e3f989b197" kindref="member">GetIdAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="258" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1ab46dac36a7b6337f7e4eda7c0c5e1d6f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API SdrShaderNodeConstPtr</type>
+        <definition>USDSHADE_API SdrShaderNodeConstPtr GetShaderNodeForSourceType</definition>
+        <argsstring>(const TfToken &amp;sourceType) const</argsstring>
+        <name>GetShaderNodeForSourceType</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>sourceType</declname>
+        </param>
+        <briefdescription>
+<para>This method attempts to ensure that there is a ShaderNode in the shader registry (i.e. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="class_sdr_registry" kindref="compound">SdrRegistry</ref>) representing this shader for the given <computeroutput>sourceType</computeroutput>. It may return a null pointer if none could be found or created. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="434" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1abf3ddf536a1d8f4757037f1d1958b5e1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+        <definition>static USDSHADE_API const TfTokenVector&amp; GetSchemaAttributeNames</definition>
+        <argsstring>(bool includeInherited=true)</argsstring>
+        <name>GetSchemaAttributeNames</name>
+        <param>
+          <type>bool</type>
+          <declname>includeInherited</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Return a vector of names of all pre-declared attributes for this schema class and all its ancestor classes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does not include attributes that may be authored by custom/extended methods of the schemas involved. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="118" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1a7fb2a1d37de1157f663f6205bb15d75b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_shade_node_def_a_p_i" kindref="compound">UsdShadeNodeDefAPI</ref></type>
+        <definition>static USDSHADE_API UsdShadeNodeDefAPI Get</definition>
+        <argsstring>(const UsdStagePtr &amp;stage, const SdfPath &amp;path)</argsstring>
+        <name>Get</name>
+        <param>
+          <type>const UsdStagePtr &amp;</type>
+          <declname>stage</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Return a <ref refid="class_usd_shade_node_def_a_p_i" kindref="compound">UsdShadeNodeDefAPI</ref> holding the prim adhering to this schema at <computeroutput>path</computeroutput> on <computeroutput>stage</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no prim exists at <computeroutput>path</computeroutput> on <computeroutput>stage</computeroutput>, or if the prim at that path does not adhere to this schema, return an invalid schema object. This is shorthand for the following:</para>
+<para><programlisting><codeline><highlight class="normal">UsdShadeNodeDefAPI(stage-&gt;GetPrimAtPath(path));</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="131" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1a8fc116152496d8b782d16b80bba3c949" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>static USDSHADE_API bool CanApply</definition>
+        <argsstring>(const UsdPrim &amp;prim, std::string *whyNot=nullptr)</argsstring>
+        <name>CanApply</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <param>
+          <type>std::string *</type>
+          <declname>whyNot</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Returns true if this <bold>single-apply</bold> API schema can be applied to the given <computeroutput>prim</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If this schema can not be a applied to the prim, this returns false and, if provided, populates <computeroutput>whyNot</computeroutput> with the reason it can not be applied.</para>
+<para>Note that if CanApply returns false, that does not necessarily imply that calling Apply will fail. Callers are expected to call CanApply before calling Apply if they want to ensure that it is valid to apply a schema.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_prim_1a42cfbef37f98df2c20c15044c333fe4a" kindref="member">UsdPrim::GetAppliedSchemas()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_prim_1a582b449631f9e073e0e04582c66ce04a" kindref="member">UsdPrim::HasAPI()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_prim_1a2e4b59a7cf7fa0d677270163ea6ad029" kindref="member">UsdPrim::CanApplyAPI()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_prim_1ad3ef9d2cec618a0f43fce5295b5b176e" kindref="member">UsdPrim::ApplyAPI()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_prim_1aab70d4fa20d53a6675734205ded2da22" kindref="member">UsdPrim::RemoveAPI()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="152" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1a97bb6dfef82bd83cc3f1a28d37d74c9d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_shade_node_def_a_p_i" kindref="compound">UsdShadeNodeDefAPI</ref></type>
+        <definition>static USDSHADE_API UsdShadeNodeDefAPI Apply</definition>
+        <argsstring>(const UsdPrim &amp;prim)</argsstring>
+        <name>Apply</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <briefdescription>
+<para>Applies this <bold>single-apply</bold> API schema to the given <computeroutput>prim</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This information is stored by adding &quot;NodeDefAPI&quot; to the token-valued, listOp metadata <emphasis>apiSchemas</emphasis> on the prim.</para>
+<para><simplesect kind="return"><para>A valid <ref refid="class_usd_shade_node_def_a_p_i" kindref="compound">UsdShadeNodeDefAPI</ref> object is returned upon success. An invalid (or empty) <ref refid="class_usd_shade_node_def_a_p_i" kindref="compound">UsdShadeNodeDefAPI</ref> object is returned upon failure. See <ref refid="class_usd_prim_1ad3ef9d2cec618a0f43fce5295b5b176e" kindref="member">UsdPrim::ApplyAPI()</ref> for conditions resulting in failure.</para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_prim_1a42cfbef37f98df2c20c15044c333fe4a" kindref="member">UsdPrim::GetAppliedSchemas()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_prim_1a582b449631f9e073e0e04582c66ce04a" kindref="member">UsdPrim::HasAPI()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_prim_1a2e4b59a7cf7fa0d677270163ea6ad029" kindref="member">UsdPrim::CanApplyAPI()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_prim_1ad3ef9d2cec618a0f43fce5295b5b176e" kindref="member">UsdPrim::ApplyAPI()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_prim_1aab70d4fa20d53a6675734205ded2da22" kindref="member">UsdPrim::RemoveAPI()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="171" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1a9b47498492265f1a224b6ec58b109a88" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USDSHADE_API <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref></type>
+        <definition>USDSHADE_API UsdSchemaKind _GetSchemaKind</definition>
+        <argsstring>() const override</argsstring>
+        <name>_GetSchemaKind</name>
+        <reimplements refid="class_usd_a_p_i_schema_base_1a408aa7d080a2672e88403126cc197095">_GetSchemaKind</reimplements>
+        <briefdescription>
+<para>Returns the kind of schema this class belongs to. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="178" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1aa9360fb676c331455b1c118acc45d8e9" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+        <definition>static USDSHADE_API const TfType&amp; _GetStaticTfType</definition>
+        <argsstring>()</argsstring>
+        <name>_GetStaticTfType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="184" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1abbc02364dd87e9f147201cbd8d260d43" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool _IsTypedSchema</definition>
+        <argsstring>()</argsstring>
+        <name>_IsTypedSchema</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="186" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_usd_shade_node_def_a_p_i_1a5dfe3da94c3b2153585c9bd276122e76" prot="private" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USDSHADE_API const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+        <definition>USDSHADE_API const TfType&amp; _GetTfType</definition>
+        <argsstring>() const override</argsstring>
+        <name>_GetTfType</name>
+        <reimplements refid="class_usd_a_p_i_schema_base_1a6f7a3688b0129a59c6e70e925d7ac732">_GetTfType</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/nodeDefAPI.h" line="190" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="class_usd_shade_node_def_a_p_i" kindref="compound">UsdShadeNodeDefAPI</ref> is an API schema that provides attributes for a prim to select a corresponding Shader Node Definition (&quot;Sdr Node&quot;), as well as to look up a runtime entry for that shader node in the form of an <ref refid="class_sdr_shader_node" kindref="compound">SdrShaderNode</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="class_usd_shade_node_def_a_p_i" kindref="compound">UsdShadeNodeDefAPI</ref> is intended to be a pre-applied API schema for any prim type that wants to refer to the <ref refid="class_sdr_registry" kindref="compound">SdrRegistry</ref> for further implementation details about the behavior of that prim. The primary use in UsdShade itself is as <ref refid="class_usd_shade_shader" kindref="compound">UsdShadeShader</ref>, which is a basis for material shading networks (<ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref>), but this is intended to be used in other domains that also use the Sdr node mechanism.</para>
+<para>This schema provides properties that allow a prim to identify an external node definition, either by a direct identifier key into the <ref refid="class_sdr_registry" kindref="compound">SdrRegistry</ref> (info:id), an asset to be parsed by a suitable <ref refid="class_ndr_parser_plugin" kindref="compound">NdrParserPlugin</ref> (info:sourceAsset), or an inline source code that must also be parsed (info:sourceCode); as well as a selector attribute to determine which specifier is active (info:implementationSource).</para>
+<para>For any described attribute <emphasis>Fallback</emphasis> <emphasis>Value</emphasis> or <emphasis>Allowed</emphasis> <emphasis>Values</emphasis> below that are text/tokens, the actual token is published and defined in <ref refid="usd_2usd_shade_2tokens_8h_1acd5d180f50410c958d4a0b2a88de0ac5" kindref="member">UsdShadeTokens</ref>. So to set an attribute to the value &quot;rightHanded&quot;, use UsdShadeTokens-&gt;rightHanded as the value. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="8176">
+        <label>UsdShadeNodeDefAPI</label>
+        <link refid="class_usd_shade_node_def_a_p_i"/>
+        <childnode refid="8177" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8178">
+        <label>UsdSchemaBase</label>
+        <link refid="class_usd_schema_base"/>
+      </node>
+      <node id="8177">
+        <label>UsdAPISchemaBase</label>
+        <link refid="class_usd_a_p_i_schema_base"/>
+        <childnode refid="8178" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="8179">
+        <label>UsdShadeNodeDefAPI</label>
+        <link refid="class_usd_shade_node_def_a_p_i"/>
+        <childnode refid="8180" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8181">
+        <label>UsdSchemaBase</label>
+        <link refid="class_usd_schema_base"/>
+      </node>
+      <node id="8180">
+        <label>UsdAPISchemaBase</label>
+        <link refid="class_usd_a_p_i_schema_base"/>
+        <childnode refid="8181" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/usd/usdShade/nodeDefAPI.h" line="85" column="1" bodyfile="pxr/usd/usdShade/nodeDefAPI.h" bodystart="84" bodyend="437"/>
+    <listofallmembers>
+      <member refid="class_usd_schema_base_1ad99ec8284868478b50e8fc3475880dab" prot="protected" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>_CreateAttr</name></member>
+      <member refid="class_usd_a_p_i_schema_base_1aa27e613f624c34d85fc17cbf58956245" prot="protected" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>_GetInstanceName</name></member>
+      <member refid="class_usd_a_p_i_schema_base_1aaf34e3836e442b3a04d517febdb69cc3" prot="protected" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>_GetMultipleApplyInstanceNames</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1a9b47498492265f1a224b6ec58b109a88" prot="protected" virt="virtual"><scope>UsdShadeNodeDefAPI</scope><name>_GetSchemaKind</name></member>
+      <member refid="class_usd_schema_base_1a6c51fb3251d5fde5ffa9fe7a998ce970" prot="protected" virt="virtual"><scope>UsdShadeNodeDefAPI</scope><name>_GetSchemaType</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1aa9360fb676c331455b1c118acc45d8e9" prot="private" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>_GetStaticTfType</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1a5dfe3da94c3b2153585c9bd276122e76" prot="private" virt="virtual"><scope>UsdShadeNodeDefAPI</scope><name>_GetTfType</name></member>
+      <member refid="class_usd_schema_base_1aa29ea4c951d8debfd8085a28c6aa80ca" prot="protected" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>_GetType</name></member>
+      <member refid="class_usd_a_p_i_schema_base_1ad91204cc9fb92f0306372e074052190f" prot="protected" virt="virtual"><scope>UsdShadeNodeDefAPI</scope><name>_IsCompatible</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1abbc02364dd87e9f147201cbd8d260d43" prot="private" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>_IsTypedSchema</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1a97bb6dfef82bd83cc3f1a28d37d74c9d" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>Apply</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1a8fc116152496d8b782d16b80bba3c949" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>CanApply</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1ae35b1802fb52d4d1701d9c7baa54e422" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>CreateIdAttr</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1a70c989409e58cc969e5ab4d9c3138ec6" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>CreateImplementationSourceAttr</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1a7fb2a1d37de1157f663f6205bb15d75b" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>Get</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1ae1ed1426c1b8b73ce62425e3f989b197" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>GetIdAttr</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1a926a68f38f43c290f8e6175ab3d20bee" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>GetImplementationSource</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1a25ddcdc718d150d64952223f1fe66ac6" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>GetImplementationSourceAttr</name></member>
+      <member refid="class_usd_schema_base_1a936bfb1e341cc81184c64af44763c433" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>GetPath</name></member>
+      <member refid="class_usd_schema_base_1a4ba10e023e7f3f3c93131bc7fc3146b7" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>GetPrim</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1abf3ddf536a1d8f4757037f1d1958b5e1" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>GetSchemaAttributeNames</name></member>
+      <member refid="class_usd_schema_base_1a030d03e2a9839d9c3da0fbca8c3722d4" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>GetSchemaClassPrimDefinition</name></member>
+      <member refid="class_usd_schema_base_1aeac68c5514faebb20c5ae3cb930170de" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>GetSchemaKind</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1ad12ad85a043f42d00360eeeac8cb171a" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>GetShaderId</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1ab46dac36a7b6337f7e4eda7c0c5e1d6f" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>GetShaderNodeForSourceType</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1a1be994f4511e96bd4438b1589781ad87" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>GetSourceAsset</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1ab22d34597f22b0dbdefdd4fe1d694a38" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>GetSourceAssetSubIdentifier</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1a110a867a04c19f23db8e0fca09cb74ff" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>GetSourceCode</name></member>
+      <member refid="class_usd_schema_base_1ad658b6730d4246ee1f903ce4ce18fdfe" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>IsAPISchema</name></member>
+      <member refid="class_usd_schema_base_1a68e867971cc992c5b03e73725c405c05" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>IsAppliedAPISchema</name></member>
+      <member refid="class_usd_schema_base_1ae2c90cefba1b2e09dc117a7d972009cb" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>IsConcrete</name></member>
+      <member refid="class_usd_schema_base_1af752510dea0c7106aa89832e60dfa3d5" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>IsMultipleApplyAPISchema</name></member>
+      <member refid="class_usd_schema_base_1afa15659f4fa280e4c0772173d7471920" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>IsTyped</name></member>
+      <member refid="class_usd_schema_base_1a586531d84339318108c817f91367e626" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>operator bool</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1a3e5fc43aea5aea4908c3ce980fdf8908" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>schemaKind</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1a65e38b3676550b61feb2360f68de396b" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>SetShaderId</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1a2744a59d6a29ce10f785579a7bb11caa" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>SetSourceAsset</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1abb83b17c47d74320499c2936a9305458" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>SetSourceAssetSubIdentifier</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1a91aea679c54f340f64eaea09c9c3bae7" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>SetSourceCode</name></member>
+      <member refid="class_usd_a_p_i_schema_base_1a693760be7357b341ca92cae42af89a2a" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>UsdAPISchemaBase</name></member>
+      <member refid="class_usd_a_p_i_schema_base_1aa02eade67d6ca4c0d58fe3b7e5a4cc9a" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>UsdAPISchemaBase</name></member>
+      <member refid="class_usd_a_p_i_schema_base_1ae1aaced053a4cc13c21b444b27130c75" prot="protected" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>UsdAPISchemaBase</name></member>
+      <member refid="class_usd_a_p_i_schema_base_1ac9df31df96c3346f55ba31be7472f106" prot="protected" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>UsdAPISchemaBase</name></member>
+      <member refid="class_usd_schema_base_1a32e0a9b0465ecf201fb501753baa8587" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>UsdSchemaBase</name></member>
+      <member refid="class_usd_schema_base_1a73921308189043c86867d6bd9012b4af" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>UsdSchemaBase</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1aff8b8d83211f127c6c4cba48fb7d3334" prot="private" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>UsdSchemaRegistry</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1a8b26a982b7956420567632e2abc91f78" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>UsdShadeNodeDefAPI</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1a71dbb4f82dfeaa71f5d01b13da6fdceb" prot="public" virt="non-virtual"><scope>UsdShadeNodeDefAPI</scope><name>UsdShadeNodeDefAPI</name></member>
+      <member refid="class_usd_a_p_i_schema_base_1a426f2a53141cc3eefa43fce755f83108" prot="public" virt="pure-virtual"><scope>UsdShadeNodeDefAPI</scope><name>~UsdAPISchemaBase</name></member>
+      <member refid="class_usd_schema_base_1a3e97b9a7311478da9f2d168bea29560e" prot="public" virt="virtual"><scope>UsdShadeNodeDefAPI</scope><name>~UsdSchemaBase</name></member>
+      <member refid="class_usd_shade_node_def_a_p_i_1a74b8163578abb489a76096d5f5a8a8dc" prot="public" virt="virtual"><scope>UsdShadeNodeDefAPI</scope><name>~UsdShadeNodeDefAPI</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

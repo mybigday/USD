@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="usd_render_page_front" kind="page">
+    <compoundname>usdRender_page_front</compoundname>
+    <title>UsdRender : USD Render Schema</title>
+    <tableofcontents>
+      <tocsect>
+        <name>Structure and Organization</name>
+        <reference>usd_render_page_front_1UsdRenderStructureAndOrganization</reference>
+    <tableofcontents>
+      <tocsect>
+        <name>Concepts</name>
+        <reference>usd_render_page_front_1UsdRenderConcepts</reference>
+    </tocsect>
+      <tocsect>
+        <name>Reading settings</name>
+        <reference>usd_render_page_front_1UsdRenderReadingSettings</reference>
+    </tocsect>
+      <tocsect>
+        <name>Conventions</name>
+        <reference>usd_render_page_front_1UsdRenderConventions</reference>
+    </tocsect>
+    </tableofcontents>
+    </tocsect>
+      <tocsect>
+        <name>How settings affect rendering</name>
+        <reference>usd_render_page_front_1UsdRenderHowSettingsAffectRendering</reference>
+    <tableofcontents>
+      <tocsect>
+        <name>Camera</name>
+        <reference>usd_render_page_front_1UsdRenderCamera</reference>
+    </tocsect>
+      <tocsect>
+        <name>Pixels</name>
+        <reference>usd_render_page_front_1UsdRenderPixels</reference>
+    <tableofcontents>
+      <tocsect>
+        <name>Aspect Ratio Policy</name>
+        <reference>usd_render_page_front_1UsdRenderAspectRatioPolicy</reference>
+    </tocsect>
+      <tocsect>
+        <name>Cropping, Tiling, Overscan</name>
+        <reference>usd_render_page_front_1UsdRenderCroppingTilingOverscan</reference>
+    </tocsect>
+      <tocsect>
+        <name>Rasterization Rule</name>
+        <reference>usd_render_page_front_1UsdRenderRasterizationRule</reference>
+    </tocsect>
+    </tableofcontents>
+    </tocsect>
+    </tableofcontents>
+    </tocsect>
+      <tocsect>
+        <name>Extensions</name>
+        <reference>usd_render_page_front_1UsdRenderExtensinos</reference>
+    </tocsect>
+      <tocsect>
+        <name>Example Usage</name>
+        <reference>usd_render_page_front_1UsdRenderExampleUsage</reference>
+    </tocsect>
+    </tableofcontents>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>UsdRender provides schemas and behaviors for describing renders.</para>
+<para><emphasis>Rendering</emphasis> refers to the process of generating images of a scene. In addition to images, rendering can also produce related byproducts such as depth maps, light probes, or point clouds. UsdRender provides primitives for configuring high-level aspects of the rendering process referred to collectively as <emphasis>render settings</emphasis>. An overview of the process follows.</para>
+<sect1 id="usd_render_page_front_1UsdRenderStructureAndOrganization">
+<title>Structure and Organization</title>
+<sect2 id="usd_render_page_front_1UsdRenderConcepts">
+<title>Concepts</title>
+<para><itemizedlist>
+<listitem><para><ref refid="class_usd_render_settings" kindref="compound">UsdRenderSettings</ref> describes top-level settings required to invoke a renderer. It specifies one or more <emphasis>products</emphasis>, representing artifacts for the renderer to produce.</para>
+</listitem><listitem><para><ref refid="class_usd_render_product" kindref="compound">UsdRenderProduct</ref> describes a single product. It often corresponds to an image, but may instead be a point cloud or other artifact produced using techniques related to image rendering. Each product inherits the top-level settings, but may additionally specify product-specific settings or overrides.</para>
+</listitem><listitem><para><ref refid="class_usd_render_settings_base" kindref="compound">UsdRenderSettingsBase</ref> represents the common settings shared by top-level settings and particular products.</para>
+</listitem><listitem><para><ref refid="class_usd_render_var" kindref="compound">UsdRenderVar</ref> describes a channel of computed output data, sometimes referred to as an <emphasis>arbitrary output variable</emphasis> or AOV. A product may contain multiple channels of data representing related values or variables sampled by a render process. The render var prim specifies details for how the renderer should produce the value. Examples of render variables include geometric measurements such as camera-space depth; quantities emitted by material shaders; light path expressions (LPE&apos;s); and quantities intrinsic to the renderer such as computation time per pixel.</para>
+</listitem><listitem><para><ref refid="struct_usd_render_spec" kindref="compound">UsdRenderSpec</ref> is a self-contained, evaluated specification of render settings, suitable for consumption by a backend.</para>
+</listitem><listitem><para><ref refid="class_usd_render_pass" kindref="compound">UsdRenderPass</ref> bridges the rest of usdRender to the broader set of renderers in order to facilitate multiple invocations of different renderers, some of which may not describe a render in terms of <ref refid="class_usd_render_settings" kindref="compound">UsdRenderSettings</ref>. In addition to organizing the different renders and processes (like denoising) that composite to produce a &quot;final frame&quot;, <ref refid="class_usd_render_pass" kindref="compound">UsdRenderPass</ref> codifies the dependencies between passes, and that a single Pass generally represents not a single set of Products, but a sequence of temporally varying frames of outputs that depend on temporally varying inputs.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="usd_render_page_front_1UsdRenderReadingSettings">
+<title>Reading settings</title>
+<para>A <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> may contain multiple <ref refid="class_usd_render_settings" kindref="compound">UsdRenderSettings</ref> prims representing distinct groups of settings. A settings prim may be nominated as a useful default in layer metadata using the <computeroutput>renderSettingsPrimPath</computeroutput> field. Like all stage metadata, <computeroutput>renderSettingsPrimPath</computeroutput> can be authoredin a stage&apos;s root layer or session layer, but no other subLayers of the root layer. <ref refid="class_usd_render_settings_1ac7147d405791c6e212fd18297ad0a5e6" kindref="member">UsdRenderSettings::GetStageRenderSettings()</ref> will consult this metadata and return the associated prim.</para>
+<para><ref refid="usd_render_2spec_8h_1a38a6e0e21046ca986af3dd905fd4a79f" kindref="member">UsdRenderComputeSpec()</ref> will collect and evaluate <ref refid="class_usd_render_settings" kindref="compound">UsdRenderSettings</ref> as a self-contained specification, <ref refid="struct_usd_render_spec" kindref="compound">UsdRenderSpec</ref>.</para>
+</sect2>
+<sect2 id="usd_render_page_front_1UsdRenderConventions">
+<title>Conventions</title>
+<para>Production toolsets may want to efficiently identify and operate on render settings without paying costs proportional to the size of the scene. To facilitate this, UsdRender follows a naming convention that all render settings in the scene must live under the path <computeroutput>&lt;/Render&gt;</computeroutput>. By requiring all render-related specification to be located under a unique root-level prim, we gain several advantages:</para>
+<para><itemizedlist>
+<listitem><para>We can leverage <ref refid="class_usd_stage_1ade1d90d759a085022ba76ff910815320" kindref="member">UsdStage::OpenMasked()</ref> to compose just the rendering-related prims under <computeroutput>&lt;/Render&gt;</computeroutput>, making isolated access to this data fast, regardless of scene complexity.</para>
+</listitem><listitem><para>This constrained organization facilitates sharing of rendering data within a production pipeline, as every &quot;shot&quot; can sublayer in sequence, production, and facility-level layers that each contain rendering data, and we are ensured consistent composition (and ease of discovery) of all the data.</para>
+</listitem></itemizedlist>
+</para>
+<para>This does, in one sense, divorce a scene from its rendering specification, necessitating further management if you need to combine scenes. For example, should you want to reference one scene into another, you will need to reference in the root of the scene&apos;s geometry (<computeroutput>&lt;/World&gt;</computeroutput> in Pixar&apos;s pipeline), but then the scene&apos;s render specification gets left behind. The settings can be recaptured by separately referencing the scene&apos;s <computeroutput>&lt;/Render&gt;</computeroutput> prim onto the referencing scene&apos;s <computeroutput>&lt;/Render&gt;</computeroutput> prim, although some path corrections may be required. We think these situations arise infrequently enough that they do not outweigh the benefits of Render data always being in a known location. In practice, while we do organize and compose together scene geometry, and we also organize and compose together render settings, these are usually independent concerns that are not often tightly coupled.</para>
+</sect2>
+</sect1>
+<sect1 id="usd_render_page_front_1UsdRenderHowSettingsAffectRendering">
+<title>How settings affect rendering</title>
+<para><anchor id="usd_render_page_front_1UsdRender_Camera"/></para>
+<sect2 id="usd_render_page_front_1UsdRenderCamera">
+<title>Camera</title>
+<para>An image is rendered by viewing a scene from a particular camera. <ref refid="class_usd_render_settings_base" kindref="compound">UsdRenderSettingsBase</ref> designates the camera via a relationship to a <ref refid="class_usd_geom_camera" kindref="compound">UsdGeomCamera</ref> prim.</para>
+<para><ref refid="class_usd_geom_camera" kindref="compound">UsdGeomCamera</ref> attributes describe its <emphasis>transform</emphasis> and <emphasis>projection</emphasis>. The transform maps world coordinates to camera-relative view coordinates. The projection maps view coordinates to screen coordinates. The render settings for a <ref refid="class_usd_render_product" kindref="compound">UsdRenderProduct</ref> map screen coordinates to its pixel coordinates.</para>
+<para>The camera has additional attributes to bound the <emphasis>frustum</emphasis>, the volume of space viewed in the image. These attributes include the near and far clipping range, as well as optional additional clipping planes. The camera also specifies an <emphasis>aperture</emphasis>, which bounds the x and y axes of screen space. The aperture is specified in view coordinates using the same units as focal length (typically, millimeters). For a perspective projection, the aperture describes an axis-aligned rectangle in the plane sitting at the focal length in front of the camera origin:</para>
+<para><image type="html" name="aperture.svg"></image>
+</para>
+<para>For an orthographic projection, no reference plane is needed, and so the aperture simply bounds the x/y axes of view space. The aperture is still expresed in the same units as focal length in this case, although the focal length does not itself pertain to orthographic projection.</para>
+<para>The projection of the aperture bounds to screen coordiantes is known as the <emphasis>screen window</emphasis>. UsdRenderSettings::ComputeDescription() computes screen window bounds.</para>
+<para>The camera attributes determine the visual composition of the scene as an image, and as such represent creative choices distinct from the technical render settings used to configure image generation. This is why some attributes originate from the camera and others (such as pixel resolution) are expressed separately as render settings, and may vary per render product.</para>
+</sect2>
+<sect2 id="usd_render_page_front_1UsdRenderPixels">
+<title>Pixels</title>
+<para>The screen aperture is sampled in a rectangular array of pixels known as the <emphasis>raster image</emphasis>. Typically, the full aperture is sampled. Render settings specify the <computeroutput>resolution</computeroutput> and <computeroutput>pixelAspectRatio</computeroutput> of the image pixel grid, which determines density and placement of pixel samples in the aperture.</para>
+<para><image type="html" name="pixelAspectRatio.svg"></image>
+</para>
+<para>The resolution and pixel aspect ratio together determine the total aspect ratio of the image. The pixelAspectRatio defaults to 1.0, indicating square pixels, however it is possible to use a different aspect ratio. The following is an example of a non-square pixel aspect ratio compensating for a non-square resolution, yielding a square image:</para>
+<para><image type="html" name="nonSquarePixels.svg"></image>
+</para>
+<sect3 id="usd_render_page_front_1UsdRenderAspectRatioPolicy">
+<title>Aspect Ratio Policy</title>
+<para>Because the camera aperture and image dimensions are specified independently, there may be a mismatch in their aspect ratio. For example, an interactive viewport may be resized to a ratio that does not match the camera, or a pipeline may be configured with a standard resolution that may not match a particular camera.</para>
+<para>If the aspect ratio of the image does not match that of the aperture, an <computeroutput>aspectRatioConformPolicy</computeroutput> resolves the mismatch. The default policy expands the aperture as needed to fill the image <mdash/> guaranteeing that the camera composition remains visible, but potentially revealing additonal areas of the scene. Other policy options allow for reducing the aperture, computing the effective pixelAspectRatio to exactly cover the aperture, or maintaining other constraints.</para>
+</sect3>
+<sect3 id="usd_render_page_front_1UsdRenderCroppingTilingOverscan">
+<title>Cropping, Tiling, Overscan</title>
+<para>It can be useful to crop a render to isolate part of the scene, to render a large image as separate tiles, or to sample extra pixels beyond the aperture boundary to support post-processing kernels. This is controlled by the <emphasis>data window</emphasis>, which specifies the axis-aligned rectangular region in which to render data.</para>
+<para>The data window is expressed in normalized device coordinates (NDC) using the <computeroutput>dataWindowNDC</computeroutput> attribute. It is normalized to the range of the policy-adjusted aperture. NDC coordinates allow the data window to be expressed in a resolution-independent form. (0,0) corresponds to the lower-left corner of the aperture, and (1,1) corresponds to the upper-right corner. The default data window matches the full aperture.</para>
+</sect3>
+<sect3 id="usd_render_page_front_1UsdRenderRasterizationRule">
+<title>Rasterization Rule</title>
+<para>A pixel is included in the rendered image if its pixel center is contained within the requested data window. Pixel centers that fall exactly on the left or bottom (i.e. minimum coordinate) edge of the data window are included; pixel centers on the top or right edge (i.e. maximum coordinate) are excluded. This ensures that contiguous data window intervals produce contiguous pixel intervals, without overlap or gaps.</para>
+<para><image type="html" name="dataWindow.svg"></image>
+</para>
+</sect3>
+</sect2>
+</sect1>
+<sect1 id="usd_render_page_front_1UsdRenderExtensinos">
+<title>Extensions</title>
+<para>UsdRenderSettingsAPI is a base class API schema. USD schema libraries for particular renderers can subclass it with their own specific API schemas to encode settings specific to that renderer. Applications that import, inspect, or edit these can use the type hierarchy of API schemas to generically inspect the settings.</para>
+</sect1>
+<sect1 id="usd_render_page_front_1UsdRenderExampleUsage">
+<title>Example Usage</title>
+<para>The following example is provided to illustrate the above concepts.</para>
+<para><programlisting filename="doxygen/renderSettings.usda"><codeline><highlight class="normal">#usda1.0</highlight></codeline>
+<codeline><highlight class="normal">(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>renderSettingsPrimPath<sp/>=<sp/>&quot;/Render/PrimarySettings&quot;</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>Scope<sp/>&quot;Render&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>RenderSettings<sp/>&quot;PrimarySettings&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rel<sp/>products<sp/>=<sp/>&lt;/Render/PrimaryProduct&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int2<sp/>resolution<sp/>=<sp/>(512,<sp/>512)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>RenderProduct<sp/>&quot;PrimaryProduct&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rel<sp/>camera<sp/>=<sp/>&lt;/World/main_cam&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token<sp/>productName<sp/>=<sp/>&quot;/scratch/tmp/render000009.exr&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rel<sp/>orderedVars<sp/>=<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Render/Vars/color&gt;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Render/Vars/alpha&gt;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Render/Vars/directDiffuse&gt;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Render/Vars/id&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Scope<sp/>&quot;Vars&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>RenderVar<sp/>&quot;color&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>sourceName<sp/>=<sp/>&quot;Ci&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>RenderVar<sp/>&quot;alpha&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token<sp/>dataType<sp/>=<sp/>&quot;float&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>sourceName<sp/>=<sp/>&quot;a&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>RenderVar<sp/>&quot;directDiffuse&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>sourceName<sp/>=<sp/>&quot;C&lt;RD&gt;[&lt;L.&gt;O]&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token<sp/>sourceType<sp/>=<sp/>&quot;lpe&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>RenderVar<sp/>&quot;id&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token<sp/>dataType<sp/>=<sp/>&quot;int&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>sourceName<sp/>=<sp/>&quot;id&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Scope<sp/>&quot;Passes&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>RenderPass<sp/>&quot;beauty&quot;{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token<sp/>passType<sp/>=<sp/>&quot;prman&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rel<sp/>renderSource<sp/>=<sp/>&lt;Render/PrimarySettings&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string[]<sp/>command<sp/>=<sp/>[&quot;prman&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>RenderPass<sp/>&quot;composite&quot;{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token<sp/>passType<sp/>=<sp/>&quot;nuke&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>asset<sp/>fileName<sp/>=<sp/>@composite.nk@</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>this<sp/>Nuke-namespaced<sp/>property<sp/>might<sp/>come<sp/>from<sp/>a<sp/>hypothetical<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Nuke-supplied<sp/>API<sp/>schema<sp/>applied<sp/>to<sp/>this<sp/>prim</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>nuke:writeNode<sp/>=<sp/>&quot;WriteFinalComposite&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rel<sp/>renderSource<sp/>=<sp/>&lt;/Render/Passes/composite.nuke:writeNode&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string[]<sp/>command<sp/>=<sp/>[&quot;nuke&quot;,<sp/>&quot;-x&quot;,<sp/>&quot;-c&quot;,<sp/>&quot;32G&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rel<sp/>inputPasses<sp/>=<sp/>&lt;/Render/Passes/beauty&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

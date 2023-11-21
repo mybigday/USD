@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="struct_tf_malloc_tag_1_1_call_tree_1_1_path_node" kind="struct" language="C++" prot="public">
+    <compoundname>TfMallocTag::CallTree::PathNode</compoundname>
+    <includes refid="malloc_tag_8h" local="no">mallocTag.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_tf_malloc_tag_1_1_call_tree_1_1_path_node_1a5bbe4f15c5900eb8404f23737a775ab8" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t nBytes</definition>
+        <argsstring></argsstring>
+        <name>nBytes</name>
+        <briefdescription>
+<para>Allocated bytes by this or descendant nodes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="81" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_tf_malloc_tag_1_1_call_tree_1_1_path_node_1a75292c152c550890f041dae6d7384159" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t nBytesDirect</definition>
+        <argsstring></argsstring>
+        <name>nBytesDirect</name>
+        <briefdescription>
+<para>Allocated bytes (only for this node). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="82" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_tf_malloc_tag_1_1_call_tree_1_1_path_node_1a3b4e6fbd9cce949b43399ace6cc9534b" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t nAllocations</definition>
+        <argsstring></argsstring>
+        <name>nAllocations</name>
+        <briefdescription>
+<para>The number of allocations for this node. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="83" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_tf_malloc_tag_1_1_call_tree_1_1_path_node_1a40bd09dd4332a21fc6530584e92b9141" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string siteName</definition>
+        <argsstring></argsstring>
+        <name>siteName</name>
+        <briefdescription>
+<para>Tag name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="84" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_tf_malloc_tag_1_1_call_tree_1_1_path_node_1a147db986a16606450fd08b7141d93ede" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="struct_tf_malloc_tag_1_1_call_tree_1_1_path_node" kindref="compound">PathNode</ref> &gt;</type>
+        <definition>std::vector&lt;PathNode&gt; children</definition>
+        <argsstring></argsstring>
+        <name>children</name>
+        <briefdescription>
+<para>Children nodes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="86" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Node in the call tree structure. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A <computeroutput><ref refid="struct_tf_malloc_tag_1_1_call_tree_1_1_path_node" kindref="compound">PathNode</ref></computeroutput> captures the hierarchy of active <computeroutput>TfAutoMallocTag</computeroutput> objects that are pushed and popped during program execution. Each <computeroutput><ref refid="struct_tf_malloc_tag_1_1_call_tree_1_1_path_node" kindref="compound">PathNode</ref></computeroutput> thus describes a sequence of call-sites (i.e. a path down the call tree). Repeated call sites (in the case of co-recursive function calls) can be skipped, e.g. pushing tags &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;B&quot;, &quot;C&quot; leads to only three path-nodes, representing the paths &quot;A&quot;, &quot;AB&quot;, and &quot;ABC&quot;. Allocations done at the bottom (i.e. when tags &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;B&quot;, &quot;C&quot; are all active) are billed to the longest path node in the sequence, which corresponds to the path &quot;ABC&quot;).</para>
+<para>Path nodes track both the memory they incur directly (<computeroutput>nBytesDirect</computeroutput>) but more importantly, the total memory allocated by themselves and any of their children (<computeroutput>nBytes</computeroutput>). The name of a node (<computeroutput>siteName</computeroutput>) corresponds to the tag name of the final tag in the path. </para>
+    </detaileddescription>
+    <location file="pxr/base/tf/mallocTag.h" line="80" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="80" bodyend="87"/>
+    <listofallmembers>
+      <member refid="struct_tf_malloc_tag_1_1_call_tree_1_1_path_node_1a147db986a16606450fd08b7141d93ede" prot="public" virt="non-virtual"><scope>TfMallocTag::CallTree::PathNode</scope><name>children</name></member>
+      <member refid="struct_tf_malloc_tag_1_1_call_tree_1_1_path_node_1a3b4e6fbd9cce949b43399ace6cc9534b" prot="public" virt="non-virtual"><scope>TfMallocTag::CallTree::PathNode</scope><name>nAllocations</name></member>
+      <member refid="struct_tf_malloc_tag_1_1_call_tree_1_1_path_node_1a5bbe4f15c5900eb8404f23737a775ab8" prot="public" virt="non-virtual"><scope>TfMallocTag::CallTree::PathNode</scope><name>nBytes</name></member>
+      <member refid="struct_tf_malloc_tag_1_1_call_tree_1_1_path_node_1a75292c152c550890f041dae6d7384159" prot="public" virt="non-virtual"><scope>TfMallocTag::CallTree::PathNode</scope><name>nBytesDirect</name></member>
+      <member refid="struct_tf_malloc_tag_1_1_call_tree_1_1_path_node_1a40bd09dd4332a21fc6530584e92b9141" prot="public" virt="non-virtual"><scope>TfMallocTag::CallTree::PathNode</scope><name>siteName</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

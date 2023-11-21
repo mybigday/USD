@@ -1,0 +1,493 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_sdf_attribute_spec" kind="class" language="C++" prot="public">
+    <compoundname>SdfAttributeSpec</compoundname>
+    <basecompoundref refid="class_sdf_property_spec" prot="public" virt="non-virtual">SdfPropertySpec</basecompoundref>
+    <includes refid="attribute_spec_8h" local="no">attributeSpec.h</includes>
+      <sectiondef kind="user-defined">
+      <header>Spec construction</header>
+      <memberdef kind="function" id="class_sdf_attribute_spec_1a8dbf1a7264a9a54e3ec735255361c06f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API SdfAttributeSpecHandle</type>
+        <definition>static SDF_API SdfAttributeSpecHandle New</definition>
+        <argsstring>(const SdfPrimSpecHandle &amp;owner, const std::string &amp;name, const SdfValueTypeName &amp;typeName, SdfVariability variability=SdfVariabilityVarying, bool custom=false)</argsstring>
+        <name>New</name>
+        <param>
+          <type>const SdfPrimSpecHandle &amp;</type>
+          <declname>owner</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref> &amp;</type>
+          <declname>typeName</declname>
+        </param>
+        <param>
+          <type><ref refid="usd_2sdf_2types_8h_1a71cdb29b28ede8b72fcf36fa6f8d320f" kindref="member">SdfVariability</ref></type>
+          <declname>variability</declname>
+          <defval>SdfVariabilityVarying</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>custom</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a new prim attribute instance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates and returns a new attribute for the given prim. The <computeroutput>owner</computeroutput> will own the newly created attribute. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="74" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Connections</header>
+      <memberdef kind="function" id="class_sdf_attribute_spec_1ac5899ba125bb491af5fa2bddcfb2abff" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_list_editor_proxy" kindref="compound">SdfConnectionsProxy</ref></type>
+        <definition>SDF_API SdfConnectionsProxy GetConnectionPathList</definition>
+        <argsstring>() const</argsstring>
+        <name>GetConnectionPathList</name>
+        <briefdescription>
+<para>Returns a proxy for editing the attribute&apos;s connection paths. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The returned proxy, which is an <ref refid="class_sdf_list_editor_proxy" kindref="compound">SdfListEditorProxy</ref>, modifies the <ref refid="class_sdf_list_op" kindref="compound">SdfListOp</ref> that represents this attribute&apos;s connections. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="89" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_attribute_spec_1a80de5862fc4fda3650a17d6b3620d773" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool HasConnectionPaths</definition>
+        <argsstring>() const</argsstring>
+        <name>HasConnectionPaths</name>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if any connection paths are set on this attribute. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="93" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_attribute_spec_1a4851ed6a239581cfe335477484030c41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API void</type>
+        <definition>SDF_API void ClearConnectionPaths</definition>
+        <argsstring>()</argsstring>
+        <name>ClearConnectionPaths</name>
+        <briefdescription>
+<para>Clears the connection paths for this attribute. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="97" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Attribute value API</header>
+      <memberdef kind="function" id="class_sdf_attribute_spec_1a8c4d71c9f3c62203e046c7fc997d1c74" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API VtTokenArray</type>
+        <definition>SDF_API VtTokenArray GetAllowedTokens</definition>
+        <argsstring>() const</argsstring>
+        <name>GetAllowedTokens</name>
+        <briefdescription>
+<para>Returns the allowed tokens metadata for this attribute. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Consumers may use this metadata to define a set of predefined options for this attribute&apos;s value. However, this metadata is purely advisory. It is up to the consumer to perform any validation against this set of tokens, if desired. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="109" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_attribute_spec_1a06dc475dc5f47f286c45249ff0249de0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API void</type>
+        <definition>SDF_API void SetAllowedTokens</definition>
+        <argsstring>(const VtTokenArray &amp;allowedTokens)</argsstring>
+        <name>SetAllowedTokens</name>
+        <param>
+          <type>const VtTokenArray &amp;</type>
+          <declname>allowedTokens</declname>
+        </param>
+        <briefdescription>
+<para>Sets the allowed tokens metadata for this attribute. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="113" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_attribute_spec_1aad0e3539f117b96fcb598b9157bb709e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool HasAllowedTokens</definition>
+        <argsstring>() const</argsstring>
+        <name>HasAllowedTokens</name>
+        <briefdescription>
+<para>Returns true if allowed tokens metadata is set for this attribute. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="117" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_attribute_spec_1ad2c68f8a46b2921c77bdd4e75b4eb2bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API void</type>
+        <definition>SDF_API void ClearAllowedTokens</definition>
+        <argsstring>()</argsstring>
+        <name>ClearAllowedTokens</name>
+        <briefdescription>
+<para>Clears the allowed tokens metadata for this attribute. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="121" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_attribute_spec_1aef8108170c7e3f1205a7ec953cffc679" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_tf_enum" kindref="compound">TfEnum</ref></type>
+        <definition>SDF_API TfEnum GetDisplayUnit</definition>
+        <argsstring>() const</argsstring>
+        <name>GetDisplayUnit</name>
+        <briefdescription>
+<para>Returns the display unit of the attribute. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="125" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_attribute_spec_1a2ada296a6a047da968d79aec5585f374" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API void</type>
+        <definition>SDF_API void SetDisplayUnit</definition>
+        <argsstring>(const TfEnum &amp;displayUnit)</argsstring>
+        <name>SetDisplayUnit</name>
+        <param>
+          <type>const <ref refid="class_tf_enum" kindref="compound">TfEnum</ref> &amp;</type>
+          <declname>displayUnit</declname>
+        </param>
+        <briefdescription>
+<para>Sets the display unit of the attribute. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="129" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_attribute_spec_1a0f354fb3365226ca1415f163f444d2a8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool HasDisplayUnit</definition>
+        <argsstring>() const</argsstring>
+        <name>HasDisplayUnit</name>
+        <briefdescription>
+<para>Returns true if a display unit is set for this attribute. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="133" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_attribute_spec_1a7ad4bb35e829f4fcfdbcb704fa8d194d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API void</type>
+        <definition>SDF_API void ClearDisplayUnit</definition>
+        <argsstring>()</argsstring>
+        <name>ClearDisplayUnit</name>
+        <briefdescription>
+<para>Clears the display unit of the attribute. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="137" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_attribute_spec_1a67d7ca89f4713106ea6bad464daf0eb5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>SDF_API TfToken GetColorSpace</definition>
+        <argsstring>() const</argsstring>
+        <name>GetColorSpace</name>
+        <briefdescription>
+<para>Returns the color-space in which a color or texture valued attribute is authored. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="142" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_attribute_spec_1a4cef2e7d4aa45cc8bbef9bd50d20a3bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API void</type>
+        <definition>SDF_API void SetColorSpace</definition>
+        <argsstring>(const TfToken &amp;colorSpace)</argsstring>
+        <name>SetColorSpace</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>colorSpace</declname>
+        </param>
+        <briefdescription>
+<para>Sets the color-space in which a color or texture valued attribute is authored. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="147" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_attribute_spec_1af7b2fb9fe6c1b3da0b4e1b7fa24863f5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool HasColorSpace</definition>
+        <argsstring>() const</argsstring>
+        <name>HasColorSpace</name>
+        <briefdescription>
+<para>Returns true if this attribute has a colorSpace value authored. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="151" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_attribute_spec_1af77c16258850d938367716e9f4a02767" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API void</type>
+        <definition>SDF_API void ClearColorSpace</definition>
+        <argsstring>()</argsstring>
+        <name>ClearColorSpace</name>
+        <briefdescription>
+<para>Clears the colorSpace metadata value set on this attribute. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="155" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Spec properties</header>
+      <memberdef kind="function" id="class_sdf_attribute_spec_1a50a0edb698095ab1e8beec61b9db05a8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>SDF_API TfToken GetRoleName</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRoleName</name>
+        <briefdescription>
+<para>Returns the roleName for this attribute&apos;s typeName. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the typeName has no roleName, return empty token. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="165" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_sdf_attribute_spec_1a2d162369652bb2b7fcc23725aeaaa6c2" prot="public" static="no">
+        <type><ref refid="class_sdf_attribute_spec" kindref="compound">SdfAttributeSpec</ref></type>
+        <definition>typedef SdfAttributeSpec This</definition>
+        <argsstring></argsstring>
+        <name>This</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="61" column="1" bodyfile="pxr/usd/sdf/attributeSpec.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_sdf_attribute_spec_1a2a34559c148f0f389bf79bc03965c52e" prot="public" static="no">
+        <type><ref refid="class_sdf_property_spec" kindref="compound">SdfPropertySpec</ref></type>
+        <definition>typedef SdfPropertySpec Parent</definition>
+        <argsstring></argsstring>
+        <name>Parent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="62" column="1" bodyfile="pxr/usd/sdf/attributeSpec.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_sdf_attribute_spec_1a2984ba3b4eedc0a4c21ed831839f4487" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>SDF_DECLARE_SPEC</definition>
+        <argsstring>(SdfAttributeSpec, SdfPropertySpec)</argsstring>
+        <name>SDF_DECLARE_SPEC</name>
+        <param>
+          <type><ref refid="class_sdf_attribute_spec" kindref="compound">SdfAttributeSpec</ref></type>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_property_spec" kindref="compound">SdfPropertySpec</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/attributeSpec.h" line="58" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A subclass of <ref refid="class_sdf_property_spec" kindref="compound">SdfPropertySpec</ref> that holds typed data. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Attributes are typed data containers that can optionally hold any and all of the following: <itemizedlist>
+<listitem><para>A single default value. </para>
+</listitem>
+<listitem><para>An array of knot values describing how the value varies over time. </para>
+</listitem>
+<listitem><para>A dictionary of posed values, indexed by name.</para>
+</listitem>
+</itemizedlist>
+The values contained in an attribute must all be of the same type. In the Python API the <computeroutput>typeName</computeroutput> property holds the attribute type. In the C++ API, you can get the attribute type using the <ref refid="class_sdf_property_spec_1a7d09b1f92358004240f574e91a4402df" kindref="member">GetTypeName()</ref> method. In addition, all values, including all knot values, must be the same shape. For information on shapes, see the VtShape class reference in the C++ documentation. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5008">
+        <label>SdfSpec</label>
+        <link refid="class_sdf_spec"/>
+      </node>
+      <node id="5007">
+        <label>SdfPropertySpec</label>
+        <link refid="class_sdf_property_spec"/>
+        <childnode refid="5008" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5006">
+        <label>SdfAttributeSpec</label>
+        <link refid="class_sdf_attribute_spec"/>
+        <childnode refid="5007" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5011">
+        <label>SdfSpec</label>
+        <link refid="class_sdf_spec"/>
+      </node>
+      <node id="5010">
+        <label>SdfPropertySpec</label>
+        <link refid="class_sdf_property_spec"/>
+        <childnode refid="5011" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5009">
+        <label>SdfAttributeSpec</label>
+        <link refid="class_sdf_attribute_spec"/>
+        <childnode refid="5010" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/usd/sdf/attributeSpec.h" line="57" column="1" bodyfile="pxr/usd/sdf/attributeSpec.h" bodystart="56" bodyend="168"/>
+    <listofallmembers>
+      <member refid="class_sdf_spec_1ab3d82252ced8ce99c5118e47df91751e" prot="protected" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>_DeleteSpec</name></member>
+      <member refid="class_sdf_spec_1aeff28b3237b8bdc8278510dfa4b354ee" prot="protected" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>_MoveSpec</name></member>
+      <member refid="class_sdf_property_spec_1a8d3b6e7e600320a58351d2f74554a94c" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>CanSetName</name></member>
+      <member refid="class_sdf_attribute_spec_1ad2c68f8a46b2921c77bdd4e75b4eb2bd" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>ClearAllowedTokens</name></member>
+      <member refid="class_sdf_attribute_spec_1af77c16258850d938367716e9f4a02767" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>ClearColorSpace</name></member>
+      <member refid="class_sdf_attribute_spec_1a4851ed6a239581cfe335477484030c41" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>ClearConnectionPaths</name></member>
+      <member refid="class_sdf_property_spec_1a1b08cfad64736e219be636aa74f0cf2b" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>ClearDefaultValue</name></member>
+      <member refid="class_sdf_attribute_spec_1a7ad4bb35e829f4fcfdbcb704fa8d194d" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>ClearDisplayUnit</name></member>
+      <member refid="class_sdf_spec_1a51b947731f02f1359b9820d33aa9b8d0" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>ClearField</name></member>
+      <member refid="class_sdf_spec_1ad5a0d94f0ac661acb29d7490eb15d6d6" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>ClearInfo</name></member>
+      <member refid="class_sdf_attribute_spec_1a8c4d71c9f3c62203e046c7fc997d1c74" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetAllowedTokens</name></member>
+      <member refid="class_sdf_property_spec_1ad4760909f0cdc5d9ec133f0607ec72b7" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetAssetInfo</name></member>
+      <member refid="class_sdf_attribute_spec_1a67d7ca89f4713106ea6bad464daf0eb5" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetColorSpace</name></member>
+      <member refid="class_sdf_property_spec_1aa09e2580406e4e30598f2a316ef029b1" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetComment</name></member>
+      <member refid="class_sdf_attribute_spec_1ac5899ba125bb491af5fa2bddcfb2abff" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetConnectionPathList</name></member>
+      <member refid="class_sdf_property_spec_1ade086cf82f9dd9c876ee3fd194b6f1bc" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetCustomData</name></member>
+      <member refid="class_sdf_property_spec_1a6df60c2fa5084934c3c6880208a93cfc" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetDefaultValue</name></member>
+      <member refid="class_sdf_property_spec_1a06ad997e921928b84fa0aad7e117651e" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetDisplayGroup</name></member>
+      <member refid="class_sdf_property_spec_1acab74645dbf8de67523de409a2ef2eac" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetDisplayName</name></member>
+      <member refid="class_sdf_attribute_spec_1aef8108170c7e3f1205a7ec953cffc679" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetDisplayUnit</name></member>
+      <member refid="class_sdf_property_spec_1a5f4c1bc9f2f793b24014551075d7cb6b" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetDocumentation</name></member>
+      <member refid="class_sdf_spec_1a1da119c3713ec401ca578a6faa6eac9a" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetFallbackForInfo</name></member>
+      <member refid="class_sdf_spec_1a2ba08d83b8a934187f2a792367066fa6" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetField</name></member>
+      <member refid="class_sdf_spec_1a07f67495ca10863568306887212430f9" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetFieldAs</name></member>
+      <member refid="class_sdf_property_spec_1a73b83447b66d61cd900b2e8c4f0868ca" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetHidden</name></member>
+      <member refid="class_sdf_spec_1a623889e0a6c749418e10f23169f92c5b" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetInfo</name></member>
+      <member refid="class_sdf_spec_1a3fefae0b234ef14d141c83d6448f8656" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetLayer</name></member>
+      <member refid="class_sdf_spec_1a52b21d3d611186ff336ad54292b0301a" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetMetaDataDisplayGroup</name></member>
+      <member refid="class_sdf_spec_1ad2c2ea35643e325dacbc0bd8a3646b35" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetMetaDataInfoKeys</name></member>
+      <member refid="class_sdf_property_spec_1a204344d110d2bb74928f43d2c1fe0047" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetName</name></member>
+      <member refid="class_sdf_property_spec_1a320078c8c86baa76a237c2233d55a730" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetNameToken</name></member>
+      <member refid="class_sdf_property_spec_1a6edc52bacab5e83dff5c14b6cc1e224b" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetOwner</name></member>
+      <member refid="class_sdf_spec_1a58e8463c104969bf41bb7c79605d9532" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetPath</name></member>
+      <member refid="class_sdf_property_spec_1a5d9b89f530d37a530813620413217032" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetPermission</name></member>
+      <member refid="class_sdf_property_spec_1aa430e2e4657e7043764dae08dc7a4e4c" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetPrefix</name></member>
+      <member refid="class_sdf_attribute_spec_1a50a0edb698095ab1e8beec61b9db05a8" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetRoleName</name></member>
+      <member refid="class_sdf_spec_1a3bd6905e6ee12562d4702db19fe6cc1f" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetSchema</name></member>
+      <member refid="class_sdf_spec_1a5f9f08741402342a8edf57244fe8c738" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetSpecType</name></member>
+      <member refid="class_sdf_property_spec_1ab0afe06c8843e972dff682c3f7868ac9" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetSuffix</name></member>
+      <member refid="class_sdf_property_spec_1af72eac4916d1a00c08f27a4694835112" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetSymmetricPeer</name></member>
+      <member refid="class_sdf_property_spec_1a7b13ede56ab5ee26f285da2280167a31" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetSymmetryArguments</name></member>
+      <member refid="class_sdf_property_spec_1a5792f900b1a0fdb1314aa793af4e7df8" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetSymmetryFunction</name></member>
+      <member refid="class_sdf_property_spec_1a903e11f34f9077dad4e14b098f208217" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetTimeSampleMap</name></member>
+      <member refid="class_sdf_spec_1a7761385927d3f2e1d80af674b32d3ebc" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetTypeForInfo</name></member>
+      <member refid="class_sdf_property_spec_1a7d09b1f92358004240f574e91a4402df" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetTypeName</name></member>
+      <member refid="class_sdf_property_spec_1a3168b87540ef2e33bb378be34477d33b" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetValueType</name></member>
+      <member refid="class_sdf_property_spec_1a7314f31536d01f7a1b855bb752a1078e" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>GetVariability</name></member>
+      <member refid="class_sdf_attribute_spec_1aad0e3539f117b96fcb598b9157bb709e" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>HasAllowedTokens</name></member>
+      <member refid="class_sdf_attribute_spec_1af7b2fb9fe6c1b3da0b4e1b7fa24863f5" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>HasColorSpace</name></member>
+      <member refid="class_sdf_attribute_spec_1a80de5862fc4fda3650a17d6b3620d773" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>HasConnectionPaths</name></member>
+      <member refid="class_sdf_property_spec_1aa70a079544e80d7fea71e0789f236ef2" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>HasDefaultValue</name></member>
+      <member refid="class_sdf_attribute_spec_1a0f354fb3365226ca1415f163f444d2a8" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>HasDisplayUnit</name></member>
+      <member refid="class_sdf_spec_1a0eb9c97beea5e2f59323cbda9669d566" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>HasField</name></member>
+      <member refid="class_sdf_spec_1a428b01e709e5bace4d3e7e23ad683d30" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>HasField</name></member>
+      <member refid="class_sdf_spec_1afafc521cdaa2ed6513d41be2fa433993" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>HasInfo</name></member>
+      <member refid="class_sdf_property_spec_1ada160b5e89d8a2526f9e0fbfc55cbd42" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>HasOnlyRequiredFields</name></member>
+      <member refid="class_sdf_property_spec_1a3756968703cbda2eb7db6d07fdb265f4" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>IsCustom</name></member>
+      <member refid="class_sdf_spec_1a10e3f6a477185399b6d64d26a213f32a" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>IsDormant</name></member>
+      <member refid="class_sdf_spec_1a22b46c26c417cc6153e59cbe921d9ebd" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>IsInert</name></member>
+      <member refid="class_sdf_property_spec_1aaf39d3b7953761651981a821ce934211" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>IsValidName</name></member>
+      <member refid="class_sdf_spec_1a7b34aca00921a15ba8d5ad48c4561e1c" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>ListFields</name></member>
+      <member refid="class_sdf_spec_1af43fb14c1d6cec17f913c3846119f716" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>ListInfoKeys</name></member>
+      <member refid="class_sdf_attribute_spec_1a8dbf1a7264a9a54e3ec735255361c06f" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>New</name></member>
+      <member refid="class_sdf_spec_1a48650684eb4cc0ef195716de825a0a58" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>operator&lt;</name></member>
+      <member refid="class_sdf_spec_1aa51d7b0726a78b7f679b5f22d68ef7df" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>operator=</name></member>
+      <member refid="class_sdf_spec_1a103a094590f42b07266c293b02ef099f" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>operator==</name></member>
+      <member refid="class_sdf_attribute_spec_1a2a34559c148f0f389bf79bc03965c52e" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>Parent</name></member>
+      <member refid="class_sdf_spec_1a794044e16b8357b4fd1cd87438ed361f" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>PermissionToEdit</name></member>
+      <member refid="class_sdf_attribute_spec_1a2984ba3b4eedc0a4c21ed831839f4487" prot="private" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SDF_DECLARE_SPEC</name></member>
+      <member refid="class_sdf_attribute_spec_1a06dc475dc5f47f286c45249ff0249de0" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetAllowedTokens</name></member>
+      <member refid="class_sdf_property_spec_1a3c2de13b36f263e83c5ec47f4b2f99ce" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetAssetInfo</name></member>
+      <member refid="class_sdf_attribute_spec_1a4cef2e7d4aa45cc8bbef9bd50d20a3bd" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetColorSpace</name></member>
+      <member refid="class_sdf_property_spec_1a9d2550c83c8f19b23cf3485a75e16681" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetComment</name></member>
+      <member refid="class_sdf_property_spec_1a982b0cde6967c48ef10e8f65e4140318" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetCustom</name></member>
+      <member refid="class_sdf_property_spec_1a99305c665e0c209304be5d7ad769e7e7" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetCustomData</name></member>
+      <member refid="class_sdf_property_spec_1a9a9d10d893e5008a16e0b8eb9b9dead6" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetDefaultValue</name></member>
+      <member refid="class_sdf_property_spec_1aa245c2f50ef58e16948c27936a6bdf54" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetDisplayGroup</name></member>
+      <member refid="class_sdf_property_spec_1aae8d187b8a5911caf2d118e6563e9889" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetDisplayName</name></member>
+      <member refid="class_sdf_attribute_spec_1a2ada296a6a047da968d79aec5585f374" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetDisplayUnit</name></member>
+      <member refid="class_sdf_property_spec_1a0df7b9ada95628ee04032e00e48e7417" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetDocumentation</name></member>
+      <member refid="class_sdf_spec_1a5b619246ffb0f1c56631529fa65e0435" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetField</name></member>
+      <member refid="class_sdf_spec_1a3fc0276ed2f39480d00a61b888bd8434" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetField</name></member>
+      <member refid="class_sdf_property_spec_1a33854bd790c06e0cc959b70a2511cfb9" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetHidden</name></member>
+      <member refid="class_sdf_spec_1ac24a378f12ee3162c6f0173d001b11c0" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetInfo</name></member>
+      <member refid="class_sdf_spec_1a860957d1b7800d7e930b53fe5b19ba86" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetInfoDictionaryValue</name></member>
+      <member refid="class_sdf_property_spec_1aa1f241d28f26488867a276eca6d54405" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetName</name></member>
+      <member refid="class_sdf_property_spec_1a8d4c331826b506be9dd6a3c92a4ef684" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetPermission</name></member>
+      <member refid="class_sdf_property_spec_1a61b9d7858d930e1f8219ecfcfeaf193b" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetPrefix</name></member>
+      <member refid="class_sdf_property_spec_1ab56b19de2727e437c05484300330b0c6" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetSuffix</name></member>
+      <member refid="class_sdf_property_spec_1af11cd8834441d94496bf4cce983559d6" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetSymmetricPeer</name></member>
+      <member refid="class_sdf_property_spec_1a46e788e0e01bb8ff6d716d6dbcdc5e65" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetSymmetryArgument</name></member>
+      <member refid="class_sdf_property_spec_1a490d4304afe7b9b0cd2cfc9ef05be93f" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>SetSymmetryFunction</name></member>
+      <member refid="class_sdf_attribute_spec_1a2d162369652bb2b7fcc23725aeaaa6c2" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>This</name></member>
+      <member refid="class_sdf_spec_1a38c4971735cfa7f91c1618d441622ccc" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>WriteToStream</name></member>
+      <member refid="class_sdf_spec_1acd7d1eec1135fa492866bd844b2694d6" prot="public" virt="non-virtual"><scope>SdfAttributeSpec</scope><name>~SdfSpec</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

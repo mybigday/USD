@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classpxr___c_l_i_1_1_c_l_i_1_1_as_size_value" kind="class" language="C++" prot="public">
+    <compoundname>pxr_CLI::CLI::AsSizeValue</compoundname>
+    <basecompoundref refid="classpxr___c_l_i_1_1_c_l_i_1_1_as_number_with_unit" prot="public" virt="non-virtual">AsNumberWithUnit</basecompoundref>
+    <includes refid="_c_l_i11_8h" local="no">CLI11.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classpxr___c_l_i_1_1_c_l_i_1_1_as_size_value_1ab14169ee02f194939e80679d72f8fcc9" prot="public" static="no">
+        <type>std::uint64_t</type>
+        <definition>using result_t =  std::uint64_t</definition>
+        <argsstring></argsstring>
+        <name>result_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrCLI11/CLI11.h" line="3623" column="1" bodyfile="pxr/base/tf/pxrCLI11/CLI11.h" bodystart="3623" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classpxr___c_l_i_1_1_c_l_i_1_1_as_size_value_1a70feae09d1ce1c3dbf7c0201743c7209" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CLI11_INLINE AsSizeValue</definition>
+        <argsstring>(bool kb_is_1000)</argsstring>
+        <name>AsSizeValue</name>
+        <param>
+          <type>bool</type>
+          <declname>kb_is_1000</declname>
+        </param>
+        <briefdescription>
+<para>If kb_is_1000 is true, interpret &apos;kb&apos;, &apos;k&apos; as 1000 and &apos;kib&apos;, &apos;ki&apos; as 1024 (same applies to higher order units as well). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Otherwise, interpret all literals as factors of 1024. The first option is formally correct, but the second interpretation is more wide-spread (see <ulink url="https://en.wikipedia.org/wiki/Binary_prefix">https://en.wikipedia.org/wiki/Binary_prefix</ulink>). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrCLI11/CLI11.h" line="3632" column="1" bodyfile="pxr/base/tf/pxrCLI11/CLI11.h" bodystart="3891" bodyend="3897"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classpxr___c_l_i_1_1_c_l_i_1_1_as_size_value_1a1e809f980b3d0dd792802fb862a76880" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::map&lt; std::string, result_t &gt;</type>
+        <definition>CLI11_INLINE std::map&lt; std::string, AsSizeValue::result_t &gt; init_mapping</definition>
+        <argsstring>(bool kb_is_1000)</argsstring>
+        <name>init_mapping</name>
+        <param>
+          <type>bool</type>
+          <declname>kb_is_1000</declname>
+        </param>
+        <briefdescription>
+<para>Get &lt;size unit, factor&gt; mapping. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrCLI11/CLI11.h" line="3636" column="1" bodyfile="pxr/base/tf/pxrCLI11/CLI11.h" bodystart="3899" bodyend="3915"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr___c_l_i_1_1_c_l_i_1_1_as_size_value_1a6ea978d09d404b0c001487f318c6fa00" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::map&lt; std::string, result_t &gt;</type>
+        <definition>CLI11_INLINE std::map&lt; std::string, AsSizeValue::result_t &gt; get_mapping</definition>
+        <argsstring>(bool kb_is_1000)</argsstring>
+        <name>get_mapping</name>
+        <param>
+          <type>bool</type>
+          <declname>kb_is_1000</declname>
+        </param>
+        <briefdescription>
+<para>Cache calculated mapping. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrCLI11/CLI11.h" line="3639" column="1" bodyfile="pxr/base/tf/pxrCLI11/CLI11.h" bodystart="3917" bodyend="3924"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Converts a human-readable size string (with unit literal) to uin64_t size. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Example: &quot;100&quot; =&gt; 100 &quot;1 b&quot; =&gt; 100 &quot;10Kb&quot; =&gt; 10240 // you can configure this to be interpreted as kilobyte (*1000) or kibibyte (*1024) &quot;10 KB&quot; =&gt; 10240 &quot;10 kb&quot; =&gt; 10240 &quot;10 kib&quot; =&gt; 10240 // *i, *ib are always interpreted as *bibyte (*1024) &quot;10kb&quot; =&gt; 10240 &quot;2 MB&quot; =&gt; 2097152 &quot;2 EiB&quot; =&gt; 2^61 // Units up to exibyte are supported </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="756">
+        <label>AsSizeValue</label>
+        <link refid="classpxr___c_l_i_1_1_c_l_i_1_1_as_size_value"/>
+        <childnode refid="757" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="758">
+        <label>Validator</label>
+        <link refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator"/>
+      </node>
+      <node id="757">
+        <label>AsNumberWithUnit</label>
+        <link refid="classpxr___c_l_i_1_1_c_l_i_1_1_as_number_with_unit"/>
+        <childnode refid="758" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="759">
+        <label>AsSizeValue</label>
+        <link refid="classpxr___c_l_i_1_1_c_l_i_1_1_as_size_value"/>
+        <childnode refid="760" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="761">
+        <label>Validator</label>
+        <link refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator"/>
+      </node>
+      <node id="760">
+        <label>AsNumberWithUnit</label>
+        <link refid="classpxr___c_l_i_1_1_c_l_i_1_1_as_number_with_unit"/>
+        <childnode refid="761" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/base/tf/pxrCLI11/CLI11.h" line="3621" column="1" bodyfile="pxr/base/tf/pxrCLI11/CLI11.h" bodystart="3621" bodyend="3640"/>
+    <listofallmembers>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a3699b7f0acfbd6b8d6c9f183d26673ef" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>active</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a3aff5a5bd26eecade38af43f2f80f36b" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>active</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a121aee969503dcc0f2d4ff4879d9c4d9" prot="protected" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>active_</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a5daabd87cef336cb83dc93b8f82682a9" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>application_index</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1aade9442b5d914e52d2c19d2a43263575" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>application_index</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a653dfa7e7b4e491b521d768155fe8d5c" prot="protected" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>application_index_</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_as_number_with_unit_1ad50fb55094f90322e5b317272192328e" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>AsNumberWithUnit</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_as_size_value_1a70feae09d1ce1c3dbf7c0201743c7209" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>AsSizeValue</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_as_number_with_unit_1adf7c3ac791f996a56160a12f379cbd99a0f5ef49c1df045329c10451d46f10f5a" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>CASE_INSENSITIVE</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_as_number_with_unit_1adf7c3ac791f996a56160a12f379cbd99a50caa62164d63d50b42d18a8a1c75cc6" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>CASE_SENSITIVE</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_as_number_with_unit_1adf7c3ac791f996a56160a12f379cbd99a88ec7d5086d2469ba843c7fcceade8a6" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>DEFAULT</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1ac9c215611fe6c264e6a1b0a00310c567" prot="protected" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>desc_function_</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1ad1a3d7394eb783cc6ed54a88358cc162" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>description</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1ae36330914504c99ba03c2d893d0332d8" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>description</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a668c27b4c349d007a0c61ff81723b482" prot="protected" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>func_</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a95a0482a2e973bda0cb04bb80ecb169f" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>get_active</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a6a7c617d26d8fab970d8b58609bce7e4" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>get_application_index</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1aa43f0c7a4e89fe58211f6a80396bdfe7" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>get_description</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_as_size_value_1a6ea978d09d404b0c001487f318c6fa00" prot="private" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>get_mapping</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1adcc3fc37b851a487125e5ca94d36042b" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>get_modifying</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1aa4a97b6bebd73191da444e2510ff4f41" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>get_name</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_as_size_value_1a1e809f980b3d0dd792802fb862a76880" prot="private" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>init_mapping</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a2aa59c0eb632faf44e1ce50033fc1d41" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>name</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a4ec8ab874e50204d9e09d9149acbeaac" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>name</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a4d739cc5d335052eb9f5b2ca559b81d1" prot="protected" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>name_</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a72d61730533c7279743738fac58d2228" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>non_modifying</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a89808c34844c1d619b852dd623a43754" prot="protected" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>non_modifying_</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a44cb29261ef1348ab7140228b3df27e4" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>operation</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a4711dbd6c7077f6fdf2bbfb647d5494f" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>operator &amp;</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a91c3e9e1491efac8686b37594459d81f" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>operator!</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a37ea965e41027b32328d32d2b4e03302" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>operator()</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a7673ff599f7529e870530cee9b164e5e" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>operator()</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a6b2143a8658130e0e8a5c6fc49ba026a" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>operator|</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_as_number_with_unit_1adf7c3ac791f996a56160a12f379cbd99" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>Options</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_as_size_value_1ab14169ee02f194939e80679d72f8fcc9" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>result_t</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_as_number_with_unit_1adf7c3ac791f996a56160a12f379cbd99a9a97758a7bcfeb82a866be8d4f9fa43b" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>UNIT_OPTIONAL</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_as_number_with_unit_1adf7c3ac791f996a56160a12f379cbd99a879943cada5efeeacff1b58104c2e36b" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>UNIT_REQUIRED</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a620b684ec30469c426f7d26969afd007" prot="protected" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>Validator</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1a437c9316c916a0b00b4d2a73b9d73d8e" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>Validator</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1ac51bc3c98f71adff397385f3cb921ec2" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>Validator</name></member>
+      <member refid="classpxr___c_l_i_1_1_c_l_i_1_1_validator_1acc314da6d2d63533aeaecedd7cbcbb44" prot="public" virt="non-virtual"><scope>pxr_CLI::CLI::AsSizeValue</scope><name>Validator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

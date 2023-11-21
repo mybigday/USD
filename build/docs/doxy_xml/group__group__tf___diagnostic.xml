@@ -1,0 +1,308 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="group__group__tf___diagnostic" kind="group">
+    <compoundname>group_tf_Diagnostic</compoundname>
+    <title>Diagnostic Facilities</title>
+    <innerfile refid="base_2tf_2diagnostic_8h">diagnostic.h</innerfile>
+    <innerfile refid="exception_8h">exception.h</innerfile>
+    <innerclass refid="class_tf_diagnostic_mgr" prot="public">TfDiagnosticMgr</innerclass>
+    <innerclass refid="class_tf_error" prot="public">TfError</innerclass>
+    <innerclass refid="class_tf_status" prot="public">TfStatus</innerclass>
+    <innerclass refid="class_tf_warning" prot="public">TfWarning</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__group__tf___diagnostic_1ga8bb4aacd30c3308a0880baafcde8b476" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TfSetProgramNameForErrors</definition>
+        <argsstring>(std::string const &amp;programName)</argsstring>
+        <name>TfSetProgramNameForErrors</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>programName</declname>
+        </param>
+        <briefdescription>
+<para>Sets program name for reporting errors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function simply calls to <ref refid="group__group__arch___diagnostics_1gac442849df5f0b6bb3c270ff35d918a00" kindref="member">ArchSetProgramNameForErrors()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnostic.h" line="433" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___diagnostic_1gaa0dcd68912e941c6f656787137b97a13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string TfGetProgramNameForErrors</definition>
+        <argsstring>()</argsstring>
+        <name>TfGetProgramNameForErrors</name>
+        <briefdescription>
+<para>Returns currently set program info. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function simply calls to <ref refid="group__group__arch___diagnostics_1ga63eb24e8cd33efb7aa7523f7f811f1a8" kindref="member">ArchGetProgramNameForErrors()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnostic.h" line="438" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___diagnostic_1gab7ad3a4b09b4cf9b3a7a5c6dbcdfe12c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void TfInstallTerminateAndCrashHandlers</definition>
+        <argsstring>()</argsstring>
+        <name>TfInstallTerminateAndCrashHandlers</name>
+        <briefdescription>
+<para>(Re)install Tf&apos;s crash handler. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This should not generally need to be called since Tf does this itself when loaded. However, when run in 3rd party environments that install their own signal handlers, possibly overriding Tf&apos;s, this provides a way to reinstall them, in hopes that they&apos;ll stick.</para>
+<para>This calls std::set_terminate() and installs signal handlers for SIGSEGV, SIGBUS, SIGFPE, and SIGABRT. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnostic.h" line="477" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__group__tf___diagnostic_1gaf07c45323b79ee51a323339f08c5bfb0" prot="public" static="no">
+        <name>TF_ERROR</name>
+        <param><defname>...</defname></param>
+        <briefdescription>
+<para>Issue an internal programming error, but continue execution. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Please see <ref refid="page_tf__tf_error" kindref="compound">The TfError Error Posting System</ref> for more information about how to use <ref refid="group__group__tf___diagnostic_1gaf07c45323b79ee51a323339f08c5bfb0" kindref="member">TF_ERROR()</ref>.</para>
+<para>This is safe to call in secondary threads. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnostic.h" line="71" column="9" bodyfile="pxr/base/tf/diagnostic.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__tf___diagnostic_1ga8265ac46fd87777ee25efaf4a3290bbe" prot="public" static="no">
+        <name>TF_CODING_ERROR</name>
+        <param><defname>fmt</defname></param>
+        <param><defname>args</defname></param>
+        <briefdescription>
+<para>Issue an internal programming error, but continue execution. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This macro is a convenience. It produces a <ref refid="group__group__tf___diagnostic_1gaf07c45323b79ee51a323339f08c5bfb0" kindref="member">TF_ERROR()</ref> with an error code indicating a coding error. It takes a printf-like format specification or a std::string. Generally, an error handling delegate will take action to turn this error into a python exception, and if it remains unhandled at the end of an application iteration will roll-back the undo stack to a last-known-good state.</para>
+<para>This is safe to call in secondary threads. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnostic.h" line="85" column="9" bodyfile="pxr/base/tf/diagnostic.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__tf___diagnostic_1ga4abf7754e5dbf161d2a5a4160fd3b891" prot="public" static="no">
+        <name>TF_RUNTIME_ERROR</name>
+        <param><defname>fmt</defname></param>
+        <param><defname>args</defname></param>
+        <briefdescription>
+<para>Issue a generic runtime error, but continue execution. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This macro is a convenience. It produces a <ref refid="group__group__tf___diagnostic_1gaf07c45323b79ee51a323339f08c5bfb0" kindref="member">TF_ERROR()</ref> with an error code indicating a generic runtime error. It is preferred over <ref refid="group__group__tf___diagnostic_1gaf07c45323b79ee51a323339f08c5bfb0" kindref="member">TF_ERROR(0)</ref>, but using a specific error code is preferred over this. It takes a printf-like format specification or a std::string. Generally, an error handling delegate will take action to turn this error into a python exception, and if it remains unhandled at the end of an application iteration will roll-back the undo stack to a last-known-good state.</para>
+<para>This is safe to call in secondary threads. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnostic.h" line="100" column="9" bodyfile="pxr/base/tf/diagnostic.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__tf___diagnostic_1ga7cbfc0e6eb2af388e728ad675086a348" prot="public" static="no">
+        <name>TF_FATAL_ERROR</name>
+        <param><defname>fmt</defname></param>
+        <param><defname>args</defname></param>
+        <briefdescription>
+<para>Issue a fatal error and end the program. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This macro takes a printf-like format specification or a std::string. The program will generally terminate upon a fatal error. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnostic.h" line="108" column="9" bodyfile="pxr/base/tf/diagnostic.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__tf___diagnostic_1gaba2e638edaae9e9c6e5180e020f12ccf" prot="public" static="no">
+        <name>TF_WARN</name>
+        <param><defname>...</defname></param>
+        <briefdescription>
+<para>Issue a warning, but continue execution. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This macro works with a variety of argument sets. It supports simple printf-like format specification or a std::string. It also supports specification of a diagnostic code and a piece of arbitrary information in the form of a TfDiagnosticInfo. The following is a full list of supported argument lists:</para>
+<para><programlisting><codeline><highlight class="normal">TF_WARN(const<sp/>char<sp/>*)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>plain<sp/>old<sp/>string</highlight></codeline>
+<codeline><highlight class="normal">TF_WARN(const<sp/>char<sp/>*,<sp/>...)<sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>printf<sp/>like<sp/>formatting</highlight></codeline>
+<codeline><highlight class="normal">TF_WARN(std::string)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>stl<sp/>string</highlight></codeline>
+</programlisting></para>
+<para>A diagnostic code can be passed in along with the warning message. See <ref refid="page_tf__tf_error_1DiagnosticEnumConventions" kindref="member">Enum Conventions</ref> for an example of registering an enum type and it&apos;s values as diagnostic codes.</para>
+<para><programlisting><codeline><highlight class="normal">TF_WARN(DIAGNOSTIC_ENUM,<sp/>const<sp/>char<sp/>*)</highlight></codeline>
+<codeline><highlight class="normal">TF_WARN(DIAGNOSTIC_ENUM,<sp/>const<sp/>char<sp/>*,<sp/>...)</highlight></codeline>
+<codeline><highlight class="normal">TF_WARN(DIAGNOSTIC_ENUM,<sp/>std::string)</highlight></codeline>
+</programlisting></para>
+<para>A piece of arbitrary data can also be passed in along with the diagnostic code and warning message as follows:</para>
+<para><programlisting><codeline><highlight class="normal">TF_WARN(info,<sp/>DIAGNOSTIC_ENUM,<sp/>const<sp/>char<sp/>*)</highlight></codeline>
+<codeline><highlight class="normal">TF_WARN(info,<sp/>DIAGNOSTIC_ENUM,<sp/>const<sp/>char<sp/>*,<sp/>...)</highlight></codeline>
+<codeline><highlight class="normal">TF_WARN(info,<sp/>DIAGNOSTIC_ENUM,<sp/>std::string)</highlight></codeline>
+</programlisting></para>
+<para>Generally, no adjustment to program state should occur as the result of this macro. This is in contrast with errors as mentioned above.</para>
+<para>This is safe to call in secondary threads. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnostic.h" line="149" column="9" bodyfile="pxr/base/tf/diagnostic.h" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__tf___diagnostic_1ga97dfb3da2a7be92953eda1e4ad268301" prot="public" static="no">
+        <name>TF_STATUS</name>
+        <param><defname>...</defname></param>
+        <briefdescription>
+<para>Issue a status message, but continue execution. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This macro works with a variety of argument sets. It supports simple printf-like format specification or a std::string. It also supports specification of a diagnostic code and a piece of arbitrary information in the form of a TfDiagnosticInfo. The following is a full list of supported argument lists:</para>
+<para><programlisting><codeline><highlight class="normal">TF_STATUS(const<sp/>char<sp/>*)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>plain<sp/>old<sp/>string</highlight></codeline>
+<codeline><highlight class="normal">TF_STATUS(const<sp/>char<sp/>*,<sp/>...)<sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>printf<sp/>like<sp/>formatting</highlight></codeline>
+<codeline><highlight class="normal">TF_STATUS(std::string)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>stl<sp/>string</highlight></codeline>
+</programlisting></para>
+<para>A diagnostic code can be passed in along with the status message. See <ref refid="page_tf__tf_error_1DiagnosticEnumConventions" kindref="member">Enum Conventions</ref> for an example of registering an enum type and it&apos;s values as diagnostic codes.</para>
+<para><programlisting><codeline><highlight class="normal">TF_STATUS(DIAGNOSTIC_ENUM,<sp/>const<sp/>char<sp/>*)</highlight></codeline>
+<codeline><highlight class="normal">TF_STATUS(DIAGNOSTIC_ENUM,<sp/>const<sp/>char<sp/>*,<sp/>...)</highlight></codeline>
+<codeline><highlight class="normal">TF_STATUS(DIAGNOSTIC_ENUM,<sp/>std::string)</highlight></codeline>
+</programlisting></para>
+<para>A piece of arbitrary data can also be passed in along with the diagnostic code and status message as follows:</para>
+<para><programlisting><codeline><highlight class="normal">TF_STATUS(info,<sp/>DIAGNOSTIC_ENUM,<sp/>const<sp/>char<sp/>*)</highlight></codeline>
+<codeline><highlight class="normal">TF_STATUS(info,<sp/>DIAGNOSTIC_ENUM,<sp/>const<sp/>char<sp/>*,<sp/>...)</highlight></codeline>
+<codeline><highlight class="normal">TF_STATUS(info,<sp/>DIAGNOSTIC_ENUM,<sp/>std::string)</highlight></codeline>
+</programlisting></para>
+<para>Generally, no adjustment to program state should occur as the result of this macro. This is in contrast with errors as mentioned above.</para>
+<para>This is safe to call in secondary threads. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnostic.h" line="190" column="9" bodyfile="pxr/base/tf/diagnostic.h" bodystart="190" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__tf___diagnostic_1ga12db62e70113a37341a127f0e0ec9ac4" prot="public" static="no">
+        <name>TF_AXIOM</name>
+        <param><defname>cond</defname></param>
+        <briefdescription>
+<para>Aborts if the condition <computeroutput>cond</computeroutput> is not met. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cond</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is any expression convertible to bool; if the condition evaluates to <computeroutput>false</computeroutput>, program execution ends with this call.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Note that the diagnostic message sent is the code <computeroutput>cond</computeroutput>, in the form of a string. Unless the condition expression is self-explanatory, use <computeroutput><ref refid="group__group__tf___diagnostic_1ga7cbfc0e6eb2af388e728ad675086a348" kindref="member">TF_FATAL_ERROR()</ref></computeroutput>. See <ref refid="page_tf__diagnostic_1DiagnosticTF_FATAL_ERROR" kindref="member">Fatal Errors</ref> for further discussion.</para>
+<para>Currently, a <computeroutput><ref refid="group__group__tf___diagnostic_1ga12db62e70113a37341a127f0e0ec9ac4" kindref="member">TF_AXIOM()</ref></computeroutput> statement is not made a no-op in optimized builds; however, it always possible that either (a) the axiom statement might be removed at some point if the code is deemed correct or (b) in the future, some flavor of build might choose to make axioms be no-ops. Thus, programmers must make <emphasis>certain</emphasis> that the code in <computeroutput>cond</computeroutput> is entirely free of side effects. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnostic.h" line="210" column="9" bodyfile="pxr/base/tf/diagnostic.h" bodystart="210" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__tf___diagnostic_1ga271a9819204a2d92d039620d909908f5" prot="public" static="no">
+        <name>TF_DEV_AXIOM</name>
+        <param><defname>cond</defname></param>
+        <briefdescription>
+<para>The same as TF_AXIOM, but compiled only in dev builds. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cond</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is any expression convertible to bool; if the condition evaluates to <computeroutput>false</computeroutput>, program execution ends with this call.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This macro has the same behavior as TF_AXIOM, but it is compiled only in dev builds. This version should only be used in code that is known (not just suspected!) to be performance critical. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnostic.h" line="222" column="9" bodyfile="pxr/base/tf/diagnostic.h" bodystart="222" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__tf___diagnostic_1gaf621af3398d45d5d1108db257abc0ebd" prot="public" static="no">
+        <name>TF_VERIFY</name>
+        <param><defname>cond</defname></param>
+        <param><defname>format</defname></param>
+        <param><defname>...</defname></param>
+        <briefdescription>
+<para>Checks a condition and reports an error if it evaluates false. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This can be thought of as something like a softer, recoverable TF_AXIOM.</para>
+<para>The macro expands to an expression whose value is either true or false depending on <computeroutput>cond</computeroutput>. If <computeroutput>cond</computeroutput> evaluates to false, issues a coding error indicating the failure.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cond</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is any expression convertible to bool.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Usage generally follows patterns like these: <programlisting><codeline><highlight class="normal">//<sp/>Simple<sp/>check.<sp/><sp/>This<sp/>is<sp/>like<sp/>a<sp/>non-fatal<sp/>TF_AXIOM.</highlight></codeline>
+<codeline><highlight class="normal">TF_VERIFY(condition);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Avoiding<sp/>code<sp/>that<sp/>requires<sp/>the<sp/>condition<sp/>be<sp/>met.</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(TF_VERIFY(condition))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>code<sp/>requiring<sp/>condition<sp/>be<sp/>met.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Executing<sp/>recovery<sp/>code<sp/>in<sp/>case<sp/>the<sp/>condition<sp/>is<sp/>not<sp/>met.</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(not<sp/>TF_VERIFY(condition))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>recovery<sp/>code<sp/>to<sp/>execute<sp/>since<sp/>condition<sp/>was<sp/>not<sp/>met.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>Here are some examples: <programlisting><codeline><highlight class="normal">//<sp/>List<sp/>should<sp/>be<sp/>empty.<sp/><sp/>If<sp/>not,<sp/>issue<sp/>an<sp/>error,<sp/>clear<sp/>it<sp/>out<sp/>and<sp/>continue.</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(not<sp/>TF_VERIFY(list.empty())<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>The<sp/>list<sp/>was<sp/>unexpectedly<sp/>not<sp/>empty.<sp/><sp/>TF_VERIFY<sp/>will<sp/>have</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>issued<sp/>a<sp/>coding<sp/>error<sp/>with<sp/>details.<sp/><sp/>We<sp/>clear<sp/>the<sp/>list<sp/>and<sp/>continue.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>list.clear();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Only<sp/>add<sp/>to<sp/>string<sp/>if<sp/>ptr<sp/>is<sp/>valid.</highlight></codeline>
+<codeline><highlight class="normal">string<sp/>result<sp/>=<sp/>...;<sp/></highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(TF_VERIFY(ptr<sp/>!=<sp/>NULL))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>result<sp/>+=<sp/>ptr-&gt;Method();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>The macro also optionally accepts printf-style arguments to generate a message emitted in case the condition is not met. For example: <programlisting><codeline><highlight class="normal">if<sp/>(not<sp/>TF_VERIFY(index<sp/>&lt;<sp/>size,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Index<sp/>out<sp/>of<sp/>bounds<sp/>(%zu<sp/>&gt;=<sp/>%zu)&quot;,<sp/>index,<sp/>size))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Recovery<sp/>code...</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>Unmet conditions generate TF_CODING_ERRORs by default, but setting the environment variable TF_FATAL_VERIFY to 1 will make unmet conditions generate TF_FATAL_ERRORs instead and abort the program. This is intended for testing.</para>
+<para>This is safe to call in secondary threads. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnostic.h" line="283" column="9" bodyfile="pxr/base/tf/diagnostic.h" bodystart="283" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__tf___diagnostic_1ga7c6c741bdf765244df0b58d6ef2fb35a" prot="public" static="no">
+        <name>TF_FUNC_NAME</name>
+        <param></param>
+        <briefdescription>
+<para>Get the name of the current function as a <computeroutput>std::string</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This macro will return the name of the current function, nicely formatted, as an <computeroutput>std::string</computeroutput>. This is meant primarily for diagnostics. Code should not rely on a specific format, because it may change in the future or vary across architectures. For example, <programlisting><codeline><highlight class="normal">void<sp/>YourClass::SomeMethod(int<sp/>x)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/>&quot;Debugging<sp/>info<sp/>about<sp/>function<sp/>&quot;<sp/>&lt;&lt;<sp/>TF_FUNC_NAME()<sp/>&lt;&lt;<sp/>&quot;.&quot;<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> Should display something like: &quot;Debugging info about function YourClass::SomeMethod.&quot; </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnostic.h" line="309" column="9" bodyfile="pxr/base/tf/diagnostic.h" bodystart="309" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>See <ref refid="page_tf__diagnostic" kindref="compound">Guide To Diagnostic Facilities</ref> for a discussion of diagnostic techniques. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

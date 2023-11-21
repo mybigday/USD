@@ -1,0 +1,453 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_mesh_util" kind="class" language="C++" prot="public">
+    <compoundname>HdMeshUtil</compoundname>
+    <includes refid="mesh_util_8h" local="no">meshUtil.h</includes>
+      <sectiondef kind="user-defined">
+      <header>Triangulation</header>
+      <description><para>Produces a mesh where each non-triangle face in the base mesh topology is fan-triangulated such that the resulting mesh consists entirely of triangles.</para>
+<para>In order to access per-face signals (face color, face selection etc) we need a mapping from primitiveID to authored face index domain. This is encoded in primitiveParams, and computed along with indices. See <ref refid="class_hd_mesh_util_1PrimitiveParamEncoding" kindref="member">PrimitiveParamEncoding</ref>. </para>
+</description>
+      <memberdef kind="function" id="class_hd_mesh_util_1a595af20f506e78d0a5c5b432474fadc9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void ComputeTriangleIndices</definition>
+        <argsstring>(VtVec3iArray *indices, VtIntArray *primitiveParams, VtIntArray *edgeIndices=nullptr) const</argsstring>
+        <name>ComputeTriangleIndices</name>
+        <param>
+          <type>VtVec3iArray *</type>
+          <declname>indices</declname>
+        </param>
+        <param>
+          <type>VtIntArray *</type>
+          <declname>primitiveParams</declname>
+        </param>
+        <param>
+          <type>VtIntArray *</type>
+          <declname>edgeIndices</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Return a triangulation of the input topology. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>indices and primitiveParams are output parameters. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/meshUtil.h" line="116" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_mesh_util_1a3ba0e34d324feae18022a3a4120324a6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool ComputeTriangulatedFaceVaryingPrimvar</definition>
+        <argsstring>(void const *source, int numElements, HdType dataType, VtValue *triangulated) const</argsstring>
+        <name>ComputeTriangulatedFaceVaryingPrimvar</name>
+        <param>
+          <type>void const *</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>numElements</declname>
+        </param>
+        <param>
+          <type>HdType</type>
+          <declname>dataType</declname>
+        </param>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> *</type>
+          <declname>triangulated</declname>
+        </param>
+        <briefdescription>
+<para>Return a triangulation of a face-varying primvar. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>source is a buffer of size numElements and type corresponding to dataType (e.g. HdTypeFloatVec3); the result is a VtArray&lt;T&gt; of the correct type written to the variable &quot;triangulated&quot;. This function returns false if it can&apos;t resolve dataType. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/meshUtil.h" line="126" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Quadrangulation</header>
+      <description><para>Produces a mesh where each non-quad face in the base mesh topology is quadrangulated such that the resulting mesh consists entirely of quads.</para>
+<para>Additionally, supports splitting each resulting quad face into a pair of triangles. This is different than simply triangulating the base mesh topology and can be useful for maintaining consistency with quad-based subdivision schemes.</para>
+<para>In order to access per-face signals (face color, face selection etc) we need a mapping from primitiveID to authored face index domain. This is encoded in primitiveParams, and computed along with indices. See <ref refid="class_hd_mesh_util_1PrimitiveParamEncoding" kindref="member">PrimitiveParamEncoding</ref>. </para>
+</description>
+      <memberdef kind="function" id="class_hd_mesh_util_1ab9ba80142c89ef75a4a232bf59aabf48" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void ComputeQuadInfo</definition>
+        <argsstring>(HdQuadInfo *quadInfo) const</argsstring>
+        <name>ComputeQuadInfo</name>
+        <param>
+          <type><ref refid="struct_hd_quad_info" kindref="compound">HdQuadInfo</ref> *</type>
+          <declname>quadInfo</declname>
+        </param>
+        <briefdescription>
+<para>Generate a quadInfo struct for the input topology. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/meshUtil.h" line="163" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_mesh_util_1a8d9f51acd1b38103984439f84caf40e8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void ComputeQuadIndices</definition>
+        <argsstring>(VtIntArray *indices, VtIntArray *primitiveParams, VtVec2iArray *edgeIndices=nullptr) const</argsstring>
+        <name>ComputeQuadIndices</name>
+        <param>
+          <type>VtIntArray *</type>
+          <declname>indices</declname>
+        </param>
+        <param>
+          <type>VtIntArray *</type>
+          <declname>primitiveParams</declname>
+        </param>
+        <param>
+          <type>VtVec2iArray *</type>
+          <declname>edgeIndices</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Return quadrangulated indices of the input topology. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>indices and primitiveParams are output parameters. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/meshUtil.h" line="168" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_mesh_util_1aa22d1d3ff837c0b1692059addf85e6e5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void ComputeTriQuadIndices</definition>
+        <argsstring>(VtIntArray *indices, VtIntArray *primitiveParams, VtVec2iArray *edgeIndices=nullptr) const</argsstring>
+        <name>ComputeTriQuadIndices</name>
+        <param>
+          <type>VtIntArray *</type>
+          <declname>indices</declname>
+        </param>
+        <param>
+          <type>VtIntArray *</type>
+          <declname>primitiveParams</declname>
+        </param>
+        <param>
+          <type>VtVec2iArray *</type>
+          <declname>edgeIndices</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Return triquad indices (triangulated after quadrangulation) of the input topology. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>indices and primitiveParams are output parameters. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/meshUtil.h" line="175" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_mesh_util_1ac3efb9f97d577c3450156808825a182e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool ComputeQuadrangulatedPrimvar</definition>
+        <argsstring>(HdQuadInfo const *qi, void const *source, int numElements, HdType dataType, VtValue *quadrangulated) const</argsstring>
+        <name>ComputeQuadrangulatedPrimvar</name>
+        <param>
+          <type><ref refid="struct_hd_quad_info" kindref="compound">HdQuadInfo</ref> const *</type>
+          <declname>qi</declname>
+        </param>
+        <param>
+          <type>void const *</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>numElements</declname>
+        </param>
+        <param>
+          <type>HdType</type>
+          <declname>dataType</declname>
+        </param>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> *</type>
+          <declname>quadrangulated</declname>
+        </param>
+        <briefdescription>
+<para>Return a quadrangulation of a per-vertex primvar. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>source is a buffer of size numElements and type corresponding to dataType (e.g. HdTypeFloatVec3); the result is a VtArray&lt;T&gt; of the correct type written to the variable &quot;quadrangulated&quot;. This function returns false if it can&apos;t resolve dataType. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/meshUtil.h" line="185" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_mesh_util_1a8332741c3d52a027191ff58c2438d165" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool ComputeQuadrangulatedFaceVaryingPrimvar</definition>
+        <argsstring>(void const *source, int numElements, HdType dataType, VtValue *quadrangulated) const</argsstring>
+        <name>ComputeQuadrangulatedFaceVaryingPrimvar</name>
+        <param>
+          <type>void const *</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>numElements</declname>
+        </param>
+        <param>
+          <type>HdType</type>
+          <declname>dataType</declname>
+        </param>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> *</type>
+          <declname>quadrangulated</declname>
+        </param>
+        <briefdescription>
+<para>Return a quadrangulation of a face-varying primvar. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>source is a buffer of size numElements and type corresponding to dataType (e.g. HdTypeFloatVec3); the result is a VtArray&lt;T&gt; of the correct type written to the variable &quot;quadrangulated&quot;. This function returns false if it can&apos;t resolve dataType. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/meshUtil.h" line="197" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Primitive Param bit encoding</header>
+      <description><para><anchor id="class_hd_mesh_util_1PrimitiveParamEncoding"/></para>
+<para>This encoding provides information about each sub-face resulting from the triangulation or quadrangulation of a base topology face.</para>
+<para>The encoded faceIndex is the index of the base topology face corresponding to a triangulated or quadrangulated sub-face.</para>
+<para>The encoded edge flag identifies where a sub-face occurs in the sequence of sub-faces produced for each base topology face. This edge flag can be used to determine which edges of a sub-face correspond to edges of a base topology face and which are internal edges that were introduced by triangulation or quadrangulation:<itemizedlist>
+<listitem><para>0 unaffected triangle or quad base topology face</para>
+</listitem><listitem><para>1 first sub-face produced by triangulation or quadrangulation</para>
+</listitem><listitem><para>2 last sub-face produced by triangulation or quadrangulation</para>
+</listitem><listitem><para>3 intermediate sub-face produced by triangulation or quadrangulation </para>
+</listitem></itemizedlist>
+</para>
+</description>
+      <memberdef kind="variable" id="class_hd_mesh_util_1a8f671f341cb50f2bf73cb7d84201639c" prot="private" static="no" mutable="no">
+        <type><ref refid="class_hd_mesh_topology" kindref="compound">HdMeshTopology</ref> const  *</type>
+        <definition>HdMeshTopology const* _topology</definition>
+        <argsstring></argsstring>
+        <name>_topology</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/meshUtil.h" line="262" column="1" bodyfile="pxr/imaging/hd/meshUtil.h" bodystart="262" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_mesh_util_1ae2e29a78ff7bdde03a2fe815d35b690a" prot="private" static="no" mutable="no">
+        <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const</type>
+        <definition>SdfPath const _id</definition>
+        <argsstring></argsstring>
+        <name>_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/meshUtil.h" line="263" column="1" bodyfile="pxr/imaging/hd/meshUtil.h" bodystart="263" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_mesh_util_1a202aaf296ec1055f880d7e2ce2d8af9f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int EncodeCoarseFaceParam</definition>
+        <argsstring>(int faceIndex, int edgeFlag)</argsstring>
+        <name>EncodeCoarseFaceParam</name>
+        <param>
+          <type>int</type>
+          <declname>faceIndex</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>edgeFlag</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/meshUtil.h" line="236" column="1" bodyfile="pxr/imaging/hd/meshUtil.h" bodystart="236" bodyend="238"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_mesh_util_1a9736da5f434af0eab8d2d3c002b18463" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int DecodeFaceIndexFromCoarseFaceParam</definition>
+        <argsstring>(int coarseFaceParam)</argsstring>
+        <name>DecodeFaceIndexFromCoarseFaceParam</name>
+        <param>
+          <type>int</type>
+          <declname>coarseFaceParam</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/meshUtil.h" line="239" column="1" bodyfile="pxr/imaging/hd/meshUtil.h" bodystart="239" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_mesh_util_1aa0c6d3f990f7f51b9f0983d2499c1065" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int DecodeEdgeFlagFromCoarseFaceParam</definition>
+        <argsstring>(int coarseFaceParam)</argsstring>
+        <name>DecodeEdgeFlagFromCoarseFaceParam</name>
+        <param>
+          <type>int</type>
+          <declname>coarseFaceParam</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/meshUtil.h" line="242" column="1" bodyfile="pxr/imaging/hd/meshUtil.h" bodystart="242" bodyend="244"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_mesh_util_1abc45c39af2a855b1066d0a2e93f2ae12" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int _ComputeNumQuads</definition>
+        <argsstring>(VtIntArray const &amp;numVerts, VtIntArray const &amp;holeIndices, bool *invalidFaceFound=nullptr) const</argsstring>
+        <name>_ComputeNumQuads</name>
+        <param>
+          <type>VtIntArray const &amp;</type>
+          <declname>numVerts</declname>
+        </param>
+        <param>
+          <type>VtIntArray const &amp;</type>
+          <declname>holeIndices</declname>
+        </param>
+        <param>
+          <type>bool *</type>
+          <declname>invalidFaceFound</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>}@ </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Return the number of quadrangulated quads. If degenerate face is found, sets invalidFaceFound as true. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/meshUtil.h" line="251" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_mesh_util_1a3e3120455782881af55f73400e03491a" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _ComputeQuadIndices</definition>
+        <argsstring>(VtIntArray *indices, VtIntArray *primitiveParams, VtVec2iArray *edgeIndices, bool triangulate=false) const</argsstring>
+        <name>_ComputeQuadIndices</name>
+        <param>
+          <type>VtIntArray *</type>
+          <declname>indices</declname>
+        </param>
+        <param>
+          <type>VtIntArray *</type>
+          <declname>primitiveParams</declname>
+        </param>
+        <param>
+          <type>VtVec2iArray *</type>
+          <declname>edgeIndices</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>triangulate</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Return quad indices (optionally triangulated after quadrangulation). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/meshUtil.h" line="256" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_mesh_util_1aae30ed555b5e5194e45dd8a0f1686b06" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>HdMeshUtil</definition>
+        <argsstring>(HdMeshTopology const *topology, SdfPath const &amp;id)</argsstring>
+        <name>HdMeshUtil</name>
+        <param>
+          <type><ref refid="class_hd_mesh_topology" kindref="compound">HdMeshTopology</ref> const *</type>
+          <declname>topology</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/meshUtil.h" line="85" column="1" bodyfile="pxr/imaging/hd/meshUtil.h" bodystart="85" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_mesh_util_1a2a691056dffbd210d38b661307b38ef6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual ~HdMeshUtil</definition>
+        <argsstring>()</argsstring>
+        <name>~HdMeshUtil</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/meshUtil.h" line="87" column="1" bodyfile="pxr/imaging/hd/meshUtil.h" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_mesh_util_1a3aea3e2d25e33795bcd17fc0f5808637" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void EnumerateEdges</definition>
+        <argsstring>(std::vector&lt; GfVec2i &gt; *edgeVerticesOut) const</argsstring>
+        <name>EnumerateEdges</name>
+        <param>
+          <type>std::vector&lt; <ref refid="class_gf_vec2i" kindref="compound">GfVec2i</ref> &gt; *</type>
+          <declname>edgeVerticesOut</declname>
+        </param>
+        <briefdescription>
+<para>Return a buffer filled with face vertex index pairs corresponding to the sequence in which edges are visited when iterating through the mesh topology. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The edges of degenerate and hole faces are included so that this sequence will correspond with either base face triangulation or quadrangulation (which typically skips over hole faces) as well as for refined surfaces which take into account faces tagged as holes as well as other non-manifold faces. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/meshUtil.h" line="212" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A collection of utility algorithms for generating triangulation and quadrangulation of an input topology. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="pxr/imaging/hd/meshUtil.h" line="83" column="1" bodyfile="pxr/imaging/hd/meshUtil.h" bodystart="82" bodyend="264"/>
+    <listofallmembers>
+      <member refid="class_hd_mesh_util_1abc45c39af2a855b1066d0a2e93f2ae12" prot="private" virt="non-virtual"><scope>HdMeshUtil</scope><name>_ComputeNumQuads</name></member>
+      <member refid="class_hd_mesh_util_1a3e3120455782881af55f73400e03491a" prot="private" virt="non-virtual"><scope>HdMeshUtil</scope><name>_ComputeQuadIndices</name></member>
+      <member refid="class_hd_mesh_util_1ae2e29a78ff7bdde03a2fe815d35b690a" prot="private" virt="non-virtual"><scope>HdMeshUtil</scope><name>_id</name></member>
+      <member refid="class_hd_mesh_util_1a8f671f341cb50f2bf73cb7d84201639c" prot="private" virt="non-virtual"><scope>HdMeshUtil</scope><name>_topology</name></member>
+      <member refid="class_hd_mesh_util_1a8d9f51acd1b38103984439f84caf40e8" prot="public" virt="non-virtual"><scope>HdMeshUtil</scope><name>ComputeQuadIndices</name></member>
+      <member refid="class_hd_mesh_util_1ab9ba80142c89ef75a4a232bf59aabf48" prot="public" virt="non-virtual"><scope>HdMeshUtil</scope><name>ComputeQuadInfo</name></member>
+      <member refid="class_hd_mesh_util_1a8332741c3d52a027191ff58c2438d165" prot="public" virt="non-virtual"><scope>HdMeshUtil</scope><name>ComputeQuadrangulatedFaceVaryingPrimvar</name></member>
+      <member refid="class_hd_mesh_util_1ac3efb9f97d577c3450156808825a182e" prot="public" virt="non-virtual"><scope>HdMeshUtil</scope><name>ComputeQuadrangulatedPrimvar</name></member>
+      <member refid="class_hd_mesh_util_1a595af20f506e78d0a5c5b432474fadc9" prot="public" virt="non-virtual"><scope>HdMeshUtil</scope><name>ComputeTriangleIndices</name></member>
+      <member refid="class_hd_mesh_util_1a3ba0e34d324feae18022a3a4120324a6" prot="public" virt="non-virtual"><scope>HdMeshUtil</scope><name>ComputeTriangulatedFaceVaryingPrimvar</name></member>
+      <member refid="class_hd_mesh_util_1aa22d1d3ff837c0b1692059addf85e6e5" prot="public" virt="non-virtual"><scope>HdMeshUtil</scope><name>ComputeTriQuadIndices</name></member>
+      <member refid="class_hd_mesh_util_1aa0c6d3f990f7f51b9f0983d2499c1065" prot="public" virt="non-virtual"><scope>HdMeshUtil</scope><name>DecodeEdgeFlagFromCoarseFaceParam</name></member>
+      <member refid="class_hd_mesh_util_1a9736da5f434af0eab8d2d3c002b18463" prot="public" virt="non-virtual"><scope>HdMeshUtil</scope><name>DecodeFaceIndexFromCoarseFaceParam</name></member>
+      <member refid="class_hd_mesh_util_1a202aaf296ec1055f880d7e2ce2d8af9f" prot="public" virt="non-virtual"><scope>HdMeshUtil</scope><name>EncodeCoarseFaceParam</name></member>
+      <member refid="class_hd_mesh_util_1a3aea3e2d25e33795bcd17fc0f5808637" prot="public" virt="non-virtual"><scope>HdMeshUtil</scope><name>EnumerateEdges</name></member>
+      <member refid="class_hd_mesh_util_1aae30ed555b5e5194e45dd8a0f1686b06" prot="public" virt="non-virtual"><scope>HdMeshUtil</scope><name>HdMeshUtil</name></member>
+      <member refid="class_hd_mesh_util_1a2a691056dffbd210d38b661307b38ef6" prot="public" virt="virtual"><scope>HdMeshUtil</scope><name>~HdMeshUtil</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

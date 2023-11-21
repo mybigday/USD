@@ -1,0 +1,458 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="usd_shade_page_front" kind="page">
+    <compoundname>usdShade_page_front</compoundname>
+    <title>UsdShade : USD Shading Schema</title>
+    <tableofcontents>
+      <tocsect>
+        <name>UsdShade Networks</name>
+        <reference>usd_shade_page_front_1UsdShadeNetworks</reference>
+    </tocsect>
+      <tocsect>
+        <name>Encapsulation and Sharing</name>
+        <reference>usd_shade_page_front_1UsdShadeEncapsulation</reference>
+    <tableofcontents>
+      <tocsect>
+        <name>Containers vs Primitive Shading Nodes</name>
+        <reference>usd_shade_page_front_1UsdShadeContainers</reference>
+    </tocsect>
+      <tocsect>
+        <name>Exposing parameters on containers</name>
+        <reference>usd_shade_page_front_1UsdShadePublicUI</reference>
+    </tocsect>
+    </tableofcontents>
+    </tocsect>
+      <tocsect>
+        <name>Connectability Rules for UsdShade Types</name>
+        <reference>usd_shade_page_front_1UsdShadeConnectability</reference>
+    </tocsect>
+      <tocsect>
+        <name>Connections and Dataflow in UsdShade</name>
+        <reference>usd_shade_page_front_1UsdShadeConnections</reference>
+    <tableofcontents>
+      <tocsect>
+        <name>Valid Shader Connections Win Over Input Values</name>
+        <reference>usd_shade_page_front_1UsdShadeConnectOverInput</reference>
+    </tocsect>
+      <tocsect>
+        <name>Resolving Interface Connections</name>
+        <reference>usd_shade_page_front_1UsdShadeResolvingInterface</reference>
+    </tocsect>
+      <tocsect>
+        <name>Connection Resolution Utilities</name>
+        <reference>usd_shade_page_front_1UsdShadeAttributeResolution</reference>
+    </tocsect>
+    </tableofcontents>
+    </tocsect>
+      <tocsect>
+        <name>UsdShade Based Shader Definition</name>
+        <reference>usd_shade_page_front_1UsdShadeShaderDefinition</reference>
+    </tocsect>
+    </tableofcontents>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>UsdShade provides schemas and behaviors for creating and binding materials, which encapsulate shading networks.</para>
+<sect1 id="usd_shade_page_front_1UsdShadeNetworks">
+<title>UsdShade Networks</title>
+<para>UsdShade provides schemas and behaviors for creating shading networks (<ref refid="class_usd_shade_node_graph" kindref="compound">UsdShadeNodeGraph</ref>) and materials (<ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref>). The networks are composed of <ref refid="class_usd_shade_shader" kindref="compound">UsdShadeShader</ref> objects, as well as other <ref refid="class_usd_shade_node_graph" kindref="compound">UsdShadeNodeGraph</ref>.</para>
+<para>Objects in a network are connected together and to their encapsulating Material using the <ref refid="class_usd_shade_connectable_a_p_i" kindref="compound">UsdShadeConnectableAPI</ref> schema, which allows one to create <ref refid="class_usd_shade_input" kindref="compound">UsdShadeInput</ref> and <ref refid="class_usd_shade_output" kindref="compound">UsdShadeOutput</ref> (which are <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> schemas), and <emphasis>connect</emphasis> them using <ulink url="http://openusd.org/docs/api/class_usd_attribute.html#af8eaf3216d67a143923b65465eac881a">UsdAttribute connections</ulink>.</para>
+<para>Here&apos;s a python example.</para>
+<para><programlisting filename=".py"><codeline><highlight class="comment">#<sp/>create<sp/>material</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">materialPath<sp/>=<sp/>Sdf.Path(</highlight><highlight class="stringliteral">&apos;/Model/Materials/MyMaterial&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">material<sp/>=<sp/>UsdShade.Material.Define(stage,<sp/>materialPath)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>create<sp/>shaders</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">downstreamShader<sp/>=<sp/>UsdShade.Shader.Define(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stage,<sp/>materialPath.AppendChild(</highlight><highlight class="stringliteral">&apos;Downstream&apos;</highlight><highlight class="normal">))</highlight></codeline>
+<codeline><highlight class="normal">upstreamShader<sp/>=<sp/>UsdShade.Shader.Define(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stage,<sp/>materialPath.AppendChild(</highlight><highlight class="stringliteral">&apos;Upstream&apos;</highlight><highlight class="normal">))</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>Connect</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">inputPort<sp/>=<sp/>downstreamShader.CreateInput(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&apos;DownstreamInput&apos;</highlight><highlight class="normal">,<sp/>Sdf.ValueTypeNames.Float)</highlight></codeline>
+<codeline><highlight class="normal">inputPort.ConnectToSource(upstreamShader,<sp/></highlight><highlight class="stringliteral">&apos;UpstreamOutput&apos;</highlight><highlight class="normal">)</highlight></codeline>
+</programlisting></para>
+<para>This will yield a material with two connected nodes.</para>
+<para><programlisting filename=".usd"><codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;Model&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Materials&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>Material<sp/>&quot;MyMaterial&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>Shader<sp/>&quot;Downstream&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:DownstreamInput.connect<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Model/Materials/MyMaterial/Upstream.outputs:UpstreamOutput&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>Shader<sp/>&quot;Upstream&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>outputs:UpstreamOutput</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="usd_shade_page_front_1UsdShadeEncapsulation">
+<title>Encapsulation and Sharing</title>
+<para><simplesect kind="note"><para>In UsdShade, all shaders are UsdPrims or just &quot;prims&quot;. However, in deference to the larger body of technical discourse on shading, we will refer to them as &quot;nodes&quot; in this discussion.</para>
+</simplesect>
+Shading nodes should be encapsulated in a containing object, and are not generally used in isolation.</para>
+<para>Shading networks can be organized into coherent packaged units (<ref refid="class_usd_shade_node_graph" kindref="compound">UsdShadeNodeGraph</ref>), with their own public parameters exposed and connected to the internal nodes. In this scenario, the <ref refid="class_usd_shade_node_graph" kindref="compound">UsdShadeNodeGraph</ref> is a parent or ancestor prim (<ref refid="class_usd_shade_node_graph" kindref="compound">UsdShadeNodeGraph</ref> can be nested) to all of the <ref refid="class_usd_shade_shader" kindref="compound">UsdShadeShader</ref> prims in the network, and serves as the point of encapsulation - the <ref refid="class_usd_shade_node_graph" kindref="compound">UsdShadeNodeGraph</ref> prim can then be <bold>referenced</bold> into other, larger networks as a building block, with its entire network intact. When referenced into larger networks, NodeGraphs can also be <ulink url="http://openusd.org/docs/USD-Glossary.html#USDGlossary-Instancing">instanced</ulink> so that they appear as a single prim in the network, and can be processed more efficiently when referenced from multiple locations.</para>
+<para>If the network of shading nodes is directly consumable as a &quot;shader&quot; of a type known to some client renderer (e.g. a <bold>surface shader</bold>), then the encapsulating parent/ancestor should be declared as a <ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref>, which is a <bold>container</bold> that can also be bound to geometries or collections. Materials can also be reused and instanced, retaining the same network but allowing top-level &quot;Material Interface&quot; parameters to be authored uniquely.</para>
+<sect2 id="usd_shade_page_front_1UsdShadeContainers">
+<title>Containers vs Primitive Shading Nodes</title>
+<para>Containers are prims that are designed to have child prims, like <ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref> and <ref refid="class_usd_shade_node_graph" kindref="compound">UsdShadeNodeGraph</ref>, and that encapsulate parts or a whole network. These containers are differentiated against non-containers, which are are shader nodes like <ref refid="class_usd_shade_shader" kindref="compound">UsdShadeShader</ref> prims.</para>
+<para>Container types are identified by their <ref refid="class_usd_shade_connectable_a_p_i_1af34679e35e7a95b65817347ab2b94b38" kindref="member">UsdShadeConnectableAPI::IsContainer()</ref> implementation, which is an extensible API, such that other types can work as containers with the other UsdShade APIs, by implementing the <ref refid="class_usd_shade_connectable_a_p_i_behavior" kindref="compound">UsdShadeConnectableAPIBehavior</ref> plugin interface. Refer: <ref refid="connectable_a_p_i_behavior_8h_1af020d3f2d1c9f65f75dc08434a1d0b20" kindref="member">UsdShadeRegisterConnectableAPIBehavior</ref> for more details on registering a <ref refid="class_usd_shade_connectable_a_p_i_behavior" kindref="compound">UsdShadeConnectableAPIBehavior</ref> for a Type.</para>
+<para>Containers usually define an interface that establishes input and output attributes, which allows exposing functionality of the encapsulated part of the network. With such an interface definition they can be treated in many ways like a primitive shading node, but have an implementation that can be inspected in Usd.</para>
+</sect2>
+<sect2 id="usd_shade_page_front_1UsdShadePublicUI">
+<title>Exposing parameters on containers</title>
+<para>To expose a parameter to the container, we use the same mechanism that connects nodes.</para>
+<para><programlisting filename=".py"><codeline><highlight class="comment">#<sp/>Expose<sp/>a<sp/>parameter<sp/>to<sp/>the<sp/>public<sp/>interface</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">internalPort<sp/>=<sp/>upstreamShader.CreateInput(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&apos;internalPort&apos;</highlight><highlight class="normal">,<sp/>Sdf.ValueTypeNames.Float)</highlight></codeline>
+<codeline><highlight class="normal">exposedPort<sp/>=<sp/>material.CreateInput(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&apos;ExposedPort&apos;</highlight><highlight class="normal">,<sp/>Sdf.ValueTypeNames.Float)</highlight></codeline>
+<codeline><highlight class="normal">exposedPort.Set(1.0)</highlight></codeline>
+<codeline><highlight class="normal">internalPort.ConnectToSource(exposedPort)</highlight></codeline>
+</programlisting></para>
+<para>Which will yield a public interface parameter called &apos;ExposedPort&apos; on the <ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref> called &apos;MyMaterial&apos;, and set its default value to 1.0</para>
+<para><programlisting filename=".usd"><codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;Model&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Materials&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>Material<sp/>&quot;MyMaterial&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:ExposedPort<sp/>=<sp/>1</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>Shader<sp/>&quot;Downstream&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:DownstreamInput.connect<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Model/Materials/MyMaterial/Upstream.outputs:UpstreamOutput&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>Shader<sp/>&quot;Upstream&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:internalPort.connect<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Model/Materials/MyMaterial.inputs:ExposedPort&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>outputs:UpstreamOutput</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>To expose an output of a node network as an output of a NodeGraph, or as a &quot;terminal output&quot; of a Material, we again use the same connection API, except that now we are connecting an Output to another Output (in effect, <emphasis>forwarding</emphasis> the Output from a node to its encapsulating container):</para>
+<para><programlisting filename=".py"><codeline><highlight class="comment">#<sp/>The<sp/>output<sp/>represents<sp/>the<sp/>result<sp/>of<sp/>the<sp/>shader&apos;s<sp/>computation.<sp/>For</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>complex<sp/>types<sp/>like<sp/>&quot;surface<sp/>illumination&quot;<sp/>we<sp/>use<sp/>the<sp/>type<sp/>Token<sp/>as</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>a<sp/>standin<sp/>for<sp/>the<sp/>type<sp/>specific<sp/>to<sp/>the<sp/>renderer</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">outPort<sp/>=<sp/>surfaceShader.CreateOutput(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&apos;out&apos;</highlight><highlight class="normal">,<sp/>Sdf.ValueTypeNames.Token)</highlight></codeline>
+<codeline><highlight class="normal">surfaceTerminal<sp/>=<sp/>material.CreateOutput(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&apos;surface&apos;</highlight><highlight class="normal">,<sp/>Sdf.ValueTypeNames.Token)</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>For<sp/>outputs,<sp/>it<sp/>is<sp/>the<sp/>container&apos;s<sp/>Output<sp/>that<sp/>connect&apos;s<sp/>to<sp/>the<sp/>Node&apos;s</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>output</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">surfaceTerminal.ConnectToSource(outPort)</highlight></codeline>
+</programlisting></para>
+<para>Which will yield a public interface parameter called &apos;ExposedPort&apos; on the <ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref> called &apos;MyMaterial&apos;, and set its default value to 1.0</para>
+<para><programlisting filename=".usd"><codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;Model&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Materials&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>Material<sp/>&quot;MyMaterial&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token<sp/>outputs:surface.connect<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Model/Materials/MyMaterial/Surface.outputs:out&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>Shader<sp/>&quot;Surface&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token<sp/>outputs:out</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="usd_shade_page_front_1UsdShadeConnectability">
+<title>Connectability Rules for UsdShade Types</title>
+<para>As noted above, encapsulation is critical to UsdShade connectability rules, with different UsdShade nodes providing appropriate connectivity rules described below:</para>
+<para><itemizedlist>
+<listitem><para><ref refid="class_usd_shade_shader" kindref="compound">UsdShadeShader</ref>: Inputs can be connected to any Input or Output of any other shader or NodeGraph encapsulated by the same nearest-in-namespace encapsulating NodeGraph or Nodegraph-derived container. Outputs cannot be connected.</para>
+</listitem><listitem><para><ref refid="class_usd_shade_node_graph" kindref="compound">UsdShadeNodeGraph</ref>: Inputs follow the same rule as Shaders. Outputs can be connected to any Output on a prim (Shader or NodeGraph) encapsulated by the NodeGraph itself, or to an Input of the same NodeGraph itself, creating a &quot;pass through&quot; connection.</para>
+</listitem><listitem><para>Default behavior for NodeGraph-derived Types (e.g. <ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref>) Inputs and Outputs follow the same rule, which is that they can be connected to any Output on a prim (Shader or NodeGraph) encapsulated by the Material itself. Note that &quot;pass through&quot; connections are not allowed for Nodegraph-derived container nodes.</para>
+</listitem><listitem><para>Any new or derived Typed or single-apply API schema can register its own <ref refid="class_usd_shade_connectable_a_p_i_behavior" kindref="compound">UsdShadeConnectableAPIBehavior</ref> to customize connectivity rules. It can also specify, in its extraPlugInfo customData, the isUsdShadeContainer and requiresUsdShadeEncapsulation booleans to customize those aspects of behavior without needing to provide a <ref refid="class_usd_shade_connectable_a_p_i_behavior" kindref="compound">UsdShadeConnectableAPIBehavior</ref> implementation.</para>
+</listitem></itemizedlist>
+</para>
+<para><anchor id="usd_shade_page_front_1UsdShadeConnectableAPIBehavior_ResolutionOrder"/>Resolution order for when multiple types and apiSchemas provide a <ref refid="class_usd_shade_connectable_a_p_i_behavior" kindref="compound">UsdShadeConnectableAPIBehavior</ref>:<orderedlist>
+<listitem><para>Behavior defined on an authored API schemas, wins over</para>
+</listitem><listitem><para>Behavior defined for a prim type, wins over</para>
+</listitem><listitem><para>Behavior defined for the prim&apos;s ancestor types, wins over</para>
+</listitem><listitem><para>Behavior defined for any built-in API schemas.</para>
+</listitem><listitem><para>If no Behavior is found but an api schema adds providesUsdShadeConnectableAPIBehavior plug metadata then a default behavior is registered for the primTypeId, with its isContainer and requiresEncapsulation driven by extraPlugInfo metadata</para>
+</listitem></orderedlist>
+</para>
+<para>Note that interface-only connections can only happen between inputs and source which have &quot;interfaceOnly&quot; connectivity.</para>
+</sect1>
+<sect1 id="usd_shade_page_front_1UsdShadeConnections">
+<title>Connections and Dataflow in UsdShade</title>
+<para>UsdShade uses <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> connections both to indicate dataflow from shading node outputs to inputs, <bold>and</bold> to indicate pre-rendering propagation of values authored on <ref refid="class_usd_shade_node_graph" kindref="compound">UsdShadeNodeGraph</ref> and <ref refid="class_usd_shade_material" kindref="compound">UsdShadeMaterial</ref> inputs to shader node inputs. In USD, connections (and relationships) are authored on the <bold>consumer</bold>, and target the source or <bold>producer</bold>. Therefore, data in a UsdShade network flows from a connection&apos;s target to its anchor. To reliably translate UsdShade networks for consumption by renderers, we need to establish a few rules about how values propagate in the face of connections.</para>
+<sect2 id="usd_shade_page_front_1UsdShadeConnectOverInput">
+<title>Valid Shader Connections Win Over Input Values</title>
+<para>When an input on a shading node has <bold>both</bold> an authored value (default or timeSamples), <bold>and</bold> a connection to an output on another shading node, then the connection alone is transmitted to the renderer - the authored value is irrelevant. Connections that target an output that <bold>does not exist in the containing Material</bold> are ignored; if the connected input has an authored value, then in this case, and this case alone, we pass the value to the renderer and ignore the connection.</para>
+<para>In the following example, we will provide values to the renderer for inputs <emphasis>valueOnly</emphasis> (2) and <emphasis>brokenConnection</emphasis> (4), while informing the renderer of a connection between <emphasis>validOutput</emphasis> and <emphasis>connected</emphasis>, ignoring the value authored of 42 on <emphasis>connected</emphasis>.</para>
+<para><programlisting filename=".usd"><codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;Model&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Materials&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>Material<sp/>&quot;MyMaterial&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>Shader<sp/>&quot;Downstream&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:brokenConnection<sp/>=<sp/>4</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:brokenConnection.connect<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Model/Materials/MyMaterial/MissingShader.outputs:MissingOutput&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:connected<sp/>=<sp/>42</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:connected.connect<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Model/Materials/MyMaterial/Upstream.outputs:UpstreamOutput&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:valueOnly<sp/>=<sp/>2</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>Shader<sp/>&quot;Upstream&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>outputs:UpstreamOutput</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="usd_shade_page_front_1UsdShadeResolvingInterface">
+<title>Resolving Interface Connections</title>
+<para>When we create inputs on NodeGraphs or Materials to serve as &quot;public interface&quot; for shading properties, it is common to <emphasis>create</emphasis> an appropriately-typed attribute, but <bold>not provide a default value for it</bold>. When USD is the document for a material shading network, this &quot;uninitialized interface attribute&quot; allows the Material to continue to receive updates to published shaders made available through the <ref refid="class_sdr_registry" kindref="compound">SdrRegistry</ref> long after the Material has been created. Why? Because of the first rule of interface value propagation:</para>
+<para><itemizedlist>
+<listitem><para>If a Material or NodeGraph input provides no value, and one or more of its shader&apos;s inputs connects to the interface attribute, then the value supplied to the renderer for that shading input should be whatever value is authored on the shader input, or if none is authored, then we emit <bold>no value</bold> to the renderer, indicating it should simply follow the shader implementation&apos;s own default value.</para>
+</listitem></itemizedlist>
+</para>
+<para>NodeGraphs can be embedded inside Materials, and also as nested components inside other NodeGraphs. Because of this nestability, it is posible that a deeply embedded shader node input may need to travel several connection hops to find an interface attribute that provides a value for it to use. This leads to the second and final rule of interface value propagation:</para>
+<para><itemizedlist>
+<listitem><para>If a shader node input is connected to a containing NodeGraph input that is in turn connected to an outer-containing NodeGraph or Material, it is the <bold>outermost authored input default in the connection chain</bold> that provides the shader input&apos;s value. This allows the &quot;user&quot; of a NodeGraph to always be able to drive its inputs from its own public interface.</para>
+</listitem></itemizedlist>
+</para>
+<para>Putting these two rules together, in the example below, we expect the following values to be passed to the renderer for each shader input:</para>
+<para><itemizedlist>
+<listitem><para><emphasis>spOne</emphasis> = 4, because neither of the interface attributes in its connection chain supply a value.</para>
+</listitem><listitem><para><emphasis>spTwo</emphasis> = 14, because <emphasis>matInterfaceTwo</emphasis> provides the strongest opinion, as the outermost value-provider in the connection chain.</para>
+</listitem><listitem><para><emphasis>spThree</emphasis> = 64, because only its directly-embedding NodeGraph&apos;s interface attribute provides a value stronger than its own default.</para>
+</listitem></itemizedlist>
+</para>
+<para><programlisting filename=".usd"><codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;Model&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Materials&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>Material<sp/>&quot;MyMaterial&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:matInterfaceOne</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:matInterfaceTwo<sp/>=<sp/>14</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:matInterfaceThree</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>NodeGraph<sp/>&quot;Package&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:ngInterfaceOne.connect<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Model/Materials/MyMaterial.inputs:matInterfaceOne&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:ngInterfaceTwo<sp/>=<sp/>28</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:ngInterfaceTwo.connect<sp/>=</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Model/Materials/MyMaterial.inputs:matInterfaceTwo&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:ngInterfaceThree<sp/>=<sp/>64</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:ngInterfaceThree.connect<sp/>=</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Model/Materials/MyMaterial.inputs:matInterfaceThree&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>Shader<sp/>&quot;EmbeddedInNG&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:spOne<sp/>=<sp/>4</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:spOne.connect<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Model/Materials/MyMaterial/Package.inputs:ngInterfaceOne&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:spTwo<sp/>=<sp/>5</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:spTwo.connect<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Model/Materials/MyMaterial/Package.inputs:ngInterfaceTwo&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:spThree<sp/>=<sp/>6</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:spThree.connect<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Model/Materials/MyMaterial/Package.inputs:ngInterfaceThree&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>NodeGraphs also define outputs to declare the signals that are provided for the rest of the network. From the outside, which is where the NodeGraph is connected to other shading nodes or NodeGraphs, the outputs behave conceptually like those on shading nodes. On the inside of the NodeGraph the outputs are connected to outputs of nested shading nodes or nested NodeGraphs <emphasis>or</emphasis> they can be connected to input attributes on the same NodeGraph as a pass through mechanism.</para>
+<para>In the example below we have a NodGraph with two inputs (<emphasis>ngPassThruIn</emphasis> and <emphasis>ngToModifyIn</emphasis>) and two outputs (<emphasis>ngPassThruOut</emphasis> and <emphasis>ngModifiedOut</emphasis>). <emphasis>ngPassThruIn</emphasis> is sent straight to <emphasis>ngPassThruOut</emphasis> without modification, which means it is essentially forwarding connections and effectively <emphasis>result1</emphasis> is connected to <emphasis>input1</emphasis> directly. The input of <emphasis>ngToModifyIn</emphasis> is fed to the <emphasis>Modifier</emphasis> shading node, which sends a modified result to <emphasis>ngModifiedOut</emphasis>, which effectively models <emphasis>result2</emphasis> -&gt; <emphasis>toModify</emphasis> (on <emphasis>Modifier</emphasis>) and <emphasis>modified</emphasis> -&gt; <emphasis>input2</emphasis>.</para>
+<para><programlisting filename=".usd"><codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;Model&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Materials&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>Material<sp/>&quot;MyMaterial&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>Shader<sp/>&quot;Generator&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>outputs:result1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>outputs:result2</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>NodeGraph<sp/>&quot;Package&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:ngPassThruIn.connect<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Model/Materials/MyMaterial/Generator.outputs:result1&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:ngToModifyIn.connect<sp/>=</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Model/Materials/MyMaterial/Generator.outputs:result2&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>outputs:ngPassThruOut.connect<sp/>=</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Model/Materials/MyMaterial/Package.inputs:ngPassThruIn&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>outputs:ngModifiedOut.connect<sp/>=</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Model/Materials/MyMaterial/Package/Modifier.outputs:modified&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>Shader<sp/>&quot;Modifier&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:toModify.connect<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Model/Materials/MyMaterial/Package.inputs:ngToModifyIn&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>outputs:modified</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>Shader<sp/>&quot;Consumer&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:input1.connect<sp/>=</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Model/Materials/MyMaterial/Package.outputs:ngPassThruOut&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>inputs:input2.connect<sp/>=</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/Model/Materials/MyMaterial/Package.outputs:ngModifiedOut&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="usd_shade_page_front_1UsdShadeAttributeResolution">
+<title>Connection Resolution Utilities</title>
+<para>The resolution of the rules described above are implemented in a helper function called <ref refid="class_usd_shade_utils_1ad1f99058557167a9282c2531f2332bd6" kindref="member">UsdShadeUtils::GetValueProducingAttributes</ref>, which takes either a <ref refid="class_usd_shade_input" kindref="compound">UsdShadeInput</ref> or <ref refid="class_usd_shade_output" kindref="compound">UsdShadeOutput</ref> and computes the <ref refid="class_usd_attribute" kindref="compound">UsdAttribute(s)</ref> that either carry the default value(s) that should be sent to the renderer or the <ref refid="class_usd_shade_output" kindref="compound">UsdShadeOutput(s)</ref> of nodes to which connections should be established. For convenience and discoverability this method is also available on Inputs and Outputs directly as <ref refid="class_usd_shade_input_1a2850314096019df0a017b321719b3c70" kindref="member">UsdShadeInput::GetValueProducingAttributes</ref> and <ref refid="class_usd_shade_output_1a2850314096019df0a017b321719b3c70" kindref="member">UsdShadeOutput::GetValueProducingAttributes</ref>.</para>
+<para>This handles both the rules that connections win over default values and the forwarding logic to the interfaces of containers, like Materials or NodeGraphs. This utility function can be seen as a way to turn physical connections into logical ones. This can be useful for renderers ingesting a Material network because generally the logical connections are their only concern. This conversion &quot;flattens&quot; the network into a simple network that only contains Shaders with their respective input values and connections.</para>
+<para>There are situations where only valid output attributes of shading nodes are desired and hence we have a mode, where it will not report input or output attributes on containers that carry default values. This mode can be activated by the optional <emphasis>shaderOutputsOnly</emphasis> flag.</para>
+<para>Attributes in Usd can have not just a single connection target, but potentially multiple attributes they target. UsdShade supports having multiple connections for Inputs and Outputs (of containers, only), which means that <ref refid="class_usd_shade_utils_1ad1f99058557167a9282c2531f2332bd6" kindref="member">UsdShadeUtils::GetValueProducingAttributes</ref> also handles these scenarios. The function is essentially performing a depth first connection tracing, which means that when a multi-connection is encountered along the path the tracing splits and potentially multiple source attributes are found. Note that invalid connections targets are skipped. The function will report all valid upstream attributes, which can be a mix of Inputs with default values and Outputs of Shader nodes. It is up to the client to resolve and report any inconsistencies based on what is supported in the target rendering system.</para>
+</sect2>
+</sect1>
+<sect1 id="usd_shade_page_front_1UsdShadeShaderDefinition">
+<title>UsdShade Based Shader Definition</title>
+<para>UsdShade has an <ref refid="class_ndr_parser_plugin" kindref="compound">NdrParserPlugin</ref> (<ref refid="class_usd_shade_shader_def_parser_plugin" kindref="compound">UsdShadeShaderDefParserPlugin</ref>) that enables shader definitions to be encoded as USD scene description using the schemas available in UsdShade. A discovery plugin can open a USD stage containing shader definitions and populate the shader registry with nodes using the API <ref refid="class_usd_shade_shader_def_utils_1a769e7fcf038cb078b2419735759630be" kindref="member">UsdShadeShaderDefUtils::GetNodeDiscoveryResults()</ref>.</para>
+<para>A USD file containing UsdShade-based shader definitions must adhere to the following rules, in order to produce valid <ref refid="class_sdr_shader_node" kindref="compound">SdrShaderNode</ref> s in the shader registry:<itemizedlist>
+<listitem><para>Every concrete shader prim at the root of the composed <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> should represent a new and complete shader definition. Inherits, references and other composition arcs may be used to avoid redundant scene description.</para>
+</listitem><listitem><para>The shader prim&apos;s name becomes the unique <emphasis>identifier</emphasis> of the corresponding shader node in the registry. A shader&apos;s identifier is a concatenation of the<orderedlist>
+<listitem><para>family name of the shader,</para>
+</listitem><listitem><para>any type variations pertaining to the shader and</para>
+</listitem><listitem><para>the shader version, which can contain one or two ints representing the major number and an optional minor number. The type variations and shader version are optional parts of a shader identifier (i.e. not all shader identifiers may include them). If present, the different parts of the identifier are delimited by an underscore. Using UsdShadeShaderDefUtils::SplitShaderIdentifier, a shader&apos;s identifier can be split into the family name, implementation-name of the shader node (which includes the family name and the type information) and the shader version. For example,</para>
+</listitem></orderedlist>
+<itemizedlist>
+<listitem><para>if the shader prim is named &quot;MultiTexture&quot;, the family name of the <ref refid="class_sdr_shader_node" kindref="compound">SdrShaderNode</ref> will be &quot;MultiTexture&quot;. The corresponding shader-node&apos;s <bold>implementation name</bold> will also be &quot;MultiTexture&quot; and its version will be empty.</para>
+</listitem><listitem><para>if the shader prim is named &quot;MultiTexture_float2&quot;, the family name of the shader will be &quot;MultiTexture&quot; and its implementation name will be &quot;MultiTexture_float2&quot;. Its version will be empty.</para>
+</listitem><listitem><para>if the shader prim is named &quot;MultiTexture_3&quot;, the family name of the shader will be &quot;MultiTexture&quot;. It&apos;s implementation name will also be &quot;MultiTexture&quot; and its version will be 3.</para>
+</listitem><listitem><para>if the shader prim is named &quot;MultiTexture_float2_3_1&quot;, the family name of the shader will be &quot;MultiTexture&quot;. The <emphasis>implementation name</emphasis> will include the type information and be set to &quot;Primvar_float2&quot;.</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>The info:id attribute value of the shader, if authored, must match the name of the shader prim (i.e. the identifier of the <ref refid="class_sdr_shader_node" kindref="compound">SdrShaderNode</ref>).</para>
+</listitem><listitem><para>The info:implementationSource of the shader must be UsdShadeTokens-&gt; sourceAsset. There must be one or more <emphasis>&quot;info:SOURCE_TYPE:sourceAsset&quot;</emphasis> attributes that point to resolvable shader implementations for different source types (eg, glslfx, OSL etc.).</para>
+</listitem><listitem><para>Shader prims, their inputs and outputs can contain sdrMetadata values meant to be recorded in the shader registry. The keys in the sdrMetadata dictionary correspond to the keys in SdrNodeMetadata and SdrPropertyMetadata. The only exceptions are as follows:<itemizedlist>
+<listitem><para><bold>defaultInput</bold> metadatum on shader inputs gets translated to a more obscure key value of <bold>__SDR__defaultInput</bold> (which is the value of SdrPropertyMetadata-&gt;DefaultInput) in the metadata dictionary recorded by <ref refid="class_sdr_registry" kindref="compound">SdrRegistry</ref>.</para>
+</listitem><listitem><para>Setting <bold>sdrMetadata[&quot;primvarProperty&quot;]=&quot;1&quot;</bold> on a shader input implies that the input names a primvar to be consumed by the shader. This causes &apos;$&apos; + inputName to be included in the <emphasis>SdrShaderNode-&gt;Primvars</emphasis> metadata on the <bold><ref refid="class_sdr_shader_node" kindref="compound">SdrShaderNode</ref></bold>. Note that it&apos;s not translated to metadata on the property itself.</para>
+</listitem><listitem><para><bold>connectability</bold> metadata authored on UsdShadeInputs gets translated to SdrPropertyMetadata-&gt;Connectable. Connectability value of &quot;interfaceOnly&quot; is converted to <emphasis>connectable=&quot;0&quot;</emphasis>. Connectability value of &quot;full&quot; is converted to <emphasis>connectable=&quot;1&quot;</emphasis>.</para>
+</listitem><listitem><para><ref refid="class_sdf_asset_path" kindref="compound">SdfAssetPath</ref> (or asset) valued shader inputs are automatically tagged with sdr metadata <emphasis>SdrPropertyMetadata-&gt;IsAssetIdentifier=&quot;1&quot;</emphasis>.</para>
+</listitem><listitem><para><bold>sdrMetadata[&quot;swizzle&quot;]</bold> is metadata that can be specified for properties in <ref refid="class_sdr_shader_property" kindref="compound">SdrShaderProperty</ref> <bold>output</bold> definitions that describes the component(s) of the full color/vector output value produced by the shader property, and is necessary for shading systems that rely on dynamic code generation rather than self-contained shader-objects/closures. <bold>swizzle</bold> metadata is not meant to ever appear in user documents, and does not provide the ability to swizzle data on input connections.</para>
+</listitem><listitem><para><bold>sdrMetadata[&quot;implementationName&quot;]</bold> specifies the name that will be returned by <ref refid="class_sdr_shader_property_1aa6091590dd3e86ae4643f24c4b00a250" kindref="member">SdrShaderProperty::GetImplementationName()</ref>.</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+<para>Here&apos;s an example shader definition file with comments explaining the various bits.</para>
+<para><programlisting filename=".usd"><codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>The<sp/>prim<sp/>name<sp/>becomes<sp/>the<sp/>SdrShaderNode&apos;s<sp/>identifier.</highlight></codeline>
+<codeline><highlight class="normal">def<sp/>Shader<sp/>&quot;Primvar_float_2&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;Version<sp/>2<sp/>of<sp/>a<sp/>Primvar<sp/>node<sp/>that<sp/>outputs<sp/>a<sp/>float&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sdrMetadata<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>This<sp/>identifies<sp/>the<sp/>shader&apos;s<sp/>role<sp/>in<sp/>the<sp/>shading<sp/>network<sp/>as<sp/>being<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>a<sp/>primvar<sp/>reader.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token<sp/>role<sp/>=<sp/>&quot;primvar&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>The<sp/>following<sp/>sdr-metadatum<sp/>could<sp/>be<sp/>authored<sp/>on<sp/>the<sp/>node<sp/>directly<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>&lt;b&gt;in<sp/>lieu<sp/>of&lt;/b&gt;<sp/>authoring<sp/>primvarProperty=&quot;1&quot;<sp/>on<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>inputs:primvarName.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>string<sp/>primvars<sp/>=<sp/>&quot;$primvarName&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uniform<sp/>token<sp/>info:implementationSource<sp/>=<sp/>&quot;sourceAsset&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>If<sp/>primvarReader.oso<sp/>can<sp/>be<sp/>resolved<sp/>to<sp/>an<sp/>existent<sp/>asset,<sp/>then<sp/>a<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>SdrShaderNode<sp/>is<sp/>created<sp/>with<sp/>sourceType=OSL<sp/>and<sp/>sourceUri<sp/>pointing</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>to<sp/>the<sp/>resolved<sp/>primvarReader.oso<sp/>file.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uniform<sp/>asset<sp/>info:OSL:sourceAsset<sp/>=<sp/>@primvarReader.oso@</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>If<sp/>primvarReader.glslfx<sp/>can<sp/>be<sp/>resolved<sp/>to<sp/>an<sp/>existent<sp/>asset,<sp/>then<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>another<sp/>SdrShaderNode<sp/>is<sp/>created<sp/>with<sp/>sourceType=glslfx<sp/>and<sp/>sourceUri<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>pointing<sp/>to<sp/>the<sp/>resolved<sp/>primvarReader.glslfx<sp/>file.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uniform<sp/>asset<sp/>info:glslfx:sourceAsset<sp/>=<sp/>@primvarReader.glslfx@</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>token<sp/>inputs:primvarName<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>connectability<sp/>=<sp/>&quot;interfaceOnly&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sdrMetadata<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>This<sp/>causes<sp/>&apos;$primvarName&apos;<sp/>to<sp/>be<sp/>appended<sp/>to<sp/>the<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>SdrNodeMetadata-&gt;Primvars<sp/>metadata<sp/>on<sp/>the<sp/>SdrShaderNode.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>primvarProperty<sp/>=<sp/>&quot;1&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;&quot;&quot;Name<sp/>of<sp/>the<sp/>primvar<sp/>to<sp/>be<sp/>fetched<sp/>from<sp/>the<sp/>geometry.&quot;&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>Asset<sp/>valued<sp/>inputs<sp/>are<sp/>automatically<sp/>tagged<sp/>with<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>sdrMetadata[SdrPropertyMetadata-&gt;IsAssetIdentifier]<sp/>=<sp/>&quot;1&quot;.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>asset<sp/>inputs:primvarFile<sp/>=<sp/>@@<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>connectability<sp/>=<sp/>&quot;interfaceOnly&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;&quot;&quot;File<sp/>containing<sp/>some<sp/>primvar<sp/>info.&quot;&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>float<sp/>inputs:fallback<sp/>=<sp/>0.0<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;&quot;&quot;Fallback<sp/>value<sp/>to<sp/>be<sp/>returned<sp/>when<sp/>fetch<sp/>failed.&quot;&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sdrMetadata<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>This<sp/>gets<sp/>translated<sp/>to<sp/>SdrPropertyMetadata-&gt;DefaultInput=&quot;1&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>on<sp/>the<sp/>&quot;fallback&quot;<sp/>SdrShaderProperty.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token<sp/>defaultInput<sp/>=<sp/>&quot;1&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>float<sp/>outputs:result</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

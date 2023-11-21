@@ -1,0 +1,364 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="_usd__page__datatypes" kind="page">
+    <compoundname>Usd_Page_Datatypes</compoundname>
+    <title>Basic Datatypes for Scene Description Provided by Sdf</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="_usd__page__datatypes_1Usd_Datatypes">
+<title>Attribute value types</title>
+<para>USD supports a variety of data types for attribute values. These types are encoded in an <ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref> object that corresponds to an underlying C++ type and is what a user would receive from a call to <ref refid="class_usd_attribute_1a81ff07cc76cab8a0efd51b8938b9a124" kindref="member">UsdAttribute::GetTypeName</ref>. Methods for looking up these objects are provided by <computeroutput><ref refid="class_sdf_schema" kindref="compound">SdfSchema</ref></computeroutput> and they&apos;re enumerated in the object <computeroutput>SdfValueTypeNames</computeroutput> <ndash/> <simplesect kind="see"><para><ref refid="class_sdf_schema" kindref="compound">SdfSchema</ref></para>
+</simplesect>
+For example, to create a custom, Matrix4d-valued attribute on prim <emphasis>foo:</emphasis> <programlisting><codeline><highlight class="normal">if<sp/>(UsdAttribute<sp/>mat<sp/>=<sp/>foo.CreateAttribute(TfToken(&quot;myMatrix&quot;),<sp/>SdfValueTypeNames-&gt;Matrix4d)){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>mat.Set(GfMatrix4d(1));<sp/><sp/>//<sp/>Assign<sp/>identity<sp/>matrix</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>//<sp/>error<sp/>creating<sp/>the<sp/>attribute</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> In python: <programlisting filename=".py"><codeline><highlight class="normal">mat<sp/>=<sp/>foo.CreateAttribute(</highlight><highlight class="stringliteral">&quot;myMatrix&quot;</highlight><highlight class="normal">,<sp/>Sdf.ValueTypeNames.Matrix4d)</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>mat:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>mat.Set(Gf.Matrix4d(1))<sp/><sp/></highlight><highlight class="comment">#<sp/>Assign<sp/>identity<sp/>matrix</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>error<sp/>creating<sp/>the<sp/>attribute</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="_usd__page__datatypes_1Usd_Basic_Datatypes">
+<title>Basic data types</title>
+<para>This table lists the fundamental data types supported by USD.</para>
+<para><table rows="33" cols="3"><row>
+<entry thead="yes"><para>Value type token  </para>
+</entry><entry thead="yes"><para>C++ type  </para>
+</entry><entry thead="yes"><para>Description   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>bool  </para>
+</entry><entry thead="no"><para>bool  </para>
+</entry><entry thead="no"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>uchar  </para>
+</entry><entry thead="no"><para>uint8_t  </para>
+</entry><entry thead="no"><para>8 bit unsigned integer   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>int  </para>
+</entry><entry thead="no"><para>int32_t  </para>
+</entry><entry thead="no"><para>32 bit signed integer   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>uint  </para>
+</entry><entry thead="no"><para>uint32_t  </para>
+</entry><entry thead="no"><para>32 bit unsigned integer   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>int64  </para>
+</entry><entry thead="no"><para>int64_t  </para>
+</entry><entry thead="no"><para>64 bit signed integer   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>uint64  </para>
+</entry><entry thead="no"><para>uint64_t  </para>
+</entry><entry thead="no"><para>64 bit unsigned integer   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>half  </para>
+</entry><entry thead="no"><para>GfHalf  </para>
+</entry><entry thead="no"><para>16 bit floating point   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>float  </para>
+</entry><entry thead="no"><para>float  </para>
+</entry><entry thead="no"><para>32 bit floating point   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>double  </para>
+</entry><entry thead="no"><para>double  </para>
+</entry><entry thead="no"><para>64 bit floating point   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>timecode  </para>
+</entry><entry thead="no"><para><ref refid="class_sdf_time_code" kindref="compound">SdfTimeCode</ref>  </para>
+</entry><entry thead="no"><para>double representing a resolvable time   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>string  </para>
+</entry><entry thead="no"><para>std::string  </para>
+</entry><entry thead="no"><para>stl string   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>token  </para>
+</entry><entry thead="no"><para><ref refid="class_tf_token" kindref="compound">TfToken</ref>  </para>
+</entry><entry thead="no"><para>interned string with fast comparison and hashing   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>asset  </para>
+</entry><entry thead="no"><para><ref refid="class_sdf_asset_path" kindref="compound">SdfAssetPath</ref>  </para>
+</entry><entry thead="no"><para>represents a resolvable path to another asset   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>opaque  </para>
+</entry><entry thead="no"><para><ref refid="class_sdf_opaque_value" kindref="compound">SdfOpaqueValue</ref>  </para>
+</entry><entry thead="no"><para>represents a value that can&apos;t be serialized   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>matrix2d  </para>
+</entry><entry thead="no"><para><ref refid="class_gf_matrix2d" kindref="compound">GfMatrix2d</ref>  </para>
+</entry><entry thead="no"><para>2x2 matrix of doubles   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>matrix3d  </para>
+</entry><entry thead="no"><para><ref refid="class_gf_matrix3d" kindref="compound">GfMatrix3d</ref>  </para>
+</entry><entry thead="no"><para>3x3 matrix of doubles   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>matrix4d  </para>
+</entry><entry thead="no"><para><ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref>  </para>
+</entry><entry thead="no"><para>4x4 matrix of doubles   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>quatd  </para>
+</entry><entry thead="no"><para><ref refid="class_gf_quatd" kindref="compound">GfQuatd</ref>  </para>
+</entry><entry thead="no"><para>double-precision quaternion   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>quatf  </para>
+</entry><entry thead="no"><para><ref refid="class_gf_quatf" kindref="compound">GfQuatf</ref>  </para>
+</entry><entry thead="no"><para>single-precision quaternion   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>quath  </para>
+</entry><entry thead="no"><para><ref refid="class_gf_quath" kindref="compound">GfQuath</ref>  </para>
+</entry><entry thead="no"><para>half-precision quaternion   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>double2  </para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec2d" kindref="compound">GfVec2d</ref>  </para>
+</entry><entry thead="no"><para>vector of 2 doubles   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>float2  </para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec2f" kindref="compound">GfVec2f</ref>  </para>
+</entry><entry thead="no"><para>vector of 2 floats   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>half2  </para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec2h" kindref="compound">GfVec2h</ref>  </para>
+</entry><entry thead="no"><para>vector of 2 half&apos;s   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>int2  </para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec2i" kindref="compound">GfVec2i</ref>  </para>
+</entry><entry thead="no"><para>vector of 2 ints   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>double3  </para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec3d" kindref="compound">GfVec3d</ref>  </para>
+</entry><entry thead="no"><para>vector of 3 doubles   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>float3  </para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec3f" kindref="compound">GfVec3f</ref>  </para>
+</entry><entry thead="no"><para>vector of 3 floats   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>half3  </para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec3h" kindref="compound">GfVec3h</ref>  </para>
+</entry><entry thead="no"><para>vector of 3 half&apos;s   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>int3  </para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec3i" kindref="compound">GfVec3i</ref>  </para>
+</entry><entry thead="no"><para>vector of 3 ints   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>double4  </para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec4d" kindref="compound">GfVec4d</ref>  </para>
+</entry><entry thead="no"><para>vector of 4 doubles   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>float4  </para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec4f" kindref="compound">GfVec4f</ref>  </para>
+</entry><entry thead="no"><para>vector of 4 floats   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>half4  </para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec4h" kindref="compound">GfVec4h</ref>  </para>
+</entry><entry thead="no"><para>vector of 4 half&apos;s   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>int4  </para>
+</entry><entry thead="no"><para><ref refid="class_gf_vec4i" kindref="compound">GfVec4i</ref>  </para>
+</entry><entry thead="no"><para>vector of 4 ints   </para>
+</entry></row>
+</table>
+</para>
+<para>Note that opaque-valued attributes cannot be authored, and are used for cases where the value can&apos;t be represented in USD, such as shader outputs.</para>
+</sect1>
+<sect1 id="_usd__page__datatypes_1Usd_Roles">
+<title>Roles</title>
+<para>Value types may also be specified by one of a set of special type names. These names correspond to the basic data types listed above but provide extra semantics about how the data should be interpreted. For instance, a value of type &quot;frame4d&quot; is a matrix4d, but represents a coordinate frame.</para>
+<para>These type names are grouped, in several instances, by a &quot;role&quot; name, such that all types with the same role have the same semantics. All of these &quot;semantic 
+types&quot; are also provided in SdfValueTypeNames. To get the &quot;semantic type&quot; role name from the type token, use <ref refid="usd_2sdf_2types_8h_1a4249e4e7fb2f503b0917660727c052bc" kindref="member">SdfGetRoleNameForValueTypeName()</ref>.</para>
+<para>The following table lists the type tokens for these roles, the corresponding base type token, which can be matched to the C++ type in the table above, and the role name and meaning.</para>
+<para><table rows="24" cols="4"><row>
+<entry thead="yes"><para>Value type token  </para>
+</entry><entry thead="yes"><para>Base type  </para>
+</entry><entry thead="yes"><para>Role name  </para>
+</entry><entry thead="yes"><para>Role Meaning   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>point3d  </para>
+</entry><entry thead="no"><para>double3  </para>
+</entry><entry thead="no"><para>Point  </para>
+</entry><entry thead="no"><para>transform as a position   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>point3f  </para>
+</entry><entry thead="no"><para>float3  </para>
+</entry><entry thead="no"><para>Point  </para>
+</entry><entry thead="no"><para>transform as a position   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>point3h  </para>
+</entry><entry thead="no"><para>half3  </para>
+</entry><entry thead="no"><para>Point  </para>
+</entry><entry thead="no"><para>transform as a position   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>normal3d  </para>
+</entry><entry thead="no"><para>double  </para>
+</entry><entry thead="no"><para>Normal  </para>
+</entry><entry thead="no"><para>transform as a normal   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>normal3f  </para>
+</entry><entry thead="no"><para>float3  </para>
+</entry><entry thead="no"><para>Normal  </para>
+</entry><entry thead="no"><para>transform as a normal   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>normal3h  </para>
+</entry><entry thead="no"><para>half3  </para>
+</entry><entry thead="no"><para>Normal  </para>
+</entry><entry thead="no"><para>transform as a normal   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>vector3d  </para>
+</entry><entry thead="no"><para>double3  </para>
+</entry><entry thead="no"><para>Vector  </para>
+</entry><entry thead="no"><para>transform as a direction   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>vector3f  </para>
+</entry><entry thead="no"><para>float3  </para>
+</entry><entry thead="no"><para>Vector  </para>
+</entry><entry thead="no"><para>transform as a direction   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>vector3h  </para>
+</entry><entry thead="no"><para>half3  </para>
+</entry><entry thead="no"><para>Vector  </para>
+</entry><entry thead="no"><para>transform as a direction   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>color3d  </para>
+</entry><entry thead="no"><para>double3  </para>
+</entry><entry thead="no"><para>Color  </para>
+</entry><entry thead="no"><para>energy-linear RGB   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>color3f  </para>
+</entry><entry thead="no"><para>float3  </para>
+</entry><entry thead="no"><para>Color  </para>
+</entry><entry thead="no"><para>energy-linear RGB   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>color3h  </para>
+</entry><entry thead="no"><para>half3  </para>
+</entry><entry thead="no"><para>Color  </para>
+</entry><entry thead="no"><para>energy-linear RGB   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>color4d  </para>
+</entry><entry thead="no"><para>double4  </para>
+</entry><entry thead="no"><para>Color  </para>
+</entry><entry thead="no"><para>energy-linear RGBA, <bold>not</bold> pre-alpha multiplied   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>color4f  </para>
+</entry><entry thead="no"><para>float4  </para>
+</entry><entry thead="no"><para>Color  </para>
+</entry><entry thead="no"><para>energy-linear RGBA, <bold>not</bold> pre-alpha multiplied   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>color4h  </para>
+</entry><entry thead="no"><para>half4  </para>
+</entry><entry thead="no"><para>Color  </para>
+</entry><entry thead="no"><para>energy-linear RGBA, <bold>not</bold> pre-alpha multiplied   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>frame4d  </para>
+</entry><entry thead="no"><para>matrix4d  </para>
+</entry><entry thead="no"><para>Frame  </para>
+</entry><entry thead="no"><para>defines a coordinate frame   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>texCoord2d  </para>
+</entry><entry thead="no"><para>double2  </para>
+</entry><entry thead="no"><para>TextureCoordinate  </para>
+</entry><entry thead="no"><para>2D uv texture coordinate   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>texCoord2f  </para>
+</entry><entry thead="no"><para>float2  </para>
+</entry><entry thead="no"><para>TextureCoordinate  </para>
+</entry><entry thead="no"><para>2D uv texture coordinate   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>texCoord2h  </para>
+</entry><entry thead="no"><para>half2  </para>
+</entry><entry thead="no"><para>TextureCoordinate  </para>
+</entry><entry thead="no"><para>2D uv texture coordinate   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>texCoord3d  </para>
+</entry><entry thead="no"><para>double3  </para>
+</entry><entry thead="no"><para>TextureCoordinate  </para>
+</entry><entry thead="no"><para>3D uvw texture coordinate   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>texCoord3f  </para>
+</entry><entry thead="no"><para>float3  </para>
+</entry><entry thead="no"><para>TextureCoordinate  </para>
+</entry><entry thead="no"><para>3D uvw texture coordinate   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>texCoord3h  </para>
+</entry><entry thead="no"><para>half3  </para>
+</entry><entry thead="no"><para>TextureCoordinate  </para>
+</entry><entry thead="no"><para>3D uvw texture coordinate   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>group  </para>
+</entry><entry thead="no"><para>opaque  </para>
+</entry><entry thead="no"><para>Group  </para>
+</entry><entry thead="no"><para>used as a grouping mechanism for namespaced properties   </para>
+</entry></row>
+</table>
+</para>
+<para>A Group attribute is an opaque attribute used to represent a group of other properties. It behaves like a connectable/targetable property namespace.</para>
+</sect1>
+<sect1 id="_usd__page__datatypes_1Usd_Array_Datatypes">
+<title>Array data types</title>
+<para>USD also supports arrays of the above data types. The value type name for these arrays is simply the name of the underlying value type and &quot;[]&quot;, e.g. &quot;bool[]&quot;, &quot;float[]&quot;, etc., and are also provided by SdfValueTypeNames with a &quot;Array&quot; suffix on the basic datatype (e.g. SdfValueTypeNames-&gt;FloatArray provides &quot;float[]&quot;). The corresponding C++ type is <ref refid="class_vt_array" kindref="compound">VtArray</ref>, e.g. VtArray&lt;bool&gt;, VtArray&lt;float&gt;, etc.</para>
+</sect1>
+<sect1 id="_usd__page__datatypes_1Usd_Dictionary_Type">
+<title>Dictionary-valued Metadata</title>
+<para>Metadata in USD (See <ref refid="_usd__page__object_model_1Usd_OM_Metadata" kindref="member">General Metadata in USD</ref>) can take on several other datatypes.</para>
+<para>Most of these are highly-specialized, pertaining to composition, like SdfListOp&lt;SdfReference&gt;, but we also provide one very versatile datatype <bold>dictionary</bold> <emphasis>that can only be assumed by metadata</emphasis>, such as <ref refid="class_usd_object_1abea26b9c6a71883a2d9da4ff64952391" kindref="member">customData</ref>. A dictionary&apos;s entries are keyed by string, and can take on any other scene description value type, <emphasis>including</emphasis> dictionary, allowing for nested dictionaries.</para>
+<para>Dictionaries have special value-resolution semantics, in that each field resolves independently of all others, allowing dictionaries to be sparsely described and overridden in many layers. This behavior, which we have found highly desirable, also makes dictionaries more expensive to fully compose than all other value types (except those that are <ref refid="_usd__page__object_model_1Usd_OM_ListOps" kindref="member">list-edited</ref>). It is for this reason that we disallow dictionary as a value type for attributes: it would eliminate the extremely important performance characteristic of attribute value resolution that &quot;strongest opinion wins&quot;.</para>
+<para>You can use the builtin customData for your truly ad-hoc user-data needs, but you can also add new dictionary-valued metadata by defining it in a module plugInfo.json file - see <ref refid="sdf_page_front_1sdf_plugin_metadata" kindref="member">Plugin Metadata</ref> for details on how to do so. </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

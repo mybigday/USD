@@ -1,0 +1,1009 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_tf_notice" kind="class" language="C++" prot="public">
+    <compoundname>TfNotice</compoundname>
+    <derivedcompoundref refid="class_ar_notice_1_1_resolver_notice" prot="public" virt="non-virtual">ArNotice::ResolverNotice</derivedcompoundref>
+    <derivedcompoundref refid="class_plug_notice_1_1_base" prot="public" virt="non-virtual">PlugNotice::Base</derivedcompoundref>
+    <derivedcompoundref refid="class_sdf_notice_1_1_base" prot="public" virt="non-virtual">SdfNotice::Base</derivedcompoundref>
+    <derivedcompoundref refid="class_tf_debug_symbol_enable_changed_notice" prot="public" virt="non-virtual">TfDebugSymbolEnableChangedNotice</derivedcompoundref>
+    <derivedcompoundref refid="class_tf_debug_symbols_changed_notice" prot="public" virt="non-virtual">TfDebugSymbolsChangedNotice</derivedcompoundref>
+    <derivedcompoundref refid="class_tf_py_module_was_loaded" prot="public" virt="non-virtual">TfPyModuleWasLoaded</derivedcompoundref>
+    <derivedcompoundref refid="class_tf_type_was_declared_notice" prot="public" virt="non-virtual">TfTypeWasDeclaredNotice</derivedcompoundref>
+    <derivedcompoundref refid="class_trace_collection_available" prot="public" virt="non-virtual">TraceCollectionAvailable</derivedcompoundref>
+    <derivedcompoundref refid="class_usd_notice_1_1_stage_notice" prot="public" virt="non-virtual">UsdNotice::StageNotice</derivedcompoundref>
+    <includes refid="base_2tf_2notice_8h" local="no">notice.h</includes>
+    <innerclass refid="class_tf_notice_1_1___deliverer" prot="private">TfNotice::_Deliverer</innerclass>
+    <innerclass refid="class_tf_notice_1_1___deliverer_base" prot="private">TfNotice::_DelivererBase</innerclass>
+    <innerclass refid="class_tf_notice_1_1___deliverer_with_sender" prot="private">TfNotice::_DelivererWithSender</innerclass>
+    <innerclass refid="class_tf_notice_1_1___raw_deliverer" prot="private">TfNotice::_RawDeliverer</innerclass>
+    <innerclass refid="class_tf_notice_1_1___standard_deliverer" prot="private">TfNotice::_StandardDeliverer</innerclass>
+    <innerclass refid="class_tf_notice_1_1_block" prot="public">TfNotice::Block</innerclass>
+    <innerclass refid="class_tf_notice_1_1_key" prot="public">TfNotice::Key</innerclass>
+    <innerclass refid="class_tf_notice_1_1_probe" prot="public">TfNotice::Probe</innerclass>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_tf_notice_1a69f6665bec2ffed39890c5dea0aea841" prot="private" static="no">
+        <type><ref refid="class_tf_weak_ptr" kindref="compound">TfWeakPtr</ref>&lt; _DelivererBase &gt;</type>
+        <definition>typedef TfWeakPtr&lt;_DelivererBase&gt; _DelivererWeakPtr</definition>
+        <argsstring></argsstring>
+        <name>_DelivererWeakPtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="96" column="1" bodyfile="pxr/base/tf/notice.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_tf_notice_1a7b97c333594ea30e9d975b19f54c06dd" prot="private" static="no">
+        <type>std::list&lt; _DelivererBase * &gt;</type>
+        <definition>typedef std::list&lt;_DelivererBase*&gt; _DelivererList</definition>
+        <argsstring></argsstring>
+        <name>_DelivererList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="97" column="1" bodyfile="pxr/base/tf/notice.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_tf_notice_1ae0fdf4eb13bcd999def723fade0981bc" prot="public" static="no">
+        <type><ref refid="class_tf_weak_ptr" kindref="compound">TfWeakPtr</ref>&lt; <ref refid="class_tf_notice_1_1_probe" kindref="compound">Probe</ref> &gt;</type>
+        <definition>typedef TfWeakPtr&lt;Probe&gt; WeakProbePtr</definition>
+        <argsstring></argsstring>
+        <name>WeakProbePtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="213" column="1" bodyfile="pxr/base/tf/notice.h" bodystart="212" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_tf_notice_1ae99914824a9e7ee4f109b0aecd927fab" prot="public" static="no">
+        <type>std::vector&lt; <ref refid="class_tf_notice_1_1_key" kindref="compound">Key</ref> &gt;</type>
+        <definition>typedef std::vector&lt;Key&gt; Keys</definition>
+        <argsstring></argsstring>
+        <name>Keys</name>
+        <briefdescription>
+<para>A <computeroutput><ref refid="class_tf_notice_1_1_key" kindref="compound">TfNotice::Key</ref></computeroutput> container. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Many listeners listen for several notices and must revoke interest for those several notices at once. These listeners can put all of the keys into a <computeroutput><ref refid="class_tf_notice_1ae99914824a9e7ee4f109b0aecd927fab" kindref="member">TfNotice::Keys</ref></computeroutput> then call <computeroutput><ref refid="class_tf_notice_1ab183e05189affeabc78270a9c1be4241" kindref="member">Revoke()</ref></computeroutput> on it. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="289" column="1" bodyfile="pxr/base/tf/notice.h" bodystart="289" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_tf_notice_1aac4944035ff9abe10590ff149f45f24b" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class LPtr</type>
+          </param>
+          <param>
+            <type>class L</type>
+          </param>
+          <param>
+            <type>class Notice</type>
+          </param>
+          <param>
+            <type>class SPtr</type>
+          </param>
+          <param>
+            <type>class DeliveredSPtr</type>
+          </param>
+        </templateparamlist>
+        <type>_DelivererBase *</type>
+        <definition>static _DelivererBase* _MakeDeliverer</definition>
+        <argsstring>(LPtr const &amp;listener, void(L::*method)(const Notice &amp;, DeliveredSPtr const &amp;), SPtr const &amp;sender)</argsstring>
+        <name>_MakeDeliverer</name>
+        <param>
+          <type>LPtr const &amp;</type>
+          <declname>listener</declname>
+        </param>
+        <param>
+          <type>void(L::*)(const Notice &amp;, DeliveredSPtr const &amp;)</type>
+          <declname>method</declname>
+        </param>
+        <param>
+          <type>SPtr const &amp;</type>
+          <declname>sender</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="104" column="1" bodyfile="pxr/base/tf/notice.h" bodystart="104" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1ae0c6ab2ea785f5793531083f37503f7d" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class LPtr</type>
+          </param>
+          <param>
+            <type>class L</type>
+          </param>
+          <param>
+            <type>class Notice</type>
+          </param>
+          <param>
+            <type>class SPtr</type>
+          </param>
+          <param>
+            <type>class DeliveredSPtr</type>
+          </param>
+        </templateparamlist>
+        <type>_DelivererBase *</type>
+        <definition>static _DelivererBase* _MakeDeliverer</definition>
+        <argsstring>(LPtr const &amp;listener, void(L::*method)(const Notice &amp;, DeliveredSPtr const &amp;) const, SPtr const &amp;sender)</argsstring>
+        <name>_MakeDeliverer</name>
+        <param>
+          <type>LPtr const &amp;</type>
+          <declname>listener</declname>
+        </param>
+        <param>
+          <type>void(L::*)(const Notice &amp;, DeliveredSPtr const &amp;) const</type>
+          <declname>method</declname>
+        </param>
+        <param>
+          <type>SPtr const &amp;</type>
+          <declname>sender</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="119" column="1" bodyfile="pxr/base/tf/notice.h" bodystart="119" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1acad4b1f671361ad17ed8d2ba423d8179" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class LPtr</type>
+          </param>
+          <param>
+            <type>class L</type>
+          </param>
+          <param>
+            <type>class SPtr</type>
+          </param>
+          <param>
+            <type>class Notice</type>
+          </param>
+        </templateparamlist>
+        <type>_DelivererBase *</type>
+        <definition>static _DelivererBase* _MakeDeliverer</definition>
+        <argsstring>(LPtr const &amp;listener, void(L::*method)(const Notice &amp;), SPtr const &amp;sender)</argsstring>
+        <name>_MakeDeliverer</name>
+        <param>
+          <type>LPtr const &amp;</type>
+          <declname>listener</declname>
+        </param>
+        <param>
+          <type>void(L::*)(const Notice &amp;)</type>
+          <declname>method</declname>
+        </param>
+        <param>
+          <type>SPtr const &amp;</type>
+          <declname>sender</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="135" column="1" bodyfile="pxr/base/tf/notice.h" bodystart="135" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1a58476ea189d6995cab6c83aea637fdeb" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class LPtr</type>
+          </param>
+          <param>
+            <type>class L</type>
+          </param>
+          <param>
+            <type>class SPtr</type>
+          </param>
+          <param>
+            <type>class Notice</type>
+          </param>
+        </templateparamlist>
+        <type>_DelivererBase *</type>
+        <definition>static _DelivererBase* _MakeDeliverer</definition>
+        <argsstring>(LPtr const &amp;listener, void(L::*method)(const Notice &amp;) const, SPtr const &amp;sender)</argsstring>
+        <name>_MakeDeliverer</name>
+        <param>
+          <type>LPtr const &amp;</type>
+          <declname>listener</declname>
+        </param>
+        <param>
+          <type>void(L::*)(const Notice &amp;) const</type>
+          <declname>method</declname>
+        </param>
+        <param>
+          <type>SPtr const &amp;</type>
+          <declname>sender</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="145" column="1" bodyfile="pxr/base/tf/notice.h" bodystart="145" bodyend="151"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1ae1bc42edc2f0fa3bd2ca7619075cd95a" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class LPtr</type>
+          </param>
+          <param>
+            <type>class L</type>
+          </param>
+          <param>
+            <type>class Notice</type>
+          </param>
+        </templateparamlist>
+        <type>_DelivererBase *</type>
+        <definition>static _DelivererBase* _MakeDeliverer</definition>
+        <argsstring>(LPtr const &amp;listener, void(L::*method)(const Notice &amp;))</argsstring>
+        <name>_MakeDeliverer</name>
+        <param>
+          <type>LPtr const &amp;</type>
+          <declname>listener</declname>
+        </param>
+        <param>
+          <type>void(L::*)(const Notice &amp;)</type>
+          <declname>method</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="157" column="1" bodyfile="pxr/base/tf/notice.h" bodystart="157" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1a6ea7982a2cc2986877142e2888449e3d" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class LPtr</type>
+          </param>
+          <param>
+            <type>class L</type>
+          </param>
+          <param>
+            <type>class Notice</type>
+          </param>
+        </templateparamlist>
+        <type>_DelivererBase *</type>
+        <definition>static _DelivererBase* _MakeDeliverer</definition>
+        <argsstring>(LPtr const &amp;listener, void(L::*method)(const Notice &amp;) const)</argsstring>
+        <name>_MakeDeliverer</name>
+        <param>
+          <type>LPtr const &amp;</type>
+          <declname>listener</declname>
+        </param>
+        <param>
+          <type>void(L::*)(const Notice &amp;) const</type>
+          <declname>method</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="166" column="1" bodyfile="pxr/base/tf/notice.h" bodystart="166" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1ae68263b32b255bb4445a67f3b59088f8" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class LPtr</type>
+          </param>
+          <param>
+            <type>class L</type>
+          </param>
+        </templateparamlist>
+        <type>_DelivererBase *</type>
+        <definition>static _DelivererBase* _MakeDeliverer</definition>
+        <argsstring>(TfType const &amp;noticeType, LPtr const &amp;listener, void(L::*method)(const TfNotice &amp;, const TfType &amp;, TfWeakBase *, const void *, const std::type_info &amp;), TfAnyWeakPtr const &amp;sender)</argsstring>
+        <name>_MakeDeliverer</name>
+        <param>
+          <type><ref refid="class_tf_type" kindref="compound">TfType</ref> const &amp;</type>
+          <declname>noticeType</declname>
+        </param>
+        <param>
+          <type>LPtr const &amp;</type>
+          <declname>listener</declname>
+        </param>
+        <param>
+          <type>void(L::*)(const <ref refid="class_tf_notice" kindref="compound">TfNotice</ref> &amp;, const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;, <ref refid="class_tf_weak_base" kindref="compound">TfWeakBase</ref> *, const void *, const std::type_info &amp;)</type>
+          <declname>method</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_any_weak_ptr" kindref="compound">TfAnyWeakPtr</ref> const &amp;</type>
+          <declname>sender</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="177" column="1" bodyfile="pxr/base/tf/notice.h" bodystart="177" bodyend="189"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1ab170c2f885b5d78ca72fca7035dc75b9" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class LPtr</type>
+          </param>
+          <param>
+            <type>class L</type>
+          </param>
+        </templateparamlist>
+        <type>_DelivererBase *</type>
+        <definition>static _DelivererBase* _MakeDeliverer</definition>
+        <argsstring>(TfType const &amp;noticeType, LPtr const &amp;listener, void(L::*method)(const TfNotice &amp;, const TfType &amp;, TfWeakBase *, const void *, const std::type_info &amp;) const, TfAnyWeakPtr const &amp;sender)</argsstring>
+        <name>_MakeDeliverer</name>
+        <param>
+          <type><ref refid="class_tf_type" kindref="compound">TfType</ref> const &amp;</type>
+          <declname>noticeType</declname>
+        </param>
+        <param>
+          <type>LPtr const &amp;</type>
+          <declname>listener</declname>
+        </param>
+        <param>
+          <type>void(L::*)(const <ref refid="class_tf_notice" kindref="compound">TfNotice</ref> &amp;, const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;, <ref refid="class_tf_weak_base" kindref="compound">TfWeakBase</ref> *, const void *, const std::type_info &amp;) const</type>
+          <declname>method</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_any_weak_ptr" kindref="compound">TfAnyWeakPtr</ref> const &amp;</type>
+          <declname>sender</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="193" column="1" bodyfile="pxr/base/tf/notice.h" bodystart="193" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1af95c76c337c94e490fad76f5f4c04ab8" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_notice_1_1_key" kindref="compound">Key</ref></type>
+        <definition>static TF_API Key _Register</definition>
+        <argsstring>(_DelivererBase *)</argsstring>
+        <name>_Register</name>
+        <param>
+          <type>_DelivererBase *</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="758" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1a0b0920bd1e1417ee150daa0635021ce7" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>static TF_API void _VerifyFailedCast</definition>
+        <argsstring>(const std::type_info &amp;toType, const TfNotice &amp;notice, const TfNotice *castNotice)</argsstring>
+        <name>_VerifyFailedCast</name>
+        <param>
+          <type>const std::type_info &amp;</type>
+          <declname>toType</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_notice" kindref="compound">TfNotice</ref> &amp;</type>
+          <declname>notice</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_notice" kindref="compound">TfNotice</ref> *</type>
+          <declname>castNotice</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="761" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_tf_notice_1a32fa7dd9c926ede28304ba0fea5a0a57" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>static TF_API void InsertProbe</definition>
+        <argsstring>(const WeakProbePtr &amp;probe)</argsstring>
+        <name>InsertProbe</name>
+        <param>
+          <type>const <ref refid="class_tf_weak_ptr" kindref="compound">WeakProbePtr</ref> &amp;</type>
+          <declname>probe</declname>
+        </param>
+        <briefdescription>
+<para>Register a probe that will be invoked when notices are sent and delivered. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_tf_notice_1_1_probe" kindref="compound">TfNotice::Probe</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="295" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1a8f588ed9ae01d514c51ac36c255a7223" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>static TF_API void RemoveProbe</definition>
+        <argsstring>(const WeakProbePtr &amp;probe)</argsstring>
+        <name>RemoveProbe</name>
+        <param>
+          <type>const <ref refid="class_tf_weak_ptr" kindref="compound">WeakProbePtr</ref> &amp;</type>
+          <declname>probe</declname>
+        </param>
+        <briefdescription>
+<para>Remove a probe that was previously registered with <computeroutput>InsertProbe</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_tf_notice_1_1_probe" kindref="compound">TfNotice::Probe</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="300" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1a68c24dba64e7a7135f62d1bdab33ca7f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class LPtr</type>
+          </param>
+          <param>
+            <type>class MethodPtr</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_tf_notice_1_1_key" kindref="compound">TfNotice::Key</ref></type>
+        <definition>static TfNotice::Key Register</definition>
+        <argsstring>(LPtr const &amp;listener, MethodPtr method)</argsstring>
+        <name>Register</name>
+        <param>
+          <type>LPtr const &amp;</type>
+          <declname>listener</declname>
+        </param>
+        <param>
+          <type>MethodPtr</type>
+          <declname>method</declname>
+        </param>
+        <briefdescription>
+<para>Register a listener as being interested in a <computeroutput><ref refid="class_tf_notice" kindref="compound">TfNotice</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Registration of interest in a notice class <computeroutput>N</computeroutput> automatically registers interest in all classes derived from <computeroutput>N</computeroutput>. When a notice of appropriate type is received, the listening object&apos;s member-function <computeroutput>method</computeroutput> is called with the notice.</para>
+<para>Supports several forms of registration.</para>
+<para><itemizedlist>
+<listitem><para>Listening for a notice from a particular sender.</para>
+</listitem></itemizedlist>
+</para>
+<para><programlisting><codeline><highlight class="normal">//<sp/>Listener<sp/>does<sp/>not<sp/>receive<sp/>sender.</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>Listener::_HandleNotice(SomeNotice<sp/>const<sp/>&amp;notice)<sp/>[const];</highlight></codeline>
+<codeline><highlight class="normal">Register(listenerPtr,<sp/>&amp;Listener::_HandleNotice,<sp/>senderPtr);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Listener<sp/>receives<sp/>sender.</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>Listener::_HandleNoticeSender(SomeNotice<sp/>const<sp/>&amp;notice,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SenderPtr<sp/>const<sp/>&amp;sender)<sp/>[const];</highlight></codeline>
+<codeline><highlight class="normal">Register(listenerPtr,<sp/>&amp;Listener::_HandleNoticeSender,<sp/>senderPtr);</highlight></codeline>
+</programlisting></para>
+<para><itemizedlist>
+<listitem><para>Listening for a notice globally. Prefer listening to a notice from a particular sender whenever possible (as above).</para>
+</listitem></itemizedlist>
+</para>
+<para><programlisting><codeline><highlight class="normal">void<sp/>Listener::_HandleGlobalNotice(SomeNotice<sp/>const<sp/>&amp;notice)<sp/>[const];</highlight></codeline>
+<codeline><highlight class="normal">Register(listenerPtr,<sp/>&amp;Listener::_HandleGlobalNotice);</highlight></codeline>
+</programlisting></para>
+<para><itemizedlist>
+<listitem><para>Listening for a notice dynamically, with a type that is unknown at compile-time. This facility is used for some internal mechanisms, such as bridging notice delivery into Python, and is not meant for public consumption.</para>
+</listitem></itemizedlist>
+</para>
+<para><programlisting><codeline><highlight class="normal">void<sp/>Listener::_HandleGenericNotice(TfNotice<sp/>const<sp/>&amp;notice,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TfType<sp/>const<sp/>&amp;noticeType,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TfWeakBase<sp/>*sender,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>void<sp/>const<sp/>*senderUniqueId,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::type_info<sp/>const<sp/>&amp;senderType)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[const];</highlight></codeline>
+<codeline><highlight class="normal">Register(listenerPtr,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;Listener::_HandleGenericNotice,<sp/>noticeType,<sp/>senderPtr);</highlight></codeline>
+</programlisting></para>
+<para>The listener being registered must be pointed to by a <computeroutput>TfWeakPtrFacade</computeroutput>, like a <ref refid="class_tf_weak_ptr" kindref="compound">TfWeakPtr</ref> or another TfWeakPtrFacade-based Handle. The sender being registered for (if any) must also be pointed to by a <computeroutput>TfWeakPtrFacade</computeroutput>.</para>
+<para>Note that the notification center only holds onto the listening object via a <computeroutput><ref refid="class_tf_weak_ptr" kindref="compound">TfWeakPtr</ref></computeroutput>. That is, it does not influence the lifetime of that object.</para>
+<para>To reverse the registration, call <computeroutput>Key::Revoke()</computeroutput> on the <computeroutput><ref refid="class_tf_notice_1_1_key" kindref="compound">Key</ref></computeroutput> object returned by this call. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="361" column="1" bodyfile="pxr/base/tf/notice.h" bodystart="361" bodyend="363"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1af10135651f3124a42f325391ce12e1cb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class LPtr</type>
+          </param>
+          <param>
+            <type>class MethodPtr</type>
+          </param>
+          <param>
+            <type>class SenderPtr</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_tf_notice_1_1_key" kindref="compound">TfNotice::Key</ref></type>
+        <definition>static TfNotice::Key Register</definition>
+        <argsstring>(LPtr const &amp;listener, MethodPtr method, SenderPtr const &amp;sender)</argsstring>
+        <name>Register</name>
+        <param>
+          <type>LPtr const &amp;</type>
+          <declname>listener</declname>
+        </param>
+        <param>
+          <type>MethodPtr</type>
+          <declname>method</declname>
+        </param>
+        <param>
+          <type>SenderPtr const &amp;</type>
+          <declname>sender</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="367" column="1" bodyfile="pxr/base/tf/notice.h" bodystart="367" bodyend="369"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1a179046f55a4cf28983aecdae9e5f5ff5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class LPtr</type>
+          </param>
+          <param>
+            <type>class MethodPtr</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_tf_notice_1_1_key" kindref="compound">TfNotice::Key</ref></type>
+        <definition>static TfNotice::Key Register</definition>
+        <argsstring>(LPtr const &amp;listener, MethodPtr method, const TfType &amp;noticeType, const TfAnyWeakPtr &amp;sender)</argsstring>
+        <name>Register</name>
+        <param>
+          <type>LPtr const &amp;</type>
+          <declname>listener</declname>
+        </param>
+        <param>
+          <type>MethodPtr</type>
+          <declname>method</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>noticeType</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_any_weak_ptr" kindref="compound">TfAnyWeakPtr</ref> &amp;</type>
+          <declname>sender</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="373" column="1" bodyfile="pxr/base/tf/notice.h" bodystart="373" bodyend="376"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1ab183e05189affeabc78270a9c1be4241" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API bool</type>
+        <definition>static TF_API bool Revoke</definition>
+        <argsstring>(TfNotice::Key &amp;key)</argsstring>
+        <name>Revoke</name>
+        <param>
+          <type><ref refid="class_tf_notice_1_1_key" kindref="compound">TfNotice::Key</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Revoke interest by a listener. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This revokes interest by the listener for the particular notice type and call-back method for which this key was created.</para>
+<para><computeroutput>Revoke</computeroutput> will return a bool value indicating whether or not the key was successfully revoked. Subsequent calls to <computeroutput>Revoke</computeroutput> with the same key will return false. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="387" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1a5a994f26e22e2b2dfa28e36a11349f7a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>static TF_API void Revoke</definition>
+        <argsstring>(TfNotice::Keys *keys)</argsstring>
+        <name>Revoke</name>
+        <param>
+          <type><ref refid="class_tf_notice_1ae99914824a9e7ee4f109b0aecd927fab" kindref="member">TfNotice::Keys</ref> *</type>
+          <declname>keys</declname>
+        </param>
+        <briefdescription>
+<para>Revoke interest by listeners. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This revokes interest by the listeners for the particular notice types and call-back methods for which the keys were created. It then clears the keys container. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="395" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_tf_notice_1a02732e32bee22f2efad0b07baa997a80" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API size_t</type>
+        <definition>TF_API size_t Send</definition>
+        <argsstring>() const</argsstring>
+        <name>Send</name>
+        <briefdescription>
+<para>Deliver the notice to interested listeners, returning the number of interested listeners. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For most clients it is recommended to use the Send(sender) version of <ref refid="class_tf_notice_1a02732e32bee22f2efad0b07baa997a80" kindref="member">Send()</ref> rather than this one. Clients that use this form of Send will prevent listeners from being able to register to receive notices based on the sender of the notice.</para>
+<para>ONLY listeners that registered globally will get the notice.</para>
+<para>Listeners are invoked synchronously and in arbitrary order. The value returned is the total number of times the notice was sent to listeners. Note that a listener is called in the thread in which <computeroutput><ref refid="class_tf_notice_1a02732e32bee22f2efad0b07baa997a80" kindref="member">Send()</ref></computeroutput> is called and <emphasis>not</emphasis> necessarily in the thread that <computeroutput><ref refid="class_tf_notice_1a68c24dba64e7a7135f62d1bdab33ca7f" kindref="member">Register()</ref></computeroutput> was called in. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="412" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1a3a0aa0bd6d35b4e26e01f932687690e6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename SenderPtr</type>
+          </param>
+        </templateparamlist>
+        <type>size_t</type>
+        <definition>size_t Send</definition>
+        <argsstring>(SenderPtr const &amp;s) const</argsstring>
+        <name>Send</name>
+        <param>
+          <type>SenderPtr const &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Deliver the notice to interested listeners, returning the number of interested listeners. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the recommended form of Send. It takes the sender as an argument.</para>
+<para>Listeners that registered for the given sender AND listeners that registered globally will get the notice.</para>
+<para>Listeners are invoked synchronously and in arbitrary order. The value returned is the total number of times the notice was sent to listeners. Note that a listener is called in the thread in which <computeroutput><ref refid="class_tf_notice_1a02732e32bee22f2efad0b07baa997a80" kindref="member">Send()</ref></computeroutput> is called and <emphasis>not</emphasis> necessarily in the thread that <computeroutput><ref refid="class_tf_notice_1a68c24dba64e7a7135f62d1bdab33ca7f" kindref="member">Register()</ref></computeroutput> was called in. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="429" column="1" bodyfile="pxr/base/tf/notice.h" bodystart="784" bodyend="790"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1a94b84b1ac443ab812c795a9945bede00" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API size_t</type>
+        <definition>TF_API size_t SendWithWeakBase</definition>
+        <argsstring>(const TfWeakBase *senderWeakBase, const void *senderUniqueId, const std::type_info &amp;type) const</argsstring>
+        <name>SendWithWeakBase</name>
+        <param>
+          <type>const <ref refid="class_tf_weak_base" kindref="compound">TfWeakBase</ref> *</type>
+          <declname>senderWeakBase</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>senderUniqueId</declname>
+        </param>
+        <param>
+          <type>const std::type_info &amp;</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Variant of <ref refid="class_tf_notice_1a02732e32bee22f2efad0b07baa997a80" kindref="member">Send()</ref> that takes a specific sender in the form of a <ref refid="class_tf_weak_base" kindref="compound">TfWeakBase</ref> pointer and a typeid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This version is used by senders who don&apos;t have static knowledge of sender&apos;s type, but have access to its weak base pointer and its typeid. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="438" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1ac79079190e565d59be9fc80b94d0341c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>TF_API</type>
+        <definition>virtual TF_API ~TfNotice</definition>
+        <argsstring>()</argsstring>
+        <name>~TfNotice</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="443" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_tf_notice_1a39ab9e1051b9547bd74045a543600525" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API size_t</type>
+        <definition>TF_API size_t _Send</definition>
+        <argsstring>(const TfWeakBase *sender, const void *senderUniqueId, const std::type_info &amp;senderType) const</argsstring>
+        <name>_Send</name>
+        <param>
+          <type>const <ref refid="class_tf_weak_base" kindref="compound">TfWeakBase</ref> *</type>
+          <declname>sender</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>senderUniqueId</declname>
+        </param>
+        <param>
+          <type>const std::type_info &amp;</type>
+          <declname>senderType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="766" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1a040d82bc9c82e16426824c4f4a3b8042" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API size_t</type>
+        <definition>TF_API size_t _SendWithType</definition>
+        <argsstring>(const TfType &amp;noticeType, const TfWeakBase *sender, const void *senderUniqueId, const std::type_info &amp;senderType) const</argsstring>
+        <name>_SendWithType</name>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>noticeType</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_weak_base" kindref="compound">TfWeakBase</ref> *</type>
+          <declname>sender</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>senderUniqueId</declname>
+        </param>
+        <param>
+          <type>const std::type_info &amp;</type>
+          <declname>senderType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="770" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The base class for objects used to notify interested parties (listeners) when events have occurred. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The <ref refid="class_tf_notice" kindref="compound">TfNotice</ref> class also serves as a container for various dispatching routines such as <ref refid="class_tf_notice_1a68c24dba64e7a7135f62d1bdab33ca7f" kindref="member">Register()</ref> and <ref refid="class_tf_notice_1a02732e32bee22f2efad0b07baa997a80" kindref="member">Send()</ref>.</para>
+<para>See <ref refid="page_tf__notification" kindref="compound">The TfNotice Notification System</ref> in the C++ API reference for a detailed description of the notification system.</para>
+<sect1 id="class_tf_notice_1pycode_TfNotice">
+<title>Python Example: Registering For and Sending</title>
+<para>Notices The following code provides examples of how to set up a Notice listener connection (represented in Python by the Listener class), including creating and sending notices, registering to receive notices, and breaking a listener connection. <programlisting filename=".py"><codeline><highlight class="comment">#<sp/>To<sp/>create<sp/>a<sp/>new<sp/>notice<sp/>type:</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">APythonClass(Tf.Notice):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&apos;&apos;&apos;TfNotice<sp/>sent<sp/>when<sp/>APythonClass<sp/>does<sp/>something<sp/>of<sp/>interest.&apos;&apos;&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">pass</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Tf.Type.Define(APythonClass)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>An<sp/>interested<sp/>listener<sp/>can<sp/>register<sp/>to<sp/>receive<sp/>notices<sp/>from<sp/>all</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>senders,<sp/>or<sp/>from<sp/>a<sp/>particular<sp/>type<sp/>of<sp/>sender.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>To<sp/>send<sp/>a<sp/>notice<sp/>to<sp/>all<sp/>registered<sp/>listeners:;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">APythonClass().SendGlobally()</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>To<sp/>send<sp/>a<sp/>notice<sp/>to<sp/>listeners<sp/>who<sp/>register<sp/>with<sp/>a<sp/>specific<sp/>sender:</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">APythonClass().Send(self)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>To<sp/>register<sp/>for<sp/>the<sp/>notice<sp/>from<sp/>any<sp/>sender:</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">my_listener<sp/>=<sp/>Tf.Notice.RegisterGlobally(APythonClass,<sp/>self._HandleNotice)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>To<sp/>register<sp/>for<sp/>the<sp/>notice<sp/>from<sp/>a<sp/>specific<sp/>sender</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">my_listener<sp/>=<sp/>Tf.Notice.Register(APythonClass,<sp/>self._HandleNotice,<sp/>sender)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal">_HandleNotice(self,<sp/>notice,<sp/>sender):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="stringliteral">&apos;&apos;&apos;callback<sp/>function<sp/>for<sp/>handling<sp/>a<sp/>notice&apos;&apos;&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>do<sp/>something<sp/>when<sp/>the<sp/>notice<sp/>arrives</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>To<sp/>revoke<sp/>interest<sp/>in<sp/>a<sp/>notice</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">my_listener.Revoke()</highlight></codeline>
+</programlisting></para>
+<para>For more on using notices in Python, see the Editor With Notices tutorial. </para>
+</sect1>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5434">
+        <label>DidRegisterPlugins</label>
+        <link refid="class_plug_notice_1_1_did_register_plugins"/>
+        <childnode refid="5433" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5446">
+        <label>TfDebugSymbolsChangedNotice</label>
+        <link refid="class_tf_debug_symbols_changed_notice"/>
+        <childnode refid="5430" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5454">
+        <label>StageEditTargetChanged</label>
+        <link refid="class_usd_notice_1_1_stage_edit_target_changed"/>
+        <childnode refid="5450" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5435">
+        <label>Base</label>
+        <link refid="class_sdf_notice_1_1_base"/>
+        <childnode refid="5430" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5442">
+        <label>LayerMutenessChanged</label>
+        <link refid="class_sdf_notice_1_1_layer_muteness_changed"/>
+        <childnode refid="5435" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5430">
+        <label>TfNotice</label>
+        <link refid="class_tf_notice"/>
+      </node>
+      <node id="5431">
+        <label>ResolverNotice</label>
+        <link refid="class_ar_notice_1_1_resolver_notice"/>
+        <childnode refid="5430" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5448">
+        <label>TfTypeWasDeclaredNotice</label>
+        <link refid="class_tf_type_was_declared_notice"/>
+        <childnode refid="5430" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5450">
+        <label>StageNotice</label>
+        <link refid="class_usd_notice_1_1_stage_notice"/>
+        <childnode refid="5430" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5443">
+        <label>LayersDidChange</label>
+        <link refid="class_sdf_notice_1_1_layers_did_change"/>
+        <childnode refid="5435" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5437">
+        <label>LayerDidReloadContent</label>
+        <link refid="class_sdf_notice_1_1_layer_did_reload_content"/>
+        <childnode refid="5436" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5432">
+        <label>ResolverChanged</label>
+        <link refid="class_ar_notice_1_1_resolver_changed"/>
+        <childnode refid="5431" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5436">
+        <label>LayerDidReplaceContent</label>
+        <link refid="class_sdf_notice_1_1_layer_did_replace_content"/>
+        <childnode refid="5435" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5452">
+        <label>ObjectsChanged</label>
+        <link refid="class_usd_notice_1_1_objects_changed"/>
+        <childnode refid="5450" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5440">
+        <label>LayerIdentifierDidChange</label>
+        <link refid="class_sdf_notice_1_1_layer_identifier_did_change"/>
+        <childnode refid="5435" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5439">
+        <label>LayerDirtinessChanged</label>
+        <link refid="class_sdf_notice_1_1_layer_dirtiness_changed"/>
+        <childnode refid="5435" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5449">
+        <label>TraceCollectionAvailable</label>
+        <link refid="class_trace_collection_available"/>
+        <childnode refid="5430" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5453">
+        <label>StageContentsChanged</label>
+        <link refid="class_usd_notice_1_1_stage_contents_changed"/>
+        <childnode refid="5450" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5445">
+        <label>TfDebugSymbolEnableChangedNotice</label>
+        <link refid="class_tf_debug_symbol_enable_changed_notice"/>
+        <childnode refid="5430" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5444">
+        <label>LayersDidChangeSentPerLayer</label>
+        <link refid="class_sdf_notice_1_1_layers_did_change_sent_per_layer"/>
+        <childnode refid="5435" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5451">
+        <label>LayerMutingChanged</label>
+        <link refid="class_usd_notice_1_1_layer_muting_changed"/>
+        <childnode refid="5450" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5447">
+        <label>TfPyModuleWasLoaded</label>
+        <link refid="class_tf_py_module_was_loaded"/>
+        <childnode refid="5430" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5441">
+        <label>LayerInfoDidChange</label>
+        <link refid="class_sdf_notice_1_1_layer_info_did_change"/>
+        <childnode refid="5435" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5433">
+        <label>Base</label>
+        <link refid="class_plug_notice_1_1_base"/>
+        <childnode refid="5430" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5438">
+        <label>LayerDidSaveLayerToFile</label>
+        <link refid="class_sdf_notice_1_1_layer_did_save_layer_to_file"/>
+        <childnode refid="5435" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="pxr/base/tf/notice.h" line="93" column="1" bodyfile="pxr/base/tf/notice.h" bodystart="93" bodyend="780"/>
+    <listofallmembers>
+      <member refid="class_tf_notice_1a7b97c333594ea30e9d975b19f54c06dd" prot="private" virt="non-virtual"><scope>TfNotice</scope><name>_DelivererList</name></member>
+      <member refid="class_tf_notice_1a69f6665bec2ffed39890c5dea0aea841" prot="private" virt="non-virtual"><scope>TfNotice</scope><name>_DelivererWeakPtr</name></member>
+      <member refid="class_tf_notice_1aac4944035ff9abe10590ff149f45f24b" prot="private" virt="non-virtual"><scope>TfNotice</scope><name>_MakeDeliverer</name></member>
+      <member refid="class_tf_notice_1ae0c6ab2ea785f5793531083f37503f7d" prot="private" virt="non-virtual"><scope>TfNotice</scope><name>_MakeDeliverer</name></member>
+      <member refid="class_tf_notice_1acad4b1f671361ad17ed8d2ba423d8179" prot="private" virt="non-virtual"><scope>TfNotice</scope><name>_MakeDeliverer</name></member>
+      <member refid="class_tf_notice_1a58476ea189d6995cab6c83aea637fdeb" prot="private" virt="non-virtual"><scope>TfNotice</scope><name>_MakeDeliverer</name></member>
+      <member refid="class_tf_notice_1ae1bc42edc2f0fa3bd2ca7619075cd95a" prot="private" virt="non-virtual"><scope>TfNotice</scope><name>_MakeDeliverer</name></member>
+      <member refid="class_tf_notice_1a6ea7982a2cc2986877142e2888449e3d" prot="private" virt="non-virtual"><scope>TfNotice</scope><name>_MakeDeliverer</name></member>
+      <member refid="class_tf_notice_1ae68263b32b255bb4445a67f3b59088f8" prot="private" virt="non-virtual"><scope>TfNotice</scope><name>_MakeDeliverer</name></member>
+      <member refid="class_tf_notice_1ab170c2f885b5d78ca72fca7035dc75b9" prot="private" virt="non-virtual"><scope>TfNotice</scope><name>_MakeDeliverer</name></member>
+      <member refid="class_tf_notice_1af95c76c337c94e490fad76f5f4c04ab8" prot="private" virt="non-virtual"><scope>TfNotice</scope><name>_Register</name></member>
+      <member refid="class_tf_notice_1a39ab9e1051b9547bd74045a543600525" prot="private" virt="non-virtual"><scope>TfNotice</scope><name>_Send</name></member>
+      <member refid="class_tf_notice_1a040d82bc9c82e16426824c4f4a3b8042" prot="private" virt="non-virtual"><scope>TfNotice</scope><name>_SendWithType</name></member>
+      <member refid="class_tf_notice_1a0b0920bd1e1417ee150daa0635021ce7" prot="private" virt="non-virtual"><scope>TfNotice</scope><name>_VerifyFailedCast</name></member>
+      <member refid="class_tf_notice_1a32fa7dd9c926ede28304ba0fea5a0a57" prot="public" virt="non-virtual"><scope>TfNotice</scope><name>InsertProbe</name></member>
+      <member refid="class_tf_notice_1ae99914824a9e7ee4f109b0aecd927fab" prot="public" virt="non-virtual"><scope>TfNotice</scope><name>Keys</name></member>
+      <member refid="class_tf_notice_1a68c24dba64e7a7135f62d1bdab33ca7f" prot="public" virt="non-virtual"><scope>TfNotice</scope><name>Register</name></member>
+      <member refid="class_tf_notice_1af10135651f3124a42f325391ce12e1cb" prot="public" virt="non-virtual"><scope>TfNotice</scope><name>Register</name></member>
+      <member refid="class_tf_notice_1a179046f55a4cf28983aecdae9e5f5ff5" prot="public" virt="non-virtual"><scope>TfNotice</scope><name>Register</name></member>
+      <member refid="class_tf_notice_1a8f588ed9ae01d514c51ac36c255a7223" prot="public" virt="non-virtual"><scope>TfNotice</scope><name>RemoveProbe</name></member>
+      <member refid="class_tf_notice_1ab183e05189affeabc78270a9c1be4241" prot="public" virt="non-virtual"><scope>TfNotice</scope><name>Revoke</name></member>
+      <member refid="class_tf_notice_1a5a994f26e22e2b2dfa28e36a11349f7a" prot="public" virt="non-virtual"><scope>TfNotice</scope><name>Revoke</name></member>
+      <member refid="class_tf_notice_1a02732e32bee22f2efad0b07baa997a80" prot="public" virt="non-virtual"><scope>TfNotice</scope><name>Send</name></member>
+      <member refid="class_tf_notice_1a3a0aa0bd6d35b4e26e01f932687690e6" prot="public" virt="non-virtual"><scope>TfNotice</scope><name>Send</name></member>
+      <member refid="class_tf_notice_1a94b84b1ac443ab812c795a9945bede00" prot="public" virt="non-virtual"><scope>TfNotice</scope><name>SendWithWeakBase</name></member>
+      <member refid="class_tf_notice_1ae0fdf4eb13bcd999def723fade0981bc" prot="public" virt="non-virtual"><scope>TfNotice</scope><name>WeakProbePtr</name></member>
+      <member refid="class_tf_notice_1ac79079190e565d59be9fc80b94d0341c" prot="public" virt="virtual"><scope>TfNotice</scope><name>~TfNotice</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

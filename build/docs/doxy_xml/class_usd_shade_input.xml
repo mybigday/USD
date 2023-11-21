@@ -1,0 +1,1261 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_shade_input" kind="class" language="C++" prot="public">
+    <compoundname>UsdShadeInput</compoundname>
+    <includes refid="input_8h" local="no">input.h</includes>
+    <innerclass refid="struct_usd_shade_input_1_1_hash" prot="public">UsdShadeInput::Hash</innerclass>
+      <sectiondef kind="user-defined">
+      <header>Configuring the Input&apos;s Type</header>
+      <memberdef kind="function" id="class_usd_shade_input_1abb54a3ca33a9b1b318d24bbaab8b2d16" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool SetRenderType</definition>
+        <argsstring>(TfToken const &amp;renderType) const</argsstring>
+        <name>SetRenderType</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>renderType</declname>
+        </param>
+        <briefdescription>
+<para>Specify an alternative, renderer-specific type to use when emitting/translating this Input, rather than translating based on its <ref refid="class_usd_shade_input_1abb24fe2345558df291fb937910bfe5c9" kindref="member">GetTypeName()</ref> </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For example, we set the renderType to &quot;struct&quot; for Inputs that are of renderman custom struct types.</para>
+<para><simplesect kind="return"><para>true on success. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="127" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a3ee9f0f80108fd87b45ed8d584b6b590" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>USDSHADE_API TfToken GetRenderType</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRenderType</name>
+        <briefdescription>
+<para>Return this Input&apos;s specialized renderType, or an empty token if none was authored. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_input_1abb54a3ca33a9b1b318d24bbaab8b2d16" kindref="member">SetRenderType()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="134" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a2ffa8e3637312009b0d77ebad891e759" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool HasRenderType</definition>
+        <argsstring>() const</argsstring>
+        <name>HasRenderType</name>
+        <briefdescription>
+<para>Return true if a renderType has been specified for this Input. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_input_1abb54a3ca33a9b1b318d24bbaab8b2d16" kindref="member">SetRenderType()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="140" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>API to author and query an Input&apos;s sdrMetadata</header>
+      <description><para>This section provides API for authoring and querying shader registry metadata on an Input.</para>
+<para>When the owning shader prim is providing a shader definition, the authored &quot;sdrMetadata&quot; dictionary value provides metadata needed to populate the Input correctly in the shader registry.</para>
+<para>We expect the keys in sdrMetadata to correspond to the keys in SdrPropertyMetadata. However, this is not strictly enforced by the API. The only allowed value type in the &quot;sdrMetadata&quot; dictionary is a std::string since it needs to be converted into a NdrTokenMap, which Sdr will parse using the utilities available in SdrMetadataHelpers. </para>
+</description>
+      <memberdef kind="function" id="class_usd_shade_input_1a73a94bfb99a434b388258a451eeca257" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API NdrTokenMap</type>
+        <definition>USDSHADE_API NdrTokenMap GetSdrMetadata</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSdrMetadata</name>
+        <briefdescription>
+<para>Returns this Input&apos;s composed &quot;sdrMetadata&quot; dictionary as a NdrTokenMap. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="162" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a1eefbc541122070cfbd9b9ed4de7165b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API std::string</type>
+        <definition>USDSHADE_API std::string GetSdrMetadataByKey</definition>
+        <argsstring>(const TfToken &amp;key) const</argsstring>
+        <name>GetSdrMetadataByKey</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Returns the value corresponding to <computeroutput>key</computeroutput> in the composed <bold>sdrMetadata</bold> dictionary. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="167" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1aa153d2b3198e0577f6728858c98c50a3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API void</type>
+        <definition>USDSHADE_API void SetSdrMetadata</definition>
+        <argsstring>(const NdrTokenMap &amp;sdrMetadata) const</argsstring>
+        <name>SetSdrMetadata</name>
+        <param>
+          <type>const NdrTokenMap &amp;</type>
+          <declname>sdrMetadata</declname>
+        </param>
+        <briefdescription>
+<para>Authors the given <computeroutput>sdrMetadata</computeroutput> value on this Input at the current EditTarget. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="172" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1ad64ed12f5732640262edbe8de5c152f9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API void</type>
+        <definition>USDSHADE_API void SetSdrMetadataByKey</definition>
+        <argsstring>(const TfToken &amp;key, const std::string &amp;value) const</argsstring>
+        <name>SetSdrMetadataByKey</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Sets the value corresponding to <computeroutput>key</computeroutput> to the given string <computeroutput>value</computeroutput>, in the Input&apos;s &quot;sdrMetadata&quot; dictionary at the current EditTarget. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="177" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1ab9276eacab686790a200e01ca54144a5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool HasSdrMetadata</definition>
+        <argsstring>() const</argsstring>
+        <name>HasSdrMetadata</name>
+        <briefdescription>
+<para>Returns true if the Input has a non-empty composed &quot;sdrMetadata&quot; dictionary value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="184" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1ac805ce91ac9f9a41cba10e6f17759e4d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool HasSdrMetadataByKey</definition>
+        <argsstring>(const TfToken &amp;key) const</argsstring>
+        <name>HasSdrMetadataByKey</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if there is a value corresponding to the given <computeroutput>key</computeroutput> in the composed &quot;sdrMetadata&quot; dictionary. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="189" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1aa7ff1511aa71f5512428e9104b6bb214" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API void</type>
+        <definition>USDSHADE_API void ClearSdrMetadata</definition>
+        <argsstring>() const</argsstring>
+        <name>ClearSdrMetadata</name>
+        <briefdescription>
+<para>Clears any &quot;sdrMetadata&quot; value authored on the Input in the current EditTarget. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="194" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1ad73402f3e5f9b975ffc762f538a64630" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API void</type>
+        <definition>USDSHADE_API void ClearSdrMetadataByKey</definition>
+        <argsstring>(const TfToken &amp;key) const</argsstring>
+        <name>ClearSdrMetadataByKey</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Clears the entry corresponding to the given <computeroutput>key</computeroutput> in the &quot;sdrMetadata&quot; dictionary authored in the current EditTarget. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="199" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>UsdAttribute API</header>
+      <memberdef kind="function" id="class_usd_shade_input_1a5ccbed5862d363537981d2b5f74e3576" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type>USDSHADE_API</type>
+        <definition>USDSHADE_API UsdShadeInput</definition>
+        <argsstring>(const UsdAttribute &amp;attr)</argsstring>
+        <name>UsdShadeInput</name>
+        <param>
+          <type>const <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> &amp;</type>
+          <declname>attr</declname>
+        </param>
+        <briefdescription>
+<para>Speculative constructor that will produce a valid <ref refid="class_usd_shade_input" kindref="compound">UsdShadeInput</ref> when <computeroutput>attr</computeroutput> already represents a shade Input, and produces an <emphasis>invalid</emphasis> <ref refid="class_usd_shade_input" kindref="compound">UsdShadeInput</ref> otherwise (i.e. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>the explicit bool conversion operator will return false). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="214" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a21bfa9d84f46b24b7619d4ca807695e3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> &amp;</type>
+        <definition>const UsdAttribute&amp; GetAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetAttr</name>
+        <briefdescription>
+<para>Explicit <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> extractor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="229" column="1" bodyfile="pxr/usd/usdShade/input.h" bodystart="229" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a8b727851e1dd26aa2834f5e8bc390f8b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>operator const UsdAttribute &amp;</definition>
+        <argsstring>() const</argsstring>
+        <name>operator const UsdAttribute &amp;</name>
+        <briefdescription>
+<para>Allow <ref refid="class_usd_shade_input" kindref="compound">UsdShadeInput</ref> to auto-convert to <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref>, so you can pass a <ref refid="class_usd_shade_input" kindref="compound">UsdShadeInput</ref> to any function that accepts a <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> or const-ref thereto. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="234" column="1" bodyfile="pxr/usd/usdShade/input.h" bodystart="234" bodyend="234"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a87fbe0030c0fbb6307ee434664f1142f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool IsDefined</definition>
+        <argsstring>() const</argsstring>
+        <name>IsDefined</name>
+        <briefdescription>
+<para>Return true if the wrapped <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> is defined, and in addition the attribute is identified as an input. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="238" column="1" bodyfile="pxr/usd/usdShade/input.h" bodystart="238" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1aaa32e6f7daa754567e5e1e16a906392d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool SetDocumentation</definition>
+        <argsstring>(const std::string &amp;docs) const</argsstring>
+        <name>SetDocumentation</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>docs</declname>
+        </param>
+        <briefdescription>
+<para>Set documentation string for this Input. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_usd_object_1a207a3fac40b4bd2dca8e9bce07d398e9" kindref="member">UsdObject::SetDocumentation()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="245" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1aa0dfb13a31ebc0c408e4e1d5598d505e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API std::string</type>
+        <definition>USDSHADE_API std::string GetDocumentation</definition>
+        <argsstring>() const</argsstring>
+        <name>GetDocumentation</name>
+        <briefdescription>
+<para>Get documentation string for this Input. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_usd_object_1afbeb96db494ea5fa795d937e532083c9" kindref="member">UsdObject::GetDocumentation()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="250" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1af951776e9b88598d061ccc233035a87f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool SetDisplayGroup</definition>
+        <argsstring>(const std::string &amp;displayGroup) const</argsstring>
+        <name>SetDisplayGroup</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>displayGroup</declname>
+        </param>
+        <briefdescription>
+<para>Set the displayGroup metadata for this Input, i.e. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>hinting for the location and nesting of the attribute.</para>
+<para>Note for an input representing a nested <ref refid="class_sdr_shader_property" kindref="compound">SdrShaderProperty</ref>, its expected to have the scope delimited by a &quot;:&quot;. <simplesect kind="see"><para><ref refid="class_usd_property_1a66724c4a721e156a88f9262694b86a67" kindref="member">UsdProperty::SetDisplayGroup()</ref>, UsdProperty::SetNestedDisplayGroup() </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_sdr_shader_property_1a17907347a410a7db40cd2a9b1aaf7416" kindref="member">SdrShaderProperty::GetPage()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="260" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a1725c919a14644aa918dd12030d86be6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API std::string</type>
+        <definition>USDSHADE_API std::string GetDisplayGroup</definition>
+        <argsstring>() const</argsstring>
+        <name>GetDisplayGroup</name>
+        <briefdescription>
+<para>Get the displayGroup metadata for this Input, i.e. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>hint for the location and nesting of the attribute. <simplesect kind="see"><para><ref refid="class_usd_property_1a0ad1f6f9e132e54b4c3fe32f9f962436" kindref="member">UsdProperty::GetDisplayGroup()</ref>, UsdProperty::GetNestedDisplayGroup() </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="266" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1ae176e3bcdb3e0a5621e24a2fb79c5ec6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>static USDSHADE_API bool IsInput</definition>
+        <argsstring>(const UsdAttribute &amp;attr)</argsstring>
+        <name>IsInput</name>
+        <param>
+          <type>const <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> &amp;</type>
+          <declname>attr</declname>
+        </param>
+        <briefdescription>
+<para>Test whether a given <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> represents a valid Input, which implies that creating a <ref refid="class_usd_shade_input" kindref="compound">UsdShadeInput</ref> from the attribute will succeed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Success implies that <computeroutput>attr.IsDefined()</computeroutput> is true. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="221" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1aa03b615b5a8361404a0e5906bbb74628" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>static USDSHADE_API bool IsInterfaceInputName</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>IsInterfaceInputName</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Test if this name has a namespace that indicates it could be an input. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="226" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Connections API</header>
+      <memberdef kind="typedef" id="class_usd_shade_input_1aa9b2200b0ca4ddbe566cdb007b0423d9" prot="public" static="no">
+        <type>UsdShadeConnectionModification</type>
+        <definition>using ConnectionModification =  UsdShadeConnectionModification</definition>
+        <argsstring></argsstring>
+        <name>ConnectionModification</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="308" column="1" bodyfile="pxr/usd/usdShade/input.h" bodystart="308" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_usd_shade_input_1a86fd53d9a9e822501f485193340b879a" prot="public" static="no">
+        <type><ref refid="class_tf_small_vector" kindref="compound">TfSmallVector</ref>&lt; <ref refid="struct_usd_shade_connection_source_info" kindref="compound">UsdShadeConnectionSourceInfo</ref>, 1 &gt;</type>
+        <definition>using SourceInfoVector =  TfSmallVector&lt;UsdShadeConnectionSourceInfo, 1&gt;</definition>
+        <argsstring></argsstring>
+        <name>SourceInfoVector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="376" column="1" bodyfile="pxr/usd/usdShade/input.h" bodystart="376" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a0d7dc68926377fc7ff3fd1b7f5d2492a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool CanConnect</definition>
+        <argsstring>(const UsdAttribute &amp;source) const</argsstring>
+        <name>CanConnect</name>
+        <param>
+          <type>const <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> &amp;</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+<para>Determines whether this Input can be connected to the given source attribute, which can be an input or an output. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_connectable_a_p_i_1a1746c16256d286e36eabb73aab955afd" kindref="member">UsdShadeConnectableAPI::CanConnect</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="298" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1aae9ae91cc76b1dc3785555dafab29d48" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool CanConnect</definition>
+        <argsstring>(const UsdShadeInput &amp;sourceInput) const</argsstring>
+        <name>CanConnect</name>
+        <param>
+          <type>const <ref refid="class_usd_shade_input" kindref="compound">UsdShadeInput</ref> &amp;</type>
+          <declname>sourceInput</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="302" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a3a2dbe92fdedf183345ec1bd77616839" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool CanConnect</definition>
+        <argsstring>(const UsdShadeOutput &amp;sourceOutput) const</argsstring>
+        <name>CanConnect</name>
+        <param>
+          <type>const <ref refid="class_usd_shade_output" kindref="compound">UsdShadeOutput</ref> &amp;</type>
+          <declname>sourceOutput</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="306" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a5b3827a7538deeb3e858c1026d49f316" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool ConnectToSource</definition>
+        <argsstring>(UsdShadeConnectionSourceInfo const &amp;source, ConnectionModification const mod=ConnectionModification::Replace) const</argsstring>
+        <name>ConnectToSource</name>
+        <param>
+          <type><ref refid="struct_usd_shade_connection_source_info" kindref="compound">UsdShadeConnectionSourceInfo</ref> const &amp;</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>ConnectionModification const</type>
+          <declname>mod</declname>
+          <defval>ConnectionModification::Replace</defval>
+        </param>
+        <briefdescription>
+<para>Authors a connection for this Input. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>source</computeroutput> is a struct that describes the upstream source attribute with all the information necessary to make a connection. See the documentation for <ref refid="struct_usd_shade_connection_source_info" kindref="compound">UsdShadeConnectionSourceInfo</ref>. <computeroutput>mod</computeroutput> describes the operation that should be applied to the list of connections. By default the new connection will replace any existing connections, but it can add to the list of connections to represent multiple input connections.</para>
+<para><simplesect kind="return"><para><computeroutput>true</computeroutput> if a connection was created successfully. <computeroutput>false</computeroutput> if this input or <computeroutput>source</computeroutput> is invalid.</para>
+</simplesect>
+<simplesect kind="note"><para>This method does not verify the connectability of the shading attribute to the source. Clients must invoke <ref refid="class_usd_shade_input_1a0d7dc68926377fc7ff3fd1b7f5d2492a" kindref="member">CanConnect()</ref> themselves to ensure compatibility. </para>
+</simplesect>
+<simplesect kind="note"><para>The source shading attribute is created if it doesn&apos;t exist already.</para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_shade_connectable_a_p_i_1aac78bb24a340a92604879b416c230629" kindref="member">UsdShadeConnectableAPI::ConnectToSource</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="333" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a61e6152df820208931d7d8b0b940c0ff" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool ConnectToSource</definition>
+        <argsstring>(UsdShadeConnectableAPI const &amp;source, TfToken const &amp;sourceName, UsdShadeAttributeType const sourceType=UsdShadeAttributeType::Output, SdfValueTypeName typeName=SdfValueTypeName()) const</argsstring>
+        <name>ConnectToSource</name>
+        <param>
+          <type><ref refid="class_usd_shade_connectable_a_p_i" kindref="compound">UsdShadeConnectableAPI</ref> const &amp;</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>sourceName</declname>
+        </param>
+        <param>
+          <type>UsdShadeAttributeType const</type>
+          <declname>sourceType</declname>
+          <defval>UsdShadeAttributeType::Output</defval>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref></type>
+          <declname>typeName</declname>
+          <defval><ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref>()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000107"><xreftitle>Deprecated</xreftitle><xrefdescription></xrefdescription></xrefsect>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="341" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a1d3065074cd96873fc9583fa3182ea88" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool ConnectToSource</definition>
+        <argsstring>(SdfPath const &amp;sourcePath) const</argsstring>
+        <name>ConnectToSource</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>sourcePath</declname>
+        </param>
+        <briefdescription>
+<para>Authors a connection for this Input to the source at the given path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_connectable_a_p_i_1aac78bb24a340a92604879b416c230629" kindref="member">UsdShadeConnectableAPI::ConnectToSource</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="352" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1af30990e7001c2ec6687a68a728f12aa4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool ConnectToSource</definition>
+        <argsstring>(UsdShadeInput const &amp;sourceInput) const</argsstring>
+        <name>ConnectToSource</name>
+        <param>
+          <type><ref refid="class_usd_shade_input" kindref="compound">UsdShadeInput</ref> const &amp;</type>
+          <declname>sourceInput</declname>
+        </param>
+        <briefdescription>
+<para>Connects this Input to the given input, <computeroutput>sourceInput</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_connectable_a_p_i_1aac78bb24a340a92604879b416c230629" kindref="member">UsdShadeConnectableAPI::ConnectToSource</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="359" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a51fe82c44764b85e736d7d85431fbb01" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool ConnectToSource</definition>
+        <argsstring>(UsdShadeOutput const &amp;sourceOutput) const</argsstring>
+        <name>ConnectToSource</name>
+        <param>
+          <type><ref refid="class_usd_shade_output" kindref="compound">UsdShadeOutput</ref> const &amp;</type>
+          <declname>sourceOutput</declname>
+        </param>
+        <briefdescription>
+<para>Connects this Input to the given output, <computeroutput>sourceOutput</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_connectable_a_p_i_1aac78bb24a340a92604879b416c230629" kindref="member">UsdShadeConnectableAPI::ConnectToSource</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="366" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a9417c20e22319f1eb6f219da8b57d741" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool SetConnectedSources</definition>
+        <argsstring>(std::vector&lt; UsdShadeConnectionSourceInfo &gt; const &amp;sourceInfos) const</argsstring>
+        <name>SetConnectedSources</name>
+        <param>
+          <type>std::vector&lt; <ref refid="struct_usd_shade_connection_source_info" kindref="compound">UsdShadeConnectionSourceInfo</ref> &gt; const &amp;</type>
+          <declname>sourceInfos</declname>
+        </param>
+        <briefdescription>
+<para>Connects this Input to the given sources, <computeroutput>sourceInfos</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_connectable_a_p_i_1a1193a8bd689eb6cc1361da89528af8ab" kindref="member">UsdShadeConnectableAPI::SetConnectedSources</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="373" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a892236c4047a24ec2a9af5a953c609aa" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_tf_small_vector" kindref="compound">SourceInfoVector</ref></type>
+        <definition>USDSHADE_API SourceInfoVector GetConnectedSources</definition>
+        <argsstring>(SdfPathVector *invalidSourcePaths=nullptr) const</argsstring>
+        <name>GetConnectedSources</name>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>invalidSourcePaths</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Finds the valid sources of connections for the Input. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>invalidSourcePaths</computeroutput> is an optional output parameter to collect the invalid source paths that have not been reported in the returned vector.</para>
+<para>Returns a vector of <computeroutput><ref refid="struct_usd_shade_connection_source_info" kindref="compound">UsdShadeConnectionSourceInfo</ref></computeroutput> structs with information about each upsteam attribute. If the vector is empty, there have been no valid connections.</para>
+<para><simplesect kind="note"><para>A valid connection requires the existence of the source attribute and also requires that the source prim is <ref refid="class_usd_shade_connectable_a_p_i" kindref="compound">UsdShadeConnectableAPI</ref> compatible. </para>
+</simplesect>
+<simplesect kind="note"><para>The python wrapping returns a tuple with the valid connections first, followed by the invalid source paths.</para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_shade_connectable_a_p_i_1aa51fa7b0b43b3180635f63e94693e205" kindref="member">UsdShadeConnectableAPI::GetConnectedSources</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="396" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1ad87d91b4d03005ec1d7e5955fa4da301" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool GetConnectedSource</definition>
+        <argsstring>(UsdShadeConnectableAPI *source, TfToken *sourceName, UsdShadeAttributeType *sourceType) const</argsstring>
+        <name>GetConnectedSource</name>
+        <param>
+          <type><ref refid="class_usd_shade_connectable_a_p_i" kindref="compound">UsdShadeConnectableAPI</ref> *</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> *</type>
+          <declname>sourceName</declname>
+        </param>
+        <param>
+          <type>UsdShadeAttributeType *</type>
+          <declname>sourceType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000108"><xreftitle>Deprecated</xreftitle><xrefdescription></xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="401" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1afacb1f3963662991c24bc3edc102f567" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool GetRawConnectedSourcePaths</definition>
+        <argsstring>(SdfPathVector *sourcePaths) const</argsstring>
+        <name>GetRawConnectedSourcePaths</name>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>sourcePaths</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000109"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Returns the &quot;raw&quot; (authored) connected source paths for this Input.</para>
+</xrefdescription></xrefsect></para>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_connectable_a_p_i_1a520694f15344a4456fb473adb8f802ce" kindref="member">UsdShadeConnectableAPI::GetRawConnectedSourcePaths</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="411" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a40e3c1b1a946309621011fb39f37c01c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool HasConnectedSource</definition>
+        <argsstring>() const</argsstring>
+        <name>HasConnectedSource</name>
+        <briefdescription>
+<para>Returns true if and only if this Input is currently connected to a valid (defined) source. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_connectable_a_p_i_1ab0908a42f25acd2c013132a01b385fc8" kindref="member">UsdShadeConnectableAPI::HasConnectedSource</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="419" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1aa460019f29648e03379739353bb6719f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool IsSourceConnectionFromBaseMaterial</definition>
+        <argsstring>() const</argsstring>
+        <name>IsSourceConnectionFromBaseMaterial</name>
+        <briefdescription>
+<para>Returns true if the connection to this Input&apos;s source, as returned by <ref refid="class_usd_shade_input_1ad87d91b4d03005ec1d7e5955fa4da301" kindref="member">GetConnectedSource()</ref>, is authored across a specializes arc, which is used to denote a base material. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_connectable_a_p_i_1a916ea8b249a675ff348c051370b053a5" kindref="member">UsdShadeConnectableAPI::IsSourceConnectionFromBaseMaterial</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="428" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1aed7d7c07ca10c48d04d41f66272306f5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool DisconnectSource</definition>
+        <argsstring>(UsdAttribute const &amp;sourceAttr=UsdAttribute()) const</argsstring>
+        <name>DisconnectSource</name>
+        <param>
+          <type><ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> const &amp;</type>
+          <declname>sourceAttr</declname>
+          <defval><ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Disconnect source for this Input. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>sourceAttr</computeroutput> is valid, only a connection to the specified attribute is disconnected, otherwise all connections are removed.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_connectable_a_p_i_1a7a4b55bc9ff339ae4c156d93d0f9d604" kindref="member">UsdShadeConnectableAPI::DisconnectSource</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="437" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1af0c98d3dd7ff5f0932be6845135e99b7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool ClearSources</definition>
+        <argsstring>() const</argsstring>
+        <name>ClearSources</name>
+        <briefdescription>
+<para>Clears sources for this Input in the current <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Most of the time, what you probably want is <ref refid="class_usd_shade_input_1aed7d7c07ca10c48d04d41f66272306f5" kindref="member">DisconnectSource()</ref> rather than this function.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_connectable_a_p_i_1a10b6b39b9a065bcd2159a912aa3a8e97" kindref="member">UsdShadeConnectableAPI::ClearSources</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="447" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1aedea0915e58a4f7a86a15b5c877b414e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool ClearSource</definition>
+        <argsstring>() const</argsstring>
+        <name>ClearSource</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000110"><xreftitle>Deprecated</xreftitle><xrefdescription></xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="451" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Connectability API</header>
+      <memberdef kind="function" id="class_usd_shade_input_1a2b46d57dff021a38a01e8f149af8fc9d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool SetConnectability</definition>
+        <argsstring>(const TfToken &amp;connectability) const</argsstring>
+        <name>SetConnectability</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>connectability</declname>
+        </param>
+        <briefdescription>
+<para>Set the connectability of the Input. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>In certain shading data models, there is a need to distinguish which inputs <bold>can</bold> vary over a surface from those that must be <bold>uniform</bold>. This is accomplished in UsdShade by limiting the connectability of the input. This is done by setting the &quot;connectability&quot; metadata on the associated attribute.</para>
+<para>Connectability of an Input can be set to UsdShadeTokens-&gt;full or UsdShadeTokens-&gt;interfaceOnly.</para>
+<para><itemizedlist>
+<listitem><para><bold>full</bold> implies that the Input can be connected to any other Input or Output.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para><bold>interfaceOnly</bold> implies that the Input can only be connected to a NodeGraph Input (which represents an interface override, not a render-time dataflow connection), or another Input whose connectability is also &quot;interfaceOnly&quot;.</para>
+</listitem>
+</itemizedlist>
+The default connectability of an input is UsdShadeTokens-&gt;full.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_input_1a2b46d57dff021a38a01e8f149af8fc9d" kindref="member">SetConnectability()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="482" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1afa9011143d42ee268e516231f94ba11d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>USDSHADE_API TfToken GetConnectability</definition>
+        <argsstring>() const</argsstring>
+        <name>GetConnectability</name>
+        <briefdescription>
+<para>Returns the connectability of the Input. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_input_1a2b46d57dff021a38a01e8f149af8fc9d" kindref="member">SetConnectability()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="488" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a584721b1b53b8b565d5ed5f94e556a37" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool ClearConnectability</definition>
+        <argsstring>() const</argsstring>
+        <name>ClearConnectability</name>
+        <briefdescription>
+<para>Clears any authored connectability on the Input. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="493" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Connected Value API</header>
+      <memberdef kind="function" id="class_usd_shade_input_1a2850314096019df0a017b321719b3c70" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_tf_small_vector" kindref="compound">UsdShadeAttributeVector</ref></type>
+        <definition>USDSHADE_API UsdShadeAttributeVector GetValueProducingAttributes</definition>
+        <argsstring>(bool shaderOutputsOnly=false) const</argsstring>
+        <name>GetValueProducingAttributes</name>
+        <param>
+          <type>bool</type>
+          <declname>shaderOutputsOnly</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Find what is connected to this Input recursively. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_usd_shade_utils_1ad1f99058557167a9282c2531f2332bd6" kindref="member">UsdShadeUtils::GetValueProducingAttributes</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="506" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a8b1264541587164077770d8fbe411f8d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDSHADE_API UsdAttribute GetValueProducingAttribute</definition>
+        <argsstring>(UsdShadeAttributeType *attrType) const</argsstring>
+        <name>GetValueProducingAttribute</name>
+        <param>
+          <type>UsdShadeAttributeType *</type>
+          <declname>attrType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000111"><xreftitle>Deprecated</xreftitle><xrefdescription><para>in favor of calling GetValueProducingAttributes </para>
+</xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="511" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_usd_shade_input_1a910521a0f9269e1672e32fc924b21881" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class UsdShadeConnectableAPI</definition>
+        <argsstring></argsstring>
+        <name>UsdShadeConnectableAPI</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="517" column="1" bodyfile="pxr/usd/usdShade/input.h" bodystart="517" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_usd_shade_input_1af8a1816a55e8d0a1668db1f29af8cabf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend bool</type>
+        <definition>bool operator==</definition>
+        <argsstring>(const UsdShadeInput &amp;lhs, const UsdShadeInput &amp;rhs)</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="class_usd_shade_input" kindref="compound">UsdShadeInput</ref> &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_shade_input" kindref="compound">UsdShadeInput</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Equality comparison. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns true if <emphasis>lhs</emphasis> and <emphasis>rhs</emphasis> represent the same <ref refid="class_usd_shade_input" kindref="compound">UsdShadeInput</ref>, false otherwise. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="278" column="1" bodyfile="pxr/usd/usdShade/input.h" bodystart="278" bodyend="280"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_usd_shade_input_1afe78896762e2ab32bdecaca44204d90f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend bool</type>
+        <definition>bool operator!=</definition>
+        <argsstring>(const UsdShadeInput &amp;lhs, const UsdShadeInput &amp;rhs)</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type>const <ref refid="class_usd_shade_input" kindref="compound">UsdShadeInput</ref> &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_shade_input" kindref="compound">UsdShadeInput</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Inequality comparison. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Return false if <emphasis>lhs</emphasis> and <emphasis>rhs</emphasis> represent the same <ref refid="class_usd_shade_input" kindref="compound">UsdShadeInput</ref>, true otherwise. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="284" column="1" bodyfile="pxr/usd/usdShade/input.h" bodystart="284" bodyend="286"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_usd_shade_input_1a5264980b5cd3db34a397bfda54c1b566" prot="private" static="no" mutable="no">
+        <type><ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>UsdAttribute _attr</definition>
+        <argsstring></argsstring>
+        <name>_attr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="526" column="1" bodyfile="pxr/usd/usdShade/input.h" bodystart="526" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_shade_input_1acb1ef71b352cff52c3164a9852bce49c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdShadeInput</definition>
+        <argsstring>()</argsstring>
+        <name>UsdShadeInput</name>
+        <briefdescription>
+<para>Default constructor returns an invalid Input. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Exists for the sake of container classes </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="53" column="1" bodyfile="pxr/usd/usdShade/input.h" bodystart="53" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a42f237249d274485bb5c60669d5eb48f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const  &amp;</type>
+        <definition>TfToken const&amp; GetFullName</definition>
+        <argsstring>() const</argsstring>
+        <name>GetFullName</name>
+        <briefdescription>
+<para>Get the name of the attribute associated with the Input. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="60" column="1" bodyfile="pxr/usd/usdShade/input.h" bodystart="60" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a60e898994ec9c2da6f03507c4213f9e9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>USDSHADE_API TfToken GetBaseName</definition>
+        <argsstring>() const</argsstring>
+        <name>GetBaseName</name>
+        <briefdescription>
+<para>Returns the name of the input. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>We call this the base name since it strips off the &quot;inputs:&quot; namespace prefix from the attribute name, and returns it. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="70" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1abb24fe2345558df291fb937910bfe5c9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API <ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref></type>
+        <definition>USDSHADE_API SdfValueTypeName GetTypeName</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTypeName</name>
+        <briefdescription>
+<para>Get the &quot;scene description&quot; value type name of the attribute associated with the Input. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="76" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a4ba10e023e7f3f3c93131bc7fc3146b7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref></type>
+        <definition>UsdPrim GetPrim</definition>
+        <argsstring>() const</argsstring>
+        <name>GetPrim</name>
+        <briefdescription>
+<para>Get the prim that the input belongs to. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="79" column="1" bodyfile="pxr/usd/usdShade/input.h" bodystart="79" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a9d41bc223be86408ba7d7f74df7c35a9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool Get</definition>
+        <argsstring>(T *value, UsdTimeCode time=UsdTimeCode::Default()) const</argsstring>
+        <name>Get</name>
+        <param>
+          <type>T *</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>time</declname>
+          <defval><ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Convenience wrapper for the templated <ref refid="class_usd_attribute_1a9d41bc223be86408ba7d7f74df7c35a9" kindref="member">UsdAttribute::Get()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="85" column="1" bodyfile="pxr/usd/usdShade/input.h" bodystart="85" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a38ee6860c35cadbc321e91af2506d776" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool Get</definition>
+        <argsstring>(VtValue *value, UsdTimeCode time=UsdTimeCode::Default()) const</argsstring>
+        <name>Get</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> *</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>time</declname>
+          <defval><ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Convenience wrapper for <ref refid="class_vt_value" kindref="compound">VtValue</ref> version of <ref refid="class_usd_attribute_1a9d41bc223be86408ba7d7f74df7c35a9" kindref="member">UsdAttribute::Get()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="91" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a2e6fecfa3974c9ca3a1ce8b1081f0e95" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>USDSHADE_API bool Set</definition>
+        <argsstring>(const VtValue &amp;value, UsdTimeCode time=UsdTimeCode::Default()) const</argsstring>
+        <name>Set</name>
+        <param>
+          <type>const <ref refid="class_vt_value" kindref="compound">VtValue</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>time</declname>
+          <defval><ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Set a value for the Input at <computeroutput>time</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="96" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a7fd0957eecddb7cfcd222cccd51e23e6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool Set</definition>
+        <argsstring>(const T &amp;value, UsdTimeCode time=UsdTimeCode::Default()) const</argsstring>
+        <name>Set</name>
+        <param>
+          <type>const T &amp;</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>time</declname>
+          <defval><ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. Set a value of the Input at <computeroutput>time</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="103" column="1" bodyfile="pxr/usd/usdShade/input.h" bodystart="103" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_input_1a67b76affb3b5d35fa419ac234144038b" prot="public" static="no" const="yes" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>operator bool</definition>
+        <argsstring>() const</argsstring>
+        <name>operator bool</name>
+        <briefdescription>
+<para>Return true if this Input is valid for querying and authoring values and metadata, which is identically equivalent to <ref refid="class_usd_shade_input_1a87fbe0030c0fbb6307ee434664f1142f" kindref="member">IsDefined()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="272" column="1" bodyfile="pxr/usd/usdShade/input.h" bodystart="272" bodyend="274"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_usd_shade_input_1a48c682f1286ff44e3cdbe9b0845c69d2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>UsdShadeInput</definition>
+        <argsstring>(UsdPrim prim, TfToken const &amp;name, SdfValueTypeName const &amp;typeName)</argsstring>
+        <name>UsdShadeInput</name>
+        <param>
+          <type><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref></type>
+          <declname>prim</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref> const &amp;</type>
+          <declname>typeName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/input.h" line="522" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This class encapsulates a shader or node-graph input, which is a connectable attribute representing a typed value. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="pxr/usd/usdShade/input.h" line="49" column="1" bodyfile="pxr/usd/usdShade/input.h" bodystart="48" bodyend="527"/>
+    <listofallmembers>
+      <member refid="class_usd_shade_input_1a5264980b5cd3db34a397bfda54c1b566" prot="private" virt="non-virtual"><scope>UsdShadeInput</scope><name>_attr</name></member>
+      <member refid="class_usd_shade_input_1a0d7dc68926377fc7ff3fd1b7f5d2492a" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>CanConnect</name></member>
+      <member refid="class_usd_shade_input_1aae9ae91cc76b1dc3785555dafab29d48" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>CanConnect</name></member>
+      <member refid="class_usd_shade_input_1a3a2dbe92fdedf183345ec1bd77616839" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>CanConnect</name></member>
+      <member refid="class_usd_shade_input_1a584721b1b53b8b565d5ed5f94e556a37" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>ClearConnectability</name></member>
+      <member refid="class_usd_shade_input_1aa7ff1511aa71f5512428e9104b6bb214" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>ClearSdrMetadata</name></member>
+      <member refid="class_usd_shade_input_1ad73402f3e5f9b975ffc762f538a64630" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>ClearSdrMetadataByKey</name></member>
+      <member refid="class_usd_shade_input_1aedea0915e58a4f7a86a15b5c877b414e" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>ClearSource</name></member>
+      <member refid="class_usd_shade_input_1af0c98d3dd7ff5f0932be6845135e99b7" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>ClearSources</name></member>
+      <member refid="class_usd_shade_input_1aa9b2200b0ca4ddbe566cdb007b0423d9" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>ConnectionModification</name></member>
+      <member refid="class_usd_shade_input_1a5b3827a7538deeb3e858c1026d49f316" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>ConnectToSource</name></member>
+      <member refid="class_usd_shade_input_1a61e6152df820208931d7d8b0b940c0ff" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>ConnectToSource</name></member>
+      <member refid="class_usd_shade_input_1a1d3065074cd96873fc9583fa3182ea88" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>ConnectToSource</name></member>
+      <member refid="class_usd_shade_input_1af30990e7001c2ec6687a68a728f12aa4" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>ConnectToSource</name></member>
+      <member refid="class_usd_shade_input_1a51fe82c44764b85e736d7d85431fbb01" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>ConnectToSource</name></member>
+      <member refid="class_usd_shade_input_1aed7d7c07ca10c48d04d41f66272306f5" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>DisconnectSource</name></member>
+      <member refid="class_usd_shade_input_1a9d41bc223be86408ba7d7f74df7c35a9" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>Get</name></member>
+      <member refid="class_usd_shade_input_1a38ee6860c35cadbc321e91af2506d776" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>Get</name></member>
+      <member refid="class_usd_shade_input_1a21bfa9d84f46b24b7619d4ca807695e3" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>GetAttr</name></member>
+      <member refid="class_usd_shade_input_1a60e898994ec9c2da6f03507c4213f9e9" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>GetBaseName</name></member>
+      <member refid="class_usd_shade_input_1afa9011143d42ee268e516231f94ba11d" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>GetConnectability</name></member>
+      <member refid="class_usd_shade_input_1ad87d91b4d03005ec1d7e5955fa4da301" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>GetConnectedSource</name></member>
+      <member refid="class_usd_shade_input_1a892236c4047a24ec2a9af5a953c609aa" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>GetConnectedSources</name></member>
+      <member refid="class_usd_shade_input_1a1725c919a14644aa918dd12030d86be6" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>GetDisplayGroup</name></member>
+      <member refid="class_usd_shade_input_1aa0dfb13a31ebc0c408e4e1d5598d505e" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>GetDocumentation</name></member>
+      <member refid="class_usd_shade_input_1a42f237249d274485bb5c60669d5eb48f" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>GetFullName</name></member>
+      <member refid="class_usd_shade_input_1a4ba10e023e7f3f3c93131bc7fc3146b7" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>GetPrim</name></member>
+      <member refid="class_usd_shade_input_1afacb1f3963662991c24bc3edc102f567" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>GetRawConnectedSourcePaths</name></member>
+      <member refid="class_usd_shade_input_1a3ee9f0f80108fd87b45ed8d584b6b590" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>GetRenderType</name></member>
+      <member refid="class_usd_shade_input_1a73a94bfb99a434b388258a451eeca257" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>GetSdrMetadata</name></member>
+      <member refid="class_usd_shade_input_1a1eefbc541122070cfbd9b9ed4de7165b" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>GetSdrMetadataByKey</name></member>
+      <member refid="class_usd_shade_input_1abb24fe2345558df291fb937910bfe5c9" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>GetTypeName</name></member>
+      <member refid="class_usd_shade_input_1a8b1264541587164077770d8fbe411f8d" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>GetValueProducingAttribute</name></member>
+      <member refid="class_usd_shade_input_1a2850314096019df0a017b321719b3c70" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>GetValueProducingAttributes</name></member>
+      <member refid="class_usd_shade_input_1a40e3c1b1a946309621011fb39f37c01c" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>HasConnectedSource</name></member>
+      <member refid="class_usd_shade_input_1a2ffa8e3637312009b0d77ebad891e759" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>HasRenderType</name></member>
+      <member refid="class_usd_shade_input_1ab9276eacab686790a200e01ca54144a5" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>HasSdrMetadata</name></member>
+      <member refid="class_usd_shade_input_1ac805ce91ac9f9a41cba10e6f17759e4d" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>HasSdrMetadataByKey</name></member>
+      <member refid="class_usd_shade_input_1a87fbe0030c0fbb6307ee434664f1142f" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>IsDefined</name></member>
+      <member refid="class_usd_shade_input_1ae176e3bcdb3e0a5621e24a2fb79c5ec6" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>IsInput</name></member>
+      <member refid="class_usd_shade_input_1aa03b615b5a8361404a0e5906bbb74628" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>IsInterfaceInputName</name></member>
+      <member refid="class_usd_shade_input_1aa460019f29648e03379739353bb6719f" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>IsSourceConnectionFromBaseMaterial</name></member>
+      <member refid="class_usd_shade_input_1a67b76affb3b5d35fa419ac234144038b" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>operator bool</name></member>
+      <member refid="class_usd_shade_input_1a8b727851e1dd26aa2834f5e8bc390f8b" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>operator const UsdAttribute &amp;</name></member>
+      <member refid="class_usd_shade_input_1afe78896762e2ab32bdecaca44204d90f" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>operator!=</name></member>
+      <member refid="class_usd_shade_input_1af8a1816a55e8d0a1668db1f29af8cabf" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>operator==</name></member>
+      <member refid="class_usd_shade_input_1a2e6fecfa3974c9ca3a1ce8b1081f0e95" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>Set</name></member>
+      <member refid="class_usd_shade_input_1a7fd0957eecddb7cfcd222cccd51e23e6" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>Set</name></member>
+      <member refid="class_usd_shade_input_1a2b46d57dff021a38a01e8f149af8fc9d" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>SetConnectability</name></member>
+      <member refid="class_usd_shade_input_1a9417c20e22319f1eb6f219da8b57d741" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>SetConnectedSources</name></member>
+      <member refid="class_usd_shade_input_1af951776e9b88598d061ccc233035a87f" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>SetDisplayGroup</name></member>
+      <member refid="class_usd_shade_input_1aaa32e6f7daa754567e5e1e16a906392d" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>SetDocumentation</name></member>
+      <member refid="class_usd_shade_input_1abb54a3ca33a9b1b318d24bbaab8b2d16" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>SetRenderType</name></member>
+      <member refid="class_usd_shade_input_1aa153d2b3198e0577f6728858c98c50a3" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>SetSdrMetadata</name></member>
+      <member refid="class_usd_shade_input_1ad64ed12f5732640262edbe8de5c152f9" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>SetSdrMetadataByKey</name></member>
+      <member refid="class_usd_shade_input_1a86fd53d9a9e822501f485193340b879a" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>SourceInfoVector</name></member>
+      <member refid="class_usd_shade_input_1a910521a0f9269e1672e32fc924b21881" prot="private" virt="non-virtual"><scope>UsdShadeInput</scope><name>UsdShadeConnectableAPI</name></member>
+      <member refid="class_usd_shade_input_1acb1ef71b352cff52c3164a9852bce49c" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>UsdShadeInput</name></member>
+      <member refid="class_usd_shade_input_1a5ccbed5862d363537981d2b5f74e3576" prot="public" virt="non-virtual"><scope>UsdShadeInput</scope><name>UsdShadeInput</name></member>
+      <member refid="class_usd_shade_input_1a48c682f1286ff44e3cdbe9b0845c69d2" prot="private" virt="non-virtual"><scope>UsdShadeInput</scope><name>UsdShadeInput</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

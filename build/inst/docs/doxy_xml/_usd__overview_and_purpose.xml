@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="_usd__overview_and_purpose" kind="page">
+    <compoundname>Usd_OverviewAndPurpose</compoundname>
+    <title>Overview and Purpose</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>In addition to addressing the interchange problem, USD also provides powerful mechanisms for large-scale collaboration and context-dependent asset refinement anywhere in a production pipeline. For example: <itemizedlist>
+<listitem><para><bold>layers</bold> enable artists in different departments to all work simultaneously on the same &quot;thing&quot;, whether that be a singular asset, an aggregate asset, a sequence, or a shot. </para>
+</listitem>
+<listitem><para><bold>variants</bold> enable asset creators to package up an enumerated set of variations, which can be selected and re-selected by downstream artists in consuming contexts. Using variants in combination with the <bold>inherits</bold> composition operator, a downstream artist can introduce <emphasis>new</emphasis> variations for all instances of an asset, in a particular (set, sequence, shot, etc.) context. Abilities like this can dramatically reduce the number of pipeline-stalling &quot;asset fix requests&quot; needed to support downstream artists.</para>
+</listitem>
+</itemizedlist>
+This set of documents describes the concrete Usd software package, its APIs, and their effective use. In contrast, the forthcoming <emphasis>Composition Compendium</emphasis> centers on USD composition&apos;s detailed semantics.</para>
+<para>Following is an overview of the architecture, followed by information for <ref refid="_usd__overview_and_purpose_1Usd_Quickstart" kindref="member">getting started with USD</ref>, and some <ref refid="_usd__overview_and_purpose_1Usd_Background" kindref="member">background on how the USD project came to be.</ref></para>
+<sect1 id="_usd__overview_and_purpose_1Usd_ArchitecturalOverview">
+<title>Architectural Overview</title>
+<para>The USD repository is divided into four &quot;core&quot; packages, plus 3rd-party application plugins and extras:</para>
+<para><itemizedlist>
+<listitem><para><bold>base</bold> - Contains application-agnostic, foundation modules, upon which most Pixar software builds, including possible future open-source projects.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para><bold>usd</bold> - Contains all the modules directly related to authoring, reading, and composing universal scene description. Defines the plugin interfaces by which USD can be extended and adapted.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para><bold>imaging</bold> - Contains the embeddable Hydra hardware renderer as well as other low-level, imaging-related services.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para><bold>usdImaging</bold> - Ties usd and hydra together by providing an adapter to Hydra that reads data directly and efficiently from a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref>. Defines a plugin interface by which the adapter can be extended, and provides <emphasis>usdview</emphasis> , the standalone graphical USD inspector tool.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para><bold>third_party</bold> - Contains USD plugins for DCC applications.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para><bold>extras</bold> - Contains a collection of tutorial material, sample code, and small example USD assets.</para>
+</listitem>
+</itemizedlist>
+To author and consume USD, you need only the <emphasis>base</emphasis> and <emphasis>usd</emphasis> packages. Most of the open-source third-party plugins, however, do make use of <emphasis>usdImaging</emphasis> for fast preview, and as part of the answer to the question of what application XXX should do when it is asked to import a USD prim type of which it has no corresponding native representation. (Answer: it creates a proxy representation that delegates preview to usdImaging, and presents the prim&apos;s properties for inspection and overriding.)</para>
+<para>Following is a deeper indexing of the four packages.</para>
+<sect2 id="_usd__overview_and_purpose_1Usd_Package_Base">
+<title>The &quot;base&quot; package</title>
+<para><itemizedlist>
+<listitem><para><ref refid="arch_page_front" kindref="compound">Arch: Architecture Dependent</ref> module centralizes functionality that must be implemented differently for different operating systems or architectures, so that we can avoid littering the entire code-base with conditionally-compiled code.</para>
+</listitem><listitem><para><ref refid="tf_page_front" kindref="compound">Tf: Tools Foundations</ref> module is a catch-all for low-level, commonly used services developed at Pixar, including facilities for memory tracking, error reporting and debugging, string utilities, boost python wrapping aids, threading/synchronization tools, registry and singleton management, smart pointers, and &quot;observer pattern&quot; support, which we call &quot;notification&quot;.</para>
+</listitem><listitem><para><ref refid="gf_page_front" kindref="compound">Gf : Graphics Foundations</ref> module provides Pixar&apos;s equivalent to imath, and provides many of the types enumerated in Vt. It also provides other foundational graphics abstractions like frusta and a camera model. Given unlimited resources we would have replaced our use of the linear algebra components in Gf with imath, but Gf&apos;s use in Pixar&apos;s code-base is substantial and its API&apos;s do not map one-to-one to imath.</para>
+</listitem><listitem><para><ref refid="js_page_front" kindref="compound">Js: JSON I/O</ref> module provides a thin API wrapper on top of the <ulink url="http://rapidjson.org/">RapidJSON</ulink> package, which is what our plugin system uses for multi-threaded plugin discovery.</para>
+</listitem><listitem><para>trac_page_front module provides an interface for embeddable performance-profiling tagging.</para>
+</listitem><listitem><para><ref refid="vt_page_front" kindref="compound">Vt : Value Types</ref> module provides many of the concrete types that Sdf is able to recognize and serialize. It provides a copy-on-write array-type, <ref refid="class_vt_array" kindref="compound">VtArray</ref>, which is used for all array types in Usd, and an efficient type-erasure wrapper class, <ref refid="class_vt_value" kindref="compound">VtValue</ref>, that also provides datatype conversion facilities and support for unboxing python objects from boost python. <ref refid="class_vt_value" kindref="compound">VtValue</ref> is supported in all Usd API for getting and setting values.</para>
+</listitem><listitem><para><ref refid="work_page_front" kindref="compound">Work : Multi-threaded Dispatch</ref> module provides a thin abstraction layer on top of Intel&apos;s TBB (Thread Building Blocks), and is leveraged extensively in Usd core and higher-level services for multi-threading.</para>
+</listitem><listitem><para><ref refid="plug_page_front" kindref="compound">Plug: Plugin Framework</ref> module provides the organization and access API for all plugins. It identifies plugins by the existence of a plugInfo.json manifest file, which enumerates the number and kinds of plugins provided by a module.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="_usd__overview_and_purpose_1Usd_Package_Usd">
+<title>The &quot;usd&quot; package</title>
+<para>The USD <emphasis>package</emphasis> begins with the low-level modules for path resolution, scene description serialization, and composition, upon which the &quot;core&quot; Usd module relies. The USD package is rounded out by a set of schema and utility modules that layer on top of the core. In low-to-high order, the modules are:</para>
+<para><itemizedlist>
+<listitem><para><ref refid="ar_page_front" kindref="compound">Ar: Asset Resolution</ref> module defines the abstract interface for USD&apos;s asset resolution plugin, so that clients can author asset references in their USD files that make sense to their asset management systems. It also provides a &quot;fallback resolver&quot; that is active when no site-level plugin has been provided; the fallback resolver provides basic search-path based resolution.</para>
+</listitem><listitem><para><ref refid="kind_page_front" kindref="compound">Kind : Extensible Categorization</ref> module provides a simple, site-extensible token-based typing system, which USD uses, for example, to identify and classify types of &quot;models&quot;.</para>
+</listitem><listitem><para><ref refid="sdf_page_front" kindref="compound">Sdf : Scene Description Foundations</ref> module defines the Usd data model, namely: prims, attributes, relationships, meta-data, as well as the concrete types that attributes can possess. Sdf also provides the key abstraction <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref>, which represents a file of data subscribing to the Usd data model, and provides low-level data authoring and extraction API&apos;s. <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> also has an associated plugin mechanism known as <ref refid="class_sdf_file_format" kindref="compound">SdfFileFormat</ref> that allows any reasonable file format to be dynamically translated into Usd; it is via this mechanism that we added a binary encoding to the pre-existing ASCII format for Usd, as well as how we support referencing and reading of Alembic files.</para>
+</listitem><listitem><para><ref refid="pcp_page_front" kindref="compound">Pcp : PrimCache Population (Composition)</ref> module implements the composition logic at the heart of USD; Pcp efficiently builds and caches an &quot;index cache&quot; that the Usd scenegraph uses to determine which prims need to be populated, and where to look for values for any particular property in a multi-layer aggregation of assets.</para>
+</listitem><listitem><para><ref refid="usd_page_front" kindref="compound">Usd : Universal Scene Description (Core)</ref> module builds the USD scene-graph (<ref refid="class_usd_stage" kindref="compound">UsdStage</ref>), and provides the primary API&apos;s for authoring and reading composed scene description. The Usd module and the concepts it contains are meant to be fairly generic, allowing many different domain-specific schemas to be built over it, as the USD package does for geometry, shading, etc. We make an exception for two particular concepts/schemas, &quot;Model&quot; and &quot;AssetInfo&quot;, which are defined in the core Usd module, because they are extremely valuable for organizing scene description, and other core behaviors are built on top of the concept of Model.</para>
+</listitem><listitem><para><ref refid="usd_geom_page_front" kindref="compound">UsdGeom : USD Geometry Schema</ref> : The primary graphics-supporting schema module for DCC interchange, UsdGeom provides geometric primitives (meshes, curves, patches, xforms, etc.), as well as a Camera schema and &quot;Primvars&quot; that encode UV&apos;s and various user-defined fields over a primitive. The majority of the schema classes are produced entirely via the <emphasis>usdGenSchema</emphasis> code generator included with the core.</para>
+</listitem><listitem><para><ref refid="usd_physics_page_front" kindref="compound">UsdPhysics : USD Physics Schema</ref> : The primary physics-supporting schema module, UsdPhysics provides physics description of the USD prims (rigid bodies, joints, scenes, collisions, etc.). Physics schema also defines physics related metrics like the mass units, kilogramsPerUnit (<ref refid="struct_usd_physics_tokens_type_1a24c37003b1414e39167b1132f765dfec" kindref="member">UsdPhysicsTokensType::kilogramsPerUnit</ref>).</para>
+</listitem><listitem><para><ref refid="usd_shade_page_front" kindref="compound">UsdShade : USD Shading Schema</ref> Schema module that defines Looks, Shaders, connectible Parameters, with API for building shading networks and user-facing &quot;Look Interfaces&quot; that allow shading networks to be shared (via instancing) by multiple Looks. UsdShade also prescribes how geometry is <emphasis>bound</emphasis> to Looks. With just the objects in UsdShade one can encode completely generic shading; however, it also allows renderer-specific shading schemas to be built on top of it, and a Look can host the network &quot;terminals&quot; for any number of renderer schemas.</para>
+</listitem><listitem><para><ref refid="usd_ri_page_front" kindref="compound">UsdRi: USD Renderman Schemas</ref> module for data targeted at Pixar&apos;s RenderMan specification. Includes shading schemas for both RSL and RIS shading systems, as well as a &quot;catch all&quot; <computeroutput>RiStatements</computeroutput> schema for encoding various RenderMan concepts/directives, such as attributes, options, coordinate systems, etc.</para>
+</listitem><listitem><para><ref refid="usd_utils_page_front" kindref="compound">UsdUtils: USD Utilities</ref> module provides a number of utilities and conventions that have proven useful in a USD-based pipeline.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="_usd__overview_and_purpose_1Usd_Package_Imaging">
+<title>The &quot;imaging&quot; package</title>
+<para><itemizedlist>
+<listitem><para><bold>Garch</bold> : The Graphics Architecture module provides abstractions for architecture-specific functionality that may pull in imaging-related dependencies.</para>
+</listitem><listitem><para><bold>Glf</bold> : The GL Foundations module provides access to textures, ptextures and GL resources (such as draw targets). It also provides some basic glsl shaders used by hdSt.</para>
+</listitem><listitem><para><bold>Hio</bold> : The Hydra Resource I/O module provides resource loaders used by Hydra, such as Pixar&apos;s shader container format (glslfx). It will eventually house the infrastructure for image loading that is currently parked in Glf.</para>
+</listitem><listitem><para><bold>CameraUtil</bold> The Camera Utilities module provides a small but important set of common camera-related computations that don&apos;t really belong in the core <ref refid="class_gf_camera" kindref="compound">GfCamera</ref> class.</para>
+</listitem><listitem><para><bold>PxOsd</bold> : The Pixar OpenSubdiv module provides some higher-level utilities on top of OpenSubdiv that may, one day make it into OpenSubdiv, but are still &quot;cooking&quot;. Hydra interacts with OpenSubdiv through pxOsd.</para>
+</listitem><listitem><para><bold>Hd</bold> : The Hydra module provides the Hydra renderer. Hydra uses OpenSubdiv for tessellating subdivision meshes, and supports general programmable glsl shaders, and multiple render passes.</para>
+</listitem><listitem><para><bold>Hdx</bold> : The Hydra Extensions module provides higher-level functionality on top of Hydra, such as organization and packaging for particular kinds of multiple render-pass tasks.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="_usd__overview_and_purpose_1Usd_Package_UsdImaging">
+<title>The &quot;usdImaging&quot; package</title>
+<para><itemizedlist>
+<listitem><para><ref refid="usd_app_utils_page_front" kindref="compound">UsdAppUtils: USD Application Utilities</ref> : A library that provides a number of utilities and common functionality for applications that view and/or record images of UsdStages.</para>
+</listitem><listitem><para><bold>UsdImaging</bold> : An adapter to Pixar&apos;s modern, high-performance GL rendering engine <emphasis>Hydra</emphasis> (which in turn leverages OpenSubdiv) that provides preview imaging (including streaming playback) for any <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> encoded with UsdGeom and UsdShade. UsdImaging takes full advantage of scenegraph instancing in USD, and uses multiple threads to extract data from a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> and marshal it into Hd objects.</para>
+</listitem><listitem><para><bold>Usdviewq</bold> : A python package that provides the controller and GUI elements used by usdview. The elements are structured for ease of embedding in other python applications, also.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="_usd__overview_and_purpose_1Usd_PythonSupport">
+<title>Python Support, numpy, etc.</title>
+<para>Usd includes python wrapping for all core classes and generated schema classes. Each module described in the last section, plus the core Usd module, are independently importable. Each module includes in-python help/documentation extracted from the doxygen docs for the module. We have chosen, initially, to keep the python API as true to the C++ API as possible, with one notable exception.</para>
+<para><itemizedlist>
+<listitem><para><bold>Some underlying modules support more pythonic API&apos;s.</bold> Some of the foundational modules shared with Presto, such as Sdf, provide a more pythonic API in which member-variable-like-things become properties in python. We have hesitated to deploy this level of pythonification at higher levels of the system because <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> is the only container that truly owns its data: all the primary Usd-level classes represent restricted views on data that resides in one-or-more <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> s, and don&apos;t possess any member variables/properties other than those that serve as temporary caches.</para>
+</listitem></itemizedlist>
+</para>
+<para>USD&apos;s central array type, used to hold all array-valued scene description types, is <ref refid="class_vt_array" kindref="compound">VtArray</ref>. The python wrapping for <ref refid="class_vt_array" kindref="compound">VtArray</ref> supports python&apos;s &quot;buffer protocol&quot;, so <ref refid="class_vt_array" kindref="compound">VtArray</ref> &apos;s returned by USD to python can be trivially accessed like and converted to native python containers, as well as numpy arrays. Further, USD methods that expect a <ref refid="class_vt_array" kindref="compound">VtArray</ref> input argument should always successfully convert native python containers and numpy arrays whose underlying element-type is compatible.</para>
+</sect1>
+<sect1 id="_usd__overview_and_purpose_1Usd_Quickstart">
+<title>Quickstart!</title>
+<para>Please visit <ulink url="http://openusd.org">the USD Documentation Hub</ulink> where you will find tutorials, FAQs, and other supporting material.</para>
+</sect1>
+<sect1 id="_usd__overview_and_purpose_1Usd_Background">
+<title>USD: What&apos;s the Point, and Why Isn&apos;t it Alembic ?</title>
+<para>The outward-facing goal of Universal Scene Description is to take the next step in DCC application data interchange <emphasis>beyond</emphasis> what is encodable in the ground-breaking Alembic interchange package. The chief component of that step is the ability to encode, interchange, and edit entire scenes with the ability to share variation and repeated/instanced scene data across shots and sequences, by providing robust asset-level (but not restricted to asset-level) file-referencing with sparse override capabilities. Additionally, USD provides a handful of other &quot;composition operators&quot; and concepts that target:</para>
+<para><itemizedlist>
+<listitem><para>Encoding asset variation and preserving the ability to switch variants late in the pipeline</para>
+</listitem><listitem><para>Scale to scenes of unlimited complexity by deferring reading of heavy property data until it is needed (as in Alembic), and also by providing composition semantics that allow deferred (and reversible) loading and composition of arbitrary amounts of scene description without sacrificing the ability to perform robust dependency analysis between prims in a scene. (See the discussion of <ref refid="_usd__page__best_practices_1Usd_Payloads" kindref="member">payloads</ref> for more information).</para>
+</listitem></itemizedlist>
+</para>
+<para>The USD project also developed under a high priority inward-facing mandate to simplify and unify Pixar&apos;s binary cache-based geometry package (TidScene) with its ASCII, animation and rigging scene description and composition system (Presto core). This mandate required that the advanced rigging concepts and datatypes of Presto be layerable on top of a reduced-featureset, shared (with USD) core. Given the time and resource constraints, and necessity to not massively disrupt our in-use codebase, we chose to largely retain our existing data model, while looking to Alembic as a guide for many schema decisions along the way. While it is unlikely Pixar will attempt to expand the Alembic API and core to encompass USD composition, asset resolution, and necessary plugin mechanisms, we are committed to providing a USD &quot;file format&quot; plugin that allows the USD core and toolset to consume and author Alembic files as if they were native USD files (obviously writing cannot always produce an equally meaningful Alembic file because composition operators cannot be represented in Alembic).</para>
+</sect1>
+<sect1 id="_usd__overview_and_purpose_1Usd_Related">
+<title>Related Pages</title>
+<para><itemizedlist>
+<listitem>
+<para><ulink url="http://openusd.org">USD Home Page</ulink> </para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

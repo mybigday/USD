@@ -1,0 +1,260 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_st_buffer_array_range" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>HdStBufferArrayRange</compoundname>
+    <basecompoundref refid="class_hd_buffer_array_range" prot="public" virt="non-virtual">HdBufferArrayRange</basecompoundref>
+    <derivedcompoundref refid="class_hd_st_interleaved_memory_manager_1_1___striped_interleaved_buffer_range" prot="public" virt="non-virtual">HdStInterleavedMemoryManager::_StripedInterleavedBufferRange</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_st_v_b_o_memory_manager_1_1___striped_buffer_array_range" prot="public" virt="non-virtual">HdStVBOMemoryManager::_StripedBufferArrayRange</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_st_v_b_o_simple_memory_manager_1_1___simple_buffer_array_range" prot="public" virt="non-virtual">HdStVBOSimpleMemoryManager::_SimpleBufferArrayRange</derivedcompoundref>
+    <includes refid="t_2buffer_array_range_8h" local="no">bufferArrayRange.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_st_buffer_array_range_1a33c5de4dfb2c30c6b2539a97affea45d" prot="private" static="no" mutable="no">
+        <type><ref refid="class_hd_st_resource_registry" kindref="compound">HdStResourceRegistry</ref> *</type>
+        <definition>HdStResourceRegistry* _resourceRegistry</definition>
+        <argsstring></argsstring>
+        <name>_resourceRegistry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/bufferArrayRange.h" line="96" column="1" bodyfile="pxr/imaging/hdSt/bufferArrayRange.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_st_buffer_array_range_1a6da4443b3217ba299e68f2d2364c9b46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdStBufferArrayRange</definition>
+        <argsstring>(HdStResourceRegistry *resourceRegistry)</argsstring>
+        <name>HdStBufferArrayRange</name>
+        <param>
+          <type><ref refid="class_hd_st_resource_registry" kindref="compound">HdStResourceRegistry</ref> *</type>
+          <declname>resourceRegistry</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/bufferArrayRange.h" line="62" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_buffer_array_range_1a0cbac2dd2096b4aeeed77cf818b6a459" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HDST_API</type>
+        <definition>virtual HDST_API ~HdStBufferArrayRange</definition>
+        <argsstring>()</argsstring>
+        <name>~HdStBufferArrayRange</name>
+        <briefdescription>
+<para>Destructor (do nothing). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The specialized range class may want to do something for garbage collection in its destructor. However, be careful not do any substantial work here (obviously including any kind of GL calls), since the destructor gets called frequently on various contexts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/bufferArrayRange.h" line="70" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_buffer_array_range_1a0b14e6e52f939bed1d6cd5e8cce22d2f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>HdStBufferResourceSharedPtr</type>
+        <definition>virtual HdStBufferResourceSharedPtr GetResource</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetResource</name>
+        <reimplementedby refid="class_hd_st_interleaved_memory_manager_1_1___striped_interleaved_buffer_range_1abfdbd2b709c9f0ebea50966165bfa77b">GetResource</reimplementedby>
+        <reimplementedby refid="class_hd_st_v_b_o_memory_manager_1_1___striped_buffer_array_range_1abfdbd2b709c9f0ebea50966165bfa77b">GetResource</reimplementedby>
+        <reimplementedby refid="class_hd_st_v_b_o_simple_memory_manager_1_1___simple_buffer_array_range_1abfdbd2b709c9f0ebea50966165bfa77b">GetResource</reimplementedby>
+        <briefdescription>
+<para>Returns the GPU resource. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the buffer array contains more than one resource, this method raises a coding error. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/bufferArrayRange.h" line="74" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_buffer_array_range_1a68a807baf37c63f6858deeac5e8509e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HdStBufferResourceSharedPtr</type>
+        <definition>virtual HdStBufferResourceSharedPtr GetResource</definition>
+        <argsstring>(TfToken const &amp;name)=0</argsstring>
+        <name>GetResource</name>
+        <reimplementedby refid="class_hd_st_interleaved_memory_manager_1_1___striped_interleaved_buffer_range_1abb17223ea84cbb59fce86d74e0cb60aa">GetResource</reimplementedby>
+        <reimplementedby refid="class_hd_st_v_b_o_memory_manager_1_1___striped_buffer_array_range_1abb17223ea84cbb59fce86d74e0cb60aa">GetResource</reimplementedby>
+        <reimplementedby refid="class_hd_st_v_b_o_simple_memory_manager_1_1___simple_buffer_array_range_1abb17223ea84cbb59fce86d74e0cb60aa">GetResource</reimplementedby>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Returns the named GPU resource. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/bufferArrayRange.h" line="77" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_buffer_array_range_1a03a8b53810b248c1366f28626f8e75d9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>HdStBufferResourceNamedList const  &amp;</type>
+        <definition>virtual HdStBufferResourceNamedList const&amp; GetResources</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetResources</name>
+        <reimplementedby refid="class_hd_st_interleaved_memory_manager_1_1___striped_interleaved_buffer_range_1a110da2f879068e3cbee8060887b9804b">GetResources</reimplementedby>
+        <reimplementedby refid="class_hd_st_v_b_o_memory_manager_1_1___striped_buffer_array_range_1a110da2f879068e3cbee8060887b9804b">GetResources</reimplementedby>
+        <reimplementedby refid="class_hd_st_v_b_o_simple_memory_manager_1_1___simple_buffer_array_range_1a110da2f879068e3cbee8060887b9804b">GetResources</reimplementedby>
+        <briefdescription>
+<para>Returns the list of all named GPU resources for this bufferArrayRange. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/bufferArrayRange.h" line="80" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_buffer_array_range_1a5459082dfd20f0e70199cab1264432bf" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HDST_API void</type>
+        <definition>virtual HDST_API void GetBufferSpecs</definition>
+        <argsstring>(HdBufferSpecVector *bufferSpecs) const override</argsstring>
+        <name>GetBufferSpecs</name>
+        <reimplements refid="class_hd_buffer_array_range_1aba65989354a231b10c98ab140af9890d">GetBufferSpecs</reimplements>
+        <param>
+          <type>HdBufferSpecVector *</type>
+          <declname>bufferSpecs</declname>
+        </param>
+        <briefdescription>
+<para>Sets the bufferSpecs for all resources. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/bufferArrayRange.h" line="84" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_buffer_array_range_1a2e658a3c1df78f9a1cb7b20fc1f825c1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>virtual int GetElementStride</definition>
+        <argsstring>() const</argsstring>
+        <name>GetElementStride</name>
+        <reimplementedby refid="class_hd_st_interleaved_memory_manager_1_1___striped_interleaved_buffer_range_1a7d6631d2789ffa609bf0b9b49dc98974">GetElementStride</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/bufferArrayRange.h" line="86" column="1" bodyfile="pxr/imaging/hdSt/bufferArrayRange.h" bodystart="86" bodyend="88"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_hd_st_buffer_array_range_1a3a3fa5984c8f148880acc1037336e26e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hd_st_resource_registry" kindref="compound">HdStResourceRegistry</ref> *</type>
+        <definition>HdStResourceRegistry* GetResourceRegistry</definition>
+        <argsstring>()</argsstring>
+        <name>GetResourceRegistry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/bufferArrayRange.h" line="91" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_buffer_array_range_1abeb8faf774a45cbc332b29f202c033ac" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hd_st_resource_registry" kindref="compound">HdStResourceRegistry</ref> *</type>
+        <definition>HdStResourceRegistry* GetResourceRegistry</definition>
+        <argsstring>() const</argsstring>
+        <name>GetResourceRegistry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/bufferArrayRange.h" line="93" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Interface class for representing range (subset) locator of <ref refid="class_hd_buffer_array" kindref="compound">HdBufferArray</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Each memory management strategy defines a specialized range class which is inherited of this interface so that client (drawItem) can be agnostic about the implementation detail of aggregation. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3072">
+        <label>HdBufferArrayRange</label>
+        <link refid="class_hd_buffer_array_range"/>
+      </node>
+      <node id="3075">
+        <label>_SimpleBufferArrayRange</label>
+        <link refid="class_hd_st_v_b_o_simple_memory_manager_1_1___simple_buffer_array_range"/>
+        <childnode refid="3071" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3074">
+        <label>_StripedBufferArrayRange</label>
+        <link refid="class_hd_st_v_b_o_memory_manager_1_1___striped_buffer_array_range"/>
+        <childnode refid="3071" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3073">
+        <label>_StripedInterleavedBufferRange</label>
+        <link refid="class_hd_st_interleaved_memory_manager_1_1___striped_interleaved_buffer_range"/>
+        <childnode refid="3071" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3071">
+        <label>HdStBufferArrayRange</label>
+        <link refid="class_hd_st_buffer_array_range"/>
+        <childnode refid="3072" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3077">
+        <label>HdBufferArrayRange</label>
+        <link refid="class_hd_buffer_array_range"/>
+      </node>
+      <node id="3076">
+        <label>HdStBufferArrayRange</label>
+        <link refid="class_hd_st_buffer_array_range"/>
+        <childnode refid="3077" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/hdSt/bufferArrayRange.h" line="60" column="1" bodyfile="pxr/imaging/hdSt/bufferArrayRange.h" bodystart="59" bodyend="97"/>
+    <listofallmembers>
+      <member refid="class_hd_buffer_array_range_1aa85657a6316cec3a9b88adbeca824c9c" prot="protected" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>_GetAggregation</name></member>
+      <member refid="class_hd_st_buffer_array_range_1a33c5de4dfb2c30c6b2539a97affea45d" prot="private" virt="non-virtual"><scope>HdStBufferArrayRange</scope><name>_resourceRegistry</name></member>
+      <member refid="class_hd_buffer_array_range_1ae121baf1d61086ff180eaf7b0860f6f7" prot="public" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>CopyData</name></member>
+      <member refid="class_hd_buffer_array_range_1a1d73c3578ae8bc963a88e8ec7eacda20" prot="public" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>DebugDump</name></member>
+      <member refid="class_hd_st_buffer_array_range_1a5459082dfd20f0e70199cab1264432bf" prot="public" virt="virtual"><scope>HdStBufferArrayRange</scope><name>GetBufferSpecs</name></member>
+      <member refid="class_hd_buffer_array_range_1a338e85bcd164436462b6bc9a683c4239" prot="public" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>GetByteOffset</name></member>
+      <member refid="class_hd_buffer_array_range_1a1a973fddbd1e1c1d528b090b62e961ec" prot="public" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>GetElementOffset</name></member>
+      <member refid="class_hd_st_buffer_array_range_1a2e658a3c1df78f9a1cb7b20fc1f825c1" prot="public" virt="virtual"><scope>HdStBufferArrayRange</scope><name>GetElementStride</name></member>
+      <member refid="class_hd_buffer_array_range_1a94a85d3bdf352ae0f2f860db10b35e22" prot="public" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>GetMaxNumElements</name></member>
+      <member refid="class_hd_buffer_array_range_1a23d40ffcfd073db47f9fb878fb3f67aa" prot="public" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>GetNumElements</name></member>
+      <member refid="class_hd_st_buffer_array_range_1a0b14e6e52f939bed1d6cd5e8cce22d2f" prot="public" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>GetResource</name></member>
+      <member refid="class_hd_st_buffer_array_range_1a68a807baf37c63f6858deeac5e8509e4" prot="public" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>GetResource</name></member>
+      <member refid="class_hd_st_buffer_array_range_1a3a3fa5984c8f148880acc1037336e26e" prot="protected" virt="non-virtual"><scope>HdStBufferArrayRange</scope><name>GetResourceRegistry</name></member>
+      <member refid="class_hd_st_buffer_array_range_1abeb8faf774a45cbc332b29f202c033ac" prot="protected" virt="non-virtual"><scope>HdStBufferArrayRange</scope><name>GetResourceRegistry</name></member>
+      <member refid="class_hd_st_buffer_array_range_1a03a8b53810b248c1366f28626f8e75d9" prot="public" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>GetResources</name></member>
+      <member refid="class_hd_buffer_array_range_1a90bd5a838480a9dc23ad8a31e821a263" prot="public" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>GetUsageHint</name></member>
+      <member refid="class_hd_buffer_array_range_1af86253de966fb044dc2efe0c345129c1" prot="public" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>GetVersion</name></member>
+      <member refid="class_hd_buffer_array_range_1ad56c09321fcb089bf1219ef1a845573d" prot="public" virt="non-virtual"><scope>HdStBufferArrayRange</scope><name>HdBufferArrayRange</name></member>
+      <member refid="class_hd_buffer_array_range_1a0a58932b17eab81edf05f9c5de64816a" prot="protected" virt="non-virtual"><scope>HdStBufferArrayRange</scope><name>HdBufferArrayRange</name></member>
+      <member refid="class_hd_st_buffer_array_range_1a6da4443b3217ba299e68f2d2364c9b46" prot="public" virt="non-virtual"><scope>HdStBufferArrayRange</scope><name>HdStBufferArrayRange</name></member>
+      <member refid="class_hd_buffer_array_range_1acdaaa0a74d7785c636e30e8c42a86546" prot="public" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>IncrementVersion</name></member>
+      <member refid="class_hd_buffer_array_range_1a8450c199971173ff43ef897e7fb045ef" prot="public" virt="non-virtual"><scope>HdStBufferArrayRange</scope><name>IsAggregatedWith</name></member>
+      <member refid="class_hd_buffer_array_range_1a195c89d999c0e0b38b241591a68d4761" prot="public" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>IsAssigned</name></member>
+      <member refid="class_hd_buffer_array_range_1ab8ba45ad1d22640037d7485f3b2ec607" prot="public" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>IsImmutable</name></member>
+      <member refid="class_hd_buffer_array_range_1aedec2959336b77211e97d8d072b33f88" prot="public" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>IsValid</name></member>
+      <member refid="class_hd_buffer_array_range_1ae2d8af6607d2666eb70c622376541f11" prot="protected" virt="non-virtual"><scope>HdStBufferArrayRange</scope><name>operator=</name></member>
+      <member refid="class_hd_buffer_array_range_1a50a148e1027715d18cde211ca6252c17" prot="public" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>ReadData</name></member>
+      <member refid="class_hd_buffer_array_range_1a8372288abda1eda17689e8175a38b52f" prot="public" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>RequiresStaging</name></member>
+      <member refid="class_hd_buffer_array_range_1acd69c245d195c95607fe783526dfc695" prot="public" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>Resize</name></member>
+      <member refid="class_hd_buffer_array_range_1adfc6daf2c825beb6f9224d726973ef03" prot="public" virt="pure-virtual"><scope>HdStBufferArrayRange</scope><name>SetBufferArray</name></member>
+      <member refid="class_hd_buffer_array_range_1a50aebfa661c9ccd9c6cce599a9bd8c70" prot="public" virt="virtual"><scope>HdStBufferArrayRange</scope><name>~HdBufferArrayRange</name></member>
+      <member refid="class_hd_st_buffer_array_range_1a0cbac2dd2096b4aeeed77cf818b6a459" prot="public" virt="virtual"><scope>HdStBufferArrayRange</scope><name>~HdStBufferArrayRange</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

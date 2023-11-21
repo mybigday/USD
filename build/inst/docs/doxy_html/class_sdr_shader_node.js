@@ -1,0 +1,27 @@
+var class_sdr_shader_node =
+[
+    [ "SdrShaderNode", "class_sdr_shader_node.html#a655058af9d0aca10d4608589538f3065", null ],
+    [ "GetAdditionalPrimvarProperties", "class_sdr_shader_node.html#a55b4110d3cbba81e41f12880f6b6bacd", null ],
+    [ "GetAllVstructNames", "class_sdr_shader_node.html#a6ea686754eb2c196ad9f4f8cf032eef4", null ],
+    [ "GetAssetIdentifierInputNames", "class_sdr_shader_node.html#a3d832d418c8d2cfe6f8bef4bb1503e07", null ],
+    [ "GetCategory", "class_sdr_shader_node.html#accce98d0a8ba33dc1234fff87b7a1100", null ],
+    [ "GetDefaultInput", "class_sdr_shader_node.html#accac64ba2093b4b6d648a8c5fc3b410d", null ],
+    [ "GetDepartments", "class_sdr_shader_node.html#adc7dcc62ca5f4ec9042de0eeea470f57", null ],
+    [ "GetHelp", "class_sdr_shader_node.html#a78dfac2cc65574c4f8e31136d1a8923d", null ],
+    [ "GetImplementationName", "class_sdr_shader_node.html#aa6091590dd3e86ae4643f24c4b00a250", null ],
+    [ "GetLabel", "class_sdr_shader_node.html#a6ca56a54d82eb3e7c63c0e90b5a6a7eb", null ],
+    [ "GetPages", "class_sdr_shader_node.html#a4a8dbd7cb7810f273c325d1dc8e990e9", null ],
+    [ "GetPrimvars", "class_sdr_shader_node.html#a7178c74f9563490cc9219cadf87c4707", null ],
+    [ "GetPropertyNamesForPage", "class_sdr_shader_node.html#a5637e253dc6ff692534a5cf5b29c650c", null ],
+    [ "GetRole", "class_sdr_shader_node.html#ae02b471deaa0dda9742d36b34c038e66", null ],
+    [ "GetShaderInput", "class_sdr_shader_node.html#a3a0e1aa68cc115e4ef6c912710c08556", null ],
+    [ "GetShaderOutput", "class_sdr_shader_node.html#a7165154a114a58312d1bf4ff477f44a3", null ],
+    [ "_category", "class_sdr_shader_node.html#a6d7000a579e11bac722ab66f3b8348cb", null ],
+    [ "_departments", "class_sdr_shader_node.html#a7afe93fd819bdb1c4d9d858598abcc74", null ],
+    [ "_label", "class_sdr_shader_node.html#a3b528c71a8fbb84ef57ace6ecb972f61", null ],
+    [ "_pages", "class_sdr_shader_node.html#ae36096b0f447b6e29358316969ea330f", null ],
+    [ "_primvarNamingProperties", "class_sdr_shader_node.html#a40dcb6d3184128514ba271ce7f61b0fd", null ],
+    [ "_primvars", "class_sdr_shader_node.html#a0e2a4a67df7e6fcd98b2691591f432d8", null ],
+    [ "_shaderInputs", "class_sdr_shader_node.html#aefd1c9e1ff1299c4d5783c65f1fd92f2", null ],
+    [ "_shaderOutputs", "class_sdr_shader_node.html#ad0ae0c0930d4f2abcc9794f81cbab61d", null ]
+];

@@ -1,0 +1,779 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_trace_reporter" kind="class" language="C++" prot="public">
+    <compoundname>TraceReporter</compoundname>
+    <basecompoundref refid="class_trace_reporter_base" prot="public" virt="non-virtual">TraceReporterBase</basecompoundref>
+    <includes refid="reporter_8h" local="no">reporter.h</includes>
+      <sectiondef kind="user-defined">
+      <header>Report Generation.</header>
+      <memberdef kind="function" id="class_trace_reporter_1a2dcfc4062b439a467ff1ea805a15a4f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void Report</definition>
+        <argsstring>(std::ostream &amp;s, int iterationCount=1)</argsstring>
+        <name>Report</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>iterationCount</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+<para>Generates a report to the ostream <emphasis>s</emphasis>, dividing all times by <emphasis>iterationCount</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="105" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1a912802cd86b5a7fbdbcf6f5a77ef6845" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void ReportTimes</definition>
+        <argsstring>(std::ostream &amp;s)</argsstring>
+        <name>ReportTimes</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Generates a report of the times to the ostream <emphasis>s</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="110" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1aa4f518c0353299885a977a1c3e56792d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void ReportChromeTracing</definition>
+        <argsstring>(std::ostream &amp;s)</argsstring>
+        <name>ReportChromeTracing</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Generates a timeline trace report suitable for viewing in Chrome&apos;s trace viewer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="114" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Counters</header>
+      <memberdef kind="function" id="class_trace_reporter_1a89509d763d8ba330fcea078f27da6d1c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API const CounterMap &amp;</type>
+        <definition>TRACE_API const CounterMap&amp; GetCounters</definition>
+        <argsstring>() const</argsstring>
+        <name>GetCounters</name>
+        <briefdescription>
+<para>Returns a map of counters (counter keys), associated with their total accumulated value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Each individual event node in the tree may also hold on to an inclusive and exclusive value for the given counter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="133" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1ae228c35c5c5d3a96c968a189c8bf3cdc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API int</type>
+        <definition>TRACE_API int GetCounterIndex</definition>
+        <argsstring>(const TfToken &amp;key) const</argsstring>
+        <name>GetCounterIndex</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Returns the numeric index associated with a counter key. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Counter values on the event nodes will have to be looked up by the numeric index. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="137" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1aa64c87a6aaeab6648a49b439536cf4c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API bool</type>
+        <definition>TRACE_API bool AddCounter</definition>
+        <argsstring>(const TfToken &amp;key, int index, double totalValue)</argsstring>
+        <name>AddCounter</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>totalValue</declname>
+        </param>
+        <briefdescription>
+<para>Add a counter to the reporter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method can be used to restore a previous trace state and tree. Note, that the counter being added must have a unique key and index. The method will return false if a key or index already exists. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="143" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Report options.</header>
+      <memberdef kind="function" id="class_trace_reporter_1afb97162d46f5299a79371c6c614ae3ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void SetGroupByFunction</definition>
+        <argsstring>(bool)</argsstring>
+        <name>SetGroupByFunction</name>
+        <param>
+          <type>bool</type>
+        </param>
+        <briefdescription>
+<para>This affects only stack trace event reporting. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>true</computeroutput> then all events in a function are grouped together otherwise events are split out by address. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="165" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1a7bec4b83f6fdd7dffa5c099d29a3d6c7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API bool</type>
+        <definition>TRACE_API bool GetGroupByFunction</definition>
+        <argsstring>() const</argsstring>
+        <name>GetGroupByFunction</name>
+        <briefdescription>
+<para>Returns the current group-by-function state. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="168" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1ae504a62999ab7de511e15e46b3acb666" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void SetFoldRecursiveCalls</definition>
+        <argsstring>(bool)</argsstring>
+        <name>SetFoldRecursiveCalls</name>
+        <param>
+          <type>bool</type>
+        </param>
+        <briefdescription>
+<para>When stack trace event reporting, this sets whether or not recursive calls are folded in the output. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Recursion folding is useful when the stacks contain deep recursive structures. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="173" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1adb27f6697dd60fca458a4a4cf7ad48bd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API bool</type>
+        <definition>TRACE_API bool GetFoldRecursiveCalls</definition>
+        <argsstring>() const</argsstring>
+        <name>GetFoldRecursiveCalls</name>
+        <briefdescription>
+<para>Returns the current setting for recursion folding for stack trace event reporting. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="177" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1a8cbe4fc179d8b5550260827ad996c1ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void SetShouldAdjustForOverheadAndNoise</definition>
+        <argsstring>(bool adjust)</argsstring>
+        <name>SetShouldAdjustForOverheadAndNoise</name>
+        <param>
+          <type>bool</type>
+          <declname>adjust</declname>
+        </param>
+        <briefdescription>
+<para>Set whether or not the reporter should adjust scope times for overhead and noise. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="181" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1aa5d018b604e0f6a64aacbb7c9a5aad17" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API bool</type>
+        <definition>TRACE_API bool ShouldAdjustForOverheadAndNoise</definition>
+        <argsstring>() const</argsstring>
+        <name>ShouldAdjustForOverheadAndNoise</name>
+        <briefdescription>
+<para>Returns the current setting for addjusting scope times for overhead and noise. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="185" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_trace_reporter_1a1ad8c4945936f5594a2bbb5ba2ed3523" prot="public" static="no">
+        <type><ref refid="class_trace_reporter" kindref="compound">TraceReporter</ref></type>
+        <definition>using This =  TraceReporter</definition>
+        <argsstring></argsstring>
+        <name>This</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="70" column="1" bodyfile="pxr/base/trace/reporter.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_trace_reporter_1aabac4f73fd4a5d93ed5920ad2324a594" prot="public" static="no">
+        <type>TraceReporterPtr</type>
+        <definition>using ThisPtr =  TraceReporterPtr</definition>
+        <argsstring></argsstring>
+        <name>ThisPtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="71" column="1" bodyfile="pxr/base/trace/reporter.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_trace_reporter_1ae16d630b3b9263bed6a2a3a43c3823ae" prot="public" static="no">
+        <type>TraceReporterRefPtr</type>
+        <definition>using ThisRefPtr =  TraceReporterRefPtr</definition>
+        <argsstring></argsstring>
+        <name>ThisRefPtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="72" column="1" bodyfile="pxr/base/trace/reporter.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_trace_reporter_1a07fd63d9bc3713aeb05db10e3034e453" prot="public" static="no">
+        <type><ref refid="class_trace_event" kindref="compound">TraceEvent</ref></type>
+        <definition>using Event =  TraceEvent</definition>
+        <argsstring></argsstring>
+        <name>Event</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="74" column="1" bodyfile="pxr/base/trace/reporter.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_trace_reporter_1a60ce363d3c6be5bd3a28a2ce4c1f1d21" prot="public" static="no">
+        <type><ref refid="class_trace_event_1a166027cc433a33197d502f882979d160" kindref="member">TraceEvent::TimeStamp</ref></type>
+        <definition>using TimeStamp =  TraceEvent::TimeStamp</definition>
+        <argsstring></argsstring>
+        <name>TimeStamp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="75" column="1" bodyfile="pxr/base/trace/reporter.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_trace_reporter_1a95583f2db0abc52c776ba93f41f67382" prot="public" static="no">
+        <type>TfHashMap&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, double, <ref refid="struct_tf_token_1_1_hash_functor" kindref="compound">TfToken::HashFunctor</ref> &gt;</type>
+        <definition>using CounterMap =  TfHashMap&lt;TfToken, double, TfToken::HashFunctor&gt;</definition>
+        <argsstring></argsstring>
+        <name>CounterMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="76" column="1" bodyfile="pxr/base/trace/reporter.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_trace_reporter_1a4338ddf03fc0c06eebd83dd0980e318d" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string _label</definition>
+        <argsstring></argsstring>
+        <name>_label</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="206" column="1" bodyfile="pxr/base/trace/reporter.h" bodystart="206" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_trace_reporter_1ac15f3f7d3ac499e6ea82d62e0bcd3a81" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _groupByFunction</definition>
+        <argsstring></argsstring>
+        <name>_groupByFunction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="208" column="1" bodyfile="pxr/base/trace/reporter.h" bodystart="208" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_trace_reporter_1a8fcdc83dccb4d3e540a7bfddb8e4964e" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _foldRecursiveCalls</definition>
+        <argsstring></argsstring>
+        <name>_foldRecursiveCalls</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="209" column="1" bodyfile="pxr/base/trace/reporter.h" bodystart="209" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_trace_reporter_1a58944539f4705c8e4dedcb6f5d6219c1" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _shouldAdjustForOverheadAndNoise</definition>
+        <argsstring></argsstring>
+        <name>_shouldAdjustForOverheadAndNoise</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="210" column="1" bodyfile="pxr/base/trace/reporter.h" bodystart="210" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_trace_reporter_1a65f4393d0932a4cbfad4703a20ba0068" prot="private" static="no" mutable="no">
+        <type>TraceAggregateTreeRefPtr</type>
+        <definition>TraceAggregateTreeRefPtr _aggregateTree</definition>
+        <argsstring></argsstring>
+        <name>_aggregateTree</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="212" column="1" bodyfile="pxr/base/trace/reporter.h" bodystart="212" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_trace_reporter_1a30660d68a86febad6188c60003852424" prot="private" static="no" mutable="no">
+        <type>TraceEventTreeRefPtr</type>
+        <definition>TraceEventTreeRefPtr _eventTree</definition>
+        <argsstring></argsstring>
+        <name>_eventTree</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="213" column="1" bodyfile="pxr/base/trace/reporter.h" bodystart="213" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_trace_reporter_1aeb11c8d3bb1a3170d374e1011ec1a577" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TF_MALLOC_TAG_NEW</definition>
+        <argsstring>(&quot;Trace&quot;, &quot;TraceReporter&quot;)</argsstring>
+        <name>TF_MALLOC_TAG_NEW</name>
+        <param>
+          <type>&quot;Trace&quot;</type>
+        </param>
+        <param>
+          <type>&quot;TraceReporter&quot;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="68" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1aaf567260c9a66c8a1347a91fc42b1449" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>TRACE_API</type>
+        <definition>virtual TRACE_API ~TraceReporter</definition>
+        <argsstring>()</argsstring>
+        <name>~TraceReporter</name>
+        <briefdescription>
+<para>Destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="93" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1af1ec47098f4ada6664a7f25be4962cc4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::string &amp;</type>
+        <definition>const std::string&amp; GetLabel</definition>
+        <argsstring>()</argsstring>
+        <name>GetLabel</name>
+        <briefdescription>
+<para>Return the label associated with this reporter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="96" column="1" bodyfile="pxr/base/trace/reporter.h" bodystart="96" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1adbb3ebc5685d873651cae232365df0c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API TraceAggregateNodePtr</type>
+        <definition>TRACE_API TraceAggregateNodePtr GetAggregateTreeRoot</definition>
+        <argsstring>()</argsstring>
+        <name>GetAggregateTreeRoot</name>
+        <briefdescription>
+<para>Returns the root node of the aggregated call tree. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="119" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1a9cee2696ad963b1e801561f85fc6e5c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API TraceEventNodeRefPtr</type>
+        <definition>TRACE_API TraceEventNodeRefPtr GetEventRoot</definition>
+        <argsstring>()</argsstring>
+        <name>GetEventRoot</name>
+        <briefdescription>
+<para>Returns the root node of the call tree. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="122" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1aff02407d216138b36773bebb30d47dd1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API TraceEventTreeRefPtr</type>
+        <definition>TRACE_API TraceEventTreeRefPtr GetEventTree</definition>
+        <argsstring>()</argsstring>
+        <name>GetEventTree</name>
+        <briefdescription>
+<para>Returns the event call tree. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="125" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1a6fa88f7c650bdcf73041bffb79a23c7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void UpdateTraceTrees</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateTraceTrees</name>
+        <briefdescription>
+<para>This fully re-builds the event and aggregate trees from whatever the current collection holds. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>It is ok to call this multiple times in case the collection gets appended on inbetween.</para>
+<para>If we want to have multiple reporters per collector, this will need to be changed so that all reporters reporting on a collector update their respective trees. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="154" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1af6afd2c67cff70f243d70f33f47aa8e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void ClearTree</definition>
+        <argsstring>()</argsstring>
+        <name>ClearTree</name>
+        <briefdescription>
+<para>Clears event tree and counters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="157" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_trace_reporter_1a2577318e5d3921433a2f23b8bd2f84fc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ThisRefPtr</type>
+        <definition>static ThisRefPtr New</definition>
+        <argsstring>(const std::string &amp;label, DataSourcePtr dataSource)</argsstring>
+        <name>New</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>label</declname>
+        </param>
+        <param>
+          <type>DataSourcePtr</type>
+          <declname>dataSource</declname>
+        </param>
+        <briefdescription>
+<para>Create a new reporter with <emphasis>label</emphasis> and <emphasis>dataSource</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="79" column="1" bodyfile="pxr/base/trace/reporter.h" bodystart="79" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1a15c7d7c5d53bec8c42d2e41c8e50a851" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ThisRefPtr</type>
+        <definition>static ThisRefPtr New</definition>
+        <argsstring>(const std::string &amp;label)</argsstring>
+        <name>New</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>label</declname>
+        </param>
+        <briefdescription>
+<para>Create a new reporter with <emphasis>label</emphasis> and no data source. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="85" column="1" bodyfile="pxr/base/trace/reporter.h" bodystart="85" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1ad5f989cdbc2e4103bf6594f4c043625c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API TraceReporterPtr</type>
+        <definition>static TRACE_API TraceReporterPtr GetGlobalReporter</definition>
+        <argsstring>()</argsstring>
+        <name>GetGlobalReporter</name>
+        <briefdescription>
+<para>Returns the global reporter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="90" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1a4c93d90860a77c35bd3d4c6c7d15b9e4" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API TraceAggregateNode::Id</type>
+        <definition>static TRACE_API TraceAggregateNode::Id CreateValidEventId</definition>
+        <argsstring>()</argsstring>
+        <name>CreateValidEventId</name>
+        <briefdescription>
+<para>Creates a valid TraceAggregateNode::Id object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This should be used by very few clients for certain special cases. For most cases, the TraceAggregateNode::Id object should be created and populated internally within the Reporter object itself. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="193" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_trace_reporter_1a9e44a08c07023740762830de5cc67fa2" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API</type>
+        <definition>TRACE_API TraceReporter</definition>
+        <argsstring>(const std::string &amp;label, DataSourcePtr dataSource)</argsstring>
+        <name>TraceReporter</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>label</declname>
+        </param>
+        <param>
+          <type>DataSourcePtr</type>
+          <declname>dataSource</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="197" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_trace_reporter_1af1c04e698691e951c8607c4c7def89c8" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void _ProcessCollection</definition>
+        <argsstring>(const TraceReporterBase::CollectionPtr &amp;) override</argsstring>
+        <name>_ProcessCollection</name>
+        <reimplements refid="class_trace_reporter_base_1a5271f5249704bb4c54f18a2a7a56e410">_ProcessCollection</reimplements>
+        <param>
+          <type>const TraceReporterBase::CollectionPtr &amp;</type>
+        </param>
+        <briefdescription>
+<para>Called once per collection from <ref refid="class_trace_reporter_base_1a10d708889f4d8c7dc8acfddb77936c51" kindref="member">_Update()</ref> </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="201" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1a8cf88d4073c8475e8d3f8c0c798e416e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RebuildEventAndAggregateTrees</definition>
+        <argsstring>()</argsstring>
+        <name>_RebuildEventAndAggregateTrees</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="202" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_reporter_1aecec7864dd6c2614a6803ebf8a14740f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _PrintTimes</definition>
+        <argsstring>(std::ostream &amp;s)</argsstring>
+        <name>_PrintTimes</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/reporter.h" line="203" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This class converts streams of <ref refid="class_trace_event" kindref="compound">TraceEvent</ref> objects into call trees which can then be used as a data source to a GUI or written out to a file. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5891">
+        <label>TraceReporterBase</label>
+        <link refid="class_trace_reporter_base"/>
+        <childnode refid="5892" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5893" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5893">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="5890">
+        <label>TraceReporter</label>
+        <link refid="class_trace_reporter"/>
+        <childnode refid="5891" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5892">
+        <label>TfRefBase</label>
+        <link refid="class_tf_ref_base"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5895">
+        <label>TraceReporterBase</label>
+        <link refid="class_trace_reporter_base"/>
+        <childnode refid="5896" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5897" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5897">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="5894">
+        <label>TraceReporter</label>
+        <link refid="class_trace_reporter"/>
+        <childnode refid="5895" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5896">
+        <label>TfRefBase</label>
+        <link refid="class_tf_ref_base"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/base/trace/reporter.h" line="65" column="1" bodyfile="pxr/base/trace/reporter.h" bodystart="64" bodyend="214"/>
+    <listofallmembers>
+      <member refid="class_tf_weak_base_1a01aa4c4b93df067f2ec9b9e5fa4c35b3" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>__GetTfWeakBase__</name></member>
+      <member refid="class_trace_reporter_1a65f4393d0932a4cbfad4703a20ba0068" prot="private" virt="non-virtual"><scope>TraceReporter</scope><name>_aggregateTree</name></member>
+      <member refid="class_trace_reporter_base_1a7627d6b63bcb31657d69369f9fff8889" prot="protected" virt="non-virtual"><scope>TraceReporter</scope><name>_Clear</name></member>
+      <member refid="class_trace_reporter_1a30660d68a86febad6188c60003852424" prot="private" virt="non-virtual"><scope>TraceReporter</scope><name>_eventTree</name></member>
+      <member refid="class_trace_reporter_1a8fcdc83dccb4d3e540a7bfddb8e4964e" prot="private" virt="non-virtual"><scope>TraceReporter</scope><name>_foldRecursiveCalls</name></member>
+      <member refid="class_trace_reporter_1ac15f3f7d3ac499e6ea82d62e0bcd3a81" prot="private" virt="non-virtual"><scope>TraceReporter</scope><name>_groupByFunction</name></member>
+      <member refid="class_tf_weak_base_1a6a5533162e8efab1be47acd6ccd5254c" prot="protected" virt="non-virtual"><scope>TraceReporter</scope><name>_HasRemnant</name></member>
+      <member refid="class_trace_reporter_1a4338ddf03fc0c06eebd83dd0980e318d" prot="private" virt="non-virtual"><scope>TraceReporter</scope><name>_label</name></member>
+      <member refid="class_trace_reporter_1aecec7864dd6c2614a6803ebf8a14740f" prot="private" virt="non-virtual"><scope>TraceReporter</scope><name>_PrintTimes</name></member>
+      <member refid="class_trace_reporter_1af1c04e698691e951c8607c4c7def89c8" prot="private" virt="virtual"><scope>TraceReporter</scope><name>_ProcessCollection</name></member>
+      <member refid="class_trace_reporter_1a8cf88d4073c8475e8d3f8c0c798e416e" prot="private" virt="non-virtual"><scope>TraceReporter</scope><name>_RebuildEventAndAggregateTrees</name></member>
+      <member refid="class_tf_weak_base_1a95139d2f4d04eb706664a4f47eb93918" prot="protected" virt="non-virtual"><scope>TraceReporter</scope><name>_Register</name></member>
+      <member refid="class_tf_weak_base_1ac1312732482c8a286522f703f2cf90d1" prot="protected" virt="non-virtual"><scope>TraceReporter</scope><name>_Register</name></member>
+      <member refid="class_trace_reporter_1a58944539f4705c8e4dedcb6f5d6219c1" prot="private" virt="non-virtual"><scope>TraceReporter</scope><name>_shouldAdjustForOverheadAndNoise</name></member>
+      <member refid="class_trace_reporter_base_1a10d708889f4d8c7dc8acfddb77936c51" prot="protected" virt="non-virtual"><scope>TraceReporter</scope><name>_Update</name></member>
+      <member refid="class_trace_reporter_1aa64c87a6aaeab6648a49b439536cf4c1" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>AddCounter</name></member>
+      <member refid="class_trace_reporter_1af6afd2c67cff70f243d70f33f47aa8e1" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>ClearTree</name></member>
+      <member refid="class_trace_reporter_base_1a91d1c7baf77d118819bd09551e8ccdd5" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>CollectionPtr</name></member>
+      <member refid="class_trace_reporter_1a95583f2db0abc52c776ba93f41f67382" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>CounterMap</name></member>
+      <member refid="class_trace_reporter_1a4c93d90860a77c35bd3d4c6c7d15b9e4" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>CreateValidEventId</name></member>
+      <member refid="class_trace_reporter_base_1a2c71d1c2a51092940e92a700aba0cd62" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>DataSourcePtr</name></member>
+      <member refid="class_tf_weak_base_1a16f1e27cc0c7c606ffb397b7d970ed10" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>EnableNotification2</name></member>
+      <member refid="class_trace_reporter_1a07fd63d9bc3713aeb05db10e3034e453" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>Event</name></member>
+      <member refid="class_trace_reporter_1adbb3ebc5685d873651cae232365df0c3" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>GetAggregateTreeRoot</name></member>
+      <member refid="class_trace_reporter_1ae228c35c5c5d3a96c968a189c8bf3cdc" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>GetCounterIndex</name></member>
+      <member refid="class_trace_reporter_1a89509d763d8ba330fcea078f27da6d1c" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>GetCounters</name></member>
+      <member refid="class_tf_ref_base_1abcd501e4bb37d7a93faa4e625e96ecf7" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>GetCurrentCount</name></member>
+      <member refid="class_trace_reporter_1a9cee2696ad963b1e801561f85fc6e5c4" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>GetEventRoot</name></member>
+      <member refid="class_trace_reporter_1aff02407d216138b36773bebb30d47dd1" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>GetEventTree</name></member>
+      <member refid="class_trace_reporter_1adb27f6697dd60fca458a4a4cf7ad48bd" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>GetFoldRecursiveCalls</name></member>
+      <member refid="class_trace_reporter_1ad5f989cdbc2e4103bf6594f4c043625c" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>GetGlobalReporter</name></member>
+      <member refid="class_trace_reporter_1a7bec4b83f6fdd7dffa5c099d29a3d6c7" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>GetGroupByFunction</name></member>
+      <member refid="class_trace_reporter_1af1ec47098f4ada6664a7f25be4962cc4" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>GetLabel</name></member>
+      <member refid="class_tf_ref_base_1abc1926aa1f9b1ad25c5c583b92bcf14b" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>GetRefCount</name></member>
+      <member refid="class_tf_weak_base_1a3241c32a82fbed0716a77049f6134e1e" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>GetUniqueIdentifier</name></member>
+      <member refid="class_tf_ref_base_1aab8bc91cf9cff7c6e1da23dc59f5ad1f" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>IsUnique</name></member>
+      <member refid="class_trace_reporter_1a2577318e5d3921433a2f23b8bd2f84fc" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>New</name></member>
+      <member refid="class_trace_reporter_1a15c7d7c5d53bec8c42d2e41c8e50a851" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>New</name></member>
+      <member refid="class_tf_weak_base_1af890ac314073e903458bf6b2397566b5" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>operator=</name></member>
+      <member refid="class_trace_reporter_1a2dcfc4062b439a467ff1ea805a15a4f6" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>Report</name></member>
+      <member refid="class_trace_reporter_1aa4f518c0353299885a977a1c3e56792d" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>ReportChromeTracing</name></member>
+      <member refid="class_trace_reporter_1a912802cd86b5a7fbdbcf6f5a77ef6845" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>ReportTimes</name></member>
+      <member refid="class_trace_reporter_base_1ad3a2f68b268329b027a18b77984f75e3" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>SerializeProcessedCollections</name></member>
+      <member refid="class_trace_reporter_1ae504a62999ab7de511e15e46b3acb666" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>SetFoldRecursiveCalls</name></member>
+      <member refid="class_trace_reporter_1afb97162d46f5299a79371c6c614ae3ff" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>SetGroupByFunction</name></member>
+      <member refid="class_trace_reporter_1a8cbe4fc179d8b5550260827ad996c1ef" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>SetShouldAdjustForOverheadAndNoise</name></member>
+      <member refid="class_tf_ref_base_1a6ee7fb6df1df9be9afbda405643ecb6c" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>SetShouldInvokeUniqueChangedListener</name></member>
+      <member refid="class_tf_ref_base_1a33e6c8ffe0caf7dac94ba5c4a4485fbd" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>SetUniqueChangedListener</name></member>
+      <member refid="class_trace_reporter_1aa5d018b604e0f6a64aacbb7c9a5aad17" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>ShouldAdjustForOverheadAndNoise</name></member>
+      <member refid="class_trace_reporter_1aeb11c8d3bb1a3170d374e1011ec1a577" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>TF_MALLOC_TAG_NEW</name></member>
+      <member refid="class_tf_ref_base_1aa2d330100c1dde0a28658bbd0bd7e7bd" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>TfRefBase</name></member>
+      <member refid="class_tf_weak_base_1a6e4abdd663654f8c8019702a464de8d6" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_weak_base_1affc4c00d0bbfdfe4f9e6a8b2e81be368" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>TfWeakBase</name></member>
+      <member refid="class_trace_reporter_1a1ad8c4945936f5594a2bbb5ba2ed3523" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>This</name></member>
+      <member refid="class_trace_reporter_1aabac4f73fd4a5d93ed5920ad2324a594" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>ThisPtr</name></member>
+      <member refid="class_trace_reporter_1ae16d630b3b9263bed6a2a3a43c3823ae" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>ThisRefPtr</name></member>
+      <member refid="class_trace_reporter_1a60ce363d3c6be5bd3a28a2ce4c1f1d21" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>TimeStamp</name></member>
+      <member refid="class_trace_reporter_1a9e44a08c07023740762830de5cc67fa2" prot="protected" virt="non-virtual"><scope>TraceReporter</scope><name>TraceReporter</name></member>
+      <member refid="class_trace_reporter_base_1a2c17eb16fe85dc086ce7e1cfeaa6f7c2" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>TraceReporterBase</name></member>
+      <member refid="class_tf_ref_base_1a86baed63f8017038997266bdd638f65e" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>UniqueChangedFuncPtr</name></member>
+      <member refid="class_trace_reporter_1a6fa88f7c650bdcf73041bffb79a23c7d" prot="public" virt="non-virtual"><scope>TraceReporter</scope><name>UpdateTraceTrees</name></member>
+      <member refid="class_tf_ref_base_1abc8b2a655b2693dacab986b70c30f28a" prot="protected" virt="virtual"><scope>TraceReporter</scope><name>~TfRefBase</name></member>
+      <member refid="class_tf_weak_base_1a778020f525b66def8a284c6f020592c2" prot="protected" virt="non-virtual"><scope>TraceReporter</scope><name>~TfWeakBase</name></member>
+      <member refid="class_trace_reporter_1aaf567260c9a66c8a1347a91fc42b1449" prot="public" virt="virtual"><scope>TraceReporter</scope><name>~TraceReporter</name></member>
+      <member refid="class_trace_reporter_base_1a17ac8b269c437db65b0eaf3ce53f8102" prot="public" virt="virtual"><scope>TraceReporter</scope><name>~TraceReporterBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

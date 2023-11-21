@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_retained_small_vector_data_source" kind="class" language="C++" prot="public">
+    <compoundname>HdRetainedSmallVectorDataSource</compoundname>
+    <basecompoundref refid="class_hd_vector_data_source" prot="public" virt="non-virtual">HdVectorDataSource</basecompoundref>
+    <includes refid="retained_data_source_8h" local="no">retainedDataSource.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_retained_small_vector_data_source_1ac5047f6b3c687cf8172ba76c9978089b" prot="private" static="no" mutable="no">
+        <type><ref refid="class_tf_small_vector" kindref="compound">TfSmallVector</ref>&lt; HdDataSourceBaseHandle, 32 &gt;</type>
+        <definition>TfSmallVector&lt;HdDataSourceBaseHandle, 32&gt; _values</definition>
+        <argsstring></argsstring>
+        <name>_values</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/retainedDataSource.h" line="366" column="1" bodyfile="pxr/imaging/hd/retainedDataSource.h" bodystart="366" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_retained_small_vector_data_source_1a518ab92d871c33206c48ea03382d4156" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HD_DECLARE_DATASOURCE</definition>
+        <argsstring>(HdRetainedSmallVectorDataSource)</argsstring>
+        <name>HD_DECLARE_DATASOURCE</name>
+        <param>
+          <type><ref refid="class_hd_retained_small_vector_data_source" kindref="compound">HdRetainedSmallVectorDataSource</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/retainedDataSource.h" line="352" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_retained_small_vector_data_source_1a2a57d0ac3f2e149f7e3a03fa9efcce34" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API HdRetainedSmallVectorDataSource</definition>
+        <argsstring>(size_t count, const HdDataSourceBaseHandle *values)</argsstring>
+        <name>HdRetainedSmallVectorDataSource</name>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>const HdDataSourceBaseHandle *</type>
+          <declname>values</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/retainedDataSource.h" line="355" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_retained_small_vector_data_source_1a4abcbe2a58290e87ab6bc12f61b4e6e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API size_t</type>
+        <definition>HD_API size_t GetNumElements</definition>
+        <argsstring>() override</argsstring>
+        <name>GetNumElements</name>
+        <reimplements refid="class_hd_vector_data_source_1a7c090ce1507674aec73bad7094bdccab">GetNumElements</reimplements>
+        <briefdescription>
+<para>Return the number of elements in this datasource. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This call is expected to be threadsafe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/retainedDataSource.h" line="360" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_retained_small_vector_data_source_1a359bf1004a2d510c1adc799be964e319" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API HdDataSourceBaseHandle</type>
+        <definition>HD_API HdDataSourceBaseHandle GetElement</definition>
+        <argsstring>(size_t element) override</argsstring>
+        <name>GetElement</name>
+        <reimplements refid="class_hd_vector_data_source_1acb159d1b13089393edc8aba22e162aab">GetElement</reimplements>
+        <param>
+          <type>size_t</type>
+          <declname>element</declname>
+        </param>
+        <briefdescription>
+<para>Return the element at position <computeroutput>element</computeroutput> in this datasource. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is expected to return non-null for the range [0, <computeroutput>numElements</computeroutput>). This call is expected to be threadsafe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/retainedDataSource.h" line="363" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A retained data source version of <ref refid="class_hd_vector_data_source" kindref="compound">HdVectorDataSource</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Internally it uses a <ref refid="class_tf_small_vector" kindref="compound">TfSmallVector</ref> with up to 32 locally stored entries for storage. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2665">
+        <label>HdVectorDataSource</label>
+        <link refid="class_hd_vector_data_source"/>
+        <childnode refid="2666" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2664">
+        <label>HdRetainedSmallVectorDataSource</label>
+        <link refid="class_hd_retained_small_vector_data_source"/>
+        <childnode refid="2665" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2666">
+        <label>HdDataSourceBase</label>
+        <link refid="class_hd_data_source_base"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2668">
+        <label>HdVectorDataSource</label>
+        <link refid="class_hd_vector_data_source"/>
+        <childnode refid="2669" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2667">
+        <label>HdRetainedSmallVectorDataSource</label>
+        <link refid="class_hd_retained_small_vector_data_source"/>
+        <childnode refid="2668" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2669">
+        <label>HdDataSourceBase</label>
+        <link refid="class_hd_data_source_base"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/hd/retainedDataSource.h" line="350" column="1" bodyfile="pxr/imaging/hd/retainedDataSource.h" bodystart="349" bodyend="367"/>
+    <listofallmembers>
+      <member refid="class_hd_retained_small_vector_data_source_1ac5047f6b3c687cf8172ba76c9978089b" prot="private" virt="non-virtual"><scope>HdRetainedSmallVectorDataSource</scope><name>_values</name></member>
+      <member refid="class_hd_retained_small_vector_data_source_1a359bf1004a2d510c1adc799be964e319" prot="public" virt="virtual"><scope>HdRetainedSmallVectorDataSource</scope><name>GetElement</name></member>
+      <member refid="class_hd_retained_small_vector_data_source_1a4abcbe2a58290e87ab6bc12f61b4e6e5" prot="public" virt="virtual"><scope>HdRetainedSmallVectorDataSource</scope><name>GetNumElements</name></member>
+      <member refid="class_hd_retained_small_vector_data_source_1a518ab92d871c33206c48ea03382d4156" prot="public" virt="non-virtual"><scope>HdRetainedSmallVectorDataSource</scope><name>HD_DECLARE_DATASOURCE</name></member>
+      <member refid="class_hd_vector_data_source_1a8b1449cc44a1baee0f07651c66d89aad" prot="public" virt="non-virtual"><scope>HdRetainedSmallVectorDataSource</scope><name>HD_DECLARE_DATASOURCE_ABSTRACT</name></member>
+      <member refid="class_hd_retained_small_vector_data_source_1a2a57d0ac3f2e149f7e3a03fa9efcce34" prot="public" virt="non-virtual"><scope>HdRetainedSmallVectorDataSource</scope><name>HdRetainedSmallVectorDataSource</name></member>
+      <member refid="class_hd_data_source_base_1a0e9f38acfe7894ade111a24f131b37f8" prot="public" virt="pure-virtual"><scope>HdRetainedSmallVectorDataSource</scope><name>~HdDataSourceBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

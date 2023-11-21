@@ -1,0 +1,2043 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_sdf_path" kind="class" language="C++" prot="public">
+    <compoundname>SdfPath</compoundname>
+    <includes refid="path_8h" local="no">path.h</includes>
+    <innerclass refid="struct_sdf_path_1_1_fast_less_than" prot="public">SdfPath::FastLessThan</innerclass>
+    <innerclass refid="struct_sdf_path_1_1_hash" prot="public">SdfPath::Hash</innerclass>
+      <sectiondef kind="user-defined">
+      <header>Constructors</header>
+      <memberdef kind="function" id="class_sdf_path_1aea68ecfef116a2cc08bc50210662def7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>SdfPath</definition>
+        <argsstring>() noexcept=default</argsstring>
+        <name>SdfPath</name>
+        <briefdescription>
+<para>Constructs the default, empty path. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="315" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a02a5631e3571b1383af85713efb38f35" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type>SDF_API</type>
+        <definition>SDF_API SdfPath</definition>
+        <argsstring>(const std::string &amp;path)</argsstring>
+        <name>SdfPath</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Creates a path from the given string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the given string is not a well-formed path, this will raise a Tf error. Note that passing an empty std::string() will also raise an error; the correct way to get the empty path is <ref refid="class_sdf_path_1aea68ecfef116a2cc08bc50210662def7" kindref="member">SdfPath()</ref>.</para>
+<para>Internal dot-dots will be resolved by removing the first dot-dot, the element preceding it, and repeating until no internal dot-dots remain.</para>
+<para>Note that most often new paths are expected to be created by asking existing paths to return modified versions of themselves. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="334" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Querying paths</header>
+      <memberdef kind="function" id="class_sdf_path_1a7838272dc514490d9f71c595b82137bb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API size_t</type>
+        <definition>SDF_API size_t GetPathElementCount</definition>
+        <argsstring>() const</argsstring>
+        <name>GetPathElementCount</name>
+        <briefdescription>
+<para>Returns the number of path elements in this path. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="342" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a458ea9a47c7b224c0d496e4a12e0e659" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool IsAbsolutePath</definition>
+        <argsstring>() const</argsstring>
+        <name>IsAbsolutePath</name>
+        <briefdescription>
+<para>Returns whether the path is absolute. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="345" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1ad158c53ee477c4f2d7acba3cd12452d2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool IsAbsoluteRootPath</definition>
+        <argsstring>() const</argsstring>
+        <name>IsAbsoluteRootPath</name>
+        <briefdescription>
+<para>Return true if this path is the <ref refid="class_sdf_path_1a9e77b565c10268c2b55f92559f621606" kindref="member">AbsoluteRootPath()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="348" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a93299f20b4d90532349b5105ea5bbbcb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool IsPrimPath</definition>
+        <argsstring>() const</argsstring>
+        <name>IsPrimPath</name>
+        <briefdescription>
+<para>Returns whether the path identifies a prim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="351" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a277dfdde9ab5121eb82dab94353d6667" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool IsAbsoluteRootOrPrimPath</definition>
+        <argsstring>() const</argsstring>
+        <name>IsAbsoluteRootOrPrimPath</name>
+        <briefdescription>
+<para>Returns whether the path identifies a prim or the absolute root. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="354" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a8bcc5731c01942e64dcf6fa235bcf9ed" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool IsRootPrimPath</definition>
+        <argsstring>() const</argsstring>
+        <name>IsRootPrimPath</name>
+        <briefdescription>
+<para>Returns whether the path identifies a root prim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>the path must be absolute and have a single element (for example <computeroutput>/foo</computeroutput>). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="360" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a69ed1464cbdb872743a6b9a86de74907" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool IsPropertyPath</definition>
+        <argsstring>() const</argsstring>
+        <name>IsPropertyPath</name>
+        <briefdescription>
+<para>Returns whether the path identifies a property. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A relational attribute is considered to be a property, so this method will return true for relational attributes as well as properties of prims. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="367" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1adb3bbcc350fc138c737f8c18d99e8456" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool IsPrimPropertyPath</definition>
+        <argsstring>() const</argsstring>
+        <name>IsPrimPropertyPath</name>
+        <briefdescription>
+<para>Returns whether the path identifies a prim&apos;s property. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A relational attribute is not a prim property. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="372" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a9bafb2c3e04cd0ff6d2ca2a64e2d4d42" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool IsNamespacedPropertyPath</definition>
+        <argsstring>() const</argsstring>
+        <name>IsNamespacedPropertyPath</name>
+        <briefdescription>
+<para>Returns whether the path identifies a namespaced property. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A namespaced property has colon embedded in its name. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="377" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a10ba3395e4c97b5ea922bdb03ec2e686" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool IsPrimVariantSelectionPath</definition>
+        <argsstring>() const</argsstring>
+        <name>IsPrimVariantSelectionPath</name>
+        <briefdescription>
+<para>Returns whether the path identifies a variant selection for a prim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="381" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1ae49fb335633cf47d279894f9646440d5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool IsPrimOrPrimVariantSelectionPath</definition>
+        <argsstring>() const</argsstring>
+        <name>IsPrimOrPrimVariantSelectionPath</name>
+        <briefdescription>
+<para>Return true if this path is a prim path or is a prim variant selection path. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="385" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1ad6e5ef524da1ebed1294084a659a543a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool ContainsPrimVariantSelection</definition>
+        <argsstring>() const</argsstring>
+        <name>ContainsPrimVariantSelection</name>
+        <briefdescription>
+<para>Returns whether the path or any of its parent paths identifies a variant selection for a prim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="389" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1abd5c34d8ec6196f02608177e353f756d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ContainsPropertyElements</definition>
+        <argsstring>() const</argsstring>
+        <name>ContainsPropertyElements</name>
+        <briefdescription>
+<para>Return true if this path contains any property elements, false otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A false return indicates a prim-like path, specifically a root path, a prim path, or a prim variant selection path. A true return indicates a property-like path: a prim property path, a target path, a relational attribute path, etc. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="396" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="396" bodyend="398"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1addc16aa92a79440e6030bd9210d2e376" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool ContainsTargetPath</definition>
+        <argsstring>() const</argsstring>
+        <name>ContainsTargetPath</name>
+        <briefdescription>
+<para>Return true if this path is or has a prefix that&apos;s a target path or a mapper path. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="402" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a215275ea9c7e897be090b5328359cfb5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool IsRelationalAttributePath</definition>
+        <argsstring>() const</argsstring>
+        <name>IsRelationalAttributePath</name>
+        <briefdescription>
+<para>Returns whether the path identifies a relational attribute. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If this is true, <ref refid="class_sdf_path_1a69ed1464cbdb872743a6b9a86de74907" kindref="member">IsPropertyPath()</ref> will also be true. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="407" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a73d804883fcdf1198ea831515e39232e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool IsTargetPath</definition>
+        <argsstring>() const</argsstring>
+        <name>IsTargetPath</name>
+        <briefdescription>
+<para>Returns whether the path identifies a relationship or connection target. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="411" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1abdb96290e258748826ef4d4f32910dbb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool IsMapperPath</definition>
+        <argsstring>() const</argsstring>
+        <name>IsMapperPath</name>
+        <briefdescription>
+<para>Returns whether the path identifies a connection mapper. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="414" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a20ad6f88fd54e3b4f273d78fd67fa2d3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool IsMapperArgPath</definition>
+        <argsstring>() const</argsstring>
+        <name>IsMapperArgPath</name>
+        <briefdescription>
+<para>Returns whether the path identifies a connection mapper arg. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="417" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a970e60a5288c37534d15f2ededffcc18" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool IsExpressionPath</definition>
+        <argsstring>() const</argsstring>
+        <name>IsExpressionPath</name>
+        <briefdescription>
+<para>Returns whether the path identifies a connection expression. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="420" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a43a51a0b54bb8a19b68ff5f09d861b3d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool IsEmpty</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>IsEmpty</name>
+        <briefdescription>
+<para>Returns true if this is the empty path (<ref refid="class_sdf_path_1aa3aa772925347d882bf8d68219e086c9" kindref="member">SdfPath::EmptyPath()</ref>). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="423" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="423" bodyend="427"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a7f1e5284da36a816af8fb44cd4e178a0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>SDF_API TfToken GetAsToken</definition>
+        <argsstring>() const</argsstring>
+        <name>GetAsToken</name>
+        <briefdescription>
+<para>Return the string representation of this path as a <ref refid="class_tf_token" kindref="compound">TfToken</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is recommended only for human-readable or diagnostic output. Use the <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> API to manipulate paths. It is less error-prone and has better performance. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="434" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a36bf22c483e7f514107851f9c8faaceb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_tf_token" kindref="compound">TfToken</ref> const  &amp;</type>
+        <definition>SDF_API TfToken const&amp; GetToken</definition>
+        <argsstring>() const</argsstring>
+        <name>GetToken</name>
+        <briefdescription>
+<para>Return the string representation of this path as a <ref refid="class_tf_token" kindref="compound">TfToken</ref> lvalue. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function returns a persistent lvalue. If an rvalue will suffice, call <ref refid="class_sdf_path_1a7f1e5284da36a816af8fb44cd4e178a0" kindref="member">GetAsToken()</ref> instead. That avoids populating internal data structures to hold the persistent token.</para>
+<para>This function is recommended only for human-readable or diagnostic output. Use the <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> API to manipulate paths. It is less error-prone and has better performance. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="445" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1afbe23cf9d5aeee3f03004e968c545753" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API std::string</type>
+        <definition>SDF_API std::string GetAsString</definition>
+        <argsstring>() const</argsstring>
+        <name>GetAsString</name>
+        <briefdescription>
+<para>Return the string representation of this path as a std::string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is recommended only for human-readable or diagnostic output. Use the <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> API to manipulate paths. It is less error-prone and has better performance. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="452" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1af4d60b0568603a696ac239b362d25417" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API const std::string &amp;</type>
+        <definition>SDF_API const std::string&amp; GetString</definition>
+        <argsstring>() const</argsstring>
+        <name>GetString</name>
+        <briefdescription>
+<para>Return the string representation of this path as a std::string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function returns a persistent lvalue. If an rvalue will suffice, call <ref refid="class_sdf_path_1afbe23cf9d5aeee3f03004e968c545753" kindref="member">GetAsString()</ref> instead. That avoids populating internal data structures to hold the persistent string.</para>
+<para>This function is recommended only for human-readable or diagnostic output. Use the <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> API to manipulate paths. It is less error-prone and has better performance. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="463" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a31225e07892b847e3e98473f7f04dbf4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API const char *</type>
+        <definition>SDF_API const char* GetText</definition>
+        <argsstring>() const</argsstring>
+        <name>GetText</name>
+        <briefdescription>
+<para>Returns the string representation of this path as a c string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function returns a pointer to a persistent c string. If a temporary c string will suffice, call <ref refid="class_sdf_path_1afbe23cf9d5aeee3f03004e968c545753" kindref="member">GetAsString()</ref>.c_str() instead. That avoids populating internal data structures to hold the persistent string.</para>
+<para>This function is recommended only for human-readable or diagnostic output. Use the <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> API to manipulate paths. It is less error-prone and has better performance. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="475" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a82108b55a93456fb23d2775d98991d2a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API SdfPathVector</type>
+        <definition>SDF_API SdfPathVector GetPrefixes</definition>
+        <argsstring>() const</argsstring>
+        <name>GetPrefixes</name>
+        <briefdescription>
+<para>Returns the prefix paths of this path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Prefixes are returned in order of shortest to longest. The path itself is returned as the last prefix. Note that if the prefix order does not need to be from shortest to longest, it is more efficient to use GetAncestorsRange, which produces an equivalent set of paths, ordered from longest to shortest. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="484" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1aea81e3a0674c44ee439e8133e97827d8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API SdfPathVector</type>
+        <definition>SDF_API SdfPathVector GetPrefixes</definition>
+        <argsstring>(size_t numPrefixes) const</argsstring>
+        <name>GetPrefixes</name>
+        <param>
+          <type>size_t</type>
+          <declname>numPrefixes</declname>
+        </param>
+        <briefdescription>
+<para>Return up to <computeroutput>numPrefixes</computeroutput> prefix paths of this path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Prefixes are returned in order of shortest to longest. The path itself is returned as the last prefix. Note that if the prefix order does not need to be from shortest to longest, it is more efficient to use GetAncestorsRange, which produces an equivalent set of paths, ordered from longest to shortest. If <computeroutput>numPrefixes</computeroutput> is 0 or greater than the number of this path&apos;s prefixes, fill all prefixes. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="494" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1ae2e29e31b8d905d2882cd2d321e55ab1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API void</type>
+        <definition>SDF_API void GetPrefixes</definition>
+        <argsstring>(SdfPathVector *prefixes) const</argsstring>
+        <name>GetPrefixes</name>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>prefixes</declname>
+        </param>
+        <briefdescription>
+<para>Fills prefixes with prefixes of this path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This avoids copy constructing the return value.</para>
+<para>Prefixes are returned in order of shortest to longest. The path itself is returned as the last prefix. Note that if the prefix order does not need to be from shortest to longest, it is more efficient to use <ref refid="class_sdf_path_1ad4478d499efea8bb68e8cb884dd54f86" kindref="member">GetAncestorsRange()</ref>, which produces an equivalent set of paths, ordered from longest to shortest. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="505" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a85fb0d2e17cc1c09f8551f0015f9a917" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API void</type>
+        <definition>SDF_API void GetPrefixes</definition>
+        <argsstring>(SdfPathVector *prefixes, size_t numPrefixes) const</argsstring>
+        <name>GetPrefixes</name>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>prefixes</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>numPrefixes</declname>
+        </param>
+        <briefdescription>
+<para>Fill <computeroutput>prefixes</computeroutput> with up to <computeroutput>numPrefixes</computeroutput> prefixes of this path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Prefixes are filled in order of shortest to longest. The path itself is included as the last prefix. Note that if the prefix order does not need to be from shortest to longest, it can be more efficient to use <ref refid="class_sdf_path_1ad4478d499efea8bb68e8cb884dd54f86" kindref="member">GetAncestorsRange()</ref>, which produces an equivalent set of paths, ordered from longest to shortest. If <computeroutput>numPrefixes</computeroutput> is 0 or greater than the number of this path&apos;s prefixes, fill all prefixes. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="515" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1ad4478d499efea8bb68e8cb884dd54f86" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path_ancestors_range" kindref="compound">SdfPathAncestorsRange</ref></type>
+        <definition>SDF_API SdfPathAncestorsRange GetAncestorsRange</definition>
+        <argsstring>() const</argsstring>
+        <name>GetAncestorsRange</name>
+        <briefdescription>
+<para>Return a range for iterating over the ancestors of this path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The range provides iteration over the prefixes of a path, ordered from longest to shortest (the opposite of the order of the prefixes returned by GetPrefixes). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="522" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a204344d110d2bb74928f43d2c1fe0047" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API const std::string &amp;</type>
+        <definition>SDF_API const std::string&amp; GetName</definition>
+        <argsstring>() const</argsstring>
+        <name>GetName</name>
+        <briefdescription>
+<para>Returns the name of the prim, property or relational attribute identified by the path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns EmptyPath if this path is a target or mapper path.</para>
+<para><itemizedlist>
+<listitem>
+<para>Returns &quot;&quot; for EmptyPath. </para>
+</listitem>
+<listitem>
+<para>Returns &quot;.&quot; for ReflexiveRelativePath. </para>
+</listitem>
+<listitem>
+<para>Returns &quot;..&quot; for a path ending in ParentPathElement. </para>
+</listitem>
+</itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="534" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1ab88a596e6ffdba5f0841e3eba451753e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+        <definition>SDF_API const TfToken&amp; GetNameToken</definition>
+        <argsstring>() const</argsstring>
+        <name>GetNameToken</name>
+        <briefdescription>
+<para>Returns the name of the prim, property or relational attribute identified by the path, as a token. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="538" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a3c38dfddbe1085125aec26c846354bb1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API std::string</type>
+        <definition>SDF_API std::string GetElementString</definition>
+        <argsstring>() const</argsstring>
+        <name>GetElementString</name>
+        <briefdescription>
+<para>Returns an ascii representation of the &quot;terminal&quot; element of this path, which can be used to reconstruct the path using <computeroutput><ref refid="class_sdf_path_1a1f2786a8b276f2ddd906168312f71891" kindref="member">AppendElementString()</ref></computeroutput> on its parent. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="class_sdf_path_1aa3aa772925347d882bf8d68219e086c9" kindref="member">EmptyPath()</ref>, <ref refid="class_sdf_path_1a9e77b565c10268c2b55f92559f621606" kindref="member">AbsoluteRootPath()</ref>, and <ref refid="class_sdf_path_1a4aff400613a556af9b180b056afde195" kindref="member">ReflexiveRelativePath()</ref> are <emphasis>not</emphasis> considered elements (one of the defining properties of elements is that they have a parent), so <computeroutput><ref refid="class_sdf_path_1a3c38dfddbe1085125aec26c846354bb1" kindref="member">GetElementString()</ref></computeroutput> will return the empty string for these paths.</para>
+<para>Unlike <computeroutput><ref refid="class_sdf_path_1a204344d110d2bb74928f43d2c1fe0047" kindref="member">GetName()</ref></computeroutput> and <computeroutput><ref refid="class_sdf_path_1a8ad00f48495e2e6bbfb3485920696e71" kindref="member">GetTargetPath()</ref></computeroutput>, which provide you &quot;some&quot; information about the terminal element, this provides a complete representation of the element, for all element types.</para>
+<para>Also note that whereas <computeroutput><ref refid="class_sdf_path_1a204344d110d2bb74928f43d2c1fe0047" kindref="member">GetName()</ref></computeroutput>, <computeroutput><ref refid="class_sdf_path_1ab88a596e6ffdba5f0841e3eba451753e" kindref="member">GetNameToken()</ref></computeroutput>, <computeroutput><ref refid="class_sdf_path_1a31225e07892b847e3e98473f7f04dbf4" kindref="member">GetText()</ref></computeroutput>, <computeroutput><ref refid="class_sdf_path_1af4d60b0568603a696ac239b362d25417" kindref="member">GetString()</ref></computeroutput>, and <computeroutput><ref refid="class_sdf_path_1a8ad00f48495e2e6bbfb3485920696e71" kindref="member">GetTargetPath()</ref></computeroutput> return cached results, <computeroutput><ref refid="class_sdf_path_1a3c38dfddbe1085125aec26c846354bb1" kindref="member">GetElementString()</ref></computeroutput> always performs some amount of string manipulation, which you should keep in mind if performance is a concern. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="557" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a7b2f4362056e115b7c17b1a904aecf2b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>SDF_API TfToken GetElementToken</definition>
+        <argsstring>() const</argsstring>
+        <name>GetElementToken</name>
+        <briefdescription>
+<para>Like <ref refid="class_sdf_path_1a3c38dfddbe1085125aec26c846354bb1" kindref="member">GetElementString()</ref> but return the value as a <ref refid="class_tf_token" kindref="compound">TfToken</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="560" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1ae01eff387b47bcf63459826038b3f833" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath ReplaceName</definition>
+        <argsstring>(TfToken const &amp;newName) const</argsstring>
+        <name>ReplaceName</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>newName</declname>
+        </param>
+        <briefdescription>
+<para>Return a copy of this path with its final component changed to <emphasis>newName</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This path must be a prim or property path.</para>
+<para>This method is shorthand for path.GetParentPath().AppendChild(newName) for prim paths, path.GetParentPath().AppendProperty(newName) for prim property paths, and path.GetParentPath().AppendRelationalAttribute(newName) for relational attribute paths.</para>
+<para>Note that only the final path component is ever changed. If the name of the final path component appears elsewhere in the path, it will not be modified.</para>
+<para>Some examples:</para>
+<para>ReplaceName(&apos;/chars/MeridaGroup&apos;, &apos;AngusGroup&apos;) -&gt; &apos;/chars/AngusGroup&apos; ReplaceName(&apos;/Merida.tx&apos;, &apos;ty&apos;) -&gt; &apos;/Merida.ty&apos; ReplaceName(&apos;/Merida.tx[targ].tx&apos;, &apos;ty&apos;) -&gt; &apos;/Merida.tx[targ].ty&apos; </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="581" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a8ad00f48495e2e6bbfb3485920696e71" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+        <definition>SDF_API const SdfPath&amp; GetTargetPath</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTargetPath</name>
+        <briefdescription>
+<para>Returns the relational attribute or mapper target path for this path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns EmptyPath if this is not a target, relational attribute or mapper path.</para>
+<para>Note that it is possible for a path to have multiple &quot;target&quot; paths. For example a path that identifies a connection target for a relational attribute includes the target of the connection as well as the target of the relational attribute. In these cases, the &quot;deepest&quot; or right-most target path will be returned (the connection target in this example). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="595" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a165a43440075ea161dc4b3bd9fbbad1c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API void</type>
+        <definition>SDF_API void GetAllTargetPathsRecursively</definition>
+        <argsstring>(SdfPathVector *result) const</argsstring>
+        <name>GetAllTargetPathsRecursively</name>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+<para>Returns all the relationship target or connection target paths contained in this path, and recursively all the target paths contained in those target paths in reverse depth-first order. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For example, given the path: &apos;/A/B.a[/C/D.a[/E/F.a]].a[/A/B.a[/C/D.a]]&apos; this method produces: &apos;/A/B.a[/C/D.a]&apos;, &apos;/C/D.a&apos;, &apos;/C/D.a[/E/F.a]&apos;, &apos;/E/F.a&apos; </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="604" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1ace0604a5a83af57bbda444963431c8c5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API std::pair&lt; std::string, std::string &gt;</type>
+        <definition>SDF_API std::pair&lt;std::string, std::string&gt; GetVariantSelection</definition>
+        <argsstring>() const</argsstring>
+        <name>GetVariantSelection</name>
+        <briefdescription>
+<para>Returns the variant selection for this path, if this is a variant selection path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns a pair of empty strings if this path is not a variant selection path. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="611" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a6ec718687c3ab1ca71f459fd6af46c8b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>SDF_API bool HasPrefix</definition>
+        <argsstring>(const SdfPath &amp;prefix) const</argsstring>
+        <name>HasPrefix</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>prefix</declname>
+        </param>
+        <briefdescription>
+<para>Return true if both this path and <emphasis>prefix</emphasis> are not the empty path and this path has <emphasis>prefix</emphasis> as a prefix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Return false otherwise. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="615" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Creating new paths by modifying existing paths</header>
+      <memberdef kind="function" id="class_sdf_path_1a0da79e196526d8f2e9bfd075e36e505f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath GetParentPath</definition>
+        <argsstring>() const</argsstring>
+        <name>GetParentPath</name>
+        <briefdescription>
+<para>Return the path that identifies this path&apos;s namespace parent. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For a prim path (like &apos;/foo/bar&apos;), return the prim&apos;s parent&apos;s path (&apos;/foo&apos;). For a prim property path (like &apos;/foo/bar.property&apos;), return the prim&apos;s path (&apos;/foo/bar&apos;). For a target path (like &apos;/foo/bar.property[/target]&apos;) return the property path (&apos;/foo/bar.property&apos;). For a mapper path (like &apos;/foo/bar.property.mapper[/target]&apos;) return the property path (&apos;/foo/bar.property). For a relational attribute path (like &apos;/foo/bar.property[/target].relAttr&apos;) return the relationship target&apos;s path (&apos;/foo/bar.property[/target]&apos;). For a prim variant selection path (like &apos;/foo/bar{var=sel}&apos;) return the prim path (&apos;/foo/bar&apos;). For a root prim path (like &apos;/rootPrim&apos;), return <ref refid="class_sdf_path_1a9e77b565c10268c2b55f92559f621606" kindref="member">AbsoluteRootPath()</ref> (&apos;/&apos;). For a single element relative prim path (like &apos;relativePrim&apos;), return <ref refid="class_sdf_path_1a4aff400613a556af9b180b056afde195" kindref="member">ReflexiveRelativePath()</ref> (&apos;.&apos;). For <ref refid="class_sdf_path_1a4aff400613a556af9b180b056afde195" kindref="member">ReflexiveRelativePath()</ref>, return the relative parent path (&apos;..&apos;).</para>
+<para>Note that the parent path of a relative parent path (&apos;..&apos;) is a relative grandparent path (&apos;../..&apos;). Use caution writing loops that walk to parent paths since relative paths have infinitely many ancestors. To more safely traverse ancestor paths, consider iterating over an <ref refid="class_sdf_path_ancestors_range" kindref="compound">SdfPathAncestorsRange</ref> instead, as returned by <ref refid="class_sdf_path_1ad4478d499efea8bb68e8cb884dd54f86" kindref="member">GetAncestorsRange()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="644" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1af113e66c25e4e2b1bffdf93b492e96d5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath GetPrimPath</definition>
+        <argsstring>() const</argsstring>
+        <name>GetPrimPath</name>
+        <briefdescription>
+<para>Creates a path by stripping all relational attributes, targets, properties, and variant selections from the leafmost prim path, leaving the nearest path for which <emphasis><ref refid="class_sdf_path_1a93299f20b4d90532349b5105ea5bbbcb" kindref="member">IsPrimPath()</ref></emphasis> returns true. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>See <emphasis>GetPrimOrPrimVariantSelectionPath</emphasis> also.</para>
+<para>If the path is already a prim path, the same path is returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="653" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a16a26a7060fc6b4125f11e9afda7b468" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath GetPrimOrPrimVariantSelectionPath</definition>
+        <argsstring>() const</argsstring>
+        <name>GetPrimOrPrimVariantSelectionPath</name>
+        <briefdescription>
+<para>Creates a path by stripping all relational attributes, targets, and properties, leaving the nearest path for which <emphasis><ref refid="class_sdf_path_1ae49fb335633cf47d279894f9646440d5" kindref="member">IsPrimOrPrimVariantSelectionPath()</ref></emphasis> returns true. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>See <emphasis>GetPrimPath</emphasis> also.</para>
+<para>If the path is already a prim or a prim variant selection path, the same path is returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="663" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a494bde09b2265e393c5152744a1acaa9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath GetAbsoluteRootOrPrimPath</definition>
+        <argsstring>() const</argsstring>
+        <name>GetAbsoluteRootOrPrimPath</name>
+        <briefdescription>
+<para>Creates a path by stripping all properties and relational attributes from this path, leaving the path to the containing prim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the path is already a prim or absolute root path, the same path is returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="670" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1adc29d6c107a54135f0609c723c1f7bdc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath StripAllVariantSelections</definition>
+        <argsstring>() const</argsstring>
+        <name>StripAllVariantSelections</name>
+        <briefdescription>
+<para>Create a path by stripping all variant selections from all components of this path, leaving a path with no embedded variant selections. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="675" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a49af4bd996cf81ad9f92ca51d943a39c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath AppendPath</definition>
+        <argsstring>(const SdfPath &amp;newSuffix) const</argsstring>
+        <name>AppendPath</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>newSuffix</declname>
+        </param>
+        <briefdescription>
+<para>Creates a path by appending a given relative path to this path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the newSuffix is a prim path, then this path must be a prim path or a root path.</para>
+<para>If the newSuffix is a prim property path, then this path must be a prim path or the ReflexiveRelativePath. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="684" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1ab38c801f846f5eda9934f7306a0ba229" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath AppendChild</definition>
+        <argsstring>(TfToken const &amp;childName) const</argsstring>
+        <name>AppendChild</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>childName</declname>
+        </param>
+        <briefdescription>
+<para>Creates a path by appending an element for <computeroutput>childName</computeroutput> to this path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This path must be a prim path, the AbsoluteRootPath or the ReflexiveRelativePath. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="691" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a94b67bfea8a8295271a32014b563d913" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath AppendProperty</definition>
+        <argsstring>(TfToken const &amp;propName) const</argsstring>
+        <name>AppendProperty</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>propName</declname>
+        </param>
+        <briefdescription>
+<para>Creates a path by appending an element for <computeroutput>propName</computeroutput> to this path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This path must be a prim path or the ReflexiveRelativePath. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="697" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a946ab463ef19352e33a5f67f73994d23" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath AppendVariantSelection</definition>
+        <argsstring>(const std::string &amp;variantSet, const std::string &amp;variant) const</argsstring>
+        <name>AppendVariantSelection</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>variantSet</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>variant</declname>
+        </param>
+        <briefdescription>
+<para>Creates a path by appending an element for <computeroutput>variantSet</computeroutput> and <computeroutput>variant</computeroutput> to this path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This path must be a prim path. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="704" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1ae531cda2703b759b24484b87469178f3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath AppendTarget</definition>
+        <argsstring>(const SdfPath &amp;targetPath) const</argsstring>
+        <name>AppendTarget</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>targetPath</declname>
+        </param>
+        <briefdescription>
+<para>Creates a path by appending an element for <computeroutput>targetPath</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This path must be a prim property or relational attribute path. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="711" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a3a27f9b82c613c58569cc25d7736781c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath AppendRelationalAttribute</definition>
+        <argsstring>(TfToken const &amp;attrName) const</argsstring>
+        <name>AppendRelationalAttribute</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>attrName</declname>
+        </param>
+        <briefdescription>
+<para>Creates a path by appending an element for <computeroutput>attrName</computeroutput> to this path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This path must be a target path. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="718" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a1592d4f22c0608188059400d91c56113" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath ReplaceTargetPath</definition>
+        <argsstring>(const SdfPath &amp;newTargetPath) const</argsstring>
+        <name>ReplaceTargetPath</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>newTargetPath</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the relational attribute&apos;s target path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The path must be a relational attribute path. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="724" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a6dbead869ac7fbff2e37ec96709cc080" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath AppendMapper</definition>
+        <argsstring>(const SdfPath &amp;targetPath) const</argsstring>
+        <name>AppendMapper</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>targetPath</declname>
+        </param>
+        <briefdescription>
+<para>Creates a path by appending a mapper element for <computeroutput>targetPath</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This path must be a prim property or relational attribute path. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="730" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a9e8e8bef1132cab5b6c751d004e1a467" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath AppendMapperArg</definition>
+        <argsstring>(TfToken const &amp;argName) const</argsstring>
+        <name>AppendMapperArg</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>argName</declname>
+        </param>
+        <briefdescription>
+<para>Creates a path by appending an element for <computeroutput>argName</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This path must be a mapper path. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="736" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a340d08137235ab2ffffafd104ec71c96" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath AppendExpression</definition>
+        <argsstring>() const</argsstring>
+        <name>AppendExpression</name>
+        <briefdescription>
+<para>Creates a path by appending an expression element. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This path must be a prim property or relational attribute path. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="741" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a1f2786a8b276f2ddd906168312f71891" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath AppendElementString</definition>
+        <argsstring>(const std::string &amp;element) const</argsstring>
+        <name>AppendElementString</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>element</declname>
+        </param>
+        <briefdescription>
+<para>Creates a path by extracting and appending an element from the given ascii element encoding. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Attempting to append a root or empty path (or malformed path) or attempting to append <emphasis>to</emphasis> the EmptyPath will raise an error and return the EmptyPath.</para>
+<para>May also fail and return EmptyPath if this path&apos;s type cannot possess a child of the type encoded in <computeroutput>element</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="752" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a6e44103fa23dd4bb484221bb8b9f5c66" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath AppendElementToken</definition>
+        <argsstring>(const TfToken &amp;elementTok) const</argsstring>
+        <name>AppendElementToken</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>elementTok</declname>
+        </param>
+        <briefdescription>
+<para>Like <ref refid="class_sdf_path_1a1f2786a8b276f2ddd906168312f71891" kindref="member">AppendElementString()</ref> but take the element as a <ref refid="class_tf_token" kindref="compound">TfToken</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="755" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1acecb0aa28f9acd0f113c6c52d0ea3b82" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath ReplacePrefix</definition>
+        <argsstring>(const SdfPath &amp;oldPrefix, const SdfPath &amp;newPrefix, bool fixTargetPaths=true) const</argsstring>
+        <name>ReplacePrefix</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>oldPrefix</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>newPrefix</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>fixTargetPaths</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Returns a path with all occurrences of the prefix path <computeroutput>oldPrefix</computeroutput> replaced with the prefix path <computeroutput>newPrefix</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If fixTargetPaths is true, any embedded target paths will also have their paths replaced. This is the default.</para>
+<para>If this is not a target, relational attribute or mapper path this will do zero or one path prefix replacements, if not the number of replacements can be greater than one. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="767" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1ac6e7fab9ea5b2fd517ad7f1c91bb420b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath GetCommonPrefix</definition>
+        <argsstring>(const SdfPath &amp;path) const</argsstring>
+        <name>GetCommonPrefix</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Returns a path with maximal length that is a prefix path of both this path and <computeroutput>path</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="773" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a5188047700bc4b8a6786960b7788abd7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API std::pair&lt; <ref refid="class_sdf_path" kindref="compound">SdfPath</ref>, <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &gt;</type>
+        <definition>SDF_API std::pair&lt;SdfPath, SdfPath&gt; RemoveCommonSuffix</definition>
+        <argsstring>(const SdfPath &amp;otherPath, bool stopAtRootPrim=false) const</argsstring>
+        <name>RemoveCommonSuffix</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>otherPath</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>stopAtRootPrim</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Find and remove the longest common suffix from two paths. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns this path and <computeroutput>otherPath</computeroutput> with the longest common suffix removed (first and second, respectively). If the two paths have no common suffix then the paths are returned as-is. If the paths are equal then this returns empty paths for relative paths and absolute roots for absolute paths. The paths need not be the same length.</para>
+<para>If <computeroutput>stopAtRootPrim</computeroutput> is <computeroutput>true</computeroutput> then neither returned path will be the root path. That, in turn, means that some common suffixes will not be removed. For example, if <computeroutput>stopAtRootPrim</computeroutput> is <computeroutput>true</computeroutput> then the paths /A/B and /B will be returned as is. Were it <computeroutput>false</computeroutput> then the result would be /A and /. Similarly paths /A/B/C and /B/C would return /A/B and /B if <computeroutput>stopAtRootPrim</computeroutput> is <computeroutput>true</computeroutput> but /A and / if it&apos;s <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="792" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a057a39843c10795ce68c27d86639db55" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath MakeAbsolutePath</definition>
+        <argsstring>(const SdfPath &amp;anchor) const</argsstring>
+        <name>MakeAbsolutePath</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>anchor</declname>
+        </param>
+        <briefdescription>
+<para>Returns the absolute form of this path using <computeroutput>anchor</computeroutput> as the relative basis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>anchor</computeroutput> must be an absolute prim path.</para>
+<para>If this path is a relative path, resolve it using <computeroutput>anchor</computeroutput> as the relative basis.</para>
+<para>If this path is already an absolute path, just return a copy. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="804" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a4e9d4d7cc1c40ae2b35a69e32d6f0abb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SDF_API SdfPath MakeRelativePath</definition>
+        <argsstring>(const SdfPath &amp;anchor) const</argsstring>
+        <name>MakeRelativePath</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>anchor</declname>
+        </param>
+        <briefdescription>
+<para>Returns the relative form of this path using <computeroutput>anchor</computeroutput> as the relative basis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>anchor</computeroutput> must be an absolute prim path.</para>
+<para>If this path is an absolute path, return the corresponding relative path that is relative to the absolute path given by <computeroutput>anchor</computeroutput>.</para>
+<para>If this path is a relative path, return the optimal relative path to the absolute path given by <computeroutput>anchor</computeroutput>. (The optimal relative path from a given prim path is the relative path with the least leading dot-dots. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="818" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Valid path strings, prim and property names</header>
+      <memberdef kind="function" id="class_sdf_path_1a1499271167c20dd276d87693b18f5226" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>static SDF_API bool IsValidIdentifier</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>IsValidIdentifier</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Returns whether <computeroutput>name</computeroutput> is a legal identifier for any path component. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="827" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a8c66a8d5eadec9b49cd9a5f32747834e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>static SDF_API bool IsValidNamespacedIdentifier</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>IsValidNamespacedIdentifier</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Returns whether <computeroutput>name</computeroutput> is a legal namespaced identifier. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This returns <computeroutput>true</computeroutput> if <ref refid="class_sdf_path_1a1499271167c20dd276d87693b18f5226" kindref="member">IsValidIdentifier()</ref> does. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="831" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1ace29b426c1003c910ee565250e4519a6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API std::vector&lt; std::string &gt;</type>
+        <definition>static SDF_API std::vector&lt;std::string&gt; TokenizeIdentifier</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>TokenizeIdentifier</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Tokenizes <computeroutput>name</computeroutput> by the namespace delimiter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the empty vector if <computeroutput>name</computeroutput> is not a valid namespaced identifier. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="836" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a885403f9808560bb1e3611130d9e61e8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref></type>
+        <definition>static SDF_API TfTokenVector TokenizeIdentifierAsTokens</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>TokenizeIdentifierAsTokens</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Tokenizes <computeroutput>name</computeroutput> by the namespace delimiter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the empty vector if <computeroutput>name</computeroutput> is not a valid namespaced identifier. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="842" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a71ebddbfd0d0d176f98abd7e666689d5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API std::string</type>
+        <definition>static SDF_API std::string JoinIdentifier</definition>
+        <argsstring>(const std::vector&lt; std::string &gt; &amp;names)</argsstring>
+        <name>JoinIdentifier</name>
+        <param>
+          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <declname>names</declname>
+        </param>
+        <briefdescription>
+<para>Join <computeroutput>names</computeroutput> into a single identifier using the namespace delimiter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Any empty strings present in <computeroutput>names</computeroutput> are ignored when joining. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="847" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a13c0fac9fc1ee9719e692d1ab9df5805" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API std::string</type>
+        <definition>static SDF_API std::string JoinIdentifier</definition>
+        <argsstring>(const TfTokenVector &amp;names)</argsstring>
+        <name>JoinIdentifier</name>
+        <param>
+          <type>const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+          <declname>names</declname>
+        </param>
+        <briefdescription>
+<para>Join <computeroutput>names</computeroutput> into a single identifier using the namespace delimiter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Any empty strings present in <computeroutput>names</computeroutput> are ignored when joining. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="852" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a5d8b3131c82ff6f09c7a265258830e59" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API std::string</type>
+        <definition>static SDF_API std::string JoinIdentifier</definition>
+        <argsstring>(const std::string &amp;lhs, const std::string &amp;rhs)</argsstring>
+        <name>JoinIdentifier</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Join <computeroutput>lhs</computeroutput> and <computeroutput>rhs</computeroutput> into a single identifier using the namespace delimiter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns <computeroutput>lhs</computeroutput> if <computeroutput>rhs</computeroutput> is empty and vice verse. Returns an empty string if both <computeroutput>lhs</computeroutput> and <computeroutput>rhs</computeroutput> are empty. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="859" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1acb024f403d4b8c49c7a5e66d221c524e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API std::string</type>
+        <definition>static SDF_API std::string JoinIdentifier</definition>
+        <argsstring>(const TfToken &amp;lhs, const TfToken &amp;rhs)</argsstring>
+        <name>JoinIdentifier</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Join <computeroutput>lhs</computeroutput> and <computeroutput>rhs</computeroutput> into a single identifier using the namespace delimiter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns <computeroutput>lhs</computeroutput> if <computeroutput>rhs</computeroutput> is empty and vice verse. Returns an empty string if both <computeroutput>lhs</computeroutput> and <computeroutput>rhs</computeroutput> are empty. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="867" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a8230082d270b014bf412407fe9a526d0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API std::string</type>
+        <definition>static SDF_API std::string StripNamespace</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>StripNamespace</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Returns <computeroutput>name</computeroutput> stripped of any namespaces. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This does not check the validity of the name; it just attempts to remove anything that looks like a namespace. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="873" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a221902d3b503ca633b9f2ebf550afb62" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>static SDF_API TfToken StripNamespace</definition>
+        <argsstring>(const TfToken &amp;name)</argsstring>
+        <name>StripNamespace</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Returns <computeroutput>name</computeroutput> stripped of any namespaces. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This does not check the validity of the name; it just attempts to remove anything that looks like a namespace. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="879" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a841e3e96d81ff509d8f45259d8cd7ae1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API std::pair&lt; std::string, bool &gt;</type>
+        <definition>static SDF_API std::pair&lt;std::string, bool&gt; StripPrefixNamespace</definition>
+        <argsstring>(const std::string &amp;name, const std::string &amp;matchNamespace)</argsstring>
+        <name>StripPrefixNamespace</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>matchNamespace</declname>
+        </param>
+        <briefdescription>
+<para>Returns (<computeroutput>name</computeroutput>, <computeroutput>true</computeroutput>) where <computeroutput>name</computeroutput> is stripped of the prefix specified by <computeroutput>matchNamespace</computeroutput> if <computeroutput>name</computeroutput> indeed starts with <computeroutput>matchNamespace</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns (<computeroutput>name</computeroutput>, <computeroutput>false</computeroutput>) otherwise, with <computeroutput>name</computeroutput> unmodified.</para>
+<para>This function deals with both the case where <computeroutput>matchNamespace</computeroutput> contains the trailing namespace delimiter &apos;:&apos; or not. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="891" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1acec9f4ce12ac98cb7d365646bb0bf35b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>static SDF_API bool IsValidPathString</definition>
+        <argsstring>(const std::string &amp;pathString, std::string *errMsg=0)</argsstring>
+        <name>IsValidPathString</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>pathString</declname>
+        </param>
+        <param>
+          <type>std::string *</type>
+          <declname>errMsg</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Return true if <computeroutput>pathString</computeroutput> is a valid path string, meaning that passing the string to the <emphasis><ref refid="class_sdf_path" kindref="compound">SdfPath</ref></emphasis> constructor will result in a valid, non-empty <ref refid="class_sdf_path" kindref="compound">SdfPath</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Otherwise, return false and if <computeroutput>errMsg</computeroutput> is not NULL, set the pointed-to string to the parse error. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="899" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Operators</header>
+      <memberdef kind="friend" id="class_sdf_path_1a9ee6a9aa0a486f4092335b7f1cf8b3f1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class HashState</type>
+          </param>
+        </templateparamlist>
+        <type>friend void</type>
+        <definition>void TfHashAppend</definition>
+        <argsstring>(HashState &amp;h, SdfPath const &amp;path)</argsstring>
+        <name>TfHashAppend</name>
+        <param>
+          <type>HashState &amp;</type>
+          <declname>h</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="951" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="951" bodyend="959"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1ad405c341013019fb6b9aaa90aa2598a1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator==</definition>
+        <argsstring>(const SdfPath &amp;rhs) const</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Equality operator. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="908" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="908" bodyend="910"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1afb7f17c2d6a7a53528c62158ce9ad335" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator!=</definition>
+        <argsstring>(const SdfPath &amp;rhs) const</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Inequality operator. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="913" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="913" bodyend="915"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1aad310c9d17d03812d810bf4e4edf3fb9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator&lt;</definition>
+        <argsstring>(const SdfPath &amp;rhs) const</argsstring>
+        <name>operator&lt;</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Comparison operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This orders paths lexicographically, aka dictionary-style. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="921" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="921" bodyend="930"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a57aa0abebf5481d6ffa80b2483b2bb8a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator&gt;</definition>
+        <argsstring>(const SdfPath &amp;rhs) const</argsstring>
+        <name>operator&gt;</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Greater than operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para>SdfPath::operator&lt;(const SdfPath&amp;) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="934" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="934" bodyend="936"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a3016b02123ca74bab194219ec9227bf2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator&lt;=</definition>
+        <argsstring>(const SdfPath &amp;rhs) const</argsstring>
+        <name>operator&lt;=</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Less than or equal operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para>SdfPath::operator&lt;(const SdfPath&amp;) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="940" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="940" bodyend="942"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1aae48d25dda744ff6efaf3c363588bb8d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator&gt;=</definition>
+        <argsstring>(const SdfPath &amp;rhs) const</argsstring>
+        <name>operator&gt;=</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Greater than or equal operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para>SdfPath::operator&lt;(const SdfPath&amp;) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="946" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="946" bodyend="948"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1aa99b522cc14f7d4a22d78368b476e12a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GetHash</definition>
+        <argsstring>() const</argsstring>
+        <name>GetHash</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="968" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="968" bodyend="970"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Utilities</header>
+      <memberdef kind="function" id="class_sdf_path_1a2c0552b700469ef7060a9aa8df3eee69" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API SdfPathVector</type>
+        <definition>static SDF_API SdfPathVector GetConciseRelativePaths</definition>
+        <argsstring>(const SdfPathVector &amp;paths)</argsstring>
+        <name>GetConciseRelativePaths</name>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>paths</declname>
+        </param>
+        <briefdescription>
+<para>Given some vector of paths, get a vector of concise unambiguous relative paths. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>GetConciseRelativePaths requires a vector of absolute paths. It finds a set of relative paths such that each relative path is unique. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="992" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1ac1fcc9c525284def3fc2315b343e3b91" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API void</type>
+        <definition>static SDF_API void RemoveDescendentPaths</definition>
+        <argsstring>(SdfPathVector *paths)</argsstring>
+        <name>RemoveDescendentPaths</name>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>paths</declname>
+        </param>
+        <briefdescription>
+<para>Remove all elements of <emphasis>paths</emphasis> that are prefixed by other elements in <emphasis>paths</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>As a side-effect, the result is left in sorted order. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="997" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1af31641f36475586915e1317aa87818f6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API void</type>
+        <definition>static SDF_API void RemoveAncestorPaths</definition>
+        <argsstring>(SdfPathVector *paths)</argsstring>
+        <name>RemoveAncestorPaths</name>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>paths</declname>
+        </param>
+        <briefdescription>
+<para>Remove all elements of <emphasis>paths</emphasis> that prefix other elements in <emphasis>paths</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>As a side-effect, the result is left in sorted order. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="1001" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_sdf_path_1a7d74a06aa1bae37fe766467bfceebfd1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class Sdfext_PathAccess</definition>
+        <argsstring></argsstring>
+        <name>Sdfext_PathAccess</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="1033" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="1033" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_sdf_path_1a9218299b345c74891827813872ed37ec" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class SdfPathAncestorsRange</definition>
+        <argsstring></argsstring>
+        <name>SdfPathAncestorsRange</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="1034" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="1034" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_sdf_path_1a909ff6c959355afb4b5a5a28ad490622" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend void</type>
+        <definition>void swap</definition>
+        <argsstring>(SdfPath &amp;lhs, SdfPath &amp;rhs)</argsstring>
+        <name>swap</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="1061" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="1061" bodyend="1064"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_sdf_path_1a616d757ce9b1dde1565759f3bf5624c2" prot="private" static="no" mutable="no">
+        <type>Sdf_PathPrimNodeHandle</type>
+        <definition>Sdf_PathPrimNodeHandle _primPart</definition>
+        <argsstring></argsstring>
+        <name>_primPart</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="1069" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="1069" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_sdf_path_1a91eb04cd2ce7eea5323c15162710ef78" prot="private" static="no" mutable="no">
+        <type>Sdf_PathPropNodeHandle</type>
+        <definition>Sdf_PathPropNodeHandle _propPart</definition>
+        <argsstring></argsstring>
+        <name>_propPart</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="1070" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="1070" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_sdf_path_1aa3aa772925347d882bf8d68219e086c9" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+        <definition>static SDF_API const SdfPath&amp; EmptyPath</definition>
+        <argsstring>()</argsstring>
+        <name>EmptyPath</name>
+        <briefdescription>
+<para>The empty path value, equivalent to <ref refid="class_sdf_path_1aea68ecfef116a2cc08bc50210662def7" kindref="member">SdfPath()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="294" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a9e77b565c10268c2b55f92559f621606" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+        <definition>static SDF_API const SdfPath&amp; AbsoluteRootPath</definition>
+        <argsstring>()</argsstring>
+        <name>AbsoluteRootPath</name>
+        <briefdescription>
+<para>The absolute path representing the top of the namespace hierarchy. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="298" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a4aff400613a556af9b180b056afde195" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+        <definition>static SDF_API const SdfPath&amp; ReflexiveRelativePath</definition>
+        <argsstring>()</argsstring>
+        <name>ReflexiveRelativePath</name>
+        <briefdescription>
+<para>The relative path representing &quot;self&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="301" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_sdf_path_1a572017850a86d2a83effe4d8daedbace" prot="private" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SdfPath</definition>
+        <argsstring>(Sdf_PathPrimNodeHandle &amp;&amp;primNode)</argsstring>
+        <name>SdfPath</name>
+        <param>
+          <type>Sdf_PathPrimNodeHandle &amp;&amp;</type>
+          <declname>primNode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="1012" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="1012" bodyend="1013"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a335e5a47dbcfab5155cd0ae218ce74c7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SdfPath</definition>
+        <argsstring>(Sdf_PathPrimNodeHandle &amp;&amp;primPart, Sdf_PathPropNodeHandle &amp;&amp;propPart)</argsstring>
+        <name>SdfPath</name>
+        <param>
+          <type>Sdf_PathPrimNodeHandle &amp;&amp;</type>
+          <declname>primPart</declname>
+        </param>
+        <param>
+          <type>Sdf_PathPropNodeHandle &amp;&amp;</type>
+          <declname>propPart</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="1015" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="1015" bodyend="1018"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a79f2d77d1b9c6eeae4f66613b5fd218c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SdfPath</definition>
+        <argsstring>(Sdf_PathPrimNodeHandle const &amp;primPart, Sdf_PathPropNodeHandle const &amp;propPart)</argsstring>
+        <name>SdfPath</name>
+        <param>
+          <type>Sdf_PathPrimNodeHandle const &amp;</type>
+          <declname>primPart</declname>
+        </param>
+        <param>
+          <type>Sdf_PathPropNodeHandle const &amp;</type>
+          <declname>propPart</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="1021" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="1021" bodyend="1024"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a4662a96ce2a0503b4a3e8eb9598a9cbc" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SdfPath</definition>
+        <argsstring>(Sdf_PathNode const *primPart, Sdf_PathNode const *propPart)</argsstring>
+        <name>SdfPath</name>
+        <param>
+          <type>Sdf_PathNode const *</type>
+          <declname>primPart</declname>
+        </param>
+        <param>
+          <type>Sdf_PathNode const *</type>
+          <declname>propPart</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="1027" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="1027" bodyend="1030"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1ab66948cba010a6fbf69813ecb489927c" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SdfPath _ReplacePrimPrefix</definition>
+        <argsstring>(SdfPath const &amp;oldPrefix, SdfPath const &amp;newPrefix) const</argsstring>
+        <name>_ReplacePrimPrefix</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>oldPrefix</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>newPrefix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="1040" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a985993adcd2c0aa53a1dd80295f929e7" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SdfPath _ReplaceTargetPathPrefixes</definition>
+        <argsstring>(SdfPath const &amp;oldPrefix, SdfPath const &amp;newPrefix) const</argsstring>
+        <name>_ReplaceTargetPathPrefixes</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>oldPrefix</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>newPrefix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="1043" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1af3baf547814a4e3d7b359bf6db31b1bd" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SdfPath _ReplacePropPrefix</definition>
+        <argsstring>(SdfPath const &amp;oldPrefix, SdfPath const &amp;newPrefix, bool fixTargetPaths) const</argsstring>
+        <name>_ReplacePropPrefix</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>oldPrefix</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>newPrefix</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>fixTargetPaths</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="1046" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a9d2d187a073e6ab44f32dadfa84a4550" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t _AsInt</definition>
+        <argsstring>() const</argsstring>
+        <name>_AsInt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="1054" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="1054" bodyend="1059"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_sdf_path_1ac46e3a9b74d29bcc5a80876aa2d46954" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string _ElementsToString</definition>
+        <argsstring>(bool absolute, const std::vector&lt; std::string &gt; &amp;elements)</argsstring>
+        <name>_ElementsToString</name>
+        <param>
+          <type>bool</type>
+          <declname>absolute</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="1038" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_1a6f857241b96eec6f36c5f8034a0950a0" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>static SDF_API bool _LessThanInternal</definition>
+        <argsstring>(SdfPath const &amp;lhs, SdfPath const &amp;rhs)</argsstring>
+        <name>_LessThanInternal</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/path.h" line="1052" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A path value used to locate objects in layers or scenegraphs. </para>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="class_sdf_path_1sec_SdfPath_Overview">
+<title>Overview</title>
+<para><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> is used in several ways: <itemizedlist>
+<listitem><para>As a storage key for addressing and accessing values held in a <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> </para>
+</listitem>
+<listitem><para>As a namespace identity for scenegraph objects </para>
+</listitem>
+<listitem><para>As a way to refer to other scenegraph objects through relative paths</para>
+</listitem>
+</itemizedlist>
+The paths represented by an <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> class may be either relative or absolute. Relative paths are relative to the prim object that contains them (that is, if an <ref refid="class_sdf_relationship_spec" kindref="compound">SdfRelationshipSpec</ref> target is relative, it is relative to the <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref> object that owns the <ref refid="class_sdf_relationship_spec" kindref="compound">SdfRelationshipSpec</ref> object).</para>
+<para><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> objects can be readily created from and converted back to strings, but as <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> objects, they have behaviors that make it easy and efficient to work with them. The <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> class provides a full range of methods for manipulating scene paths by appending a namespace child, appending a relationship target, getting the parent path, and so on. Since the <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> class uses a node-based representation internally, you should use the editing functions rather than converting to and from strings if possible.</para>
+</sect1>
+<sect1 id="class_sdf_path_1sec_SdfPath_Syntax">
+<title>Path Syntax</title>
+<para>Like a filesystem path, an <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> is conceptually just a sequence of path components. Unlike a filesystem path, each component has a type, and the type is indicated by the syntax.</para>
+<para>Two separators are used between parts of a path. A slash (&quot;/&quot;) following an identifier is used to introduce a namespace child. A period (&quot;.&quot;) following an identifier is used to introduce a property. A property may also have several non-sequential colons (&apos;:&apos;) in its name to provide a rudimentary namespace within properties but may not end or begin with a colon.</para>
+<para>A leading slash in the string representation of an <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> object indicates an absolute path. Two adjacent periods indicate the parent namespace.</para>
+<para>Brackets (&quot;[&quot; and &quot;]&quot;) are used to indicate relationship target paths for relational attributes.</para>
+<para>The first part in a path is assumed to be a namespace child unless it is preceded by a period. That means: <itemizedlist>
+<listitem><para><computeroutput>/Foo</computeroutput> is an absolute path specifying the root prim Foo. </para>
+</listitem>
+<listitem><para><computeroutput>/Foo/Bar</computeroutput> is an absolute path specifying namespace child Bar of root prim Foo. </para>
+</listitem>
+<listitem><para><computeroutput>/Foo/Bar.baz</computeroutput> is an absolute path specifying property <computeroutput>baz</computeroutput> of namespace child Bar of root prim Foo. </para>
+</listitem>
+<listitem><para><computeroutput>Foo</computeroutput> is a relative path specifying namespace child Foo of the current prim. </para>
+</listitem>
+<listitem><para><computeroutput>Foo/Bar</computeroutput> is a relative path specifying namespace child Bar of namespace child Foo of the current prim. </para>
+</listitem>
+<listitem><para><computeroutput>Foo/Bar.baz</computeroutput> is a relative path specifying property <computeroutput>baz</computeroutput> of namespace child Bar of namespace child Foo of the current prim. </para>
+</listitem>
+<listitem><para><computeroutput>.foo</computeroutput> is a relative path specifying the property <computeroutput>foo</computeroutput> of the current prim. </para>
+</listitem>
+<listitem><para><computeroutput>/Foo.bar[/Foo.baz].attrib</computeroutput> is a relational attribute path. The relationship <computeroutput>/Foo.bar</computeroutput> has a target <computeroutput>/Foo.baz</computeroutput>. There is a relational attribute <computeroutput>attrib</computeroutput> on that relationship-&gt;target pair.</para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+<sect1 id="class_sdf_path_1sec_SdfPath_ThreadSafety">
+<title>A Note on Thread-Safety</title>
+<para><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> is strongly thread-safe, in the sense that zero additional synchronization is required between threads creating or using <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> values. Just like <ref refid="class_tf_token" kindref="compound">TfToken</ref>, <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> values are immutable. Internally, <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> uses a global prefix tree to efficiently share representations of paths, and provide fast equality/hashing operations, but modifications to this table are internally synchronized. Consequently, as with <ref refid="class_tf_token" kindref="compound">TfToken</ref>, for best performance it is important to minimize the number of values created (since it requires synchronized access to this table) or copied (since it requires atomic ref-counting operations). </para>
+</sect1>
+    </detaileddescription>
+    <location file="pxr/usd/sdf/path.h" line="291" column="1" bodyfile="pxr/usd/sdf/path.h" bodystart="290" bodyend="1072"/>
+    <listofallmembers>
+      <member refid="class_sdf_path_1a9d2d187a073e6ab44f32dadfa84a4550" prot="private" virt="non-virtual"><scope>SdfPath</scope><name>_AsInt</name></member>
+      <member refid="class_sdf_path_1ac46e3a9b74d29bcc5a80876aa2d46954" prot="private" virt="non-virtual"><scope>SdfPath</scope><name>_ElementsToString</name></member>
+      <member refid="class_sdf_path_1a6f857241b96eec6f36c5f8034a0950a0" prot="private" virt="non-virtual"><scope>SdfPath</scope><name>_LessThanInternal</name></member>
+      <member refid="class_sdf_path_1a616d757ce9b1dde1565759f3bf5624c2" prot="private" virt="non-virtual"><scope>SdfPath</scope><name>_primPart</name></member>
+      <member refid="class_sdf_path_1a91eb04cd2ce7eea5323c15162710ef78" prot="private" virt="non-virtual"><scope>SdfPath</scope><name>_propPart</name></member>
+      <member refid="class_sdf_path_1ab66948cba010a6fbf69813ecb489927c" prot="private" virt="non-virtual"><scope>SdfPath</scope><name>_ReplacePrimPrefix</name></member>
+      <member refid="class_sdf_path_1af3baf547814a4e3d7b359bf6db31b1bd" prot="private" virt="non-virtual"><scope>SdfPath</scope><name>_ReplacePropPrefix</name></member>
+      <member refid="class_sdf_path_1a985993adcd2c0aa53a1dd80295f929e7" prot="private" virt="non-virtual"><scope>SdfPath</scope><name>_ReplaceTargetPathPrefixes</name></member>
+      <member refid="class_sdf_path_1a9e77b565c10268c2b55f92559f621606" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>AbsoluteRootPath</name></member>
+      <member refid="class_sdf_path_1ab38c801f846f5eda9934f7306a0ba229" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>AppendChild</name></member>
+      <member refid="class_sdf_path_1a1f2786a8b276f2ddd906168312f71891" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>AppendElementString</name></member>
+      <member refid="class_sdf_path_1a6e44103fa23dd4bb484221bb8b9f5c66" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>AppendElementToken</name></member>
+      <member refid="class_sdf_path_1a340d08137235ab2ffffafd104ec71c96" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>AppendExpression</name></member>
+      <member refid="class_sdf_path_1a6dbead869ac7fbff2e37ec96709cc080" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>AppendMapper</name></member>
+      <member refid="class_sdf_path_1a9e8e8bef1132cab5b6c751d004e1a467" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>AppendMapperArg</name></member>
+      <member refid="class_sdf_path_1a49af4bd996cf81ad9f92ca51d943a39c" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>AppendPath</name></member>
+      <member refid="class_sdf_path_1a94b67bfea8a8295271a32014b563d913" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>AppendProperty</name></member>
+      <member refid="class_sdf_path_1a3a27f9b82c613c58569cc25d7736781c" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>AppendRelationalAttribute</name></member>
+      <member refid="class_sdf_path_1ae531cda2703b759b24484b87469178f3" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>AppendTarget</name></member>
+      <member refid="class_sdf_path_1a946ab463ef19352e33a5f67f73994d23" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>AppendVariantSelection</name></member>
+      <member refid="class_sdf_path_1ad6e5ef524da1ebed1294084a659a543a" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>ContainsPrimVariantSelection</name></member>
+      <member refid="class_sdf_path_1abd5c34d8ec6196f02608177e353f756d" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>ContainsPropertyElements</name></member>
+      <member refid="class_sdf_path_1addc16aa92a79440e6030bd9210d2e376" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>ContainsTargetPath</name></member>
+      <member refid="class_sdf_path_1aa3aa772925347d882bf8d68219e086c9" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>EmptyPath</name></member>
+      <member refid="class_sdf_path_1a494bde09b2265e393c5152744a1acaa9" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetAbsoluteRootOrPrimPath</name></member>
+      <member refid="class_sdf_path_1a165a43440075ea161dc4b3bd9fbbad1c" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetAllTargetPathsRecursively</name></member>
+      <member refid="class_sdf_path_1ad4478d499efea8bb68e8cb884dd54f86" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetAncestorsRange</name></member>
+      <member refid="class_sdf_path_1afbe23cf9d5aeee3f03004e968c545753" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetAsString</name></member>
+      <member refid="class_sdf_path_1a7f1e5284da36a816af8fb44cd4e178a0" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetAsToken</name></member>
+      <member refid="class_sdf_path_1ac6e7fab9ea5b2fd517ad7f1c91bb420b" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetCommonPrefix</name></member>
+      <member refid="class_sdf_path_1a2c0552b700469ef7060a9aa8df3eee69" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetConciseRelativePaths</name></member>
+      <member refid="class_sdf_path_1a3c38dfddbe1085125aec26c846354bb1" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetElementString</name></member>
+      <member refid="class_sdf_path_1a7b2f4362056e115b7c17b1a904aecf2b" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetElementToken</name></member>
+      <member refid="class_sdf_path_1aa99b522cc14f7d4a22d78368b476e12a" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetHash</name></member>
+      <member refid="class_sdf_path_1a204344d110d2bb74928f43d2c1fe0047" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetName</name></member>
+      <member refid="class_sdf_path_1ab88a596e6ffdba5f0841e3eba451753e" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetNameToken</name></member>
+      <member refid="class_sdf_path_1a0da79e196526d8f2e9bfd075e36e505f" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetParentPath</name></member>
+      <member refid="class_sdf_path_1a7838272dc514490d9f71c595b82137bb" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetPathElementCount</name></member>
+      <member refid="class_sdf_path_1a82108b55a93456fb23d2775d98991d2a" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetPrefixes</name></member>
+      <member refid="class_sdf_path_1aea81e3a0674c44ee439e8133e97827d8" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetPrefixes</name></member>
+      <member refid="class_sdf_path_1ae2e29e31b8d905d2882cd2d321e55ab1" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetPrefixes</name></member>
+      <member refid="class_sdf_path_1a85fb0d2e17cc1c09f8551f0015f9a917" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetPrefixes</name></member>
+      <member refid="class_sdf_path_1a16a26a7060fc6b4125f11e9afda7b468" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetPrimOrPrimVariantSelectionPath</name></member>
+      <member refid="class_sdf_path_1af113e66c25e4e2b1bffdf93b492e96d5" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetPrimPath</name></member>
+      <member refid="class_sdf_path_1af4d60b0568603a696ac239b362d25417" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetString</name></member>
+      <member refid="class_sdf_path_1a8ad00f48495e2e6bbfb3485920696e71" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetTargetPath</name></member>
+      <member refid="class_sdf_path_1a31225e07892b847e3e98473f7f04dbf4" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetText</name></member>
+      <member refid="class_sdf_path_1a36bf22c483e7f514107851f9c8faaceb" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetToken</name></member>
+      <member refid="class_sdf_path_1ace0604a5a83af57bbda444963431c8c5" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>GetVariantSelection</name></member>
+      <member refid="class_sdf_path_1a6ec718687c3ab1ca71f459fd6af46c8b" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>HasPrefix</name></member>
+      <member refid="class_sdf_path_1a458ea9a47c7b224c0d496e4a12e0e659" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>IsAbsolutePath</name></member>
+      <member refid="class_sdf_path_1a277dfdde9ab5121eb82dab94353d6667" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>IsAbsoluteRootOrPrimPath</name></member>
+      <member refid="class_sdf_path_1ad158c53ee477c4f2d7acba3cd12452d2" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>IsAbsoluteRootPath</name></member>
+      <member refid="class_sdf_path_1a43a51a0b54bb8a19b68ff5f09d861b3d" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>IsEmpty</name></member>
+      <member refid="class_sdf_path_1a970e60a5288c37534d15f2ededffcc18" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>IsExpressionPath</name></member>
+      <member refid="class_sdf_path_1a20ad6f88fd54e3b4f273d78fd67fa2d3" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>IsMapperArgPath</name></member>
+      <member refid="class_sdf_path_1abdb96290e258748826ef4d4f32910dbb" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>IsMapperPath</name></member>
+      <member refid="class_sdf_path_1a9bafb2c3e04cd0ff6d2ca2a64e2d4d42" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>IsNamespacedPropertyPath</name></member>
+      <member refid="class_sdf_path_1ae49fb335633cf47d279894f9646440d5" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>IsPrimOrPrimVariantSelectionPath</name></member>
+      <member refid="class_sdf_path_1a93299f20b4d90532349b5105ea5bbbcb" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>IsPrimPath</name></member>
+      <member refid="class_sdf_path_1adb3bbcc350fc138c737f8c18d99e8456" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>IsPrimPropertyPath</name></member>
+      <member refid="class_sdf_path_1a10ba3395e4c97b5ea922bdb03ec2e686" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>IsPrimVariantSelectionPath</name></member>
+      <member refid="class_sdf_path_1a69ed1464cbdb872743a6b9a86de74907" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>IsPropertyPath</name></member>
+      <member refid="class_sdf_path_1a215275ea9c7e897be090b5328359cfb5" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>IsRelationalAttributePath</name></member>
+      <member refid="class_sdf_path_1a8bcc5731c01942e64dcf6fa235bcf9ed" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>IsRootPrimPath</name></member>
+      <member refid="class_sdf_path_1a73d804883fcdf1198ea831515e39232e" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>IsTargetPath</name></member>
+      <member refid="class_sdf_path_1a1499271167c20dd276d87693b18f5226" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>IsValidIdentifier</name></member>
+      <member refid="class_sdf_path_1a8c66a8d5eadec9b49cd9a5f32747834e" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>IsValidNamespacedIdentifier</name></member>
+      <member refid="class_sdf_path_1acec9f4ce12ac98cb7d365646bb0bf35b" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>IsValidPathString</name></member>
+      <member refid="class_sdf_path_1a71ebddbfd0d0d176f98abd7e666689d5" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>JoinIdentifier</name></member>
+      <member refid="class_sdf_path_1a13c0fac9fc1ee9719e692d1ab9df5805" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>JoinIdentifier</name></member>
+      <member refid="class_sdf_path_1a5d8b3131c82ff6f09c7a265258830e59" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>JoinIdentifier</name></member>
+      <member refid="class_sdf_path_1acb024f403d4b8c49c7a5e66d221c524e" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>JoinIdentifier</name></member>
+      <member refid="class_sdf_path_1a057a39843c10795ce68c27d86639db55" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>MakeAbsolutePath</name></member>
+      <member refid="class_sdf_path_1a4e9d4d7cc1c40ae2b35a69e32d6f0abb" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>MakeRelativePath</name></member>
+      <member refid="class_sdf_path_1afb7f17c2d6a7a53528c62158ce9ad335" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>operator!=</name></member>
+      <member refid="class_sdf_path_1aad310c9d17d03812d810bf4e4edf3fb9" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>operator&lt;</name></member>
+      <member refid="class_sdf_path_1a3016b02123ca74bab194219ec9227bf2" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>operator&lt;=</name></member>
+      <member refid="class_sdf_path_1ad405c341013019fb6b9aaa90aa2598a1" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>operator==</name></member>
+      <member refid="class_sdf_path_1a57aa0abebf5481d6ffa80b2483b2bb8a" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>operator&gt;</name></member>
+      <member refid="class_sdf_path_1aae48d25dda744ff6efaf3c363588bb8d" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>operator&gt;=</name></member>
+      <member refid="class_sdf_path_1a4aff400613a556af9b180b056afde195" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>ReflexiveRelativePath</name></member>
+      <member refid="class_sdf_path_1af31641f36475586915e1317aa87818f6" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>RemoveAncestorPaths</name></member>
+      <member refid="class_sdf_path_1a5188047700bc4b8a6786960b7788abd7" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>RemoveCommonSuffix</name></member>
+      <member refid="class_sdf_path_1ac1fcc9c525284def3fc2315b343e3b91" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>RemoveDescendentPaths</name></member>
+      <member refid="class_sdf_path_1ae01eff387b47bcf63459826038b3f833" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>ReplaceName</name></member>
+      <member refid="class_sdf_path_1acecb0aa28f9acd0f113c6c52d0ea3b82" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>ReplacePrefix</name></member>
+      <member refid="class_sdf_path_1a1592d4f22c0608188059400d91c56113" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>ReplaceTargetPath</name></member>
+      <member refid="class_sdf_path_1a7d74a06aa1bae37fe766467bfceebfd1" prot="private" virt="non-virtual"><scope>SdfPath</scope><name>Sdfext_PathAccess</name></member>
+      <member refid="class_sdf_path_1aea68ecfef116a2cc08bc50210662def7" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>SdfPath</name></member>
+      <member refid="class_sdf_path_1a02a5631e3571b1383af85713efb38f35" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>SdfPath</name></member>
+      <member refid="class_sdf_path_1a572017850a86d2a83effe4d8daedbace" prot="private" virt="non-virtual"><scope>SdfPath</scope><name>SdfPath</name></member>
+      <member refid="class_sdf_path_1a335e5a47dbcfab5155cd0ae218ce74c7" prot="private" virt="non-virtual"><scope>SdfPath</scope><name>SdfPath</name></member>
+      <member refid="class_sdf_path_1a79f2d77d1b9c6eeae4f66613b5fd218c" prot="private" virt="non-virtual"><scope>SdfPath</scope><name>SdfPath</name></member>
+      <member refid="class_sdf_path_1a4662a96ce2a0503b4a3e8eb9598a9cbc" prot="private" virt="non-virtual"><scope>SdfPath</scope><name>SdfPath</name></member>
+      <member refid="class_sdf_path_1a9218299b345c74891827813872ed37ec" prot="private" virt="non-virtual"><scope>SdfPath</scope><name>SdfPathAncestorsRange</name></member>
+      <member refid="class_sdf_path_1adc29d6c107a54135f0609c723c1f7bdc" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>StripAllVariantSelections</name></member>
+      <member refid="class_sdf_path_1a8230082d270b014bf412407fe9a526d0" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>StripNamespace</name></member>
+      <member refid="class_sdf_path_1a221902d3b503ca633b9f2ebf550afb62" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>StripNamespace</name></member>
+      <member refid="class_sdf_path_1a841e3e96d81ff509d8f45259d8cd7ae1" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>StripPrefixNamespace</name></member>
+      <member refid="class_sdf_path_1a909ff6c959355afb4b5a5a28ad490622" prot="private" virt="non-virtual"><scope>SdfPath</scope><name>swap</name></member>
+      <member refid="class_sdf_path_1a9ee6a9aa0a486f4092335b7f1cf8b3f1" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>TfHashAppend</name></member>
+      <member refid="class_sdf_path_1ace29b426c1003c910ee565250e4519a6" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>TokenizeIdentifier</name></member>
+      <member refid="class_sdf_path_1a885403f9808560bb1e3611130d9e61e8" prot="public" virt="non-virtual"><scope>SdfPath</scope><name>TokenizeIdentifierAsTokens</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

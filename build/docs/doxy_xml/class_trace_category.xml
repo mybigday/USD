@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_trace_category" kind="class" language="C++" prot="public">
+    <compoundname>TraceCategory</compoundname>
+    <includes refid="category_8h" local="no">category.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="class_trace_category_1a9d11cba9ef50cc60c676bac39bdeccb9" prot="public" static="no" strong="no">
+        <type><ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref></type>
+        <name>@2</name>
+        <enumvalue id="class_trace_category_1a9d11cba9ef50cc60c676bac39bdeccb9a79935518a3889663d8688b6b01fff051" prot="public">
+          <name>Default</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Default category if none are explicitly specified when creating a <ref refid="class_trace_event" kindref="compound">TraceEvent</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/category.h" line="65" column="1" bodyfile="pxr/base/trace/category.h" bodystart="65" bodyend="65"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_trace_category_1a0f89c627039f9b0c7af770cda6245ab4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class TfSingleton&lt; TraceCategory &gt;</definition>
+        <argsstring></argsstring>
+        <name>TfSingleton&lt; TraceCategory &gt;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/category.h" line="75" column="1" bodyfile="pxr/base/trace/category.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_trace_category_1a57bb4a659ae57e9fda211cf0770fd122" prot="private" static="no" mutable="no">
+        <type>std::multimap&lt; <ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref>, std::string &gt;</type>
+        <definition>std::multimap&lt;TraceCategoryId, std::string&gt; _idToNames</definition>
+        <argsstring></argsstring>
+        <name>_idToNames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/category.h" line="83" column="1" bodyfile="pxr/base/trace/category.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_trace_category_1a4a14344b5bd6c66eb04727b11fae850b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>int</type>
+            <declname>N</declname>
+            <defname>N</defname>
+          </param>
+        </templateparamlist>
+        <type>constexpr <ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref></type>
+        <definition>static constexpr TraceCategoryId CreateTraceCategoryId</definition>
+        <argsstring>(const char(&amp;str)[N])</argsstring>
+        <name>CreateTraceCategoryId</name>
+        <param>
+          <type>const char(&amp;)</type>
+          <declname>str</declname>
+          <array>[N]</array>
+        </param>
+        <briefdescription>
+<para>Computes an id for the given a string literal <computeroutput>str</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/category.h" line="58" column="1" bodyfile="pxr/base/trace/category.h" bodystart="58" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_category_1a843883928c4ee80ce9d7e0143debaa18" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API <ref refid="class_trace_category" kindref="compound">TraceCategory</ref> &amp;</type>
+        <definition>static TRACE_API TraceCategory&amp; GetInstance</definition>
+        <argsstring>()</argsstring>
+        <name>GetInstance</name>
+        <briefdescription>
+<para>Singleton accessor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/category.h" line="75" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_trace_category_1a8eb33c2cb2b06b0f3e3e8f4f8b0ff9e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void RegisterCategory</definition>
+        <argsstring>(TraceCategoryId id, const std::string &amp;name)</argsstring>
+        <name>RegisterCategory</name>
+        <param>
+          <type><ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref></type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Associates the <computeroutput>id</computeroutput> with <computeroutput>name</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>These associates are not necessarily unique. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/category.h" line="69" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_category_1af694748b78bedca48c70aa6dcda4b96a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API std::vector&lt; std::string &gt;</type>
+        <definition>TRACE_API std::vector&lt;std::string&gt; GetCategories</definition>
+        <argsstring>(TraceCategoryId id) const</argsstring>
+        <name>GetCategories</name>
+        <param>
+          <type><ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref></type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns all names associated with the <computeroutput>id</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/category.h" line="72" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_trace_category_1a73e80956f0677d2d827d6efe525b3d87" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TraceCategory</definition>
+        <argsstring>()</argsstring>
+        <name>TraceCategory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/category.h" line="80" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This singleton class provides a way to mark <ref refid="class_trace_event" kindref="compound">TraceEvent</ref> instances with category Ids which can be used to filter them. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class also provides a way to associate TraceCategoryId values with human readable names. </para>
+    </detaileddescription>
+    <location file="pxr/base/trace/category.h" line="54" column="1" bodyfile="pxr/base/trace/category.h" bodystart="54" bodyend="84"/>
+    <listofallmembers>
+      <member refid="class_trace_category_1a57bb4a659ae57e9fda211cf0770fd122" prot="private" virt="non-virtual"><scope>TraceCategory</scope><name>_idToNames</name></member>
+      <member refid="class_trace_category_1a4a14344b5bd6c66eb04727b11fae850b" prot="public" virt="non-virtual"><scope>TraceCategory</scope><name>CreateTraceCategoryId</name></member>
+      <member refid="class_trace_category_1a9d11cba9ef50cc60c676bac39bdeccb9a79935518a3889663d8688b6b01fff051" prot="public" virt="non-virtual"><scope>TraceCategory</scope><name>Default</name></member>
+      <member refid="class_trace_category_1af694748b78bedca48c70aa6dcda4b96a" prot="public" virt="non-virtual"><scope>TraceCategory</scope><name>GetCategories</name></member>
+      <member refid="class_trace_category_1a843883928c4ee80ce9d7e0143debaa18" prot="public" virt="non-virtual"><scope>TraceCategory</scope><name>GetInstance</name></member>
+      <member refid="class_trace_category_1a8eb33c2cb2b06b0f3e3e8f4f8b0ff9e5" prot="public" virt="non-virtual"><scope>TraceCategory</scope><name>RegisterCategory</name></member>
+      <member refid="class_trace_category_1a0f89c627039f9b0c7af770cda6245ab4" prot="private" virt="non-virtual"><scope>TraceCategory</scope><name>TfSingleton&lt; TraceCategory &gt;</name></member>
+      <member refid="class_trace_category_1a73e80956f0677d2d827d6efe525b3d87" prot="private" virt="non-virtual"><scope>TraceCategory</scope><name>TraceCategory</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

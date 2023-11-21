@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="group__group__tf___systems_ext" kind="group">
+    <compoundname>group_tf_SystemsExt</compoundname>
+    <title>Systems Extensions and Enhancements</title>
+    <innerfile refid="dl_8h">dl.h</innerfile>
+    <innerfile refid="getenv_8h">getenv.h</innerfile>
+    <innerfile refid="setenv_8h">setenv.h</innerfile>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__group__tf___systems_ext_1gac825116c2b66eaf2acec630016680160" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void *</type>
+        <definition>TF_API void* TfDlopen</definition>
+        <argsstring>(const std::string &amp;filename, int flag, std::string *error=NULL, bool loadScriptBindings=true)</argsstring>
+        <name>TfDlopen</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>flag</declname>
+        </param>
+        <param>
+          <type>std::string *</type>
+          <declname>error</declname>
+          <defval>NULL</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>loadScriptBindings</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Open a dynamic library and notify <computeroutput>lib/tf</computeroutput> that a new module has been loaded. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is a wrapper around <ref refid="group__group__arch___system_functions_1ga048bd0a7e351ee9dac464df1e7dca129" kindref="member">ArchLibraryOpen()</ref> in the sense that this function calls <computeroutput>ArchLibraryOpen</computeroutput>(<computeroutput>filename</computeroutput>, <computeroutput>flag</computeroutput>) but it will additionally load script bindings if scripting is initialized and loading is requested.</para>
+<para>If <computeroutput>error</computeroutput> is not <computeroutput>NULL</computeroutput> it will be set to a system reported error if opening the library failed, otherwise it will be cleared.</para>
+<para>If you set TF_DLOPEN in the TF_DEBUG environment variable then debug output will be reported on each invocation of this function.</para>
+<para>This returns an opaque handle to the opened library or <computeroutput>NULL</computeroutput> on failure. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/dl.h" line="58" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___systems_ext_1gaa7948626ed23f15292eb34ab5b353075" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API int</type>
+        <definition>TF_API int TfDlclose</definition>
+        <argsstring>(void *handle)</argsstring>
+        <name>TfDlclose</name>
+        <param>
+          <type>void *</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Close a dynamic library. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/dl.h" line="65" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___systems_ext_1gab70f54b2cfab33fee28728c4fb640fec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfGetenv</definition>
+        <argsstring>(const std::string &amp;envName, const std::string &amp;defaultValue=&quot;&quot;)</argsstring>
+        <name>TfGetenv</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>envName</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>defaultValue</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Return an environment variable as a string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Return the value of the environment variable <computeroutput>envName</computeroutput> as a string. If the variable is unset, or is the empty string, then <computeroutput>defaultValue</computeroutput> is returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/getenv.h" line="47" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___systems_ext_1ga35452830aca5a419eb60bf9c06248837" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API int</type>
+        <definition>TF_API int TfGetenvInt</definition>
+        <argsstring>(const std::string &amp;envName, int defaultValue)</argsstring>
+        <name>TfGetenvInt</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>envName</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>defaultValue</declname>
+        </param>
+        <briefdescription>
+<para>Return an environment variable as an integer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Return the value of the environment variable <computeroutput>envName</computeroutput> as an integer. If the variable is unset, or is the empty string, then <computeroutput>defaultValue</computeroutput> is returned. Otherwise, the function uses atoi() to convert the string to an integer: the implication being that if the string is not a valid integer, you get back whatever value atoi() comes up with. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/getenv.h" line="58" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___systems_ext_1ga0d0708222b25046ef8518a6794ee404e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API bool</type>
+        <definition>TF_API bool TfGetenvBool</definition>
+        <argsstring>(const std::string &amp;, bool defaultValue)</argsstring>
+        <name>TfGetenvBool</name>
+        <param>
+          <type>const std::string &amp;</type>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>defaultValue</declname>
+        </param>
+        <briefdescription>
+<para>Return an environment variable as a boolean. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Return the value of the environment variable <computeroutput>envName</computeroutput> as a boolean. If the variable is unset, or is the empty string, then <computeroutput>defaultValue</computeroutput> is returned. A value of <computeroutput>true</computeroutput> is returned if the environment variable is any of &quot;true&quot;, &quot;yes&quot;, &quot;on&quot; or &quot;1&quot;; the match is not case sensitive. All other values yield a return value of <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/getenv.h" line="68" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___systems_ext_1ga394682c77897a9060310d12cff30384d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API double</type>
+        <definition>TF_API double TfGetenvDouble</definition>
+        <argsstring>(const std::string &amp;envName, double defaultValue)</argsstring>
+        <name>TfGetenvDouble</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>envName</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>defaultValue</declname>
+        </param>
+        <briefdescription>
+<para>Return an environment variable as a double. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Return the value of the environment variable <computeroutput>envName</computeroutput> as a double. If the variable is unset, or is the empty string, then <computeroutput>defaultValue</computeroutput> is returned. Otherwise, the function uses <ref refid="group__group__tf___string_1gaeab03b8ef5e730ae50cd19cacf4fbb65" kindref="member">TfStringToDouble()</ref> to convert the string to a double: the implication being that if the string is not a valid double, you get back whatever value <ref refid="group__group__tf___string_1gaeab03b8ef5e730ae50cd19cacf4fbb65" kindref="member">TfStringToDouble()</ref> comes up with. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/getenv.h" line="79" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___systems_ext_1ga4f27cbf13445425c98b39a8b7f57886f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API bool</type>
+        <definition>TF_API bool TfSetenv</definition>
+        <argsstring>(const std::string &amp;envName, const std::string &amp;value)</argsstring>
+        <name>TfSetenv</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>envName</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Set an environment variable. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets an environment variable and ensures that it appears in the Python environment if Python is initialized. If Python has not yet been initialized, the variable <computeroutput>envName</computeroutput> is set to <computeroutput>value</computeroutput> in the environment using <computeroutput>setenv</computeroutput>. Otherwise, it is set both in the environment and in Python using <computeroutput>TfPySetenv</computeroutput>. The new value overwrites any existing value.</para>
+<para>If the value cannot be set, false is returned and a warning is posted. Otherwise, the return value is true. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/setenv.h" line="51" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___systems_ext_1gac053404cb28b5659555bd7dad895397f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API bool</type>
+        <definition>TF_API bool TfUnsetenv</definition>
+        <argsstring>(const std::string &amp;envName)</argsstring>
+        <name>TfUnsetenv</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>envName</declname>
+        </param>
+        <briefdescription>
+<para>Unset an environment variable. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Unsets an environment variable and ensures that it is also removed from the Python environment if Python is initialized. If Python has not yet been initialized, the variable <computeroutput>envName</computeroutput> is unset in the environment using <computeroutput>unsetenv</computeroutput>. Otherwise, it is unset both in the environment and in Python using <computeroutput>TfPyUnsetenv</computeroutput>.</para>
+<para>If the value cannot be unset, false is returned and a warning is posted. Otherwise, the return value is true. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/setenv.h" line="66" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Functions/classes for extending/enhancing standard OS functionality. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_ar_asset" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>ArAsset</compoundname>
+    <derivedcompoundref refid="class_ar_filesystem_asset" prot="public" virt="non-virtual">ArFilesystemAsset</derivedcompoundref>
+    <derivedcompoundref refid="class_ar_in_memory_asset" prot="public" virt="non-virtual">ArInMemoryAsset</derivedcompoundref>
+    <derivedcompoundref refid="class_hio_open_v_d_b_ar_asset_interface" prot="public" virt="non-virtual">HioOpenVDBArAssetInterface</derivedcompoundref>
+    <includes refid="asset_8h" local="no">asset.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_ar_asset_1a411ef6f441b58bfa88fb66147dda562f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>AR_API</type>
+        <definition>virtual AR_API ~ArAsset</definition>
+        <argsstring>()</argsstring>
+        <name>~ArAsset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/asset.h" line="47" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ar_asset_1a30b108616ea5f8f1f7e6ea587ba25341" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ArAsset</definition>
+        <argsstring>(const ArAsset &amp;)=delete</argsstring>
+        <name>ArAsset</name>
+        <param>
+          <type>const <ref refid="class_ar_asset" kindref="compound">ArAsset</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/asset.h" line="49" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ar_asset_1ac085a311281b960a466f432f5784b1fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_ar_asset" kindref="compound">ArAsset</ref> &amp;</type>
+        <definition>ArAsset&amp; operator=</definition>
+        <argsstring>(const ArAsset &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_ar_asset" kindref="compound">ArAsset</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/asset.h" line="50" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ar_asset_1a45d4833aaf393870cac659c7a2ba586f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>AR_API size_t</type>
+        <definition>virtual AR_API size_t GetSize</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetSize</name>
+        <reimplementedby refid="class_ar_filesystem_asset_1a4c75b9df7adc569f713fb6db016ba788">GetSize</reimplementedby>
+        <reimplementedby refid="class_ar_in_memory_asset_1a9f7f44a45746fb95ae8764d5f23fc8a5">GetSize</reimplementedby>
+        <briefdescription>
+<para>Returns size of the asset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/asset.h" line="54" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ar_asset_1a0e56e6a4e2d1e605f6042b9ebf0d5824" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>AR_API std::shared_ptr&lt; const char &gt;</type>
+        <definition>virtual AR_API std::shared_ptr&lt;const char&gt; GetBuffer</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetBuffer</name>
+        <reimplementedby refid="class_ar_filesystem_asset_1aaf4934112f61e138229da8d7e1732a2c">GetBuffer</reimplementedby>
+        <reimplementedby refid="class_ar_in_memory_asset_1a8b24d846ca499aa885128f81d43876cc">GetBuffer</reimplementedby>
+        <briefdescription>
+<para>Returns a pointer to a buffer with the contents of the asset, with size given by <ref refid="class_ar_asset_1a45d4833aaf393870cac659c7a2ba586f" kindref="member">GetSize()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns an invalid std::shared_ptr if the contents could not be retrieved.</para>
+<para>The data in the returned buffer must remain valid while there are outstanding copies of the returned std::shared_ptr. Note that the deleter stored in the std::shared_ptr may contain additional data needed to maintain the buffer&apos;s validity. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/asset.h" line="65" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ar_asset_1abc073195b37726763b29e298ecbac49c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>AR_API size_t</type>
+        <definition>virtual AR_API size_t Read</definition>
+        <argsstring>(void *buffer, size_t count, size_t offset) const =0</argsstring>
+        <name>Read</name>
+        <reimplementedby refid="class_ar_filesystem_asset_1ade9a4b94cfc8aa308ca2cd06e910dc13">Read</reimplementedby>
+        <reimplementedby refid="class_ar_in_memory_asset_1a2784695f2730750ce335ca36cd15c8fa">Read</reimplementedby>
+        <param>
+          <type>void *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>offset</declname>
+        </param>
+        <briefdescription>
+<para>Read <computeroutput>count</computeroutput> bytes at <computeroutput>offset</computeroutput> from the beginning of the asset into <computeroutput>buffer</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns number of bytes read, or 0 on error.</para>
+<para>Implementers should range-check calls and return zero for out-of-bounds reads. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/asset.h" line="73" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ar_asset_1a8742ef428d57cd5e896374ffc86aeeb1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>AR_API std::pair&lt; FILE *, size_t &gt;</type>
+        <definition>virtual AR_API std::pair&lt;FILE*, size_t&gt; GetFileUnsafe</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetFileUnsafe</name>
+        <reimplementedby refid="class_ar_in_memory_asset_1a566f12772650a08bd702f8bbd329c822">GetFileUnsafe</reimplementedby>
+        <reimplementedby refid="class_ar_filesystem_asset_1ac4aee20f7469537abbbb706e6c7920c3">GetFileUnsafe</reimplementedby>
+        <briefdescription>
+<para>Returns a read-only FILE* handle and offset for this asset if available, or (nullptr, 0) otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The returned handle must remain valid for the lifetime of this <ref refid="class_ar_asset" kindref="compound">ArAsset</ref> object. The returned offset is the offset from the beginning of the FILE* where the asset&apos;s contents begins.</para>
+<para>This function is marked unsafe because the handle may wind up being used in multiple threads depending on the underlying resolver implementation. For instance, a resolver may cache and return <ref refid="class_ar_asset" kindref="compound">ArAsset</ref> objects with the same FILE* to multiple threads.</para>
+<para>Clients MUST NOT use this handle with functions that cannot be called concurrently on the same file descriptor, e.g. read, fread, fseek, etc. See ArchPRead for a function that can be used to read data from this handle safely. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/asset.h" line="93" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ar_asset_1af177e038784be42c9c086177e0961266" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>AR_API std::shared_ptr&lt; <ref refid="class_ar_asset" kindref="compound">ArAsset</ref> &gt;</type>
+        <definition>virtual AR_API std::shared_ptr&lt;ArAsset&gt; GetDetachedAsset</definition>
+        <argsstring>() const</argsstring>
+        <name>GetDetachedAsset</name>
+        <reimplementedby refid="class_ar_in_memory_asset_1af305b647a505d4e1010094356e0205ca">GetDetachedAsset</reimplementedby>
+        <briefdescription>
+<para>Returns an <ref refid="class_ar_asset" kindref="compound">ArAsset</ref> with the contents of this asset detached from from this asset&apos;s serialized data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>External changes to the serialized data must not have any effect on the <ref refid="class_ar_asset" kindref="compound">ArAsset</ref> returned by this function.</para>
+<para>The default implementation returns a new instance of an <ref refid="class_ar_in_memory_asset" kindref="compound">ArInMemoryAsset</ref> that reads the entire contents of this asset into a heap-allocated buffer. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/asset.h" line="103" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_ar_asset_1ace3fa46a458e5a3ce8a4562cc9617d86" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AR_API</type>
+        <definition>AR_API ArAsset</definition>
+        <argsstring>()</argsstring>
+        <name>ArAsset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/asset.h" line="107" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Interface for accessing the contents of an asset. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_ar_resolver_1aa3a964db701e93c26fc8365ac98fb758" kindref="member">ArResolver::OpenAsset</ref> for how to retrieve instances of this object. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="687">
+        <label>ArAsset</label>
+        <link refid="class_ar_asset"/>
+      </node>
+      <node id="688">
+        <label>ArFilesystemAsset</label>
+        <link refid="class_ar_filesystem_asset"/>
+        <childnode refid="687" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="690">
+        <label>HioOpenVDBArAssetInterface</label>
+        <link refid="class_hio_open_v_d_b_ar_asset_interface"/>
+        <childnode refid="687" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="689">
+        <label>ArInMemoryAsset</label>
+        <link refid="class_ar_in_memory_asset"/>
+        <childnode refid="687" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="pxr/usd/ar/asset.h" line="44" column="1" bodyfile="pxr/usd/ar/asset.h" bodystart="44" bodyend="108"/>
+    <listofallmembers>
+      <member refid="class_ar_asset_1a30b108616ea5f8f1f7e6ea587ba25341" prot="public" virt="non-virtual"><scope>ArAsset</scope><name>ArAsset</name></member>
+      <member refid="class_ar_asset_1ace3fa46a458e5a3ce8a4562cc9617d86" prot="protected" virt="non-virtual"><scope>ArAsset</scope><name>ArAsset</name></member>
+      <member refid="class_ar_asset_1a0e56e6a4e2d1e605f6042b9ebf0d5824" prot="public" virt="pure-virtual"><scope>ArAsset</scope><name>GetBuffer</name></member>
+      <member refid="class_ar_asset_1af177e038784be42c9c086177e0961266" prot="public" virt="virtual"><scope>ArAsset</scope><name>GetDetachedAsset</name></member>
+      <member refid="class_ar_asset_1a8742ef428d57cd5e896374ffc86aeeb1" prot="public" virt="pure-virtual"><scope>ArAsset</scope><name>GetFileUnsafe</name></member>
+      <member refid="class_ar_asset_1a45d4833aaf393870cac659c7a2ba586f" prot="public" virt="pure-virtual"><scope>ArAsset</scope><name>GetSize</name></member>
+      <member refid="class_ar_asset_1ac085a311281b960a466f432f5784b1fc" prot="public" virt="non-virtual"><scope>ArAsset</scope><name>operator=</name></member>
+      <member refid="class_ar_asset_1abc073195b37726763b29e298ecbac49c" prot="public" virt="pure-virtual"><scope>ArAsset</scope><name>Read</name></member>
+      <member refid="class_ar_asset_1a411ef6f441b58bfa88fb66147dda562f" prot="public" virt="virtual"><scope>ArAsset</scope><name>~ArAsset</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

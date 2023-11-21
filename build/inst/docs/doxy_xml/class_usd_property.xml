@@ -1,0 +1,654 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_property" kind="class" language="C++" prot="public">
+    <compoundname>UsdProperty</compoundname>
+    <basecompoundref refid="class_usd_object" prot="public" virt="non-virtual">UsdObject</basecompoundref>
+    <derivedcompoundref refid="class_usd_attribute" prot="public" virt="non-virtual">UsdAttribute</derivedcompoundref>
+    <derivedcompoundref refid="class_usd_relationship" prot="public" virt="non-virtual">UsdRelationship</derivedcompoundref>
+    <includes refid="usd_2property_8h" local="no">property.h</includes>
+      <sectiondef kind="user-defined">
+      <header>Object and Namespace Accessors</header>
+      <memberdef kind="function" id="class_usd_property_1a2159d3d651cd66e4fb1c724be90ed5e0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API SdfPropertySpecHandleVector</type>
+        <definition>USD_API SdfPropertySpecHandleVector GetPropertyStack</definition>
+        <argsstring>(UsdTimeCode time=UsdTimeCode::Default()) const</argsstring>
+        <name>GetPropertyStack</name>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>time</declname>
+          <defval><ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Returns a strength-ordered list of property specs that provide opinions for this property. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>time</computeroutput> is <ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default()</ref>, <emphasis>or</emphasis> this property is a <ref refid="class_usd_relationship" kindref="compound">UsdRelationship</ref> (which are never affected by clips), we will not consider value clips for opinions. For any other <computeroutput>time</computeroutput>, for a <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref>, clips whose samples may contribute an opinion will be included. These specs are ordered from strongest to weakest opinion, although if <computeroutput>time</computeroutput> requires interpolation between two adjacent clips, both clips will appear, sequentially.</para>
+<para><simplesect kind="note"><para>The results returned by this method are meant for debugging and diagnostic purposes. It is <bold>not</bold> advisable to retain a PropertyStack for the purposes of expedited value resolution for properties, since the makeup of an attribute&apos;s PropertyStack may itself be time-varying. To expedite repeated value resolution of attributes, you should instead retain a <computeroutput><ref refid="class_usd_attribute_query" kindref="compound">UsdAttributeQuery</ref></computeroutput> .</para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_clips_a_p_i" kindref="compound">UsdClipsAPI</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="86" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_property_1af744264b3c104a86d28948b26af7060a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API std::vector&lt; std::pair&lt; SdfPropertySpecHandle, <ref refid="class_sdf_layer_offset" kindref="compound">SdfLayerOffset</ref> &gt; &gt;</type>
+        <definition>USD_API std::vector&lt;std::pair&lt;SdfPropertySpecHandle, SdfLayerOffset&gt; &gt; GetPropertyStackWithLayerOffsets</definition>
+        <argsstring>(UsdTimeCode time=UsdTimeCode::Default()) const</argsstring>
+        <name>GetPropertyStackWithLayerOffsets</name>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>time</declname>
+          <defval><ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Returns a strength-ordered list of property specs that provide opinions for this property paired with the cumulative layer offset from the stage&apos;s root layer to the layer containing the property spec. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This behaves exactly the same as <ref refid="class_usd_property_1a2159d3d651cd66e4fb1c724be90ed5e0" kindref="member">UsdProperty::GetPropertyStack</ref> with the addition of providing the cumulative layer offset of each spec&apos;s layer.</para>
+<para><simplesect kind="note"><para>The results returned by this method are meant for debugging and diagnostic purposes. It is <bold>not</bold> advisable to retain a PropertyStack for the purposes of expedited value resolution for properties, since the makeup of an attribute&apos;s PropertyStack may itself be time-varying. To expedite repeated value resolution of attributes, you should instead retain a <computeroutput><ref refid="class_usd_attribute_query" kindref="compound">UsdAttributeQuery</ref></computeroutput> . </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="104" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_property_1a2011318cd445c9fc30a1a00df5318a86" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>USD_API TfToken GetBaseName</definition>
+        <argsstring>() const</argsstring>
+        <name>GetBaseName</name>
+        <briefdescription>
+<para>Return this property&apos;s name with all namespace prefixes removed, i.e. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>the last component of the return value of <ref refid="class_usd_object_1ae57e12beedf10c423e11c5b889343f6d" kindref="member">GetName()</ref></para>
+<para>This is generally the property&apos;s &quot;client name&quot;; property namespaces are often used to group related properties together. The namespace prefixes the property name but many consumers will care only about un-namespaced name, i.e. its BaseName. For more information, see <ref refid="_usd__page__properties_of_scene_description_1Usd_Ordering" kindref="member">Names, Namespace Ordering, and Property Namespaces</ref> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="115" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_property_1a914ef5e6cffe6c3c85f7b1085bea0cf2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>USD_API TfToken GetNamespace</definition>
+        <argsstring>() const</argsstring>
+        <name>GetNamespace</name>
+        <briefdescription>
+<para>Return this property&apos;s complete namespace prefix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Return the empty token if this property has no namespaces.</para>
+<para>This is the complement of <ref refid="class_usd_property_1a2011318cd445c9fc30a1a00df5318a86" kindref="member">GetBaseName()</ref>, although it does <emphasis>not</emphasis> contain a trailing namespace delimiter </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="123" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_property_1a7253ab8dc19d4e7540b49b70bcc82ff6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API std::vector&lt; std::string &gt;</type>
+        <definition>USD_API std::vector&lt;std::string&gt; SplitName</definition>
+        <argsstring>() const</argsstring>
+        <name>SplitName</name>
+        <briefdescription>
+<para>Return this property&apos;s name elements including namespaces and its base name as the final element. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="128" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Core Metadata</header>
+      <memberdef kind="function" id="class_usd_property_1a0ad1f6f9e132e54b4c3fe32f9f962436" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API std::string</type>
+        <definition>USD_API std::string GetDisplayGroup</definition>
+        <argsstring>() const</argsstring>
+        <name>GetDisplayGroup</name>
+        <briefdescription>
+<para>Return this property&apos;s display group (metadata). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This returns the empty token if no display group has been set. <simplesect kind="see"><para><ref refid="class_usd_property_1a66724c4a721e156a88f9262694b86a67" kindref="member">SetDisplayGroup()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="138" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_property_1a66724c4a721e156a88f9262694b86a67" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool SetDisplayGroup</definition>
+        <argsstring>(const std::string &amp;displayGroup) const</argsstring>
+        <name>SetDisplayGroup</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>displayGroup</declname>
+        </param>
+        <briefdescription>
+<para>Sets this property&apos;s display group (metadata). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns true on success.</para>
+<para>DisplayGroup provides UI hinting for grouping related properties together for display. We define a convention for specifying nesting of groups by recognizing the property namespace separator in displayGroup as denoting group-nesting. <simplesect kind="see"><para><ref refid="class_usd_property_1ad136e193894e58ad6d46f29f9210379b" kindref="member">SetNestedDisplayGroups()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="148" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_property_1a416edbbf0b17dc8292bae42fc6e67951" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool ClearDisplayGroup</definition>
+        <argsstring>() const</argsstring>
+        <name>ClearDisplayGroup</name>
+        <briefdescription>
+<para>Clears this property&apos;s display group (metadata) in the current EditTarget (only). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns true on success. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="153" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_property_1aa6ff8f0c0c16e9550e4e779e345b5343" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool HasAuthoredDisplayGroup</definition>
+        <argsstring>() const</argsstring>
+        <name>HasAuthoredDisplayGroup</name>
+        <briefdescription>
+<para>Returns true if displayGroup was explicitly authored and <ref refid="class_usd_object_1ad2d76f736733f3ad51aa1ea1df6f4d44" kindref="member">GetMetadata()</ref> will return a meaningful value for displayGroup. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="158" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_property_1aa7ca9f249313195de824478cbebc8554" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API std::vector&lt; std::string &gt;</type>
+        <definition>USD_API std::vector&lt;std::string&gt; GetNestedDisplayGroups</definition>
+        <argsstring>() const</argsstring>
+        <name>GetNestedDisplayGroups</name>
+        <briefdescription>
+<para>Return this property&apos;s displayGroup as a sequence of groups to be nested, or an empty vector if displayGroup is empty or not authored. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="163" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_property_1ad136e193894e58ad6d46f29f9210379b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool SetNestedDisplayGroups</definition>
+        <argsstring>(const std::vector&lt; std::string &gt; &amp;nestedGroups) const</argsstring>
+        <name>SetNestedDisplayGroups</name>
+        <param>
+          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <declname>nestedGroups</declname>
+        </param>
+        <briefdescription>
+<para>Sets this property&apos;s display group (metadata) to the nested sequence. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns true on success.</para>
+<para>A displayGroup set with this method can still be retrieved with <ref refid="class_usd_property_1a0ad1f6f9e132e54b4c3fe32f9f962436" kindref="member">GetDisplayGroup()</ref>, with the namespace separator embedded in the result. If <computeroutput>nestedGroups</computeroutput> is empty, we author an empty string for displayGroup. <simplesect kind="see"><para><ref refid="class_usd_property_1a66724c4a721e156a88f9262694b86a67" kindref="member">SetDisplayGroup()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="173" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_property_1ad0ffcc4c9b780ba8f6dd5a92746c0059" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool IsCustom</definition>
+        <argsstring>() const</argsstring>
+        <name>IsCustom</name>
+        <briefdescription>
+<para>Return true if this is a custom property (i.e., not part of a prim schema). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The &apos;custom&apos; modifier in USD serves the same function as Alembic&apos;s &apos;userProperties&apos;, which is to say as a categorization for ad hoc client data not formalized into any schema, and therefore not carrying an expectation of specific processing by consuming applications. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="184" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_property_1a3092786289fbc8cf2c3c0df08296c9e9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool SetCustom</definition>
+        <argsstring>(bool isCustom) const</argsstring>
+        <name>SetCustom</name>
+        <param>
+          <type>bool</type>
+          <declname>isCustom</declname>
+        </param>
+        <briefdescription>
+<para>Set the value for custom at the current EditTarget, return true on success, false if the value can not be written. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><bold>Note</bold> that this value should not be changed as it is typically either automatically authored or provided by a property definition. This method is provided primarily for fixing invalid scene description. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="193" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Existence and Validity</header>
+      <memberdef kind="function" id="class_usd_property_1a409637b99e0b5b487b9e7d1d2016dbfc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool IsDefined</definition>
+        <argsstring>() const</argsstring>
+        <name>IsDefined</name>
+        <briefdescription>
+<para>Return true if this is a builtin property or if the strongest authored <ref refid="class_sdf_property_spec" kindref="compound">SdfPropertySpec</ref> for this property&apos;s path matches this property&apos;s dynamic type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>That is, <ref refid="class_sdf_relationship_spec" kindref="compound">SdfRelationshipSpec</ref> in case this is a <ref refid="class_usd_relationship" kindref="compound">UsdRelationship</ref>, and <ref refid="class_sdf_attribute_spec" kindref="compound">SdfAttributeSpec</ref> in case this is a <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref>. Return <computeroutput>false</computeroutput> if this property&apos;s prim has expired.</para>
+<para>For attributes, a <computeroutput>true</computeroutput> return does not imply that this attribute possesses a value, only that has been declared, is of a certain type and variability, and that it is safe to use to query and author values and metadata. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="210" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_property_1ac8f562e95497111de63cedca83a3bfd4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool IsAuthored</definition>
+        <argsstring>() const</argsstring>
+        <name>IsAuthored</name>
+        <briefdescription>
+<para>Return true if there are any authored opinions for this property in any layer that contributes to this stage, false otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="215" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_property_1aedb04011aab7cb14ef71e6e7933129bd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool IsAuthoredAt</definition>
+        <argsstring>(const class UsdEditTarget &amp;editTarget) const</argsstring>
+        <name>IsAuthoredAt</name>
+        <param>
+          <type>const class <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> &amp;</type>
+          <declname>editTarget</declname>
+        </param>
+        <briefdescription>
+<para>Return true if there is an <ref refid="class_sdf_property_spec" kindref="compound">SdfPropertySpec</ref> authored for this property at the given <emphasis>editTarget</emphasis>, otherwise return false. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that this method does not do partial composition. It does not consider whether authored scene description exists at <emphasis>editTarget</emphasis> or weaker, only <bold>exactly at</bold> the given <emphasis>editTarget</emphasis>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="223" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Flattening</header>
+      <memberdef kind="friend" id="class_usd_property_1aa332483a46ed09b95ae5344dcf051b92" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class UsdAttribute</definition>
+        <argsstring></argsstring>
+        <name>UsdAttribute</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="285" column="1" bodyfile="pxr/usd/usd/property.h" bodystart="285" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_usd_property_1a4e7075a31a58b84795edf0b8f11f228e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class UsdObject</definition>
+        <argsstring></argsstring>
+        <name>UsdObject</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="286" column="1" bodyfile="pxr/usd/usd/property.h" bodystart="286" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_usd_property_1a2456ef04cace6b3b67dad91da7f430b8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class UsdPrim</definition>
+        <argsstring></argsstring>
+        <name>UsdPrim</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="287" column="1" bodyfile="pxr/usd/usd/property.h" bodystart="287" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_usd_property_1a42568ffb2bb6a89af14beca5d6603ad9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class UsdRelationship</definition>
+        <argsstring></argsstring>
+        <name>UsdRelationship</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="288" column="1" bodyfile="pxr/usd/usd/property.h" bodystart="288" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_property_1a8768ec57187614071e3df8b60d7f26eb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_usd_property" kindref="compound">UsdProperty</ref></type>
+        <definition>USD_API UsdProperty FlattenTo</definition>
+        <argsstring>(const UsdPrim &amp;parent) const</argsstring>
+        <name>FlattenTo</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+<para>Flattens this property to a property spec with the same name beneath the given <computeroutput>parent</computeroutput> prim in the edit target of its owning stage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The <computeroutput>parent</computeroutput> prim may belong to a different stage than this property&apos;s owning stage.</para>
+<para>Flattening authors all authored resolved values and metadata for this property into the destination property spec. If this property is a builtin property, fallback values and metadata will also be authored if the destination property has a different fallback value or no fallback value, or if the destination property has an authored value that overrides its fallback.</para>
+<para>Attribute connections and relationship targets that target an object beneath this property&apos;s owning prim will be remapped to target objects beneath the destination <computeroutput>parent</computeroutput> prim.</para>
+<para>If the destination spec already exists, it will be overwritten.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_stage_1ae3271778fa2ceeb82fbd51296610820a" kindref="member">UsdStage::Flatten</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="252" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_property_1ad1836afc78a4368306599c26d4238818" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_usd_property" kindref="compound">UsdProperty</ref></type>
+        <definition>USD_API UsdProperty FlattenTo</definition>
+        <argsstring>(const UsdPrim &amp;parent, const TfToken &amp;propName) const</argsstring>
+        <name>FlattenTo</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>propName</declname>
+        </param>
+        <briefdescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. Flattens this property to a property spec with the given <computeroutput>propName</computeroutput> beneath the given <computeroutput>parent</computeroutput> prim in the edit target of its owning stage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The <computeroutput>parent</computeroutput> prim may belong to a different stage than this property&apos;s owning stage. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="262" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_property_1ab89fa3e003dcd4fe843fc4b6ac8e51a8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_usd_property" kindref="compound">UsdProperty</ref></type>
+        <definition>USD_API UsdProperty FlattenTo</definition>
+        <argsstring>(const UsdProperty &amp;property) const</argsstring>
+        <name>FlattenTo</name>
+        <param>
+          <type>const <ref refid="class_usd_property" kindref="compound">UsdProperty</ref> &amp;</type>
+          <declname>property</declname>
+        </param>
+        <briefdescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. Flattens this property to a property spec for the given <computeroutput>property</computeroutput> in the edit target of its owning prim&apos;s stage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The <computeroutput>property</computeroutput> owning prim may belong to a different stage than this property&apos;s owning stage. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="272" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_property_1ad6896705d65d50b04ceaba59ba9c71d8" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Derived</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>UsdProperty</definition>
+        <argsstring>(_Null&lt; Derived &gt;)</argsstring>
+        <name>UsdProperty</name>
+        <param>
+          <type>_Null&lt; Derived &gt;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="276" column="1" bodyfile="pxr/usd/usd/property.h" bodystart="276" bodyend="276"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_property_1a0f1b258b0b7494094a22463f9edc27ee" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _GetTargets</definition>
+        <argsstring>(SdfSpecType specType, SdfPathVector *out, bool *foundErrors=nullptr) const</argsstring>
+        <name>_GetTargets</name>
+        <param>
+          <type><ref refid="usd_2sdf_2types_8h_1a1393f770f7685f4c58baf0b34679e522" kindref="member">SdfSpecType</ref></type>
+          <declname>specType</declname>
+        </param>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>bool *</type>
+          <declname>foundErrors</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="281" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_property_1a25681f00a9fafa988286a7389a696a43" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdProperty</definition>
+        <argsstring>(UsdObjType objType, const Usd_PrimDataHandle &amp;prim, const SdfPath &amp;proxyPrimPath, const TfToken &amp;propName)</argsstring>
+        <name>UsdProperty</name>
+        <param>
+          <type><ref refid="object_8h_1ada9a9a926dbc7aa06b0449ed00d11097" kindref="member">UsdObjType</ref></type>
+          <declname>objType</declname>
+        </param>
+        <param>
+          <type>const Usd_PrimDataHandle &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>proxyPrimPath</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>propName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="291" column="1" bodyfile="pxr/usd/usd/property.h" bodystart="291" bodyend="295"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_property_1a62328a1b3ff6c104338d4a4aa813b716" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdProperty</definition>
+        <argsstring>()</argsstring>
+        <name>UsdProperty</name>
+        <briefdescription>
+<para>Construct an invalid property. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/property.h" line="58" column="1" bodyfile="pxr/usd/usd/property.h" bodystart="58" bodyend="58"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Base class for <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> and <ref refid="class_usd_relationship" kindref="compound">UsdRelationship</ref> scenegraph objects. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="class_usd_property" kindref="compound">UsdProperty</ref> has a bool conversion operator that validates that the property <ref refid="class_usd_property_1a409637b99e0b5b487b9e7d1d2016dbfc" kindref="member">IsDefined()</ref> and thus valid for querying and authoring values and metadata. This is a fairly expensive query that we do <bold>not</bold> cache, so if client code retains <ref refid="class_usd_property" kindref="compound">UsdProperty</ref> objects it should manage its object validity closely for performance. An ideal pattern is to listen for <ref refid="class_usd_notice_1_1_stage_contents_changed" kindref="compound">UsdNotice::StageContentsChanged</ref> notifications, and revalidate/refetch retained UsdObjects only then and otherwise use them without validity checking. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="7903">
+        <label>UsdRelationship</label>
+        <link refid="class_usd_relationship"/>
+        <childnode refid="7900" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7902">
+        <label>UsdAttribute</label>
+        <link refid="class_usd_attribute"/>
+        <childnode refid="7900" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7900">
+        <label>UsdProperty</label>
+        <link refid="class_usd_property"/>
+        <childnode refid="7901" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7901">
+        <label>UsdObject</label>
+        <link refid="class_usd_object"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="7904">
+        <label>UsdProperty</label>
+        <link refid="class_usd_property"/>
+        <childnode refid="7905" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7905">
+        <label>UsdObject</label>
+        <link refid="class_usd_object"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/usd/usd/property.h" line="55" column="1" bodyfile="pxr/usd/usd/property.h" bodystart="55" bodyend="297"/>
+    <listofallmembers>
+      <member refid="class_usd_object_1a49fff1f7d23dfc1f95c40ed8bca888f7" prot="protected" virt="non-virtual"><scope>UsdProperty</scope><name>_GetDefiningSpecType</name></member>
+      <member refid="class_usd_object_1aaaa93a1af279c8b5551391a8b45c7bbc" prot="protected" virt="non-virtual"><scope>UsdProperty</scope><name>_GetStage</name></member>
+      <member refid="class_usd_property_1a0f1b258b0b7494094a22463f9edc27ee" prot="protected" virt="non-virtual"><scope>UsdProperty</scope><name>_GetTargets</name></member>
+      <member refid="class_usd_object_1a476be2b495a6fcc0f03f1b52aa61745d" prot="protected" virt="non-virtual"><scope>UsdProperty</scope><name>_Prim</name></member>
+      <member refid="class_usd_object_1a0f84e075219fbeb85f40a5533ac6b550" prot="protected" virt="non-virtual"><scope>UsdProperty</scope><name>_PropName</name></member>
+      <member refid="class_usd_object_1a47e60c6fc1efca5e426fd0b40a049236" prot="protected" virt="non-virtual"><scope>UsdProperty</scope><name>_ProxyPrimPath</name></member>
+      <member refid="class_usd_object_1aaca099fe79c1bbdd2216e7cb583952a9" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>As</name></member>
+      <member refid="class_usd_object_1a85151085271ffb20e4c642a8a854f786" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>ClearAssetInfo</name></member>
+      <member refid="class_usd_object_1aadb1b6b9372e1de8b0cef16a8809de0a" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>ClearAssetInfoByKey</name></member>
+      <member refid="class_usd_object_1a30d686bc90f3d7d6753086a484d86ed4" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>ClearCustomData</name></member>
+      <member refid="class_usd_object_1a5abc2ea6c40a3b8b9bc60896cfee0c63" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>ClearCustomDataByKey</name></member>
+      <member refid="class_usd_property_1a416edbbf0b17dc8292bae42fc6e67951" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>ClearDisplayGroup</name></member>
+      <member refid="class_usd_object_1a45f102f292999a4d2c2d5015d54ab9dc" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>ClearDisplayName</name></member>
+      <member refid="class_usd_object_1ab84f704415b18a9819918a1a73732f38" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>ClearDocumentation</name></member>
+      <member refid="class_usd_object_1a5b6b31dcfcfb34f43f334161522de847" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>ClearHidden</name></member>
+      <member refid="class_usd_object_1af75ddb7982a5b5c77f9840e67df94435" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>ClearMetadata</name></member>
+      <member refid="class_usd_object_1afd756d242f6026a3d7c5606badbf8411" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>ClearMetadataByDictKey</name></member>
+      <member refid="class_usd_property_1a8768ec57187614071e3df8b60d7f26eb" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>FlattenTo</name></member>
+      <member refid="class_usd_property_1ad1836afc78a4368306599c26d4238818" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>FlattenTo</name></member>
+      <member refid="class_usd_property_1ab89fa3e003dcd4fe843fc4b6ac8e51a8" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>FlattenTo</name></member>
+      <member refid="class_usd_object_1ac81c4a2222e6c4957ed7a540c05e2346" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetAllAuthoredMetadata</name></member>
+      <member refid="class_usd_object_1afd698d0849b1a8dd4e9a4bf7608e8754" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetAllMetadata</name></member>
+      <member refid="class_usd_object_1a568ab5eceb43fd673cad556f30df6619" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetAssetInfo</name></member>
+      <member refid="class_usd_object_1ada201f20c6d4b33ec27fd459703909e9" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetAssetInfoByKey</name></member>
+      <member refid="class_usd_property_1a2011318cd445c9fc30a1a00df5318a86" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetBaseName</name></member>
+      <member refid="class_usd_object_1abea26b9c6a71883a2d9da4ff64952391" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetCustomData</name></member>
+      <member refid="class_usd_object_1a9aebce4a579e9bb24385bac6e4ae3186" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetCustomDataByKey</name></member>
+      <member refid="class_usd_object_1aa8476a8039c198245c87e27b0f6b7e78" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetDescription</name></member>
+      <member refid="class_usd_property_1a0ad1f6f9e132e54b4c3fe32f9f962436" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetDisplayGroup</name></member>
+      <member refid="class_usd_object_1afea773af9042346906dbd1226d704aeb" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetDisplayName</name></member>
+      <member refid="class_usd_object_1afbeb96db494ea5fa795d937e532083c9" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetDocumentation</name></member>
+      <member refid="class_usd_object_1ad2d76f736733f3ad51aa1ea1df6f4d44" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetMetadata</name></member>
+      <member refid="class_usd_object_1af114545bd56cd7619e7d4f2f884e4128" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetMetadata</name></member>
+      <member refid="class_usd_object_1aba47c41ec8cc536290c04e219f12589c" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetMetadataByDictKey</name></member>
+      <member refid="class_usd_object_1a3bdf70a1d4a8754a0cb51cddab11b299" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetMetadataByDictKey</name></member>
+      <member refid="class_usd_object_1ae57e12beedf10c423e11c5b889343f6d" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetName</name></member>
+      <member refid="class_usd_property_1a914ef5e6cffe6c3c85f7b1085bea0cf2" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetNamespace</name></member>
+      <member refid="class_usd_object_1aa5d32fe69eb9f41ff16222ce8458f67e" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetNamespaceDelimiter</name></member>
+      <member refid="class_usd_property_1aa7ca9f249313195de824478cbebc8554" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetNestedDisplayGroups</name></member>
+      <member refid="class_usd_object_1a936bfb1e341cc81184c64af44763c433" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetPath</name></member>
+      <member refid="class_usd_object_1a4ba10e023e7f3f3c93131bc7fc3146b7" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetPrim</name></member>
+      <member refid="class_usd_object_1ae980898ec578c6f8082717ceac44a11e" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetPrimPath</name></member>
+      <member refid="class_usd_property_1a2159d3d651cd66e4fb1c724be90ed5e0" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetPropertyStack</name></member>
+      <member refid="class_usd_property_1af744264b3c104a86d28948b26af7060a" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetPropertyStackWithLayerOffsets</name></member>
+      <member refid="class_usd_object_1acbf11fd10a72dbc827b2f3738d2edfde" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>GetStage</name></member>
+      <member refid="class_usd_object_1aac2bfbc79842758d55ad739f471ff437" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>HasAssetInfo</name></member>
+      <member refid="class_usd_object_1a4f337c0c1709d3e161a8ff34f46eb7e5" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>HasAssetInfoKey</name></member>
+      <member refid="class_usd_object_1af05106a278e314f85483651af43e8f68" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>HasAuthoredAssetInfo</name></member>
+      <member refid="class_usd_object_1a7cc57b254d41d8f09f95b8621f238e49" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>HasAuthoredAssetInfoKey</name></member>
+      <member refid="class_usd_object_1afe9a33d79276073db9dbc712861c3aa0" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>HasAuthoredCustomData</name></member>
+      <member refid="class_usd_object_1a0b5df6ddc5f201cc3e42709b8949bb9c" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>HasAuthoredCustomDataKey</name></member>
+      <member refid="class_usd_property_1aa6ff8f0c0c16e9550e4e779e345b5343" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>HasAuthoredDisplayGroup</name></member>
+      <member refid="class_usd_object_1a6af100fedb961a5952b62a94bc8e725b" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>HasAuthoredDisplayName</name></member>
+      <member refid="class_usd_object_1ab0e3e800ab9fdaf480b767a225208767" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>HasAuthoredDocumentation</name></member>
+      <member refid="class_usd_object_1a904b990143e4b62ac64e3d1ebeaf5bdc" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>HasAuthoredHidden</name></member>
+      <member refid="class_usd_object_1a37211404a939811e841d90c65cd19999" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>HasAuthoredMetadata</name></member>
+      <member refid="class_usd_object_1a20a01b0dd0dd51f9439b6a3a231c76ef" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>HasAuthoredMetadataDictKey</name></member>
+      <member refid="class_usd_object_1ae3d80901c17a644af30bdef5c265580c" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>HasCustomData</name></member>
+      <member refid="class_usd_object_1a2de3d809c116fe60c3646d90dcbba87f" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>HasCustomDataKey</name></member>
+      <member refid="class_usd_object_1ae2d99fd05dbc39c2d9746fe639c24825" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>HasMetadata</name></member>
+      <member refid="class_usd_object_1a911c19d77fe0552877918517818e7399" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>HasMetadataDictKey</name></member>
+      <member refid="class_usd_object_1a7152c172b8551a1e222bf446ce7689fd" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>Is</name></member>
+      <member refid="class_usd_property_1ac8f562e95497111de63cedca83a3bfd4" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>IsAuthored</name></member>
+      <member refid="class_usd_property_1aedb04011aab7cb14ef71e6e7933129bd" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>IsAuthoredAt</name></member>
+      <member refid="class_usd_property_1ad0ffcc4c9b780ba8f6dd5a92746c0059" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>IsCustom</name></member>
+      <member refid="class_usd_property_1a409637b99e0b5b487b9e7d1d2016dbfc" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>IsDefined</name></member>
+      <member refid="class_usd_object_1aaccbe79a26ceada03ab81918b30a383e" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>IsHidden</name></member>
+      <member refid="class_usd_object_1ac532c4b500b1a85ea22217f2c65a70ed" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>IsValid</name></member>
+      <member refid="class_usd_object_1a67b76affb3b5d35fa419ac234144038b" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>operator bool</name></member>
+      <member refid="class_usd_object_1acd1183e9097ec5de924a87b084bb6d08" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>SetAssetInfo</name></member>
+      <member refid="class_usd_object_1a2d4070d8ad13d6880deb6fcdb6679183" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>SetAssetInfoByKey</name></member>
+      <member refid="class_usd_property_1a3092786289fbc8cf2c3c0df08296c9e9" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>SetCustom</name></member>
+      <member refid="class_usd_object_1ac4f24685000b88fbdf783de2b1546995" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>SetCustomData</name></member>
+      <member refid="class_usd_object_1abdcc93cd6a4dd8ad2bbe2134316ad836" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>SetCustomDataByKey</name></member>
+      <member refid="class_usd_property_1a66724c4a721e156a88f9262694b86a67" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>SetDisplayGroup</name></member>
+      <member refid="class_usd_object_1a89d396665875d4d4a88b5ecb0a22acb0" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>SetDisplayName</name></member>
+      <member refid="class_usd_object_1a207a3fac40b4bd2dca8e9bce07d398e9" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>SetDocumentation</name></member>
+      <member refid="class_usd_object_1a0e3d2a1a0e00d5e4ba2ba8aad555d593" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>SetHidden</name></member>
+      <member refid="class_usd_object_1a1a5325c3bfad050926f03f867a803c03" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>SetMetadata</name></member>
+      <member refid="class_usd_object_1abccca1c487755a7f08e6e4b042d39ede" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>SetMetadata</name></member>
+      <member refid="class_usd_object_1a7f3b367075ca8d6bba9fbf3636183ff3" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>SetMetadataByDictKey</name></member>
+      <member refid="class_usd_object_1a0c04b54500b5b6d5ef0e8aca66282770" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>SetMetadataByDictKey</name></member>
+      <member refid="class_usd_property_1ad136e193894e58ad6d46f29f9210379b" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>SetNestedDisplayGroups</name></member>
+      <member refid="class_usd_property_1a7253ab8dc19d4e7540b49b70bcc82ff6" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>SplitName</name></member>
+      <member refid="class_usd_property_1aa332483a46ed09b95ae5344dcf051b92" prot="private" virt="non-virtual"><scope>UsdProperty</scope><name>UsdAttribute</name></member>
+      <member refid="class_usd_property_1a4e7075a31a58b84795edf0b8f11f228e" prot="private" virt="non-virtual"><scope>UsdProperty</scope><name>UsdObject</name></member>
+      <member refid="class_usd_object_1a385fde82261ce94db08ca9b4d53966ab" prot="public" virt="non-virtual" ambiguityscope="UsdObject::"><scope>UsdProperty</scope><name>UsdObject</name></member>
+      <member refid="class_usd_object_1a16bdb9fdb779ddaa849433d5c029a2a5" prot="protected" virt="non-virtual" ambiguityscope="UsdObject::"><scope>UsdProperty</scope><name>UsdObject</name></member>
+      <member refid="class_usd_object_1adc7d0f32c2146c7ed23416283a39e991" prot="protected" virt="non-virtual" ambiguityscope="UsdObject::"><scope>UsdProperty</scope><name>UsdObject</name></member>
+      <member refid="class_usd_object_1a2331471890f65208bdef3fa70d77fd16" prot="protected" virt="non-virtual" ambiguityscope="UsdObject::"><scope>UsdProperty</scope><name>UsdObject</name></member>
+      <member refid="class_usd_property_1a2456ef04cace6b3b67dad91da7f430b8" prot="private" virt="non-virtual"><scope>UsdProperty</scope><name>UsdPrim</name></member>
+      <member refid="class_usd_property_1a62328a1b3ff6c104338d4a4aa813b716" prot="public" virt="non-virtual"><scope>UsdProperty</scope><name>UsdProperty</name></member>
+      <member refid="class_usd_property_1ad6896705d65d50b04ceaba59ba9c71d8" prot="protected" virt="non-virtual"><scope>UsdProperty</scope><name>UsdProperty</name></member>
+      <member refid="class_usd_property_1a25681f00a9fafa988286a7389a696a43" prot="private" virt="non-virtual"><scope>UsdProperty</scope><name>UsdProperty</name></member>
+      <member refid="class_usd_property_1a42568ffb2bb6a89af14beca5d6603ad9" prot="private" virt="non-virtual"><scope>UsdProperty</scope><name>UsdRelationship</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

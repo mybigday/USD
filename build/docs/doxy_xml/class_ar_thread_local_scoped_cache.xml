@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_ar_thread_local_scoped_cache" kind="class" language="C++" prot="public">
+    <compoundname>ArThreadLocalScopedCache</compoundname>
+    <includes refid="thread_local_scoped_cache_8h" local="no">threadLocalScopedCache.h</includes>
+    <templateparamlist>
+      <param>
+        <type>class CachedType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_ar_thread_local_scoped_cache_1a6d1689e8be7f129e97da7a3f958c00d8" prot="public" static="no">
+        <type>std::shared_ptr&lt; CachedType &gt;</type>
+        <definition>using CachePtr =  std::shared_ptr&lt;CachedType&gt;</definition>
+        <argsstring></argsstring>
+        <name>CachePtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/threadLocalScopedCache.h" line="69" column="1" bodyfile="pxr/usd/ar/threadLocalScopedCache.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_ar_thread_local_scoped_cache_1af085e3a89577a8be81848ffd05622ce4" prot="private" static="no">
+        <type>std::vector&lt; CachePtr &gt;</type>
+        <definition>using _CachePtrStack =  std::vector&lt;CachePtr&gt;</definition>
+        <argsstring></argsstring>
+        <name>_CachePtrStack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/threadLocalScopedCache.h" line="113" column="1" bodyfile="pxr/usd/ar/threadLocalScopedCache.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_ar_thread_local_scoped_cache_1a9069a8831d4cbfc9c76ce0f50e9e3f49" prot="private" static="no">
+        <type>tbb::enumerable_thread_specific&lt; _CachePtrStack &gt;</type>
+        <definition>using _ThreadLocalCachePtrStack =  tbb::enumerable_thread_specific&lt;_CachePtrStack&gt;</definition>
+        <argsstring></argsstring>
+        <name>_ThreadLocalCachePtrStack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/threadLocalScopedCache.h" line="114" column="1" bodyfile="pxr/usd/ar/threadLocalScopedCache.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_ar_thread_local_scoped_cache_1a115ba2be999d41cd732e7803a746ab4b" prot="private" static="no" mutable="no">
+        <type>_ThreadLocalCachePtrStack</type>
+        <definition>_ThreadLocalCachePtrStack _threadCacheStack</definition>
+        <argsstring></argsstring>
+        <name>_threadCacheStack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/threadLocalScopedCache.h" line="116" column="1" bodyfile="pxr/usd/ar/threadLocalScopedCache.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_ar_thread_local_scoped_cache_1adffc75d7cbb33cab90ba945a478a8f24" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BeginCacheScope</definition>
+        <argsstring>(VtValue *cacheScopeData)</argsstring>
+        <name>BeginCacheScope</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> *</type>
+          <declname>cacheScopeData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/threadLocalScopedCache.h" line="71" column="1" bodyfile="pxr/usd/ar/threadLocalScopedCache.h" bodystart="71" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ar_thread_local_scoped_cache_1a8c7906037ddd7cb58522101ec69d4c69" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EndCacheScope</definition>
+        <argsstring>(VtValue *cacheScopeData)</argsstring>
+        <name>EndCacheScope</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> *</type>
+          <declname>cacheScopeData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/threadLocalScopedCache.h" line="98" column="1" bodyfile="pxr/usd/ar/threadLocalScopedCache.h" bodystart="98" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ar_thread_local_scoped_cache_1a265e25718230d4fdea07d77d781e9fae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>CachePtr</type>
+        <definition>CachePtr GetCurrentCache</definition>
+        <argsstring>()</argsstring>
+        <name>GetCurrentCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ar/threadLocalScopedCache.h" line="106" column="1" bodyfile="pxr/usd/ar/threadLocalScopedCache.h" bodystart="106" bodyend="110"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Utility class for custom resolver implementations. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class wraps up a common pattern for implementing thread-local scoped caches for <ref refid="class_ar_resolver_1a522ae6b8a14dc87c9116109e619f062b" kindref="member">ArResolver::BeginCacheScope</ref> and <ref refid="class_ar_resolver_1a266aaced9fc6decb4ae2ad884bd46517" kindref="member">ArResolver::EndCacheScope</ref>.</para>
+<para><programlisting filename=".cpp"><codeline><highlight class="keyword">class<sp/></highlight><highlight class="normal">MyResolver<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_ar_resolver" kindref="compound">ArResolver</ref><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>ResolveCache<sp/>=<sp/><ref refid="class_ar_thread_local_scoped_cache" kindref="compound">ArThreadLocalScopedCache</ref>&lt;...&gt;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ResolveCache<sp/>_cache;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BeginCacheScope(<ref refid="class_vt_value" kindref="compound">VtValue</ref>*<sp/>data)<sp/>{<sp/>_cache.BeginCacheScope(data);<sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>EndCacheScope(<ref refid="class_vt_value" kindref="compound">VtValue</ref>*<sp/>data)<sp/>{<sp/>_cache.EndCacheScope(data);<sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Resolve(...)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>caching<sp/>is<sp/>active<sp/>in<sp/>this<sp/>thread,<sp/>retrieve<sp/>the<sp/>current</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cache<sp/>and<sp/>use<sp/>it<sp/>to<sp/>lookup/store<sp/>values.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ResolveCache::CachePtr<sp/>cache<sp/>=<sp/>_cache.GetCurrentCache())<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>...</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Otherwise,<sp/>caching<sp/>is<sp/>not<sp/>active</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>...</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="class_ar_resolver_1ArResolver_scopedCache" kindref="member">Scoped Resolution Cache</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="pxr/usd/ar/threadLocalScopedCache.h" line="67" column="1" bodyfile="pxr/usd/ar/threadLocalScopedCache.h" bodystart="66" bodyend="117"/>
+    <listofallmembers>
+      <member refid="class_ar_thread_local_scoped_cache_1af085e3a89577a8be81848ffd05622ce4" prot="private" virt="non-virtual"><scope>ArThreadLocalScopedCache</scope><name>_CachePtrStack</name></member>
+      <member refid="class_ar_thread_local_scoped_cache_1a115ba2be999d41cd732e7803a746ab4b" prot="private" virt="non-virtual"><scope>ArThreadLocalScopedCache</scope><name>_threadCacheStack</name></member>
+      <member refid="class_ar_thread_local_scoped_cache_1a9069a8831d4cbfc9c76ce0f50e9e3f49" prot="private" virt="non-virtual"><scope>ArThreadLocalScopedCache</scope><name>_ThreadLocalCachePtrStack</name></member>
+      <member refid="class_ar_thread_local_scoped_cache_1adffc75d7cbb33cab90ba945a478a8f24" prot="public" virt="non-virtual"><scope>ArThreadLocalScopedCache</scope><name>BeginCacheScope</name></member>
+      <member refid="class_ar_thread_local_scoped_cache_1a6d1689e8be7f129e97da7a3f958c00d8" prot="public" virt="non-virtual"><scope>ArThreadLocalScopedCache</scope><name>CachePtr</name></member>
+      <member refid="class_ar_thread_local_scoped_cache_1a8c7906037ddd7cb58522101ec69d4c69" prot="public" virt="non-virtual"><scope>ArThreadLocalScopedCache</scope><name>EndCacheScope</name></member>
+      <member refid="class_ar_thread_local_scoped_cache_1a265e25718230d4fdea07d77d781e9fae" prot="public" virt="non-virtual"><scope>ArThreadLocalScopedCache</scope><name>GetCurrentCache</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

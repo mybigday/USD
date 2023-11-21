@@ -1,0 +1,567 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_tf_ref_ptr_tracker" kind="class" language="C++" prot="public">
+    <compoundname>TfRefPtrTracker</compoundname>
+    <basecompoundref refid="class_tf_weak_base" prot="public" virt="non-virtual">TfWeakBase</basecompoundref>
+    <includes refid="ref_ptr_tracker_8h" local="no">refPtrTracker.h</includes>
+    <innerclass refid="struct_tf_ref_ptr_tracker_1_1_trace" prot="public">TfRefPtrTracker::Trace</innerclass>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="class_tf_ref_ptr_tracker_1a4d993d14a84a1fe1147cfb37d9ac7bce" prot="public" static="no" strong="no">
+        <type></type>
+        <name>TraceType</name>
+        <enumvalue id="class_tf_ref_ptr_tracker_1a4d993d14a84a1fe1147cfb37d9ac7bcea0d592a4b562059bc283e00b3704865c9" prot="public">
+          <name>Add</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_tf_ref_ptr_tracker_1a4d993d14a84a1fe1147cfb37d9ac7bcea9adbc8e076095bf583f10ea9fad225a8" prot="public">
+          <name>Assign</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="100" column="1" bodyfile="pxr/base/tf/refPtrTracker.h" bodystart="100" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_tf_ref_ptr_tracker_1a632805c820804e416e0ce5d913d999cd" prot="public" static="no">
+        <type>TfHashMap&lt; const void *, <ref refid="struct_tf_ref_ptr_tracker_1_1_trace" kindref="compound">Trace</ref>, <ref refid="class_tf_hash" kindref="compound">TfHash</ref> &gt;</type>
+        <definition>typedef TfHashMap&lt;const void*, Trace, TfHash&gt; OwnerTraces</definition>
+        <argsstring></argsstring>
+        <name>OwnerTraces</name>
+        <briefdescription>
+<para>Maps a <computeroutput><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref></computeroutput> address to the most recent trace for it. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="128" column="1" bodyfile="pxr/base/tf/refPtrTracker.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_tf_ref_ptr_tracker_1a851da35ae6a7e39677613716ec1ba4d0" prot="public" static="no">
+        <type>TfHashMap&lt; const <ref refid="class_tf_ref_base" kindref="compound">TfRefBase</ref> *, size_t, <ref refid="class_tf_hash" kindref="compound">TfHash</ref> &gt;</type>
+        <definition>typedef TfHashMap&lt;const TfRefBase*, size_t, TfHash&gt; WatchedCounts</definition>
+        <argsstring></argsstring>
+        <name>WatchedCounts</name>
+        <briefdescription>
+<para>Maps a <computeroutput><ref refid="class_tf_ref_base" kindref="compound">TfRefBase</ref></computeroutput> object pointer to the number of <computeroutput><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref></computeroutput> objects using it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This should be the ref count on the <computeroutput><ref refid="class_tf_ref_base" kindref="compound">TfRefBase</ref></computeroutput> but it&apos;s tracked separately. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="133" column="1" bodyfile="pxr/base/tf/refPtrTracker.h" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_tf_ref_ptr_tracker_1a1bf25e45a2d56d1eb21150a9ce415d17" prot="private" static="no">
+        <type>std::mutex</type>
+        <definition>typedef std::mutex _Mutex</definition>
+        <argsstring></argsstring>
+        <name>_Mutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="193" column="1" bodyfile="pxr/base/tf/refPtrTracker.h" bodystart="193" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_tf_ref_ptr_tracker_1ab9d7e45fb2676fc3740aa4e2db6b0675" prot="private" static="no">
+        <type>std::lock_guard&lt; std::mutex &gt;</type>
+        <definition>typedef std::lock_guard&lt;std::mutex&gt; _Lock</definition>
+        <argsstring></argsstring>
+        <name>_Lock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="194" column="1" bodyfile="pxr/base/tf/refPtrTracker.h" bodystart="194" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_tf_ref_ptr_tracker_1a6b23cbd484cf9bdea359ebc9cd335078" prot="private" static="no" mutable="yes">
+        <type>_Mutex</type>
+        <definition>_Mutex _mutex</definition>
+        <argsstring></argsstring>
+        <name>_mutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="195" column="1" bodyfile="pxr/base/tf/refPtrTracker.h" bodystart="195" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_tf_ref_ptr_tracker_1a7e7e0e8b07c946feb41cee7be4d5c24b" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t _maxDepth</definition>
+        <argsstring></argsstring>
+        <name>_maxDepth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="196" column="1" bodyfile="pxr/base/tf/refPtrTracker.h" bodystart="196" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_tf_ref_ptr_tracker_1acd6b97181fbe80ca289cfcf5ed369855" prot="private" static="no" mutable="no">
+        <type><ref refid="class_tf_ref_ptr_tracker_1a851da35ae6a7e39677613716ec1ba4d0" kindref="member">WatchedCounts</ref></type>
+        <definition>WatchedCounts _watched</definition>
+        <argsstring></argsstring>
+        <name>_watched</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="197" column="1" bodyfile="pxr/base/tf/refPtrTracker.h" bodystart="197" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_tf_ref_ptr_tracker_1a3ce08136ee18b0c9d1d669ccc7c9cc90" prot="private" static="no" mutable="no">
+        <type><ref refid="class_tf_ref_ptr_tracker_1a632805c820804e416e0ce5d913d999cd" kindref="member">OwnerTraces</ref></type>
+        <definition>OwnerTraces _traces</definition>
+        <argsstring></argsstring>
+        <name>_traces</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="198" column="1" bodyfile="pxr/base/tf/refPtrTracker.h" bodystart="198" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_tf_ref_ptr_tracker_1a488443531fac77acd0f6c372959b90f0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class TfSingleton&lt; TfRefPtrTracker &gt;</definition>
+        <argsstring></argsstring>
+        <name>TfSingleton&lt; TfRefPtrTracker &gt;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="200" column="1" bodyfile="pxr/base/tf/refPtrTracker.h" bodystart="201" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_tf_ref_ptr_tracker_1aa9975cefe5f1f700a33dcfd61388c0d7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TfRefPtrTracker</definition>
+        <argsstring>(const TfRefPtrTracker &amp;)=delete</argsstring>
+        <name>TfRefPtrTracker</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr_tracker" kindref="compound">TfRefPtrTracker</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="97" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_tracker_1a5ae4bfc7f5c46a98205e10de91b7968a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_tf_ref_ptr_tracker" kindref="compound">TfRefPtrTracker</ref> &amp;</type>
+        <definition>TfRefPtrTracker&amp; operator=</definition>
+        <argsstring>(const TfRefPtrTracker &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr_tracker" kindref="compound">TfRefPtrTracker</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="98" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_tracker_1a1ac7af3835b13af06d0b9d8a71243f63" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TfRefPtrTracker</definition>
+        <argsstring>()</argsstring>
+        <name>TfRefPtrTracker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="176" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_tracker_1a87a5ebb1ea6004e1473efcbf2a5b677e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>~TfRefPtrTracker</definition>
+        <argsstring>()</argsstring>
+        <name>~TfRefPtrTracker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="177" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_tracker_1ab336a716d6d282d26fa776da023ea78e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _Watch</definition>
+        <argsstring>(const TfRefBase *obj)</argsstring>
+        <name>_Watch</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_base" kindref="compound">TfRefBase</ref> *</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Start watching <computeroutput>obj</computeroutput>. Only watched objects are traced. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="180" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_tracker_1af156117af96ca2c1c3a5eebb877a5a67" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _Unwatch</definition>
+        <argsstring>(const TfRefBase *obj)</argsstring>
+        <name>_Unwatch</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_base" kindref="compound">TfRefBase</ref> *</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Stop watching <computeroutput>obj</computeroutput>. Existing traces for <computeroutput>obj</computeroutput> are kept. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="183" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_tracker_1acb94f752f74937ec5b820d1e36106462" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _AddTrace</definition>
+        <argsstring>(const void *owner, const TfRefBase *obj, TraceType=Add)</argsstring>
+        <name>_AddTrace</name>
+        <param>
+          <type>const void *</type>
+          <declname>owner</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_ref_base" kindref="compound">TfRefBase</ref> *</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type>TraceType</type>
+          <defval>Add</defval>
+        </param>
+        <briefdescription>
+<para>Add a trace for a new owner <computeroutput>owner</computeroutput> of object <computeroutput>obj</computeroutput> if <computeroutput>obj</computeroutput> is being watched. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="187" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_tracker_1a549aadfe90c6b37fa7f149503b28634f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RemoveTraces</definition>
+        <argsstring>(const void *owner)</argsstring>
+        <name>_RemoveTraces</name>
+        <param>
+          <type>const void *</type>
+          <declname>owner</declname>
+        </param>
+        <briefdescription>
+<para>Remove traces for owner <computeroutput>owner</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="190" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_tf_ref_ptr_tracker_1ac60ef0986e8a68b022d560fd53488121" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_ref_ptr_tracker" kindref="compound">TfRefPtrTracker</ref> &amp;</type>
+        <definition>static TF_API TfRefPtrTracker&amp; GetInstance</definition>
+        <argsstring>()</argsstring>
+        <name>GetInstance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="102" column="1" bodyfile="pxr/base/tf/refPtrTracker.h" bodystart="102" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_tracker_1af24d39cf62b1412b789a2b3bfee9f3a6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool WatchNone</definition>
+        <argsstring>(const void *)</argsstring>
+        <name>WatchNone</name>
+        <param>
+          <type>const void *</type>
+        </param>
+        <briefdescription>
+<para>Handy function to pass as second argument to <computeroutput>TF_DEFINE_REFPTR_TRACK</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>No objects of the type will be watched but you can watch derived types. This is important if you&apos;ll be holding <ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref> objects to base types; if you don&apos;t track the base types, you&apos;ll fail to track all uses of the derived objects. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="163" column="1" bodyfile="pxr/base/tf/refPtrTracker.h" bodystart="163" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_tracker_1adbf609254293963c21dda26c4851f921" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool WatchAll</definition>
+        <argsstring>(const void *)</argsstring>
+        <name>WatchAll</name>
+        <param>
+          <type>const void *</type>
+        </param>
+        <briefdescription>
+<para>Handy function to pass as second argument to <computeroutput>TF_DEFINE_REFPTR_TRACK</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>All objects of the type will be watched. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="170" column="1" bodyfile="pxr/base/tf/refPtrTracker.h" bodystart="170" bodyend="173"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_tf_ref_ptr_tracker_1a62ee02a26ef277dd12a9fa42852db780" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API size_t</type>
+        <definition>TF_API size_t GetStackTraceMaxDepth</definition>
+        <argsstring>() const</argsstring>
+        <name>GetStackTraceMaxDepth</name>
+        <briefdescription>
+<para>Returns the maximum stack trace depth. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="109" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_tracker_1aa0aef934450a508bb820c7ab6e2c7aa6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void SetStackTraceMaxDepth</definition>
+        <argsstring>(size_t)</argsstring>
+        <name>SetStackTraceMaxDepth</name>
+        <param>
+          <type>size_t</type>
+        </param>
+        <briefdescription>
+<para>Sets the maximum stack trace depth. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="113" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_tracker_1a8e45fa291bb1a51fb53a71feb5632b0d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_ref_ptr_tracker_1a851da35ae6a7e39677613716ec1ba4d0" kindref="member">WatchedCounts</ref></type>
+        <definition>TF_API WatchedCounts GetWatchedCounts</definition>
+        <argsstring>() const</argsstring>
+        <name>GetWatchedCounts</name>
+        <briefdescription>
+<para>Returns the watched objects and the number of owners of each. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns a copy for thread safety. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="138" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_tracker_1a1af734fb9e04fa88d8268012c1d9ede6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_ref_ptr_tracker_1a632805c820804e416e0ce5d913d999cd" kindref="member">OwnerTraces</ref></type>
+        <definition>TF_API OwnerTraces GetAllTraces</definition>
+        <argsstring>() const</argsstring>
+        <name>GetAllTraces</name>
+        <briefdescription>
+<para>Returns traces for all owners. Returns a copy for thread safety. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="142" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_tracker_1a1c0a123f99d4da008357be666ad1c2a4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void ReportAllWatchedCounts</definition>
+        <argsstring>(std::ostream &amp;stream) const</argsstring>
+        <name>ReportAllWatchedCounts</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>stream</declname>
+        </param>
+        <briefdescription>
+<para>Writes all watched objects and the number of owners of each to <computeroutput>stream</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="147" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_tracker_1a5a57805485ce7d5ab045914d3aea8ab6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void ReportAllTraces</definition>
+        <argsstring>(std::ostream &amp;stream) const</argsstring>
+        <name>ReportAllTraces</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>stream</declname>
+        </param>
+        <briefdescription>
+<para>Writes all traces to <computeroutput>stream</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="151" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_ref_ptr_tracker_1a96a415ed961df927622a8a03e746c692" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void ReportTracesForWatched</definition>
+        <argsstring>(std::ostream &amp;stream, const TfRefBase *watched) const</argsstring>
+        <name>ReportTracesForWatched</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>stream</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_ref_base" kindref="compound">TfRefBase</ref> *</type>
+          <declname>watched</declname>
+        </param>
+        <briefdescription>
+<para>Writes traces for all owners of <computeroutput>watched</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/refPtrTracker.h" line="155" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Provides tracking of <computeroutput><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref></computeroutput> objects to particular objects. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Clients can enable, at compile time, tracking of <computeroutput><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref></computeroutput> objects that point to particular instances of classes derived from <computeroutput><ref refid="class_tf_ref_base" kindref="compound">TfRefBase</ref></computeroutput>. This is useful if you have a ref counted object with a ref count that should&apos;ve gone to zero but didn&apos;t. This tracker can tell you every <computeroutput><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref></computeroutput> that&apos;s holding the <computeroutput><ref refid="class_tf_ref_base" kindref="compound">TfRefBase</ref></computeroutput> and a stack trace where it was created or last assigned to.</para>
+<para>Clients can get a report of all watched instances and how many <computeroutput><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref></computeroutput> objects are holding them using <computeroutput><ref refid="class_tf_ref_ptr_tracker_1a1c0a123f99d4da008357be666ad1c2a4" kindref="member">ReportAllWatchedCounts()</ref></computeroutput> (in python use <computeroutput>Tf.RefPtrTracker()</computeroutput>.GetAllWatchedCountsReport()). You can see all of the stack traces using <computeroutput><ref refid="class_tf_ref_ptr_tracker_1a5a57805485ce7d5ab045914d3aea8ab6" kindref="member">ReportAllTraces()</ref></computeroutput> (in python use <computeroutput>Tf.RefPtrTracker()</computeroutput>.GetAllTracesReport()).</para>
+<para>Clients will typically enable tracking using code like this:</para>
+<para><programlisting><codeline><highlight class="normal">#include<sp/>&quot;pxr/base/tf/refPtrTracker.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">class<sp/>MyRefBaseType;</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>TfRefPtr&lt;MyRefBaseType&gt;<sp/>MyRefBaseTypeRefPtr;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">TF_DECLARE_REFPTR_TRACK(MyRefBaseType);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">class<sp/>MyRefBaseType<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>static<sp/>bool<sp/>_ShouldWatch(const<sp/>MyRefBaseType*);</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">TF_DEFINE_REFPTR_TRACK(MyRefBaseType,<sp/>MyRefBaseType::_ShouldWatch);</highlight></codeline>
+</programlisting></para>
+<para>Note that the <computeroutput>TF_DECLARE_REFPTR_TRACK()</computeroutput> macro must be invoked before any use of the <computeroutput>MyRefBaseTypeRefPtr</computeroutput> type.</para>
+<para>The <computeroutput>MyRefBaseType::_ShouldWatch()</computeroutput> function returns <computeroutput>true</computeroutput> if the given instance of <computeroutput>MyRefBaseType</computeroutput> should be tracked. You can also use <computeroutput><ref refid="class_tf_ref_ptr_tracker_1adbf609254293963c21dda26c4851f921" kindref="member">TfRefPtrTracker::WatchAll()</ref></computeroutput> to watch every instance (but that might use a lot of memory and time).</para>
+<para>If you have a base type, <computeroutput>B</computeroutput>, and a derived type, <computeroutput>D</computeroutput>, and you hold instances of <computeroutput>D</computeroutput> in a <computeroutput><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref>&lt;<computeroutput>B&gt;</computeroutput> </computeroutput>(i.e. a pointer to the base) then you must track both type <computeroutput>B</computeroutput> and type <computeroutput>D</computeroutput>. But you can use <computeroutput><ref refid="class_tf_ref_ptr_tracker_1af24d39cf62b1412b789a2b3bfee9f3a6" kindref="member">TfRefPtrTracker::WatchNone()</ref></computeroutput> when tracking <computeroutput>B</computeroutput> if you&apos;re not interested in instances of <computeroutput>B</computeroutput>. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5600">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="5599">
+        <label>TfRefPtrTracker</label>
+        <link refid="class_tf_ref_ptr_tracker"/>
+        <childnode refid="5600" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5602">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="5601">
+        <label>TfRefPtrTracker</label>
+        <link refid="class_tf_ref_ptr_tracker"/>
+        <childnode refid="5602" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/base/tf/refPtrTracker.h" line="96" column="1" bodyfile="pxr/base/tf/refPtrTracker.h" bodystart="96" bodyend="202"/>
+    <listofallmembers>
+      <member refid="class_tf_weak_base_1a01aa4c4b93df067f2ec9b9e5fa4c35b3" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>__GetTfWeakBase__</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1acb94f752f74937ec5b820d1e36106462" prot="private" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>_AddTrace</name></member>
+      <member refid="class_tf_weak_base_1a6a5533162e8efab1be47acd6ccd5254c" prot="protected" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>_HasRemnant</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1ab9d7e45fb2676fc3740aa4e2db6b0675" prot="private" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>_Lock</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a7e7e0e8b07c946feb41cee7be4d5c24b" prot="private" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>_maxDepth</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a1bf25e45a2d56d1eb21150a9ce415d17" prot="private" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>_Mutex</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a6b23cbd484cf9bdea359ebc9cd335078" prot="private" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>_mutex</name></member>
+      <member refid="class_tf_weak_base_1a95139d2f4d04eb706664a4f47eb93918" prot="protected" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>_Register</name></member>
+      <member refid="class_tf_weak_base_1ac1312732482c8a286522f703f2cf90d1" prot="protected" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>_Register</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a549aadfe90c6b37fa7f149503b28634f" prot="private" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>_RemoveTraces</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a3ce08136ee18b0c9d1d669ccc7c9cc90" prot="private" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>_traces</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1af156117af96ca2c1c3a5eebb877a5a67" prot="private" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>_Unwatch</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1ab336a716d6d282d26fa776da023ea78e" prot="private" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>_Watch</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1acd6b97181fbe80ca289cfcf5ed369855" prot="private" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>_watched</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a4d993d14a84a1fe1147cfb37d9ac7bcea0d592a4b562059bc283e00b3704865c9" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>Add</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a4d993d14a84a1fe1147cfb37d9ac7bcea9adbc8e076095bf583f10ea9fad225a8" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>Assign</name></member>
+      <member refid="class_tf_weak_base_1a16f1e27cc0c7c606ffb397b7d970ed10" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>EnableNotification2</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a1af734fb9e04fa88d8268012c1d9ede6" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>GetAllTraces</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1ac60ef0986e8a68b022d560fd53488121" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>GetInstance</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a62ee02a26ef277dd12a9fa42852db780" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>GetStackTraceMaxDepth</name></member>
+      <member refid="class_tf_weak_base_1a3241c32a82fbed0716a77049f6134e1e" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>GetUniqueIdentifier</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a8e45fa291bb1a51fb53a71feb5632b0d" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>GetWatchedCounts</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a5ae4bfc7f5c46a98205e10de91b7968a" prot="private" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>operator=</name></member>
+      <member refid="class_tf_weak_base_1af890ac314073e903458bf6b2397566b5" prot="public" virt="non-virtual" ambiguityscope="TfWeakBase::"><scope>TfRefPtrTracker</scope><name>operator=</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a632805c820804e416e0ce5d913d999cd" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>OwnerTraces</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a5a57805485ce7d5ab045914d3aea8ab6" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>ReportAllTraces</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a1c0a123f99d4da008357be666ad1c2a4" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>ReportAllWatchedCounts</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a96a415ed961df927622a8a03e746c692" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>ReportTracesForWatched</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1aa0aef934450a508bb820c7ab6e2c7aa6" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>SetStackTraceMaxDepth</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1aa9975cefe5f1f700a33dcfd61388c0d7" prot="private" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>TfRefPtrTracker</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a1ac7af3835b13af06d0b9d8a71243f63" prot="private" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>TfRefPtrTracker</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a488443531fac77acd0f6c372959b90f0" prot="private" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>TfSingleton&lt; TfRefPtrTracker &gt;</name></member>
+      <member refid="class_tf_weak_base_1a6e4abdd663654f8c8019702a464de8d6" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_weak_base_1affc4c00d0bbfdfe4f9e6a8b2e81be368" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a4d993d14a84a1fe1147cfb37d9ac7bce" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>TraceType</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1adbf609254293963c21dda26c4851f921" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>WatchAll</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a851da35ae6a7e39677613716ec1ba4d0" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>WatchedCounts</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1af24d39cf62b1412b789a2b3bfee9f3a6" prot="public" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>WatchNone</name></member>
+      <member refid="class_tf_ref_ptr_tracker_1a87a5ebb1ea6004e1473efcbf2a5b677e" prot="private" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>~TfRefPtrTracker</name></member>
+      <member refid="class_tf_weak_base_1a778020f525b66def8a284c6f020592c2" prot="protected" virt="non-virtual"><scope>TfRefPtrTracker</scope><name>~TfWeakBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

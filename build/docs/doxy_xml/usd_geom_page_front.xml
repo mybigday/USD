@@ -1,0 +1,292 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="usd_geom_page_front" kind="page">
+    <compoundname>usdGeom_page_front</compoundname>
+    <title>UsdGeom : USD Geometry Schema</title>
+    <tableofcontents>
+      <tocsect>
+        <name>Geometric Primitive Schemas</name>
+        <reference>usd_geom_page_front_1UsdGeom_Structure</reference>
+    <tableofcontents>
+      <tocsect>
+        <name>UsdGeomImageable</name>
+        <reference>usd_geom_page_front_1UsdGeom_Imageable</reference>
+    </tocsect>
+      <tocsect>
+        <name>UsdGeomXformable</name>
+        <reference>usd_geom_page_front_1UsdGeom_Xformable</reference>
+    </tocsect>
+      <tocsect>
+        <name>UsdGeomGprim</name>
+        <reference>usd_geom_page_front_1UsdGeom_Gprim</reference>
+    </tocsect>
+      <tocsect>
+        <name>UsdGeomPointInstancer</name>
+        <reference>usd_geom_page_front_1UsdGeom_PointInstancer</reference>
+    </tocsect>
+      <tocsect>
+        <name>UsdGeomCamera</name>
+        <reference>usd_geom_page_front_1UsdGeom_Camera</reference>
+    </tocsect>
+      <tocsect>
+        <name>UsdGeomModelAPI</name>
+        <reference>usd_geom_page_front_1UsdGeom_ModelAPI</reference>
+    </tocsect>
+    </tableofcontents>
+    </tocsect>
+      <tocsect>
+        <name>Primvars (Primitive Variables)</name>
+        <reference>usd_geom_page_front_1UsdGeom_PrimvarsOverview</reference>
+    </tocsect>
+      <tocsect>
+        <name>Imageable Purpose</name>
+        <reference>usd_geom_page_front_1UsdGeom_ImageablePurpose</reference>
+    </tocsect>
+      <tocsect>
+        <name>Linear Algebra in UsdGeom</name>
+        <reference>usd_geom_page_front_1UsdGeom_LinAlgBasics</reference>
+    </tocsect>
+      <tocsect>
+        <name>Coordinate System, Winding Order, Orientation, and Surface Normals</name>
+        <reference>usd_geom_page_front_1UsdGeom_WindingOrder</reference>
+    </tocsect>
+      <tocsect>
+        <name>Applying Timesampled Velocities to Geometry</name>
+        <reference>usd_geom_page_front_1UsdGeom_VelocityInterpolation</reference>
+    <tableofcontents>
+      <tocsect>
+        <name>Computing a Single Requested Position</name>
+        <reference>usd_geom_page_front_1UsdGeom_VelocityAtOneSample</reference>
+    </tocsect>
+      <tocsect>
+        <name>Computing a Range of Requested Positions</name>
+        <reference>usd_geom_page_front_1UsdGeom_VelocityAtMultipleSamples</reference>
+    </tocsect>
+    </tableofcontents>
+    </tocsect>
+      <tocsect>
+        <name>MotionAPI: Modulating Motion and Motion Blur</name>
+        <reference>usd_geom_page_front_1UsdGeom_MotionAPI</reference>
+    <tableofcontents>
+      <tocsect>
+        <name>Effectively Applying motion:blurScale</name>
+        <reference>usd_geom_page_front_1UsdGeomMotionAPI_blurScale</reference>
+    </tocsect>
+    </tableofcontents>
+    </tocsect>
+      <tocsect>
+        <name>Stage Metrics</name>
+        <reference>usd_geom_page_front_1UsdGeom_StageMetrics</reference>
+    </tocsect>
+    </tableofcontents>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><bold>UsdGeom</bold> defines the 3D graphics-related prim and property schemas that together form a basis for interchanging geometry between DCC tools in a graphics pipeline.</para>
+<sect1 id="usd_geom_page_front_1UsdGeom_Structure">
+<title>Geometric Primitive Schemas</title>
+<sect2 id="usd_geom_page_front_1UsdGeom_Imageable">
+<title>UsdGeomImageable</title>
+<para>Currently, all classes in UsdGeom inherit from <ref refid="class_usd_geom_imageable" kindref="compound">UsdGeomImageable</ref> , whose intent is to capture any prim type that might want to be rendered or visualized. This distinction is made for two reasons:</para>
+<para><itemizedlist>
+<listitem><para>so that there <emphasis>could</emphasis> be types that would never want to be renderered, and can thus be optimized around, for traversals, and also to enable validation: for example, in a compatible shading schema, only UsdGeomImageable-derived prims should be able to express a look/material binding.</para>
+</listitem><listitem><para>for the common properties described in <ref refid="class_usd_geom_imageable" kindref="compound">UsdGeomImageable</ref>, including visibility, <ref refid="usd_geom_page_front_1UsdGeom_ImageablePurpose" kindref="member">purpose</ref>, and the attribute schema for <ref refid="usd_geom_page_front_1UsdGeom_PrimvarsOverview" kindref="member">primvars</ref>.</para>
+</listitem></itemizedlist>
+</para>
+<para>Admittedly, not all of the classes inheriting from <ref refid="class_usd_geom_imageable" kindref="compound">UsdGeomImageable</ref> really need to be imageable - they are grouped as they are to avoid the need for multiple-inheritance, which would arise because some classes that may not necessarily be imageable are definitely transformable.</para>
+</sect2>
+<sect2 id="usd_geom_page_front_1UsdGeom_Xformable">
+<title>UsdGeomXformable</title>
+<para>In UsdGeom, all geometry prims are directly transformable. This is primarily a scalability and complexity management decision, since prim-count has a strong correlation to total scene composition time and memory footprint, and eliminating the need for a &quot;shape&quot; node for every piece of geometry generally reduces overall prim count by anywhere from 30% to 50%, depending on depth and branching factor of a scene&apos;s namespace hierarchy.</para>
+<para><ref refid="class_usd_geom_xformable" kindref="compound">UsdGeomXformable</ref> encapsulates the schema for a prim that is transformable. Readers familiar with AbcGeom&apos;s Xform schema will find Xformable familiar, but more easily introspectable. Xformable decomposes a transformation into an ordered sequence of <ref refid="class_usd_geom_xform_op" kindref="compound">ops</ref>; unlike AbcGeom::Xform, which packs the op data into static and varying arrays, <ref refid="class_usd_geom_xformable" kindref="compound">UsdGeomXformable</ref> expresses each op as an independent <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref>. This data layout, while somewhat more expensive to extract, is much more conducive to &quot;composed scene
+description&quot; because it allows individual ops to be overridden in stronger layers independently of all other ops. We provide facilities leveraging core Usd features that help mitigate the extra cost of reading more attributes per-prim for performance-sensitive clients.</para>
+<para>Of course, UsdGeom still requires a prim schema that simply represents a transformable prim that scopes other child prims, which is fulfilled by <ref refid="class_usd_geom_xform" kindref="compound">UsdGeomXform</ref> .</para>
+<para><simplesect kind="note"><para>You may find it useful to digest the basic assumptions of UsdGeom linear algebra</para>
+</simplesect>
+</para>
+</sect2>
+<sect2 id="usd_geom_page_front_1UsdGeom_Gprim">
+<title>UsdGeomGprim</title>
+<para><ref refid="class_usd_geom_gprim" kindref="compound">UsdGeomGprim</ref> is the base class for all &quot;geometric primitives&quot;, which encodes several per-primitive graphics-related properties. Defined Gprims currently include:<itemizedlist>
+<listitem><para><ref refid="class_usd_geom_mesh" kindref="compound">UsdGeomMesh</ref></para>
+</listitem><listitem><para><ref refid="class_usd_geom_nurbs_patch" kindref="compound">UsdGeomNurbsPatch</ref></para>
+</listitem><listitem><para><ref refid="class_usd_geom_basis_curves" kindref="compound">UsdGeomBasisCurves</ref></para>
+</listitem><listitem><para><ref refid="class_usd_geom_nurbs_curves" kindref="compound">UsdGeomNurbsCurves</ref></para>
+</listitem><listitem><para><ref refid="class_usd_geom_points" kindref="compound">UsdGeomPoints</ref></para>
+</listitem><listitem><para><ref refid="class_usd_geom_capsule" kindref="compound">UsdGeomCapsule</ref></para>
+</listitem><listitem><para><ref refid="class_usd_geom_cone" kindref="compound">UsdGeomCone</ref></para>
+</listitem><listitem><para><ref refid="class_usd_geom_cube" kindref="compound">UsdGeomCube</ref></para>
+</listitem><listitem><para><ref refid="class_usd_geom_cylinder" kindref="compound">UsdGeomCylinder</ref></para>
+</listitem><listitem><para><ref refid="class_usd_geom_sphere" kindref="compound">UsdGeomSphere</ref></para>
+</listitem></itemizedlist>
+</para>
+<para>We expect there to be some debate around the last five &quot;intrinsic&quot; Gprims: Capsule, Cone, Cube, Cylinder, and Sphere, as not all DCC&apos;s support them as primitives. In Pixar&apos;s pipeline, we in fact rarely render these primitives, but find them highly useful for their fast inside/outside tests in defining volumes for lighting effects, procedural modifiers (such as &quot;kill spheres&quot; for instancers), and colliders. The last, in particular, is quite useful for interchanging data with rigid-body simulators. It is necessary to be able to transmit these volumes from dressing/animation tools to simulation/lighting/rendering tools, thus their presence in our schema. We expect to support these and other &quot;non-native&quot; schema types as some form of proxy or &quot;pass through&quot; prim in DCC&apos;s that do not understand them.</para>
+</sect2>
+<sect2 id="usd_geom_page_front_1UsdGeom_PointInstancer">
+<title>UsdGeomPointInstancer</title>
+<para><ref refid="class_usd_geom_point_instancer" kindref="compound">UsdGeomPointInstancer</ref> provides a powerful, scalable encoding for scattering many instances of multiple prototype objects (which can be arbitrary subtrees of the <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> that contains the PointInstancer), animating both the instances and prototypes, and pruning/masking instances based on integer ID.</para>
+</sect2>
+<sect2 id="usd_geom_page_front_1UsdGeom_Camera">
+<title>UsdGeomCamera</title>
+<para><ref refid="class_usd_geom_camera" kindref="compound">UsdGeomCamera</ref> encodes a transformable camera.</para>
+</sect2>
+<sect2 id="usd_geom_page_front_1UsdGeom_ModelAPI">
+<title>UsdGeomModelAPI</title>
+<para><ref refid="class_usd_geom_model_a_p_i" kindref="compound">UsdGeomModelAPI</ref> is an API schema that extends the basic <ref refid="class_usd_model_a_p_i" kindref="compound">UsdModelAPI</ref> API with concepts unique to models that contain 3D geometry. This includes:<itemizedlist>
+<listitem><para><ref refid="class_usd_geom_model_a_p_i_1a4aa8b1f29a3097fe08da868bd2b8b259" kindref="member">cached extent hints encompassing an entire model</ref></para>
+</listitem><listitem><para>API for collecting and extracting all <ref refid="class_usd_geom_constraint_target" kindref="compound">constraint targets</ref> for a model from the model&apos;s root prim.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="usd_geom_page_front_1UsdGeom_PrimvarsOverview">
+<title>Primvars (Primitive Variables)</title>
+<para>&quot;Primvars&quot; are an important concept in UsdGeom. Primvars are attributes with a number of extra features that address the following problems in computer graphics:</para>
+<para><orderedlist>
+<listitem><para>The need to &quot;bind&quot; user data on geometric primitives that becomes available to shaders during rendering.</para>
+</listitem><listitem><para>The need to specify a set of values associated with vertices or faces of a primitive that will interpolate across the primitive&apos;s surface under subdivision or shading.</para>
+</listitem><listitem><para>The need to <emphasis>inherit</emphasis> attributes down namespace to allow sparse authoring of sharable data that is compatible with <ref refid="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_Overview" kindref="member">native scenegraph instancing</ref></para>
+</listitem></orderedlist>
+</para>
+<para>One example that involves the first two problems is <emphasis>texture coordinates</emphasis> (commonly referred to as &quot;uv&apos;s&quot;), which are cast as primvars in UsdGeom. <ref refid="class_usd_geom_primvar" kindref="compound">UsdGeomPrimvar</ref> encapsulates a single primvar, and provides the features associated with interpolating data across a surface. <ref refid="class_usd_geom_primvars_a_p_i" kindref="compound">UsdGeomPrimvarsAPI</ref> provides the interface for creating and querying primvars on a prim, as well as the computations related to primvar inheritance.</para>
+</sect1>
+<sect1 id="usd_geom_page_front_1UsdGeom_ImageablePurpose">
+<title>Imageable Purpose</title>
+<para>Purpose is a concept we have found useful in our pipeline for classifying geometry into categories that can each be independently included or excluded from traversals of prims on a stage, such as rendering or bounding-box computation traversals. The fallback purpose, <emphasis>default</emphasis> indicates that a prim has &quot;no special purpose&quot; and should generally be included in all traversals. Prims with purpose <emphasis>render</emphasis> should generally only be included when performing a &quot;final 
+quality&quot; render. Prims with purpose <emphasis>proxy</emphasis> should generally only be included when performing a lightweight proxy render (such as openGL).</para>
+<para>Finally, prims with purpose <emphasis>guide</emphasis> should generally only be included when an interactive application has been explicitly asked to &quot;show guides&quot;.</para>
+<para>A prim that is Imageable with an authored opinion about its purpose will always have the same effective purpose as its authored value. If the prim is not Imageable or does not have an authored opinion about its own purpose, then it will inherit the purpose of the closest Imageable ancestor with an authored purpose opinion. If there are no Imageable ancestors with an authored purpose opinion then this prim uses its fallback purpose.</para>
+<para>For example, if you have a prim tree like such <programlisting><codeline><highlight class="normal">def<sp/>&quot;Root&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>token<sp/>purpose<sp/>=<sp/>&quot;proxy&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Xform<sp/>&quot;RenderXform&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token<sp/>purpose<sp/>=<sp/>&quot;render&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>&quot;Prim&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token<sp/>purpose<sp/>=<sp/>&quot;default&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>Xform<sp/>&quot;InheritXform&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>Xform<sp/>&quot;GuideXform&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token<sp/>purpose<sp/>=<sp/>&quot;guide&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Xform<sp/>&quot;Xform&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><itemizedlist>
+<listitem><para>&lt;/Root&gt; is not Imageable so its purpose attribute is ignored and its effective purpose is <emphasis>default</emphasis>. </para>
+</listitem>
+<listitem><para>&lt;/Root/RenderXform&gt; is Imageable and has an authored purpose of <emphasis>render</emphasis> so its effective purpose is <emphasis>render</emphasis>. </para>
+</listitem>
+<listitem><para>&lt;/Root/RenderXform/Prim&gt; is not Imageable so its purpose attribute is ignored. ComputePurpose will return the effective purpose of <emphasis>render</emphasis>, inherited from its parent Imageable&apos;s authored purpose. </para>
+</listitem>
+<listitem><para>&lt;/Root/RenderXform/Prim/InheritXform&gt; is Imageable but with no authored purpose. Its effective purpose is <emphasis>render</emphasis>, inherited from the authored purpose of &lt;/Root/RenderXform&gt; </para>
+</listitem>
+<listitem><para>&lt;/Root/RenderXform/Prim/GuideXform&gt; is Imageable and has an authored purpose of <emphasis>guide</emphasis> so its effective purpose is <emphasis>guide</emphasis>. </para>
+</listitem>
+<listitem><para>&lt;/Root/Xform&gt; is Imageable but with no authored purpose. It also has no Imageable ancestor with an authored purpose its effective purpose is its fallback value of <emphasis>default</emphasis>.</para>
+</listitem>
+</itemizedlist>
+Purpose <emphasis>render</emphasis> can be useful in creating &quot;light blocker&quot; geometry for raytracing interior scenes. Purposes <emphasis>render</emphasis> and <emphasis>proxy</emphasis> can be used together to partition a complicated model into a lightweight proxy representation for interactive use, and a fully realized, potentially quite heavy, representation for rendering. One can use <ref refid="class_usd_variant_sets" kindref="compound">UsdVariantSets</ref> to create proxy representations, but doing so requires that we recompose parts of the <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> in order to change to a different runtime level of detail, and that does not interact well with the needs of multithreaded rendering. Purpose provides us with a better tool for dynamic, interactive complexity management.</para>
+<para>As demonstrated in <ref refid="class_usd_geom_b_box_cache" kindref="compound">UsdGeomBBoxCache</ref>, a traverser should be ready to accept combinations of included purposes as an input.</para>
+</sect1>
+<sect1 id="usd_geom_page_front_1UsdGeom_LinAlgBasics">
+<title>Linear Algebra in UsdGeom</title>
+<para>To ensure reliable interchange, we stipulate the following foundational mathematical assumptions, which are codified in the <ref refid="gf_page_front_1gf_overview" kindref="member">Graphics Foundations (Gf) math module</ref>:<itemizedlist>
+<listitem><para>Matrices are laid out and indexed in row-major order, such that, given a <computeroutput><ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref></computeroutput> datum <emphasis>mat</emphasis>, <emphasis>mat</emphasis>[3][1] denotes the second column of the fourth row.</para>
+</listitem><listitem><para>GfVec datatypes are row vectors that <bold>pre-multiply</bold> matrices to effect transformations, which implies, for example, that it is the fourth row of a <ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref> that specifies the translation of the transformation.</para>
+</listitem><listitem><para>All rotation angles are expressed in degrees, not radians.</para>
+</listitem><listitem><para>Vector cross-products and rotations intrinsically follow the <ulink url="https://en.wikipedia.org/wiki/Right-hand_rule">right hand rule.</ulink></para>
+</listitem></itemizedlist>
+</para>
+<para>So, for example, transforming a vector <bold>v</bold> by first a Scale matrix <bold>S</bold>, then a Rotation matrix <bold>R</bold>, and finally a Translation matrix <bold>T</bold> can be written as the following mathematical expression:</para>
+<para><simplesect kind="par"><title></title><para><bold>vt</bold> = <bold>v</bold> <times/> <bold>S</bold> <times/> <bold>R</bold> <times/> <bold>T</bold></para>
+</simplesect>
+Because Gf exposes transformation methods on Matrices, not Vectors, to effect this transformation in Python, one would write: <programlisting filename=".py"><codeline><highlight class="normal">vt<sp/>=<sp/>(S<sp/>*<sp/>R<sp/>*<sp/>T).Transform(v)</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="usd_geom_page_front_1UsdGeom_WindingOrder">
+<title>Coordinate System, Winding Order, Orientation, and Surface Normals</title>
+<para>Deriving from the mathematical assumptions in the preceding section, UsdGeom positions objects in a <bold>right handed coordinate system</bold>, and a <ref refid="class_usd_geom_camera" kindref="compound">UsdGeomCamera</ref> views the scene in a right-handed coordinate system where <bold>up is +Y, right is +X, and the forward viewing direction is -Z</bold> - this is explained and diagrammed in <ref refid="usd_render_page_front_1UsdRender_Camera" kindref="member">UsdRenderCamera</ref>. If you find yourself needing to import USD into a system that operates in a left-handed coordinate system, you may find <ulink url="https://towardsdatascience.com/change-of-basis-3909ef4bed43">this article</ulink> useful.</para>
+<para>UsdGeom also, by default, applies the right hand rule to compute the &quot;intrinsic&quot;, <emphasis>surface normal</emphasis> (also sometimes referred to as the <emphasis>geometric normal</emphasis>) for all non-implicit surface and solid types.</para>
+<para>That is, the normal computed from (e.g.) a polygon&apos;s sequential vertices using the right handed winding rule determines the &quot;front&quot; or &quot;outward&quot; facing direction, that typically, when rendered will receive lighting calculations and shading.</para>
+<para>Since not all modeling and animation packages agree on the right hand rule, <ref refid="class_usd_geom_gprim" kindref="compound">UsdGeomGprim</ref> introduces the <ref refid="class_usd_geom_gprim_1a6d7f451cf0aa27125cc118b030ebb735" kindref="member">orientation</ref> attribute to enable individual gprims to select the left hand winding rule, instead. So, gprims whose <emphasis>orientation</emphasis> is &quot;rightHanded&quot; (which is the fallback) must use the right hand rule to compute their surface normal, while gprims whose <emphasis>orientation</emphasis> is &quot;leftHanded&quot; must use the left hand rule.</para>
+<para>However, any given gprim&apos;s <ref refid="class_usd_geom_imageable_1a8e3fb09253ba63d63921f665d63cd270" kindref="member">local-to-world transformation</ref> can <emphasis>flip</emphasis> its effective orientation, when it contains an odd number of negative scales. This condition can be reliably detected using the (Jacobian) determinant of the local-to-world transform: if the determinant is <bold>less than zero</bold>, then the gprim&apos;s orientation has been flipped, and therefore one must apply the <bold>opposite</bold> handedness rule when computing its surface normals (or just flip the computed normals) for the purposes of hidden surface detection and lighting calculations.</para>
+</sect1>
+<sect1 id="usd_geom_page_front_1UsdGeom_VelocityInterpolation">
+<title>Applying Timesampled Velocities to Geometry</title>
+<para><ref refid="class_usd_geom_point_based" kindref="compound">UsdGeomPointBased</ref> primitives and <ref refid="class_usd_geom_point_instancer" kindref="compound">UsdGeomPointInstancer</ref> primitives all allow the specification of <ref refid="class_usd_geom_point_based_1a2840a996c8a768ecea390147390dc222" kindref="member">velocities</ref> and <ref refid="class_usd_geom_point_instancer_1abf4df1035f2f759d5119392f94a73626" kindref="member">accelerations</ref> to describe point (or instance) motion at off-sample <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> s, as an alternative to relying on native <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> linear sample interpolation.</para>
+<para>Using velocities is the <bold>only reliable way</bold> of encoding the motion of primitives whose topology is varying over time, as adjacent samples&apos; indices may be unrelated to each other, and the samples themselves may not even possess the same number of elements.</para>
+<para>To help ensure that all consumers of UsdGeom data will compute identical posing from the same dataset, we describe how the position, velocity, and acceleration data should be sampled and combined to produce &quot;interpolated&quot; positions. There are several cases to consider, for which we stipulate the following logic:</para>
+<para><itemizedlist>
+<listitem><para>If no <emphasis>velocities</emphasis> are authored, then we fall back to the &quot;standard&quot; position computation logic: if the timeSamples bracketing a requested sample have the same number of elements, apply linear interpolation between the two samples; otherwise, use the value of the sample with the lower/earlier ordinate.</para>
+</listitem><listitem><para>If the bracketing timeSamples for <emphasis>velocities</emphasis> from the requested timeSample have the <emphasis>same ordinates</emphasis> as those for <emphasis>points</emphasis> then <bold>use the lower <emphasis>velocities</emphasis> timeSample and the lower <emphasis>points</emphasis> timeSample</bold> for the computations described below.</para>
+</listitem><listitem><para>If <emphasis>velocities</emphasis> are authored, but the sampling does not line up with that of <emphasis>points</emphasis>, fall back to standard position computation logic, as if no <emphasis>velocities</emphasis> were authored. This is effectively a silent error case.</para>
+</listitem><listitem><para>If no <emphasis>accelerations</emphasis> are authored, <bold>use the lower <emphasis>velocities</emphasis> timeSample and the lower <emphasis>points</emphasis> timeSample</bold> for the computations described below. <emphasis>accelerations</emphasis> are set to 0 in all dimensions for the computations.</para>
+</listitem><listitem><para>If the bracketing timeSamples for <emphasis>accelerations</emphasis> from the requested timeSample have the <emphasis>same ordinates</emphasis> as those for <emphasis>velocities</emphasis> and <emphasis>points</emphasis> then <bold>use the lower <emphasis>accelerations</emphasis> timeSample, the lower <emphasis>velocities</emphasis> timeSample and the lower <emphasis>points</emphasis> timeSample</bold> for the computations described below.</para>
+</listitem><listitem><para>If <emphasis>accelerations</emphasis> are authored but the sampling does not line up with that of <emphasis>velocities</emphasis>, if the sampling of <emphasis>velocities</emphasis> lines up with that of <emphasis>positions</emphasis> <bold>use the lower <emphasis>velocities</emphasis> timeSample and the lower <emphasis>points</emphasis> timeSample</bold> for the computations described below, as if no <emphasis>accelerations</emphasis> were authored. If the sampling of <emphasis>velocities</emphasis> does not line up with that of <emphasis>positions</emphasis>, fall back to the &quot;standard&quot; position computation logic as if no <emphasis>velocities</emphasis> or <emphasis>accelerations</emphasis> were authored.</para>
+</listitem></itemizedlist>
+</para>
+<para><bold>In summary,</bold> we stipulate that the sample-placement of the <emphasis>points</emphasis>, <emphasis>velocities</emphasis>, and <emphasis>accelerations</emphasis> attributes be identical in each range over which we want to compute motion samples. We do not allow velocities to be recorded at times at which there is not a corresponding <emphasis>points</emphasis> sample.</para>
+<para>This is to simplify and expedite the calculations required to compute a position at any requested time. Since most simulators produce both a position and velocity at each timeStep, we do not believe this restriction should impose an undue burden.</para>
+<para>Note that the sampling requirements are applied to each requested motion sampling interval independently. So, for example, if <emphasis>points</emphasis> and <emphasis>velocities</emphasis> have samples at times 0, 1, 2, 3, but then <emphasis>velocities</emphasis> has an extra sample at 2.5, and we are computing forward motion blur on each frame, then we should get velocity-interpolated positions for the motion-blocks for frames 0, 1, and 3, but no interpolation for frame 2.</para>
+<sect2 id="usd_geom_page_front_1UsdGeom_VelocityAtOneSample">
+<title>Computing a Single Requested Position</title>
+<para>If one requires a pose at only a single point in time, <emphasis>sampleTime</emphasis>, such as when stepping through &quot;sub-frames&quot; in an application like <emphasis>usdview</emphasis>, then we need simply apply the above rules, and if we successfully sample <emphasis>points</emphasis>, <emphasis>velocities</emphasis>, and <emphasis>accelerations</emphasis>, let:</para>
+<para><simplesect kind="par"><title></title><para><emphasis>t<subscript>points</subscript></emphasis> = the lower bracketing time sample for the evaluated <emphasis>points</emphasis> attribute</para>
+</simplesect>
+<simplesect kind="par"><title></title><para><emphasis>timeScale</emphasis> = 1.0 / <computeroutput>stage-&gt;GetTimeCodesPerSecond()</computeroutput></para>
+</simplesect>
+... then</para>
+<para><simplesect kind="par"><title></title><para><emphasis> <bold>pointsInterpolated</bold> = <bold>points</bold> + (sampleTime - t<subscript>points</subscript>) * timeScale * (<bold>velocities</bold> + (0.5 * (sampleTime - t<subscript>points</subscript>) * timeScale * <bold>accelerations</bold>))</emphasis></para>
+</simplesect>
+</para>
+</sect2>
+<sect2 id="usd_geom_page_front_1UsdGeom_VelocityAtMultipleSamples">
+<title>Computing a Range of Requested Positions</title>
+<para>Computer graphics renderers typically simulate the effect of non-zero camera shutter intervals (which introduces <ulink url="https://en.wikipedia.org/wiki/Motion_blur">motion blur</ulink> into an image) by sampling moving geometry at multiple, nearby sample times, for each rendered image, linearly blending the results of each sample. Most, if not all renderers introduce the simplifying assumption that for any given image we wish to render, we will not allow the topology of geometry to change over the time-range we sample for motion blur.</para>
+<para>Therefore, if we are sampling a topologically varying, <emphasis>velocities</emphasis>-possessing <ref refid="class_usd_geom_mesh" kindref="compound">UsdGeomMesh</ref> at sample times <emphasis>t<subscript>1</subscript></emphasis>, <emphasis>t<subscript>2</subscript></emphasis> ... <emphasis>t<subscript>n</subscript></emphasis> in order to render the mesh with motion blur, we stipulate that all <emphasis>n</emphasis> samples be computed from <bold>the same sampled <emphasis>points</emphasis>, <emphasis>velocities</emphasis>, and <emphasis>accelerations</emphasis> values sampled at_sampleTime_</bold>. Therefore, we would compute all <emphasis>n</emphasis> samples using the above formula, but iterating over the <emphasis>n</emphasis> samples, substituting <emphasis>t<subscript>i</subscript></emphasis> for <emphasis>sampleTime</emphasis>.</para>
+<para>Two things to note:</para>
+<para><itemizedlist>
+<listitem><para>Since we are applying strictly linear interpolation, why is it useful to compute more than two samples? For <ref refid="class_usd_geom_point_based" kindref="compound">UsdGeomPointBased</ref> primitives, the object-space samples will not require more than two samples, although local-to-world transformations may introduce non-linear motion. For <ref refid="class_usd_geom_point_instancer" kindref="compound">UsdGeomPointInstancer</ref> primitives, which also possess an <emphasis>angularVelocities</emphasis> attribute for the instances, it may often be desirable to sample the instance matrices (and therefore <emphasis>positions</emphasis>) at a higher frequency since angular motion is non-linear.</para>
+</listitem><listitem><para>If the range of <emphasis>t<subscript>1</subscript></emphasis> to <emphasis>t<subscript>n</subscript></emphasis> is greater than the recorded sampling frequency of <emphasis>points</emphasis>, then computing the &quot;singular&quot; value of <emphasis>points</emphasis> at some time <emphasis>t<subscript>other</subscript></emphasis> that is within the range <emphasis>t<subscript>1</subscript></emphasis> to <emphasis>t<subscript>n</subscript></emphasis> may produce a different value (with differing number of elements) than the computed value for the same <bold>singular</bold> time using the motion blur technique. This derives from our requirement that over the given motion range, the topology must not change, so we specifically ignore any other <emphasis>points</emphasis>, <emphasis>velocities</emphasis>, or <emphasis>accelerations</emphasis> samples that occur in the requested motion range.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="usd_geom_page_front_1UsdGeom_MotionAPI">
+<title>MotionAPI: Modulating Motion and Motion Blur</title>
+<para><ref refid="class_usd_geom_motion_a_p_i" kindref="compound">UsdGeomMotionAPI</ref> is an applied schema whose properties describe how scene sampling should be adjusted to achieve artist-specified changes to perceived motion, such as adjusting the amount of motion-blur differently for different objects in a scene. All of the properties defined by this schema should be inherited down namespace, so that one can adjust the blurring of an entire model with a single statement/opinion on the model&apos;s root prim.</para>
+<sect2 id="usd_geom_page_front_1UsdGeomMotionAPI_blurScale">
+<title>Effectively Applying motion:blurScale</title>
+<para>The <emphasis>motion:blurScale</emphasis> attribute allows artists to scale the <bold>amount</bold> of motion blur to be rendered for parts of the scene without changing the recorded animation. We stipulate that this should at least affect the primary geometric properties of prims, such as:</para>
+<para><itemizedlist>
+<listitem><para>Points (<ref refid="class_usd_geom_point_based" kindref="compound">UsdGeomPointBased</ref>)</para>
+</listitem><listitem><para>Normals (<ref refid="class_usd_geom_point_based" kindref="compound">UsdGeomPointBased</ref>)</para>
+</listitem><listitem><para>Transforms (<ref refid="class_usd_geom_xformable" kindref="compound">UsdGeomXformable</ref>)</para>
+</listitem><listitem><para>Instance Transforms (<ref refid="class_usd_geom_point_instancer" kindref="compound">UsdGeomPointInstancer</ref>)</para>
+</listitem></itemizedlist>
+</para>
+<para>Beyond that &quot;geometric motion core&quot; of properties, renderers should apply <emphasis>blurScale</emphasis> to any other attributes that they <emphasis>can</emphasis> blur.</para>
+<para>We can implement this feature by either mutating (scaling) the sample values we send to a renderer, or by adjusting our sampling and sample times. We suggest that the latter provides superior results, and therefore describe it in more detail.</para>
+<para>We begin by establishing the difference between the <bold>sampling window</bold> and the <bold>shutter window</bold> when preparing data for a renderer. The <bold>sampling window</bold> is the interval in <emphasis>scene time</emphasis> in which we will sample the scene for rendering any particular frame, and changes as we render successive frames. The <bold>shutter window</bold> (as typically specified via <ref refid="class_usd_geom_camera" kindref="compound">UsdGeomCamera</ref>&apos;s <emphasis>shutter:open</emphasis> and <emphasis>shutter:close</emphasis> properties) is the interval in which the renderer will look for samples to consume, is often centered around zero, and is usually the same for all frames.</para>
+<para>This means we translate samples from the sampling domain to the shutter domain by simply subtracting the &quot;current frame time&quot; from the time ordinate of each sample. However, by scaling the sampling window and adding in a compensatory inverse scale to the translation of sample time to shutter time, we can very simply implement the <emphasis>motion:blurScale</emphasis> behavior. More precisely: <simplesect kind="par"><title></title><para>We scale the sampling window by <emphasis>motion:blurScale</emphasis>, pivoting around the current frame time, and then scale the ordinates of the shutter-interval-space samples by 1.0 / <emphasis>motion:blurScale</emphasis>, pivoting around zero.</para>
+</simplesect>
+For example, let us assume we are rendering a bouncing ball with a sampling window of <computeroutput>[frameTime, frameTime+0.5]</computeroutput> and a shutter window of <computeroutput>[0, 0.5]</computeroutput>.</para>
+<para>If we want to <bold>reduce the blur by a factor of 2</bold>, we set <emphasis>motion:blurScale</emphasis> to <computeroutput>0.5</computeroutput>, <bold>scaling</bold> the sampling window by <computeroutput>0.5</computeroutput> (around the pivot of <computeroutput>frameTime</computeroutput>), and &quot;pushing out&quot; the smaller window of samples by a factor of two to make them fill the shutter window - we realize less blur by taking samples closer to the shutter-open and &quot;looking at them&quot; longer. Concretely, if we are taking the usual two samples, the first sample is unchanged (as we would expect since it provides the anchoring pose); however, the <emphasis>second</emphasis> sample is evaluated at scene time <computeroutput>frameTime + 0.25</computeroutput> instead of <computeroutput>frameTime + 0.5</computeroutput>, but the time ordinate we attach to it as we hand it to the renderer is <computeroutput>0.5</computeroutput>.</para>
+<para>If we want to <bold>increase the blur by a factor of 3</bold>, we set <emphasis>motion:blurScale</emphasis> to <computeroutput>3.0</computeroutput>, <bold>scaling</bold> the sampling window by a factor of three (around the pivot of <computeroutput>frameTime</computeroutput>) which, for high-quality render-preppers such as Hydra means that we will prepare <bold>all</bold> the samples we find in the scene in the interval <computeroutput>[frameTime, frameTime+1.5]</computeroutput>, which will likely encompass <bold>more</bold> samples, representing more motion. For those samples to contribute to the render, they must be made to fit within the shutter window, so we rescale the sample times such that, for example, if the final sample were at frame-relative scene time <computeroutput>1.5</computeroutput>, it would be scaled by 1/3 to rest at shutter time <computeroutput>0.5</computeroutput>.</para>
+<para>This technique works equally well for motion derived from simple, interpolation-based sampling, and also for samples computed using velocities and accelerations, as described in <ref refid="usd_geom_page_front_1UsdGeom_VelocityInterpolation" kindref="member">Applying Timesampled Velocities to Geometry</ref> .</para>
+</sect2>
+</sect1>
+<sect1 id="usd_geom_page_front_1UsdGeom_StageMetrics">
+<title>Stage Metrics</title>
+<para>The classes described above are concerned with individual primitives and properties. Some geometic quantities, however, describe aspects of an entire scene, which we encode as <emphasis>stage metadata</emphasis>. For example it is UsdGeom that allows <ref refid="group___usd_geom_up_axis__group" kindref="compound">Encoding Stage UpAxis</ref> and <ref refid="group___usd_geom_linear_units__group" kindref="compound">Encoding Stage Linear Units</ref>. </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

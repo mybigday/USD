@@ -1,0 +1,305 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="_usd_skel__schema_overview" kind="page">
+    <compoundname>UsdSkel_SchemaOverview</compoundname>
+    <title>Schema Intro By Example</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>This page provides an overview of the UsdSkel schemas, using several scene description examples. The examples here only deal with the scene description itself. For coding examples, see the <ref refid="_usd_skel__a_p_i__intro" kindref="compound">API Introduction</ref> page. For a more an more in-depth look at the schemas themselves, see the <ref refid="_usd_skel__schemas" kindref="compound">Schemas In-Depth</ref> page.</para>
+<sect1 id="_usd_skel__schema_overview_1UsdSkel_SchemaOverview_SkinningAnArm">
+<title>Skinning an Arm</title>
+<para>The following example demonstrates a 3-joint, skinned arm, with an animation that rotates the elbow by 90 degrees, over 10 frames:</para>
+<para><programlisting filename="./skinnedArm.usda"><codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline><highlight class="normal">(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>defaultPrim<sp/>=<sp/>&quot;Model&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>endTimeCode<sp/>=<sp/>10</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>startTimeCode<sp/>=<sp/>1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>metersPerUnit<sp/>=<sp/>.01</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>upAxis<sp/>=<sp/>&apos;Y&apos;</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>SkelRoot<sp/>&quot;Model&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>kind<sp/>=<sp/>&quot;component&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Skeleton<sp/>&quot;Skel&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uniform<sp/>token[]<sp/>joints<sp/>=<sp/>[&quot;Shoulder&quot;,<sp/>&quot;Shoulder/Elbow&quot;,<sp/>&quot;Shoulder/Elbow/Hand&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uniform<sp/>matrix4d[]<sp/>bindTransforms<sp/>=<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1)),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,2,1)),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,4,1))<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uniform<sp/>matrix4d[]<sp/>restTransforms<sp/>=<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1)),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,2,1)),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,2,1))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>SkelAnimation<sp/>&quot;Anim&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uniform<sp/>token[]<sp/>joints<sp/>=<sp/>[&quot;Shoulder/Elbow&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float3[]<sp/>translations<sp/>=<sp/>[(0,0,2)]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>quatf[]<sp/>rotations.timeSamples<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1:<sp/>[(1,0,0,0)],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10:<sp/>[(0.7071,<sp/>0.7071,<sp/>0,<sp/>0)]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>half3[]<sp/>scales<sp/>=<sp/>[(1,1,1)]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rel<sp/>skel:animationSource<sp/>=<sp/>&lt;/Model/Skel/Anim&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>Both<sp/>the<sp/>binding<sp/>of<sp/>the<sp/>Skeleton,<sp/>and<sp/>the<sp/>specificatin<sp/>of<sp/>the</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>weighting<sp/>primvars<sp/>necessitates<sp/>the<sp/>application<sp/>of<sp/>the<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>SkelBindingAPI<sp/>schema</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Mesh<sp/>&quot;Arm&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int[]<sp/>faceVertexCounts<sp/>=<sp/>[4,<sp/>4,<sp/>4,<sp/>4,<sp/>4,<sp/>4,<sp/>4,<sp/>4,<sp/>4,<sp/>4]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int[]<sp/>faceVertexIndices<sp/>=<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2,<sp/>3,<sp/>1,<sp/>0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>6,<sp/>7,<sp/>5,<sp/>4,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>8,<sp/>9,<sp/>7,<sp/>6,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3,<sp/>2,<sp/>9,<sp/>8,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10,<sp/>11,<sp/>4,<sp/>5,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0,<sp/>1,<sp/>11,<sp/>10,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>7,<sp/>9,<sp/>10,<sp/>5,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>9,<sp/>2,<sp/>0,<sp/>10,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3,<sp/>8,<sp/>11,<sp/>1,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>8,<sp/>6,<sp/>4,<sp/>11</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>point3f[]<sp/>points<sp/>=<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0.5,<sp/>-0.5,<sp/>4),<sp/>(-0.5,<sp/>-0.5,<sp/>4),<sp/>(0.5,<sp/>0.5,<sp/>4),<sp/>(-0.5,<sp/>0.5,<sp/>4),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(-0.5,<sp/>-0.5,<sp/>0),<sp/>(0.5,<sp/>-0.5,<sp/>0),<sp/>(-0.5,<sp/>0.5,<sp/>0),<sp/>(0.5,<sp/>0.5,<sp/>0),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(-0.5,<sp/>0.5,<sp/>2),<sp/>(0.5,<sp/>0.5,<sp/>2),<sp/>(0.5,<sp/>-0.5,<sp/>2),<sp/>(-0.5,<sp/>-0.5,<sp/>2)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rel<sp/>skel:skeleton<sp/>=<sp/>&lt;/Model/Skel&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int[]<sp/>primvars:skel:jointIndices<sp/>=<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2,2,2,2,<sp/>0,0,0,0,<sp/>1,1,1,1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>interpolation<sp/>=<sp/>&quot;vertex&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>elementSize<sp/>=<sp/>1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float[]<sp/>primvars:skel:jointWeights<sp/>=<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1,1,1,1,<sp/>1,1,1,1,<sp/>1,1,1,1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>interpolation<sp/>=<sp/>&quot;vertex&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>elementSize<sp/>=<sp/>1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>matrix4d<sp/>primvars:skel:geomBindTransform<sp/>=<sp/>((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>We will proceed to break this down one piece at a time.</para>
+<sect2 id="_usd_skel__schema_overview_1UsdSkel_SchemaOverview_SkelRoot">
+<title>Skinning an Arm: The Skel Root</title>
+<para> <programlisting filename="./skinnedArm.usda"><codeline><highlight class="normal">def<sp/>SkelRoot<sp/>&quot;Model&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>kind<sp/>=<sp/>&quot;component&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+</programlisting></para>
+<para>When a model (or other grouping of prims) contains skinned data, it must be encapsulated within a <ref refid="class_usd_skel_root" kindref="compound">UsdSkelRoot</ref> primitive. This serves two purposes:</para>
+<para><orderedlist>
+<listitem><para>Informs applications that are consuming the file that a branch of the scene graph contains skinned primitives, as such data often requires special processing by the consuming application.</para>
+</listitem><listitem><para>Provides a place to encode pre-computed bounding information for the skinned primitives (a <ref refid="class_usd_skel_root" kindref="compound">UsdSkelRoot</ref> is a subclass of <computeroutput><ref refid="class_usd_geom_boundable" kindref="compound">UsdGeomBoundable</ref></computeroutput>). This allows renderers to determine where in space the result of skinning resides without having to apply skinning first. For example, a renderer is capable of efficiently culling objects that are not visible in camera without paying the cost of computing skinning.</para>
+</listitem></orderedlist>
+</para>
+<para>Secondly, we see that the <ref refid="class_usd_skel_binding_a_p_i" kindref="compound">UsdSkelBindingAPI</ref> schema has been applied to the prim. This informs the runtime that skel-related data is being specified on the prim. &quot;skel-related data&quot; includes binding SkelAnimation or Skeleton prims, BlendShapes, or specifying skel weighting or joint influences primvars.</para>
+<para><simplesect kind="see"><para><ref refid="_usd_skel__schemas_1UsdSkel_SkelRoot" kindref="member">Skeleton Root Schema</ref></para>
+</simplesect>
+</para>
+</sect2>
+<sect2 id="_usd_skel__schema_overview_1UsdSkel_SchemaOverview_DefiningSkeletons">
+<title>Skinning an Arm: Defining a Skeleton</title>
+<para><programlisting filename="./skinnedArm.usda"><codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Skeleton<sp/>&quot;Skel&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uniform<sp/>token[]<sp/>joints<sp/>=<sp/>[&quot;Shoulder&quot;,<sp/>&quot;Shoulder/Elbow&quot;,<sp/>&quot;Shoulder/Elbow/Hand&quot;]</highlight></codeline>
+</programlisting></para>
+<para>A Skeleton encodes a joint hierarchy. The actual joints and their parent&lt;-&gt;child relationships are encoded in a compact, vectorized token array. Each token in the array is the token-valued form of a relative path to that joint. The paths follow the same syntax rules as other prim paths in USD, and may be constructed using the <computeroutput><ref refid="class_sdf_path" kindref="compound">SdfPath</ref></computeroutput> API.</para>
+<para>The tokens authored for <emphasis>joints</emphasis> may be considered as defining the <emphasis>topology</emphasis> of the Skeleton.</para>
+<para>Each joint&apos;s parent is identified by path. If an intermediate path is excluded, then the next nearest ancestor path that is included is used instead. For example, if the joint list above did not include <computeroutput>Shoulder/Elbow</computeroutput>, then the parent of <computeroutput>Shoulder/Elbow/Hand</computeroutput> would be <computeroutput>Shoulder</computeroutput>. Consumers of UsdSkel files are encouraged to use the <ref refid="class_usd_skel_topology" kindref="compound">UsdSkelTopology</ref> utility class to reason about these relationships.</para>
+<para>Note that it is <emphasis>valid</emphasis> to have multiple root joints in a Skeleton. For example:</para>
+<para><programlisting><codeline><highlight class="normal">def<sp/>Skeleton<sp/>&quot;Skel&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uniform<sp/>token[]<sp/>joints<sp/>=<sp/>[&quot;RootA&quot;,<sp/>&quot;RootA/Child&quot;,<sp/>&quot;RootB&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>This is allowed because some of the applications that UsdSkel interchanges with also allow it. In a way, the Skeleton primitive itself may be thought of as the true root of the Skeleton.</para>
+<sect3 id="_usd_skel__schema_overview_1UsdSkel_SchemaOverview_DefiningSkeletons_BindTransforms">
+<title>Bind Transforms</title>
+<para> <programlisting filename="./skinnedArm.usda"><codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Skeleton<sp/>&quot;Skel&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uniform<sp/>matrix4d[]<sp/>bindTransforms<sp/>=<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1)),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,2,1)),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,4,1))<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]</highlight></codeline>
+</programlisting></para>
+<para>The <emphasis>bindTransforms</emphasis> property of a Skeleton provides the <emphasis>world space</emphasis> transform of each joint at bind time. A world space encoding has been chosen for bind transforms, since most DCC apps tend to use the same encoding, so using the same encoding tends to simplify IO.</para>
+<para>The entries of the <emphasis>bindTransforms</emphasis> array are ordered according to the order of the <emphasis>joints</emphasis> attribute. So for this example, the first entry in the array corresponds to joint <computeroutput>Shoulder</computeroutput>, the second to <computeroutput>Shoulder/Elbow</computeroutput>, and so forth.</para>
+</sect3>
+<sect3 id="_usd_skel__schema_overview_1UsdSkel_SchemaOverview_DefiningSkeletons_RestTransforms">
+<title>Rest Transforms</title>
+<para> <programlisting filename="./skinnedArm.usda"><codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Skeleton<sp/>&quot;Skel&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uniform<sp/>matrix4d[]<sp/>restTransforms<sp/>=<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1)),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,2,1)),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,2,1))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]</highlight></codeline>
+</programlisting></para>
+<para>The <emphasis>restTransforms</emphasis> property of a Skeleton provides <emphasis>local space</emphasis> rest transforms of each joint, which serve as a fallback values for joints that have not been overridden by an animation. As with <emphasis>bindTransforms</emphasis>, the <emphasis>restTransforms</emphasis> are ordered according to the order of the <emphasis>joints</emphasis> attribute.</para>
+<para>The <emphasis>restTransforms</emphasis> may be considered optional, but if left unspecified, the Skeleton must be bound to a <emphasis>complete</emphasis>, non-sparse animation. It is common for the <emphasis>restTransforms</emphasis> to refer to the same pose as the <emphasis>bindTransforms</emphasis>, only in joint-local space, rather than world space, but this is not required.</para>
+<para><simplesect kind="see"><para><ref refid="_usd_skel__schemas_1UsdSkel_Skeleton" kindref="member">Skeleton Schema</ref></para>
+</simplesect>
+</para>
+</sect3>
+</sect2>
+<sect2 id="_usd_skel__schema_overview_1UsdSkel_SchemaOverview_SkelAnimations">
+<title>Skinning an Arm: Skel Animations</title>
+<para><programlisting filename="./skinnedArm.usda"><codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>SkelAnimation<sp/>&quot;Anim&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uniform<sp/>token[]<sp/>joints<sp/>=<sp/>[&quot;Shoulder/Elbow&quot;]</highlight></codeline>
+</programlisting></para>
+<para>Instead of encoding joint animations directly on a Skeleton, the animations are encoded in a <computeroutput><ref refid="class_usd_skel_animation" kindref="compound">UsdSkelAnimation</ref></computeroutput> primitive. The animation of a Skeleton is kept separate in this manner both to allow different animation encodings <ndash/> as different prim types <ndash/> as well as for the sake of <ref refid="_usd_skel__instancing" kindref="compound">instancing</ref>.</para>
+<para>An animation must define <emphasis>joints</emphasis>, which determines the set of joints that the animation affects. This order does not need to match the order given on the <emphasis>Skeleton</emphasis> primitive. To emphasize that point, this particular animation has been setup to affect only a single joint (<computeroutput>Shoulder/Elbow</computeroutput>).</para>
+<sect3 id="_usd_skel__schema_overview_1UsdSkel_SchemaOverview_JointTransforms">
+<title>Joint Transforms</title>
+<para> <programlisting filename="./skinnedArm.usda"><codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>SkelAnimation<sp/>&quot;Anim&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float3[]<sp/>translations<sp/>=<sp/>[(0,0,2)]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>quatf[]<sp/>rotations.timeSamples<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1:<sp/>[(1,0,0,0)],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10:<sp/>[(0.7071,<sp/>0.7071,<sp/>0,<sp/>0)]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>half3[]<sp/>scales<sp/>=<sp/>[(1,1,1)]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+</programlisting></para>
+<para>Currently, UsdSkel encodes joint animations as arrays of translation, rotation and scale components. The encoding is vectorized for scalability reasons, and with consideration for IO performance on large-scale crowds. It is broken into these separate components primarily for the sake of interpolation, but this also has storage benefits <ndash/> such as enabling separate run-length encoding for different components. For example, if only the rotations are changing over time, as is often the case, then we need only store animated values for those rotations, and need not store unique scale/translation samples per frame.</para>
+<para>These transform components combine to describe the <emphasis>local space</emphasis> transforms of a set of joints. Helper methods <ref refid="group___usd_skel___transform_composition_utils_1ga457d8118163ca7ff9baec7a810972e8e" kindref="member">UsdSkelDecomposeTransforms()</ref> and <ref refid="group___usd_skel___transform_composition_utils_1ga9edeef3ded1f2765880a5a70ee12fba6" kindref="member">UsdSkelMakeTransforms()</ref> can be used to convert between these components and arrays of matrices.</para>
+<para>Note that this encoding implies that joint local transforms must have an <emphasis>orthogonal</emphasis> basis. While non-uniform scales may still be authored, non-uniform scale values should only be used to apply reflections; each component of the scale should otherwise have the same magnitude. It is further <emphasis>recommended</emphasis> that users make an effort to stick to purely orthonormal transforms: Many applications do not support non-uniform joint scaling, so translating non-orthonormal transforms to other packages may be problematic.</para>
+<para><simplesect kind="see"><para><ref refid="_usd_skel__schemas_1UsdSkel_SkelAnimation" kindref="member">Skel Animation Schema</ref></para>
+</simplesect>
+</para>
+</sect3>
+<sect3 id="_usd_skel__schema_overview_1UsdSkel_SchemaOverview_BindingAnAnimation">
+<title>Binding An Animation To A Skeleton</title>
+<para> <programlisting filename="./skinnedArm.usda"><codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Skeleton<sp/>&quot;Skel&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>SkelAnimation<sp/>&quot;Anim&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rel<sp/>skel:animationSource<sp/>=<sp/>&lt;/Model/Skel/Anim&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+</programlisting></para>
+<para>In order for a SkelAnimation to have any effect, it must be bound to a Skeleton. This is done using the <emphasis>skel:animationSource</emphasis> relationship, as created through the <ref refid="class_usd_skel_binding_a_p_i" kindref="compound">UsdSkelBindingAPI</ref>.</para>
+<para>The animation source binding is <emphasis>inherited</emphasis> down namespace. For example, suppose we have:</para>
+<para><programlisting><codeline><highlight class="normal">def<sp/>Scope<sp/>&quot;Scope&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:animationSource<sp/>=<sp/>&lt;/Anim&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Skeleton<sp/>&quot;Skel&quot;<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>In that case, the Skeleton at <computeroutput>&lt;/Scope/Skel&gt;</computeroutput> inherits the animation source binding established at <computeroutput>&lt;/Scope&gt;</computeroutput>. The primary motivation for this inheritance property is that it is the means by which UsdSkel allows <emphasis>instanced</emphasis> primitives to be driven by different joint animations. The <ref refid="_usd_skel__instancing" kindref="compound">instancing</ref> section goes into this in more detail.</para>
+<para><simplesect kind="see"><para><ref refid="_usd_skel__schemas_1UsdSkel_BindingAPI" kindref="member">Binding API Schema</ref></para>
+</simplesect>
+</para>
+</sect3>
+</sect2>
+<sect2 id="_usd_skel__schema_overview_1UsdSkel_SchemaOverview_BindingSkeletons">
+<title>Skinning an Arm: Binding Skeletons to Prims</title>
+<para> <programlisting filename="./skinnedArm.usda"><codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Mesh<sp/>&quot;Arm&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rel<sp/>skel:skeleton<sp/>=<sp/>&lt;/Model/Skel&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+</programlisting></para>
+<para>Skeletons are bound to the primitives that they skin by way of the <emphasis>skel:skeleton</emphasis> binding relationship, which can be set through the <ref refid="class_usd_skel_binding_a_p_i" kindref="compound">UsdSkelBindingAPI</ref>, which must be <bold>applied</bold> to the Mesh prim for the binding to be recognized.</para>
+<para>This relationship works in a similar manner to the <emphasis>skel:animationSource</emphasis> binding, in that the binding is inherited. Using this inheritance, it is common on production assets to bind the skeleton at a higher scope, rather than on individual primitives <ndash/> of which there may be many! For example:</para>
+<para><programlisting><codeline><highlight class="normal">def<sp/>SkelRoot<sp/>&quot;ComplexModelWithHundredsOfMeshes&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:skeleton<sp/>=<sp/>&lt;/SkelRoot/Skel&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Skeleton<sp/>&quot;Skel&quot;<sp/>{}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Mesh<sp/>&quot;Mesh0&quot;<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Mesh<sp/>&quot;Mesh1&quot;<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Mesh<sp/>&quot;Mesh1000&quot;<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>Note that it is only valid to bind skeletons either on <ref refid="class_usd_skel_root" kindref="compound">UsdSkelRoot</ref> primitives, or on their descendants.</para>
+<para>This example shows the common case of mesh skinning, but UsdSkel&apos;s skinning is not restricted to only meshes.</para>
+<para><simplesect kind="see"><para><ref refid="_usd_skel__schemas_1UsdSkel_BindingAPI" kindref="member">Binding API Schema</ref> <ref refid="_usd_skel__intro_1UsdSkel_SkinnablePrims" kindref="member">What Can Be Skinned?</ref></para>
+</simplesect>
+</para>
+</sect2>
+<sect2 id="_usd_skel__schema_overview_1UsdSkel_SchemaOverview_JointInfluences">
+<title>Skinning an Arm: Joint Influences</title>
+<para> <programlisting filename="./skinnedArm.usda"><codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Mesh<sp/>&quot;Arm&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int[]<sp/>primvars:skel:jointIndices<sp/>=<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2,2,2,2,<sp/>0,0,0,0,<sp/>1,1,1,1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>interpolation<sp/>=<sp/>&quot;vertex&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>elementSize<sp/>=<sp/>1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float[]<sp/>primvars:skel:jointWeights<sp/>=<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1,1,1,1,<sp/>1,1,1,1,<sp/>1,1,1,1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>interpolation<sp/>=<sp/>&quot;vertex&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>elementSize<sp/>=<sp/>1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+</programlisting></para>
+<para>The <emphasis>jointIndices</emphasis> and <emphasis>jointWeights</emphasis> primvars store the joints and joint weights for each vertex. Both primvars are required to have a matching <emphasis>interpolation</emphasis> and array size, and the <emphasis>interpolation</emphasis> must be either &apos;constant&apos; or &apos;vertex&apos;.</para>
+<para>Each value from <emphasis>primvars:skel:jointIndices</emphasis> gives the index of a joint, while the corresponding element from <emphasis>primvars:skel:jointWeights</emphasis> provides the weight for that joint.</para>
+<para>Without setting any additional properties, the index values stored by the <emphasis>jointIndices</emphasis> primvar refers to joints in the ordering defined by the <emphasis>joints</emphasis> attribute of the bound Skeleton. So, referring back to the definition of the Skeleton:</para>
+<para> <programlisting filename="./skinnedArm.usda"><codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Skeleton<sp/>&quot;Skel&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uniform<sp/>token[]<sp/>joints<sp/>=<sp/>[&quot;Shoulder&quot;,<sp/>&quot;Shoulder/Elbow&quot;,<sp/>&quot;Shoulder/Elbow/Hand&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+</programlisting></para>
+<para>Given the set of joints defined here, a value of <bold>0</bold> in <emphasis>jointIndices</emphasis> refers to the <computeroutput>Shoulder</computeroutput> joint, a value of <bold>1</bold> refers to <computeroutput>Shoulder/Elbow</computeroutput>, and so forth.</para>
+<sect3 id="_usd_skel__schema_overview_1UsdSkel_SchemaOverview_ExplicitJointOrders">
+<title>Explicit Joint Orders</title>
+<para>Instead of using the joint order declared on the Skeleton, it is also possible to define an explicit ordering directly on a skinned mesh. For example:</para>
+<para><programlisting><codeline><highlight class="normal">def<sp/>Mesh<sp/>&quot;Arm&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uniform<sp/>token[]<sp/>skel:joints<sp/>=<sp/>[&quot;Shoulder/Elbow&quot;,<sp/>&quot;Shoulder&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int[]<sp/>primvars:skel:jointIndices<sp/>=<sp/>[1,1,1,1,<sp/>1,1,1,1,<sp/>0,0,0,0]<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>interpolation<sp/>=<sp/>&quot;vertex&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>elementSize<sp/>=<sp/>1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>float[]<sp/>primvars:skel:jointWeights<sp/>=<sp/>[1,1,1,1,<sp/>1,1,1,1,<sp/>1,1,1,1]<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>interpolation<sp/>=<sp/>&quot;vertex&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>elementSize<sp/>=<sp/>1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>Here, we have an explicit <emphasis>skel:joints</emphasis> ordering. Using that ordering, a value of <bold>0</bold> in <emphasis>jointIndices</emphasis> refers to the <computeroutput>Shoulder/Elbow</computeroutput> joint, and a value of <bold>1</bold> refers to the <computeroutput>Shoulder</computeroutput> joint. As with the <emphasis>skel:skeleton</emphasis> and <emphasis>skel:animationSource</emphasis> binding relationships, <emphasis>primvars:skel:joints</emphasis> is an inherited property, and may be set set on ancestor primitives. For that matter, <emphasis>all</emphasis> primvars in USD inherited down namespace.</para>
+</sect3>
+</sect2>
+<sect2 id="_usd_skel__schema_overview_1UsdSkel_SchemaOverview_GeomBindTransform">
+<title>Skinning an Arm: Geom Bind Transform</title>
+<para> <programlisting filename="./skinnedArm.usda"><codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Mesh<sp/>&quot;Arm&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>matrix4d<sp/>primvars:skel:geomBindTransform<sp/>=<sp/>((1,0,0,0),(0,1,0,0),(0,0,1,0),(0,0,0,1))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+</programlisting></para>
+<para>The <emphasis>primvars:skel:geomBindTransform</emphasis> primvar provides the world space transform of a skinned primitive at bind-time. As with the case of the Skeleton&apos;s bindTransform property, the bind transforms are given in world space, since that is how most DCC apps tend to encode the property.</para>
+<para>The points of the skinned primitive are transformed by the geomBindTransform prior to skinning.</para>
+<para>If left undefined, the geom bind transform is assumed to be the identity.</para>
+<para>It is often the case that a skinned primitive will also have a transform authored using the typical <ref refid="class_usd_geom_xformable" kindref="compound">UsdGeomXformable</ref> API, in addition to the geomBindTransform. If that is the case, the geomBindTransform is still the only transform used for skinning. </para>
+</sect2>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

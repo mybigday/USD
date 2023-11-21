@@ -1,0 +1,1026 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_geom_basis_curves" kind="class" language="C++" prot="public">
+    <compoundname>UsdGeomBasisCurves</compoundname>
+    <basecompoundref refid="class_usd_geom_curves" prot="public" virt="non-virtual">UsdGeomCurves</basecompoundref>
+    <includes refid="usd_2usd_geom_2basis_curves_8h" local="no">basisCurves.h</includes>
+      <sectiondef kind="user-defined">
+      <header>Helper functions for working with UsdGeomCurves</header>
+      <memberdef kind="typedef" id="class_usd_geom_basis_curves_1a34ae7aca0a3cfa26514ad6c0131564c8" prot="public" static="no">
+        <type>std::vector&lt; std::pair&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, size_t &gt; &gt;</type>
+        <definition>typedef std::vector&lt; std::pair&lt;TfToken, size_t&gt; &gt; ComputeInterpolationInfo</definition>
+        <argsstring></argsstring>
+        <name>ComputeInterpolationInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="452" column="1" bodyfile="pxr/usd/usdGeom/basisCurves.h" bodystart="452" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1af94ae75860b000931d26c30edd4736d9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>USDGEOM_API TfToken ComputeInterpolationForSize</definition>
+        <argsstring>(size_t n, const UsdTimeCode &amp;timeCode, ComputeInterpolationInfo *info=NULL) const</argsstring>
+        <name>ComputeInterpolationForSize</name>
+        <param>
+          <type>size_t</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> &amp;</type>
+          <declname>timeCode</declname>
+        </param>
+        <param>
+          <type>ComputeInterpolationInfo *</type>
+          <declname>info</declname>
+          <defval>NULL</defval>
+        </param>
+        <briefdescription>
+<para>Computes interpolation token for <computeroutput>n</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If this returns an empty token and <computeroutput>info</computeroutput> was non-NULL, it&apos;ll contain the expected value for each token.</para>
+<para>The topology is determined using <computeroutput>timeCode</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="461" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1ac843b5c30d40e5c82a8c9a6ec3124ac4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API size_t</type>
+        <definition>USDGEOM_API size_t ComputeUniformDataSize</definition>
+        <argsstring>(const UsdTimeCode &amp;timeCode) const</argsstring>
+        <name>ComputeUniformDataSize</name>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> &amp;</type>
+          <declname>timeCode</declname>
+        </param>
+        <briefdescription>
+<para>Computes the expected size for data with &quot;uniform&quot; interpolation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If you&apos;re trying to determine what interpolation to use, it is more efficient to use <computeroutput>ComputeInterpolationForSize</computeroutput> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="470" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1a8ebc6258fa861ce48646ab0acfba5ba6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API size_t</type>
+        <definition>USDGEOM_API size_t ComputeVaryingDataSize</definition>
+        <argsstring>(const UsdTimeCode &amp;timeCode) const</argsstring>
+        <name>ComputeVaryingDataSize</name>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> &amp;</type>
+          <declname>timeCode</declname>
+        </param>
+        <briefdescription>
+<para>Computes the expected size for data with &quot;varying&quot; interpolation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If you&apos;re trying to determine what interpolation to use, it is more efficient to use <computeroutput>ComputeInterpolationForSize</computeroutput> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="477" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1a1785a2463625bbfe3b2bcd007af39e42" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API size_t</type>
+        <definition>USDGEOM_API size_t ComputeVertexDataSize</definition>
+        <argsstring>(const UsdTimeCode &amp;timeCode) const</argsstring>
+        <name>ComputeVertexDataSize</name>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> &amp;</type>
+          <declname>timeCode</declname>
+        </param>
+        <briefdescription>
+<para>Computes the expected size for data with &quot;vertex&quot; interpolation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If you&apos;re trying to determine what interpolation to use, it is more efficient to use <computeroutput>ComputeInterpolationForSize</computeroutput> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="484" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_usd_geom_basis_curves_1a3e5fc43aea5aea4908c3ce980fdf8908" prot="public" static="yes" mutable="no">
+        <type>const <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref></type>
+        <definition>const UsdSchemaKind schemaKind</definition>
+        <argsstring></argsstring>
+        <name>schemaKind</name>
+        <initializer>= <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741aa6650141c3d230f8e4e51461e1d9e645" kindref="member">UsdSchemaKind::ConcreteTyped</ref></initializer>
+        <briefdescription>
+<para>Compile time constant representing what kind of schema this class is. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="269" column="1" bodyfile="pxr/usd/usdGeom/basisCurves.h" bodystart="269" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_usd_geom_basis_curves_1aff8b8d83211f127c6c4cba48fb7d3334" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class UsdSchemaRegistry</definition>
+        <argsstring></argsstring>
+        <name>UsdSchemaRegistry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="347" column="1" bodyfile="pxr/usd/usdGeom/basisCurves.h" bodystart="347" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1a97569c121bc16d1856a4a0dd06c0d57a" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdGeomBasisCurves</definition>
+        <argsstring>(const UsdPrim &amp;prim=UsdPrim())</argsstring>
+        <name>UsdGeomBasisCurves</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+          <defval><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="class_usd_geom_basis_curves" kindref="compound">UsdGeomBasisCurves</ref> on <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> <computeroutput>prim</computeroutput> . </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Equivalent to <ref refid="class_usd_geom_basis_curves_1a9367a137d41e661122142e07d770b776" kindref="member">UsdGeomBasisCurves::Get</ref>(prim.GetStage(), prim.GetPath()) for a <emphasis>valid</emphasis> <computeroutput>prim</computeroutput>, but will not immediately throw an error for an invalid <computeroutput>prim</computeroutput> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="275" column="1" bodyfile="pxr/usd/usdGeom/basisCurves.h" bodystart="275" bodyend="278"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1a7b2e5106f926e596c0d4bafac787fdb6" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdGeomBasisCurves</definition>
+        <argsstring>(const UsdSchemaBase &amp;schemaObj)</argsstring>
+        <name>UsdGeomBasisCurves</name>
+        <param>
+          <type>const <ref refid="class_usd_schema_base" kindref="compound">UsdSchemaBase</ref> &amp;</type>
+          <declname>schemaObj</declname>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="class_usd_geom_basis_curves" kindref="compound">UsdGeomBasisCurves</ref> on the prim held by <computeroutput>schemaObj</computeroutput> . </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Should be preferred over <ref refid="class_usd_geom_basis_curves" kindref="compound">UsdGeomBasisCurves</ref>(schemaObj.GetPrim()), as it preserves SchemaBase state. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="283" column="1" bodyfile="pxr/usd/usdGeom/basisCurves.h" bodystart="283" bodyend="286"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1ae0c26e8fb2210989a2249d5b83b6711a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>USDGEOM_API</type>
+        <definition>virtual USDGEOM_API ~UsdGeomBasisCurves</definition>
+        <argsstring>()</argsstring>
+        <name>~UsdGeomBasisCurves</name>
+        <briefdescription>
+<para>Destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="290" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1abf8d226fc8ae39bd4f4d62a64a032af1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetTypeAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTypeAttr</name>
+        <briefdescription>
+<para>Linear curves interpolate linearly between two vertices. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Cubic curves use a basis matrix with four vertices to interpolate a segment.</para>
+<para><table rows="6" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>uniform token type = &quot;cubic&quot;</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_tf_token" kindref="compound">TfToken</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Token   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="usd_2sdf_2types_8h_1a71cdb29b28ede8b72fcf36fa6f8d320f" kindref="member">Variability</ref>  </para>
+</entry><entry thead="no"><para>SdfVariabilityUniform   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="usd_2usd_geom_2tokens_8h_1ad9e3544e015f99ed697804fd6bfe1a88" kindref="member">Allowed Values</ref>  </para>
+</entry><entry thead="no"><para>linear, cubic   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="372" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1a8d272deff79dde94dd20e5ec0ba2ea40" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateTypeAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateTypeAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_basis_curves_1abf8d226fc8ae39bd4f4d62a64a032af1" kindref="member">GetTypeAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="380" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1a8744501c06ee3eb6474fabb7685103c6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetBasisAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetBasisAttr</name>
+        <briefdescription>
+<para>The basis specifies the vstep and matrix used for cubic interpolation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>The &apos;hermite&apos; and &apos;power&apos; tokens have been removed. We&apos;ve provided <ref refid="class_usd_geom_hermite_curves" kindref="compound">UsdGeomHermiteCurves</ref> as an alternative for the &apos;hermite&apos; basis.</para>
+</simplesect>
+<table rows="6" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>uniform token basis = &quot;bezier&quot;</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_tf_token" kindref="compound">TfToken</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Token   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="usd_2sdf_2types_8h_1a71cdb29b28ede8b72fcf36fa6f8d320f" kindref="member">Variability</ref>  </para>
+</entry><entry thead="no"><para>SdfVariabilityUniform   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="usd_2usd_geom_2tokens_8h_1ad9e3544e015f99ed697804fd6bfe1a88" kindref="member">Allowed Values</ref>  </para>
+</entry><entry thead="no"><para>bezier, bspline, catmullRom   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="399" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1a1910d85e8c71a6bcfad1ed59a04ce1da" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateBasisAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateBasisAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_basis_curves_1a8744501c06ee3eb6474fabb7685103c6" kindref="member">GetBasisAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="407" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1a805649ce1108b2a7ac5c12986edb78c9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetWrapAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetWrapAttr</name>
+        <briefdescription>
+<para>If wrap is set to periodic, the curve when rendered will repeat the initial vertices (dependent on the vstep) to close the curve. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If wrap is set to &apos;pinned&apos;, phantom points may be created to ensure that the curve interpolation starts at P[0] and ends at P[n-1].</para>
+<para><table rows="6" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>uniform token wrap = &quot;nonperiodic&quot;</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_tf_token" kindref="compound">TfToken</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Token   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="usd_2sdf_2types_8h_1a71cdb29b28ede8b72fcf36fa6f8d320f" kindref="member">Variability</ref>  </para>
+</entry><entry thead="no"><para>SdfVariabilityUniform   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="usd_2usd_geom_2tokens_8h_1ad9e3544e015f99ed697804fd6bfe1a88" kindref="member">Allowed Values</ref>  </para>
+</entry><entry thead="no"><para>nonperiodic, periodic, pinned   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="427" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1a7a628298d4f6ff1552c8f33fe2512292" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateWrapAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateWrapAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_basis_curves_1a805649ce1108b2a7ac5c12986edb78c9" kindref="member">GetWrapAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="435" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1ae40ae43320babff8a254a3a8107a255a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+        <definition>static USDGEOM_API const TfTokenVector&amp; GetSchemaAttributeNames</definition>
+        <argsstring>(bool includeInherited=true)</argsstring>
+        <name>GetSchemaAttributeNames</name>
+        <param>
+          <type>bool</type>
+          <declname>includeInherited</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Return a vector of names of all pre-declared attributes for this schema class and all its ancestor classes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does not include attributes that may be authored by custom/extended methods of the schemas involved. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="297" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1a9367a137d41e661122142e07d770b776" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_geom_basis_curves" kindref="compound">UsdGeomBasisCurves</ref></type>
+        <definition>static USDGEOM_API UsdGeomBasisCurves Get</definition>
+        <argsstring>(const UsdStagePtr &amp;stage, const SdfPath &amp;path)</argsstring>
+        <name>Get</name>
+        <param>
+          <type>const UsdStagePtr &amp;</type>
+          <declname>stage</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Return a <ref refid="class_usd_geom_basis_curves" kindref="compound">UsdGeomBasisCurves</ref> holding the prim adhering to this schema at <computeroutput>path</computeroutput> on <computeroutput>stage</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no prim exists at <computeroutput>path</computeroutput> on <computeroutput>stage</computeroutput>, or if the prim at that path does not adhere to this schema, return an invalid schema object. This is shorthand for the following:</para>
+<para><programlisting><codeline><highlight class="normal">UsdGeomBasisCurves(stage-&gt;GetPrimAtPath(path));</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="310" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1a120e22657f40361fe2fc7a2f1e953714" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_geom_basis_curves" kindref="compound">UsdGeomBasisCurves</ref></type>
+        <definition>static USDGEOM_API UsdGeomBasisCurves Define</definition>
+        <argsstring>(const UsdStagePtr &amp;stage, const SdfPath &amp;path)</argsstring>
+        <name>Define</name>
+        <param>
+          <type>const UsdStagePtr &amp;</type>
+          <declname>stage</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Attempt to ensure a <emphasis><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref></emphasis> adhering to this schema at <computeroutput>path</computeroutput> is defined (according to <ref refid="class_usd_prim_1a87fbe0030c0fbb6307ee434664f1142f" kindref="member">UsdPrim::IsDefined()</ref>) on this stage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If a prim adhering to this schema at <computeroutput>path</computeroutput> is already defined on this stage, return that prim. Otherwise author an <emphasis><ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref></emphasis> with <emphasis>specifier</emphasis> == <emphasis>SdfSpecifierDef</emphasis> and this schema&apos;s prim type name for the prim at <computeroutput>path</computeroutput> at the current EditTarget. Author <emphasis><ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref></emphasis> s with <computeroutput>specifier</computeroutput> == <emphasis>SdfSpecifierDef</emphasis> and empty typeName at the current EditTarget for any nonexistent, or existing but not <emphasis>Defined</emphasis> ancestors.</para>
+<para>The given <emphasis>path</emphasis> must be an absolute prim path that does not contain any variant selections.</para>
+<para>If it is impossible to author any of the necessary PrimSpecs, (for example, in case <emphasis>path</emphasis> cannot map to the current <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref>&apos;s namespace) issue an error and return an invalid <emphasis><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref></emphasis>.</para>
+<para>Note that this method may return a defined prim whose typeName does not specify this schema class, in case a stronger typeName opinion overrides the opinion at the current EditTarget. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="336" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1a71a1af4672754da617b8cb537f29c5f4" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USDGEOM_API <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref></type>
+        <definition>USDGEOM_API UsdSchemaKind _GetSchemaKind</definition>
+        <argsstring>() const override</argsstring>
+        <name>_GetSchemaKind</name>
+        <reimplements refid="class_usd_typed_1a408aa7d080a2672e88403126cc197095">_GetSchemaKind</reimplements>
+        <briefdescription>
+<para>Returns the kind of schema this class belongs to. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="343" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1ad32bf70dffbb431c0fa883d5fbc1802d" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+        <definition>static USDGEOM_API const TfType&amp; _GetStaticTfType</definition>
+        <argsstring>()</argsstring>
+        <name>_GetStaticTfType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="349" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1abbc02364dd87e9f147201cbd8d260d43" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool _IsTypedSchema</definition>
+        <argsstring>()</argsstring>
+        <name>_IsTypedSchema</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="351" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_usd_geom_basis_curves_1a1e6b9f0da5624212c58019b749c21286" prot="private" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USDGEOM_API const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+        <definition>USDGEOM_API const TfType&amp; _GetTfType</definition>
+        <argsstring>() const override</argsstring>
+        <name>_GetTfType</name>
+        <reimplements refid="class_usd_typed_1a6f7a3688b0129a59c6e70e925d7ac732">_GetTfType</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/basisCurves.h" line="355" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>BasisCurves are a batched curve representation analogous to the classic RIB definition via Basis and Curves statements. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>BasisCurves are often used to render dense aggregate geometry like hair or grass.</para>
+<para>A &apos;matrix&apos; and &apos;vstep&apos; associated with the <emphasis>basis</emphasis> are used to interpolate the vertices of a cubic BasisCurves. (The basis attribute is unused for linear BasisCurves.)</para>
+<para>A single prim may have many curves whose count is determined implicitly by the length of the <emphasis>curveVertexCounts</emphasis> vector. Each individual curve is composed of one or more segments. Each segment is defined by four vertices for cubic curves and two vertices for linear curves. See the next section for more information on how to map curve vertex counts to segment counts.</para>
+<sect1 id="class_usd_geom_basis_curves_1UsdGeomBasisCurves_Segment">
+<title>Segment Indexing</title>
+<para>Interpolating a curve requires knowing how to decompose it into its individual segments.</para>
+<para>The segments of a cubic curve are determined by the vertex count, the <emphasis>wrap</emphasis> (periodicity), and the vstep of the basis. For linear curves, the basis token is ignored and only the vertex count and wrap are needed.</para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para>cubic basis  </para>
+</entry><entry thead="yes"><para>vstep   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>bezier  </para>
+</entry><entry thead="no"><para>3   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>catmullRom  </para>
+</entry><entry thead="no"><para>1   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>bspline  </para>
+</entry><entry thead="no"><para>1   </para>
+</entry></row>
+</table>
+</para>
+<para>The first segment of a cubic (nonperiodic) curve is always defined by its first four points. The vstep is the increment used to determine what vertex indices define the next segment. For a two segment (nonperiodic) bspline basis curve (vstep = 1), the first segment will be defined by interpolating vertices [0, 1, 2, 3] and the second segment will be defined by [1, 2, 3, 4]. For a two segment bezier basis curve (vstep = 3), the first segment will be defined by interpolating vertices [0, 1, 2, 3] and the second segment will be defined by [3, 4, 5, 6]. If the vstep is not one, then you must take special care to make sure that the number of cvs properly divides by your vstep. (The indices described are relative to the initial vertex index for a batched curve.)</para>
+<para>For periodic curves, at least one of the curve&apos;s initial vertices are repeated to close the curve. For cubic curves, the number of vertices repeated is &apos;4 - vstep&apos;. For linear curves, only one vertex is repeated to close the loop.</para>
+<para>Pinned curves are a special case of nonperiodic curves that only affects the behavior of cubic Bspline and Catmull-Rom curves. To evaluate or render pinned curves, a client must effectively add &apos;phantom points&apos; at the beginning and end of every curve in a batch. These phantom points are injected to ensure that the interpolated curve begins at P[0] and ends at P[n-1].</para>
+<para>For a curve with initial point P[0] and last point P[n-1], the phantom points are defined as. P[-1] = 2 * P[0] - P[1] P[n] = 2 * P[n-1] - P[n-2]</para>
+<para>Pinned cubic curves will (usually) have to be unpacked into the standard nonperiodic representation before rendering. This unpacking can add some additional overhead. However, using pinned curves reduces the amount of data recorded in a scene and (more importantly) better records the authors&apos; intent for interchange.</para>
+<para><simplesect kind="note"><para>The additional phantom points mean that the minimum curve vertex count for cubic bspline and catmullRom curves is 2.</para>
+</simplesect>
+Linear curve segments are defined by two vertices. A two segment linear curve&apos;s first segment would be defined by interpolating vertices [0, 1]. The second segment would be defined by vertices [1, 2]. (Again, for a batched curve, indices are relative to the initial vertex index.)</para>
+<para>When validating curve topology, each renderable entry in the curveVertexCounts vector must pass this check.</para>
+<para><table rows="6" cols="3"><row>
+<entry thead="yes"><para>type  </para>
+</entry><entry thead="yes"><para>wrap  </para>
+</entry><entry thead="yes"><para>validitity   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>linear  </para>
+</entry><entry thead="no"><para>nonperiodic  </para>
+</entry><entry thead="no"><para>curveVertexCounts[i] &gt; 2   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>linear  </para>
+</entry><entry thead="no"><para>periodic  </para>
+</entry><entry thead="no"><para>curveVertexCounts[i] &gt; 3   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>cubic  </para>
+</entry><entry thead="no"><para>nonperiodic  </para>
+</entry><entry thead="no"><para>(curveVertexCounts[i] - 4) % vstep == 0   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>cubic  </para>
+</entry><entry thead="no"><para>periodic  </para>
+</entry><entry thead="no"><para>(curveVertexCounts[i]) % vstep == 0   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>cubic  </para>
+</entry><entry thead="no"><para>pinned (catmullRom/bspline)  </para>
+</entry><entry thead="no"><para>(curveVertexCounts[i] - 2) &gt;= 0   </para>
+</entry></row>
+</table>
+</para>
+</sect1>
+<sect1 id="class_usd_geom_basis_curves_1UsdGeomBasisCurves_BasisMatrix">
+<title>Cubic Vertex Interpolation</title>
+<para><image type="html" name="USDCurveBasisMatrix.png" width="750"></image>
+</para>
+</sect1>
+<sect1 id="class_usd_geom_basis_curves_1UsdGeomBasisCurves_Linear">
+<title>Linear Vertex Interpolation</title>
+<para>Linear interpolation is always used on curves of type linear. &apos;t&apos; with domain [0, 1], the curve is defined by the equation P0 * (1-t) + P1 * t. t at 0 describes the first point and t at 1 describes the end point.</para>
+</sect1>
+<sect1 id="class_usd_geom_basis_curves_1UsdGeomBasisCurves_PrimvarInterpolation">
+<title>Primvar Interpolation</title>
+<para>For cubic curves, primvar data can be either interpolated cubically between vertices or linearly across segments. The corresponding token for cubic interpolation is &apos;vertex&apos; and for linear interpolation is &apos;varying&apos;. Per vertex data should be the same size as the number of vertices in your curve. Segment varying data is dependent on the wrap (periodicity) and number of segments in your curve. For linear curves, varying and vertex data would be interpolated the same way. By convention varying is the preferred interpolation because of the association of varying with linear interpolation.</para>
+<para><image type="html" name="USDCurvePrimvars.png"></image>
+</para>
+<para>To convert an entry in the curveVertexCounts vector into a segment count for an individual curve, apply these rules. Sum up all the results in order to compute how many total segments all curves have.</para>
+<para>The following tables describe the expected segment count for the &apos;i&apos;th curve in a curve batch as well as the entire batch. Python syntax like &apos;[:]&apos; (to describe all members of an array) and &apos;len(...)&apos; (to describe the length of an array) are used.</para>
+<para><table rows="6" cols="4"><row>
+<entry thead="yes"><para>type  </para>
+</entry><entry thead="yes"><para>wrap  </para>
+</entry><entry thead="yes"><para>curve segment count  </para>
+</entry><entry thead="yes"><para>batch segment count   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>linear  </para>
+</entry><entry thead="no"><para>nonperiodic  </para>
+</entry><entry thead="no"><para>curveVertexCounts[i] - 1  </para>
+</entry><entry thead="no"><para>sum(curveVertexCounts[:]) - len(curveVertexCounts)   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>linear  </para>
+</entry><entry thead="no"><para>periodic  </para>
+</entry><entry thead="no"><para>curveVertexCounts[i]  </para>
+</entry><entry thead="no"><para>sum(curveVertexCounts[:])   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>cubic  </para>
+</entry><entry thead="no"><para>nonperiodic  </para>
+</entry><entry thead="no"><para>(curveVertexCounts[i] - 4) / vstep + 1  </para>
+</entry><entry thead="no"><para>sum(curveVertexCounts[:] - 4) / vstep + len(curveVertexCounts)   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>cubic  </para>
+</entry><entry thead="no"><para>periodic  </para>
+</entry><entry thead="no"><para>curveVertexCounts[i] / vstep  </para>
+</entry><entry thead="no"><para>sum(curveVertexCounts[:]) / vstep   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>cubic  </para>
+</entry><entry thead="no"><para>pinned (catmullRom/bspline)  </para>
+</entry><entry thead="no"><para>(curveVertexCounts[i] - 2) + 1  </para>
+</entry><entry thead="no"><para>sum(curveVertexCounts[:] - 2) + len(curveVertexCounts)   </para>
+</entry></row>
+</table>
+</para>
+<para>The following table descrives the expected size of varying (linearly interpolated) data, derived from the segment counts computed above.</para>
+<para><table rows="3" cols="3"><row>
+<entry thead="yes"><para>wrap  </para>
+</entry><entry thead="yes"><para>curve varying count  </para>
+</entry><entry thead="yes"><para>batch varying count   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>nonperiodic/pinned  </para>
+</entry><entry thead="no"><para>segmentCounts[i] + 1  </para>
+</entry><entry thead="no"><para>sum(segmentCounts[:]) + len(curveVertexCounts)   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>periodic  </para>
+</entry><entry thead="no"><para>segmentCounts[i]  </para>
+</entry><entry thead="no"><para>sum(segmentCounts[:])   </para>
+</entry></row>
+</table>
+</para>
+<para>Both curve types additionally define &apos;constant&apos; interpolation for the entire prim and &apos;uniform&apos; interpolation as per curve data.</para>
+<para><simplesect kind="note"><para>Take care when providing support for linearly interpolated data for cubic curves. Its shape doesn&apos;t provide a one to one mapping with either the number of curves (like &apos;uniform&apos;) or the number of vertices (like &apos;vertex&apos;) and so it is often overlooked. This is the only primitive in UsdGeom (as of this writing) where this is true. For meshes, while they use different interpolation methods, &apos;varying&apos; and &apos;vertex&apos; are both specified per point. It&apos;s common to assume that curves follow a similar pattern and build in structures and language for per primitive, per element, and per point data only to come upon these arrays that don&apos;t quite fit into either of those categories. It is also common to conflate &apos;varying&apos; with being per segment data and use the segmentCount rules table instead of its neighboring varying data table rules. We suspect that this is because for the common case of nonperiodic cubic curves, both the provided segment count and varying data size formula end with &apos;+ 1&apos;. While debugging, users may look at the double &apos;+ 1&apos; as a mistake and try to remove it. We take this time to enumerate these issues because we&apos;ve fallen into them before and hope that we save others time in their own implementations.</para>
+</simplesect>
+As an example of deriving per curve segment and varying primvar data counts from the wrap, type, basis, and curveVertexCount, the following table is provided.</para>
+<para><table rows="6" cols="6"><row>
+<entry thead="yes"><para>wrap  </para>
+</entry><entry thead="yes"><para>type  </para>
+</entry><entry thead="yes"><para>basis  </para>
+</entry><entry thead="yes"><para>curveVertexCount  </para>
+</entry><entry thead="yes"><para>curveSegmentCount  </para>
+</entry><entry thead="yes"><para>varyingDataCount   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>nonperiodic  </para>
+</entry><entry thead="no"><para>linear  </para>
+</entry><entry thead="no"><para>N/A  </para>
+</entry><entry thead="no"><para>[2 3 2 5]  </para>
+</entry><entry thead="no"><para>[1 2 1 4]  </para>
+</entry><entry thead="no"><para>[2 3 2 5]   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>nonperiodic  </para>
+</entry><entry thead="no"><para>cubic  </para>
+</entry><entry thead="no"><para>bezier  </para>
+</entry><entry thead="no"><para>[4 7 10 4 7]  </para>
+</entry><entry thead="no"><para>[1 2 3 1 2]  </para>
+</entry><entry thead="no"><para>[2 3 4 2 3]   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>nonperiodic  </para>
+</entry><entry thead="no"><para>cubic  </para>
+</entry><entry thead="no"><para>bspline  </para>
+</entry><entry thead="no"><para>[5 4 6 7]  </para>
+</entry><entry thead="no"><para>[2 1 3 4]  </para>
+</entry><entry thead="no"><para>[3 2 4 5]   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>periodic  </para>
+</entry><entry thead="no"><para>cubic  </para>
+</entry><entry thead="no"><para>bezier  </para>
+</entry><entry thead="no"><para>[6 9 6]  </para>
+</entry><entry thead="no"><para>[2 3 2]  </para>
+</entry><entry thead="no"><para>[2 3 2]   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>periodic  </para>
+</entry><entry thead="no"><para>linear  </para>
+</entry><entry thead="no"><para>N/A  </para>
+</entry><entry thead="no"><para>[3 7]  </para>
+</entry><entry thead="no"><para>[3 7]  </para>
+</entry><entry thead="no"><para>[3 7]   </para>
+</entry></row>
+</table>
+</para>
+</sect1>
+<sect1 id="class_usd_geom_basis_curves_1UsdGeomBasisCurves_TubesAndRibbons">
+<title>Tubes and Ribbons</title>
+<para>The strictest definition of a curve as an infinitely thin wire is not particularly useful for describing production scenes. The additional <emphasis>widths</emphasis> and <emphasis>normals</emphasis> attributes can be used to describe cylindrical tubes and or flat oriented ribbons.</para>
+<para>Curves with only widths defined are imaged as tubes with radius &apos;width / 2&apos;. Curves with both widths and normals are imaged as ribbons oriented in the direction of the interpolated normal vectors.</para>
+<para>While not technically UsdGeomPrimvars, widths and normals also have interpolation metadata. It&apos;s common for authored widths to have constant, varying, or vertex interpolation (see <ref refid="class_usd_geom_curves_1a914fb16c11a5e0d5e30fd55968a6fd7a" kindref="member">UsdGeomCurves::GetWidthsInterpolation()</ref>). It&apos;s common for authored normals to have varying interpolation (see <ref refid="class_usd_geom_point_based_1ae0ac6f60f8135799ba42a16fe466f89b" kindref="member">UsdGeomPointBased::GetNormalsInterpolation()</ref>).</para>
+<para><image type="html" name="USDCurveHydra.png"></image>
+</para>
+<para>The file used to generate these curves can be found in extras/usd/examples/usdGeomExamples/basisCurves.usda. It&apos;s provided as a reference on how to properly image both tubes and ribbons. The first row of curves are linear; the second are cubic bezier. (We aim in future releases of HdSt to fix the discontinuity seen with broken tangents to better match offline renderers like RenderMan.) The yellow and violet cubic curves represent cubic vertex width interpolation for which there is no equivalent for linear curves.</para>
+<para><simplesect kind="note"><para>How did this prim type get its name? This prim is a portmanteau of two different statements in the original RenderMan specification: &apos;Basis&apos; and &apos;Curves&apos;.</para>
+</simplesect>
+For any described attribute <emphasis>Fallback</emphasis> <emphasis>Value</emphasis> or <emphasis>Allowed</emphasis> <emphasis>Values</emphasis> below that are text/tokens, the actual token is published and defined in <ref refid="usd_2usd_geom_2tokens_8h_1ad9e3544e015f99ed697804fd6bfe1a88" kindref="member">UsdGeomTokens</ref>. So to set an attribute to the value &quot;rightHanded&quot;, use UsdGeomTokens-&gt;rightHanded as the value. </para>
+</sect1>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="6054">
+        <label>UsdGeomBasisCurves</label>
+        <link refid="class_usd_geom_basis_curves"/>
+        <childnode refid="6055" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6060">
+        <label>UsdGeomImageable</label>
+        <link refid="class_usd_geom_imageable"/>
+        <childnode refid="6061" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6055">
+        <label>UsdGeomCurves</label>
+        <link refid="class_usd_geom_curves"/>
+        <childnode refid="6056" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6057">
+        <label>UsdGeomGprim</label>
+        <link refid="class_usd_geom_gprim"/>
+        <childnode refid="6058" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6056">
+        <label>UsdGeomPointBased</label>
+        <link refid="class_usd_geom_point_based"/>
+        <childnode refid="6057" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6061">
+        <label>UsdTyped</label>
+        <link refid="class_usd_typed"/>
+        <childnode refid="6062" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6062">
+        <label>UsdSchemaBase</label>
+        <link refid="class_usd_schema_base"/>
+      </node>
+      <node id="6058">
+        <label>UsdGeomBoundable</label>
+        <link refid="class_usd_geom_boundable"/>
+        <childnode refid="6059" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6059">
+        <label>UsdGeomXformable</label>
+        <link refid="class_usd_geom_xformable"/>
+        <childnode refid="6060" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="6063">
+        <label>UsdGeomBasisCurves</label>
+        <link refid="class_usd_geom_basis_curves"/>
+        <childnode refid="6064" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6069">
+        <label>UsdGeomImageable</label>
+        <link refid="class_usd_geom_imageable"/>
+        <childnode refid="6070" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6064">
+        <label>UsdGeomCurves</label>
+        <link refid="class_usd_geom_curves"/>
+        <childnode refid="6065" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6066">
+        <label>UsdGeomGprim</label>
+        <link refid="class_usd_geom_gprim"/>
+        <childnode refid="6067" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6065">
+        <label>UsdGeomPointBased</label>
+        <link refid="class_usd_geom_point_based"/>
+        <childnode refid="6066" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6070">
+        <label>UsdTyped</label>
+        <link refid="class_usd_typed"/>
+        <childnode refid="6071" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6071">
+        <label>UsdSchemaBase</label>
+        <link refid="class_usd_schema_base"/>
+      </node>
+      <node id="6067">
+        <label>UsdGeomBoundable</label>
+        <link refid="class_usd_geom_boundable"/>
+        <childnode refid="6068" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6068">
+        <label>UsdGeomXformable</label>
+        <link refid="class_usd_geom_xformable"/>
+        <childnode refid="6069" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/usd/usdGeom/basisCurves.h" line="264" column="1" bodyfile="pxr/usd/usdGeom/basisCurves.h" bodystart="263" bodyend="487"/>
+    <listofallmembers>
+      <member refid="class_usd_schema_base_1ad99ec8284868478b50e8fc3475880dab" prot="protected" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>_CreateAttr</name></member>
+      <member refid="class_usd_geom_basis_curves_1a71a1af4672754da617b8cb537f29c5f4" prot="protected" virt="virtual"><scope>UsdGeomBasisCurves</scope><name>_GetSchemaKind</name></member>
+      <member refid="class_usd_schema_base_1a6c51fb3251d5fde5ffa9fe7a998ce970" prot="protected" virt="virtual"><scope>UsdGeomBasisCurves</scope><name>_GetSchemaType</name></member>
+      <member refid="class_usd_geom_basis_curves_1ad32bf70dffbb431c0fa883d5fbc1802d" prot="private" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>_GetStaticTfType</name></member>
+      <member refid="class_usd_geom_basis_curves_1a1e6b9f0da5624212c58019b749c21286" prot="private" virt="virtual"><scope>UsdGeomBasisCurves</scope><name>_GetTfType</name></member>
+      <member refid="class_usd_schema_base_1aa29ea4c951d8debfd8085a28c6aa80ca" prot="protected" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>_GetType</name></member>
+      <member refid="class_usd_typed_1ad91204cc9fb92f0306372e074052190f" prot="protected" virt="virtual"><scope>UsdGeomBasisCurves</scope><name>_IsCompatible</name></member>
+      <member refid="class_usd_geom_basis_curves_1abbc02364dd87e9f147201cbd8d260d43" prot="private" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>_IsTypedSchema</name></member>
+      <member refid="class_usd_geom_xformable_1a8b0d6e551f3705724405ddf6795756a7" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>AddOrientOp</name></member>
+      <member refid="class_usd_geom_xformable_1ac01badf7416ca43636d9e479bc47da33" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>AddRotateXOp</name></member>
+      <member refid="class_usd_geom_xformable_1aba511327f305e9a8b3f8941e244c8992" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>AddRotateXYZOp</name></member>
+      <member refid="class_usd_geom_xformable_1a63ffbff66e60a314adac3380d533469f" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>AddRotateXZYOp</name></member>
+      <member refid="class_usd_geom_xformable_1a4af9af5dc523e80fce81a88014edef19" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>AddRotateYOp</name></member>
+      <member refid="class_usd_geom_xformable_1ac7235be9524c6eb1a906f3247f9833f0" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>AddRotateYXZOp</name></member>
+      <member refid="class_usd_geom_xformable_1a353b43cb6f6d04b2db5b68c057d0494f" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>AddRotateYZXOp</name></member>
+      <member refid="class_usd_geom_xformable_1a9c089e1932ce91477becbc1f01bdfb02" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>AddRotateZOp</name></member>
+      <member refid="class_usd_geom_xformable_1a6dd6174a48238d6a9564128f43362ce2" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>AddRotateZXYOp</name></member>
+      <member refid="class_usd_geom_xformable_1a5938bf453b0f07bfaf80d121b916d720" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>AddRotateZYXOp</name></member>
+      <member refid="class_usd_geom_xformable_1a4f84556fa9b1fab0432b8c4342e98045" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>AddScaleOp</name></member>
+      <member refid="class_usd_geom_xformable_1a0fd59cb1cdd089e0d93fa755fb0da268" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>AddTransformOp</name></member>
+      <member refid="class_usd_geom_xformable_1a782fe5d36ac6657235b80741d47a8b1f" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>AddTranslateOp</name></member>
+      <member refid="class_usd_geom_xformable_1ad6dfc740dcec052482489647af9ed36b" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>AddXformOp</name></member>
+      <member refid="class_usd_geom_xformable_1a10a241711290631508cfc349ad4ab64d" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ClearXformOpOrder</name></member>
+      <member refid="class_usd_geom_imageable_1a1174d9985088dd364f6a56925073fe76" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputeEffectiveVisibility</name></member>
+      <member refid="class_usd_geom_curves_1ac20abf671ac9b3bec5aba52db778add7" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputeExtent</name></member>
+      <member refid="class_usd_geom_curves_1aa7ad2498cd097e47f5ae39698b6f9c4d" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputeExtent</name></member>
+      <member refid="class_usd_geom_point_based_1a66d1156f15021eb44b2cb646f4cc066a" prot="public" virt="non-virtual" ambiguityscope="UsdGeomPointBased::"><scope>UsdGeomBasisCurves</scope><name>ComputeExtent</name></member>
+      <member refid="class_usd_geom_point_based_1a47310cb36cb5dab8509959573e1ca417" prot="public" virt="non-virtual" ambiguityscope="UsdGeomPointBased::"><scope>UsdGeomBasisCurves</scope><name>ComputeExtent</name></member>
+      <member refid="class_usd_geom_boundable_1a99f4a8f288a211fc286c3f12f0e87fda" prot="public" virt="non-virtual" ambiguityscope="UsdGeomGprim::"><scope>UsdGeomBasisCurves</scope><name>ComputeExtent</name></member>
+      <member refid="class_usd_geom_boundable_1a413c9eb5b4e1d8fddd627cf33ed4a106" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputeExtentFromPlugins</name></member>
+      <member refid="class_usd_geom_boundable_1a7fa34cebf9339958ad25099dd635c9c7" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputeExtentFromPlugins</name></member>
+      <member refid="class_usd_geom_basis_curves_1af94ae75860b000931d26c30edd4736d9" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputeInterpolationForSize</name></member>
+      <member refid="class_usd_geom_basis_curves_1a34ae7aca0a3cfa26514ad6c0131564c8" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputeInterpolationInfo</name></member>
+      <member refid="class_usd_geom_imageable_1a503f6d39abbd1b62c3c55f227461334d" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputeLocalBound</name></member>
+      <member refid="class_usd_geom_imageable_1a8e3fb09253ba63d63921f665d63cd270" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputeLocalToWorldTransform</name></member>
+      <member refid="class_usd_geom_imageable_1a4313664fa692f724da56cc254bce70fc" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputeParentToWorldTransform</name></member>
+      <member refid="class_usd_geom_point_based_1a007aedc5640c36c1b656ae4406593a15" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputePointsAtTime</name></member>
+      <member refid="class_usd_geom_point_based_1aaa8d359dfd5a70ff311683b6bb989c74" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputePointsAtTime</name></member>
+      <member refid="class_usd_geom_point_based_1ae6f15a2de15825522391c72252c4cdc1" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputePointsAtTimes</name></member>
+      <member refid="class_usd_geom_imageable_1ad5a114f3776eb75edc651e8c2d67f8ff" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputeProxyPrim</name></member>
+      <member refid="class_usd_geom_imageable_1a1aa2ea4240e7e12f11122d7ff8ad7f90" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputePurpose</name></member>
+      <member refid="class_usd_geom_imageable_1a2a7d61f7af1a02e095e6a8abcf8e641f" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputePurposeInfo</name></member>
+      <member refid="class_usd_geom_imageable_1a00c5620a09313aa39cb0d79f492b340f" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputePurposeInfo</name></member>
+      <member refid="class_usd_geom_basis_curves_1ac843b5c30d40e5c82a8c9a6ec3124ac4" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputeUniformDataSize</name></member>
+      <member refid="class_usd_geom_imageable_1a54086b2386d22b1de4aaeb5b3005533d" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputeUntransformedBound</name></member>
+      <member refid="class_usd_geom_basis_curves_1a8ebc6258fa861ce48646ab0acfba5ba6" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputeVaryingDataSize</name></member>
+      <member refid="class_usd_geom_basis_curves_1a1785a2463625bbfe3b2bcd007af39e42" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputeVertexDataSize</name></member>
+      <member refid="class_usd_geom_imageable_1ac0bfa1554d9b57303c14f71d084c578d" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputeVisibility</name></member>
+      <member refid="class_usd_geom_imageable_1ae616043b0f7fbc631ef9e5c784132a6c" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>ComputeWorldBound</name></member>
+      <member refid="class_usd_geom_point_based_1ae13702eda2c800254bc40d3948420457" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreateAccelerationsAttr</name></member>
+      <member refid="class_usd_geom_basis_curves_1a1910d85e8c71a6bcfad1ed59a04ce1da" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreateBasisAttr</name></member>
+      <member refid="class_usd_geom_curves_1a1d8e27f6b7283c5f918f90a5d7d6ec94" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreateCurveVertexCountsAttr</name></member>
+      <member refid="class_usd_geom_gprim_1a7fd86a311b27d9b4fdd82736bb423056" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreateDisplayColorAttr</name></member>
+      <member refid="class_usd_geom_gprim_1a0915951c95ea904181354ac2d27c5ec6" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreateDisplayColorPrimvar</name></member>
+      <member refid="class_usd_geom_gprim_1ad5be639be4c7963ef213b15594a1dbb6" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreateDisplayOpacityAttr</name></member>
+      <member refid="class_usd_geom_gprim_1af90ae547097a320fad7d3f7bd9e681f9" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreateDisplayOpacityPrimvar</name></member>
+      <member refid="class_usd_geom_gprim_1a4cd597e15452c6b3f3fa8b0429023b65" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreateDoubleSidedAttr</name></member>
+      <member refid="class_usd_geom_boundable_1a20dfcd57796694016d7d852e798458d8" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreateExtentAttr</name></member>
+      <member refid="class_usd_geom_point_based_1a1143c66e2de7560cbd81fe377949ff89" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreateNormalsAttr</name></member>
+      <member refid="class_usd_geom_gprim_1a40d10614ef3494576ded1ef08fb75f6a" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreateOrientationAttr</name></member>
+      <member refid="class_usd_geom_point_based_1a2eb01bcff2e20a4b8809099496bad01d" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreatePointsAttr</name></member>
+      <member refid="class_usd_geom_imageable_1aafc2e3aa91cf892f7937cc46a2351472" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreateProxyPrimRel</name></member>
+      <member refid="class_usd_geom_imageable_1a3f4f6685ac7cef1d8ef94c44586b84bc" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreatePurposeAttr</name></member>
+      <member refid="class_usd_geom_basis_curves_1a8d272deff79dde94dd20e5ec0ba2ea40" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreateTypeAttr</name></member>
+      <member refid="class_usd_geom_point_based_1aaf96c3a4bc0546725bc50c23067b7d1a" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreateVelocitiesAttr</name></member>
+      <member refid="class_usd_geom_imageable_1a96d4959f4d99367dfa3a79a3371e278a" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreateVisibilityAttr</name></member>
+      <member refid="class_usd_geom_curves_1a3b5c5f41eebd5eaf344f9a2aa3688e56" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreateWidthsAttr</name></member>
+      <member refid="class_usd_geom_basis_curves_1a7a628298d4f6ff1552c8f33fe2512292" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreateWrapAttr</name></member>
+      <member refid="class_usd_geom_xformable_1a03e49a63dc0bed6c97cee6bbc10aa182" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>CreateXformOpOrderAttr</name></member>
+      <member refid="class_usd_geom_basis_curves_1a120e22657f40361fe2fc7a2f1e953714" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>Define</name></member>
+      <member refid="class_usd_geom_basis_curves_1a9367a137d41e661122142e07d770b776" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>Get</name></member>
+      <member refid="class_usd_geom_point_based_1abf4df1035f2f759d5119392f94a73626" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetAccelerationsAttr</name></member>
+      <member refid="class_usd_geom_basis_curves_1a8744501c06ee3eb6474fabb7685103c6" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetBasisAttr</name></member>
+      <member refid="class_usd_geom_curves_1a902e505e0c605c7c38ea7d447762c979" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetCurveCount</name></member>
+      <member refid="class_usd_geom_curves_1af505aabdf525fe48f76eeb4f626ca3ea" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetCurveVertexCountsAttr</name></member>
+      <member refid="class_usd_geom_gprim_1a0f8310a9dbe0bfc4be2bf4aa32e4a3e4" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetDisplayColorAttr</name></member>
+      <member refid="class_usd_geom_gprim_1ab36f805d674846aeeb296c8dbe661533" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetDisplayColorPrimvar</name></member>
+      <member refid="class_usd_geom_gprim_1af3b5a808697655fb58eddafb01003527" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetDisplayOpacityAttr</name></member>
+      <member refid="class_usd_geom_gprim_1a4d68d7e0959dfef2db82a7a1f1a6eea8" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetDisplayOpacityPrimvar</name></member>
+      <member refid="class_usd_geom_gprim_1a63367a54086e014dda98cc79ad5f8602" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetDoubleSidedAttr</name></member>
+      <member refid="class_usd_geom_boundable_1abecc87b5433fec139295a78b439b0531" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetExtentAttr</name></member>
+      <member refid="class_usd_geom_xformable_1a9a04ccb1ba8aa16e8cc1e878c2c92969" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetLocalTransformation</name></member>
+      <member refid="class_usd_geom_xformable_1a3bdae958563500cfdf2b4f3bcf34c465" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetLocalTransformation</name></member>
+      <member refid="class_usd_geom_xformable_1ad0838e193af826f5bbde3c274e9839ce" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetLocalTransformation</name></member>
+      <member refid="class_usd_geom_point_based_1ac9a057e1f221d9a20b99887f35f84480" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetNormalsAttr</name></member>
+      <member refid="class_usd_geom_point_based_1ae0ac6f60f8135799ba42a16fe466f89b" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetNormalsInterpolation</name></member>
+      <member refid="class_usd_geom_imageable_1ac7d41ddd5b5d274785f4a109a7cebad5" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetOrderedPurposeTokens</name></member>
+      <member refid="class_usd_geom_xformable_1a5e7cd1ac98925aa41af4f83d1efe6375" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetOrderedXformOps</name></member>
+      <member refid="class_usd_geom_gprim_1a6d7f451cf0aa27125cc118b030ebb735" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetOrientationAttr</name></member>
+      <member refid="class_usd_geom_xformable_1a618c9b0ad5f39a8ebfc7f8e1b9319e5f" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetOrientOp</name></member>
+      <member refid="class_usd_schema_base_1a936bfb1e341cc81184c64af44763c433" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetPath</name></member>
+      <member refid="class_usd_geom_point_based_1ade9b7ab444b88ff2bb20ac5533dae030" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetPointsAttr</name></member>
+      <member refid="class_usd_schema_base_1a4ba10e023e7f3f3c93131bc7fc3146b7" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetPrim</name></member>
+      <member refid="class_usd_geom_imageable_1a5be4a4143e2b9f89f9bea44d27639a92" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetProxyPrimRel</name></member>
+      <member refid="class_usd_geom_imageable_1acff531252fb2787a973eb028f2b04bdd" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetPurposeAttr</name></member>
+      <member refid="class_usd_geom_imageable_1a2dfc306cddf0c522d39ba477e91ec161" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetPurposeVisibilityAttr</name></member>
+      <member refid="class_usd_geom_xformable_1a6d16bc5455344e131683d91e14ab62db" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetResetXformStack</name></member>
+      <member refid="class_usd_geom_xformable_1adbc1cc0684aad279a9f7954cce0ad083" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetRotateXOp</name></member>
+      <member refid="class_usd_geom_xformable_1a8b871424ffaff814ec4595b406198e12" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetRotateXYZOp</name></member>
+      <member refid="class_usd_geom_xformable_1aeabbd1a4b1e09254ddf700bfc1d83790" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetRotateXZYOp</name></member>
+      <member refid="class_usd_geom_xformable_1a9846b234308946bb9f91e1520f97de05" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetRotateYOp</name></member>
+      <member refid="class_usd_geom_xformable_1a803cfbc1fe2750bf9c5aadd83bd50a4c" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetRotateYXZOp</name></member>
+      <member refid="class_usd_geom_xformable_1aa244d99dd6e7f5abecc57f8ece422c93" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetRotateYZXOp</name></member>
+      <member refid="class_usd_geom_xformable_1a478e11c424f265543b333a00fb4268d0" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetRotateZOp</name></member>
+      <member refid="class_usd_geom_xformable_1a12311efeb62f64b39a02a1c001169ec6" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetRotateZXYOp</name></member>
+      <member refid="class_usd_geom_xformable_1a4ac8cec6efb64e0cbdd4b7a72f71c7f3" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetRotateZYXOp</name></member>
+      <member refid="class_usd_geom_xformable_1a2029e0b90a0684a9a8c31e62aa98d317" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetScaleOp</name></member>
+      <member refid="class_usd_geom_basis_curves_1ae40ae43320babff8a254a3a8107a255a" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetSchemaAttributeNames</name></member>
+      <member refid="class_usd_schema_base_1a030d03e2a9839d9c3da0fbca8c3722d4" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetSchemaClassPrimDefinition</name></member>
+      <member refid="class_usd_schema_base_1aeac68c5514faebb20c5ae3cb930170de" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetSchemaKind</name></member>
+      <member refid="class_usd_geom_xformable_1a0384cb87a595fa56c29463ff4fe73015" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetTimeSamples</name></member>
+      <member refid="class_usd_geom_xformable_1ab855f0ea37793df1f22d2bce3d68caff" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetTimeSamples</name></member>
+      <member refid="class_usd_geom_xformable_1a64d8dabfbe974503daf5e8f2057424f7" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetTimeSamplesInInterval</name></member>
+      <member refid="class_usd_geom_xformable_1a582133c4e08813d891690f58497d4add" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetTimeSamplesInInterval</name></member>
+      <member refid="class_usd_geom_xformable_1a0b425fbfdfe0f254add07f904ab231aa" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetTransformOp</name></member>
+      <member refid="class_usd_geom_xformable_1ab81f8a9eb062d2c726dbb8303188408c" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetTranslateOp</name></member>
+      <member refid="class_usd_geom_basis_curves_1abf8d226fc8ae39bd4f4d62a64a032af1" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetTypeAttr</name></member>
+      <member refid="class_usd_geom_point_based_1a2840a996c8a768ecea390147390dc222" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetVelocitiesAttr</name></member>
+      <member refid="class_usd_geom_imageable_1a943eddc325190bd67789407400f122b7" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetVisibilityAttr</name></member>
+      <member refid="class_usd_geom_curves_1a6ca7cc8980d11766db4a9a25801db215" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetWidthsAttr</name></member>
+      <member refid="class_usd_geom_curves_1a914fb16c11a5e0d5e30fd55968a6fd7a" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetWidthsInterpolation</name></member>
+      <member refid="class_usd_geom_basis_curves_1a805649ce1108b2a7ac5c12986edb78c9" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetWrapAttr</name></member>
+      <member refid="class_usd_geom_xformable_1ab153aead880eebecaf2138706c4bdbf2" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetXformOp</name></member>
+      <member refid="class_usd_geom_xformable_1af8533621f9f141dfd016711171433caf" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>GetXformOpOrderAttr</name></member>
+      <member refid="class_usd_schema_base_1ad658b6730d4246ee1f903ce4ce18fdfe" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>IsAPISchema</name></member>
+      <member refid="class_usd_schema_base_1a68e867971cc992c5b03e73725c405c05" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>IsAppliedAPISchema</name></member>
+      <member refid="class_usd_schema_base_1ae2c90cefba1b2e09dc117a7d972009cb" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>IsConcrete</name></member>
+      <member refid="class_usd_schema_base_1af752510dea0c7106aa89832e60dfa3d5" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>IsMultipleApplyAPISchema</name></member>
+      <member refid="class_usd_geom_xformable_1adb444654a8443f3413213cc526ee6c1a" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>IsTransformationAffectedByAttrNamed</name></member>
+      <member refid="class_usd_schema_base_1afa15659f4fa280e4c0772173d7471920" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>IsTyped</name></member>
+      <member refid="class_usd_geom_imageable_1a91eda805326fd94cc9910cfaeb4ac4a0" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>MakeInvisible</name></member>
+      <member refid="class_usd_geom_xformable_1a97e5c56a739490600e4e7e37b3953a08" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>MakeMatrixXform</name></member>
+      <member refid="class_usd_geom_imageable_1a3fd30c76b787e7e32180c1b454b971c7" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>MakeVisible</name></member>
+      <member refid="class_usd_schema_base_1a586531d84339318108c817f91367e626" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>operator bool</name></member>
+      <member refid="class_usd_geom_basis_curves_1a3e5fc43aea5aea4908c3ce980fdf8908" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>schemaKind</name></member>
+      <member refid="class_usd_geom_point_based_1a5ab0dc3cc838d49f4e8ac98d8f00ca00" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>SetNormalsInterpolation</name></member>
+      <member refid="class_usd_geom_imageable_1a6b808012a6a5bc9df34e794ff82bb6f0" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>SetProxyPrim</name></member>
+      <member refid="class_usd_geom_imageable_1a8c0c8b7faa4056a7267c586b2ffc0bd8" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>SetProxyPrim</name></member>
+      <member refid="class_usd_geom_xformable_1a99c4c768f58d6375edad8c9c7cb4bee2" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>SetResetXformStack</name></member>
+      <member refid="class_usd_geom_curves_1ac0d209cd546af10f5e3597dea5d50955" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>SetWidthsInterpolation</name></member>
+      <member refid="class_usd_geom_xformable_1a4b6dd6e51eb84725c763d064c4f9f3ba" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>SetXformOpOrder</name></member>
+      <member refid="class_usd_geom_xformable_1aca0c1f0eb2639bd9e126f5e6a16e856f" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>TransformMightBeTimeVarying</name></member>
+      <member refid="class_usd_geom_xformable_1a43e63cb240ddb36f550b3c86a22252c6" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>TransformMightBeTimeVarying</name></member>
+      <member refid="class_usd_geom_basis_curves_1a97569c121bc16d1856a4a0dd06c0d57a" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>UsdGeomBasisCurves</name></member>
+      <member refid="class_usd_geom_basis_curves_1a7b2e5106f926e596c0d4bafac787fdb6" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>UsdGeomBasisCurves</name></member>
+      <member refid="class_usd_geom_boundable_1a93364dd184714cc86a93a4e6c943f54f" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>UsdGeomBoundable</name></member>
+      <member refid="class_usd_geom_boundable_1acddb485259d4c8d3c0fdb9445b85a19e" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>UsdGeomBoundable</name></member>
+      <member refid="class_usd_geom_curves_1a1657d044804af476231fb61808695deb" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>UsdGeomCurves</name></member>
+      <member refid="class_usd_geom_curves_1ae31d2c7eb6c423d94806b38a61f9b7da" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>UsdGeomCurves</name></member>
+      <member refid="class_usd_geom_gprim_1a10c1cc1805ae388635bba63c3653adb8" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>UsdGeomGprim</name></member>
+      <member refid="class_usd_geom_gprim_1a2bb55640543c9629ee6f9b05d7dcd0cc" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>UsdGeomGprim</name></member>
+      <member refid="class_usd_geom_imageable_1a00ea23bdac8d751c2b97dc8fe5cd7f73" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>UsdGeomImageable</name></member>
+      <member refid="class_usd_geom_imageable_1a912f3e5572536e0492914fe251446bc9" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>UsdGeomImageable</name></member>
+      <member refid="class_usd_geom_point_based_1a8c3ea3da2f4a09ade8912582173b68ec" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>UsdGeomPointBased</name></member>
+      <member refid="class_usd_geom_point_based_1a8303da656cab834f26a58c92937d30f5" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>UsdGeomPointBased</name></member>
+      <member refid="class_usd_geom_xformable_1adf53f566e1d4a6ff2c4e6e90590b0510" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>UsdGeomXformable</name></member>
+      <member refid="class_usd_geom_xformable_1a4f5550d15c8a43ef4ac30a063f96d0cd" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>UsdGeomXformable</name></member>
+      <member refid="class_usd_schema_base_1a32e0a9b0465ecf201fb501753baa8587" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>UsdSchemaBase</name></member>
+      <member refid="class_usd_schema_base_1a73921308189043c86867d6bd9012b4af" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>UsdSchemaBase</name></member>
+      <member refid="class_usd_geom_basis_curves_1aff8b8d83211f127c6c4cba48fb7d3334" prot="private" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>UsdSchemaRegistry</name></member>
+      <member refid="class_usd_typed_1a0eedaa009a86f3b1186f709bc78d0c09" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>UsdTyped</name></member>
+      <member refid="class_usd_typed_1a64de30966732c854c3c29616244e5250" prot="public" virt="non-virtual"><scope>UsdGeomBasisCurves</scope><name>UsdTyped</name></member>
+      <member refid="class_usd_geom_basis_curves_1ae0c26e8fb2210989a2249d5b83b6711a" prot="public" virt="virtual"><scope>UsdGeomBasisCurves</scope><name>~UsdGeomBasisCurves</name></member>
+      <member refid="class_usd_geom_boundable_1af5dfc6e58452966f10c6f8d0a771c346" prot="public" virt="virtual"><scope>UsdGeomBasisCurves</scope><name>~UsdGeomBoundable</name></member>
+      <member refid="class_usd_geom_curves_1a151c6a250a18899c82dd0e8a989abb2a" prot="public" virt="virtual"><scope>UsdGeomBasisCurves</scope><name>~UsdGeomCurves</name></member>
+      <member refid="class_usd_geom_gprim_1a0a03ad7c400946736b8d97a26cbf7211" prot="public" virt="virtual"><scope>UsdGeomBasisCurves</scope><name>~UsdGeomGprim</name></member>
+      <member refid="class_usd_geom_imageable_1acbd981c2779c70ec4c3fd5d8cc610925" prot="public" virt="virtual"><scope>UsdGeomBasisCurves</scope><name>~UsdGeomImageable</name></member>
+      <member refid="class_usd_geom_point_based_1ac327cfc78d950cc82baefe3111580200" prot="public" virt="virtual"><scope>UsdGeomBasisCurves</scope><name>~UsdGeomPointBased</name></member>
+      <member refid="class_usd_geom_xformable_1a8c8f037aa67ff544aea009f0881ed530" prot="public" virt="virtual"><scope>UsdGeomBasisCurves</scope><name>~UsdGeomXformable</name></member>
+      <member refid="class_usd_schema_base_1a3e97b9a7311478da9f2d168bea29560e" prot="public" virt="virtual"><scope>UsdGeomBasisCurves</scope><name>~UsdSchemaBase</name></member>
+      <member refid="class_usd_typed_1a558859985aa8647bc068d590b5d9e08f" prot="public" virt="virtual"><scope>UsdGeomBasisCurves</scope><name>~UsdTyped</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

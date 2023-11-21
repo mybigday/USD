@@ -86,23 +86,46 @@ public:
     HD_API
     bool IsIndexed();
 
+    // If the primvar does not have indices, GetFlattenedPrimvarValue() will
+    // just return the primvarValue data source which is also returned by
+    // GetPrimVarValue().
+    // If the primvar does have indices, GetFlattenedPrivmarValue() will return
+    // the flattened value.
+    //
+    // Note that GetPrimvarValue actually flattens the primvar even though
+    // the name and the grouping under ACCESSORS suggests that it is merely
+    // retrieving the primvarValue data source.
+    //
+    // The behavior of GetPrimvarValue might be conformed to simply return
+    // the primvarValue data source. Thus, clients who need the flattening
+    // behavior should explicitly call GetFlattenedPrimvarValue.
+    //
+    HD_API
+    HdSampledDataSourceHandle GetFlattenedPrimvarValue();
+
 // --(END CUSTOM CODE: Schema Methods)--
 
     //ACCESSORS
+
 
 
     // If the primvar does not have indices, GetPrimvarValue() and
     // GetIndexedPrimvarValue() will return the same thing. If the primvar
     // does has indices, GetPrimvarValue() will return the flattened value,
     // while GetIndexedPrimvarValue() will return the unflattened value.
+
     HD_API
     HdSampledDataSourceHandle GetPrimvarValue();
+
     HD_API
     HdSampledDataSourceHandle GetIndexedPrimvarValue();
+
     HD_API
     HdIntArrayDataSourceHandle GetIndices();
+
     HD_API
     HdTokenDataSourceHandle GetInterpolation();
+
     HD_API
     HdTokenDataSourceHandle GetRole();
 

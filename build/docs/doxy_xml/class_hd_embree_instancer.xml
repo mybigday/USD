@@ -1,0 +1,236 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_embree_instancer" kind="class" language="C++" prot="public">
+    <compoundname>HdEmbreeInstancer</compoundname>
+    <basecompoundref refid="class_hd_instancer" prot="public" virt="non-virtual">HdInstancer</basecompoundref>
+    <includes refid="mbree_2instancer_8h" local="no">instancer.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_embree_instancer_1a490745b885dc5717fce815779d0b21be" prot="private" static="no" mutable="no">
+        <type>TfHashMap&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, <ref refid="class_hd_vt_buffer_source" kindref="compound">HdVtBufferSource</ref> *, <ref refid="struct_tf_token_1_1_hash_functor" kindref="compound">TfToken::HashFunctor</ref> &gt;</type>
+        <definition>TfHashMap&lt;TfToken, HdVtBufferSource*, TfToken::HashFunctor&gt; _primvarMap</definition>
+        <argsstring></argsstring>
+        <name>_primvarMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/instancer.h" line="88" column="1" bodyfile="pxr/imaging/hdEmbree/instancer.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_embree_instancer_1ad6bb4646d21d090a943bd4d6fe7e219b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdEmbreeInstancer</definition>
+        <argsstring>(HdSceneDelegate *delegate, SdfPath const &amp;id)</argsstring>
+        <name>HdEmbreeInstancer</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>delegate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scene delegate backing this instancer&apos;s data. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique id of this instancer. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/instancer.h" line="55" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_embree_instancer_1a78d1b2f4dddf18ed11cb7aaa3c19a56e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>~HdEmbreeInstancer</definition>
+        <argsstring>()</argsstring>
+        <name>~HdEmbreeInstancer</name>
+        <briefdescription>
+<para>Destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/instancer.h" line="58" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_embree_instancer_1a2618d3921420efc32b046b705f5b269c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VtMatrix4dArray</type>
+        <definition>VtMatrix4dArray ComputeInstanceTransforms</definition>
+        <argsstring>(SdfPath const &amp;prototypeId)</argsstring>
+        <name>ComputeInstanceTransforms</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>prototypeId</declname>
+        </param>
+        <briefdescription>
+<para>Computes all instance transforms for the provided prototype id, taking into account the scene delegate&apos;s instancerTransform and the instance primvars &quot;hydra:instanceTransforms&quot;, &quot;hydra:instanceTranslations&quot;, &quot;hydra:instanceRotations&quot;, and &quot;hydra:instanceScales&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Computes and flattens nested transforms, if necessary. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prototypeId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The prototype to compute transforms for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>One transform per instance, to apply when drawing. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/instancer.h" line="68" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_embree_instancer_1a01d42ddc062aa607ea4c9fe02315189a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Sync</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, HdDirtyBits *dirtyBits) override</argsstring>
+        <name>Sync</name>
+        <reimplements refid="class_hd_instancer_1a22a4ee0efeaeb01071c64ae09f62b29b">Sync</reimplements>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+<para>Updates cached primvar data from the scene delegate. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sceneDelegate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scene delegate for this prim. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>renderParam</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The hdEmbree render param. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dirtyBits</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dirty bits for this instancer. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/instancer.h" line="74" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hd_embree_instancer_1a469ea6913639793a3e68de790760b0fe" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _SyncPrimvars</definition>
+        <argsstring>(HdSceneDelegate *delegate, HdDirtyBits dirtyBits)</argsstring>
+        <name>_SyncPrimvars</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/instancer.h" line="81" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>HdEmbree implements instancing by adding prototype geometry to the BVH multiple times within <ref refid="class_hd_embree_mesh_1a107d87885299e595bb0906b323392eb7" kindref="member">HdEmbreeMesh::Sync()</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The only instance-varying attribute that HdEmbree supports is transform, so the natural accessor to instancer data is <ref refid="class_hd_embree_instancer_1a2618d3921420efc32b046b705f5b269c" kindref="member">ComputeInstanceTransforms()</ref>, which returns a list of transforms to apply to the given prototype (one instance per transform).</para>
+<para>Nested instancing can be handled by recursion, and by taking the cartesian product of the transform arrays at each nesting level, to create a flattened transform array. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1851">
+        <label>HdInstancer</label>
+        <link refid="class_hd_instancer"/>
+      </node>
+      <node id="1850">
+        <label>HdEmbreeInstancer</label>
+        <link refid="class_hd_embree_instancer"/>
+        <childnode refid="1851" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1853">
+        <label>HdInstancer</label>
+        <link refid="class_hd_instancer"/>
+      </node>
+      <node id="1852">
+        <label>HdEmbreeInstancer</label>
+        <link refid="class_hd_embree_instancer"/>
+        <childnode refid="1853" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/hdEmbree/instancer.h" line="50" column="1" bodyfile="pxr/imaging/hdEmbree/instancer.h" bodystart="50" bodyend="89"/>
+    <listofallmembers>
+      <member refid="class_hd_embree_instancer_1a490745b885dc5717fce815779d0b21be" prot="private" virt="non-virtual"><scope>HdEmbreeInstancer</scope><name>_primvarMap</name></member>
+      <member refid="class_hd_instancer_1a72e2aaa50810b72b5c322ca5c93c42a8" prot="public" virt="non-virtual"><scope>HdEmbreeInstancer</scope><name>_SyncInstancerAndParents</name></member>
+      <member refid="class_hd_embree_instancer_1a469ea6913639793a3e68de790760b0fe" prot="private" virt="non-virtual"><scope>HdEmbreeInstancer</scope><name>_SyncPrimvars</name></member>
+      <member refid="class_hd_instancer_1aa0549b24aee8576e46bd2dbffddad752" prot="protected" virt="non-virtual"><scope>HdEmbreeInstancer</scope><name>_UpdateInstancer</name></member>
+      <member refid="class_hd_embree_instancer_1a2618d3921420efc32b046b705f5b269c" prot="public" virt="non-virtual"><scope>HdEmbreeInstancer</scope><name>ComputeInstanceTransforms</name></member>
+      <member refid="class_hd_instancer_1a385eed04c15e636796b187bfdf0fcbf0" prot="public" virt="virtual"><scope>HdEmbreeInstancer</scope><name>Finalize</name></member>
+      <member refid="class_hd_instancer_1a0ac325c9543f5e9a831d1e87fc661348" prot="public" virt="non-virtual"><scope>HdEmbreeInstancer</scope><name>GetBuiltinPrimvarNames</name></member>
+      <member refid="class_hd_instancer_1a7a54e2c50b8cce793007581c7450b2af" prot="public" virt="non-virtual"><scope>HdEmbreeInstancer</scope><name>GetDelegate</name></member>
+      <member refid="class_hd_instancer_1a9301243d9273afcba6395e86047490ab" prot="public" virt="non-virtual"><scope>HdEmbreeInstancer</scope><name>GetId</name></member>
+      <member refid="class_hd_instancer_1ade051cd8ff53a108b7e6c27be99a5e3a" prot="public" virt="virtual"><scope>HdEmbreeInstancer</scope><name>GetInitialDirtyBitsMask</name></member>
+      <member refid="class_hd_instancer_1afd35976486cc4ec447827980a44d97e5" prot="public" virt="non-virtual"><scope>HdEmbreeInstancer</scope><name>GetInstancerNumLevels</name></member>
+      <member refid="class_hd_instancer_1a1bb2fef816df9482f8c7f80799c312d1" prot="public" virt="non-virtual"><scope>HdEmbreeInstancer</scope><name>GetParentId</name></member>
+      <member refid="class_hd_embree_instancer_1ad6bb4646d21d090a943bd4d6fe7e219b" prot="public" virt="non-virtual"><scope>HdEmbreeInstancer</scope><name>HdEmbreeInstancer</name></member>
+      <member refid="class_hd_instancer_1a68716c7888bc2c0125d10b6cd402c24d" prot="public" virt="non-virtual"><scope>HdEmbreeInstancer</scope><name>HdInstancer</name></member>
+      <member refid="class_hd_embree_instancer_1a01d42ddc062aa607ea4c9fe02315189a" prot="public" virt="virtual"><scope>HdEmbreeInstancer</scope><name>Sync</name></member>
+      <member refid="class_hd_embree_instancer_1a78d1b2f4dddf18ed11cb7aaa3c19a56e" prot="public" virt="non-virtual"><scope>HdEmbreeInstancer</scope><name>~HdEmbreeInstancer</name></member>
+      <member refid="class_hd_instancer_1abcc58e73a84dc6fe5ebaffe8fb2be87b" prot="public" virt="virtual"><scope>HdEmbreeInstancer</scope><name>~HdInstancer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

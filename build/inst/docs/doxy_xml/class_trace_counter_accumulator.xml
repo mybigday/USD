@@ -1,0 +1,389 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_trace_counter_accumulator" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>TraceCounterAccumulator</compoundname>
+    <basecompoundref refid="class_trace_collection_1_1_visitor" prot="private" virt="non-virtual">TraceCollection::Visitor</basecompoundref>
+    <includes refid="counter_accumulator_8h" local="no">counterAccumulator.h</includes>
+    <innerclass refid="struct_trace_counter_accumulator_1_1___counter_value" prot="private">TraceCounterAccumulator::_CounterValue</innerclass>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_trace_counter_accumulator_1a1b111b9b0cdccd0e7bb17a10f826d3ad" prot="public" static="no">
+        <type>std::vector&lt; std::pair&lt; <ref refid="class_trace_event_1a166027cc433a33197d502f882979d160" kindref="member">TraceEvent::TimeStamp</ref>, double &gt; &gt;</type>
+        <definition>using CounterValues =  std::vector&lt;std::pair&lt;TraceEvent::TimeStamp, double&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>CounterValues</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="52" column="1" bodyfile="pxr/base/trace/counterAccumulator.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_trace_counter_accumulator_1ae1788d89aec9e68186f3b09b8255d5b0" prot="public" static="no">
+        <type>std::unordered_map&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, CounterValues, <ref refid="struct_tf_token_1_1_hash_functor" kindref="compound">TfToken::HashFunctor</ref> &gt;</type>
+        <definition>using CounterValuesMap =  std::unordered_map&lt;TfToken, CounterValues, TfToken::HashFunctor&gt;</definition>
+        <argsstring></argsstring>
+        <name>CounterValuesMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="53" column="1" bodyfile="pxr/base/trace/counterAccumulator.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_trace_counter_accumulator_1aca9dde447c468d082c075bddafb356e9" prot="public" static="no">
+        <type>std::unordered_map&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, double, <ref refid="struct_tf_token_1_1_hash_functor" kindref="compound">TfToken::HashFunctor</ref> &gt;</type>
+        <definition>using CounterMap =  std::unordered_map&lt;TfToken, double, TfToken::HashFunctor&gt;</definition>
+        <argsstring></argsstring>
+        <name>CounterMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="55" column="1" bodyfile="pxr/base/trace/counterAccumulator.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_trace_counter_accumulator_1ad8b5050b6613ff61ad88bb6557f0f6f6" prot="private" static="no">
+        <type>std::multimap&lt; <ref refid="class_trace_event_1a166027cc433a33197d502f882979d160" kindref="member">TraceEvent::TimeStamp</ref>, _CounterValue &gt;</type>
+        <definition>using _CounterDeltaValues =  std::multimap&lt;TraceEvent::TimeStamp, _CounterValue&gt;</definition>
+        <argsstring></argsstring>
+        <name>_CounterDeltaValues</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="97" column="1" bodyfile="pxr/base/trace/counterAccumulator.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_trace_counter_accumulator_1a48b7b8cfa6bcea51b403c00b7303c1b3" prot="private" static="no">
+        <type>std::map&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, _CounterDeltaValues &gt;</type>
+        <definition>using _CounterDeltaMap =  std::map&lt;TfToken, _CounterDeltaValues&gt;</definition>
+        <argsstring></argsstring>
+        <name>_CounterDeltaMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="99" column="1" bodyfile="pxr/base/trace/counterAccumulator.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_trace_counter_accumulator_1ab21343bdc81f1e6832823cea629b8bf4" prot="private" static="no" mutable="no">
+        <type>_CounterDeltaMap</type>
+        <definition>_CounterDeltaMap _counterDeltas</definition>
+        <argsstring></argsstring>
+        <name>_counterDeltas</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="101" column="1" bodyfile="pxr/base/trace/counterAccumulator.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_trace_counter_accumulator_1ae42ed92b70adbf80d74030cb9464f923" prot="private" static="no" mutable="no">
+        <type>CounterValuesMap</type>
+        <definition>CounterValuesMap _counterValuesOverTime</definition>
+        <argsstring></argsstring>
+        <name>_counterValuesOverTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="102" column="1" bodyfile="pxr/base/trace/counterAccumulator.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_trace_counter_accumulator_1aab36d46ad6a450dc0077011b9a91c421" prot="private" static="no" mutable="no">
+        <type>CounterMap</type>
+        <definition>CounterMap _currentValues</definition>
+        <argsstring></argsstring>
+        <name>_currentValues</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="103" column="1" bodyfile="pxr/base/trace/counterAccumulator.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_trace_counter_accumulator_1a9161b75bbfbc0e71a247d72102db5cac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TraceCounterAccumulator</definition>
+        <argsstring>()=default</argsstring>
+        <name>TraceCounterAccumulator</name>
+        <briefdescription>
+<para>Constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="59" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_counter_accumulator_1ad1c11e35f555253c2d4f52b43616e507" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const CounterValuesMap &amp;</type>
+        <definition>const CounterValuesMap&amp; GetCounters</definition>
+        <argsstring>() const</argsstring>
+        <name>GetCounters</name>
+        <briefdescription>
+<para>Returns a map of the counter values over time. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="62" column="1" bodyfile="pxr/base/trace/counterAccumulator.h" bodystart="62" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_counter_accumulator_1ae93b88491c893cb6a899aa43d3ac662a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void SetCurrentValues</definition>
+        <argsstring>(const CounterMap &amp;)</argsstring>
+        <name>SetCurrentValues</name>
+        <param>
+          <type>const CounterMap &amp;</type>
+        </param>
+        <briefdescription>
+<para>Sets the current value of the counters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="67" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_counter_accumulator_1af7c71185052059227c80d61af41df486" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const CounterMap &amp;</type>
+        <definition>const CounterMap&amp; GetCurrentValues</definition>
+        <argsstring>() const</argsstring>
+        <name>GetCurrentValues</name>
+        <briefdescription>
+<para>Returns the current value of the counters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="70" column="1" bodyfile="pxr/base/trace/counterAccumulator.h" bodystart="70" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_counter_accumulator_1afa43e43223142aebdbda54c0976eea67" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void Update</definition>
+        <argsstring>(const TraceCollection &amp;collection)</argsstring>
+        <name>Update</name>
+        <param>
+          <type>const <ref refid="class_trace_collection" kindref="compound">TraceCollection</ref> &amp;</type>
+          <declname>collection</declname>
+        </param>
+        <briefdescription>
+<para>Reads events /p collection and updates the current values of the counters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="76" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_trace_counter_accumulator_1ac351a39731d0ad73a8d3eefe8719e912" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool _AcceptsCategory</definition>
+        <argsstring>(TraceCategoryId id)=0</argsstring>
+        <name>_AcceptsCategory</name>
+        <param>
+          <type><ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref></type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Determines whether or not counter events with <computeroutput>id</computeroutput> should be processed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="80" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_trace_counter_accumulator_1a9cf0d30c92e295f9f5bf586938149dbd" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void OnBeginCollection</definition>
+        <argsstring>() override</argsstring>
+        <name>OnBeginCollection</name>
+        <reimplements refid="class_trace_collection_1_1_visitor_1a3c80c02c9ef4c21cc42fc923138704a8">OnBeginCollection</reimplements>
+        <briefdescription>
+<para>Called at the beginning of an iteration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="84" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_counter_accumulator_1a2cd98ab17b9877c8f793ff320b27fbd0" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void OnEndCollection</definition>
+        <argsstring>() override</argsstring>
+        <name>OnEndCollection</name>
+        <reimplements refid="class_trace_collection_1_1_visitor_1a6dfb37e0b38497f0e93dd9f3c5dc4bb3">OnEndCollection</reimplements>
+        <briefdescription>
+<para>Called at the end of an iteration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="85" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_counter_accumulator_1a1acbcbe48bbfc00e4389e562747d3cfa" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void OnBeginThread</definition>
+        <argsstring>(const TraceThreadId &amp;) override</argsstring>
+        <name>OnBeginThread</name>
+        <reimplements refid="class_trace_collection_1_1_visitor_1a40662d18c54cefe17fce74f0d5e5b17d">OnBeginThread</reimplements>
+        <param>
+          <type>const <ref refid="class_trace_thread_id" kindref="compound">TraceThreadId</ref> &amp;</type>
+          <declname>threadId</declname>
+        </param>
+        <briefdescription>
+<para>Called before the first event of from the thread with <computeroutput>threadId</computeroutput> is encountered. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="86" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_counter_accumulator_1a499b435f34afb8aa7778f37b9d1b6c5a" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void OnEndThread</definition>
+        <argsstring>(const TraceThreadId &amp;) override</argsstring>
+        <name>OnEndThread</name>
+        <reimplements refid="class_trace_collection_1_1_visitor_1a699411304ea70999cea0158fa076b613">OnEndThread</reimplements>
+        <param>
+          <type>const <ref refid="class_trace_thread_id" kindref="compound">TraceThreadId</ref> &amp;</type>
+          <declname>threadId</declname>
+        </param>
+        <briefdescription>
+<para>Called after the last event of from the thread with <computeroutput>threadId</computeroutput> is encountered. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="87" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_counter_accumulator_1aba944a55185e9bfd21f13769cd92b35e" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool AcceptsCategory</definition>
+        <argsstring>(TraceCategoryId) override</argsstring>
+        <name>AcceptsCategory</name>
+        <reimplements refid="class_trace_collection_1_1_visitor_1a2250f04e7b002aa6c36a168a6e947a01">AcceptsCategory</reimplements>
+        <param>
+          <type><ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref></type>
+          <declname>categoryId</declname>
+        </param>
+        <briefdescription>
+<para>Called before an event with <computeroutput>categoryId</computeroutput> is visited. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the return value is false, the event will be visited. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="88" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_counter_accumulator_1ab3e5f1683f820aba43f5fb47fc9a0082" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void OnEvent</definition>
+        <argsstring>(const TraceThreadId &amp;, const TfToken &amp;, const TraceEvent &amp;) override</argsstring>
+        <name>OnEvent</name>
+        <reimplements refid="class_trace_collection_1_1_visitor_1ae291c275f770fb50cd9e3d369ebca9e0">OnEvent</reimplements>
+        <param>
+          <type>const <ref refid="class_trace_thread_id" kindref="compound">TraceThreadId</ref> &amp;</type>
+          <declname>threadId</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_trace_event" kindref="compound">TraceEvent</ref> &amp;</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+<para>Called for every event <computeroutput>event</computeroutput> with <computeroutput>key</computeroutput> on thread <computeroutput>threadId</computeroutput> if AcceptsCategory returns true. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/counterAccumulator.h" line="89" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This class accumulates counter values from <ref refid="class_trace_collection" kindref="compound">TraceCollection</ref> instances. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A <ref refid="class_trace_counter_accumulator" kindref="compound">TraceCounterAccumulator</ref> instance can accumulate counters from multiple collections or the state of the counters can be set explicitly through <ref refid="class_trace_counter_accumulator_1ae93b88491c893cb6a899aa43d3ac662a" kindref="member">SetCurrentValues()</ref>. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5861">
+        <label>Visitor</label>
+        <link refid="class_trace_collection_1_1_visitor"/>
+      </node>
+      <node id="5860">
+        <label>TraceCounterAccumulator</label>
+        <link refid="class_trace_counter_accumulator"/>
+        <childnode refid="5861" relation="private-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5863">
+        <label>Visitor</label>
+        <link refid="class_trace_collection_1_1_visitor"/>
+      </node>
+      <node id="5862">
+        <label>TraceCounterAccumulator</label>
+        <link refid="class_trace_counter_accumulator"/>
+        <childnode refid="5863" relation="private-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/base/trace/counterAccumulator.h" line="50" column="1" bodyfile="pxr/base/trace/counterAccumulator.h" bodystart="50" bodyend="104"/>
+    <listofallmembers>
+      <member refid="class_trace_counter_accumulator_1ac351a39731d0ad73a8d3eefe8719e912" prot="protected" virt="pure-virtual"><scope>TraceCounterAccumulator</scope><name>_AcceptsCategory</name></member>
+      <member refid="class_trace_counter_accumulator_1a48b7b8cfa6bcea51b403c00b7303c1b3" prot="private" virt="non-virtual"><scope>TraceCounterAccumulator</scope><name>_CounterDeltaMap</name></member>
+      <member refid="class_trace_counter_accumulator_1ab21343bdc81f1e6832823cea629b8bf4" prot="private" virt="non-virtual"><scope>TraceCounterAccumulator</scope><name>_counterDeltas</name></member>
+      <member refid="class_trace_counter_accumulator_1ad8b5050b6613ff61ad88bb6557f0f6f6" prot="private" virt="non-virtual"><scope>TraceCounterAccumulator</scope><name>_CounterDeltaValues</name></member>
+      <member refid="class_trace_counter_accumulator_1ae42ed92b70adbf80d74030cb9464f923" prot="private" virt="non-virtual"><scope>TraceCounterAccumulator</scope><name>_counterValuesOverTime</name></member>
+      <member refid="class_trace_counter_accumulator_1aab36d46ad6a450dc0077011b9a91c421" prot="private" virt="non-virtual"><scope>TraceCounterAccumulator</scope><name>_currentValues</name></member>
+      <member refid="class_trace_counter_accumulator_1aba944a55185e9bfd21f13769cd92b35e" prot="private" virt="virtual"><scope>TraceCounterAccumulator</scope><name>AcceptsCategory</name></member>
+      <member refid="class_trace_counter_accumulator_1aca9dde447c468d082c075bddafb356e9" prot="public" virt="non-virtual"><scope>TraceCounterAccumulator</scope><name>CounterMap</name></member>
+      <member refid="class_trace_counter_accumulator_1a1b111b9b0cdccd0e7bb17a10f826d3ad" prot="public" virt="non-virtual"><scope>TraceCounterAccumulator</scope><name>CounterValues</name></member>
+      <member refid="class_trace_counter_accumulator_1ae1788d89aec9e68186f3b09b8255d5b0" prot="public" virt="non-virtual"><scope>TraceCounterAccumulator</scope><name>CounterValuesMap</name></member>
+      <member refid="class_trace_counter_accumulator_1ad1c11e35f555253c2d4f52b43616e507" prot="public" virt="non-virtual"><scope>TraceCounterAccumulator</scope><name>GetCounters</name></member>
+      <member refid="class_trace_counter_accumulator_1af7c71185052059227c80d61af41df486" prot="public" virt="non-virtual"><scope>TraceCounterAccumulator</scope><name>GetCurrentValues</name></member>
+      <member refid="class_trace_counter_accumulator_1a9cf0d30c92e295f9f5bf586938149dbd" prot="private" virt="virtual"><scope>TraceCounterAccumulator</scope><name>OnBeginCollection</name></member>
+      <member refid="class_trace_counter_accumulator_1a1acbcbe48bbfc00e4389e562747d3cfa" prot="private" virt="virtual"><scope>TraceCounterAccumulator</scope><name>OnBeginThread</name></member>
+      <member refid="class_trace_counter_accumulator_1a2cd98ab17b9877c8f793ff320b27fbd0" prot="private" virt="virtual"><scope>TraceCounterAccumulator</scope><name>OnEndCollection</name></member>
+      <member refid="class_trace_counter_accumulator_1a499b435f34afb8aa7778f37b9d1b6c5a" prot="private" virt="virtual"><scope>TraceCounterAccumulator</scope><name>OnEndThread</name></member>
+      <member refid="class_trace_counter_accumulator_1ab3e5f1683f820aba43f5fb47fc9a0082" prot="private" virt="virtual"><scope>TraceCounterAccumulator</scope><name>OnEvent</name></member>
+      <member refid="class_trace_counter_accumulator_1ae93b88491c893cb6a899aa43d3ac662a" prot="public" virt="non-virtual"><scope>TraceCounterAccumulator</scope><name>SetCurrentValues</name></member>
+      <member refid="class_trace_counter_accumulator_1a9161b75bbfbc0e71a247d72102db5cac" prot="public" virt="non-virtual"><scope>TraceCounterAccumulator</scope><name>TraceCounterAccumulator</name></member>
+      <member refid="class_trace_counter_accumulator_1afa43e43223142aebdbda54c0976eea67" prot="public" virt="non-virtual"><scope>TraceCounterAccumulator</scope><name>Update</name></member>
+      <member refid="class_trace_collection_1_1_visitor_1accf43c18dce1e0321c6dc3e8bb2a4bac" prot="private" virt="virtual"><scope>TraceCounterAccumulator</scope><name>~Visitor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

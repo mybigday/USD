@@ -1,0 +1,1338 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_geom_imageable" kind="class" language="C++" prot="public">
+    <compoundname>UsdGeomImageable</compoundname>
+    <basecompoundref refid="class_usd_typed" prot="public" virt="non-virtual">UsdTyped</basecompoundref>
+    <derivedcompoundref refid="class_usd_geom_scope" prot="public" virt="non-virtual">UsdGeomScope</derivedcompoundref>
+    <derivedcompoundref refid="class_usd_geom_xformable" prot="public" virt="non-virtual">UsdGeomXformable</derivedcompoundref>
+    <derivedcompoundref refid="class_usd_physics_joint" prot="public" virt="non-virtual">UsdPhysicsJoint</derivedcompoundref>
+    <includes refid="imageable_8h" local="no">imageable.h</includes>
+    <innerclass refid="struct_usd_geom_imageable_1_1_purpose_info" prot="public">UsdGeomImageable::PurposeInfo</innerclass>
+      <sectiondef kind="user-defined">
+      <header>Visibility Authoring Helpers</header>
+      <description><para><anchor id="class_usd_geom_imageable_1usdGeom_Visibility_Authoring_Helpers"/>Convenience API for making an imageable visible or invisible. </para>
+</description>
+      <memberdef kind="function" id="class_usd_geom_imageable_1a3fd30c76b787e7e32180c1b454b971c7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API void</type>
+        <definition>USDGEOM_API void MakeVisible</definition>
+        <argsstring>(const UsdTimeCode &amp;time=UsdTimeCode::Default()) const</argsstring>
+        <name>MakeVisible</name>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> &amp;</type>
+          <declname>time</declname>
+          <defval><ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Make the imageable visible if it is invisible at the given time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Since visibility is pruning, this may need to override some ancestor&apos;s visibility and all-but-one of the ancestor&apos;s children&apos;s visibility, for all the ancestors of this prim up to the highest ancestor that is explicitly invisible, to preserve the visibility state.</para>
+<para>If <ref refid="class_usd_geom_imageable_1a3fd30c76b787e7e32180c1b454b971c7" kindref="member">MakeVisible()</ref> (or <ref refid="class_usd_geom_imageable_1a91eda805326fd94cc9910cfaeb4ac4a0" kindref="member">MakeInvisible()</ref>) is going to be applied to all the prims on a stage, ancestors must be processed prior to descendants to get the correct behavior.</para>
+<para><simplesect kind="note"><para>When visibility is animated, this only works when it is invoked sequentially at increasing time samples. If visibility is already authored and animated in the scene, calling <ref refid="class_usd_geom_imageable_1a3fd30c76b787e7e32180c1b454b971c7" kindref="member">MakeVisible()</ref> at an arbitrary (in-between) frame isn&apos;t guaranteed to work.</para>
+</simplesect>
+<simplesect kind="note"><para>This will only work properly if all ancestor prims of the imageable are <bold>defined</bold>, as the imageable schema is only valid on defined prims.</para>
+</simplesect>
+<simplesect kind="note"><para>Be sure to set the edit target to the layer containing the strongest visibility opinion or to a stronger layer.</para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_geom_imageable_1a91eda805326fd94cc9910cfaeb4ac4a0" kindref="member">MakeInvisible()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_geom_imageable_1ac0bfa1554d9b57303c14f71d084c578d" kindref="member">ComputeVisibility()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="293" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1a91eda805326fd94cc9910cfaeb4ac4a0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API void</type>
+        <definition>USDGEOM_API void MakeInvisible</definition>
+        <argsstring>(const UsdTimeCode &amp;time=UsdTimeCode::Default()) const</argsstring>
+        <name>MakeInvisible</name>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> &amp;</type>
+          <declname>time</declname>
+          <defval><ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Makes the imageable invisible if it is visible at the given time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>When visibility is animated, this only works when it is invoked sequentially at increasing time samples. If visibility is already authored and animated in the scene, calling <ref refid="class_usd_geom_imageable_1a3fd30c76b787e7e32180c1b454b971c7" kindref="member">MakeVisible()</ref> at an arbitrary (in-between) frame isn&apos;t guaranteed to work.</para>
+</simplesect>
+<simplesect kind="note"><para>Be sure to set the edit target to the layer containing the strongest visibility opinion or to a stronger layer.</para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_geom_imageable_1a3fd30c76b787e7e32180c1b454b971c7" kindref="member">MakeVisible()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_geom_imageable_1ac0bfa1554d9b57303c14f71d084c578d" kindref="member">ComputeVisibility()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="309" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Computed Attribute Helpers</header>
+      <description><para><anchor id="class_usd_geom_imageable_1usdGeom_Computed_Attribute_Helpers"/>Visbility, Purpose, Bounds (World, Local, and Untransformed), and Transform (LocalToWorld and ParentToWorld) are all qualities of a prim&apos;s location in namespace that require non-local data and computation. Computing these efficiently requires a stage-level cache, but when performance is not a concern, it is convenient to query these quantities directly on a prim, so we provide convenience API here for doing so. </para>
+</description>
+      <memberdef kind="function" id="class_usd_geom_imageable_1ac0bfa1554d9b57303c14f71d084c578d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>USDGEOM_API TfToken ComputeVisibility</definition>
+        <argsstring>(UsdTimeCode const &amp;time=UsdTimeCode::Default()) const</argsstring>
+        <name>ComputeVisibility</name>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> const &amp;</type>
+          <declname>time</declname>
+          <defval><ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Calculate the effective visibility of this prim, as defined by its most ancestral authored &quot;invisible&quot; opinion, if any. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A prim is considered visible at the current <computeroutput>time</computeroutput> if none of its Imageable ancestors express an authored &quot;invisible&quot; opinion, which is what leads to the &quot;simple pruning&quot; behavior described in <ref refid="class_usd_geom_imageable_1a943eddc325190bd67789407400f122b7" kindref="member">GetVisibilityAttr()</ref>.</para>
+<para>This function should be considered a reference implementation for correctness. <bold>If called on each prim in the context of a traversal we will perform massive overcomputation, because sibling prims share sub-problems in the query that can be efficiently cached, but are not (cannot be) by this simple implementation.</bold> If you have control of your traversal, it will be far more efficient to manage visibility on a stack as you traverse.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_geom_imageable_1a943eddc325190bd67789407400f122b7" kindref="member">GetVisibilityAttr()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="344" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1a2dfc306cddf0c522d39ba477e91ec161" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetPurposeVisibilityAttr</definition>
+        <argsstring>(const TfToken &amp;purpose=UsdGeomTokens-&gt;default_) const</argsstring>
+        <name>GetPurposeVisibilityAttr</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>purpose</declname>
+          <defval><ref refid="usd_2usd_geom_2tokens_8h_1ad9e3544e015f99ed697804fd6bfe1a88" kindref="member">UsdGeomTokens</ref>-&gt;default_</defval>
+        </param>
+        <briefdescription>
+<para>Return the attribute that is used for expressing visibility opinions for the given <computeroutput>purpose</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For &quot;default&quot; purpose, return the overall <emphasis>visibility</emphasis> attribute. For &quot;guide&quot;, &quot;proxy&quot;, or &quot;render&quot; purpose, return <emphasis>guideVisibility</emphasis>, <emphasis>proxyVisibility</emphasis>, or <emphasis>renderVisibility</emphasis> if <ref refid="class_usd_geom_visibility_a_p_i" kindref="compound">UsdGeomVisibilityAPI</ref> is applied to the prim. If UsdGeomvVisibiltyAPI is not applied, an empty attribute is returned for purposes other than default.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_geom_visibility_a_p_i_1a7436683b2429db8df4b85f72ab8eb6aa" kindref="member">UsdGeomVisibilityAPI::Apply</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_geom_visibility_a_p_i_1a85475ae7bd7c1c2aef6a2a6dd622cf55" kindref="member">UsdGeomVisibilityAPI::GetPurposeVisibilityAttr</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="358" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1a1174d9985088dd364f6a56925073fe76" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>USDGEOM_API TfToken ComputeEffectiveVisibility</definition>
+        <argsstring>(const TfToken &amp;purpose=UsdGeomTokens-&gt;default_, const UsdTimeCode &amp;time=UsdTimeCode::Default()) const</argsstring>
+        <name>ComputeEffectiveVisibility</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>purpose</declname>
+          <defval><ref refid="usd_2usd_geom_2tokens_8h_1ad9e3544e015f99ed697804fd6bfe1a88" kindref="member">UsdGeomTokens</ref>-&gt;default_</defval>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> &amp;</type>
+          <declname>time</declname>
+          <defval><ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Calculate the effective purpose visibility of this prim for the given <computeroutput>purpose</computeroutput>, taking into account opinions for the corresponding purpose attribute, along with overall visibility opinions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <ref refid="class_usd_geom_imageable_1ac0bfa1554d9b57303c14f71d084c578d" kindref="member">ComputeVisibility()</ref> returns &quot;invisible&quot;, then <ref refid="class_usd_geom_imageable_1a1174d9985088dd364f6a56925073fe76" kindref="member">ComputeEffectiveVisibility()</ref> is &quot;invisible&quot; for all purpose values. Otherwise, <ref refid="class_usd_geom_imageable_1a1174d9985088dd364f6a56925073fe76" kindref="member">ComputeEffectiveVisibility()</ref> returns the value of the nearest ancestral authored opinion for the corresponding purpose visibility attribute, as retured by GetPurposeVisibilityAttr(purpose).</para>
+<para>Note that the value returned here can be &quot;invisible&quot; (indicating the prim is invisible for the given purpose), &quot;visible&quot; (indicating that it&apos;s visible), or &quot;inherited&quot; (indicating that the purpose visibility is context-dependent and the fallback behavior must be determined by the caller.</para>
+<para>This function should be considered a reference implementation for correctness. <bold>If called on each prim in the context of a traversal we will perform massive overcomputation, because sibling prims share sub-problems in the query that can be efficiently cached, but are not (cannot be) by this simple implementation.</bold> If you have control of your traversal, it will be far more efficient to manage visibility on a stack as you traverse.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_geom_visibility_a_p_i" kindref="compound">UsdGeomVisibilityAPI</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_geom_imageable_1a2dfc306cddf0c522d39ba477e91ec161" kindref="member">GetPurposeVisibilityAttr()</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_geom_imageable_1ac0bfa1554d9b57303c14f71d084c578d" kindref="member">ComputeVisibility()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="390" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1a2a7d61f7af1a02e095e6a8abcf8e641f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="struct_usd_geom_imageable_1_1_purpose_info" kindref="compound">PurposeInfo</ref></type>
+        <definition>USDGEOM_API PurposeInfo ComputePurposeInfo</definition>
+        <argsstring>() const</argsstring>
+        <name>ComputePurposeInfo</name>
+        <briefdescription>
+<para>Calculate the effective purpose information about this prim which includes final computed purpose value of the prim as well as whether the purpose value should be inherited by namespace children without their own purpose opinions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function should be considered a reference implementation for correctness. <bold>If called on each prim in the context of a traversal we will perform massive overcomputation, because sibling prims share sub-problems in the query that can be efficiently cached, but are not (cannot be) by this simple implementation.</bold> If you have control of your traversal, it will be far more efficient to manage purpose, along with visibility, on a stack as you traverse.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_geom_imageable_1acff531252fb2787a973eb028f2b04bdd" kindref="member">GetPurposeAttr()</ref>, <ref refid="usd_geom_page_front_1UsdGeom_ImageablePurpose" kindref="member">Imageable Purpose</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="447" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1a00c5620a09313aa39cb0d79f492b340f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="struct_usd_geom_imageable_1_1_purpose_info" kindref="compound">PurposeInfo</ref></type>
+        <definition>USDGEOM_API PurposeInfo ComputePurposeInfo</definition>
+        <argsstring>(const PurposeInfo &amp;parentPurposeInfo) const</argsstring>
+        <name>ComputePurposeInfo</name>
+        <param>
+          <type>const <ref refid="struct_usd_geom_imageable_1_1_purpose_info" kindref="compound">PurposeInfo</ref> &amp;</type>
+          <declname>parentPurposeInfo</declname>
+        </param>
+        <briefdescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. Calculates the effective purpose information about this prim, given the computed purpose information of its parent prim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This can be much more efficient than using CommputePurposeInfo() when <ref refid="struct_usd_geom_imageable_1_1_purpose_info" kindref="compound">PurposeInfo</ref> values are properly computed and cached for a hierarchy of prims using this function.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_geom_imageable_1acff531252fb2787a973eb028f2b04bdd" kindref="member">GetPurposeAttr()</ref>, <ref refid="usd_geom_page_front_1UsdGeom_ImageablePurpose" kindref="member">Imageable Purpose</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="458" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1a1aa2ea4240e7e12f11122d7ff8ad7f90" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>USDGEOM_API TfToken ComputePurpose</definition>
+        <argsstring>() const</argsstring>
+        <name>ComputePurpose</name>
+        <briefdescription>
+<para>Calculate the effective purpose information about this prim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is equivalent to extracting the purpose from the value returned by <ref refid="class_usd_geom_imageable_1a2a7d61f7af1a02e095e6a8abcf8e641f" kindref="member">ComputePurposeInfo()</ref>.</para>
+<para>This function should be considered a reference implementation for correctness. <bold>If called on each prim in the context of a traversal we will perform massive overcomputation, because sibling prims share sub-problems in the query that can be efficiently cached, but are not (cannot be) by this simple implementation.</bold> If you have control of your traversal, it will be far more efficient to manage purpose, along with visibility, on a stack as you traverse.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_geom_imageable_1acff531252fb2787a973eb028f2b04bdd" kindref="member">GetPurposeAttr()</ref>, <ref refid="usd_geom_page_front_1UsdGeom_ImageablePurpose" kindref="member">Imageable Purpose</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="474" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1ad5a114f3776eb75edc651e8c2d67f8ff" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref></type>
+        <definition>USDGEOM_API UsdPrim ComputeProxyPrim</definition>
+        <argsstring>(UsdPrim *renderPrim=NULL) const</argsstring>
+        <name>ComputeProxyPrim</name>
+        <param>
+          <type><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> *</type>
+          <declname>renderPrim</declname>
+          <defval>NULL</defval>
+        </param>
+        <briefdescription>
+<para>Find the prim whose purpose is <emphasis>proxy</emphasis> that serves as the proxy for this prim, as established by the <ref refid="class_usd_geom_imageable_1a5be4a4143e2b9f89f9bea44d27639a92" kindref="member">GetProxyPrimRel()</ref>, or an invalid <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> if this prim has no proxy. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method will find the proxy for <emphasis>any</emphasis> prim whose computed purpose (see <ref refid="class_usd_geom_imageable_1a1aa2ea4240e7e12f11122d7ff8ad7f90" kindref="member">ComputePurpose()</ref>) is <emphasis>render</emphasis>. If provided and a proxy was found, we will set *renderPrim to the root of the <emphasis>render</emphasis> subtree upon which the renderProxy relationship was authored.</para>
+<para>If the renderProxy relationship has more than one target, we will issue a warning and return an invalid <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref>. If the targeted prim does not have a resolved purpose of <emphasis>proxy</emphasis>, we will warn and return an invalid prim.</para>
+<para>This function should be considered a reference implementation for correctness. <bold>If called on each prim in the context of a traversal we will perform massive overcomputation, because sibling prims share sub-problems in the query that can be efficiently cached, but are not (cannot be) by this simple implementation.</bold> If you have control of your traversal, it will be far more efficient to compute proxy-prims on a stack as you traverse.</para>
+<para><simplesect kind="note"><para>Currently the returned prim will not contain any instancing context if it is inside a prototype - its path will be relative to the prototype&apos;s root. Once <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> is instancing-aware in the core, we can change this method to return a context-aware result.</para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_geom_imageable_1a6b808012a6a5bc9df34e794ff82bb6f0" kindref="member">SetProxyPrim()</ref>, <ref refid="class_usd_geom_imageable_1a5be4a4143e2b9f89f9bea44d27639a92" kindref="member">GetProxyPrimRel()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="505" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1a6b808012a6a5bc9df34e794ff82bb6f0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool SetProxyPrim</definition>
+        <argsstring>(const UsdPrim &amp;proxy) const</argsstring>
+        <name>SetProxyPrim</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>proxy</declname>
+        </param>
+        <briefdescription>
+<para>Convenience function for authoring the <emphasis>renderProxy</emphasis> rel on this prim to target the given <computeroutput>proxy</computeroutput> prim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>To facilitate authoring on sparse or unloaded stages, we do not perform any validation of this prim&apos;s purpose or the type or purpose of the specified prim.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_geom_imageable_1ad5a114f3776eb75edc651e8c2d67f8ff" kindref="member">ComputeProxyPrim()</ref>, <ref refid="class_usd_geom_imageable_1a5be4a4143e2b9f89f9bea44d27639a92" kindref="member">GetProxyPrimRel()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="516" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1a8c0c8b7faa4056a7267c586b2ffc0bd8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool SetProxyPrim</definition>
+        <argsstring>(const UsdSchemaBase &amp;proxy) const</argsstring>
+        <name>SetProxyPrim</name>
+        <param>
+          <type>const <ref refid="class_usd_schema_base" kindref="compound">UsdSchemaBase</ref> &amp;</type>
+          <declname>proxy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="520" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1ae616043b0f7fbc631ef9e5c784132a6c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_gf_b_box3d" kindref="compound">GfBBox3d</ref></type>
+        <definition>USDGEOM_API GfBBox3d ComputeWorldBound</definition>
+        <argsstring>(UsdTimeCode const &amp;time, TfToken const &amp;purpose1=TfToken(), TfToken const &amp;purpose2=TfToken(), TfToken const &amp;purpose3=TfToken(), TfToken const &amp;purpose4=TfToken()) const</argsstring>
+        <name>ComputeWorldBound</name>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> const &amp;</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>purpose1</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>purpose2</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>purpose3</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>purpose4</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Compute the bound of this prim in world space, at the specified <computeroutput>time</computeroutput>, and for the specified purposes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The bound of the prim is computed, including the transform (if any) authored on the node itself, and then transformed to world space.</para>
+<para>It is an error to not specify any purposes, which will result in the return of an empty box.</para>
+<para><bold>If you need to compute bounds for multiple prims on a stage, it will be much, much more efficient to instantiate a <ref refid="class_usd_geom_b_box_cache" kindref="compound">UsdGeomBBoxCache</ref> and query it directly; doing so will reuse sub-computations shared by the prims.</bold> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="536" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1a503f6d39abbd1b62c3c55f227461334d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_gf_b_box3d" kindref="compound">GfBBox3d</ref></type>
+        <definition>USDGEOM_API GfBBox3d ComputeLocalBound</definition>
+        <argsstring>(UsdTimeCode const &amp;time, TfToken const &amp;purpose1=TfToken(), TfToken const &amp;purpose2=TfToken(), TfToken const &amp;purpose3=TfToken(), TfToken const &amp;purpose4=TfToken()) const</argsstring>
+        <name>ComputeLocalBound</name>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> const &amp;</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>purpose1</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>purpose2</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>purpose3</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>purpose4</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Compute the bound of this prim in local space, at the specified <computeroutput>time</computeroutput>, and for the specified purposes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The bound of the prim is computed, including the transform (if any) authored on the node itself.</para>
+<para>It is an error to not specify any purposes, which will result in the return of an empty box.</para>
+<para><bold>If you need to compute bounds for multiple prims on a stage, it will be much, much more efficient to instantiate a <ref refid="class_usd_geom_b_box_cache" kindref="compound">UsdGeomBBoxCache</ref> and query it directly; doing so will reuse sub-computations shared by the prims.</bold> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="557" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1a54086b2386d22b1de4aaeb5b3005533d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_gf_b_box3d" kindref="compound">GfBBox3d</ref></type>
+        <definition>USDGEOM_API GfBBox3d ComputeUntransformedBound</definition>
+        <argsstring>(UsdTimeCode const &amp;time, TfToken const &amp;purpose1=TfToken(), TfToken const &amp;purpose2=TfToken(), TfToken const &amp;purpose3=TfToken(), TfToken const &amp;purpose4=TfToken()) const</argsstring>
+        <name>ComputeUntransformedBound</name>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> const &amp;</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>purpose1</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>purpose2</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>purpose3</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>purpose4</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Compute the untransformed bound of this prim, at the specified <computeroutput>time</computeroutput>, and for the specified purposes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The bound of the prim is computed in its object space, ignoring any transforms authored on or above the prim.</para>
+<para>It is an error to not specify any purposes, which will result in the return of an empty box.</para>
+<para><bold>If you need to compute bounds for multiple prims on a stage, it will be much, much more efficient to instantiate a <ref refid="class_usd_geom_b_box_cache" kindref="compound">UsdGeomBBoxCache</ref> and query it directly; doing so will reuse sub-computations shared by the prims.</bold> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="577" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1a8e3fb09253ba63d63921f665d63cd270" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref></type>
+        <definition>USDGEOM_API GfMatrix4d ComputeLocalToWorldTransform</definition>
+        <argsstring>(UsdTimeCode const &amp;time) const</argsstring>
+        <name>ComputeLocalToWorldTransform</name>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> const &amp;</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>Compute the transformation matrix for this prim at the given time, including the transform authored on the Prim itself, if present. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><bold>If you need to compute the transform for multiple prims on a stage, it will be much, much more efficient to instantiate a <ref refid="class_usd_geom_xform_cache" kindref="compound">UsdGeomXformCache</ref> and query it directly; doing so will reuse sub-computations shared by the prims.</bold> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="591" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1a4313664fa692f724da56cc254bce70fc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref></type>
+        <definition>USDGEOM_API GfMatrix4d ComputeParentToWorldTransform</definition>
+        <argsstring>(UsdTimeCode const &amp;time) const</argsstring>
+        <name>ComputeParentToWorldTransform</name>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> const &amp;</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>Compute the transformation matrix for this prim at the given time, <emphasis>NOT</emphasis> including the transform authored on the prim itself. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><bold>If you need to compute the transform for multiple prims on a stage, it will be much, much more efficient to instantiate a <ref refid="class_usd_geom_xform_cache" kindref="compound">UsdGeomXformCache</ref> and query it directly; doing so will reuse sub-computations shared by the prims.</bold> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="601" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_usd_geom_imageable_1a3e5fc43aea5aea4908c3ce980fdf8908" prot="public" static="yes" mutable="no">
+        <type>const <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref></type>
+        <definition>const UsdSchemaKind schemaKind</definition>
+        <argsstring></argsstring>
+        <name>schemaKind</name>
+        <initializer>= <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741a033ea5f40e4407ad16629e9a769ac9c1" kindref="member">UsdSchemaKind::AbstractTyped</ref></initializer>
+        <briefdescription>
+<para>Compile time constant representing what kind of schema this class is. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="80" column="1" bodyfile="pxr/usd/usdGeom/imageable.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_usd_geom_imageable_1aff8b8d83211f127c6c4cba48fb7d3334" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class UsdSchemaRegistry</definition>
+        <argsstring></argsstring>
+        <name>UsdSchemaRegistry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="133" column="1" bodyfile="pxr/usd/usdGeom/imageable.h" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_geom_imageable_1a00ea23bdac8d751c2b97dc8fe5cd7f73" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdGeomImageable</definition>
+        <argsstring>(const UsdPrim &amp;prim=UsdPrim())</argsstring>
+        <name>UsdGeomImageable</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+          <defval><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="class_usd_geom_imageable" kindref="compound">UsdGeomImageable</ref> on <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> <computeroutput>prim</computeroutput> . </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Equivalent to <ref refid="class_usd_geom_imageable_1a07e431a573772ed7a37f3bc01181a230" kindref="member">UsdGeomImageable::Get</ref>(prim.GetStage(), prim.GetPath()) for a <emphasis>valid</emphasis> <computeroutput>prim</computeroutput>, but will not immediately throw an error for an invalid <computeroutput>prim</computeroutput> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="86" column="1" bodyfile="pxr/usd/usdGeom/imageable.h" bodystart="86" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1a912f3e5572536e0492914fe251446bc9" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdGeomImageable</definition>
+        <argsstring>(const UsdSchemaBase &amp;schemaObj)</argsstring>
+        <name>UsdGeomImageable</name>
+        <param>
+          <type>const <ref refid="class_usd_schema_base" kindref="compound">UsdSchemaBase</ref> &amp;</type>
+          <declname>schemaObj</declname>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="class_usd_geom_imageable" kindref="compound">UsdGeomImageable</ref> on the prim held by <computeroutput>schemaObj</computeroutput> . </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Should be preferred over <ref refid="class_usd_geom_imageable" kindref="compound">UsdGeomImageable</ref>(schemaObj.GetPrim()), as it preserves SchemaBase state. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="94" column="1" bodyfile="pxr/usd/usdGeom/imageable.h" bodystart="94" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1acbd981c2779c70ec4c3fd5d8cc610925" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>USDGEOM_API</type>
+        <definition>virtual USDGEOM_API ~UsdGeomImageable</definition>
+        <argsstring>()</argsstring>
+        <name>~UsdGeomImageable</name>
+        <briefdescription>
+<para>Destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="101" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1a943eddc325190bd67789407400f122b7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetVisibilityAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetVisibilityAttr</name>
+        <briefdescription>
+<para>Visibility is meant to be the simplest form of &quot;pruning&quot; visibility that is supported by most DCC apps. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Visibility is animatable, allowing a sub-tree of geometry to be present for some segment of a shot, and absent from others; unlike the action of deactivating geometry prims, invisible geometry is still available for inspection, for positioning, for defining volumes, etc.</para>
+<para><table rows="5" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>token visibility = &quot;inherited&quot;</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_tf_token" kindref="compound">TfToken</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Token   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="usd_2usd_geom_2tokens_8h_1ad9e3544e015f99ed697804fd6bfe1a88" kindref="member">Allowed Values</ref>  </para>
+</entry><entry thead="no"><para>inherited, invisible   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="161" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1a96d4959f4d99367dfa3a79a3371e278a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateVisibilityAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateVisibilityAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_imageable_1a943eddc325190bd67789407400f122b7" kindref="member">GetVisibilityAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="169" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1acff531252fb2787a973eb028f2b04bdd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetPurposeAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetPurposeAttr</name>
+        <briefdescription>
+<para>Purpose is a classification of geometry into categories that can each be independently included or excluded from traversals of prims on a stage, such as rendering or bounding-box computation traversals. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>See <ref refid="usd_geom_page_front_1UsdGeom_ImageablePurpose" kindref="member">Imageable Purpose</ref> for more detail about how <emphasis>purpose</emphasis> is computed and used.</para>
+<para><table rows="6" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>uniform token purpose = &quot;default&quot;</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_tf_token" kindref="compound">TfToken</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Token   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="usd_2sdf_2types_8h_1a71cdb29b28ede8b72fcf36fa6f8d320f" kindref="member">Variability</ref>  </para>
+</entry><entry thead="no"><para>SdfVariabilityUniform   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="usd_2usd_geom_2tokens_8h_1ad9e3544e015f99ed697804fd6bfe1a88" kindref="member">Allowed Values</ref>  </para>
+</entry><entry thead="no"><para>default, render, proxy, guide   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="190" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1a3f4f6685ac7cef1d8ef94c44586b84bc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreatePurposeAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreatePurposeAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_imageable_1acff531252fb2787a973eb028f2b04bdd" kindref="member">GetPurposeAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="198" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1a5be4a4143e2b9f89f9bea44d27639a92" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_relationship" kindref="compound">UsdRelationship</ref></type>
+        <definition>USDGEOM_API UsdRelationship GetProxyPrimRel</definition>
+        <argsstring>() const</argsstring>
+        <name>GetProxyPrimRel</name>
+        <briefdescription>
+<para>The <emphasis>proxyPrim</emphasis> relationship allows us to link a prim whose <emphasis>purpose</emphasis> is &quot;render&quot; to its (single target) purpose=&quot;proxy&quot; prim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is entirely optional, but can be useful in several scenarios:</para>
+<para><itemizedlist>
+<listitem><para>In a pipeline that does pruning (for complexity management) by deactivating prims composed from asset references, when we deactivate a purpose=&quot;render&quot; prim, we will be able to discover and additionally deactivate its associated purpose=&quot;proxy&quot; prim, so that preview renders reflect the pruning accurately.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>DCC importers may be able to make more aggressive optimizations for interactive processing and display if they can discover the proxy for a given render prim.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>With a little more work, a Hydra-based application will be able to map a picked proxy prim back to its render geometry for selection.</para>
+</listitem>
+</itemizedlist>
+<simplesect kind="note"><para>It is only valid to author the proxyPrim relationship on prims whose purpose is &quot;render&quot;. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="226" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1aafc2e3aa91cf892f7937cc46a2351472" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_relationship" kindref="compound">UsdRelationship</ref></type>
+        <definition>USDGEOM_API UsdRelationship CreateProxyPrimRel</definition>
+        <argsstring>() const</argsstring>
+        <name>CreateProxyPrimRel</name>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_imageable_1a5be4a4143e2b9f89f9bea44d27639a92" kindref="member">GetProxyPrimRel()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="231" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_usd_geom_imageable_1ae40ae43320babff8a254a3a8107a255a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+        <definition>static USDGEOM_API const TfTokenVector&amp; GetSchemaAttributeNames</definition>
+        <argsstring>(bool includeInherited=true)</argsstring>
+        <name>GetSchemaAttributeNames</name>
+        <param>
+          <type>bool</type>
+          <declname>includeInherited</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Return a vector of names of all pre-declared attributes for this schema class and all its ancestor classes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does not include attributes that may be authored by custom/extended methods of the schemas involved. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="108" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1a07e431a573772ed7a37f3bc01181a230" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_geom_imageable" kindref="compound">UsdGeomImageable</ref></type>
+        <definition>static USDGEOM_API UsdGeomImageable Get</definition>
+        <argsstring>(const UsdStagePtr &amp;stage, const SdfPath &amp;path)</argsstring>
+        <name>Get</name>
+        <param>
+          <type>const UsdStagePtr &amp;</type>
+          <declname>stage</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Return a <ref refid="class_usd_geom_imageable" kindref="compound">UsdGeomImageable</ref> holding the prim adhering to this schema at <computeroutput>path</computeroutput> on <computeroutput>stage</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no prim exists at <computeroutput>path</computeroutput> on <computeroutput>stage</computeroutput>, or if the prim at that path does not adhere to this schema, return an invalid schema object. This is shorthand for the following:</para>
+<para><programlisting><codeline><highlight class="normal">UsdGeomImageable(stage-&gt;GetPrimAtPath(path));</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="121" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1ac7d41ddd5b5d274785f4a109a7cebad5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+        <definition>static USDGEOM_API const TfTokenVector&amp; GetOrderedPurposeTokens</definition>
+        <argsstring>()</argsstring>
+        <name>GetOrderedPurposeTokens</name>
+        <briefdescription>
+<para>Returns an ordered list of allowed values of the purpose attribute. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The ordering is important because it defines the protocol between <ref refid="class_usd_geom_model_a_p_i" kindref="compound">UsdGeomModelAPI</ref> and <ref refid="class_usd_geom_b_box_cache" kindref="compound">UsdGeomBBoxCache</ref> for caching and retrieving extents hints by purpose.</para>
+<para>The order is: [default, render, proxy, guide]</para>
+<para>See <simplesect kind="see"><para><ref refid="class_usd_geom_model_a_p_i_1a4aa8b1f29a3097fe08da868bd2b8b259" kindref="member">UsdGeomModelAPI::GetExtentsHint()</ref>.</para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_geom_imageable_1ac7d41ddd5b5d274785f4a109a7cebad5" kindref="member">GetOrderedPurposeTokens()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="257" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_usd_geom_imageable_1a71a1af4672754da617b8cb537f29c5f4" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USDGEOM_API <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref></type>
+        <definition>USDGEOM_API UsdSchemaKind _GetSchemaKind</definition>
+        <argsstring>() const override</argsstring>
+        <name>_GetSchemaKind</name>
+        <reimplements refid="class_usd_typed_1a408aa7d080a2672e88403126cc197095">_GetSchemaKind</reimplements>
+        <reimplementedby refid="class_usd_vol_field_base_1a34ce525a51f595a6b87f70afbafc2e96">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_geom_point_based_1a71a1af4672754da617b8cb537f29c5f4">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_lux_nonboundable_light_base_1ac19433aa62f0ecfb00450abefb7ccd4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_lux_boundable_light_base_1ac19433aa62f0ecfb00450abefb7ccd4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_vol_field_asset_1a34ce525a51f595a6b87f70afbafc2e96">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_geom_xform_1a71a1af4672754da617b8cb537f29c5f4">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_physics_fixed_joint_1afe453b5ad73c3734b6c12709dd6f0c4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_lux_sphere_light_1ac19433aa62f0ecfb00450abefb7ccd4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_physics_distance_joint_1afe453b5ad73c3734b6c12709dd6f0c4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_lux_distant_light_1ac19433aa62f0ecfb00450abefb7ccd4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_lux_disk_light_1ac19433aa62f0ecfb00450abefb7ccd4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_lux_portal_light_1ac19433aa62f0ecfb00450abefb7ccd4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_lux_geometry_light_1ac19433aa62f0ecfb00450abefb7ccd4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_geom_scope_1a71a1af4672754da617b8cb537f29c5f4">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_lux_cylinder_light_1ac19433aa62f0ecfb00450abefb7ccd4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_geom_sphere_1a71a1af4672754da617b8cb537f29c5f4">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_lux_rect_light_1ac19433aa62f0ecfb00450abefb7ccd4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_physics_joint_1afe453b5ad73c3734b6c12709dd6f0c4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_vol_open_v_d_b_asset_1a34ce525a51f595a6b87f70afbafc2e96">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_vol_field3_d_asset_1a34ce525a51f595a6b87f70afbafc2e96">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_skel_skeleton_1a79df5075439172ba191c1de8af616879">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_skel_root_1a79df5075439172ba191c1de8af616879">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_physics_revolute_joint_1afe453b5ad73c3734b6c12709dd6f0c4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_physics_prismatic_joint_1afe453b5ad73c3734b6c12709dd6f0c4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_lux_plugin_light_filter_1ac19433aa62f0ecfb00450abefb7ccd4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_lux_plugin_light_1ac19433aa62f0ecfb00450abefb7ccd4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_physics_spherical_joint_1afe453b5ad73c3734b6c12709dd6f0c4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_geom_points_1a71a1af4672754da617b8cb537f29c5f4">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_vol_volume_1a34ce525a51f595a6b87f70afbafc2e96">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_geom_plane_1a71a1af4672754da617b8cb537f29c5f4">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_proc_generative_procedural_1a69f2b85c953c2cadf65f80ac0d4781af">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_geom_nurbs_curves_1a71a1af4672754da617b8cb537f29c5f4">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_lux_light_filter_1ac19433aa62f0ecfb00450abefb7ccd4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_lux_dome_light_1ac19433aa62f0ecfb00450abefb7ccd4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_lux_dome_light__1_1ac19433aa62f0ecfb00450abefb7ccd4f">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_media_spatial_audio_1a4b449c2d8fd036608b3560779b7be4a3">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_geom_nurbs_patch_1a71a1af4672754da617b8cb537f29c5f4">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_geom_mesh_1a71a1af4672754da617b8cb537f29c5f4">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_geom_xformable_1a71a1af4672754da617b8cb537f29c5f4">_GetSchemaKind</reimplementedby>
+        <reimplementedby refid="class_usd_geom_point_instancer_1a71a1af4672754da617b8cb537f29c5f4">_GetSchemaKind</reimplementedby>
+        <briefdescription>
+<para>Returns the kind of schema this class belongs to. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="129" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_usd_geom_imageable_1ad32bf70dffbb431c0fa883d5fbc1802d" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+        <definition>static USDGEOM_API const TfType&amp; _GetStaticTfType</definition>
+        <argsstring>()</argsstring>
+        <name>_GetStaticTfType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="135" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_imageable_1abbc02364dd87e9f147201cbd8d260d43" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool _IsTypedSchema</definition>
+        <argsstring>()</argsstring>
+        <name>_IsTypedSchema</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="137" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_usd_geom_imageable_1a1e6b9f0da5624212c58019b749c21286" prot="private" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USDGEOM_API const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+        <definition>USDGEOM_API const TfType&amp; _GetTfType</definition>
+        <argsstring>() const override</argsstring>
+        <name>_GetTfType</name>
+        <reimplements refid="class_usd_typed_1a6f7a3688b0129a59c6e70e925d7ac732">_GetTfType</reimplements>
+        <reimplementedby refid="class_usd_vol_field_base_1a356aa28f8af508383319bbd3645b6026">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_geom_point_based_1a1e6b9f0da5624212c58019b749c21286">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_lux_nonboundable_light_base_1a3c52f215cf5ae7b408293d0b504d07c0">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_lux_boundable_light_base_1a3c52f215cf5ae7b408293d0b504d07c0">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_vol_field_asset_1a356aa28f8af508383319bbd3645b6026">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_geom_xform_1a1e6b9f0da5624212c58019b749c21286">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_physics_fixed_joint_1a96538019a0566b8f54f05953ac1c6615">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_lux_sphere_light_1a3c52f215cf5ae7b408293d0b504d07c0">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_physics_distance_joint_1a96538019a0566b8f54f05953ac1c6615">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_lux_distant_light_1a3c52f215cf5ae7b408293d0b504d07c0">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_lux_disk_light_1a3c52f215cf5ae7b408293d0b504d07c0">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_lux_portal_light_1a3c52f215cf5ae7b408293d0b504d07c0">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_lux_geometry_light_1a3c52f215cf5ae7b408293d0b504d07c0">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_geom_scope_1a1e6b9f0da5624212c58019b749c21286">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_lux_cylinder_light_1a3c52f215cf5ae7b408293d0b504d07c0">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_geom_sphere_1a1e6b9f0da5624212c58019b749c21286">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_lux_rect_light_1a3c52f215cf5ae7b408293d0b504d07c0">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_physics_joint_1a96538019a0566b8f54f05953ac1c6615">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_vol_open_v_d_b_asset_1a356aa28f8af508383319bbd3645b6026">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_vol_field3_d_asset_1a356aa28f8af508383319bbd3645b6026">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_skel_skeleton_1a55221575e16049b1dbd6147c54af4f43">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_skel_root_1a55221575e16049b1dbd6147c54af4f43">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_physics_revolute_joint_1a96538019a0566b8f54f05953ac1c6615">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_physics_prismatic_joint_1a96538019a0566b8f54f05953ac1c6615">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_lux_plugin_light_filter_1a3c52f215cf5ae7b408293d0b504d07c0">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_lux_plugin_light_1a3c52f215cf5ae7b408293d0b504d07c0">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_physics_spherical_joint_1a96538019a0566b8f54f05953ac1c6615">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_geom_points_1a1e6b9f0da5624212c58019b749c21286">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_vol_volume_1a356aa28f8af508383319bbd3645b6026">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_geom_plane_1a1e6b9f0da5624212c58019b749c21286">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_proc_generative_procedural_1a66ed99efc245a0752bc7439dc47a593e">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_geom_nurbs_curves_1a1e6b9f0da5624212c58019b749c21286">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_lux_light_filter_1a3c52f215cf5ae7b408293d0b504d07c0">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_lux_dome_light_1a3c52f215cf5ae7b408293d0b504d07c0">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_lux_dome_light__1_1a3c52f215cf5ae7b408293d0b504d07c0">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_media_spatial_audio_1a0761fce9ddea0f86c69c833dfb52348b">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_geom_nurbs_patch_1a1e6b9f0da5624212c58019b749c21286">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_geom_mesh_1a1e6b9f0da5624212c58019b749c21286">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_geom_xformable_1a1e6b9f0da5624212c58019b749c21286">_GetTfType</reimplementedby>
+        <reimplementedby refid="class_usd_geom_point_instancer_1a1e6b9f0da5624212c58019b749c21286">_GetTfType</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/imageable.h" line="141" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Base class for all prims that may require rendering or visualization of some sort. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The primary attributes of Imageable are <emphasis>visibility</emphasis> and <emphasis>purpose</emphasis>, which each provide instructions for what geometry should be included for processing by rendering and other computations.</para>
+<para><xrefsect id="deprecated_1_deprecated000077"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Imageable also provides API for accessing primvars, which has been moved to the <ref refid="class_usd_geom_primvars_a_p_i" kindref="compound">UsdGeomPrimvarsAPI</ref> schema, because primvars can now be applied on non-Imageable prim types. This API is planned to be removed, <ref refid="class_usd_geom_primvars_a_p_i" kindref="compound">UsdGeomPrimvarsAPI</ref> should be used directly instead.</para>
+</xrefdescription></xrefsect></para>
+<para>For any described attribute <emphasis>Fallback</emphasis> <emphasis>Value</emphasis> or <emphasis>Allowed</emphasis> <emphasis>Values</emphasis> below that are text/tokens, the actual token is published and defined in <ref refid="usd_2usd_geom_2tokens_8h_1ad9e3544e015f99ed697804fd6bfe1a88" kindref="member">UsdGeomTokens</ref>. So to set an attribute to the value &quot;rightHanded&quot;, use UsdGeomTokens-&gt;rightHanded as the value. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="6285">
+        <label>UsdGeomCylinder</label>
+        <link refid="class_usd_geom_cylinder"/>
+        <childnode refid="6280" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6293">
+        <label>UsdGeomMesh</label>
+        <link refid="class_usd_geom_mesh"/>
+        <childnode refid="6288" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6327">
+        <label>UsdPhysicsRevoluteJoint</label>
+        <link refid="class_usd_physics_revolute_joint"/>
+        <childnode refid="6323" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6304">
+        <label>UsdLuxSphereLight</label>
+        <link refid="class_usd_lux_sphere_light"/>
+        <childnode refid="6299" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6315">
+        <label>UsdLuxDomeLight_1</label>
+        <link refid="class_usd_lux_dome_light__1"/>
+        <childnode refid="6312" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6307">
+        <label>UsdSkelSkeleton</label>
+        <link refid="class_usd_skel_skeleton"/>
+        <childnode refid="6279" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6290">
+        <label>UsdGeomBasisCurves</label>
+        <link refid="class_usd_geom_basis_curves"/>
+        <childnode refid="6289" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6299">
+        <label>UsdLuxBoundableLightBase</label>
+        <link refid="class_usd_lux_boundable_light_base"/>
+        <childnode refid="6279" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6283">
+        <label>UsdGeomCone</label>
+        <link refid="class_usd_geom_cone"/>
+        <childnode refid="6280" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6282">
+        <label>UsdGeomCapsule_1</label>
+        <link refid="class_usd_geom_capsule__1"/>
+        <childnode refid="6280" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6298">
+        <label>UsdGeomPointInstancer</label>
+        <link refid="class_usd_geom_point_instancer"/>
+        <childnode refid="6279" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6286">
+        <label>UsdGeomCylinder_1</label>
+        <link refid="class_usd_geom_cylinder__1"/>
+        <childnode refid="6280" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6301">
+        <label>UsdLuxDiskLight</label>
+        <link refid="class_usd_lux_disk_light"/>
+        <childnode refid="6299" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6274">
+        <label>UsdGeomImageable</label>
+        <link refid="class_usd_geom_imageable"/>
+        <childnode refid="6275" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6312">
+        <label>UsdLuxNonboundableLightBase</label>
+        <link refid="class_usd_lux_nonboundable_light_base"/>
+        <childnode refid="6278" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6296">
+        <label>UsdGeomSphere</label>
+        <link refid="class_usd_geom_sphere"/>
+        <childnode refid="6280" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6300">
+        <label>UsdLuxCylinderLight</label>
+        <link refid="class_usd_lux_cylinder_light"/>
+        <childnode refid="6299" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6289">
+        <label>UsdGeomCurves</label>
+        <link refid="class_usd_geom_curves"/>
+        <childnode refid="6288" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6297">
+        <label>UsdVolVolume</label>
+        <link refid="class_usd_vol_volume"/>
+        <childnode refid="6280" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6280">
+        <label>UsdGeomGprim</label>
+        <link refid="class_usd_geom_gprim"/>
+        <childnode refid="6279" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6310">
+        <label>UsdLuxLightFilter</label>
+        <link refid="class_usd_lux_light_filter"/>
+        <childnode refid="6278" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6314">
+        <label>UsdLuxDomeLight</label>
+        <link refid="class_usd_lux_dome_light"/>
+        <childnode refid="6312" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6288">
+        <label>UsdGeomPointBased</label>
+        <link refid="class_usd_geom_point_based"/>
+        <childnode refid="6280" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6317">
+        <label>UsdLuxPluginLight</label>
+        <link refid="class_usd_lux_plugin_light"/>
+        <childnode refid="6278" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6275">
+        <label>UsdTyped</label>
+        <link refid="class_usd_typed"/>
+        <childnode refid="6276" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6319">
+        <label>UsdVolFieldBase</label>
+        <link refid="class_usd_vol_field_base"/>
+        <childnode refid="6278" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6287">
+        <label>UsdGeomPlane</label>
+        <link refid="class_usd_geom_plane"/>
+        <childnode refid="6280" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6284">
+        <label>UsdGeomCube</label>
+        <link refid="class_usd_geom_cube"/>
+        <childnode refid="6280" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6294">
+        <label>UsdGeomNurbsPatch</label>
+        <link refid="class_usd_geom_nurbs_patch"/>
+        <childnode refid="6288" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6318">
+        <label>UsdMediaSpatialAudio</label>
+        <link refid="class_usd_media_spatial_audio"/>
+        <childnode refid="6278" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6292">
+        <label>UsdGeomNurbsCurves</label>
+        <link refid="class_usd_geom_nurbs_curves"/>
+        <childnode refid="6289" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6325">
+        <label>UsdPhysicsFixedJoint</label>
+        <link refid="class_usd_physics_fixed_joint"/>
+        <childnode refid="6323" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6321">
+        <label>UsdVolField3DAsset</label>
+        <link refid="class_usd_vol_field3_d_asset"/>
+        <childnode refid="6320" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6295">
+        <label>UsdGeomPoints</label>
+        <link refid="class_usd_geom_points"/>
+        <childnode refid="6288" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6309">
+        <label>UsdGeomXform</label>
+        <link refid="class_usd_geom_xform"/>
+        <childnode refid="6278" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6276">
+        <label>UsdSchemaBase</label>
+        <link refid="class_usd_schema_base"/>
+      </node>
+      <node id="6291">
+        <label>UsdGeomHermiteCurves</label>
+        <link refid="class_usd_geom_hermite_curves"/>
+        <childnode refid="6289" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6316">
+        <label>UsdLuxGeometryLight</label>
+        <link refid="class_usd_lux_geometry_light"/>
+        <childnode refid="6312" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6308">
+        <label>UsdGeomCamera</label>
+        <link refid="class_usd_geom_camera"/>
+        <childnode refid="6278" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6322">
+        <label>UsdVolOpenVDBAsset</label>
+        <link refid="class_usd_vol_open_v_d_b_asset"/>
+        <childnode refid="6320" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6324">
+        <label>UsdPhysicsDistanceJoint</label>
+        <link refid="class_usd_physics_distance_joint"/>
+        <childnode refid="6323" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6303">
+        <label>UsdLuxRectLight</label>
+        <link refid="class_usd_lux_rect_light"/>
+        <childnode refid="6299" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6313">
+        <label>UsdLuxDistantLight</label>
+        <link refid="class_usd_lux_distant_light"/>
+        <childnode refid="6312" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6320">
+        <label>UsdVolFieldAsset</label>
+        <link refid="class_usd_vol_field_asset"/>
+        <childnode refid="6319" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6326">
+        <label>UsdPhysicsPrismaticJoint</label>
+        <link refid="class_usd_physics_prismatic_joint"/>
+        <childnode refid="6323" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6323">
+        <label>UsdPhysicsJoint</label>
+        <link refid="class_usd_physics_joint"/>
+        <childnode refid="6274" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6277">
+        <label>UsdGeomScope</label>
+        <link refid="class_usd_geom_scope"/>
+        <childnode refid="6274" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6302">
+        <label>UsdLuxPortalLight</label>
+        <link refid="class_usd_lux_portal_light"/>
+        <childnode refid="6299" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6305">
+        <label>UsdProcGenerativeProcedural</label>
+        <link refid="class_usd_proc_generative_procedural"/>
+        <childnode refid="6279" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6279">
+        <label>UsdGeomBoundable</label>
+        <link refid="class_usd_geom_boundable"/>
+        <childnode refid="6278" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6311">
+        <label>UsdLuxPluginLightFilter</label>
+        <link refid="class_usd_lux_plugin_light_filter"/>
+        <childnode refid="6310" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6306">
+        <label>UsdSkelRoot</label>
+        <link refid="class_usd_skel_root"/>
+        <childnode refid="6279" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6281">
+        <label>UsdGeomCapsule</label>
+        <link refid="class_usd_geom_capsule"/>
+        <childnode refid="6280" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6328">
+        <label>UsdPhysicsSphericalJoint</label>
+        <link refid="class_usd_physics_spherical_joint"/>
+        <childnode refid="6323" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6278">
+        <label>UsdGeomXformable</label>
+        <link refid="class_usd_geom_xformable"/>
+        <childnode refid="6274" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="6329">
+        <label>UsdGeomImageable</label>
+        <link refid="class_usd_geom_imageable"/>
+        <childnode refid="6330" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6330">
+        <label>UsdTyped</label>
+        <link refid="class_usd_typed"/>
+        <childnode refid="6331" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6331">
+        <label>UsdSchemaBase</label>
+        <link refid="class_usd_schema_base"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/usd/usdGeom/imageable.h" line="75" column="1" bodyfile="pxr/usd/usdGeom/imageable.h" bodystart="74" bodyend="605"/>
+    <listofallmembers>
+      <member refid="class_usd_schema_base_1ad99ec8284868478b50e8fc3475880dab" prot="protected" virt="non-virtual"><scope>UsdGeomImageable</scope><name>_CreateAttr</name></member>
+      <member refid="class_usd_geom_imageable_1a71a1af4672754da617b8cb537f29c5f4" prot="protected" virt="virtual"><scope>UsdGeomImageable</scope><name>_GetSchemaKind</name></member>
+      <member refid="class_usd_schema_base_1a6c51fb3251d5fde5ffa9fe7a998ce970" prot="protected" virt="virtual"><scope>UsdGeomImageable</scope><name>_GetSchemaType</name></member>
+      <member refid="class_usd_geom_imageable_1ad32bf70dffbb431c0fa883d5fbc1802d" prot="private" virt="non-virtual"><scope>UsdGeomImageable</scope><name>_GetStaticTfType</name></member>
+      <member refid="class_usd_geom_imageable_1a1e6b9f0da5624212c58019b749c21286" prot="private" virt="virtual"><scope>UsdGeomImageable</scope><name>_GetTfType</name></member>
+      <member refid="class_usd_schema_base_1aa29ea4c951d8debfd8085a28c6aa80ca" prot="protected" virt="non-virtual"><scope>UsdGeomImageable</scope><name>_GetType</name></member>
+      <member refid="class_usd_typed_1ad91204cc9fb92f0306372e074052190f" prot="protected" virt="virtual"><scope>UsdGeomImageable</scope><name>_IsCompatible</name></member>
+      <member refid="class_usd_geom_imageable_1abbc02364dd87e9f147201cbd8d260d43" prot="private" virt="non-virtual"><scope>UsdGeomImageable</scope><name>_IsTypedSchema</name></member>
+      <member refid="class_usd_geom_imageable_1a1174d9985088dd364f6a56925073fe76" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>ComputeEffectiveVisibility</name></member>
+      <member refid="class_usd_geom_imageable_1a503f6d39abbd1b62c3c55f227461334d" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>ComputeLocalBound</name></member>
+      <member refid="class_usd_geom_imageable_1a8e3fb09253ba63d63921f665d63cd270" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>ComputeLocalToWorldTransform</name></member>
+      <member refid="class_usd_geom_imageable_1a4313664fa692f724da56cc254bce70fc" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>ComputeParentToWorldTransform</name></member>
+      <member refid="class_usd_geom_imageable_1ad5a114f3776eb75edc651e8c2d67f8ff" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>ComputeProxyPrim</name></member>
+      <member refid="class_usd_geom_imageable_1a1aa2ea4240e7e12f11122d7ff8ad7f90" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>ComputePurpose</name></member>
+      <member refid="class_usd_geom_imageable_1a2a7d61f7af1a02e095e6a8abcf8e641f" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>ComputePurposeInfo</name></member>
+      <member refid="class_usd_geom_imageable_1a00c5620a09313aa39cb0d79f492b340f" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>ComputePurposeInfo</name></member>
+      <member refid="class_usd_geom_imageable_1a54086b2386d22b1de4aaeb5b3005533d" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>ComputeUntransformedBound</name></member>
+      <member refid="class_usd_geom_imageable_1ac0bfa1554d9b57303c14f71d084c578d" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>ComputeVisibility</name></member>
+      <member refid="class_usd_geom_imageable_1ae616043b0f7fbc631ef9e5c784132a6c" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>ComputeWorldBound</name></member>
+      <member refid="class_usd_geom_imageable_1aafc2e3aa91cf892f7937cc46a2351472" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>CreateProxyPrimRel</name></member>
+      <member refid="class_usd_geom_imageable_1a3f4f6685ac7cef1d8ef94c44586b84bc" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>CreatePurposeAttr</name></member>
+      <member refid="class_usd_geom_imageable_1a96d4959f4d99367dfa3a79a3371e278a" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>CreateVisibilityAttr</name></member>
+      <member refid="class_usd_geom_imageable_1a07e431a573772ed7a37f3bc01181a230" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>Get</name></member>
+      <member refid="class_usd_geom_imageable_1ac7d41ddd5b5d274785f4a109a7cebad5" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>GetOrderedPurposeTokens</name></member>
+      <member refid="class_usd_schema_base_1a936bfb1e341cc81184c64af44763c433" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>GetPath</name></member>
+      <member refid="class_usd_schema_base_1a4ba10e023e7f3f3c93131bc7fc3146b7" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>GetPrim</name></member>
+      <member refid="class_usd_geom_imageable_1a5be4a4143e2b9f89f9bea44d27639a92" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>GetProxyPrimRel</name></member>
+      <member refid="class_usd_geom_imageable_1acff531252fb2787a973eb028f2b04bdd" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>GetPurposeAttr</name></member>
+      <member refid="class_usd_geom_imageable_1a2dfc306cddf0c522d39ba477e91ec161" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>GetPurposeVisibilityAttr</name></member>
+      <member refid="class_usd_geom_imageable_1ae40ae43320babff8a254a3a8107a255a" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>GetSchemaAttributeNames</name></member>
+      <member refid="class_usd_schema_base_1a030d03e2a9839d9c3da0fbca8c3722d4" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>GetSchemaClassPrimDefinition</name></member>
+      <member refid="class_usd_schema_base_1aeac68c5514faebb20c5ae3cb930170de" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>GetSchemaKind</name></member>
+      <member refid="class_usd_geom_imageable_1a943eddc325190bd67789407400f122b7" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>GetVisibilityAttr</name></member>
+      <member refid="class_usd_schema_base_1ad658b6730d4246ee1f903ce4ce18fdfe" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>IsAPISchema</name></member>
+      <member refid="class_usd_schema_base_1a68e867971cc992c5b03e73725c405c05" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>IsAppliedAPISchema</name></member>
+      <member refid="class_usd_schema_base_1ae2c90cefba1b2e09dc117a7d972009cb" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>IsConcrete</name></member>
+      <member refid="class_usd_schema_base_1af752510dea0c7106aa89832e60dfa3d5" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>IsMultipleApplyAPISchema</name></member>
+      <member refid="class_usd_schema_base_1afa15659f4fa280e4c0772173d7471920" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>IsTyped</name></member>
+      <member refid="class_usd_geom_imageable_1a91eda805326fd94cc9910cfaeb4ac4a0" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>MakeInvisible</name></member>
+      <member refid="class_usd_geom_imageable_1a3fd30c76b787e7e32180c1b454b971c7" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>MakeVisible</name></member>
+      <member refid="class_usd_schema_base_1a586531d84339318108c817f91367e626" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>operator bool</name></member>
+      <member refid="class_usd_geom_imageable_1a3e5fc43aea5aea4908c3ce980fdf8908" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>schemaKind</name></member>
+      <member refid="class_usd_geom_imageable_1a6b808012a6a5bc9df34e794ff82bb6f0" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>SetProxyPrim</name></member>
+      <member refid="class_usd_geom_imageable_1a8c0c8b7faa4056a7267c586b2ffc0bd8" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>SetProxyPrim</name></member>
+      <member refid="class_usd_geom_imageable_1a00ea23bdac8d751c2b97dc8fe5cd7f73" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>UsdGeomImageable</name></member>
+      <member refid="class_usd_geom_imageable_1a912f3e5572536e0492914fe251446bc9" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>UsdGeomImageable</name></member>
+      <member refid="class_usd_schema_base_1a32e0a9b0465ecf201fb501753baa8587" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>UsdSchemaBase</name></member>
+      <member refid="class_usd_schema_base_1a73921308189043c86867d6bd9012b4af" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>UsdSchemaBase</name></member>
+      <member refid="class_usd_geom_imageable_1aff8b8d83211f127c6c4cba48fb7d3334" prot="private" virt="non-virtual"><scope>UsdGeomImageable</scope><name>UsdSchemaRegistry</name></member>
+      <member refid="class_usd_typed_1a0eedaa009a86f3b1186f709bc78d0c09" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>UsdTyped</name></member>
+      <member refid="class_usd_typed_1a64de30966732c854c3c29616244e5250" prot="public" virt="non-virtual"><scope>UsdGeomImageable</scope><name>UsdTyped</name></member>
+      <member refid="class_usd_geom_imageable_1acbd981c2779c70ec4c3fd5d8cc610925" prot="public" virt="virtual"><scope>UsdGeomImageable</scope><name>~UsdGeomImageable</name></member>
+      <member refid="class_usd_schema_base_1a3e97b9a7311478da9f2d168bea29560e" prot="public" virt="virtual"><scope>UsdGeomImageable</scope><name>~UsdSchemaBase</name></member>
+      <member refid="class_usd_typed_1a558859985aa8647bc068d590b5d9e08f" prot="public" virt="virtual"><scope>UsdGeomImageable</scope><name>~UsdTyped</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

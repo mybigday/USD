@@ -1,0 +1,1421 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_tf_small_vector" kind="class" language="C++" prot="public">
+    <compoundname>TfSmallVector</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">TfSmallVectorBase</basecompoundref>
+    <includes refid="small_vector_8h" local="no">smallVector.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename</type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+      <param>
+        <type>uint32_t</type>
+        <declname>N</declname>
+        <defname>N</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="user-defined">
+      <header>Relevant Typedefs.</header>
+      <description><para>XXX: Functionality currently missing, and which we would like to add as needed:</para>
+<para><itemizedlist>
+<listitem><para>emplace</para>
+</listitem><listitem><para>shrink_to_fit</para>
+</listitem><listitem><para>shrink_to_local / shrink_to_internal (or similar, free standing function) </para>
+</listitem></itemizedlist>
+</para>
+</description>
+      <memberdef kind="typedef" id="class_tf_small_vector_1a265a253612b46abed17c61b0a5e5ce30" prot="public" static="no">
+        <type>T</type>
+        <definition>typedef T value_type</definition>
+        <argsstring></argsstring>
+        <name>value_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="192" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="192" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_tf_small_vector_1a9b1a63f171d76a7a3995b6858e99f2ea" prot="public" static="no">
+        <type>T &amp;</type>
+        <definition>typedef T&amp; reference</definition>
+        <argsstring></argsstring>
+        <name>reference</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="193" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="193" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_tf_small_vector_1af9ba3e25df088c62f7d535b91672cda9" prot="public" static="no">
+        <type>const T &amp;</type>
+        <definition>typedef const T&amp; const_reference</definition>
+        <argsstring></argsstring>
+        <name>const_reference</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="194" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="194" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Iterator Support.</header>
+      <description><para>}@ </para>
+</description>
+      <memberdef kind="enum" id="class_tf_small_vector_1aa4fc0d21f8d878c10b25246f79573063" prot="public" static="no" strong="no">
+        <type></type>
+        <name>DefaultInitTag</name>
+        <enumvalue id="class_tf_small_vector_1aa4fc0d21f8d878c10b25246f79573063a620f6769a877e2f10aec3e990654b1f8" prot="public">
+          <name>DefaultInit</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Construct a vector holding <computeroutput>n</computeroutput> default-initialized elements. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="233" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="233" bodyend="233"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_tf_small_vector_1a4d1ca55c8c62d4fbf3ea42d9919125a0" prot="public" static="no">
+        <type>T *</type>
+        <definition>using iterator =  T*</definition>
+        <argsstring></argsstring>
+        <name>iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="201" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="201" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_tf_small_vector_1a2601f8255f8a42148603816eb649c961" prot="public" static="no">
+        <type>const T *</type>
+        <definition>using const_iterator =  const T*</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="202" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="202" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_tf_small_vector_1a92b881db836646f4039adcbb73c8595f" prot="public" static="no">
+        <type>std::reverse_iterator&lt; iterator &gt;</type>
+        <definition>typedef std::reverse_iterator&lt;iterator&gt; reverse_iterator</definition>
+        <argsstring></argsstring>
+        <name>reverse_iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="203" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="203" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_tf_small_vector_1a421ef78ccdc84f0f6b2b14e2732527ba" prot="public" static="no">
+        <type>std::reverse_iterator&lt; const_iterator &gt;</type>
+        <definition>typedef std::reverse_iterator&lt;const_iterator&gt; const_reverse_iterator</definition>
+        <argsstring></argsstring>
+        <name>const_reverse_iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="204" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="204" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_tf_small_vector_1a3cb59e5ea33a4bce8773753df7ea563e" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename _ForwardIterator</type>
+          </param>
+        </templateparamlist>
+        <type>typename std::enable_if&lt; std::is_convertible&lt; typename std::iterator_traits&lt; _ForwardIterator &gt;::iterator_category, std::forward_iterator_tag &gt;::value &gt;::type</type>
+        <definition>using _EnableIfForwardIterator =  typename std::enable_if&lt; std::is_convertible&lt; typename std::iterator_traits&lt; _ForwardIterator&gt;::iterator_category, std::forward_iterator_tag &gt;::value &gt;::type</definition>
+        <argsstring></argsstring>
+        <name>_EnableIfForwardIterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="277" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="284" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a9d49752d9f29dd494b679ab6706e3e20" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfSmallVector</definition>
+        <argsstring>()</argsstring>
+        <name>TfSmallVector</name>
+        <briefdescription>
+<para>}@ </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Default constructor. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="210" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="210" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a635fd3eb2447d991562087da2a720457" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfSmallVector</definition>
+        <argsstring>(size_type n)</argsstring>
+        <name>TfSmallVector</name>
+        <param>
+          <type>size_type</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Construct a vector holding <computeroutput>n</computeroutput> value-initialized elements. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="214" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="214" bodyend="221"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a7ac6bb0c31a3224b536159216f3f317d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfSmallVector</definition>
+        <argsstring>(size_type n, const value_type &amp;v)</argsstring>
+        <name>TfSmallVector</name>
+        <param>
+          <type>size_type</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>const value_type &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+<para>Construct a vector holding <computeroutput>n</computeroutput> copies of <computeroutput>v</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="225" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="225" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a20c5ba749f1c525e78caf36d7c73a2d4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfSmallVector</definition>
+        <argsstring>(size_type n, DefaultInitTag)</argsstring>
+        <name>TfSmallVector</name>
+        <param>
+          <type>size_type</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_small_vector_1aa4fc0d21f8d878c10b25246f79573063" kindref="member">DefaultInitTag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="234" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="234" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1aa75a8797abb88e1b7c98c865c5a4188b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfSmallVector</definition>
+        <argsstring>(const TfSmallVector &amp;rhs)</argsstring>
+        <name>TfSmallVector</name>
+        <param>
+          <type>const <ref refid="class_tf_small_vector" kindref="compound">TfSmallVector</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Copy constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="245" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="245" bodyend="248"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1ad609bf16e9ce030bff999484092eb700" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfSmallVector</definition>
+        <argsstring>(TfSmallVector &amp;&amp;rhs)</argsstring>
+        <name>TfSmallVector</name>
+        <param>
+          <type><ref refid="class_tf_small_vector" kindref="compound">TfSmallVector</ref> &amp;&amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Move constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="252" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="252" bodyend="269"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a37f14cf5d6dbbc2f879ef4ef51bab594" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfSmallVector</definition>
+        <argsstring>(std::initializer_list&lt; T &gt; values)</argsstring>
+        <name>TfSmallVector</name>
+        <param>
+          <type>std::initializer_list&lt; T &gt;</type>
+          <declname>values</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new vector from initializer list. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="272" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="272" bodyend="274"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a296a340c51d137421b23d330bc5171f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename ForwardIterator</type>
+          </param>
+          <param>
+            <type>typename</type>
+            <defval>_EnableIfForwardIterator&lt;ForwardIterator&gt;</defval>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>TfSmallVector</definition>
+        <argsstring>(ForwardIterator first, ForwardIterator last)</argsstring>
+        <name>TfSmallVector</name>
+        <param>
+          <type>ForwardIterator</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>ForwardIterator</type>
+          <declname>last</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new vector containing copies of the data between <computeroutput>first</computeroutput> and <computeroutput>last</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="290" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="290" bodyend="294"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a5a466b818d717135144b91d3631c6d95" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>~TfSmallVector</definition>
+        <argsstring>()</argsstring>
+        <name>~TfSmallVector</name>
+        <briefdescription>
+<para>Destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="298" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="298" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a7fabb51d0c3abbcca9d288fddb80ccc3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_small_vector" kindref="compound">TfSmallVector</ref> &amp;</type>
+        <definition>TfSmallVector&amp; operator=</definition>
+        <argsstring>(const TfSmallVector &amp;rhs)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_tf_small_vector" kindref="compound">TfSmallVector</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Assignment operator. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="305" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="305" bodyend="310"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1af1e2075230542376f84110d2bb1a9b15" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_small_vector" kindref="compound">TfSmallVector</ref> &amp;</type>
+        <definition>TfSmallVector&amp; operator=</definition>
+        <argsstring>(TfSmallVector &amp;&amp;rhs)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="class_tf_small_vector" kindref="compound">TfSmallVector</ref> &amp;&amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Move assignment operator. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="314" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="314" bodyend="319"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a615337b8540b70e2d0beee0c1df153cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_small_vector" kindref="compound">TfSmallVector</ref> &amp;</type>
+        <definition>TfSmallVector&amp; operator=</definition>
+        <argsstring>(std::initializer_list&lt; T &gt; ilist)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>std::initializer_list&lt; T &gt;</type>
+          <declname>ilist</declname>
+        </param>
+        <briefdescription>
+<para>Replace existing contents with the contents of <computeroutput>ilist</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="323" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="323" bodyend="326"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a7fa83c50a503a51a4623759093d1f90a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void swap</definition>
+        <argsstring>(TfSmallVector &amp;rhs)</argsstring>
+        <name>swap</name>
+        <param>
+          <type><ref refid="class_tf_small_vector" kindref="compound">TfSmallVector</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Swap two vector instances. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="330" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="330" bodyend="392"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1ac9446ed0ef7e2eeaf567b8f1ccbc5328" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator insert</definition>
+        <argsstring>(const_iterator it, value_type &amp;&amp;v)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>const_iterator</type>
+          <declname>it</declname>
+        </param>
+        <param>
+          <type>value_type &amp;&amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+<para>Insert an rvalue-reference entry at the given iterator position. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="396" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="396" bodyend="398"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1aea0ca2c78c129fe5fdf4acb7d6aa407a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator insert</definition>
+        <argsstring>(const_iterator it, const value_type &amp;v)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>const_iterator</type>
+          <declname>it</declname>
+        </param>
+        <param>
+          <type>const value_type &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+<para>Insert an entry at the given iterator. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="402" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="402" bodyend="404"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a23da367a0d3329900421c2ef531cdd1c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator erase</definition>
+        <argsstring>(const_iterator it)</argsstring>
+        <name>erase</name>
+        <param>
+          <type>const_iterator</type>
+          <declname>it</declname>
+        </param>
+        <briefdescription>
+<para>Erase an entry at the given iterator. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="408" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="408" bodyend="410"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a62aba3bd6820773b969a15c3816dafa0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator erase</definition>
+        <argsstring>(const_iterator it, const_iterator last)</argsstring>
+        <name>erase</name>
+        <param>
+          <type>const_iterator</type>
+          <declname>it</declname>
+        </param>
+        <param>
+          <type>const_iterator</type>
+          <declname>last</declname>
+        </param>
+        <briefdescription>
+<para>Erase entries between [ <computeroutput>first</computeroutput>, <computeroutput>last</computeroutput> ) from the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="414" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="414" bodyend="439"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a2376d19610c52c54a71ad09f66d1b732" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void reserve</definition>
+        <argsstring>(size_type newCapacity)</argsstring>
+        <name>reserve</name>
+        <param>
+          <type>size_type</type>
+          <declname>newCapacity</declname>
+        </param>
+        <briefdescription>
+<para>Reserve storage for <computeroutput>newCapacity</computeroutput> entries. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="443" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="443" bodyend="450"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a85140508fec5d0c4d1dde0b59e9bdc79" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void resize</definition>
+        <argsstring>(size_type newSize, const value_type &amp;v=value_type())</argsstring>
+        <name>resize</name>
+        <param>
+          <type>size_type</type>
+          <declname>newSize</declname>
+        </param>
+        <param>
+          <type>const value_type &amp;</type>
+          <declname>v</declname>
+          <defval>value_type()</defval>
+        </param>
+        <briefdescription>
+<para>Resize the vector to <computeroutput>newSize</computeroutput> and insert copies of \v. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="454" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="454" bodyend="469"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1ac8bb3912a3ce86b15842e79d0b421204" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <briefdescription>
+<para>Clear the entries in the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does not let go of the underpinning storage. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="474" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="474" bodyend="477"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a155d12676aeb736db2be14208ebf4d84" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename ForwardIterator</type>
+          </param>
+          <param>
+            <type>typename</type>
+            <defval>_EnableIfForwardIterator&lt;ForwardIterator&gt;</defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void assign</definition>
+        <argsstring>(ForwardIterator first, ForwardIterator last)</argsstring>
+        <name>assign</name>
+        <param>
+          <type>ForwardIterator</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>ForwardIterator</type>
+          <declname>last</declname>
+        </param>
+        <briefdescription>
+<para>Clears any previously held entries, and copies entries between [ <computeroutput>first</computeroutput>, <computeroutput>last</computeroutput> ) to this vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="484" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="484" bodyend="490"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a2f0a260005e8a3b728300e9b5c95b09e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void assign</definition>
+        <argsstring>(std::initializer_list&lt; T &gt; ilist)</argsstring>
+        <name>assign</name>
+        <param>
+          <type>std::initializer_list&lt; T &gt;</type>
+          <declname>ilist</declname>
+        </param>
+        <briefdescription>
+<para>Replace existing contents with the contents of <computeroutput>ilist</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="494" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="494" bodyend="496"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1ac294eba73765b9a72a7399d64e8ecd9a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void emplace_back</definition>
+        <argsstring>(Args &amp;&amp;... args)</argsstring>
+        <name>emplace_back</name>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+<para>Emplace an entry at the back of the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="501" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="501" bodyend="507"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a0122cc465d5dc8382ca3736e78f08fbd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void push_back</definition>
+        <argsstring>(const value_type &amp;v)</argsstring>
+        <name>push_back</name>
+        <param>
+          <type>const value_type &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+<para>Copy an entry to the back of the vector,. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="511" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="511" bodyend="513"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1af77369cc4768d6f03bc6c1c11973dc04" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void push_back</definition>
+        <argsstring>(value_type &amp;&amp;v)</argsstring>
+        <name>push_back</name>
+        <param>
+          <type>value_type &amp;&amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+<para>Move an entry to the back of the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="517" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="517" bodyend="519"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1ac24bbe5d512595fce0c3d4fc04cd9857" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename ForwardIterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void insert</definition>
+        <argsstring>(iterator pos, ForwardIterator first, ForwardIterator last)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>iterator</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>ForwardIterator</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>ForwardIterator</type>
+          <declname>last</declname>
+        </param>
+        <briefdescription>
+<para>Copy the range denoted by [<computeroutput>first</computeroutput>, <computeroutput>last</computeroutput>) into this vector before <computeroutput>pos</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="525" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="525" bodyend="612"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1ae305801fb9ee6c6737eebd7d993e8052" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void insert</definition>
+        <argsstring>(iterator pos, std::initializer_list&lt; T &gt; ilist)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>iterator</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>std::initializer_list&lt; T &gt;</type>
+          <declname>ilist</declname>
+        </param>
+        <briefdescription>
+<para>Insert elements from <computeroutput>ilist</computeroutput> starting at position <computeroutput>pos</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="616" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="616" bodyend="618"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a058bda4957df6a97b1ea6c9fd783f672" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void pop_back</definition>
+        <argsstring>()</argsstring>
+        <name>pop_back</name>
+        <briefdescription>
+<para>Remove the entry at the back of the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="622" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="622" bodyend="625"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a60304b65bf89363bcc3165d3cde67f86" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_type</type>
+        <definition>size_type size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <briefdescription>
+<para>Returns the current size of the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="629" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="629" bodyend="631"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a644718bb2fb240de962dc3c9a1fdf0dc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool empty</definition>
+        <argsstring>() const</argsstring>
+        <name>empty</name>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if this vector is empty. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="641" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="641" bodyend="643"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1ad0ca5aee30a51753613c75187175e836" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_type</type>
+        <definition>size_type capacity</definition>
+        <argsstring>() const</argsstring>
+        <name>capacity</name>
+        <briefdescription>
+<para>Returns the current capacity of this vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that if the returned value is &lt;= N, it does NOT mean the storage is local. A vector that has previously grown beyond its local storage, will not move entries back to the local storage once it shrinks to N. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="650" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="650" bodyend="652"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a7301058b19a8c321f08487339242c512" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr size_type</type>
+        <definition>static constexpr size_type max_size</definition>
+        <argsstring>()</argsstring>
+        <name>max_size</name>
+        <briefdescription>
+<para>Returns the maximum size of this vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="635" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="635" bodyend="637"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1ab65a26a81fa34dceafc235ee5d4f2fbc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr size_type</type>
+        <definition>static constexpr size_type internal_capacity</definition>
+        <argsstring>()</argsstring>
+        <name>internal_capacity</name>
+        <briefdescription>
+<para>Returns the local storage capacity. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The vector uses its local storage if <ref refid="class_tf_small_vector_1ad0ca5aee30a51753613c75187175e836" kindref="member">capacity()</ref> &lt;= <ref refid="class_tf_small_vector_1ab65a26a81fa34dceafc235ee5d4f2fbc" kindref="member">internal_capacity()</ref>. This method mimics the boost::container::small_vector interface. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="658" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="658" bodyend="660"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Returns an iterator to the beginning of the vector.</header>
+      <memberdef kind="function" id="class_tf_small_vector_1ad69bd11391be1a1dba5c8202259664f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator begin</definition>
+        <argsstring>()</argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="665" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="665" bodyend="667"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a29305669b60ca1680752e2fc3592ba99" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator begin</definition>
+        <argsstring>() const</argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="669" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="669" bodyend="671"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a39112ae08f6ffc7ee58c6aa79772e094" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator cbegin</definition>
+        <argsstring>() const</argsstring>
+        <name>cbegin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="673" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="673" bodyend="675"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Returns an iterator to the end of the vector.</header>
+      <memberdef kind="function" id="class_tf_small_vector_1acad38d52497a975bfb6f2f6acd76631f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator end</definition>
+        <argsstring>()</argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="682" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="682" bodyend="684"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1accf9a4bd0c34d4a5f6a7dab66ea10cdc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator end</definition>
+        <argsstring>() const</argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="686" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="686" bodyend="688"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a93791e61ab486b4022c389d634b4facc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator cend</definition>
+        <argsstring>() const</argsstring>
+        <name>cend</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="690" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="690" bodyend="692"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Returns a reverse iterator to the beginning of the vector.</header>
+      <memberdef kind="function" id="class_tf_small_vector_1acea44ed500a54b2bb93e16b86e81afa8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>reverse_iterator</type>
+        <definition>reverse_iterator rbegin</definition>
+        <argsstring>()</argsstring>
+        <name>rbegin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="699" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="699" bodyend="701"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1af086cceac199bd735c7a97c2a8d7ed21" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_reverse_iterator</type>
+        <definition>const_reverse_iterator rbegin</definition>
+        <argsstring>() const</argsstring>
+        <name>rbegin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="703" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="703" bodyend="705"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a81f80a31923e85af56a7b1ae0712a33b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_reverse_iterator</type>
+        <definition>const_reverse_iterator crbegin</definition>
+        <argsstring>() const</argsstring>
+        <name>crbegin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="707" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="707" bodyend="709"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Returns a reverse iterator to the end of the vector.</header>
+      <memberdef kind="function" id="class_tf_small_vector_1a68c599ddcbfddc65170de524ac165e44" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>reverse_iterator</type>
+        <definition>reverse_iterator rend</definition>
+        <argsstring>()</argsstring>
+        <name>rend</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="716" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="716" bodyend="718"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a07da1fdc890b6949f1a20a1961c6fc44" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_reverse_iterator</type>
+        <definition>const_reverse_iterator rend</definition>
+        <argsstring>() const</argsstring>
+        <name>rend</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="720" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="720" bodyend="722"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1abef9dfc7607c7e1a3854788ba56a4f34" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_reverse_iterator</type>
+        <definition>const_reverse_iterator crend</definition>
+        <argsstring>() const</argsstring>
+        <name>crend</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="724" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="724" bodyend="726"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_tf_small_vector_1a219951443b1f2d2809a69513ed58e501" prot="private" static="no" mutable="no">
+        <type>_Data&lt; value_type, N &gt;</type>
+        <definition>_Data&lt;value_type, N&gt; _data</definition>
+        <argsstring></argsstring>
+        <name>_data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="917" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="917" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_tf_small_vector_1a9f1927ae81f20205d93e0b86915f27d7" prot="private" static="no" mutable="no">
+        <type>size_type</type>
+        <definition>size_type _size</definition>
+        <argsstring></argsstring>
+        <name>_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="920" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="920" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_tf_small_vector_1a379d73901d8028feee7fafd2049cee24" prot="private" static="no" mutable="no">
+        <type>size_type</type>
+        <definition>size_type _capacity</definition>
+        <argsstring></argsstring>
+        <name>_capacity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="924" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="924" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_tf_small_vector_1a6a48363b4355f6f5b441637774f79a59" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>reference</type>
+        <definition>reference front</definition>
+        <argsstring>()</argsstring>
+        <name>front</name>
+        <briefdescription>
+<para>Returns the first element in the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="732" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="732" bodyend="734"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a0ae6b4f9719202f7ddb334c16fb03d80" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_reference</type>
+        <definition>const_reference front</definition>
+        <argsstring>() const</argsstring>
+        <name>front</name>
+        <briefdescription>
+<para>Returns the first element in the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="738" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="738" bodyend="740"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1af71e6c1eccbc12e9339c00a86a981a43" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>reference</type>
+        <definition>reference back</definition>
+        <argsstring>()</argsstring>
+        <name>back</name>
+        <briefdescription>
+<para>Returns the last element in the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="744" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="744" bodyend="746"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a61772c77ad2abfbb296912e7281e154c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_reference</type>
+        <definition>const_reference back</definition>
+        <argsstring>() const</argsstring>
+        <name>back</name>
+        <briefdescription>
+<para>Returns the last elements in the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="750" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="750" bodyend="752"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a131b0b7686faea5305ebc6cdd4f07db6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>reference</type>
+        <definition>reference operator[]</definition>
+        <argsstring>(size_type i)</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>size_type</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Access the specified element. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="756" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="756" bodyend="758"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1aacd570d10fffaa42d68957254ac6e25d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_reference</type>
+        <definition>const_reference operator[]</definition>
+        <argsstring>(size_type i) const</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>size_type</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Access the specified element. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="762" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="762" bodyend="764"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a6bf6a0e59b6079e8c24376c46aa460c3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>value_type *</type>
+        <definition>value_type* data</definition>
+        <argsstring>()</argsstring>
+        <name>data</name>
+        <briefdescription>
+<para>Direct access to the underlying array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="768" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="768" bodyend="770"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a9aa54a1714b14d44262aaa9d330eb26b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const value_type *</type>
+        <definition>const value_type* data</definition>
+        <argsstring>() const</argsstring>
+        <name>data</name>
+        <briefdescription>
+<para>Direct access to the underlying array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="774" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="774" bodyend="776"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a7d19277e8745059b59f00abc736d3cbf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator==</definition>
+        <argsstring>(const TfSmallVector &amp;rhs) const</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="class_tf_small_vector" kindref="compound">TfSmallVector</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Lexicographically compares the elements in the vectors for equality. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="780" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="780" bodyend="782"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a5d3589bb84cf743b9423b9ca8f662eac" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator!=</definition>
+        <argsstring>(const TfSmallVector &amp;rhs) const</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type>const <ref refid="class_tf_small_vector" kindref="compound">TfSmallVector</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Lexicographically compares the elements in the vectors for inequality. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="786" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="786" bodyend="788"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_tf_small_vector_1aeb19e68c306f03dfbef1dd9e25258b13" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _IsLocal</definition>
+        <argsstring>() const</argsstring>
+        <name>_IsLocal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="793" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="793" bodyend="795"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1aa2bfd446113c0f4dd161fc4e6b3f00ec" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>value_type *</type>
+        <definition>value_type* _GetStorage</definition>
+        <argsstring>()</argsstring>
+        <name>_GetStorage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="799" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="799" bodyend="801"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a97c3b35575dd4e77141cc6c6fe0afcf2" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const value_type *</type>
+        <definition>const value_type* _GetStorage</definition>
+        <argsstring>() const</argsstring>
+        <name>_GetStorage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="805" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="805" bodyend="807"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1ada38681e08493a35940d0aba3fb2540a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _FreeStorage</definition>
+        <argsstring>()</argsstring>
+        <name>_FreeStorage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="810" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="810" bodyend="814"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a9b71d2f39b27e674698b9175b84f7101" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _Destruct</definition>
+        <argsstring>()</argsstring>
+        <name>_Destruct</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="817" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="817" bodyend="823"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1abbb66f6d91e88c0b916d0cf0bd7a041a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _InitStorage</definition>
+        <argsstring>(size_type size)</argsstring>
+        <name>_InitStorage</name>
+        <param>
+          <type>size_type</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="831" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="831" bodyend="837"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1aae12c2bde81eeb92bd420fb2415e842b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _GrowStorage</definition>
+        <argsstring>(const size_type newCapacity)</argsstring>
+        <name>_GrowStorage</name>
+        <param>
+          <type>const size_type</type>
+          <declname>newCapacity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="841" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="841" bodyend="848"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a05defba0a1130edfac49a27be0565847" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_type</type>
+        <definition>size_type _NextCapacity</definition>
+        <argsstring>() const</argsstring>
+        <name>_NextCapacity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="853" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="853" bodyend="856"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_small_vector_1a297d2d06f20cb46a430eb11ad8183f83" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename U</type>
+          </param>
+        </templateparamlist>
+        <type>iterator</type>
+        <definition>iterator _Insert</definition>
+        <argsstring>(const_iterator it, U &amp;&amp;v)</argsstring>
+        <name>_Insert</name>
+        <param>
+          <type>const_iterator</type>
+          <declname>it</declname>
+        </param>
+        <param>
+          <type>U &amp;&amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="865" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="865" bodyend="913"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_tf_small_vector_1a79f0891bfe87fca6fb7161882b99c7d5" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>value_type *</type>
+        <definition>static value_type* _Allocate</definition>
+        <argsstring>(size_type size)</argsstring>
+        <name>_Allocate</name>
+        <param>
+          <type>size_type</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/smallVector.h" line="826" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="826" bodyend="828"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This is a small-vector class with local storage optimization, the local storage can be specified via a template parameter, and expresses the number of entries the container can store locally. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>In addition to the local storage optimization, this vector is also optimized for storing a smaller number of entries on the heap: It features a reduced memory footprint (minimum 16 bytes) by limiting <ref refid="class_tf_small_vector_1a7301058b19a8c321f08487339242c512" kindref="member">max_size()</ref> to 2^32, which should still be more than enough for most use cases where a small-vector is advantageous.</para>
+<para><ref refid="class_tf_small_vector" kindref="compound">TfSmallVector</ref> mimics the std::vector API, and can thus be easily used as a drop-in replacement where appropriate. Note, however, that not all the methods on std::vector are implemented here, and that <ref refid="class_tf_small_vector" kindref="compound">TfSmallVector</ref> may have methods in addition to those that you would find on std::vector.</para>
+<para>Note that a <ref refid="class_tf_small_vector" kindref="compound">TfSmallVector</ref> that has grown beyond its local storage, will NOT move its entries back into the local storage once it shrinks back to N. </para>
+    </detaileddescription>
+    <location file="pxr/base/tf/smallVector.h" line="179" column="1" bodyfile="pxr/base/tf/smallVector.h" bodystart="177" bodyend="925"/>
+    <listofallmembers>
+      <member refid="class_tf_small_vector_1a79f0891bfe87fca6fb7161882b99c7d5" prot="private" virt="non-virtual"><scope>TfSmallVector</scope><name>_Allocate</name></member>
+      <member refid="class_tf_small_vector_1a379d73901d8028feee7fafd2049cee24" prot="private" virt="non-virtual"><scope>TfSmallVector</scope><name>_capacity</name></member>
+      <member refid="class_tf_small_vector_1a219951443b1f2d2809a69513ed58e501" prot="private" virt="non-virtual"><scope>TfSmallVector</scope><name>_data</name></member>
+      <member refid="class_tf_small_vector_1a9b71d2f39b27e674698b9175b84f7101" prot="private" virt="non-virtual"><scope>TfSmallVector</scope><name>_Destruct</name></member>
+      <member refid="class_tf_small_vector_1a3cb59e5ea33a4bce8773753df7ea563e" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>_EnableIfForwardIterator</name></member>
+      <member refid="class_tf_small_vector_1ada38681e08493a35940d0aba3fb2540a" prot="private" virt="non-virtual"><scope>TfSmallVector</scope><name>_FreeStorage</name></member>
+      <member refid="class_tf_small_vector_1aa2bfd446113c0f4dd161fc4e6b3f00ec" prot="private" virt="non-virtual"><scope>TfSmallVector</scope><name>_GetStorage</name></member>
+      <member refid="class_tf_small_vector_1a97c3b35575dd4e77141cc6c6fe0afcf2" prot="private" virt="non-virtual"><scope>TfSmallVector</scope><name>_GetStorage</name></member>
+      <member refid="class_tf_small_vector_1aae12c2bde81eeb92bd420fb2415e842b" prot="private" virt="non-virtual"><scope>TfSmallVector</scope><name>_GrowStorage</name></member>
+      <member refid="class_tf_small_vector_1abbb66f6d91e88c0b916d0cf0bd7a041a" prot="private" virt="non-virtual"><scope>TfSmallVector</scope><name>_InitStorage</name></member>
+      <member refid="class_tf_small_vector_1a297d2d06f20cb46a430eb11ad8183f83" prot="private" virt="non-virtual"><scope>TfSmallVector</scope><name>_Insert</name></member>
+      <member refid="class_tf_small_vector_1aeb19e68c306f03dfbef1dd9e25258b13" prot="private" virt="non-virtual"><scope>TfSmallVector</scope><name>_IsLocal</name></member>
+      <member refid="class_tf_small_vector_base_1a1a117554a41e7b525ef812930a4e968d" prot="protected" virt="non-virtual"><scope>TfSmallVector</scope><name>_MoveConstruct</name></member>
+      <member refid="class_tf_small_vector_1a05defba0a1130edfac49a27be0565847" prot="private" virt="non-virtual"><scope>TfSmallVector</scope><name>_NextCapacity</name></member>
+      <member refid="class_tf_small_vector_1a9f1927ae81f20205d93e0b86915f27d7" prot="private" virt="non-virtual"><scope>TfSmallVector</scope><name>_size</name></member>
+      <member refid="class_tf_small_vector_base_1a55a888682d6033f6806756714a28699f" prot="protected" virt="non-virtual"><scope>TfSmallVector</scope><name>_UninitializedMove</name></member>
+      <member refid="class_tf_small_vector_1a155d12676aeb736db2be14208ebf4d84" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>assign</name></member>
+      <member refid="class_tf_small_vector_1a2f0a260005e8a3b728300e9b5c95b09e" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>assign</name></member>
+      <member refid="class_tf_small_vector_1af71e6c1eccbc12e9339c00a86a981a43" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>back</name></member>
+      <member refid="class_tf_small_vector_1a61772c77ad2abfbb296912e7281e154c" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>back</name></member>
+      <member refid="class_tf_small_vector_1ad69bd11391be1a1dba5c8202259664f8" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>begin</name></member>
+      <member refid="class_tf_small_vector_1a29305669b60ca1680752e2fc3592ba99" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>begin</name></member>
+      <member refid="class_tf_small_vector_1ad0ca5aee30a51753613c75187175e836" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>capacity</name></member>
+      <member refid="class_tf_small_vector_1a39112ae08f6ffc7ee58c6aa79772e094" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>cbegin</name></member>
+      <member refid="class_tf_small_vector_1a93791e61ab486b4022c389d634b4facc" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>cend</name></member>
+      <member refid="class_tf_small_vector_1ac8bb3912a3ce86b15842e79d0b421204" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>clear</name></member>
+      <member refid="class_tf_small_vector_base_1a60d845492c26a7675de6061caacba49f" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>ComputeSerendipitousLocalCapacity</name></member>
+      <member refid="class_tf_small_vector_1a2601f8255f8a42148603816eb649c961" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>const_iterator</name></member>
+      <member refid="class_tf_small_vector_1af9ba3e25df088c62f7d535b91672cda9" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>const_reference</name></member>
+      <member refid="class_tf_small_vector_1a421ef78ccdc84f0f6b2b14e2732527ba" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>const_reverse_iterator</name></member>
+      <member refid="class_tf_small_vector_1a81f80a31923e85af56a7b1ae0712a33b" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>crbegin</name></member>
+      <member refid="class_tf_small_vector_1abef9dfc7607c7e1a3854788ba56a4f34" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>crend</name></member>
+      <member refid="class_tf_small_vector_1a6bf6a0e59b6079e8c24376c46aa460c3" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>data</name></member>
+      <member refid="class_tf_small_vector_1a9aa54a1714b14d44262aaa9d330eb26b" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>data</name></member>
+      <member refid="class_tf_small_vector_1aa4fc0d21f8d878c10b25246f79573063a620f6769a877e2f10aec3e990654b1f8" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>DefaultInit</name></member>
+      <member refid="class_tf_small_vector_1aa4fc0d21f8d878c10b25246f79573063" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>DefaultInitTag</name></member>
+      <member refid="class_tf_small_vector_base_1acafc470b6a29a99b9887fa84dedf7894" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>difference_type</name></member>
+      <member refid="class_tf_small_vector_1ac294eba73765b9a72a7399d64e8ecd9a" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>emplace_back</name></member>
+      <member refid="class_tf_small_vector_1a644718bb2fb240de962dc3c9a1fdf0dc" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>empty</name></member>
+      <member refid="class_tf_small_vector_1acad38d52497a975bfb6f2f6acd76631f" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>end</name></member>
+      <member refid="class_tf_small_vector_1accf9a4bd0c34d4a5f6a7dab66ea10cdc" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>end</name></member>
+      <member refid="class_tf_small_vector_1a23da367a0d3329900421c2ef531cdd1c" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>erase</name></member>
+      <member refid="class_tf_small_vector_1a62aba3bd6820773b969a15c3816dafa0" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>erase</name></member>
+      <member refid="class_tf_small_vector_1a6a48363b4355f6f5b441637774f79a59" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>front</name></member>
+      <member refid="class_tf_small_vector_1a0ae6b4f9719202f7ddb334c16fb03d80" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>front</name></member>
+      <member refid="class_tf_small_vector_1ac9446ed0ef7e2eeaf567b8f1ccbc5328" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>insert</name></member>
+      <member refid="class_tf_small_vector_1aea0ca2c78c129fe5fdf4acb7d6aa407a" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>insert</name></member>
+      <member refid="class_tf_small_vector_1ac24bbe5d512595fce0c3d4fc04cd9857" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>insert</name></member>
+      <member refid="class_tf_small_vector_1ae305801fb9ee6c6737eebd7d993e8052" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>insert</name></member>
+      <member refid="class_tf_small_vector_1ab65a26a81fa34dceafc235ee5d4f2fbc" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>internal_capacity</name></member>
+      <member refid="class_tf_small_vector_1a4d1ca55c8c62d4fbf3ea42d9919125a0" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>iterator</name></member>
+      <member refid="class_tf_small_vector_1a7301058b19a8c321f08487339242c512" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>max_size</name></member>
+      <member refid="class_tf_small_vector_1a5d3589bb84cf743b9423b9ca8f662eac" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>operator!=</name></member>
+      <member refid="class_tf_small_vector_1a7fabb51d0c3abbcca9d288fddb80ccc3" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>operator=</name></member>
+      <member refid="class_tf_small_vector_1af1e2075230542376f84110d2bb1a9b15" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>operator=</name></member>
+      <member refid="class_tf_small_vector_1a615337b8540b70e2d0beee0c1df153cd" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>operator=</name></member>
+      <member refid="class_tf_small_vector_1a7d19277e8745059b59f00abc736d3cbf" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>operator==</name></member>
+      <member refid="class_tf_small_vector_1a131b0b7686faea5305ebc6cdd4f07db6" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>operator[]</name></member>
+      <member refid="class_tf_small_vector_1aacd570d10fffaa42d68957254ac6e25d" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>operator[]</name></member>
+      <member refid="class_tf_small_vector_1a058bda4957df6a97b1ea6c9fd783f672" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>pop_back</name></member>
+      <member refid="class_tf_small_vector_1a0122cc465d5dc8382ca3736e78f08fbd" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>push_back</name></member>
+      <member refid="class_tf_small_vector_1af77369cc4768d6f03bc6c1c11973dc04" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>push_back</name></member>
+      <member refid="class_tf_small_vector_1acea44ed500a54b2bb93e16b86e81afa8" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>rbegin</name></member>
+      <member refid="class_tf_small_vector_1af086cceac199bd735c7a97c2a8d7ed21" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>rbegin</name></member>
+      <member refid="class_tf_small_vector_1a9b1a63f171d76a7a3995b6858e99f2ea" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>reference</name></member>
+      <member refid="class_tf_small_vector_1a68c599ddcbfddc65170de524ac165e44" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>rend</name></member>
+      <member refid="class_tf_small_vector_1a07da1fdc890b6949f1a20a1961c6fc44" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>rend</name></member>
+      <member refid="class_tf_small_vector_1a2376d19610c52c54a71ad09f66d1b732" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>reserve</name></member>
+      <member refid="class_tf_small_vector_1a85140508fec5d0c4d1dde0b59e9bdc79" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>resize</name></member>
+      <member refid="class_tf_small_vector_1a92b881db836646f4039adcbb73c8595f" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>reverse_iterator</name></member>
+      <member refid="class_tf_small_vector_1a60304b65bf89363bcc3165d3cde67f86" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>size</name></member>
+      <member refid="class_tf_small_vector_base_1a8543663b16e9617ae1f009da1e6b7518" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>size_type</name></member>
+      <member refid="class_tf_small_vector_1a7fa83c50a503a51a4623759093d1f90a" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>swap</name></member>
+      <member refid="class_tf_small_vector_1a9d49752d9f29dd494b679ab6706e3e20" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>TfSmallVector</name></member>
+      <member refid="class_tf_small_vector_1a635fd3eb2447d991562087da2a720457" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>TfSmallVector</name></member>
+      <member refid="class_tf_small_vector_1a7ac6bb0c31a3224b536159216f3f317d" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>TfSmallVector</name></member>
+      <member refid="class_tf_small_vector_1a20c5ba749f1c525e78caf36d7c73a2d4" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>TfSmallVector</name></member>
+      <member refid="class_tf_small_vector_1aa75a8797abb88e1b7c98c865c5a4188b" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>TfSmallVector</name></member>
+      <member refid="class_tf_small_vector_1ad609bf16e9ce030bff999484092eb700" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>TfSmallVector</name></member>
+      <member refid="class_tf_small_vector_1a37f14cf5d6dbbc2f879ef4ef51bab594" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>TfSmallVector</name></member>
+      <member refid="class_tf_small_vector_1a296a340c51d137421b23d330bc5171f9" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>TfSmallVector</name></member>
+      <member refid="class_tf_small_vector_1a265a253612b46abed17c61b0a5e5ce30" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>value_type</name></member>
+      <member refid="class_tf_small_vector_1a5a466b818d717135144b91d3631c6d95" prot="public" virt="non-virtual"><scope>TfSmallVector</scope><name>~TfSmallVector</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_work_singular_task" kind="class" language="C++" prot="public">
+    <compoundname>WorkSingularTask</compoundname>
+    <includes refid="singular_task_8h" local="no">singularTask.h</includes>
+    <innerclass refid="struct_work_singular_task_1_1___waker" prot="private">WorkSingularTask::_Waker</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_work_singular_task_1aab467ccda90bc0e020317a88fac6a77a" prot="private" static="no" mutable="no">
+        <type>std::function&lt; void(std::atomic_size_t &amp;)&gt;</type>
+        <definition>std::function&lt;void (std::atomic_size_t &amp;)&gt; _waker</definition>
+        <argsstring></argsstring>
+        <name>_waker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/singularTask.h" line="128" column="1" bodyfile="pxr/base/work/singularTask.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_work_singular_task_1a23eb6f38c93f430a1bc404d894f815ce" prot="private" static="no" mutable="no">
+        <type>std::atomic_size_t</type>
+        <definition>std::atomic_size_t _count</definition>
+        <argsstring></argsstring>
+        <name>_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/singularTask.h" line="129" column="1" bodyfile="pxr/base/work/singularTask.h" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_work_singular_task_1a120ead3b67d19ced96cdc183bc28eaaf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>WorkSingularTask</definition>
+        <argsstring>(WorkSingularTask const &amp;)=delete</argsstring>
+        <name>WorkSingularTask</name>
+        <param>
+          <type><ref refid="class_work_singular_task" kindref="compound">WorkSingularTask</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/singularTask.h" line="60" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_work_singular_task_1acd97fb4284f7cd9e99030c08d2dc28f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_work_singular_task" kindref="compound">WorkSingularTask</ref> &amp;</type>
+        <definition>WorkSingularTask&amp; operator=</definition>
+        <argsstring>(WorkSingularTask const &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="class_work_singular_task" kindref="compound">WorkSingularTask</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/singularTask.h" line="61" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_work_singular_task_1ab6b007dcae7eef876d2467b39fc1bd83" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Callable</type>
+          </param>
+          <param>
+            <type>class A1</type>
+          </param>
+          <param>
+            <type>class A2</type>
+          </param>
+          <param>
+            <type>... class</type>
+            <declname>AN</declname>
+            <defname>AN</defname>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>WorkSingularTask</definition>
+        <argsstring>(WorkDispatcher &amp;dispatcher, Callable &amp;&amp;c, A1 &amp;&amp;a1, A2 &amp;&amp;a2,... AN &amp;&amp;aN)</argsstring>
+        <name>WorkSingularTask</name>
+        <param>
+          <type><ref refid="class_work_dispatcher" kindref="compound">WorkDispatcher</ref> &amp;</type>
+          <declname>dispatcher</declname>
+        </param>
+        <param>
+          <type>Callable &amp;&amp;</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>A1 &amp;&amp;</type>
+          <declname>a1</declname>
+        </param>
+        <param>
+          <type>A2 &amp;&amp;</type>
+          <declname>a2</declname>
+        </param>
+        <param>
+          <type>... AN &amp;&amp;</type>
+          <declname>aN</declname>
+        </param>
+        <briefdescription>
+<para>Create a singular task to be run in <computeroutput>dispatcher</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Callers must ensure that <computeroutput>dispatcher</computeroutput> lives at least as long as this <ref refid="class_work_singular_task" kindref="compound">WorkSingularTask</ref>.</para>
+<para>A singular task is one that will not run concurrently with itself. See the <ref refid="class_work_singular_task" kindref="compound">WorkSingularTask</ref> doc for more details.</para>
+<para>After constructing a <ref refid="class_work_singular_task" kindref="compound">WorkSingularTask</ref>, call <ref refid="class_work_singular_task_1a2d61c02ab8ad619e2486383199d3011c" kindref="member">Wake()</ref> to ensure that the task runs at least once. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/singularTask.h" line="74" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_work_singular_task_1a2d61c02ab8ad619e2486383199d3011c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Wake</definition>
+        <argsstring>()</argsstring>
+        <name>Wake</name>
+        <briefdescription>
+<para>Ensure that this task runs at least once after this call. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The task is not guaranteed to run as many times as <ref refid="class_work_singular_task_1a2d61c02ab8ad619e2486383199d3011c" kindref="member">Wake()</ref> is invoked, only that it run at least once after a call to <ref refid="class_work_singular_task_1a2d61c02ab8ad619e2486383199d3011c" kindref="member">Wake()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/singularTask.h" line="90" column="1" bodyfile="pxr/base/work/singularTask.h" bodystart="90" bodyend="93"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_work_singular_task_1a11c7bff38c6f1997e7433dba004f3463" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Dispatcher</type>
+          </param>
+          <param>
+            <type>class Fn</type>
+          </param>
+        </templateparamlist>
+        <type>std::function&lt; void(std::atomic_size_t &amp;)&gt;</type>
+        <definition>static std::function&lt;void (std::atomic_size_t &amp;)&gt; _MakeWaker</definition>
+        <argsstring>(Dispatcher &amp;d, Fn &amp;&amp;fn)</argsstring>
+        <name>_MakeWaker</name>
+        <param>
+          <type>Dispatcher &amp;</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type>Fn &amp;&amp;</type>
+          <declname>fn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/singularTask.h" line="122" column="1" bodyfile="pxr/base/work/singularTask.h" bodystart="122" bodyend="126"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A <ref refid="class_work_singular_task" kindref="compound">WorkSingularTask</ref> runs a task in a <ref refid="class_work_dispatcher" kindref="compound">WorkDispatcher</ref>, but never concurrently with itself. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>That is, the function provided to the <ref refid="class_work_singular_task" kindref="compound">WorkSingularTask</ref> runs concurrently with other tasks in the <ref refid="class_work_dispatcher" kindref="compound">WorkDispatcher</ref>, but never with another invocation of itself.</para>
+<para>This is useful if there is single-threaded work to do that can be overlapped with other parallel tasks in a dispatcher. For example, a multiple-producer, single-consumer problem can be tackled this way. Run the producer tasks as usual in a <ref refid="class_work_dispatcher" kindref="compound">WorkDispatcher</ref> and create a <ref refid="class_work_singular_task" kindref="compound">WorkSingularTask</ref> for the consumer. When a producer task has generated a result to consume, it invokes <ref refid="class_work_singular_task_1a2d61c02ab8ad619e2486383199d3011c" kindref="member">Wake()</ref> on the consumer task. This ensures that the consumer runs only when there are results to consume, and it lets the consumer operate single-threaded. For example, the consumer could populate stl containers without locking. </para>
+    </detaileddescription>
+    <location file="pxr/base/work/singularTask.h" line="57" column="1" bodyfile="pxr/base/work/singularTask.h" bodystart="56" bodyend="130"/>
+    <listofallmembers>
+      <member refid="class_work_singular_task_1a23eb6f38c93f430a1bc404d894f815ce" prot="private" virt="non-virtual"><scope>WorkSingularTask</scope><name>_count</name></member>
+      <member refid="class_work_singular_task_1a11c7bff38c6f1997e7433dba004f3463" prot="private" virt="non-virtual"><scope>WorkSingularTask</scope><name>_MakeWaker</name></member>
+      <member refid="class_work_singular_task_1aab467ccda90bc0e020317a88fac6a77a" prot="private" virt="non-virtual"><scope>WorkSingularTask</scope><name>_waker</name></member>
+      <member refid="class_work_singular_task_1acd97fb4284f7cd9e99030c08d2dc28f8" prot="public" virt="non-virtual"><scope>WorkSingularTask</scope><name>operator=</name></member>
+      <member refid="class_work_singular_task_1a2d61c02ab8ad619e2486383199d3011c" prot="public" virt="non-virtual"><scope>WorkSingularTask</scope><name>Wake</name></member>
+      <member refid="class_work_singular_task_1a120ead3b67d19ced96cdc183bc28eaaf" prot="public" virt="non-virtual"><scope>WorkSingularTask</scope><name>WorkSingularTask</name></member>
+      <member refid="class_work_singular_task_1ab6b007dcae7eef876d2467b39fc1bd83" prot="public" virt="non-virtual"><scope>WorkSingularTask</scope><name>WorkSingularTask</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

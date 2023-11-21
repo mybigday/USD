@@ -1,0 +1,544 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_tf_debug" kind="class" language="C++" prot="public">
+    <compoundname>TfDebug</compoundname>
+    <includes refid="debug_8h" local="no">debug.h</includes>
+    <innerclass refid="struct_tf_debug_1_1___data" prot="private">TfDebug::_Data</innerclass>
+    <innerclass refid="struct_tf_debug_1_1___node" prot="public">TfDebug::_Node</innerclass>
+    <innerclass refid="struct_tf_debug_1_1___traits" prot="public">TfDebug::_Traits</innerclass>
+    <innerclass refid="struct_tf_debug_1_1_scope_helper" prot="public">TfDebug::ScopeHelper</innerclass>
+    <innerclass refid="struct_tf_debug_1_1_timed_scope_helper" prot="public">TfDebug::TimedScopeHelper</innerclass>
+    <innerclass refid="struct_tf_debug_1_1_timed_scope_helper_3_01false_01_4" prot="public">TfDebug::TimedScopeHelper&lt; false &gt;</innerclass>
+      <sectiondef kind="private-type">
+      <memberdef kind="enum" id="class_tf_debug_1aa74be72fbfdd47e2ae909845717fc764" prot="private" static="no" strong="no">
+        <type></type>
+        <name>_NodeState</name>
+        <enumvalue id="class_tf_debug_1aa74be72fbfdd47e2ae909845717fc764a84369419ad63d8157cf85a7581ef902e" prot="private">
+          <name>_NodeUninitialized</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_tf_debug_1aa74be72fbfdd47e2ae909845717fc764a2add9d6d7da4ef8ea792cabb72ba827e" prot="private">
+          <name>_NodeDisabled</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_tf_debug_1aa74be72fbfdd47e2ae909845717fc764a4b69c4bae9d79101eba27d2378d2723d" prot="private">
+          <name>_NodeEnabled</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="140" column="1" bodyfile="pxr/base/tf/debug.h" bodystart="140" bodyend="140"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_tf_debug_1a25af33b09bfa847b850d56016c098894" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void Enable</definition>
+        <argsstring>(T val)</argsstring>
+        <name>Enable</name>
+        <param>
+          <type>T</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+<para>Mark debugging as enabled for enum value <computeroutput>val</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The default state for all debugging symbols is disabled. Note that the template parameter is deduced from <computeroutput>val:</computeroutput> <programlisting><codeline><highlight class="normal">TfDebug::Enable(MY_E3);</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="151" column="1" bodyfile="pxr/base/tf/debug.h" bodystart="151" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_debug_1a4caa44ed29e999795d8f05d30e5482e8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void Disable</definition>
+        <argsstring>(T val)</argsstring>
+        <name>Disable</name>
+        <param>
+          <type>T</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+<para>Mark debugging as disabled for enum value <computeroutput>val</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="157" column="1" bodyfile="pxr/base/tf/debug.h" bodystart="157" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_debug_1ab2ed577ca486f77ee65d8bc9cf5479c7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void EnableAll</definition>
+        <argsstring>()</argsstring>
+        <name>EnableAll</name>
+        <briefdescription>
+<para>Mark debugging as enabled for all enum values of type <computeroutput>T</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that the template parameter must be explicitly supplied: <programlisting><codeline><highlight class="normal">TfDebug::EnableAll&lt;MyDebugCodes&gt;()</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="168" column="1" bodyfile="pxr/base/tf/debug.h" bodystart="168" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_debug_1ae82150d8a3140dab320ede5f16381e9f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void DisableAll</definition>
+        <argsstring>()</argsstring>
+        <name>DisableAll</name>
+        <briefdescription>
+<para>Mark debugging as disabled for all enum values of type <computeroutput>T</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="178" column="1" bodyfile="pxr/base/tf/debug.h" bodystart="178" bodyend="184"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_debug_1a7fdc20a85e46f8698a8d6495ce16efc8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>static bool IsEnabled</definition>
+        <argsstring>(T val)</argsstring>
+        <name>IsEnabled</name>
+        <param>
+          <type>T</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+<para>True if debugging is enabled for the enum value <computeroutput>val</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that not only must the specific enum value <computeroutput>val</computeroutput> be marked as enabled, but the enum type <computeroutput>T</computeroutput> must be globally enabled; this is controlled by the first argument to the <computeroutput><ref refid="group__group__tf___debugging_output_1ga90f9903d097f7c5b41fcc90db639765c" kindref="member">TF_CONDITIONALLY_COMPILE_TIME_ENABLED_DEBUG_CODES()</ref></computeroutput> macro. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="193" column="1" bodyfile="pxr/base/tf/debug.h" bodystart="193" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_debug_1aa00f258d6dee0450b7d0775dfaba38c1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>static bool IsCompileTimeEnabled</definition>
+        <argsstring>()</argsstring>
+        <name>IsCompileTimeEnabled</name>
+        <briefdescription>
+<para>True if debugging can be activated at run-time, whether or not it is currently enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="211" column="1" bodyfile="pxr/base/tf/debug.h" bodystart="211" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_debug_1a614dd3f95a5a2ca2ab9566d557650ba5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>size_t</type>
+        <definition>static size_t GetNumDebugCodes</definition>
+        <argsstring>()</argsstring>
+        <name>GetNumDebugCodes</name>
+        <briefdescription>
+<para>Return the number of debugging symbols of this type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the number of different enums in the range. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="221" column="1" bodyfile="pxr/base/tf/debug.h" bodystart="221" bodyend="225"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_debug_1a1e73a5cc8ffb152f3962ad1fb07de481" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::vector&lt; std::string &gt;</type>
+        <definition>static TF_API std::vector&lt;std::string&gt; SetDebugSymbolsByName</definition>
+        <argsstring>(const std::string &amp;pattern, bool value)</argsstring>
+        <name>SetDebugSymbolsByName</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>pattern</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Set registered debug symbols matching <computeroutput>pattern</computeroutput> to <computeroutput>value</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>All registered debug symbols matching <computeroutput>pattern</computeroutput> are set to <computeroutput>value</computeroutput>. The only matching is an exact match with <computeroutput>pattern</computeroutput>, or if <computeroutput>pattern</computeroutput> ends with an &apos;*&apos; as is otherwise a prefix of a debug symbols. The names of all debug symbols set by this call are returned as a vector. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="272" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_debug_1aa8c278eab54ba131b6a79750411b714c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API bool</type>
+        <definition>static TF_API bool IsDebugSymbolNameEnabled</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>IsDebugSymbolNameEnabled</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>True if the specified debug symbol is set. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="277" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_debug_1ac31e63c4d474fd7297df4d1cdac10937" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>static TF_API std::string GetDebugSymbolDescriptions</definition>
+        <argsstring>()</argsstring>
+        <name>GetDebugSymbolDescriptions</name>
+        <briefdescription>
+<para>Get a description of all debug symbols and their purpose. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A single string describing all registered debug symbols along with short descriptions is returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="284" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_debug_1aa766dd20b0f2eeb950d9413302b97983" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::vector&lt; std::string &gt;</type>
+        <definition>static TF_API std::vector&lt;std::string&gt; GetDebugSymbolNames</definition>
+        <argsstring>()</argsstring>
+        <name>GetDebugSymbolNames</name>
+        <briefdescription>
+<para>Get a listing of all debug symbols. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="288" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_debug_1a41c52c713ffbc6fa2e7dcae21c482e86" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>static TF_API std::string GetDebugSymbolDescription</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>GetDebugSymbolDescription</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Get a description for the specified debug symbol. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A short description of the debug symbol is returned. This is the same description string that is embedded in the return value of GetDebugSymbolDescriptions. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="296" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_debug_1aa83afaae4aed5ac96b63c06f7a00c0cf" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>static TF_API void SetOutputFile</definition>
+        <argsstring>(FILE *file)</argsstring>
+        <name>SetOutputFile</name>
+        <param>
+          <type>FILE *</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+<para>Direct debug output to <emphasis>either</emphasis> stdout or stderr. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that <emphasis>file</emphasis> MUST be either stdout or stderr. If not, issue an error and do nothing. Debug output is issued to stdout by default. If the environment variable TF_DEBUG_OUTPUT_FILE is set to &apos;stderr&apos;, then output is issued to stderr by default. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="305" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_debug_1a41009c5f3c1b839f1628d9a9b673c406" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void _RegisterDebugSymbol</definition>
+        <argsstring>(T enumVal, char const *name, char const *descrip)</argsstring>
+        <name>_RegisterDebugSymbol</name>
+        <param>
+          <type>T</type>
+          <declname>enumVal</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>descrip</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="312" column="1" bodyfile="pxr/base/tf/debug.h" bodystart="312" bodyend="323"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_debug_1a80d777441040314703979c12890613ee" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>static TF_API void _RegisterDebugSymbolImpl</definition>
+        <argsstring>(_Node *addr, char const *enumName, char const *descrip)</argsstring>
+        <name>_RegisterDebugSymbolImpl</name>
+        <param>
+          <type>_Node *</type>
+          <declname>addr</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>enumName</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>descrip</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="326" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_tf_debug_1a05084183cdbda57d7588a0a0d7557c3c" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>_Node &amp;</type>
+        <definition>static _Node&amp; _GetNode</definition>
+        <argsstring>(T val)</argsstring>
+        <name>_GetNode</name>
+        <param>
+          <type>T</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="352" column="1" bodyfile="pxr/base/tf/debug.h" bodystart="352" bodyend="354"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_debug_1a2818821449ecf7da4b76b93d7389d9d4" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>static TF_API void _InitializeNode</definition>
+        <argsstring>(_Node &amp;node, char const *name)</argsstring>
+        <name>_InitializeNode</name>
+        <param>
+          <type>_Node &amp;</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="359" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_debug_1abb6d6de0550a9fe3748cb60af087b903" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>static TF_API void _ComplainAboutInvalidSymbol</definition>
+        <argsstring>(char const *name)</argsstring>
+        <name>_ComplainAboutInvalidSymbol</name>
+        <param>
+          <type>char const *</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="362" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_debug_1a95a1201d1020509d07f15f2d11d63bf5" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>static TF_API void _SetNode</definition>
+        <argsstring>(_Node &amp;node, char const *name, bool state)</argsstring>
+        <name>_SetNode</name>
+        <param>
+          <type>_Node &amp;</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="365" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_debug_1a9ea0a1602a9ba4438506f667b601f5fe" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>static TF_API void _ScopedOutput</definition>
+        <argsstring>(bool start, char const *str)</argsstring>
+        <name>_ScopedOutput</name>
+        <param>
+          <type>bool</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>char const *</type>
+          <declname>str</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/debug.h" line="368" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Enum-based debugging messages. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The <computeroutput><ref refid="class_tf_debug" kindref="compound">TfDebug</ref></computeroutput> class encapsulates a simple enum-based conditional debugging message system. It is meant as a tool for developers, and <emphasis>NOT</emphasis> as a means of issuing diagnostic messages to end-users. (This is not strictly true. The <ref refid="class_tf_debug" kindref="compound">TfDebug</ref> class is extremely useful and has many properties that make its use attractive for issuing messages to end-users. However, for this purpose, please use the <computeroutput>TF_INFO</computeroutput> macro which more clearly indicates its intent.)</para>
+<para>The features of <computeroutput><ref refid="class_tf_debug" kindref="compound">TfDebug</ref></computeroutput> are: <itemizedlist>
+<listitem><para>Debugging messages/calls for an entire enum group can be compiled out-of-existence. </para>
+</listitem>
+<listitem><para>The cost of checking if a specific message should be printed at runtime (assuming the enum group of the message has not been compile-time disabled) is a single inline array lookup, with a compile-time index into a global array.</para>
+</listitem>
+</itemizedlist>
+The use of the facility is simple: <programlisting><codeline><highlight class="normal">//<sp/>header<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;pxr/base/tf/debug.h&quot;</highlight></codeline>
+<codeline><highlight class="normal">TF_DEBUG_CODES(MY_E1,<sp/>MY_E2,<sp/>MY_E3);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>source<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">TF_DEBUG(MY_E2).Msg(&quot;something<sp/>about<sp/>e2\n&quot;);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">TF_DEBUG(MY_E3).Msg(&quot;val<sp/>=<sp/>%d\n&quot;,<sp/>value);</highlight></codeline>
+</programlisting></para>
+<para>The code in the header file declares the debug symbols to use. Under the hood, this creates an enum with the values given in the argument to TF_DEBUG_CODES, along with a first and last sentinel values and passes that to TF_DEBUG_RANGE.</para>
+<para>If you need to obtain the enum type name, use decltype(SOME_ENUM_VALUE).</para>
+<para>In the source file, the indicated debugging messages are printed only if the debugging symbols are enabled. Effectively, the construct <programlisting><codeline><highlight class="normal">TF_DEBUG(MY_E1).Msg(msgExpr)</highlight></codeline>
+</programlisting> is translated to <programlisting><codeline><highlight class="normal">if<sp/>(symbol-MY_E1-is-enabled)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>output(msgExpr)</highlight></codeline>
+</programlisting></para>
+<para>The implications are that <computeroutput>msgExpr</computeroutput> is only evaluated if symbol <computeroutput>MY_E1</computeroutput> symbol is enabled.</para>
+<para>To totally disable TF_DEBUG output for a set of codes at compile time, declare the codes using <ref refid="group__group__tf___debugging_output_1ga90f9903d097f7c5b41fcc90db639765c" kindref="member">TF_CONDITIONALLY_COMPILE_TIME_ENABLED_DEBUG_CODES(condition, ...)</ref> where ... is all the debug codes. If &apos;condition&apos; is false at compile time then all <ref refid="group__group__tf___debugging_output_1ga6db9ff23ef8a070034390745b54e1bf6" kindref="member">TF_DEBUG()</ref>.Msg()s for these codes are elminated at compile time, so they have zero cost.</para>
+<para>Most commonly debug symbols are inactive by default, but can be turned on either by an environment variable <computeroutput>TF_DEBUG</computeroutput>, or interactively once a program has started.</para>
+<para><programlisting><codeline><highlight class="normal">TfDebug::DisableAll&lt;MyDebugCodes&gt;();<sp/><sp/><sp/><sp/><sp/>//<sp/>disable<sp/>everything</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">TfDebug::Enable(MY_E1);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>enable<sp/>just<sp/>MY_E1</highlight></codeline>
+</programlisting></para>
+<para>Description strings may be associated with debug codes as follows: <programlisting><codeline><highlight class="normal">//<sp/>source<sp/>file<sp/>xyz/debugCodes.cpp</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;proj/my/debugCodes.h&quot;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;pxr/base/tf/debug.h&quot;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;pxr/base/tf/registryManager.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">TF_REGISTRY_FUNCTION(TfDebug)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TF_DEBUG_ENVIRONMENT_SYMBOL(MY_E1,<sp/>&quot;loading<sp/>of<sp/>blah-blah<sp/>files&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TF_DEBUG_ENVIRONMENT_SYMBOL(MY_E2,<sp/>&quot;parsing<sp/>of<sp/>mdl<sp/>code&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>etc.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+    </detaileddescription>
+    <location file="pxr/base/tf/debug.h" line="139" column="1" bodyfile="pxr/base/tf/debug.h" bodystart="139" bodyend="369"/>
+    <listofallmembers>
+      <member refid="class_tf_debug_1abb6d6de0550a9fe3748cb60af087b903" prot="private" virt="non-virtual"><scope>TfDebug</scope><name>_ComplainAboutInvalidSymbol</name></member>
+      <member refid="class_tf_debug_1a05084183cdbda57d7588a0a0d7557c3c" prot="private" virt="non-virtual"><scope>TfDebug</scope><name>_GetNode</name></member>
+      <member refid="class_tf_debug_1a2818821449ecf7da4b76b93d7389d9d4" prot="private" virt="non-virtual"><scope>TfDebug</scope><name>_InitializeNode</name></member>
+      <member refid="class_tf_debug_1aa74be72fbfdd47e2ae909845717fc764a2add9d6d7da4ef8ea792cabb72ba827e" prot="private" virt="non-virtual"><scope>TfDebug</scope><name>_NodeDisabled</name></member>
+      <member refid="class_tf_debug_1aa74be72fbfdd47e2ae909845717fc764a4b69c4bae9d79101eba27d2378d2723d" prot="private" virt="non-virtual"><scope>TfDebug</scope><name>_NodeEnabled</name></member>
+      <member refid="class_tf_debug_1aa74be72fbfdd47e2ae909845717fc764" prot="private" virt="non-virtual"><scope>TfDebug</scope><name>_NodeState</name></member>
+      <member refid="class_tf_debug_1aa74be72fbfdd47e2ae909845717fc764a84369419ad63d8157cf85a7581ef902e" prot="private" virt="non-virtual"><scope>TfDebug</scope><name>_NodeUninitialized</name></member>
+      <member refid="class_tf_debug_1a41009c5f3c1b839f1628d9a9b673c406" prot="public" virt="non-virtual"><scope>TfDebug</scope><name>_RegisterDebugSymbol</name></member>
+      <member refid="class_tf_debug_1a80d777441040314703979c12890613ee" prot="public" virt="non-virtual"><scope>TfDebug</scope><name>_RegisterDebugSymbolImpl</name></member>
+      <member refid="class_tf_debug_1a9ea0a1602a9ba4438506f667b601f5fe" prot="private" virt="non-virtual"><scope>TfDebug</scope><name>_ScopedOutput</name></member>
+      <member refid="class_tf_debug_1a95a1201d1020509d07f15f2d11d63bf5" prot="private" virt="non-virtual"><scope>TfDebug</scope><name>_SetNode</name></member>
+      <member refid="class_tf_debug_1a4caa44ed29e999795d8f05d30e5482e8" prot="public" virt="non-virtual"><scope>TfDebug</scope><name>Disable</name></member>
+      <member refid="class_tf_debug_1ae82150d8a3140dab320ede5f16381e9f" prot="public" virt="non-virtual"><scope>TfDebug</scope><name>DisableAll</name></member>
+      <member refid="class_tf_debug_1a25af33b09bfa847b850d56016c098894" prot="public" virt="non-virtual"><scope>TfDebug</scope><name>Enable</name></member>
+      <member refid="class_tf_debug_1ab2ed577ca486f77ee65d8bc9cf5479c7" prot="public" virt="non-virtual"><scope>TfDebug</scope><name>EnableAll</name></member>
+      <member refid="class_tf_debug_1a41c52c713ffbc6fa2e7dcae21c482e86" prot="public" virt="non-virtual"><scope>TfDebug</scope><name>GetDebugSymbolDescription</name></member>
+      <member refid="class_tf_debug_1ac31e63c4d474fd7297df4d1cdac10937" prot="public" virt="non-virtual"><scope>TfDebug</scope><name>GetDebugSymbolDescriptions</name></member>
+      <member refid="class_tf_debug_1aa766dd20b0f2eeb950d9413302b97983" prot="public" virt="non-virtual"><scope>TfDebug</scope><name>GetDebugSymbolNames</name></member>
+      <member refid="class_tf_debug_1a614dd3f95a5a2ca2ab9566d557650ba5" prot="public" virt="non-virtual"><scope>TfDebug</scope><name>GetNumDebugCodes</name></member>
+      <member refid="class_tf_debug_1aa00f258d6dee0450b7d0775dfaba38c1" prot="public" virt="non-virtual"><scope>TfDebug</scope><name>IsCompileTimeEnabled</name></member>
+      <member refid="class_tf_debug_1aa8c278eab54ba131b6a79750411b714c" prot="public" virt="non-virtual"><scope>TfDebug</scope><name>IsDebugSymbolNameEnabled</name></member>
+      <member refid="class_tf_debug_1a7fdc20a85e46f8698a8d6495ce16efc8" prot="public" virt="non-virtual"><scope>TfDebug</scope><name>IsEnabled</name></member>
+      <member refid="class_tf_debug_1a1e73a5cc8ffb152f3962ad1fb07de481" prot="public" virt="non-virtual"><scope>TfDebug</scope><name>SetDebugSymbolsByName</name></member>
+      <member refid="class_tf_debug_1aa83afaae4aed5ac96b63c06f7a00c0cf" prot="public" virt="non-virtual"><scope>TfDebug</scope><name>SetOutputFile</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

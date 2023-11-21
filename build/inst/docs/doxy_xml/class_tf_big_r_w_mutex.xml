@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_tf_big_r_w_mutex" kind="class" language="C++" prot="public">
+    <compoundname>TfBigRWMutex</compoundname>
+    <includes refid="big_r_w_mutex_8h" local="no">bigRWMutex.h</includes>
+    <innerclass refid="struct_tf_big_r_w_mutex_1_1___lock_state" prot="private">TfBigRWMutex::_LockState</innerclass>
+    <innerclass refid="struct_tf_big_r_w_mutex_1_1_scoped_lock" prot="public">TfBigRWMutex::ScopedLock</innerclass>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_tf_big_r_w_mutex_1acc0afc943df7c25fcf5ab0901d3673f6" prot="public" static="yes" mutable="no">
+        <type>constexpr unsigned</type>
+        <definition>constexpr unsigned NumStates</definition>
+        <argsstring></argsstring>
+        <name>NumStates</name>
+        <initializer>= 16</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/bigRWMutex.h" line="73" column="1" bodyfile="pxr/base/tf/bigRWMutex.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_tf_big_r_w_mutex_1a5e2e6484e826c52ca7bb7b6da0435d35" prot="public" static="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int NotLocked</definition>
+        <argsstring></argsstring>
+        <name>NotLocked</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/bigRWMutex.h" line="78" column="1" bodyfile="pxr/base/tf/bigRWMutex.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_tf_big_r_w_mutex_1a79de452be4ca319ecbdc46d37c2d89cb" prot="public" static="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int WriteLocked</definition>
+        <argsstring></argsstring>
+        <name>WriteLocked</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/bigRWMutex.h" line="79" column="1" bodyfile="pxr/base/tf/bigRWMutex.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_tf_big_r_w_mutex_1abc91c3fb1bb90d570638a9a1cc8b9fae" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; _LockState []&gt;</type>
+        <definition>std::unique_ptr&lt;_LockState []&gt; _states</definition>
+        <argsstring></argsstring>
+        <name>_states</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/bigRWMutex.h" line="235" column="1" bodyfile="pxr/base/tf/bigRWMutex.h" bodystart="235" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_tf_big_r_w_mutex_1a6ea3f24fc139b55fe746ee7f23d0d259" prot="private" static="no" mutable="no">
+        <type>std::atomic&lt; bool &gt;</type>
+        <definition>std::atomic&lt;bool&gt; _writerActive</definition>
+        <argsstring></argsstring>
+        <name>_writerActive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/bigRWMutex.h" line="236" column="1" bodyfile="pxr/base/tf/bigRWMutex.h" bodystart="236" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_tf_big_r_w_mutex_1ab716f31329d004aab5d7c4cf70ed0ebf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API</type>
+        <definition>TF_API TfBigRWMutex</definition>
+        <argsstring>()</argsstring>
+        <name>TfBigRWMutex</name>
+        <briefdescription>
+<para>Construct a mutex, initially unlocked. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/bigRWMutex.h" line="82" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_tf_big_r_w_mutex_1ad465b4458e44c3ba71855d71be03d440" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int _AcquireRead</definition>
+        <argsstring>(int seed)</argsstring>
+        <name>_AcquireRead</name>
+        <param>
+          <type>int</type>
+          <declname>seed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/bigRWMutex.h" line="207" column="1" bodyfile="pxr/base/tf/bigRWMutex.h" bodystart="207" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_big_r_w_mutex_1a376cfe95729f9a2c64b64af5aa3be8f2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void _AcquireReadContended</definition>
+        <argsstring>(int stateIndex)</argsstring>
+        <name>_AcquireReadContended</name>
+        <param>
+          <type>int</type>
+          <declname>stateIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/bigRWMutex.h" line="218" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_big_r_w_mutex_1a2f05dcc41950611dcc012fa84594f6ae" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _ReleaseRead</definition>
+        <argsstring>(int stateIndex)</argsstring>
+        <name>_ReleaseRead</name>
+        <param>
+          <type>int</type>
+          <declname>stateIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/bigRWMutex.h" line="220" column="1" bodyfile="pxr/base/tf/bigRWMutex.h" bodystart="220" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_big_r_w_mutex_1afdd724f12a9f6e84df604534db908d9c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void _AcquireWrite</definition>
+        <argsstring>()</argsstring>
+        <name>_AcquireWrite</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/bigRWMutex.h" line="224" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_big_r_w_mutex_1a75fcf4ee37c1737cd78a827a8d1e8366" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void _ReleaseWrite</definition>
+        <argsstring>()</argsstring>
+        <name>_ReleaseWrite</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/bigRWMutex.h" line="225" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This class implements a readers-writer mutex and provides a scoped lock utility. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Multiple clients may acquire a read lock simultaneously, but only one client may hold a write lock, exclusive to all other locks.</para>
+<para>This class emphasizes throughput for (and is thus best used in) the case where there are many simultaneous reader clients all concurrently taking read locks, with clients almost never taking write locks. As such, taking a read lock is a lightweight operation that usually does not imply much hardware-level concurrency penalty (i.e. writes to shared cache lines). This is done by allocating several cache-line-sized chunks of memory to represent lock state, and readers typically only deal with a single lock state (and therefore a single cache line). On the other hand, taking a write lock is very expensive from a hardware concurrency point of view; it requires atomic memory operations on every cache-line.</para>
+<para>To achieve good throughput under highly read-contended workloads, this class allocates 10s of cachelines worth of state (~1 KB) to help minimize hardware-level contention. So it is probably not appropriate to use as (e.g.) a member variable in an object that there are likely to be many of.</para>
+<para>This class has been measured to show &gt;10x throughput compared to tbb::spin_rw_mutex, and &gt;100x better throughput compared to tbb::queuing_rw_mutex on reader-contention-heavy loads. The tradeoff being the relatively large size required compared to these other classes. </para>
+    </detaileddescription>
+    <location file="pxr/base/tf/bigRWMutex.h" line="70" column="1" bodyfile="pxr/base/tf/bigRWMutex.h" bodystart="69" bodyend="238"/>
+    <listofallmembers>
+      <member refid="class_tf_big_r_w_mutex_1ad465b4458e44c3ba71855d71be03d440" prot="private" virt="non-virtual"><scope>TfBigRWMutex</scope><name>_AcquireRead</name></member>
+      <member refid="class_tf_big_r_w_mutex_1a376cfe95729f9a2c64b64af5aa3be8f2" prot="private" virt="non-virtual"><scope>TfBigRWMutex</scope><name>_AcquireReadContended</name></member>
+      <member refid="class_tf_big_r_w_mutex_1afdd724f12a9f6e84df604534db908d9c" prot="private" virt="non-virtual"><scope>TfBigRWMutex</scope><name>_AcquireWrite</name></member>
+      <member refid="class_tf_big_r_w_mutex_1a2f05dcc41950611dcc012fa84594f6ae" prot="private" virt="non-virtual"><scope>TfBigRWMutex</scope><name>_ReleaseRead</name></member>
+      <member refid="class_tf_big_r_w_mutex_1a75fcf4ee37c1737cd78a827a8d1e8366" prot="private" virt="non-virtual"><scope>TfBigRWMutex</scope><name>_ReleaseWrite</name></member>
+      <member refid="class_tf_big_r_w_mutex_1abc91c3fb1bb90d570638a9a1cc8b9fae" prot="private" virt="non-virtual"><scope>TfBigRWMutex</scope><name>_states</name></member>
+      <member refid="class_tf_big_r_w_mutex_1a6ea3f24fc139b55fe746ee7f23d0d259" prot="private" virt="non-virtual"><scope>TfBigRWMutex</scope><name>_writerActive</name></member>
+      <member refid="class_tf_big_r_w_mutex_1a5e2e6484e826c52ca7bb7b6da0435d35" prot="public" virt="non-virtual"><scope>TfBigRWMutex</scope><name>NotLocked</name></member>
+      <member refid="class_tf_big_r_w_mutex_1acc0afc943df7c25fcf5ab0901d3673f6" prot="public" virt="non-virtual"><scope>TfBigRWMutex</scope><name>NumStates</name></member>
+      <member refid="class_tf_big_r_w_mutex_1ab716f31329d004aab5d7c4cf70ed0ebf" prot="public" virt="non-virtual"><scope>TfBigRWMutex</scope><name>TfBigRWMutex</name></member>
+      <member refid="class_tf_big_r_w_mutex_1a79de452be4ca319ecbdc46d37c2d89cb" prot="public" virt="non-virtual"><scope>TfBigRWMutex</scope><name>WriteLocked</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

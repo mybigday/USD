@@ -1,0 +1,334 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_trace_collection" kind="class" language="C++" prot="public">
+    <compoundname>TraceCollection</compoundname>
+    <includes refid="collection_8h" local="no">collection.h</includes>
+    <innerclass refid="class_trace_collection_1_1_visitor" prot="public">TraceCollection::Visitor</innerclass>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_trace_collection_1a1447c77730b7609cbe6cc5c3f3b97038" prot="public" static="no">
+        <type><ref refid="class_trace_collection" kindref="compound">TraceCollection</ref></type>
+        <definition>using This =  TraceCollection</definition>
+        <argsstring></argsstring>
+        <name>This</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collection.h" line="53" column="1" bodyfile="pxr/base/trace/collection.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_trace_collection_1a43cc33cb7b43f70f92332f2b091cd0ca" prot="public" static="no">
+        <type><ref refid="class_trace_event_list" kindref="compound">TraceEventList</ref></type>
+        <definition>using EventList =  TraceEventList</definition>
+        <argsstring></argsstring>
+        <name>EventList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collection.h" line="55" column="1" bodyfile="pxr/base/trace/collection.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_trace_collection_1ac6faffc1effd852ea9236aaaf4895de8" prot="public" static="no">
+        <type>std::unique_ptr&lt; <ref refid="class_trace_event_list" kindref="compound">EventList</ref> &gt;</type>
+        <definition>using EventListPtr =  std::unique_ptr&lt;EventList&gt;</definition>
+        <argsstring></argsstring>
+        <name>EventListPtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collection.h" line="56" column="1" bodyfile="pxr/base/trace/collection.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_trace_collection_1aa435eba99ded6468b2425a303835a3f1" prot="private" static="no">
+        <type>std::unordered_map&lt; <ref refid="class_trace_key" kindref="compound">TraceKey</ref>, <ref refid="class_tf_token" kindref="compound">TfToken</ref>, <ref refid="struct_trace_key_1_1_hash_functor" kindref="compound">TraceKey::HashFunctor</ref> &gt;</type>
+        <definition>using KeyTokenCache =  std::unordered_map&lt;TraceKey, TfToken, TraceKey::HashFunctor&gt;</definition>
+        <argsstring></argsstring>
+        <name>KeyTokenCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collection.h" line="123" column="1" bodyfile="pxr/base/trace/collection.h" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_trace_collection_1a28bc28321db22ebb53cd972b7b1c48d7" prot="private" static="no">
+        <type>std::map&lt; <ref refid="class_trace_thread_id" kindref="compound">TraceThreadId</ref>, EventListPtr &gt;</type>
+        <definition>using EventTable =  std::map&lt;TraceThreadId, EventListPtr&gt;</definition>
+        <argsstring></argsstring>
+        <name>EventTable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collection.h" line="136" column="1" bodyfile="pxr/base/trace/collection.h" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_trace_collection_1a9059907979c477a55980875abb25783f" prot="private" static="no" mutable="no">
+        <type>EventTable</type>
+        <definition>EventTable _eventsPerThread</definition>
+        <argsstring></argsstring>
+        <name>_eventsPerThread</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collection.h" line="138" column="1" bodyfile="pxr/base/trace/collection.h" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_trace_collection_1af075b61f5981605b2b3d981effbb32cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TF_MALLOC_TAG_NEW</definition>
+        <argsstring>(&quot;Trace&quot;, &quot;TraceCollection&quot;)</argsstring>
+        <name>TF_MALLOC_TAG_NEW</name>
+        <param>
+          <type>&quot;Trace&quot;</type>
+        </param>
+        <param>
+          <type>&quot;TraceCollection&quot;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collection.h" line="51" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collection_1af0a3aa7c49bd651a8f39f95d373a86e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TraceCollection</definition>
+        <argsstring>()=default</argsstring>
+        <name>TraceCollection</name>
+        <briefdescription>
+<para>Constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collection.h" line="59" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collection_1a98918c346b8381417a45a35c87015547" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TraceCollection</definition>
+        <argsstring>(TraceCollection &amp;&amp;)=default</argsstring>
+        <name>TraceCollection</name>
+        <param>
+          <type><ref refid="class_trace_collection" kindref="compound">TraceCollection</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+<para>Move constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collection.h" line="62" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collection_1a0c261459a69cc35fab1f586ea11e4d2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_trace_collection" kindref="compound">TraceCollection</ref> &amp;</type>
+        <definition>TraceCollection&amp; operator=</definition>
+        <argsstring>(TraceCollection &amp;&amp;)=default</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="class_trace_collection" kindref="compound">TraceCollection</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+<para>Move assignment operator. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collection.h" line="65" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collection_1a71df4074eaf049b4f37e55459a247d9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TraceCollection</definition>
+        <argsstring>(const TraceCollection &amp;)=delete</argsstring>
+        <name>TraceCollection</name>
+        <param>
+          <type>const <ref refid="class_trace_collection" kindref="compound">TraceCollection</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collection.h" line="69" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collection_1a50fafccf03bcdb8dfdd7b514d611879f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_trace_collection" kindref="compound">TraceCollection</ref> &amp;</type>
+        <definition>TraceCollection&amp; operator=</definition>
+        <argsstring>(const TraceCollection &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_trace_collection" kindref="compound">TraceCollection</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collection.h" line="70" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collection_1ab5d8c37af1f8aa7c5e059036c5bcb13c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void AddToCollection</definition>
+        <argsstring>(const TraceThreadId &amp;id, EventListPtr &amp;&amp;events)</argsstring>
+        <name>AddToCollection</name>
+        <param>
+          <type>const <ref refid="class_trace_thread_id" kindref="compound">TraceThreadId</ref> &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>EventListPtr &amp;&amp;</type>
+          <declname>events</declname>
+        </param>
+        <briefdescription>
+<para>Appends <computeroutput>events</computeroutput> to the collection. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The collection will take ownership of the data. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collection.h" line="75" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collection_1a1311990ae6f6e7f68234130d730ab2aa" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void Iterate</definition>
+        <argsstring>(Visitor &amp;visitor) const</argsstring>
+        <name>Iterate</name>
+        <param>
+          <type><ref refid="class_trace_collection_1_1_visitor" kindref="compound">Visitor</ref> &amp;</type>
+          <declname>visitor</declname>
+        </param>
+        <briefdescription>
+<para>Forward iterates over the events of the collection and calls the <computeroutput>visitor</computeroutput> callbacks. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collection.h" line="116" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collection_1ab9618c0a6b308f293769a1cd496d68b1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void ReverseIterate</definition>
+        <argsstring>(Visitor &amp;visitor) const</argsstring>
+        <name>ReverseIterate</name>
+        <param>
+          <type><ref refid="class_trace_collection_1_1_visitor" kindref="compound">Visitor</ref> &amp;</type>
+          <declname>visitor</declname>
+        </param>
+        <briefdescription>
+<para>Reverse iterates over the events of the collection and calls the <computeroutput>visitor</computeroutput> callbacks. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collection.h" line="120" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_trace_collection_1a5171c11ab75dd166631976a213d547a9" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _Iterate</definition>
+        <argsstring>(Visitor &amp;visitor, bool doReverse) const</argsstring>
+        <name>_Iterate</name>
+        <param>
+          <type><ref refid="class_trace_collection_1_1_visitor" kindref="compound">Visitor</ref> &amp;</type>
+          <declname>visitor</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>doReverse</declname>
+        </param>
+        <briefdescription>
+<para>Iterate through threads, then choose either forward or reverse iteration for the events in the threads. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collection.h" line="128" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collection_1a627216383ee0325b064808c9474d2137" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class I</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void _IterateEvents</definition>
+        <argsstring>(Visitor &amp;, KeyTokenCache &amp;, const TraceThreadId &amp;, I, I) const</argsstring>
+        <name>_IterateEvents</name>
+        <param>
+          <type><ref refid="class_trace_collection_1_1_visitor" kindref="compound">Visitor</ref> &amp;</type>
+        </param>
+        <param>
+          <type>KeyTokenCache &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="class_trace_thread_id" kindref="compound">TraceThreadId</ref> &amp;</type>
+        </param>
+        <param>
+          <type>I</type>
+        </param>
+        <param>
+          <type>I</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collection.h" line="133" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This class owns lists of <ref refid="class_trace_event" kindref="compound">TraceEvent</ref> instances per thread, and allows read access to them. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="pxr/base/trace/collection.h" line="49" column="1" bodyfile="pxr/base/trace/collection.h" bodystart="49" bodyend="139"/>
+    <listofallmembers>
+      <member refid="class_trace_collection_1a9059907979c477a55980875abb25783f" prot="private" virt="non-virtual"><scope>TraceCollection</scope><name>_eventsPerThread</name></member>
+      <member refid="class_trace_collection_1a5171c11ab75dd166631976a213d547a9" prot="private" virt="non-virtual"><scope>TraceCollection</scope><name>_Iterate</name></member>
+      <member refid="class_trace_collection_1a627216383ee0325b064808c9474d2137" prot="private" virt="non-virtual"><scope>TraceCollection</scope><name>_IterateEvents</name></member>
+      <member refid="class_trace_collection_1ab5d8c37af1f8aa7c5e059036c5bcb13c" prot="public" virt="non-virtual"><scope>TraceCollection</scope><name>AddToCollection</name></member>
+      <member refid="class_trace_collection_1a43cc33cb7b43f70f92332f2b091cd0ca" prot="public" virt="non-virtual"><scope>TraceCollection</scope><name>EventList</name></member>
+      <member refid="class_trace_collection_1ac6faffc1effd852ea9236aaaf4895de8" prot="public" virt="non-virtual"><scope>TraceCollection</scope><name>EventListPtr</name></member>
+      <member refid="class_trace_collection_1a28bc28321db22ebb53cd972b7b1c48d7" prot="private" virt="non-virtual"><scope>TraceCollection</scope><name>EventTable</name></member>
+      <member refid="class_trace_collection_1a1311990ae6f6e7f68234130d730ab2aa" prot="public" virt="non-virtual"><scope>TraceCollection</scope><name>Iterate</name></member>
+      <member refid="class_trace_collection_1aa435eba99ded6468b2425a303835a3f1" prot="private" virt="non-virtual"><scope>TraceCollection</scope><name>KeyTokenCache</name></member>
+      <member refid="class_trace_collection_1a0c261459a69cc35fab1f586ea11e4d2c" prot="public" virt="non-virtual"><scope>TraceCollection</scope><name>operator=</name></member>
+      <member refid="class_trace_collection_1a50fafccf03bcdb8dfdd7b514d611879f" prot="public" virt="non-virtual"><scope>TraceCollection</scope><name>operator=</name></member>
+      <member refid="class_trace_collection_1ab9618c0a6b308f293769a1cd496d68b1" prot="public" virt="non-virtual"><scope>TraceCollection</scope><name>ReverseIterate</name></member>
+      <member refid="class_trace_collection_1af075b61f5981605b2b3d981effbb32cc" prot="public" virt="non-virtual"><scope>TraceCollection</scope><name>TF_MALLOC_TAG_NEW</name></member>
+      <member refid="class_trace_collection_1a1447c77730b7609cbe6cc5c3f3b97038" prot="public" virt="non-virtual"><scope>TraceCollection</scope><name>This</name></member>
+      <member refid="class_trace_collection_1af0a3aa7c49bd651a8f39f95d373a86e3" prot="public" virt="non-virtual"><scope>TraceCollection</scope><name>TraceCollection</name></member>
+      <member refid="class_trace_collection_1a98918c346b8381417a45a35c87015547" prot="public" virt="non-virtual"><scope>TraceCollection</scope><name>TraceCollection</name></member>
+      <member refid="class_trace_collection_1a71df4074eaf049b4f37e55459a247d9b" prot="public" virt="non-virtual"><scope>TraceCollection</scope><name>TraceCollection</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

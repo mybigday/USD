@@ -1,0 +1,4 @@
+var structpxr___c_l_i_1_1_c_l_i_1_1detail_1_1wrapped__type_3_01_t_00_01def_00_01typename_01std_1_1ena13b56b88558cae053b49c37ac36da7a =
+[
+    [ "type", "structpxr___c_l_i_1_1_c_l_i_1_1detail_1_1wrapped__type_3_01_t_00_01def_00_01typename_01std_1_1ena13b56b88558cae053b49c37ac36da7a.html#a689320c94e8083e5b0bc44da4f68dfb7", null ]
+];

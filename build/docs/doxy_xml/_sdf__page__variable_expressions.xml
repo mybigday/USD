@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="_sdf__page__variable_expressions" kind="page">
+    <compoundname>Sdf_Page_VariableExpressions</compoundname>
+    <title>Variable Expressions</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Variable expressions are specially formatted strings that contain expressions that USD will evaluate at runtime. The expressions can contain variable data and logic used to dynamically create values. Variable expressions make use of named expression variables that can be easily defined and changed in layer metadata. Expression variables are defined in a &quot;expressionVariables&quot; dictionary metadata field in a layer.</para>
+<para>Variable expressions can currently be used in:</para>
+<para><itemizedlist>
+<listitem><para>Asset paths (including sublayer, reference, and payload asset paths as well as asset-valued attributes and metadata)</para>
+</listitem><listitem><para>Variant selections</para>
+</listitem></itemizedlist>
+</para>
+<para>The following simple example demonstrates using variable expressions to specify a reference path and a variant selection. An ASSET_PATH expression variable is set to a directory, and then used in a reference variable expression. Similarly, a VARIANT_CHOICE expression variable is defined and then used in a variable expression for selecting a variant.</para>
+<para><programlisting><codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline><highlight class="normal">(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>expressionVariables<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Define<sp/>path<sp/>to<sp/>reference<sp/>that<sp/>can<sp/>be<sp/>changed<sp/>as<sp/>needed</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>ASSET_PATH<sp/>=<sp/>&quot;/finalAssets/SetA&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Define<sp/>the<sp/>expression<sp/>variable<sp/>that<sp/>can<sp/>be<sp/>changed<sp/>as<sp/>needed</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>VARIANT_CHOICE<sp/>=<sp/>&quot;variantA&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">over<sp/>&quot;asset0&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>Use<sp/>a<sp/>variable<sp/>expression<sp/>to<sp/>complete<sp/>the<sp/>reference<sp/>asset<sp/>path</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>references<sp/>=<sp/>@`&quot;${ASSET_PATH}/extraAssets.usda&quot;`@&lt;/asset0&gt;</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>Xform<sp/>&quot;asset1&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>variants<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Use<sp/>a<sp/>variable<sp/>expression<sp/>for<sp/>specifying<sp/>the<sp/>variant</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>displayVariantSet<sp/>=<sp/>&quot;`${VARIANT_CHOICE}`&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>variantSets<sp/>=<sp/>&quot;displayVariantSet&quot;</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...displayVariantSet<sp/>definition<sp/>omitted...</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>See <ulink url="https://openusd.org/release/user_guides/variable_expressions.html">Variable Expressions</ulink> for user documentation on using variable expressions in your USD scene data, and reference information on the variable expressions supported syntax.</para>
+<sect1 id="_sdf__page__variable_expressions_1VariableExpressions_Composition_Evaluation">
+<title>Understanding Variable Expression Composition and Evaluation</title>
+<para>Expression variables do not compose across sublayers, but do compose in references and payloads, as described in <ulink url="https://openusd.org/release/user_guides/variable_expressions.html#expression-variables-and-composition">Expression Variables and Composition</ulink>.</para>
+<para>For asset paths using variable expressions, USD will always evaluate the expression before passing the result to Ar for path resolution. If Ar returns a resolved path that looks like an expression, USD doesn&apos;t evaluate that expression.</para>
+<para>Expressions in asset paths used in composition arcs are evaluated during the composition process. For asset path-valued attributes, USD will do the evaluation and resolution when <ref refid="class_usd_attribute_1a9d41bc223be86408ba7d7f74df7c35a9" kindref="member">UsdAttribute::Get</ref> (or similar methods) are called.</para>
+</sect1>
+<sect1 id="_sdf__page__variable_expressions_1VariableExpressions_Variables">
+<title>Working with Expression Variables</title>
+<para>To work with a layer&apos;s expression variables dictionary, use <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref>&apos;s GetExpressionVariables(), SetExpressionVariables(), HasExpressionVariables(), and ClearExpressionVariables() methods.</para>
+<para><programlisting><codeline><highlight class="normal">SdfLayerHandle<sp/>rootLayer<sp/>=<sp/>stage-&gt;GetRootLayer();</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(rootLayer-&gt;HasExpressionVariables())<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Inspect<sp/>expression<sp/>variables<sp/>using<sp/>GetExpressionVariables()<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>VtDictionary<sp/>expressionVars<sp/>=<sp/>rootLayer-&gt;GetExpressionVariables();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>...<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Clear<sp/>expression<sp/>variables<sp/>using<sp/>ClearExpressionVariables()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rootLayer-&gt;ClearExpressionVariables();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="_sdf__page__variable_expressions_1VariableExpressions_Expressions">
+<title>Working with Expressions</title>
+<para>Variable expressions are treated as strings in USD data, so there&apos;s no special API for creating expressions. You can use expression strings in existing asset path and variant APIs.</para>
+<para><programlisting><codeline><highlight class="normal">//<sp/>Asset<sp/>Paths:</highlight></codeline>
+<codeline><highlight class="normal">SdfAssetPath<sp/>assetPathWithExpr(&quot;`extraAsset_${referenceQualifier}.usda`&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Variant<sp/>Selections:</highlight></codeline>
+<codeline><highlight class="normal">workVariantSet.SetVariantSelection(&quot;`${variantSel}`&quot;);</highlight></codeline>
+</programlisting></para>
+<para>For evaluating a variable expression, use Sdf&apos;s VariableExpression class.</para>
+<para><programlisting><codeline><highlight class="normal">SdfVariableExpression<sp/>workVarExp(&quot;`${myVariable}`&quot;);</highlight></codeline>
+<codeline><highlight class="normal">VtDictionary<sp/>expressionVars<sp/>=<sp/>rootLayer-&gt;GetExpressionVariables();</highlight></codeline>
+<codeline><highlight class="normal">SdfVariableExpression::Result<sp/>workResult<sp/>=<sp/>workVarExp.Evaluate(expressionVars);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Inspect<sp/>evaluation<sp/>errors</highlight></codeline>
+<codeline><highlight class="normal">std::cout<sp/>&lt;&lt;<sp/>&quot;Evaluation<sp/>errors:\n&quot;;</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>(std::string<sp/>&amp;error<sp/>:<sp/>workResult.errors)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>error<sp/>&lt;&lt;<sp/>&quot;\n&quot;;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>...inspect<sp/>and<sp/>use<sp/>workResult.value<sp/>as<sp/>needed...</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="_sdf__page__variable_expressions_1VariableExpressions_Notifications">
+<title>Change Notifications</title>
+<para>Changes to expression variables that are used in expressions in references and other composition arcs will trigger recomposition as needed.</para>
+<para>Changes that affect expressions in asset path-valued attributes and metadata will trigger a UsdNotice::ObjectsChange notice containing resolved asset path resyncs to be sent. This informs clients that asset paths in the specified subtrees of the scenegraph may now resolve to different locations. This broad notification is needed because <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> currently does not cache or pre-compute expression values to know precisely which objects (if any) were affected by such a change. </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

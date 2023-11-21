@@ -1,0 +1,291 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_embree_primvar_sampler" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>HdEmbreePrimvarSampler</compoundname>
+    <derivedcompoundref refid="class_hd_embree_constant_sampler" prot="public" virt="non-virtual">HdEmbreeConstantSampler</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_embree_subdiv_vertex_sampler" prot="public" virt="non-virtual">HdEmbreeSubdivVertexSampler</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_embree_triangle_face_varying_sampler" prot="public" virt="non-virtual">HdEmbreeTriangleFaceVaryingSampler</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_embree_triangle_vertex_sampler" prot="public" virt="non-virtual">HdEmbreeTriangleVertexSampler</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_embree_uniform_sampler" prot="public" virt="non-virtual">HdEmbreeUniformSampler</derivedcompoundref>
+    <includes refid="hd_embree_2sampler_8h" local="no">sampler.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_embree_primvar_sampler_1ac3f3cf2a94560360b7c243122e1c3a08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdEmbreePrimvarSampler</definition>
+        <argsstring>()=default</argsstring>
+        <name>HdEmbreePrimvarSampler</name>
+        <briefdescription>
+<para>Default constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/sampler.h" line="139" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_embree_primvar_sampler_1a1b1c3421b0be4ecd123b2cb41e4d535b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual ~HdEmbreePrimvarSampler</definition>
+        <argsstring>()=default</argsstring>
+        <name>~HdEmbreePrimvarSampler</name>
+        <briefdescription>
+<para>Default destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/sampler.h" line="141" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_embree_primvar_sampler_1a802e907ebae62500c9d89935cf0e1b73" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool Sample</definition>
+        <argsstring>(unsigned int element, float u, float v, void *value, HdTupleType dataType) const =0</argsstring>
+        <name>Sample</name>
+        <reimplementedby refid="class_hd_embree_constant_sampler_1aaf0d4c42b1b0fa03f3fb9065b3cc67ed">Sample</reimplementedby>
+        <reimplementedby refid="class_hd_embree_uniform_sampler_1aaf0d4c42b1b0fa03f3fb9065b3cc67ed">Sample</reimplementedby>
+        <reimplementedby refid="class_hd_embree_triangle_vertex_sampler_1aaf0d4c42b1b0fa03f3fb9065b3cc67ed">Sample</reimplementedby>
+        <reimplementedby refid="class_hd_embree_triangle_face_varying_sampler_1aaf0d4c42b1b0fa03f3fb9065b3cc67ed">Sample</reimplementedby>
+        <reimplementedby refid="class_hd_embree_subdiv_vertex_sampler_1aaf0d4c42b1b0fa03f3fb9065b3cc67ed">Sample</reimplementedby>
+        <param>
+          <type>unsigned int</type>
+          <declname>element</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>u</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_hd_tuple_type" kindref="compound">HdTupleType</ref></type>
+          <declname>dataType</declname>
+        </param>
+        <briefdescription>
+<para>Sample the primvar at element index <computeroutput>index</computeroutput> and local basis coordinates <computeroutput>u</computeroutput> and <computeroutput>v</computeroutput>, writing the sample to <computeroutput>value</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Interpret <computeroutput>value</computeroutput> as having arity <computeroutput>numComponents</computeroutput>, each of type <computeroutput>componentType</computeroutput>. These parameters may not match the datatype declaration of the underlying buffer.</para>
+<para>Derived classes are responsible for implementing sampling logic for their particular interpolation modes. Sample returns true if a value was successfully retrieved.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The element index to sample. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The u coordinate to sample. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The v coordinate to sample. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The memory to write the value to (only written on success). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dataType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="struct_hd_tuple_type" kindref="compound">HdTupleType</ref> describing element values. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the value was successfully sampled. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/sampler.h" line="159" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_embree_primvar_sampler_1aacc1550f570db3c4f60230b765cb0541" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool Sample</definition>
+        <argsstring>(unsigned int element, float u, float v, T *value) const</argsstring>
+        <name>Sample</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>element</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>u</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>T *</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/sampler.h" line="163" column="1" bodyfile="pxr/imaging/hdEmbree/sampler.h" bodystart="163" bodyend="167"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-static-func">
+      <memberdef kind="function" id="class_hd_embree_primvar_sampler_1aefb47f670c75f7d9684c3316dd287795" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool _Interpolate</definition>
+        <argsstring>(void *out, void **samples, float *weights, size_t sampleCount, HdTupleType dataType)</argsstring>
+        <name>_Interpolate</name>
+        <param>
+          <type>void *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>void **</type>
+          <declname>samples</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>weights</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>sampleCount</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_hd_tuple_type" kindref="compound">HdTupleType</ref></type>
+          <declname>dataType</declname>
+        </param>
+        <briefdescription>
+<para>Utility function for derived classes: combine multiple samples with blend weights: <computeroutput>out</computeroutput> = sum_i { <computeroutput>samples</computeroutput>[i] * <computeroutput>weights</computeroutput>[i] }. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The memory to write the output to (only written on success). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>samples</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The array of sample pointers (length <computeroutput>sampleCount</computeroutput>). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>weights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The array of sample weights (length <computeroutput>sampleCount</computeroutput>). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sampleCount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of samples to combine. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dataType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="struct_hd_tuple_type" kindref="compound">HdTupleType</ref> describing element values. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the samples were successfully combined. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/sampler.h" line="178" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>An abstract base class that knows how to sample a primvar signal given a ray hit coordinate: an &lt;element, u, v&gt; tuple. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>It provides templated accessors, but derived classes are responsible for implementing appropriate sampling or interpolation modes. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1863">
+        <label>HdEmbreeConstantSampler</label>
+        <link refid="class_hd_embree_constant_sampler"/>
+        <childnode refid="1862" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1865">
+        <label>HdEmbreeTriangleFaceVaryingSampler</label>
+        <link refid="class_hd_embree_triangle_face_varying_sampler"/>
+        <childnode refid="1862" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1866">
+        <label>HdEmbreeTriangleVertexSampler</label>
+        <link refid="class_hd_embree_triangle_vertex_sampler"/>
+        <childnode refid="1862" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1864">
+        <label>HdEmbreeSubdivVertexSampler</label>
+        <link refid="class_hd_embree_subdiv_vertex_sampler"/>
+        <childnode refid="1862" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1862">
+        <label>HdEmbreePrimvarSampler</label>
+        <link refid="class_hd_embree_primvar_sampler"/>
+      </node>
+      <node id="1867">
+        <label>HdEmbreeUniformSampler</label>
+        <link refid="class_hd_embree_uniform_sampler"/>
+        <childnode refid="1862" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="pxr/imaging/hdEmbree/sampler.h" line="136" column="1" bodyfile="pxr/imaging/hdEmbree/sampler.h" bodystart="136" bodyend="180"/>
+    <listofallmembers>
+      <member refid="class_hd_embree_primvar_sampler_1aefb47f670c75f7d9684c3316dd287795" prot="protected" virt="non-virtual"><scope>HdEmbreePrimvarSampler</scope><name>_Interpolate</name></member>
+      <member refid="class_hd_embree_primvar_sampler_1ac3f3cf2a94560360b7c243122e1c3a08" prot="public" virt="non-virtual"><scope>HdEmbreePrimvarSampler</scope><name>HdEmbreePrimvarSampler</name></member>
+      <member refid="class_hd_embree_primvar_sampler_1a802e907ebae62500c9d89935cf0e1b73" prot="public" virt="pure-virtual"><scope>HdEmbreePrimvarSampler</scope><name>Sample</name></member>
+      <member refid="class_hd_embree_primvar_sampler_1aacc1550f570db3c4f60230b765cb0541" prot="public" virt="non-virtual"><scope>HdEmbreePrimvarSampler</scope><name>Sample</name></member>
+      <member refid="class_hd_embree_primvar_sampler_1a1b1c3421b0be4ecd123b2cb41e4d535b" prot="public" virt="virtual"><scope>HdEmbreePrimvarSampler</scope><name>~HdEmbreePrimvarSampler</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_lazy_container_data_source" kind="class" language="C++" prot="public">
+    <compoundname>HdLazyContainerDataSource</compoundname>
+    <basecompoundref refid="class_hd_container_data_source" prot="public" virt="non-virtual">HdContainerDataSource</basecompoundref>
+    <includes refid="lazy_container_data_source_8h" local="no">lazyContainerDataSource.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_hd_lazy_container_data_source_1af6e8138a229756cbda2dae0abe09ddf0" prot="public" static="no">
+        <type>std::function&lt; HdContainerDataSourceHandle()&gt;</type>
+        <definition>using Thunk =  std::function&lt;HdContainerDataSourceHandle()&gt;</definition>
+        <argsstring></argsstring>
+        <name>Thunk</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/lazyContainerDataSource.h" line="41" column="1" bodyfile="pxr/imaging/hd/lazyContainerDataSource.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_lazy_container_data_source_1a90112d6ee8b380709b502c6cb3775a5d" prot="private" static="no" mutable="no">
+        <type>Thunk</type>
+        <definition>Thunk _thunk</definition>
+        <argsstring></argsstring>
+        <name>_thunk</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/lazyContainerDataSource.h" line="58" column="1" bodyfile="pxr/imaging/hd/lazyContainerDataSource.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_lazy_container_data_source_1acd7858ab21502d1e793bac739a7ccb04" prot="private" static="no" mutable="no">
+        <type>HdContainerDataSourceAtomicHandle</type>
+        <definition>HdContainerDataSourceAtomicHandle _src</definition>
+        <argsstring></argsstring>
+        <name>_src</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/lazyContainerDataSource.h" line="59" column="1" bodyfile="pxr/imaging/hd/lazyContainerDataSource.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_lazy_container_data_source_1a4150e893b1791db9102bcb75336b55f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HD_DECLARE_DATASOURCE</definition>
+        <argsstring>(HdLazyContainerDataSource)</argsstring>
+        <name>HD_DECLARE_DATASOURCE</name>
+        <param>
+          <type><ref refid="class_hd_lazy_container_data_source" kindref="compound">HdLazyContainerDataSource</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/lazyContainerDataSource.h" line="39" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_lazy_container_data_source_1a3083a51a82aed713a34648957b7a9238" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref></type>
+        <definition>HD_API TfTokenVector GetNames</definition>
+        <argsstring>() override</argsstring>
+        <name>GetNames</name>
+        <reimplements refid="class_hd_container_data_source_1a481689ac470be04d66c180d94c23ba22">GetNames</reimplements>
+        <briefdescription>
+<para>Returns the list of names for which <computeroutput>Get(...)</computeroutput> is expected to return a non-null value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This call is expected to be threadsafe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/lazyContainerDataSource.h" line="44" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_lazy_container_data_source_1af14ddf1d5f7bcfe105c8469f2619831f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API HdDataSourceBaseHandle</type>
+        <definition>HD_API HdDataSourceBaseHandle Get</definition>
+        <argsstring>(const TfToken &amp;name) override</argsstring>
+        <name>Get</name>
+        <reimplements refid="class_hd_container_data_source_1a5ea374e59f93fea74e4b151e2effd4e1">Get</reimplements>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Returns the child datasource of the given name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This call is expected to be threadsafe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/lazyContainerDataSource.h" line="46" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_lazy_container_data_source_1a90f9649a715b14942cd3b2cc412f4f4b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API ~HdLazyContainerDataSource</definition>
+        <argsstring>()</argsstring>
+        <name>~HdLazyContainerDataSource</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/lazyContainerDataSource.h" line="49" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_hd_lazy_container_data_source_1aee45c0f32ff3fc9027a2362bcb2c0a1a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API HdLazyContainerDataSource</definition>
+        <argsstring>(const Thunk &amp;thunk)</argsstring>
+        <name>HdLazyContainerDataSource</name>
+        <param>
+          <type>const Thunk &amp;</type>
+          <declname>thunk</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/lazyContainerDataSource.h" line="53" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hd_lazy_container_data_source_1a1eb2b35eecf6a3170f44d84af6fe2330" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HdContainerDataSourceHandle</type>
+        <definition>HdContainerDataSourceHandle _GetSrc</definition>
+        <argsstring>()</argsstring>
+        <name>_GetSrc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/lazyContainerDataSource.h" line="56" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A container data source lazily evaluating the given thunk to forward all calls to the container data source computed by the thunk. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2133">
+        <label>HdContainerDataSource</label>
+        <link refid="class_hd_container_data_source"/>
+        <childnode refid="2134" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2132">
+        <label>HdLazyContainerDataSource</label>
+        <link refid="class_hd_lazy_container_data_source"/>
+        <childnode refid="2133" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2134">
+        <label>HdDataSourceBase</label>
+        <link refid="class_hd_data_source_base"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2136">
+        <label>HdContainerDataSource</label>
+        <link refid="class_hd_container_data_source"/>
+        <childnode refid="2137" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2135">
+        <label>HdLazyContainerDataSource</label>
+        <link refid="class_hd_lazy_container_data_source"/>
+        <childnode refid="2136" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2137">
+        <label>HdDataSourceBase</label>
+        <link refid="class_hd_data_source_base"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/hd/lazyContainerDataSource.h" line="37" column="1" bodyfile="pxr/imaging/hd/lazyContainerDataSource.h" bodystart="36" bodyend="60"/>
+    <listofallmembers>
+      <member refid="class_hd_lazy_container_data_source_1a1eb2b35eecf6a3170f44d84af6fe2330" prot="private" virt="non-virtual"><scope>HdLazyContainerDataSource</scope><name>_GetSrc</name></member>
+      <member refid="class_hd_lazy_container_data_source_1acd7858ab21502d1e793bac739a7ccb04" prot="private" virt="non-virtual"><scope>HdLazyContainerDataSource</scope><name>_src</name></member>
+      <member refid="class_hd_lazy_container_data_source_1a90112d6ee8b380709b502c6cb3775a5d" prot="private" virt="non-virtual"><scope>HdLazyContainerDataSource</scope><name>_thunk</name></member>
+      <member refid="class_hd_lazy_container_data_source_1af14ddf1d5f7bcfe105c8469f2619831f" prot="public" virt="virtual"><scope>HdLazyContainerDataSource</scope><name>Get</name></member>
+      <member refid="class_hd_container_data_source_1a62cf10c9f4c1a7aa203258f317111a90" prot="public" virt="non-virtual" ambiguityscope="HdContainerDataSource::"><scope>HdLazyContainerDataSource</scope><name>Get</name></member>
+      <member refid="class_hd_lazy_container_data_source_1a3083a51a82aed713a34648957b7a9238" prot="public" virt="virtual"><scope>HdLazyContainerDataSource</scope><name>GetNames</name></member>
+      <member refid="class_hd_lazy_container_data_source_1a4150e893b1791db9102bcb75336b55f6" prot="public" virt="non-virtual"><scope>HdLazyContainerDataSource</scope><name>HD_DECLARE_DATASOURCE</name></member>
+      <member refid="class_hd_container_data_source_1a3e38478d7b68818db65481fed4abbb42" prot="public" virt="non-virtual"><scope>HdLazyContainerDataSource</scope><name>HD_DECLARE_DATASOURCE_ABSTRACT</name></member>
+      <member refid="class_hd_lazy_container_data_source_1aee45c0f32ff3fc9027a2362bcb2c0a1a" prot="protected" virt="non-virtual"><scope>HdLazyContainerDataSource</scope><name>HdLazyContainerDataSource</name></member>
+      <member refid="class_hd_lazy_container_data_source_1af6e8138a229756cbda2dae0abe09ddf0" prot="public" virt="non-virtual"><scope>HdLazyContainerDataSource</scope><name>Thunk</name></member>
+      <member refid="class_hd_data_source_base_1a0e9f38acfe7894ade111a24f131b37f8" prot="public" virt="pure-virtual"><scope>HdLazyContainerDataSource</scope><name>~HdDataSourceBase</name></member>
+      <member refid="class_hd_lazy_container_data_source_1a90f9649a715b14942cd3b2cc412f4f4b" prot="public" virt="non-virtual"><scope>HdLazyContainerDataSource</scope><name>~HdLazyContainerDataSource</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

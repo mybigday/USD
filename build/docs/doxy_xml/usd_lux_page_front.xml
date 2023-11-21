@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="usd_lux_page_front" kind="page">
+    <compoundname>usdLux_page_front</compoundname>
+    <title>UsdLux : USD Lighting Schema</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="usd_lux_page_front_1usdLux_overview">
+<title>Overview</title>
+<para>UsdLux provides a representation for lights and related components that are common to many graphics environments and therefore suitable for interchange.</para>
+<para>The goal of UsdLux is to serve as a basis for:</para>
+<para><itemizedlist>
+<listitem><para>passing lighting setups from a creation environment to a renderer</para>
+</listitem><listitem><para>best-effort portability of setups across environments, to the degree that they share capabilities</para>
+</listitem></itemizedlist>
+</para>
+<para>The UsdLux core includes:</para>
+<para><itemizedlist>
+<listitem><para>common light types<itemizedlist>
+<listitem><para><ref refid="class_usd_lux_cylinder_light" kindref="compound">UsdLuxCylinderLight</ref></para>
+</listitem><listitem><para><ref refid="class_usd_lux_disk_light" kindref="compound">UsdLuxDiskLight</ref></para>
+</listitem><listitem><para><ref refid="class_usd_lux_distant_light" kindref="compound">UsdLuxDistantLight</ref></para>
+</listitem><listitem><para><ref refid="class_usd_lux_dome_light" kindref="compound">UsdLuxDomeLight</ref></para>
+</listitem><listitem><para><ref refid="class_usd_lux_rect_light" kindref="compound">UsdLuxRectLight</ref></para>
+</listitem><listitem><para><ref refid="class_usd_lux_sphere_light" kindref="compound">UsdLuxSphereLight</ref></para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>common light attributes<itemizedlist>
+<listitem><para><emphasis>power:</emphasis> intensity and exposure</para>
+</listitem><listitem><para><emphasis>color:</emphasis> as RGB components and/or color temperature</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>base classes for common lights<itemizedlist>
+<listitem><para><ref refid="class_usd_lux_boundable_light_base" kindref="compound">UsdLuxBoundableLightBase</ref>: lights that inherit from <ref refid="class_usd_geom_boundable" kindref="compound">UsdGeomBoundable</ref></para>
+</listitem><listitem><para><ref refid="class_usd_lux_nonboundable_light_base" kindref="compound">UsdLuxNonboundableLightBase</ref>: lights that inherit from <ref refid="class_usd_geom_xformable" kindref="compound">UsdGeomXformable</ref></para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>API classes for imparting the behavior of &quot;being a light&quot; to any <ref refid="class_usd_geom_xformable" kindref="compound">UsdGeomXformable</ref> derived prim type<itemizedlist>
+<listitem><para><ref refid="class_usd_lux_light_a_p_i" kindref="compound">UsdLuxLightAPI</ref>: makes a prim &quot;be a light&quot; and adds common light attributes</para>
+</listitem><listitem><para><ref refid="class_usd_lux_mesh_light_a_p_i" kindref="compound">UsdLuxMeshLightAPI</ref>: extends <ref refid="class_usd_lux_light_a_p_i" kindref="compound">UsdLuxLightAPI</ref> for application to <ref refid="class_usd_geom_mesh" kindref="compound">UsdGeomMesh</ref></para>
+</listitem><listitem><para><ref refid="class_usd_lux_volume_light_a_p_i" kindref="compound">UsdLuxVolumeLightAPI</ref>: extends <ref refid="class_usd_lux_light_a_p_i" kindref="compound">UsdLuxLightAPI</ref> for application to <ref refid="class_usd_vol_volume" kindref="compound">UsdVolVolume</ref></para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>API classes embodying more complex behaviors<itemizedlist>
+<listitem><para><ref refid="class_usd_lux_light_list_a_p_i" kindref="compound">UsdLuxLightListAPI</ref>: light component enumeration and discovery</para>
+</listitem><listitem><para><ref refid="class_usd_collection_a_p_i" kindref="compound">UsdCollectionAPI</ref>: light-object linking</para>
+</listitem><listitem><para><ref refid="class_usd_lux_shadow_a_p_i" kindref="compound">UsdLuxShadowAPI</ref>: shadow-linking and falloff</para>
+</listitem><listitem><para><ref refid="class_usd_lux_shaping_a_p_i" kindref="compound">UsdLuxShapingAPI</ref>: focus, cone angle, and IES profiles</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>associated components for adjusting behavior<itemizedlist>
+<listitem><para><ref refid="class_usd_lux_light_filter" kindref="compound">UsdLuxLightFilter</ref>: a filter to modulate the effect of lights</para>
+</listitem><listitem><para><ref refid="class_usd_lux_portal_light" kindref="compound">UsdLuxPortalLight</ref>: a portal to guide sampling of a dome light</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para><ref refid="usd_lux_page_front_1usdLux_PluginSchemas" kindref="member">plugin types</ref>:<itemizedlist>
+<listitem><para><ref refid="class_usd_lux_plugin_light" kindref="compound">UsdLuxPluginLight</ref></para>
+</listitem><listitem><para><ref refid="class_usd_lux_plugin_light_filter" kindref="compound">UsdLuxPluginLightFilter</ref></para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+<para>This core can be extended to add more types of lights, filters, or other features.</para>
+<para>For a comprehensive list of the types see the full <ulink url="hierarchy.html">class hierarchy</ulink>.</para>
+</sect1>
+<sect1 id="usd_lux_page_front_1usdLux_Notes">
+<title>Design Notes and Usage Guide</title>
+<sect2 id="usd_lux_page_front_1usdLux_LightAPIAndBeingALight">
+<title>LightAPI and &quot;Being a Light&quot;</title>
+<para><ref refid="class_usd_lux_light_a_p_i" kindref="compound">UsdLuxLightAPI</ref> defines all the common attributes and behaviors that are considered to be core to all lights. Thus, we define a <emphasis>UsdLux light</emphasis> as any prim that has a <ref refid="class_usd_lux_light_a_p_i" kindref="compound">UsdLuxLightAPI</ref> applied. In other words, applying a <ref refid="class_usd_lux_light_a_p_i" kindref="compound">UsdLuxLightAPI</ref> imparts the quality of &quot;being a light&quot; to a prim.</para>
+<para>Most light types, such as <ref refid="class_usd_lux_rect_light" kindref="compound">UsdLuxRectLight</ref> or any type that inherits from <ref refid="class_usd_lux_boundable_light_base" kindref="compound">UsdLuxBoundableLightBase</ref> or <ref refid="class_usd_lux_nonboundable_light_base" kindref="compound">UsdLuxNonboundableLightBase</ref>, have an applied <ref refid="class_usd_lux_light_a_p_i" kindref="compound">UsdLuxLightAPI</ref> automatically <ref refid="_usd__page__generating_schemas_1Usd_BuiltinAPISchemas" kindref="member">built in</ref> to their type and therefore will always be lights. However, by attaching the quality of being a light to an applied API schema, we can turn any geometry into a light by applying a <ref refid="class_usd_lux_light_a_p_i" kindref="compound">UsdLuxLightAPI</ref> to it, or, as we would in the case of a <ref refid="class_usd_geom_mesh" kindref="compound">UsdGeomMesh</ref> to which we&apos;d apply <ref refid="class_usd_lux_mesh_light_a_p_i" kindref="compound">UsdLuxMeshLightAPI</ref>, by applying an API schema that itself has a built-in <ref refid="class_usd_lux_light_a_p_i" kindref="compound">UsdLuxLightAPI</ref>.</para>
+</sect2>
+<sect2 id="usd_lux_page_front_1usdLux_Geometry">
+<title>Geometry</title>
+<para>By convention, lights with a primary axis emit along -Z. Area lights are centered in the XY plane and are 1 unit in diameter.</para>
+<para>UsdLux objects are <ref refid="class_usd_geom_xformable" kindref="compound">UsdGeomXformable</ref>, so they use its set of transform operators, and inherit transforms hierarchically. It is recommended that only translation and rotations be used with the lights, to avoid introducing difficulties for light sampling and integration. Lights have explicit attributes to adjust their size.</para>
+<para>UsdLux provides the <ref refid="class_usd_lux_light_a_p_i" kindref="compound">UsdLuxLightAPI</ref>, which can be applied to arbitrary user-supplied geometry, as well as concrete lights for specific shapes: spheres, rectangles, disks, and cylinders. The specific shapes exist because they can support superior, analytic sampling methods.</para>
+<para>UsdLux is designed primarily for physically-based cinematic lighting with area lights. Accordingly, it does not include zero-area point or line lights. However, some backends benefit from a point or line approximation. This intent can be indicated using the treatAsPoint and treatAsLine attributes on UsdSphereLight and UsdCylinderLight. These attributes are hints that avoid the need for backends to use heuristics (such as an arbitrary epsilon threshold) to determine the approximation. These hints can be set at the time of creation (or export) where the most information about the visual intent exists.</para>
+<para>UsdLux does not provide support for expressing live transform constraints, such as to attach lights to moving geometry. This is consistent with USD&apos;s policy of storing the computed result of rigging, not the rigging itself.</para>
+</sect2>
+<sect2 id="usd_lux_page_front_1usdLux_Behavior">
+<title>Properties &amp; Behavior</title>
+<para>Colors specified in attributes are in energy-linear terms, and obey the USD convention for indicating their color space via <computeroutput>colorConfiguration</computeroutput> and <computeroutput>colorSpace</computeroutput> metadata. See <ref refid="class_usd_stage_1aaff338cb37de09b0fa70ea0e693c9cd2" kindref="member">UsdStage::SetColorConfiguration()</ref> for discussion of colorspace management in USD.</para>
+<para>UsdLux presumes a physically-based lighting model where falloff with distance is a consequence of reduced visible solid angle. Environments that do not measure the visible solid angle are expected to provide an approximation, such as inverse-square falloff. Further artistic control over attenuation can be modelled as light filters.</para>
+<para>More complex behaviors are provided via a set of API classes. These behaviors are common and well-defined but may not be supported in all rendering environments. These API classes provide functions to specify the relevant semantic behavior:</para>
+<para><itemizedlist>
+<listitem><para><ref refid="class_usd_lux_light_list_a_p_i" kindref="compound">UsdLuxLightListAPI</ref> provides a &quot;light list&quot; relationship to enumerate locations of known lights in the scene. It can be useful to enumerate lights without requiring full scene traversal. For example, some systems require lights to be declared before the rest of the scene. <ref refid="class_usd_lux_light_list_a_p_i" kindref="compound">UsdLuxLightListAPI</ref> provides a way to compute this result ahead of time and store the result in a well-defined place. Pipeline integration of UsdLux can use this API to discover and publish lights at an appropriate time <ndash/> such as export from any system where lights may be created.</para>
+</listitem><listitem><para><ref refid="class_usd_collection_a_p_i" kindref="compound">UsdCollectionAPI</ref> provides relationships to represent subsets of geometry to consider for illumination. These provide hierarchical inclusion and exclusion <ndash/> for example, to illuminate a building but not a window within. UsdLux supports a concept of fractional illumination, allowing partial contribution from a light to a particular object, for rendering systems that support this.</para>
+</listitem><listitem><para><ref refid="class_usd_lux_shadow_a_p_i" kindref="compound">UsdLuxShadowAPI</ref> provides controls to refine shadow behavior in non-physical ways, including shadow linking, tinting, and falloff.</para>
+</listitem><listitem><para><ref refid="class_usd_lux_shaping_a_p_i" kindref="compound">UsdLuxShapingAPI</ref> provides controls to shape light emission, including focus, cone-angle falloff, and IES profiles.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="usd_lux_page_front_1Extensibility">
+<title>Extensibility</title>
+<para>Like other USD schemas, UsdLux core may be extended to address features specific to certain environments. Possible renderer- or pipeline-specific capabilities that could be addded as extensions include:</para>
+<para><itemizedlist>
+<listitem><para>specialized light types<itemizedlist>
+<listitem><para>point cloud lights</para>
+</listitem><listitem><para>volumetric/voxel lights</para>
+</listitem><listitem><para>procedural sky models</para>
+</listitem><listitem><para>light probes, lightfields</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>renderer-specific configuration<itemizedlist>
+<listitem><para>arbitrary output variable images (AOV&apos;s) such as depth or normals</para>
+</listitem><listitem><para>light path expressions (LPE&apos;s)</para>
+</listitem><listitem><para>image post-processing effects</para>
+</listitem><listitem><para>refraction and opacity approximations, such as thin shadows</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>sampling and optimization tweaks<itemizedlist>
+<listitem><para>light sample counts</para>
+</listitem><listitem><para>importance multipliers</para>
+</listitem><listitem><para>integrator path-depth limits</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>constraint rigging to attach a light to an object</para>
+</listitem></itemizedlist>
+</para>
+<para>We provide a utility to aide in extending the UsdLux core schemas, namely the schema generation script <emphasis>usdgenschemafromsdr</emphasis>. This script can be used to generate new light schemas from the shader nodes in the <ref refid="class_sdr_registry" kindref="compound">SdrRegistry</ref>. These light schemas can be typed schemas that describe a completely new light type or can be applied API schemas that extend an existing light type automatically by being specified to <ref refid="_usd__page__generating_schemas_1Usd_AutoAppliedAPISchemas" kindref="member">auto apply</ref> to an existing light (such as <ref refid="class_usd_lux_disk_light" kindref="compound">UsdLuxDiskLight</ref>) or light API (such as <ref refid="class_usd_lux_mesh_light_a_p_i" kindref="compound">UsdLuxMeshLightAPI</ref>).</para>
+</sect2>
+<sect2 id="usd_lux_page_front_1usdLux_PluginSchemas">
+<title>Plugin Lights and Light Filters</title>
+<para>We expect &quot;published, pipeline citizen&quot; render delegates to provide codeless schema libraries that contain typed schemas and/or applied API schemas that define or extend all of the renderer&apos;s core light types. But some render delegates may be developed as part of a proprietary application package that is only using USD as a mechanism to communicate to that render delegate. In other words, the application doesn&apos;t really want to participate in the open USD ecosystem, but needs to use it for rendering scenes imported from USD and augmented using application/renderer-specific lighting features, or finds it useful to use USD as an archiving format to send jobs to a render-farm so that the full application need not be run there.</para>
+<para>In order to lower the barrier somewhat for such applications, we provide <ref refid="class_usd_lux_plugin_light" kindref="compound">UsdLuxPluginLight</ref> and <ref refid="class_usd_lux_plugin_light_filter" kindref="compound">UsdLuxPluginLightFilter</ref>, concrete schema types that specify a &quot;node identification&quot; encoding just like <ref refid="class_usd_shade_shader" kindref="compound">UsdShadeShader</ref>, so that the application need only plug its extensions into Sdr (by providing node definitions that will be consumed by render delegates), and not be required to take the extra step of generating USD schema definitions. Because they provide less easily accessible information to users, we do not advocate using these types in pipeline-persistent &quot;user-level&quot; USD files. </para>
+</sect2>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

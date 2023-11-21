@@ -1,0 +1,27 @@
+var class_tf_diagnostic_base =
+[
+    [ "TfDiagnosticBase", "class_tf_diagnostic_base.html#a108d59fa3a6533d33452e653478e8ff5", null ],
+    [ "AugmentCommentary", "class_tf_diagnostic_base.html#ae1e5fd37ce788c1d6ba5ef05562ee252", null ],
+    [ "GetCommentary", "class_tf_diagnostic_base.html#a5fd0c7c922e9dd2a4448b1a0e756e635", null ],
+    [ "GetContext", "class_tf_diagnostic_base.html#a67013e7804a9c451978d4d22cdc52c85", null ],
+    [ "GetDiagnosticCode", "class_tf_diagnostic_base.html#a763f760adf277f0751db6f39fa2c4b28", null ],
+    [ "GetDiagnosticCodeAsString", "class_tf_diagnostic_base.html#a112b46384b40053e570a9306629f331d", null ],
+    [ "GetInfo", "class_tf_diagnostic_base.html#a4a300471f7a6309930f33a52dcb88ab4", null ],
+    [ "GetQuiet", "class_tf_diagnostic_base.html#aac911b0c9d48a043c06eb9ee7af82abc", null ],
+    [ "GetSourceFileName", "class_tf_diagnostic_base.html#aa2033e94738cc11fe969d9882c065435", null ],
+    [ "GetSourceFunction", "class_tf_diagnostic_base.html#a669f88464c26704eee218468df02636a", null ],
+    [ "GetSourceLineNumber", "class_tf_diagnostic_base.html#a9da4376234bc8ee14c9b9e5965c90f4a", null ],
+    [ "IsCodingError", "class_tf_diagnostic_base.html#a1303f316a353841e38802db8360d8767", null ],
+    [ "IsFatal", "class_tf_diagnostic_base.html#a49dcdb741fc51e2f39a1ecf4746d763e", null ],
+    [ "SetInfo", "class_tf_diagnostic_base.html#a72e1ec0db4055372b0a70e388f0cfc93", null ],
+    [ "TfDiagnosticMgr", "class_tf_diagnostic_base.html#aacef328a407e124aa544bda4238e78c9", null ],
+    [ "TfErrorMark", "class_tf_diagnostic_base.html#abf35913dc33f1379907a1caa1ed1613a", null ],
+    [ "TfErrorTransport", "class_tf_diagnostic_base.html#adaa9077caab86eea9e90d9e08390dbb0", null ],
+    [ "_code", "class_tf_diagnostic_base.html#a4d059f805aa6ae89bd5d9964e15a8857", null ],
+    [ "_codeString", "class_tf_diagnostic_base.html#a8d8c7c25d53c2d8a7fc37a7c25e16766", null ],
+    [ "_commentary", "class_tf_diagnostic_base.html#ac36d045fa3fd64e6dacb405df9bb5ce4", null ],
+    [ "_context", "class_tf_diagnostic_base.html#ae46fe53039b88eb37ee0085546ad566e", null ],
+    [ "_info", "class_tf_diagnostic_base.html#a3753a46a0f3c3d99809020d35e1b5fa2", null ],
+    [ "_quiet", "class_tf_diagnostic_base.html#a672734405861af56a9fa9d3010ea68f9", null ],
+    [ "_serial", "class_tf_diagnostic_base.html#aeca9f076cc059eeac55255f93f3b1381", null ]
+];

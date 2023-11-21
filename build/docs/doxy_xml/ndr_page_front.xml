@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="ndr_page_front" kind="page">
+    <compoundname>ndr_page_front</compoundname>
+    <title>Ndr : Node Definition Registry</title>
+    <tableofcontents>
+      <tocsect>
+        <name>Ndr Organization</name>
+        <reference>ndr_page_front_1ndr_Organization</reference>
+    <tableofcontents>
+      <tocsect>
+        <name>Ndr Base Registry</name>
+        <reference>ndr_page_front_1ndr_BaseClass</reference>
+    </tocsect>
+      <tocsect>
+        <name>Ndr Base Node</name>
+        <reference>ndr_page_front_1ndr_BaseNode</reference>
+    </tocsect>
+      <tocsect>
+        <name>Ndr Base Property</name>
+        <reference>ndr_page_front_1ndr_BaseProperty</reference>
+    </tocsect>
+      <tocsect>
+        <name>Discovery Plugins</name>
+        <reference>ndr_page_front_1ndr_DiscoveryPlugin</reference>
+    </tocsect>
+      <tocsect>
+        <name>Parser Plugins</name>
+        <reference>ndr_page_front_1ndr_ParserPlugin</reference>
+    </tocsect>
+    </tableofcontents>
+    </tocsect>
+      <tocsect>
+        <name>How to Set Up a Domain-Specific Registry</name>
+        <reference>ndr_page_front_1custom_setup</reference>
+    <tableofcontents>
+      <tocsect>
+        <name>Custom Registry</name>
+        <reference>ndr_page_front_1ndr_customReg</reference>
+    </tocsect>
+      <tocsect>
+        <name>Custom Nodes</name>
+        <reference>ndr_page_front_1ndr_customNode</reference>
+    </tocsect>
+    </tableofcontents>
+    </tocsect>
+      <tocsect>
+        <name>Custom Properties</name>
+        <reference>ndr_page_front_1ndr_customProperty</reference>
+    </tocsect>
+      <tocsect>
+        <name>Custom Discovery Plugin</name>
+        <reference>ndr_page_front_1ndr_customDiscovery</reference>
+    </tocsect>
+      <tocsect>
+        <name>Custom Parser Plugin</name>
+        <reference>ndr_page_front_1ndr_customParser</reference>
+    </tocsect>
+    </tableofcontents>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Ndr provides a framework in which you can, agnostic to the node&apos;s domain (shading, lighting, compositing, etc), register nodes with Ndr, and subsequently ask for information about those nodes. The information Ndr provides about these nodes will be fairly generic, given that Ndr must not cater to any specific type of node. However, specialized registries can derive from Ndr, and it is there that domain-specific logic can be implemented. Additionally, node parsing and &quot;discovery&quot; are done via plugins, again to keep Ndr generic and extendable.</para>
+<para>In addition to being able to instantiate specialized registries, domain-specific nodes and properties deriving from the base Ndr classes can also be created. This is explained in the sections below.</para>
+<sect1 id="ndr_page_front_1ndr_Organization">
+<title>Ndr Organization</title>
+<para>Ndr can be split into 5 major components, as described by the following subsections.</para>
+<sect2 id="ndr_page_front_1ndr_BaseClass">
+<title>Ndr Base Registry</title>
+<para>The core Ndr registry, <computeroutput><ref refid="class_ndr_registry" kindref="compound">NdrRegistry</ref></computeroutput>, is where node-level queries are done. In practice, it will not be used directly (in almost all cases, a specialized registry deriving from Ndr core will be used instead). Upon initialization, the registry searches for all parser and discovery plugins. During this start-up phase the discovery plugins are all run, but the nodes that are found are NOT parsed. The registry parses nodes on demand when information about a node(s) is requested in order to keep the start-up process as fast as possible.</para>
+<para>The type of information that the base Ndr registry provides includes: <itemizedlist>
+<listitem>
+<para>The names of nodes that have been registered </para>
+</listitem>
+<listitem>
+<para>Parsed node instances (created on-demand when requested) </para>
+</listitem>
+<listitem>
+<para>Where the nodes were found </para>
+</listitem>
+</itemizedlist>
+</para>
+</sect2>
+<sect2 id="ndr_page_front_1ndr_BaseNode">
+<title>Ndr Base Node</title>
+<para>Ndr provides a base node class, <computeroutput><ref refid="class_ndr_node" kindref="compound">NdrNode</ref></computeroutput>, which exposes domain-agnostic information such as:</para>
+<para><itemizedlist>
+<listitem>
+<para>The node type </para>
+</listitem>
+<listitem>
+<para>What the inputs and outputs are </para>
+</listitem>
+<listitem>
+<para>Any metadata attached to the node </para>
+</listitem>
+</itemizedlist>
+</para>
+<para>An <ref refid="class_ndr_node" kindref="compound">NdrNode</ref> represents a dataflow-connectable computation, intended to be a node in a computational network. A node&apos;s <ref refid="class_ndr_property" kindref="compound">NdrProperty</ref>&apos;s represent its computational inputs and outputs, and its <bold>URI</bold>&apos;s identify its external sources:<itemizedlist>
+<listitem><para><ref refid="class_ndr_node_1aabf19757b3cebfbd39863d025fcf3124" kindref="member">NdrNode::GetResolvedDefinitionURI()</ref> identifies the asset that provided the definition of the node, which is determined during <ref refid="ndr_page_front_1ndr_DiscoveryPlugin" kindref="member">node discovery.</ref></para>
+</listitem><listitem><para><ref refid="class_ndr_node_1ae26cea86218de93b2054ab2edfed402a" kindref="member">NdrNode::GetResolvedImplementationURI()</ref> identifies (if relevant) an implementation of the node&apos;s computation, for use by clients of computational networks in which node instances may appear. It is the responsibility of a <ref refid="ndr_page_front_1ndr_ParserPlugin" kindref="member">parser plugin</ref> to determine and resolve an implementation from the node&apos;s definition.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="ndr_page_front_1ndr_BaseProperty">
+<title>Ndr Base Property</title>
+<para>Ndr also provides a base property class, <computeroutput><ref refid="class_ndr_property" kindref="compound">NdrProperty</ref></computeroutput>. Inputs and outputs are on a node are collectively identified as &quot;properties&quot;.</para>
+<para>The base property exposes information like: <itemizedlist>
+<listitem>
+<para>The input type </para>
+</listitem>
+<listitem>
+<para>The default value, if any </para>
+</listitem>
+<listitem>
+<para>Any metadata attached to the property </para>
+</listitem>
+<listitem>
+<para>Whether the property is connectable </para>
+</listitem>
+</itemizedlist>
+</para>
+</sect2>
+<sect2 id="ndr_page_front_1ndr_DiscoveryPlugin">
+<title>Discovery Plugins</title>
+<para>Discovery plugins are how the registry finds (or &quot;discovers&quot;) nodes. The registry makes no assumptions on where, or how, nodes are stored. A discovery plugin can be built to find file-based nodes on the filesystem (a typical case), search a database, a cloud service, or any other system that might contain nodes. If nodes are scattered across multiple systems, a discovery plugin can be created for each. More info about discovery plugins is available in the <computeroutput><ref refid="class_ndr_discovery_plugin" kindref="compound">NdrDiscoveryPlugin</ref></computeroutput> documentation.</para>
+<para>Note that a filesystem-based discovery plugin is active by default. More information on how to configure this plugin can be found in the documentation for <computeroutput><ref refid="class___ndr_filesystem_discovery_plugin" kindref="compound">_NdrFilesystemDiscoveryPlugin</ref></computeroutput>. In a nutshell, there are a few environment variables that can be configured to control its behavior. However, the more robust pattern that any renderer or shading-system plugin should follow is to provide its <bold>own</bold> DiscoveryPlugin, so that its configuration will not interfere with that of other plugins. The filesystem discovery machinery that the builtin <computeroutput><ref refid="class___ndr_filesystem_discovery_plugin" kindref="compound">_NdrFilesystemDiscoveryPlugin</ref></computeroutput> plugin uses is available for other discovery plugins to use - see <ref refid="filesystem_discovery_helpers_8h_1a235c530023a4e18615c54baffb809bd2" kindref="member">NdrFsHelpersDiscoverNodes()</ref>.</para>
+</sect2>
+<sect2 id="ndr_page_front_1ndr_ParserPlugin">
+<title>Parser Plugins</title>
+<para>Once the registry knows about nodes via the discovery plugin(s), the parser plugins parse the nodes and provide the registry with the resulting information. The parser plugins are responsible for information such as the node&apos;s type, its metadata, and all information about its inputs and outputs. In the end, the parser plugin is responsible for determining all information about the node that could not otherwise be determined via the discovery plugin. More information about parser plugins is available in the <computeroutput><ref refid="class_ndr_parser_plugin" kindref="compound">NdrParserPlugin</ref></computeroutput> documentation.</para>
+</sect2>
+</sect1>
+<sect1 id="ndr_page_front_1custom_setup">
+<title>How to Set Up a Domain-Specific Registry</title>
+<para>The base Ndr registry can be used as-is if only generic information about nodes is needed. In most cases however, more detailed information about the nodes will be necessary, and this is where domain-specific registries come into play. The process can be divided into 5 areas of customization, which echo the 5 sections above.</para>
+<sect2 id="ndr_page_front_1ndr_customReg">
+<title>Custom Registry</title>
+<para>The base Ndr registry can be derived from to create a specialized registry. In many cases, not much will be needed here except doing dynamic casts to your domain-specific nodes. The registry&apos;s base class provides methods such as <computeroutput>NdrRegistry::GetNode()</computeroutput> (which returns a <computeroutput><ref refid="class_ndr_node" kindref="compound">NdrNode</ref></computeroutput>), but you may want to provide additional methods like <computeroutput>GetShadingNode()</computeroutput> which dynamic casts the result from <computeroutput>NdrRegistry::GetNode()</computeroutput> to a shading node instance. See <computeroutput><ref refid="class_sdr_registry" kindref="compound">SdrRegistry</ref></computeroutput> for an example.</para>
+</sect2>
+<sect2 id="ndr_page_front_1ndr_customNode">
+<title>Custom Nodes</title>
+<para>As mentioned before, the base node class <computeroutput><ref refid="class_ndr_node" kindref="compound">NdrNode</ref></computeroutput> only provides generic information about the node. Specialized nodes can derive from <computeroutput><ref refid="class_ndr_node" kindref="compound">NdrNode</ref></computeroutput> to implement any additional functionality that is needed. The parser plugin for the node can provide this information to the node via the constructor. Nodes should be immutable once created. See <computeroutput><ref refid="class_sdr_shader_node" kindref="compound">SdrShaderNode</ref></computeroutput> for an example.</para>
+</sect2>
+</sect1>
+<sect1 id="ndr_page_front_1ndr_customProperty">
+<title>Custom Properties</title>
+<para>The process here is the same as for nodes: derive from <computeroutput><ref refid="class_ndr_property" kindref="compound">NdrProperty</ref></computeroutput> and add new functionality, or override existing methods. See <computeroutput><ref refid="class_sdr_shader_property" kindref="compound">SdrShaderProperty</ref></computeroutput> for an example.</para>
+</sect1>
+<sect1 id="ndr_page_front_1ndr_customDiscovery">
+<title>Custom Discovery Plugin</title>
+<para>See the documentation for <computeroutput><ref refid="class_ndr_discovery_plugin" kindref="compound">NdrDiscoveryPlugin</ref></computeroutput> for more information.</para>
+</sect1>
+<sect1 id="ndr_page_front_1ndr_customParser">
+<title>Custom Parser Plugin</title>
+<para>See the documentation for <computeroutput><ref refid="class_ndr_parser_plugin" kindref="compound">NdrParserPlugin</ref></computeroutput> for more information. </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

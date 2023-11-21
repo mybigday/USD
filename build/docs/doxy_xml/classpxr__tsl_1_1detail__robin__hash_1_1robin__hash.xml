@@ -1,0 +1,2489 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash" kind="class" language="C++" prot="public">
+    <compoundname>pxr_tsl::detail_robin_hash::robin_hash</compoundname>
+    <basecompoundref prot="private" virt="non-virtual">Hash</basecompoundref>
+    <basecompoundref prot="private" virt="non-virtual">KeyEqual</basecompoundref>
+    <basecompoundref prot="private" virt="non-virtual">GrowthPolicy</basecompoundref>
+    <includes refid="robin__hash_8h" local="no">robin_hash.h</includes>
+    <innerclass refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" prot="public">pxr_tsl::detail_robin_hash::robin_hash::robin_iterator</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>ValueType</declname>
+        <defname>ValueType</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>KeySelect</declname>
+        <defname>KeySelect</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>ValueSelect</declname>
+        <defname>ValueSelect</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>Hash</declname>
+        <defname>Hash</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>KeyEqual</declname>
+        <defname>KeyEqual</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>Allocator</declname>
+        <defname>Allocator</defname>
+      </param>
+      <param>
+        <type>bool</type>
+        <declname>StoreHash</declname>
+        <defname>StoreHash</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>GrowthPolicy</declname>
+        <defname>GrowthPolicy</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a5e244ac2a3f43ec932556579e169e4a2" prot="private" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename U</type>
+          </param>
+        </templateparamlist>
+        <type>typename std::integral_constant&lt; bool, !std::is_same&lt; U, void &gt;::value &gt;</type>
+        <definition>using has_mapped_type =  typename std::integral_constant&lt;bool, !std::is_same&lt;U, void&gt;::value&gt;</definition>
+        <argsstring></argsstring>
+        <name>has_mapped_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="357" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="358" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aea4dcfa0a5a8b4914f829b86dd2eefd1" prot="private" static="no">
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1bucket__entry" kindref="compound">pxr_tsl::detail_robin_hash::bucket_entry</ref>&lt; value_type, STORE_HASH &gt;</type>
+        <definition>using bucket_entry =  pxr_tsl::detail_robin_hash::bucket_entry&lt;value_type, STORE_HASH&gt;</definition>
+        <argsstring></argsstring>
+        <name>bucket_entry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="427" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="428" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a1c22105a9e8b78949605a145ce314d40" prot="private" static="no">
+        <type>typename bucket_entry::distance_type</type>
+        <definition>using distance_type =  typename bucket_entry::distance_type</definition>
+        <argsstring></argsstring>
+        <name>distance_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="429" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="429" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aae271e0aaad388392eb016f0c3dd6ea6" prot="private" static="no">
+        <type>typename std::allocator_traits&lt; allocator_type &gt;::template rebind_alloc&lt; <ref refid="classpxr__tsl_1_1detail__robin__hash_1_1bucket__entry" kindref="compound">bucket_entry</ref> &gt;</type>
+        <definition>using buckets_allocator =  typename std::allocator_traits&lt; allocator_type&gt;::template rebind_alloc&lt;bucket_entry&gt;</definition>
+        <argsstring></argsstring>
+        <name>buckets_allocator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="431" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="432" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a9347f26dce9d84eeb5c53820c9e3d86d" prot="private" static="no">
+        <type>std::vector&lt; <ref refid="classpxr__tsl_1_1detail__robin__hash_1_1bucket__entry" kindref="compound">bucket_entry</ref>, buckets_allocator &gt;</type>
+        <definition>using buckets_container_type =  std::vector&lt;bucket_entry, buckets_allocator&gt;</definition>
+        <argsstring></argsstring>
+        <name>buckets_container_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="433" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="433" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ac1480f81f5e3c967d26a929faa203ad0" prot="public" static="no">
+        <type>typename KeySelect::key_type</type>
+        <definition>using key_type =  typename KeySelect::key_type</definition>
+        <argsstring></argsstring>
+        <name>key_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="370" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="370" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a52422eb0a58c3a0dbe6eadf2727e78f8" prot="public" static="no">
+        <type>ValueType</type>
+        <definition>using value_type =  ValueType</definition>
+        <argsstring></argsstring>
+        <name>value_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="371" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="371" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1af38ce1af42d538f410180c265518d4f0" prot="public" static="no">
+        <type>std::size_t</type>
+        <definition>using size_type =  std::size_t</definition>
+        <argsstring></argsstring>
+        <name>size_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="372" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="372" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ace405568d0b2f3fad4990044252c7732" prot="public" static="no">
+        <type>std::ptrdiff_t</type>
+        <definition>using difference_type =  std::ptrdiff_t</definition>
+        <argsstring></argsstring>
+        <name>difference_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="373" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="373" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ad834f24c3ab1a84ef8ed5fdae9373506" prot="public" static="no">
+        <type>Hash</type>
+        <definition>using hasher =  Hash</definition>
+        <argsstring></argsstring>
+        <name>hasher</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="374" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="374" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1acf2a0bf428a1c882a8f7a432096bf7be" prot="public" static="no">
+        <type>KeyEqual</type>
+        <definition>using key_equal =  KeyEqual</definition>
+        <argsstring></argsstring>
+        <name>key_equal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="375" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="375" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a1b9340a5b56dce81fa182aee8c64e363" prot="public" static="no">
+        <type>Allocator</type>
+        <definition>using allocator_type =  Allocator</definition>
+        <argsstring></argsstring>
+        <name>allocator_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="376" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="376" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a74202cdd96628bc49a756e5fc87d22de" prot="public" static="no">
+        <type>value_type &amp;</type>
+        <definition>using reference =  value_type&amp;</definition>
+        <argsstring></argsstring>
+        <name>reference</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="377" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="377" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ab1137da269e66589b98fce3416d40502" prot="public" static="no">
+        <type>const value_type &amp;</type>
+        <definition>using const_reference =  const value_type&amp;</definition>
+        <argsstring></argsstring>
+        <name>const_reference</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="378" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="378" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a4738635aff9c2bb2c8ccc2875ae72496" prot="public" static="no">
+        <type>value_type *</type>
+        <definition>using pointer =  value_type*</definition>
+        <argsstring></argsstring>
+        <name>pointer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="379" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="379" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a7fe8aeab7b1ee136c0e5accd9e21abc1" prot="public" static="no">
+        <type>const value_type *</type>
+        <definition>using const_pointer =  const value_type*</definition>
+        <argsstring></argsstring>
+        <name>const_pointer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="380" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="380" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a851546851fe2bd90da43f70c04a83a7d" prot="public" static="no">
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">robin_iterator</ref>&lt; false &gt;</type>
+        <definition>using iterator =  robin_iterator&lt;false&gt;</definition>
+        <argsstring></argsstring>
+        <name>iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="381" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="381" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1af09eddb7312f3bdc72f8e94e854171a1" prot="public" static="no">
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">robin_iterator</ref>&lt; true &gt;</type>
+        <definition>using const_iterator =  robin_iterator&lt;true&gt;</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="382" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="382" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a86a147d3312d0660074808d831b38c0f" prot="private" static="yes" mutable="no">
+        <type>constexpr bool</type>
+        <definition>constexpr bool STORE_HASH</definition>
+        <argsstring></argsstring>
+        <name>STORE_HASH</name>
+        <initializer>=
+      StoreHash ||
+      ((sizeof(<ref refid="classpxr__tsl_1_1detail__robin__hash_1_1bucket__entry" kindref="compound">pxr_tsl::detail_robin_hash::bucket_entry</ref>&lt;value_type, true&gt;) ==
+        sizeof(<ref refid="classpxr__tsl_1_1detail__robin__hash_1_1bucket__entry" kindref="compound">pxr_tsl::detail_robin_hash::bucket_entry</ref>&lt;value_type, false&gt;)) &amp;&amp;
+       (sizeof(std::size_t) == sizeof(truncated_hash_type) ||
+        is_power_of_two_policy&lt;GrowthPolicy&gt;::value) &amp;&amp;
+       
+       (!std::is_arithmetic&lt;key_type&gt;::value ||
+        !std::is_same&lt;Hash, std::hash&lt;key_type&gt;&gt;::value))</initializer>
+        <briefdescription>
+<para>Either store the hash because we are asked by the <computeroutput>StoreHash</computeroutput> template parameter or store the hash because it doesn&apos;t cost us anything in size and can be used to speed up rehash. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="390" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="390" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1af05150bee6d5453ee7bd9f4387a692e8" prot="private" static="yes" mutable="no">
+        <type>constexpr bool</type>
+        <definition>constexpr bool USE_STORED_HASH_ON_LOOKUP</definition>
+        <argsstring></argsstring>
+        <name>USE_STORED_HASH_ON_LOOKUP</name>
+        <initializer>= StoreHash</initializer>
+        <briefdescription>
+<para>Only use the stored hash on lookup if we are explicitly asked. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>We are not sure how slow the KeyEqual operation is. An extra comparison may slow things down with a fast KeyEqual. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="405" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="405" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a61befcd6e7939b75a2471affb531008f" prot="private" static="yes" mutable="no">
+        <type>const slz_size_type</type>
+        <definition>const slz_size_type SERIALIZATION_PROTOCOL_VERSION</definition>
+        <argsstring></argsstring>
+        <name>SERIALIZATION_PROTOCOL_VERSION</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+<para>Protocol version currenlty used for serialization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1576" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1576" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1affda8475a14069c971fec66193675524" prot="public" static="yes" mutable="no">
+        <type>const size_type</type>
+        <definition>const size_type DEFAULT_INIT_BUCKETS_SIZE</definition>
+        <argsstring></argsstring>
+        <name>DEFAULT_INIT_BUCKETS_SIZE</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1555" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1555" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ae11cf16d3db31808592cabeeb499957b" prot="public" static="yes" mutable="no">
+        <type>constexpr float</type>
+        <definition>constexpr float DEFAULT_MAX_LOAD_FACTOR</definition>
+        <argsstring></argsstring>
+        <name>DEFAULT_MAX_LOAD_FACTOR</name>
+        <initializer>= 0.5f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1557" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1557" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aa9efa8aaa487b4ffc56ca5892acaddab" prot="public" static="yes" mutable="no">
+        <type>constexpr float</type>
+        <definition>constexpr float MINIMUM_MAX_LOAD_FACTOR</definition>
+        <argsstring></argsstring>
+        <name>MINIMUM_MAX_LOAD_FACTOR</name>
+        <initializer>= 0.2f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1558" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1558" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ac5b4af610fb157ae63d250812ab4b970" prot="public" static="yes" mutable="no">
+        <type>constexpr float</type>
+        <definition>constexpr float MAXIMUM_MAX_LOAD_FACTOR</definition>
+        <argsstring></argsstring>
+        <name>MAXIMUM_MAX_LOAD_FACTOR</name>
+        <initializer>= 0.95f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1559" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1559" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aa281c08e9725b2f7cd132c5c4390f8a1" prot="public" static="yes" mutable="no">
+        <type>constexpr float</type>
+        <definition>constexpr float DEFAULT_MIN_LOAD_FACTOR</definition>
+        <argsstring></argsstring>
+        <name>DEFAULT_MIN_LOAD_FACTOR</name>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1561" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1561" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a6b2223a17eb941e62b75dfecb6453bff" prot="public" static="yes" mutable="no">
+        <type>constexpr float</type>
+        <definition>constexpr float MINIMUM_MIN_LOAD_FACTOR</definition>
+        <argsstring></argsstring>
+        <name>MINIMUM_MIN_LOAD_FACTOR</name>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1562" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1562" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a7e3bd2be4f470e5a3c4ef0568f61fca3" prot="public" static="yes" mutable="no">
+        <type>constexpr float</type>
+        <definition>constexpr float MAXIMUM_MIN_LOAD_FACTOR</definition>
+        <argsstring></argsstring>
+        <name>MAXIMUM_MIN_LOAD_FACTOR</name>
+        <initializer>= 0.15f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1563" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1563" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ad4fbb5d4bb347618d0874e959b4d1d8c" prot="private" static="no" mutable="no">
+        <type>buckets_container_type</type>
+        <definition>buckets_container_type m_buckets_data</definition>
+        <argsstring></argsstring>
+        <name>m_buckets_data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1588" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1588" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a94ff85ad04d7c6247538d304d80e8a85" prot="private" static="no" mutable="no">
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1bucket__entry" kindref="compound">bucket_entry</ref> *</type>
+        <definition>bucket_entry* m_buckets</definition>
+        <argsstring></argsstring>
+        <name>m_buckets</name>
+        <briefdescription>
+<para>Points to m_buckets_data.data() if !m_buckets_data.empty() otherwise points to static_empty_bucket_ptr. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This variable is useful to avoid the cost of checking if m_buckets_data is empty when trying to find an element.</para>
+<para>TODO Remove m_buckets_data and only use a pointer instead of a pointer+vector to save some space in the <ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash" kindref="compound">robin_hash</ref> object. Manage the Allocator manually. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1599" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1599" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a414666b3fed5f7f989b65af3708aaa7a" prot="private" static="no" mutable="no">
+        <type>size_type</type>
+        <definition>size_type m_bucket_count</definition>
+        <argsstring></argsstring>
+        <name>m_bucket_count</name>
+        <briefdescription>
+<para>Used a lot in find, avoid the call to m_buckets_data.size() which is a bit slower. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1605" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1605" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a61440e4c83fba529d120d1c0521af239" prot="private" static="no" mutable="no">
+        <type>size_type</type>
+        <definition>size_type m_nb_elements</definition>
+        <argsstring></argsstring>
+        <name>m_nb_elements</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1607" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1607" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1acd6834efa65a09c4e94422b88184e171" prot="private" static="no" mutable="no">
+        <type>size_type</type>
+        <definition>size_type m_load_threshold</definition>
+        <argsstring></argsstring>
+        <name>m_load_threshold</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1609" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1609" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a50cc5eca319763118097c38d0a9ea03a" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float m_min_load_factor</definition>
+        <argsstring></argsstring>
+        <name>m_min_load_factor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1611" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1611" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a76565f09e128fb0c1782e2de390542ec" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float m_max_load_factor</definition>
+        <argsstring></argsstring>
+        <name>m_max_load_factor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1612" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1612" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a65b992ab8edf1ea56a00ce2fb62373cd" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool m_grow_on_next_insert</definition>
+        <argsstring></argsstring>
+        <name>m_grow_on_next_insert</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1614" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1614" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ac828a6f3a2dd12a403fed501e197e7b1" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool m_try_shrink_on_next_insert</definition>
+        <argsstring></argsstring>
+        <name>m_try_shrink_on_next_insert</name>
+        <briefdescription>
+<para>We can&apos;t shrink down the map on erase operations as the erase methods need to return the next iterator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Shrinking the map would invalidate all the iterators and we could not return the next iterator in a meaningful way, On erase, we thus just indicate on erase that we should try to shrink the hash table on the next insert if we go below the min_load_factor. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1623" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1623" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ad11bdd04b41fcc0ce9275d38bc2f6f33" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool USE_STORED_HASH_ON_REHASH</definition>
+        <argsstring>(size_type bucket_count)</argsstring>
+        <name>USE_STORED_HASH_ON_REHASH</name>
+        <param>
+          <type>size_type</type>
+          <declname>bucket_count</declname>
+        </param>
+        <briefdescription>
+<para>We can only use the hash on rehash if the size of the hash type is the same as the stored one or if we use a power of two modulo. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>In the case of the power of two modulo, we just mask the least significant bytes, we just have to check that the truncated_hash_type didn&apos;t truncated more bytes. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="413" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="413" bodyend="425"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a9c7f8ecc34dcc454a3d8b4827ecdc026" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robin_hash</definition>
+        <argsstring>(size_type bucket_count, const Hash &amp;hash, const KeyEqual &amp;equal, const Allocator &amp;alloc, float min_load_factor=DEFAULT_MIN_LOAD_FACTOR, float max_load_factor=DEFAULT_MAX_LOAD_FACTOR)</argsstring>
+        <name>robin_hash</name>
+        <param>
+          <type>size_type</type>
+          <declname>bucket_count</declname>
+        </param>
+        <param>
+          <type>const Hash &amp;</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>const KeyEqual &amp;</type>
+          <declname>equal</declname>
+        </param>
+        <param>
+          <type>const Allocator &amp;</type>
+          <declname>alloc</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>min_load_factor</declname>
+          <defval>DEFAULT_MIN_LOAD_FACTOR</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>max_load_factor</declname>
+          <defval>DEFAULT_MAX_LOAD_FACTOR</defval>
+        </param>
+        <briefdescription>
+<para>C++11 doesn&apos;t support the creation of a std::vector with a custom allocator and &apos;count&apos; default-inserted elements. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The needed contructor <computeroutput>explicit vector(size_type count, const Allocator&amp; alloc = Allocator());</computeroutput> is only available in C++14 and later. We thus must resize after using the <computeroutput>vector(const Allocator&amp; alloc)</computeroutput> constructor.</para>
+<para>We can&apos;t use <computeroutput>vector(size_type count, const T&amp; value, const Allocator&amp; alloc)</computeroutput> as it requires the value T to be copyable. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="580" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="580" bodyend="608"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a0ee6917de97d618482612f5789db95bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robin_hash</definition>
+        <argsstring>(const robin_hash &amp;other)</argsstring>
+        <name>robin_hash</name>
+        <param>
+          <type>const <ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash" kindref="compound">robin_hash</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="611" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="611" bodyend="624"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ad2a94805311d2414296526803806ee41" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robin_hash</definition>
+        <argsstring>(robin_hash &amp;&amp;other) noexcept(std::is_nothrow_move_constructible&lt; Hash &gt;::value &amp;&amp;std::is_nothrow_move_constructible&lt; KeyEqual &gt;::value &amp;&amp;std::is_nothrow_move_constructible&lt; GrowthPolicy &gt;::value &amp;&amp;std::is_nothrow_move_constructible&lt; buckets_container_type &gt;::value)</argsstring>
+        <name>robin_hash</name>
+        <param>
+          <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash" kindref="compound">robin_hash</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="626" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="626" bodyend="645"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a1878e21fdfce1d080aa7dee712032cb4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash" kindref="compound">robin_hash</ref> &amp;</type>
+        <definition>robin_hash&amp; operator=</definition>
+        <argsstring>(const robin_hash &amp;other)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash" kindref="compound">robin_hash</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="647" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="647" bodyend="668"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a04235032a03e50c91ce9aa9771b454bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash" kindref="compound">robin_hash</ref> &amp;</type>
+        <definition>robin_hash&amp; operator=</definition>
+        <argsstring>(robin_hash &amp;&amp;other)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash" kindref="compound">robin_hash</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="670" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="670" bodyend="675"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a6e99c6263568d88f95ca01dc694f1051" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>allocator_type</type>
+        <definition>allocator_type get_allocator</definition>
+        <argsstring>() const</argsstring>
+        <name>get_allocator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="677" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="677" bodyend="679"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a979556eb331ec35eb33472a90a160f99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator begin</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="684" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="684" bodyend="691"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a1ca1fc2c9fc3e169d5d0decfd1e54221" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">const_iterator</ref></type>
+        <definition>const_iterator begin</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="693" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="693" bodyend="693"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1abeb76f7f3414f270020e6f467586bd93" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">const_iterator</ref></type>
+        <definition>const_iterator cbegin</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>cbegin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="695" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="695" bodyend="702"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1afc5380afa64b233d0df01a147616974b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator end</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="704" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="704" bodyend="704"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a5b9b57293fae9b18b26349ac0b3fdcd3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">const_iterator</ref></type>
+        <definition>const_iterator end</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="706" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="706" bodyend="706"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a9859a454bb6f50c654e280274d6a9d13" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">const_iterator</ref></type>
+        <definition>const_iterator cend</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>cend</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="708" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="708" bodyend="710"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a3f6fc5de06a318920d84f3c3742db07f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool empty</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="715" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="715" bodyend="715"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a0801762a3fe36fe32dca5f16e515478d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_type</type>
+        <definition>size_type size</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="717" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="717" bodyend="717"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ac2a85e463df4e95c1bf051cfb8237805" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_type</type>
+        <definition>size_type max_size</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>max_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="719" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="719" bodyend="719"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a03bfacfaaba9195e4498375659f43531" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void clear</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>clear</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="724" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="724" bodyend="735"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a50e40a6c7ffe3b1b3014fc619cdfe2d3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename P</type>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; <ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref>, bool &gt;</type>
+        <definition>std::pair&lt;iterator, bool&gt; insert</definition>
+        <argsstring>(P &amp;&amp;value)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>P &amp;&amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="738" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="738" bodyend="740"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aa2ca772c122082f470d29e3c020c06d9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename P</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator insert_hint</definition>
+        <argsstring>(const_iterator hint, P &amp;&amp;value)</argsstring>
+        <name>insert_hint</name>
+        <param>
+          <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">const_iterator</ref></type>
+          <declname>hint</declname>
+        </param>
+        <param>
+          <type>P &amp;&amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="743" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="743" bodyend="750"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a327bfe8ae1f7565885bce845f31eaca1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class InputIt</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void insert</definition>
+        <argsstring>(InputIt first, InputIt last)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>InputIt</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>InputIt</type>
+          <declname>last</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="753" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="753" bodyend="770"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1adcae0e0de166c9335e656bdc4a983841" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class M</type>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; <ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref>, bool &gt;</type>
+        <definition>std::pair&lt;iterator, bool&gt; insert_or_assign</definition>
+        <argsstring>(K &amp;&amp;key, M &amp;&amp;obj)</argsstring>
+        <name>insert_or_assign</name>
+        <param>
+          <type>K &amp;&amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>M &amp;&amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="773" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="773" bodyend="780"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a3764e80b5034563020239c8b87b24df4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class M</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator insert_or_assign</definition>
+        <argsstring>(const_iterator hint, K &amp;&amp;key, M &amp;&amp;obj)</argsstring>
+        <name>insert_or_assign</name>
+        <param>
+          <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">const_iterator</ref></type>
+          <declname>hint</declname>
+        </param>
+        <param>
+          <type>K &amp;&amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>M &amp;&amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="783" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="783" bodyend="792"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a3266031b8b423571de004ddf5bcddd24" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; <ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref>, bool &gt;</type>
+        <definition>std::pair&lt;iterator, bool&gt; emplace</definition>
+        <argsstring>(Args &amp;&amp;... args)</argsstring>
+        <name>emplace</name>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="795" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="795" bodyend="797"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aaa893704f6fe9989f1ada11c2c503886" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator emplace_hint</definition>
+        <argsstring>(const_iterator hint, Args &amp;&amp;... args)</argsstring>
+        <name>emplace_hint</name>
+        <param>
+          <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">const_iterator</ref></type>
+          <declname>hint</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="800" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="800" bodyend="802"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ae1c82ee701882e591081d6ee7c83fa93" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; <ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref>, bool &gt;</type>
+        <definition>std::pair&lt;iterator, bool&gt; try_emplace</definition>
+        <argsstring>(K &amp;&amp;key, Args &amp;&amp;... args)</argsstring>
+        <name>try_emplace</name>
+        <param>
+          <type>K &amp;&amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="805" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="805" bodyend="809"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a75a4cfe8493d42acb7b2761b8612ca26" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator try_emplace_hint</definition>
+        <argsstring>(const_iterator hint, K &amp;&amp;key, Args &amp;&amp;... args)</argsstring>
+        <name>try_emplace_hint</name>
+        <param>
+          <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">const_iterator</ref></type>
+          <declname>hint</declname>
+        </param>
+        <param>
+          <type>K &amp;&amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="812" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="812" bodyend="818"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1af7659d9799f06df763bf397101941dd7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator erase</definition>
+        <argsstring>(iterator pos)</argsstring>
+        <name>erase</name>
+        <param>
+          <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref></type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+<para>Here to avoid <computeroutput>template&lt;class K&gt; size_type erase(const K&amp; key)</computeroutput> being used when we use an <computeroutput>iterator</computeroutput> instead of a <computeroutput>const_iterator</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>Erase bucket used a backward shift after clearing the bucket. Check if there is a new value in the bucket, if not get the next non-empty.</para>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="824" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="824" bodyend="839"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a29790c28710ec0e64b48c2f4edd0b08c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator erase</definition>
+        <argsstring>(const_iterator pos)</argsstring>
+        <name>erase</name>
+        <param>
+          <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">const_iterator</ref></type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="841" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="841" bodyend="841"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aa3af768723cd533218ea3d83af440713" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator erase</definition>
+        <argsstring>(const_iterator first, const_iterator last)</argsstring>
+        <name>erase</name>
+        <param>
+          <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">const_iterator</ref></type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">const_iterator</ref></type>
+          <declname>last</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="843" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="843" bodyend="904"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1af17409924f90d7e7e693ea2b0c28c7c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+        </templateparamlist>
+        <type>size_type</type>
+        <definition>size_type erase</definition>
+        <argsstring>(const K &amp;key)</argsstring>
+        <name>erase</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="907" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="907" bodyend="909"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ab91a3b98a980e2318adbff9595e440e3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+        </templateparamlist>
+        <type>size_type</type>
+        <definition>size_type erase</definition>
+        <argsstring>(const K &amp;key, std::size_t hash)</argsstring>
+        <name>erase</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="912" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="912" bodyend="922"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a54b31a17ce2a31286620f096ba8a7924" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void swap</definition>
+        <argsstring>(robin_hash &amp;other)</argsstring>
+        <name>swap</name>
+        <param>
+          <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash" kindref="compound">robin_hash</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="924" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="924" bodyend="939"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a7abadf37d6d95c44bbed51b5da1cd82c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class U</type>
+            <defval>ValueSelect</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_mapped_type&lt; U &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>U::value_type &amp;</type>
+        <definition>U::value_type&amp; at</definition>
+        <argsstring>(const K &amp;key)</argsstring>
+        <name>at</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="946" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="946" bodyend="948"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1add7fc9a06a40cfca54a95689f69173ec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class U</type>
+            <defval>ValueSelect</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_mapped_type&lt; U &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>U::value_type &amp;</type>
+        <definition>U::value_type&amp; at</definition>
+        <argsstring>(const K &amp;key, std::size_t hash)</argsstring>
+        <name>at</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="952" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="952" bodyend="955"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1afda16b67a6adafb19fbd2916049e9016" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class U</type>
+            <defval>ValueSelect</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_mapped_type&lt; U &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>const U::value_type &amp;</type>
+        <definition>const U::value_type&amp; at</definition>
+        <argsstring>(const K &amp;key) const</argsstring>
+        <name>at</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="959" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="959" bodyend="961"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ac6249eb49a4c39881322ceb1f3050a4e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class U</type>
+            <defval>ValueSelect</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_mapped_type&lt; U &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>const U::value_type &amp;</type>
+        <definition>const U::value_type&amp; at</definition>
+        <argsstring>(const K &amp;key, std::size_t hash) const</argsstring>
+        <name>at</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="965" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="965" bodyend="972"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a32e986ab872e2770ed599cf92ab7d9f7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class U</type>
+            <defval>ValueSelect</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_mapped_type&lt; U &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>U::value_type &amp;</type>
+        <definition>U::value_type&amp; operator[]</definition>
+        <argsstring>(K &amp;&amp;key)</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>K &amp;&amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="976" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="976" bodyend="978"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ae0e769a94beea753eea6292e845261f1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+        </templateparamlist>
+        <type>size_type</type>
+        <definition>size_type count</definition>
+        <argsstring>(const K &amp;key) const</argsstring>
+        <name>count</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="981" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="981" bodyend="983"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1afa5268fb7d80716658ed6d223a2bcb3d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+        </templateparamlist>
+        <type>size_type</type>
+        <definition>size_type count</definition>
+        <argsstring>(const K &amp;key, std::size_t hash) const</argsstring>
+        <name>count</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="986" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="986" bodyend="992"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a2e6bddda2293ceb3a56a16723b33478d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator find</definition>
+        <argsstring>(const K &amp;key)</argsstring>
+        <name>find</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="995" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="995" bodyend="997"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aca425b7c123c834b0c22a881d7da0ab6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator find</definition>
+        <argsstring>(const K &amp;key, std::size_t hash)</argsstring>
+        <name>find</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1000" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1000" bodyend="1002"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a1dc1ce99d93eaeec355cf7037b5bc0df" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">const_iterator</ref></type>
+        <definition>const_iterator find</definition>
+        <argsstring>(const K &amp;key) const</argsstring>
+        <name>find</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1005" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1005" bodyend="1007"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a1ef70ba7d1941e2e5fe14e9c319d7bf8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">const_iterator</ref></type>
+        <definition>const_iterator find</definition>
+        <argsstring>(const K &amp;key, std::size_t hash) const</argsstring>
+        <name>find</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1010" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1010" bodyend="1012"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a3f1de1b9510d0be8ea710d84a4795418" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool contains</definition>
+        <argsstring>(const K &amp;key) const</argsstring>
+        <name>contains</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1015" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1015" bodyend="1017"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aef74f7127ebccf8cb4ef4f515ca6b09c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool contains</definition>
+        <argsstring>(const K &amp;key, std::size_t hash) const</argsstring>
+        <name>contains</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1020" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1020" bodyend="1022"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a8ceb0a6101fe80fa6f77361e5bcbe0bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; <ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref>, <ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref> &gt;</type>
+        <definition>std::pair&lt;iterator, iterator&gt; equal_range</definition>
+        <argsstring>(const K &amp;key)</argsstring>
+        <name>equal_range</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1025" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1025" bodyend="1027"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a97d50a84c03ba89baf253e7eb91c37b7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; <ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref>, <ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref> &gt;</type>
+        <definition>std::pair&lt;iterator, iterator&gt; equal_range</definition>
+        <argsstring>(const K &amp;key, std::size_t hash)</argsstring>
+        <name>equal_range</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1030" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1030" bodyend="1033"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a238cd7e655f44d0b4e06d49ebc66024a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; <ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">const_iterator</ref>, <ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">const_iterator</ref> &gt;</type>
+        <definition>std::pair&lt;const_iterator, const_iterator&gt; equal_range</definition>
+        <argsstring>(const K &amp;key) const</argsstring>
+        <name>equal_range</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1036" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1036" bodyend="1038"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a0762fd4bfa078d368831736ee8f86e36" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; <ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">const_iterator</ref>, <ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">const_iterator</ref> &gt;</type>
+        <definition>std::pair&lt;const_iterator, const_iterator&gt; equal_range</definition>
+        <argsstring>(const K &amp;key, std::size_t hash) const</argsstring>
+        <name>equal_range</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1041" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1041" bodyend="1045"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a2ca98f2678c442ff9bf916525525448b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_type</type>
+        <definition>size_type bucket_count</definition>
+        <argsstring>() const</argsstring>
+        <name>bucket_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1050" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1050" bodyend="1050"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a4ae69adb72b0f4809ce9b67a1861b9d3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_type</type>
+        <definition>size_type max_bucket_count</definition>
+        <argsstring>() const</argsstring>
+        <name>max_bucket_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1052" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1052" bodyend="1055"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a627db9dbe713266cb53c24cc5332d817" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float load_factor</definition>
+        <argsstring>() const</argsstring>
+        <name>load_factor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1060" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1060" bodyend="1066"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ab53469fa213c4a9351d83175288bed23" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float min_load_factor</definition>
+        <argsstring>() const</argsstring>
+        <name>min_load_factor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1068" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1068" bodyend="1068"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a85fbd2f301194e1fc85bcf09ab3308c4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float max_load_factor</definition>
+        <argsstring>() const</argsstring>
+        <name>max_load_factor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1070" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1070" bodyend="1070"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a4899ac5f6e805d6796166b308a190988" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void min_load_factor</definition>
+        <argsstring>(float ml)</argsstring>
+        <name>min_load_factor</name>
+        <param>
+          <type>float</type>
+          <declname>ml</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1072" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1072" bodyend="1075"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ae72e230f99198c334e8c599b8fa4cc12" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void max_load_factor</definition>
+        <argsstring>(float ml)</argsstring>
+        <name>max_load_factor</name>
+        <param>
+          <type>float</type>
+          <declname>ml</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1077" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1077" bodyend="1081"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a58bad5e8253ee3308d2a7a47816083bd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void rehash</definition>
+        <argsstring>(size_type count_)</argsstring>
+        <name>rehash</name>
+        <param>
+          <type>size_type</type>
+          <declname>count_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1083" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1083" bodyend="1087"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a490a9e62f58529e43aa7ffafa5830f1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void reserve</definition>
+        <argsstring>(size_type count_)</argsstring>
+        <name>reserve</name>
+        <param>
+          <type>size_type</type>
+          <declname>count_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1089" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1089" bodyend="1091"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a72ffe2880da1c06d22d90000f9720967" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>hasher</type>
+        <definition>hasher hash_function</definition>
+        <argsstring>() const</argsstring>
+        <name>hash_function</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1096" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1096" bodyend="1096"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a10b2be386447b0ab61e83d0f5527b688" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>key_equal</type>
+        <definition>key_equal key_eq</definition>
+        <argsstring>() const</argsstring>
+        <name>key_eq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1098" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1098" bodyend="1098"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aa9a08d0e44e9e00fe05e2dfe467a98b5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator mutable_iterator</definition>
+        <argsstring>(const_iterator pos)</argsstring>
+        <name>mutable_iterator</name>
+        <param>
+          <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">const_iterator</ref></type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1103" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1103" bodyend="1105"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1afaa50020d576b4292bdd62f16869fb97" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Serializer</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void serialize</definition>
+        <argsstring>(Serializer &amp;serializer) const</argsstring>
+        <name>serialize</name>
+        <param>
+          <type>Serializer &amp;</type>
+          <declname>serializer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1108" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1108" bodyend="1110"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a7687f597185bd51281e7190671661f06" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Deserializer</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void deserialize</definition>
+        <argsstring>(Deserializer &amp;deserializer, bool hash_compatible)</argsstring>
+        <name>deserialize</name>
+        <param>
+          <type>Deserializer &amp;</type>
+          <declname>deserializer</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>hash_compatible</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1113" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1113" bodyend="1115"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a2944e85fdb9e80fead96f872aa20966e" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+        </templateparamlist>
+        <type>std::size_t</type>
+        <definition>std::size_t hash_key</definition>
+        <argsstring>(const K &amp;key) const</argsstring>
+        <name>hash_key</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1119" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1119" bodyend="1121"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ad9f3d97c1fba613a159d50b1b68d34b7" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K1</type>
+          </param>
+          <param>
+            <type>class K2</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool compare_keys</definition>
+        <argsstring>(const K1 &amp;key1, const K2 &amp;key2) const</argsstring>
+        <name>compare_keys</name>
+        <param>
+          <type>const K1 &amp;</type>
+          <declname>key1</declname>
+        </param>
+        <param>
+          <type>const K2 &amp;</type>
+          <declname>key2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1124" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1124" bodyend="1126"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a057266dc64ee10dd213389318576369e" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t bucket_for_hash</definition>
+        <argsstring>(std::size_t hash) const</argsstring>
+        <name>bucket_for_hash</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1128" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1128" bodyend="1134"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a01efa80ed145bf8a315aaf3c87473785" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class U</type>
+            <defval>GrowthPolicy</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; is_power_of_two_policy&lt; U &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>std::size_t</type>
+        <definition>std::size_t next_bucket</definition>
+        <argsstring>(std::size_t index) const noexcept</argsstring>
+        <name>next_bucket</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1139" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1139" bodyend="1143"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a01efa80ed145bf8a315aaf3c87473785" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class U</type>
+            <defval>GrowthPolicy</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt;!is_power_of_two_policy&lt; U &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>std::size_t</type>
+        <definition>std::size_t next_bucket</definition>
+        <argsstring>(std::size_t index) const noexcept</argsstring>
+        <name>next_bucket</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1148" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1148" bodyend="1153"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a039c94188864a32bde9b96ba0fa3df3e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref></type>
+        <definition>iterator find_impl</definition>
+        <argsstring>(const K &amp;key, std::size_t hash)</argsstring>
+        <name>find_impl</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1156" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1156" bodyend="1159"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1abe8e710f8a738b2c4f623d628406a6fa" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">const_iterator</ref></type>
+        <definition>const_iterator find_impl</definition>
+        <argsstring>(const K &amp;key, std::size_t hash) const</argsstring>
+        <name>find_impl</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1162" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1162" bodyend="1180"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a0e876287cb1c0aef63d94078ae9bb911" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void erase_from_bucket</definition>
+        <argsstring>(iterator pos)</argsstring>
+        <name>erase_from_bucket</name>
+        <param>
+          <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref></type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>Backward shift, swap the empty bucket, previous_ibucket, with the values on its right, ibucket, until we cross another empty bucket or if the other bucket has a distance_from_ideal_bucket == 0.</para>
+<para>We try to move the values closer to their ideal bucket.</para>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1182" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1182" bodyend="1210"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1afce58fd0bd55fa59f4fb66019826af1f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; <ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator" kindref="compound">iterator</ref>, bool &gt;</type>
+        <definition>std::pair&lt;iterator, bool&gt; insert_impl</definition>
+        <argsstring>(const K &amp;key, Args &amp;&amp;... value_type_args)</argsstring>
+        <name>insert_impl</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>value_type_args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1213" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1213" bodyend="1259"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a9dc597ee12f0a4c3b41d5b4493a550b4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void insert_value</definition>
+        <argsstring>(std::size_t ibucket, distance_type dist_from_ideal_bucket, truncated_hash_type hash, Args &amp;&amp;... value_type_args)</argsstring>
+        <name>insert_value</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>ibucket</declname>
+        </param>
+        <param>
+          <type>distance_type</type>
+          <declname>dist_from_ideal_bucket</declname>
+        </param>
+        <param>
+          <type>truncated_hash_type</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>value_type_args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1262" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1262" bodyend="1266"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a6c7d19c2632959ee9f5c63441649564b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void insert_value</definition>
+        <argsstring>(std::size_t ibucket, distance_type dist_from_ideal_bucket, truncated_hash_type hash, value_type &amp;&amp;value)</argsstring>
+        <name>insert_value</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>ibucket</declname>
+        </param>
+        <param>
+          <type>distance_type</type>
+          <declname>dist_from_ideal_bucket</declname>
+        </param>
+        <param>
+          <type>truncated_hash_type</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>value_type &amp;&amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1268" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1268" bodyend="1271"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a116e3203aaeef4337a0b9f9b689f464c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void insert_value_impl</definition>
+        <argsstring>(std::size_t ibucket, distance_type dist_from_ideal_bucket, truncated_hash_type hash, value_type &amp;value)</argsstring>
+        <name>insert_value_impl</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>ibucket</declname>
+        </param>
+        <param>
+          <type>distance_type</type>
+          <declname>dist_from_ideal_bucket</declname>
+        </param>
+        <param>
+          <type>truncated_hash_type</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>value_type &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>The number of probes is really high, rehash the map on the next insert. Difficult to do now as rehash may throw an exception.</para>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1281" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1281" bodyend="1311"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1afdecdcb42e94421ea44d80109b39e219" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void rehash_impl</definition>
+        <argsstring>(size_type count_)</argsstring>
+        <name>rehash_impl</name>
+        <param>
+          <type>size_type</type>
+          <declname>count_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1313" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1313" bodyend="1336"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a354dbeac2eb6d0e5300617a0b128f167" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void clear_and_shrink</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>clear_and_shrink</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1338" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1338" bodyend="1347"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1af8e967aa681346ceaab862b98aa4e2ba" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void insert_value_on_rehash</definition>
+        <argsstring>(std::size_t ibucket, distance_type dist_from_ideal_bucket, truncated_hash_type hash, value_type &amp;&amp;value)</argsstring>
+        <name>insert_value_on_rehash</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>ibucket</declname>
+        </param>
+        <param>
+          <type>distance_type</type>
+          <declname>dist_from_ideal_bucket</declname>
+        </param>
+        <param>
+          <type>truncated_hash_type</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>value_type &amp;&amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1349" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1349" bodyend="1368"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a56e86f64434aeffb2827cb55dffddb6d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool rehash_on_extreme_load</definition>
+        <argsstring>()</argsstring>
+        <name>rehash_on_extreme_load</name>
+        <briefdescription>
+<para>Grow the table if m_grow_on_next_insert is true or we reached the max_load_factor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Shrink the table if m_try_shrink_on_next_insert is true (an erase occurred) and we&apos;re below the min_load_factor.</para>
+<para>Return true if the table has been rehashed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1377" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1377" bodyend="1395"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1af951c5a577e61d681b25f3e25511054d" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Serializer</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void serialize_impl</definition>
+        <argsstring>(Serializer &amp;serializer) const</argsstring>
+        <name>serialize_impl</name>
+        <param>
+          <type>Serializer &amp;</type>
+          <declname>serializer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1398" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1398" bodyend="1437"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a268827b9f26638ed77460028a92cd274" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Deserializer</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void deserialize_impl</definition>
+        <argsstring>(Deserializer &amp;deserializer, bool hash_compatible)</argsstring>
+        <name>deserialize_impl</name>
+        <param>
+          <type>Deserializer &amp;</type>
+          <declname>deserializer</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>hash_compatible</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1440" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1440" bodyend="1552"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1accf243739dbd7b90c68e009ea9574c6d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1bucket__entry" kindref="compound">bucket_entry</ref> *</type>
+        <definition>bucket_entry* static_empty_bucket_ptr</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>static_empty_bucket_ptr</name>
+        <briefdescription>
+<para>Return an always valid pointer to an static empty <ref refid="classpxr__tsl_1_1detail__robin__hash_1_1bucket__entry" kindref="compound">bucket_entry</ref> with last_bucket() == true. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="1582" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="1582" bodyend="1585"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Internal common class used by <computeroutput><ref refid="classpxr__tsl_1_1robin__map" kindref="compound">robin_map</ref></computeroutput> and <computeroutput><ref refid="classpxr__tsl_1_1robin__set" kindref="compound">robin_set</ref></computeroutput>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>ValueType is what will be stored by <computeroutput><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash" kindref="compound">robin_hash</ref></computeroutput> (usually <computeroutput>std::pair&lt;Key, T&gt;</computeroutput> for map and <computeroutput>Key</computeroutput> for set).</para>
+<para><computeroutput>KeySelect</computeroutput> should be a <computeroutput>FunctionObject</computeroutput> which takes a <computeroutput>ValueType</computeroutput> in parameter and returns a reference to the key.</para>
+<para><computeroutput>ValueSelect</computeroutput> should be a <computeroutput>FunctionObject</computeroutput> which takes a <computeroutput>ValueType</computeroutput> in parameter and returns a reference to the value. <computeroutput>ValueSelect</computeroutput> should be void if there is no value (in a set for example).</para>
+<para>The strong exception guarantee only holds if the expression <computeroutput>std::is_nothrow_swappable&lt;ValueType&gt;::value &amp;&amp; std::is_nothrow_move_constructible&lt;ValueType&gt;::value</computeroutput> is true.</para>
+<para>Behaviour is undefined if the destructor of <computeroutput>ValueType</computeroutput> throws. </para>
+    </detaileddescription>
+    <location file="pxr/base/tf/pxrTslRobinMap/robin_hash.h" line="354" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_hash.h" bodystart="354" bodyend="1624"/>
+    <listofallmembers>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a1b9340a5b56dce81fa182aee8c64e363" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>allocator_type</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a7abadf37d6d95c44bbed51b5da1cd82c" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>at</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1add7fc9a06a40cfca54a95689f69173ec" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>at</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1afda16b67a6adafb19fbd2916049e9016" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>at</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ac6249eb49a4c39881322ceb1f3050a4e" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>at</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a979556eb331ec35eb33472a90a160f99" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>begin</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a1ca1fc2c9fc3e169d5d0decfd1e54221" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>begin</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a2ca98f2678c442ff9bf916525525448b" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>bucket_count</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aea4dcfa0a5a8b4914f829b86dd2eefd1" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>bucket_entry</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a057266dc64ee10dd213389318576369e" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>bucket_for_hash</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aae271e0aaad388392eb016f0c3dd6ea6" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>buckets_allocator</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a9347f26dce9d84eeb5c53820c9e3d86d" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>buckets_container_type</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1abeb76f7f3414f270020e6f467586bd93" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>cbegin</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a9859a454bb6f50c654e280274d6a9d13" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>cend</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a03bfacfaaba9195e4498375659f43531" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>clear</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a354dbeac2eb6d0e5300617a0b128f167" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>clear_and_shrink</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ad9f3d97c1fba613a159d50b1b68d34b7" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>compare_keys</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1af09eddb7312f3bdc72f8e94e854171a1" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>const_iterator</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a7fe8aeab7b1ee136c0e5accd9e21abc1" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>const_pointer</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ab1137da269e66589b98fce3416d40502" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>const_reference</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a3f1de1b9510d0be8ea710d84a4795418" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>contains</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aef74f7127ebccf8cb4ef4f515ca6b09c" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>contains</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ae0e769a94beea753eea6292e845261f1" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>count</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1afa5268fb7d80716658ed6d223a2bcb3d" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>count</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1affda8475a14069c971fec66193675524" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>DEFAULT_INIT_BUCKETS_SIZE</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ae11cf16d3db31808592cabeeb499957b" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>DEFAULT_MAX_LOAD_FACTOR</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aa281c08e9725b2f7cd132c5c4390f8a1" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>DEFAULT_MIN_LOAD_FACTOR</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a7687f597185bd51281e7190671661f06" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>deserialize</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a268827b9f26638ed77460028a92cd274" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>deserialize_impl</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ace405568d0b2f3fad4990044252c7732" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>difference_type</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a1c22105a9e8b78949605a145ce314d40" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>distance_type</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a3266031b8b423571de004ddf5bcddd24" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>emplace</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aaa893704f6fe9989f1ada11c2c503886" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>emplace_hint</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a3f6fc5de06a318920d84f3c3742db07f" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>empty</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1afc5380afa64b233d0df01a147616974b" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>end</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a5b9b57293fae9b18b26349ac0b3fdcd3" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>end</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a8ceb0a6101fe80fa6f77361e5bcbe0bf" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>equal_range</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a97d50a84c03ba89baf253e7eb91c37b7" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>equal_range</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a238cd7e655f44d0b4e06d49ebc66024a" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>equal_range</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a0762fd4bfa078d368831736ee8f86e36" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>equal_range</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1af7659d9799f06df763bf397101941dd7" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>erase</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a29790c28710ec0e64b48c2f4edd0b08c" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>erase</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aa3af768723cd533218ea3d83af440713" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>erase</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1af17409924f90d7e7e693ea2b0c28c7c1" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>erase</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ab91a3b98a980e2318adbff9595e440e3" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>erase</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a0e876287cb1c0aef63d94078ae9bb911" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>erase_from_bucket</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a2e6bddda2293ceb3a56a16723b33478d" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>find</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aca425b7c123c834b0c22a881d7da0ab6" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>find</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a1dc1ce99d93eaeec355cf7037b5bc0df" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>find</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a1ef70ba7d1941e2e5fe14e9c319d7bf8" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>find</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a039c94188864a32bde9b96ba0fa3df3e" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>find_impl</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1abe8e710f8a738b2c4f623d628406a6fa" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>find_impl</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a6e99c6263568d88f95ca01dc694f1051" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>get_allocator</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a5e244ac2a3f43ec932556579e169e4a2" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>has_mapped_type</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a72ffe2880da1c06d22d90000f9720967" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>hash_function</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a2944e85fdb9e80fead96f872aa20966e" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>hash_key</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ad834f24c3ab1a84ef8ed5fdae9373506" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>hasher</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a50e40a6c7ffe3b1b3014fc619cdfe2d3" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>insert</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a327bfe8ae1f7565885bce845f31eaca1" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>insert</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aa2ca772c122082f470d29e3c020c06d9" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>insert_hint</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1afce58fd0bd55fa59f4fb66019826af1f" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>insert_impl</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1adcae0e0de166c9335e656bdc4a983841" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>insert_or_assign</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a3764e80b5034563020239c8b87b24df4" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>insert_or_assign</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a9dc597ee12f0a4c3b41d5b4493a550b4" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>insert_value</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a6c7d19c2632959ee9f5c63441649564b" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>insert_value</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a116e3203aaeef4337a0b9f9b689f464c" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>insert_value_impl</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1af8e967aa681346ceaab862b98aa4e2ba" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>insert_value_on_rehash</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a851546851fe2bd90da43f70c04a83a7d" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>iterator</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a10b2be386447b0ab61e83d0f5527b688" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>key_eq</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1acf2a0bf428a1c882a8f7a432096bf7be" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>key_equal</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ac1480f81f5e3c967d26a929faa203ad0" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>key_type</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a627db9dbe713266cb53c24cc5332d817" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>load_factor</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a414666b3fed5f7f989b65af3708aaa7a" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>m_bucket_count</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a94ff85ad04d7c6247538d304d80e8a85" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>m_buckets</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ad4fbb5d4bb347618d0874e959b4d1d8c" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>m_buckets_data</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a65b992ab8edf1ea56a00ce2fb62373cd" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>m_grow_on_next_insert</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1acd6834efa65a09c4e94422b88184e171" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>m_load_threshold</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a76565f09e128fb0c1782e2de390542ec" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>m_max_load_factor</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a50cc5eca319763118097c38d0a9ea03a" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>m_min_load_factor</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a61440e4c83fba529d120d1c0521af239" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>m_nb_elements</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ac828a6f3a2dd12a403fed501e197e7b1" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>m_try_shrink_on_next_insert</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a4ae69adb72b0f4809ce9b67a1861b9d3" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>max_bucket_count</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a85fbd2f301194e1fc85bcf09ab3308c4" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>max_load_factor</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ae72e230f99198c334e8c599b8fa4cc12" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>max_load_factor</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ac2a85e463df4e95c1bf051cfb8237805" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>max_size</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ac5b4af610fb157ae63d250812ab4b970" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>MAXIMUM_MAX_LOAD_FACTOR</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a7e3bd2be4f470e5a3c4ef0568f61fca3" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>MAXIMUM_MIN_LOAD_FACTOR</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ab53469fa213c4a9351d83175288bed23" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>min_load_factor</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a4899ac5f6e805d6796166b308a190988" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>min_load_factor</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aa9efa8aaa487b4ffc56ca5892acaddab" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>MINIMUM_MAX_LOAD_FACTOR</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a6b2223a17eb941e62b75dfecb6453bff" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>MINIMUM_MIN_LOAD_FACTOR</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1aa9a08d0e44e9e00fe05e2dfe467a98b5" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>mutable_iterator</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a01efa80ed145bf8a315aaf3c87473785" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>next_bucket</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a01efa80ed145bf8a315aaf3c87473785" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>next_bucket</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a1878e21fdfce1d080aa7dee712032cb4" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>operator=</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a04235032a03e50c91ce9aa9771b454bf" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>operator=</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a32e986ab872e2770ed599cf92ab7d9f7" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>operator[]</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a4738635aff9c2bb2c8ccc2875ae72496" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>pointer</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a74202cdd96628bc49a756e5fc87d22de" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>reference</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a58bad5e8253ee3308d2a7a47816083bd" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>rehash</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1afdecdcb42e94421ea44d80109b39e219" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>rehash_impl</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a56e86f64434aeffb2827cb55dffddb6d" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>rehash_on_extreme_load</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a490a9e62f58529e43aa7ffafa5830f1b" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>reserve</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a9c7f8ecc34dcc454a3d8b4827ecdc026" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>robin_hash</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a0ee6917de97d618482612f5789db95bf" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>robin_hash</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ad2a94805311d2414296526803806ee41" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>robin_hash</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a61befcd6e7939b75a2471affb531008f" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>SERIALIZATION_PROTOCOL_VERSION</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1afaa50020d576b4292bdd62f16869fb97" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>serialize</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1af951c5a577e61d681b25f3e25511054d" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>serialize_impl</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a0801762a3fe36fe32dca5f16e515478d" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>size</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1af38ce1af42d538f410180c265518d4f0" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>size_type</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1accf243739dbd7b90c68e009ea9574c6d" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>static_empty_bucket_ptr</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a86a147d3312d0660074808d831b38c0f" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>STORE_HASH</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a54b31a17ce2a31286620f096ba8a7924" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>swap</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ae1c82ee701882e591081d6ee7c83fa93" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>try_emplace</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a75a4cfe8493d42acb7b2761b8612ca26" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>try_emplace_hint</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1af05150bee6d5453ee7bd9f4387a692e8" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>USE_STORED_HASH_ON_LOOKUP</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1ad11bdd04b41fcc0ce9275d38bc2f6f33" prot="private" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>USE_STORED_HASH_ON_REHASH</name></member>
+      <member refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash_1a52422eb0a58c3a0dbe6eadf2727e78f8" prot="public" virt="non-virtual"><scope>pxr_tsl::detail_robin_hash::robin_hash</scope><name>value_type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

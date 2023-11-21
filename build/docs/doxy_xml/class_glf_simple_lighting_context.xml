@@ -1,0 +1,814 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_glf_simple_lighting_context" kind="class" language="C++" prot="public">
+    <compoundname>GlfSimpleLightingContext</compoundname>
+    <basecompoundref refid="class_tf_ref_base" prot="public" virt="non-virtual">TfRefBase</basecompoundref>
+    <basecompoundref refid="class_tf_weak_base" prot="public" virt="non-virtual">TfWeakBase</basecompoundref>
+      <sectiondef kind="user-defined">
+      <header>Post Surface Lighting</header>
+      <description><para>This context can provide additional shader source, currently used to implement post surface lighting, along with a hash to help de-duplicate use by client shader programs. </para>
+</description>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1acd7941de759d25bfa423378349fec66f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API size_t</type>
+        <definition>GLF_API size_t ComputeShaderSourceHash</definition>
+        <argsstring>()</argsstring>
+        <name>ComputeShaderSourceHash</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="133" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1a8097513e158cefe26671fd957bad451f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API std::string const  &amp;</type>
+        <definition>GLF_API std::string const&amp; ComputeShaderSource</definition>
+        <argsstring>(TfToken const &amp;shaderStageKey)</argsstring>
+        <name>ComputeShaderSource</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>shaderStageKey</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="136" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_glf_simple_lighting_context_1a2a8deaaf4396328452ef82b484de9cbf" prot="public" static="no">
+        <type>GlfSimpleLightingContext</type>
+        <definition>typedef GlfSimpleLightingContext This</definition>
+        <argsstring></argsstring>
+        <name>This</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="55" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_glf_simple_lighting_context_1aecb0ca22691585aea87ebf9088b5ca87" prot="private" static="no" mutable="no">
+        <type>GlfSimpleLightVector</type>
+        <definition>GlfSimpleLightVector _lights</definition>
+        <argsstring></argsstring>
+        <name>_lights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="150" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_simple_lighting_context_1a42b134d4fe6d9f17d72bec3985cc53a2" prot="private" static="no" mutable="no">
+        <type>GlfSimpleShadowArrayRefPtr</type>
+        <definition>GlfSimpleShadowArrayRefPtr _shadows</definition>
+        <argsstring></argsstring>
+        <name>_shadows</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="151" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_simple_lighting_context_1ae33a9653911635d3772988f64ca4032b" prot="private" static="no" mutable="no">
+        <type><ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref></type>
+        <definition>GfMatrix4d _worldToViewMatrix</definition>
+        <argsstring></argsstring>
+        <name>_worldToViewMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="153" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_simple_lighting_context_1a52a85566cc858af240e9191128307840" prot="private" static="no" mutable="no">
+        <type><ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref></type>
+        <definition>GfMatrix4d _projectionMatrix</definition>
+        <argsstring></argsstring>
+        <name>_projectionMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="154" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_simple_lighting_context_1a45f658b8273c8113c6f504a5fbde1bb5" prot="private" static="no" mutable="no">
+        <type>GlfSimpleMaterial</type>
+        <definition>GlfSimpleMaterial _material</definition>
+        <argsstring></argsstring>
+        <name>_material</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="156" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_simple_lighting_context_1a21808cc059c764095bca047b5509bc3a" prot="private" static="no" mutable="no">
+        <type><ref refid="class_gf_vec4f" kindref="compound">GfVec4f</ref></type>
+        <definition>GfVec4f _sceneAmbient</definition>
+        <argsstring></argsstring>
+        <name>_sceneAmbient</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="157" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_simple_lighting_context_1a789817d1a284feeebc113219d360d19e" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _useLighting</definition>
+        <argsstring></argsstring>
+        <name>_useLighting</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="159" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_simple_lighting_context_1a24b6ddd3b59f63db0961b7ed1fa9c247" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _useShadows</definition>
+        <argsstring></argsstring>
+        <name>_useShadows</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="160" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_simple_lighting_context_1ad55ebd262a0d9f7f326dc58361682b52" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _useColorMaterialDiffuse</definition>
+        <argsstring></argsstring>
+        <name>_useColorMaterialDiffuse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="161" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_simple_lighting_context_1a36847c8725ea627f1d5d8cbd70880e2d" prot="private" static="no" mutable="no">
+        <type>GlfUniformBlockRefPtr</type>
+        <definition>GlfUniformBlockRefPtr _lightingUniformBlock</definition>
+        <argsstring></argsstring>
+        <name>_lightingUniformBlock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="163" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_simple_lighting_context_1ae9e9adffc3703c3f22663e199417cfeb" prot="private" static="no" mutable="no">
+        <type>GlfUniformBlockRefPtr</type>
+        <definition>GlfUniformBlockRefPtr _shadowUniformBlock</definition>
+        <argsstring></argsstring>
+        <name>_shadowUniformBlock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="164" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_simple_lighting_context_1ad1263713173e2d643a6b08a5601a395b" prot="private" static="no" mutable="no">
+        <type>GlfUniformBlockRefPtr</type>
+        <definition>GlfUniformBlockRefPtr _materialUniformBlock</definition>
+        <argsstring></argsstring>
+        <name>_materialUniformBlock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="165" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="165" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_simple_lighting_context_1a65887f414bfa278af1fdd888f657f214" prot="private" static="no" mutable="no">
+        <type>GlfUniformBlockRefPtr</type>
+        <definition>GlfUniformBlockRefPtr _bindlessShadowlUniformBlock</definition>
+        <argsstring></argsstring>
+        <name>_bindlessShadowlUniformBlock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="166" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_simple_lighting_context_1a35521d51e8db40e7b01cc6dedd6ea217" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; _PostSurfaceShaderState &gt;</type>
+        <definition>std::unique_ptr&lt;_PostSurfaceShaderState&gt; _postSurfaceShaderState</definition>
+        <argsstring></argsstring>
+        <name>_postSurfaceShaderState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="169" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="168" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_simple_lighting_context_1a7048bf9412478c32f8744ef526957f1d" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _lightingUniformBlockValid</definition>
+        <argsstring></argsstring>
+        <name>_lightingUniformBlockValid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="171" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="171" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_simple_lighting_context_1a49a046fbae31521fc3c65cc4dba32aef" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _shadowUniformBlockValid</definition>
+        <argsstring></argsstring>
+        <name>_shadowUniformBlockValid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="172" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="172" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_simple_lighting_context_1a32ba6fb5085bd3aedc68114f244a6dac" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _materialUniformBlockValid</definition>
+        <argsstring></argsstring>
+        <name>_materialUniformBlockValid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="173" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="173" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_simple_lighting_context_1a9e0e9d0d8e9485e3ead5cd960f99311d" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _postSurfaceShaderStateValid</definition>
+        <argsstring></argsstring>
+        <name>_postSurfaceShaderStateValid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="174" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1a001670c56994ee076fbb290716a1392c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API GlfSimpleLightingContextRefPtr</type>
+        <definition>static GLF_API GlfSimpleLightingContextRefPtr New</definition>
+        <argsstring>()</argsstring>
+        <name>New</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="58" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1a91c32a2a103831ff10d69c85a6a0b67a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API void</type>
+        <definition>GLF_API void SetLights</definition>
+        <argsstring>(GlfSimpleLightVector const &amp;lights)</argsstring>
+        <name>SetLights</name>
+        <param>
+          <type>GlfSimpleLightVector const &amp;</type>
+          <declname>lights</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="61" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1aab9f8075153ec4a1576027b950b13e93" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API GlfSimpleLightVector const  &amp;</type>
+        <definition>GLF_API GlfSimpleLightVector const&amp; GetLights</definition>
+        <argsstring>() const</argsstring>
+        <name>GetLights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="63" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1a8351ca113f9dfad5a238ead5ee2d7324" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API int</type>
+        <definition>GLF_API int GetNumLightsUsed</definition>
+        <argsstring>() const</argsstring>
+        <name>GetNumLightsUsed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="68" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1aae1515c8d259f7ff1d443f299518ba08" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API int</type>
+        <definition>GLF_API int ComputeNumShadowsUsed</definition>
+        <argsstring>() const</argsstring>
+        <name>ComputeNumShadowsUsed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="73" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1ac7f58b83ba76ef6f57676b4dca8c354f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API void</type>
+        <definition>GLF_API void SetShadows</definition>
+        <argsstring>(GlfSimpleShadowArrayRefPtr const &amp;shadows)</argsstring>
+        <name>SetShadows</name>
+        <param>
+          <type>GlfSimpleShadowArrayRefPtr const &amp;</type>
+          <declname>shadows</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="76" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1a66f8568e203b70be80c2fb206f0ceac2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API GlfSimpleShadowArrayRefPtr const  &amp;</type>
+        <definition>GLF_API GlfSimpleShadowArrayRefPtr const&amp; GetShadows</definition>
+        <argsstring>() const</argsstring>
+        <name>GetShadows</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="78" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1acd71eef728172c072997b7024ef18eae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API void</type>
+        <definition>GLF_API void SetMaterial</definition>
+        <argsstring>(GlfSimpleMaterial const &amp;material)</argsstring>
+        <name>SetMaterial</name>
+        <param>
+          <type>GlfSimpleMaterial const &amp;</type>
+          <declname>material</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="81" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1a589839aba32860a1db122f26f392868e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API GlfSimpleMaterial const  &amp;</type>
+        <definition>GLF_API GlfSimpleMaterial const&amp; GetMaterial</definition>
+        <argsstring>() const</argsstring>
+        <name>GetMaterial</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="83" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1a5c1456ab5819dee11215889ca64488e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API void</type>
+        <definition>GLF_API void SetSceneAmbient</definition>
+        <argsstring>(GfVec4f const &amp;sceneAmbient)</argsstring>
+        <name>SetSceneAmbient</name>
+        <param>
+          <type><ref refid="class_gf_vec4f" kindref="compound">GfVec4f</ref> const &amp;</type>
+          <declname>sceneAmbient</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="86" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1ac9bc6e510595091104cb844bd222d2c5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API <ref refid="class_gf_vec4f" kindref="compound">GfVec4f</ref> const  &amp;</type>
+        <definition>GLF_API GfVec4f const&amp; GetSceneAmbient</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSceneAmbient</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="88" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1ac24f66efb0616224fd33b2f39bfcd554" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API void</type>
+        <definition>GLF_API void SetCamera</definition>
+        <argsstring>(GfMatrix4d const &amp;worldToViewMatrix, GfMatrix4d const &amp;projectionMatrix)</argsstring>
+        <name>SetCamera</name>
+        <param>
+          <type><ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref> const &amp;</type>
+          <declname>worldToViewMatrix</declname>
+        </param>
+        <param>
+          <type><ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref> const &amp;</type>
+          <declname>projectionMatrix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="91" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1adfcb0a0233994c366954ba7095a91123" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API void</type>
+        <definition>GLF_API void SetUseLighting</definition>
+        <argsstring>(bool val)</argsstring>
+        <name>SetUseLighting</name>
+        <param>
+          <type>bool</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="95" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1aca9d80ac8c7dae82daf1bff782d4cd43" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API bool</type>
+        <definition>GLF_API bool GetUseLighting</definition>
+        <argsstring>() const</argsstring>
+        <name>GetUseLighting</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="97" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1a8b731c40d8708d17db58577dc35190db" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API bool</type>
+        <definition>GLF_API bool GetUseShadows</definition>
+        <argsstring>() const</argsstring>
+        <name>GetUseShadows</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="101" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1a69eab938b0dabaf33dddeb6e97203048" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API void</type>
+        <definition>GLF_API void SetUseColorMaterialDiffuse</definition>
+        <argsstring>(bool val)</argsstring>
+        <name>SetUseColorMaterialDiffuse</name>
+        <param>
+          <type>bool</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="104" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1a0160402fb2eedeb51aa806b08bd291ce" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API bool</type>
+        <definition>GLF_API bool GetUseColorMaterialDiffuse</definition>
+        <argsstring>() const</argsstring>
+        <name>GetUseColorMaterialDiffuse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="106" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1a30807a2eb7e70834c2513a88388dde71" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API void</type>
+        <definition>GLF_API void InitUniformBlockBindings</definition>
+        <argsstring>(GlfBindingMapPtr const &amp;bindingMap) const</argsstring>
+        <name>InitUniformBlockBindings</name>
+        <param>
+          <type>GlfBindingMapPtr const &amp;</type>
+          <declname>bindingMap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="109" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1a05b5a9ffae60ff3057d02bac498e86c2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API void</type>
+        <definition>GLF_API void InitSamplerUnitBindings</definition>
+        <argsstring>(GlfBindingMapPtr const &amp;bindingMap) const</argsstring>
+        <name>InitSamplerUnitBindings</name>
+        <param>
+          <type>GlfBindingMapPtr const &amp;</type>
+          <declname>bindingMap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="111" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1af2473551e47e85edba4a86bc55a9fae4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API void</type>
+        <definition>GLF_API void BindUniformBlocks</definition>
+        <argsstring>(GlfBindingMapPtr const &amp;bindingMap)</argsstring>
+        <name>BindUniformBlocks</name>
+        <param>
+          <type>GlfBindingMapPtr const &amp;</type>
+          <declname>bindingMap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="114" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1ac5008f8f3de1e7272941daf497060718" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API void</type>
+        <definition>GLF_API void BindSamplers</definition>
+        <argsstring>(GlfBindingMapPtr const &amp;bindingMap)</argsstring>
+        <name>BindSamplers</name>
+        <param>
+          <type>GlfBindingMapPtr const &amp;</type>
+          <declname>bindingMap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="116" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1a8d4bbd7a220c8c8b745e510b43eac8e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API void</type>
+        <definition>GLF_API void UnbindSamplers</definition>
+        <argsstring>(GlfBindingMapPtr const &amp;bindingMap)</argsstring>
+        <name>UnbindSamplers</name>
+        <param>
+          <type>GlfBindingMapPtr const &amp;</type>
+          <declname>bindingMap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="119" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1a6b677e0d84958836ad1545be31853a8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API void</type>
+        <definition>GLF_API void SetStateFromOpenGL</definition>
+        <argsstring>()</argsstring>
+        <name>SetStateFromOpenGL</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="122" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1ae901a9a6e31d61bcfacfdebfd7313fa6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API</type>
+        <definition>GLF_API GlfSimpleLightingContext</definition>
+        <argsstring>()</argsstring>
+        <name>GlfSimpleLightingContext</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="142" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1a000e5fcab320634bd99f40300f17a2c2" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API</type>
+        <definition>GLF_API ~GlfSimpleLightingContext</definition>
+        <argsstring>()</argsstring>
+        <name>~GlfSimpleLightingContext</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="144" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1a816b9ab6e9fd3f554eb2493125471a1f" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _ComputePostSurfaceShaderState</definition>
+        <argsstring>()</argsstring>
+        <name>_ComputePostSurfaceShaderState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="146" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_simple_lighting_context_1a63a8147f100d15542ce28540ba0b9e3b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _BindPostSurfaceShaderParams</definition>
+        <argsstring>(GlfBindingMapPtr const &amp;bindingMap)</argsstring>
+        <name>_BindPostSurfaceShaderParams</name>
+        <param>
+          <type>GlfBindingMapPtr const &amp;</type>
+          <declname>bindingMap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/simpleLightingContext.h" line="147" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1477">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="1475">
+        <label>GlfSimpleLightingContext</label>
+        <childnode refid="1476" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1477" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1476">
+        <label>TfRefBase</label>
+        <link refid="class_tf_ref_base"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1480">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="1478">
+        <label>GlfSimpleLightingContext</label>
+        <childnode refid="1479" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1480" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1479">
+        <label>TfRefBase</label>
+        <link refid="class_tf_ref_base"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/glf/simpleLightingContext.h" line="53" column="1" bodyfile="pxr/imaging/glf/simpleLightingContext.h" bodystart="53" bodyend="175"/>
+    <listofallmembers>
+      <member refid="class_tf_weak_base_1a01aa4c4b93df067f2ec9b9e5fa4c35b3" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>__GetTfWeakBase__</name></member>
+      <member refid="class_glf_simple_lighting_context_1a65887f414bfa278af1fdd888f657f214" prot="private" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_bindlessShadowlUniformBlock</name></member>
+      <member refid="class_glf_simple_lighting_context_1a63a8147f100d15542ce28540ba0b9e3b" prot="protected" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_BindPostSurfaceShaderParams</name></member>
+      <member refid="class_glf_simple_lighting_context_1a816b9ab6e9fd3f554eb2493125471a1f" prot="protected" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_ComputePostSurfaceShaderState</name></member>
+      <member refid="class_tf_weak_base_1a6a5533162e8efab1be47acd6ccd5254c" prot="protected" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_HasRemnant</name></member>
+      <member refid="class_glf_simple_lighting_context_1a36847c8725ea627f1d5d8cbd70880e2d" prot="private" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_lightingUniformBlock</name></member>
+      <member refid="class_glf_simple_lighting_context_1a7048bf9412478c32f8744ef526957f1d" prot="private" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_lightingUniformBlockValid</name></member>
+      <member refid="class_glf_simple_lighting_context_1aecb0ca22691585aea87ebf9088b5ca87" prot="private" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_lights</name></member>
+      <member refid="class_glf_simple_lighting_context_1a45f658b8273c8113c6f504a5fbde1bb5" prot="private" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_material</name></member>
+      <member refid="class_glf_simple_lighting_context_1ad1263713173e2d643a6b08a5601a395b" prot="private" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_materialUniformBlock</name></member>
+      <member refid="class_glf_simple_lighting_context_1a32ba6fb5085bd3aedc68114f244a6dac" prot="private" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_materialUniformBlockValid</name></member>
+      <member refid="class_glf_simple_lighting_context_1a35521d51e8db40e7b01cc6dedd6ea217" prot="private" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_postSurfaceShaderState</name></member>
+      <member refid="class_glf_simple_lighting_context_1a9e0e9d0d8e9485e3ead5cd960f99311d" prot="private" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_postSurfaceShaderStateValid</name></member>
+      <member refid="class_glf_simple_lighting_context_1a52a85566cc858af240e9191128307840" prot="private" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_projectionMatrix</name></member>
+      <member refid="class_tf_weak_base_1a95139d2f4d04eb706664a4f47eb93918" prot="protected" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_Register</name></member>
+      <member refid="class_tf_weak_base_1ac1312732482c8a286522f703f2cf90d1" prot="protected" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_Register</name></member>
+      <member refid="class_glf_simple_lighting_context_1a21808cc059c764095bca047b5509bc3a" prot="private" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_sceneAmbient</name></member>
+      <member refid="class_glf_simple_lighting_context_1a42b134d4fe6d9f17d72bec3985cc53a2" prot="private" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_shadows</name></member>
+      <member refid="class_glf_simple_lighting_context_1ae9e9adffc3703c3f22663e199417cfeb" prot="private" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_shadowUniformBlock</name></member>
+      <member refid="class_glf_simple_lighting_context_1a49a046fbae31521fc3c65cc4dba32aef" prot="private" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_shadowUniformBlockValid</name></member>
+      <member refid="class_glf_simple_lighting_context_1ad55ebd262a0d9f7f326dc58361682b52" prot="private" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_useColorMaterialDiffuse</name></member>
+      <member refid="class_glf_simple_lighting_context_1a789817d1a284feeebc113219d360d19e" prot="private" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_useLighting</name></member>
+      <member refid="class_glf_simple_lighting_context_1a24b6ddd3b59f63db0961b7ed1fa9c247" prot="private" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_useShadows</name></member>
+      <member refid="class_glf_simple_lighting_context_1ae33a9653911635d3772988f64ca4032b" prot="private" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>_worldToViewMatrix</name></member>
+      <member refid="class_glf_simple_lighting_context_1ac5008f8f3de1e7272941daf497060718" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>BindSamplers</name></member>
+      <member refid="class_glf_simple_lighting_context_1af2473551e47e85edba4a86bc55a9fae4" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>BindUniformBlocks</name></member>
+      <member refid="class_glf_simple_lighting_context_1aae1515c8d259f7ff1d443f299518ba08" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>ComputeNumShadowsUsed</name></member>
+      <member refid="class_glf_simple_lighting_context_1a8097513e158cefe26671fd957bad451f" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>ComputeShaderSource</name></member>
+      <member refid="class_glf_simple_lighting_context_1acd7941de759d25bfa423378349fec66f" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>ComputeShaderSourceHash</name></member>
+      <member refid="class_tf_weak_base_1a16f1e27cc0c7c606ffb397b7d970ed10" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>EnableNotification2</name></member>
+      <member refid="class_tf_ref_base_1abcd501e4bb37d7a93faa4e625e96ecf7" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>GetCurrentCount</name></member>
+      <member refid="class_glf_simple_lighting_context_1aab9f8075153ec4a1576027b950b13e93" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>GetLights</name></member>
+      <member refid="class_glf_simple_lighting_context_1a589839aba32860a1db122f26f392868e" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>GetMaterial</name></member>
+      <member refid="class_glf_simple_lighting_context_1a8351ca113f9dfad5a238ead5ee2d7324" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>GetNumLightsUsed</name></member>
+      <member refid="class_tf_ref_base_1abc1926aa1f9b1ad25c5c583b92bcf14b" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>GetRefCount</name></member>
+      <member refid="class_glf_simple_lighting_context_1ac9bc6e510595091104cb844bd222d2c5" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>GetSceneAmbient</name></member>
+      <member refid="class_glf_simple_lighting_context_1a66f8568e203b70be80c2fb206f0ceac2" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>GetShadows</name></member>
+      <member refid="class_tf_weak_base_1a3241c32a82fbed0716a77049f6134e1e" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>GetUniqueIdentifier</name></member>
+      <member refid="class_glf_simple_lighting_context_1a0160402fb2eedeb51aa806b08bd291ce" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>GetUseColorMaterialDiffuse</name></member>
+      <member refid="class_glf_simple_lighting_context_1aca9d80ac8c7dae82daf1bff782d4cd43" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>GetUseLighting</name></member>
+      <member refid="class_glf_simple_lighting_context_1a8b731c40d8708d17db58577dc35190db" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>GetUseShadows</name></member>
+      <member refid="class_glf_simple_lighting_context_1ae901a9a6e31d61bcfacfdebfd7313fa6" prot="protected" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>GlfSimpleLightingContext</name></member>
+      <member refid="class_glf_simple_lighting_context_1a05b5a9ffae60ff3057d02bac498e86c2" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>InitSamplerUnitBindings</name></member>
+      <member refid="class_glf_simple_lighting_context_1a30807a2eb7e70834c2513a88388dde71" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>InitUniformBlockBindings</name></member>
+      <member refid="class_tf_ref_base_1aab8bc91cf9cff7c6e1da23dc59f5ad1f" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>IsUnique</name></member>
+      <member refid="class_glf_simple_lighting_context_1a001670c56994ee076fbb290716a1392c" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>New</name></member>
+      <member refid="class_tf_weak_base_1af890ac314073e903458bf6b2397566b5" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>operator=</name></member>
+      <member refid="class_glf_simple_lighting_context_1ac24f66efb0616224fd33b2f39bfcd554" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>SetCamera</name></member>
+      <member refid="class_glf_simple_lighting_context_1a91c32a2a103831ff10d69c85a6a0b67a" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>SetLights</name></member>
+      <member refid="class_glf_simple_lighting_context_1acd71eef728172c072997b7024ef18eae" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>SetMaterial</name></member>
+      <member refid="class_glf_simple_lighting_context_1a5c1456ab5819dee11215889ca64488e1" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>SetSceneAmbient</name></member>
+      <member refid="class_glf_simple_lighting_context_1ac7f58b83ba76ef6f57676b4dca8c354f" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>SetShadows</name></member>
+      <member refid="class_tf_ref_base_1a6ee7fb6df1df9be9afbda405643ecb6c" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>SetShouldInvokeUniqueChangedListener</name></member>
+      <member refid="class_glf_simple_lighting_context_1a6b677e0d84958836ad1545be31853a8d" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>SetStateFromOpenGL</name></member>
+      <member refid="class_tf_ref_base_1a33e6c8ffe0caf7dac94ba5c4a4485fbd" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>SetUniqueChangedListener</name></member>
+      <member refid="class_glf_simple_lighting_context_1a69eab938b0dabaf33dddeb6e97203048" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>SetUseColorMaterialDiffuse</name></member>
+      <member refid="class_glf_simple_lighting_context_1adfcb0a0233994c366954ba7095a91123" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>SetUseLighting</name></member>
+      <member refid="class_tf_ref_base_1aa2d330100c1dde0a28658bbd0bd7e7bd" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>TfRefBase</name></member>
+      <member refid="class_tf_weak_base_1a6e4abdd663654f8c8019702a464de8d6" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_weak_base_1affc4c00d0bbfdfe4f9e6a8b2e81be368" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>TfWeakBase</name></member>
+      <member refid="class_glf_simple_lighting_context_1a2a8deaaf4396328452ef82b484de9cbf" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>This</name></member>
+      <member refid="class_glf_simple_lighting_context_1a8d4bbd7a220c8c8b745e510b43eac8e5" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>UnbindSamplers</name></member>
+      <member refid="class_tf_ref_base_1a86baed63f8017038997266bdd638f65e" prot="public" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>UniqueChangedFuncPtr</name></member>
+      <member refid="class_glf_simple_lighting_context_1a000e5fcab320634bd99f40300f17a2c2" prot="protected" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>~GlfSimpleLightingContext</name></member>
+      <member refid="class_tf_ref_base_1abc8b2a655b2693dacab986b70c30f28a" prot="protected" virt="virtual"><scope>GlfSimpleLightingContext</scope><name>~TfRefBase</name></member>
+      <member refid="class_tf_weak_base_1a778020f525b66def8a284c6f020592c2" prot="protected" virt="non-virtual"><scope>GlfSimpleLightingContext</scope><name>~TfWeakBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

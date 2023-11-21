@@ -1,0 +1,314 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_instance_registry" kind="class" language="C++" prot="public">
+    <compoundname>HdInstanceRegistry</compoundname>
+    <includes refid="instance_registry_8h" local="no">instanceRegistry.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename</type>
+        <declname>VALUE</declname>
+        <defname>VALUE</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_hd_instance_registry_1a90c09b6790e255d35631f3892fc616af" prot="public" static="no">
+        <type><ref refid="class_hd_instance" kindref="compound">HdInstance</ref>&lt; VALUE &gt;</type>
+        <definition>typedef HdInstance&lt;VALUE&gt; InstanceType</definition>
+        <argsstring></argsstring>
+        <name>InstanceType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/instanceRegistry.h" line="148" column="1" bodyfile="pxr/imaging/hd/instanceRegistry.h" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hd_instance_registry_1a7d14d4836be278a229a729e719e3b0fc" prot="public" static="no">
+        <type>InstanceType::Dictionary::const_iterator</type>
+        <definition>typedef InstanceType::Dictionary::const_iterator const_iterator</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <briefdescription>
+<para>Returns a const iterator being/end of dictionary. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Mainly used for resource auditing. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/instanceRegistry.h" line="186" column="1" bodyfile="pxr/imaging/hd/instanceRegistry.h" bodystart="186" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_instance_registry_1ad98ef627172764107f3b2bf2b03bb6ed" prot="private" static="no" mutable="no">
+        <type>InstanceType::Dictionary</type>
+        <definition>InstanceType::Dictionary _dictionary</definition>
+        <argsstring></argsstring>
+        <name>_dictionary</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/instanceRegistry.h" line="200" column="1" bodyfile="pxr/imaging/hd/instanceRegistry.h" bodystart="200" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_instance_registry_1ab19cf0ddc67907c65cb79d3304f6553f" prot="private" static="no" mutable="no">
+        <type>InstanceType::RegistryMutex</type>
+        <definition>InstanceType::RegistryMutex _registryMutex</definition>
+        <argsstring></argsstring>
+        <name>_registryMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/instanceRegistry.h" line="201" column="1" bodyfile="pxr/imaging/hd/instanceRegistry.h" bodystart="201" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_instance_registry_1a30bac5ad2dd8678884a3463182a0b559" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdInstanceRegistry</definition>
+        <argsstring>()=default</argsstring>
+        <name>HdInstanceRegistry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/instanceRegistry.h" line="150" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_instance_registry_1ae55bdec1cf61d2e2b5c7ebad26403cc0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>HdInstanceRegistry</definition>
+        <argsstring>(const HdInstanceRegistry &amp;other)</argsstring>
+        <name>HdInstanceRegistry</name>
+        <param>
+          <type>const <ref refid="class_hd_instance_registry" kindref="compound">HdInstanceRegistry</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Copy constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Need as <ref refid="class_hd_instance_registry" kindref="compound">HdInstanceRegistry</ref> is placed in a map and mutex is not copy constructable, so can&apos;t use default </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/instanceRegistry.h" line="154" column="1" bodyfile="pxr/imaging/hd/instanceRegistry.h" bodystart="154" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_instance_registry_1a299e151e8b5838a697d1deb82fc4300f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hd_instance" kindref="compound">InstanceType</ref></type>
+        <definition>HdInstance&lt; VALUE &gt; GetInstance</definition>
+        <argsstring>(typename InstanceType::KeyType const &amp;key)</argsstring>
+        <name>GetInstance</name>
+        <param>
+          <type>typename InstanceType::KeyType const &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Returns a shared instance for given key. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/instanceRegistry.h" line="160" column="1" bodyfile="pxr/imaging/hd/instanceRegistry.h" bodystart="211" bodyend="230"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_instance_registry_1aab54cc46392d8c6d7141a68aa74b4d08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hd_instance" kindref="compound">InstanceType</ref></type>
+        <definition>HdInstance&lt; VALUE &gt; FindInstance</definition>
+        <argsstring>(typename InstanceType::KeyType const &amp;key, bool *found)</argsstring>
+        <name>FindInstance</name>
+        <param>
+          <type>typename InstanceType::KeyType const &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>bool *</type>
+          <declname>found</declname>
+        </param>
+        <briefdescription>
+<para>Returns a shared instance for a given key only if the key exists in the dictionary. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/instanceRegistry.h" line="165" column="1" bodyfile="pxr/imaging/hd/instanceRegistry.h" bodystart="234" bodyend="253"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_instance_registry_1a5a0727f7f2806c12cc348b917fc6f15e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GarbageCollect</definition>
+        <argsstring>(int recycleCount=0)</argsstring>
+        <name>GarbageCollect</name>
+        <param>
+          <type>int</type>
+          <declname>recycleCount</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Removes unreferenced entries and returns the count of remaining entries. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>When recycleCount is greater than zero, unreferenced entries will not be removed until <ref refid="class_hd_instance_registry_1a5a0727f7f2806c12cc348b917fc6f15e" kindref="member">GarbageCollect()</ref> is called that many more times, i.e. allowing unreferenced entries to be recycled if they are needed again. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/instanceRegistry.h" line="173" column="1" bodyfile="pxr/imaging/hd/instanceRegistry.h" bodystart="257" bodyend="261"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_instance_registry_1ac97fda6e5f80428381d7176fef296223" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Callback</type>
+          </param>
+        </templateparamlist>
+        <type>size_t</type>
+        <definition>size_t GarbageCollect</definition>
+        <argsstring>(Callback &amp;&amp;callback, int recycleCount=0)</argsstring>
+        <name>GarbageCollect</name>
+        <param>
+          <type>Callback &amp;&amp;</type>
+          <declname>callback</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>recycleCount</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Removes unreferenced entries and returns the count of remaining entries. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If an entry is to be removed, callback function &quot;callback&quot; will be called on the entry before removal. When recycleCount is greater than zero, unreferenced entries will not be removed until <ref refid="class_hd_instance_registry_1a5a0727f7f2806c12cc348b917fc6f15e" kindref="member">GarbageCollect()</ref> is called that many more times, i.e. allowing unreferenced entries to be recycled if they are needed again. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/instanceRegistry.h" line="182" column="1" bodyfile="pxr/imaging/hd/instanceRegistry.h" bodystart="266" bodyend="291"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_instance_registry_1a29305669b60ca1680752e2fc3592ba99" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_hd_instance_registry_1a7d14d4836be278a229a729e719e3b0fc" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator begin</definition>
+        <argsstring>() const</argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/instanceRegistry.h" line="187" column="1" bodyfile="pxr/imaging/hd/instanceRegistry.h" bodystart="187" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_instance_registry_1accf9a4bd0c34d4a5f6a7dab66ea10cdc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_hd_instance_registry_1a7d14d4836be278a229a729e719e3b0fc" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator end</definition>
+        <argsstring>() const</argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/instanceRegistry.h" line="188" column="1" bodyfile="pxr/imaging/hd/instanceRegistry.h" bodystart="188" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_instance_registry_1a259cb5a711406a8c3e5d937eb9350cca" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/instanceRegistry.h" line="190" column="1" bodyfile="pxr/imaging/hd/instanceRegistry.h" bodystart="190" bodyend="190"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_instance_registry_1ab9adfea0e765ab447b8ce7730a6cd812" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Invalidate</definition>
+        <argsstring>()</argsstring>
+        <name>Invalidate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/instanceRegistry.h" line="192" column="1" bodyfile="pxr/imaging/hd/instanceRegistry.h" bodystart="295" bodyend="301"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_hd_instance_registry_1a1b730aafa02e56747fab894caabe2000" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>static bool _IsUnique</definition>
+        <argsstring>(std::shared_ptr&lt; T &gt; const &amp;value)</argsstring>
+        <name>_IsUnique</name>
+        <param>
+          <type>std::shared_ptr&lt; T &gt; const &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/instanceRegistry.h" line="196" column="1" bodyfile="pxr/imaging/hd/instanceRegistry.h" bodystart="196" bodyend="198"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hd_instance_registry_1ad8c7664ac1a9e692538a6a3fd405c576" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hd_instance_registry" kindref="compound">HdInstanceRegistry</ref> &amp;</type>
+        <definition>HdInstanceRegistry&amp; operator=</definition>
+        <argsstring>(HdInstanceRegistry &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="class_hd_instance_registry" kindref="compound">HdInstanceRegistry</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/instanceRegistry.h" line="203" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="class_hd_instance_registry" kindref="compound">HdInstanceRegistry</ref> is a dictionary container of <ref refid="class_hd_instance" kindref="compound">HdInstance</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class is almost just a dictionary from key to value. For cleaning unused entries, it provides <ref refid="class_hd_instance_registry_1a5a0727f7f2806c12cc348b917fc6f15e" kindref="member">GarbageCollect()</ref> API. It sweeps all entries in the dictionary and erase unreferenced entries. When HdInstance::ValueType is shared_ptr, it is regarded as unreferenced if the shared_ptr is unique (use_count==1). Note that Key is not involved to determine the lifetime of entries. </para>
+    </detaileddescription>
+    <location file="pxr/imaging/hd/instanceRegistry.h" line="146" column="1" bodyfile="pxr/imaging/hd/instanceRegistry.h" bodystart="146" bodyend="204"/>
+    <listofallmembers>
+      <member refid="class_hd_instance_registry_1ad98ef627172764107f3b2bf2b03bb6ed" prot="private" virt="non-virtual"><scope>HdInstanceRegistry</scope><name>_dictionary</name></member>
+      <member refid="class_hd_instance_registry_1a1b730aafa02e56747fab894caabe2000" prot="private" virt="non-virtual"><scope>HdInstanceRegistry</scope><name>_IsUnique</name></member>
+      <member refid="class_hd_instance_registry_1ab19cf0ddc67907c65cb79d3304f6553f" prot="private" virt="non-virtual"><scope>HdInstanceRegistry</scope><name>_registryMutex</name></member>
+      <member refid="class_hd_instance_registry_1a29305669b60ca1680752e2fc3592ba99" prot="public" virt="non-virtual"><scope>HdInstanceRegistry</scope><name>begin</name></member>
+      <member refid="class_hd_instance_registry_1a7d14d4836be278a229a729e719e3b0fc" prot="public" virt="non-virtual"><scope>HdInstanceRegistry</scope><name>const_iterator</name></member>
+      <member refid="class_hd_instance_registry_1accf9a4bd0c34d4a5f6a7dab66ea10cdc" prot="public" virt="non-virtual"><scope>HdInstanceRegistry</scope><name>end</name></member>
+      <member refid="class_hd_instance_registry_1aab54cc46392d8c6d7141a68aa74b4d08" prot="public" virt="non-virtual"><scope>HdInstanceRegistry</scope><name>FindInstance</name></member>
+      <member refid="class_hd_instance_registry_1a5a0727f7f2806c12cc348b917fc6f15e" prot="public" virt="non-virtual"><scope>HdInstanceRegistry</scope><name>GarbageCollect</name></member>
+      <member refid="class_hd_instance_registry_1ac97fda6e5f80428381d7176fef296223" prot="public" virt="non-virtual"><scope>HdInstanceRegistry</scope><name>GarbageCollect</name></member>
+      <member refid="class_hd_instance_registry_1a299e151e8b5838a697d1deb82fc4300f" prot="public" virt="non-virtual"><scope>HdInstanceRegistry</scope><name>GetInstance</name></member>
+      <member refid="class_hd_instance_registry_1a30bac5ad2dd8678884a3463182a0b559" prot="public" virt="non-virtual"><scope>HdInstanceRegistry</scope><name>HdInstanceRegistry</name></member>
+      <member refid="class_hd_instance_registry_1ae55bdec1cf61d2e2b5c7ebad26403cc0" prot="public" virt="non-virtual"><scope>HdInstanceRegistry</scope><name>HdInstanceRegistry</name></member>
+      <member refid="class_hd_instance_registry_1a90c09b6790e255d35631f3892fc616af" prot="public" virt="non-virtual"><scope>HdInstanceRegistry</scope><name>InstanceType</name></member>
+      <member refid="class_hd_instance_registry_1ab9adfea0e765ab447b8ce7730a6cd812" prot="public" virt="non-virtual"><scope>HdInstanceRegistry</scope><name>Invalidate</name></member>
+      <member refid="class_hd_instance_registry_1ad8c7664ac1a9e692538a6a3fd405c576" prot="private" virt="non-virtual"><scope>HdInstanceRegistry</scope><name>operator=</name></member>
+      <member refid="class_hd_instance_registry_1a259cb5a711406a8c3e5d937eb9350cca" prot="public" virt="non-virtual"><scope>HdInstanceRegistry</scope><name>size</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

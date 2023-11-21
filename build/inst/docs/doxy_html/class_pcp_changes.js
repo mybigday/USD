@@ -1,0 +1,25 @@
+var class_pcp_changes =
+[
+    [ "CacheChanges", "class_pcp_changes.html#a172ed975a5c776c25c3ab9204d01f2f0", null ],
+    [ "LayerStackChanges", "class_pcp_changes.html#adc7cbd7d62d8f06658f67ea4cc975929", null ],
+    [ "PcpChanges", "class_pcp_changes.html#a94b443cab9781f37163b3ed19d27fe5f", null ],
+    [ "~PcpChanges", "class_pcp_changes.html#a986acd6f3b79e9a0ba74d03de8e2f07f", null ],
+    [ "Apply", "class_pcp_changes.html#a8630b2dfef0dcdf76512ccaf888c3861", null ],
+    [ "DidChange", "class_pcp_changes.html#aeffa80d8e31e3f0616c6865b94c20861", null ],
+    [ "DidChangeAssetResolver", "class_pcp_changes.html#a226b3250db62045990cd3948732c0548", null ],
+    [ "DidChangePaths", "class_pcp_changes.html#a2d3fcbb2f22969a0b7e565d18b073268", null ],
+    [ "DidChangeSignificantly", "class_pcp_changes.html#a025e56246f3b0359fa1eb9ec5fc495b4", null ],
+    [ "DidChangeSpecs", "class_pcp_changes.html#a9f06dc3dc7fdb1eb66fbf59a6c742d94", null ],
+    [ "DidChangeSpecStack", "class_pcp_changes.html#a6bf99e330dc4cce7ec071796ffbbb358", null ],
+    [ "DidChangeTargets", "class_pcp_changes.html#a9a2cdaa225367199a0637fd1e0eb77a8", null ],
+    [ "DidDestroyCache", "class_pcp_changes.html#af9d6a19711efe98e9a6d462106c62bb1", null ],
+    [ "DidMaybeFixAsset", "class_pcp_changes.html#a93e3b77f153918866212d34c5f069e6c", null ],
+    [ "DidMaybeFixSublayer", "class_pcp_changes.html#a2ca150ba9c5a3e7c0e92894c34ef5228", null ],
+    [ "DidMuteLayer", "class_pcp_changes.html#aa9926f2da20e25f59eb75fa08d6aaa13", null ],
+    [ "DidUnmuteLayer", "class_pcp_changes.html#a98ee4fdc497f3fbc1bb1f0f9df644bc2", null ],
+    [ "GetCacheChanges", "class_pcp_changes.html#ae48e9278a49084057b8db13ded159ee8", null ],
+    [ "GetLayerStackChanges", "class_pcp_changes.html#a142a05a1c3f496b669c7a6c6ce8b1dd0", null ],
+    [ "GetLifeboat", "class_pcp_changes.html#add6005eddc608a94a7f53c7f2104875c", null ],
+    [ "IsEmpty", "class_pcp_changes.html#a23055e9a75bfa1af8ea4462f232b3ab1", null ],
+    [ "Swap", "class_pcp_changes.html#ab4812152ee6a1e0ee8715a90423f290a", null ]
+];

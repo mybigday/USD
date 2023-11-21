@@ -1,0 +1,616 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_perf_log" kind="class" language="C++" prot="public">
+    <compoundname>HdPerfLog</compoundname>
+    <includes refid="hd_2perf_log_8h" local="no">perfLog.h</includes>
+    <innerclass refid="class_hd_perf_log_1_1___cache_entry" prot="private">HdPerfLog::_CacheEntry</innerclass>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_hd_perf_log_1a2684ded732e00a79cef263e9d7580305" prot="private" static="no">
+        <type>TfHashMap&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, _CacheEntry, <ref refid="struct_tf_token_1_1_hash_functor" kindref="compound">TfToken::HashFunctor</ref> &gt;</type>
+        <definition>typedef TfHashMap&lt;TfToken, _CacheEntry, TfToken::HashFunctor&gt; _CacheMap</definition>
+        <argsstring></argsstring>
+        <name>_CacheMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="220" column="1" bodyfile="pxr/imaging/hd/perfLog.h" bodystart="220" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hd_perf_log_1a51f8dad40262c5b9b39ee614bc98c4cd" prot="private" static="no">
+        <type>TfHashMap&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, double, <ref refid="struct_tf_token_1_1_hash_functor" kindref="compound">TfToken::HashFunctor</ref> &gt;</type>
+        <definition>typedef TfHashMap&lt;TfToken, double, TfToken::HashFunctor&gt; _CounterMap</definition>
+        <argsstring></argsstring>
+        <name>_CounterMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="224" column="1" bodyfile="pxr/imaging/hd/perfLog.h" bodystart="224" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hd_perf_log_1ab9d7e45fb2676fc3740aa4e2db6b0675" prot="private" static="no">
+        <type>std::lock_guard&lt; std::mutex &gt;</type>
+        <definition>typedef std::lock_guard&lt;std::mutex&gt; _Lock</definition>
+        <argsstring></argsstring>
+        <name>_Lock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="233" column="1" bodyfile="pxr/imaging/hd/perfLog.h" bodystart="233" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_hd_perf_log_1a07c18e368f64c8b3c7bbd7bb598a7561" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class TfSingleton&lt; HdPerfLog &gt;</definition>
+        <argsstring></argsstring>
+        <name>TfSingleton&lt; HdPerfLog &gt;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="193" column="1" bodyfile="pxr/imaging/hd/perfLog.h" bodystart="195" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_perf_log_1aff15b3aecad565ceebfd5cc197563d3d" prot="private" static="no" mutable="no">
+        <type>_CacheMap</type>
+        <definition>_CacheMap _cacheMap</definition>
+        <argsstring></argsstring>
+        <name>_cacheMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="221" column="1" bodyfile="pxr/imaging/hd/perfLog.h" bodystart="221" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_perf_log_1a7604fdded9cc5738408bac7724e1ace9" prot="private" static="no" mutable="no">
+        <type>_CounterMap</type>
+        <definition>_CounterMap _counterMap</definition>
+        <argsstring></argsstring>
+        <name>_counterMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="225" column="1" bodyfile="pxr/imaging/hd/perfLog.h" bodystart="225" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_perf_log_1af1cc14eaea03b00784d973cc0e5fa96e" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_hd_resource_registry" kindref="compound">HdResourceRegistry</ref> * &gt;</type>
+        <definition>std::vector&lt;HdResourceRegistry *&gt; _resourceRegistryVector</definition>
+        <argsstring></argsstring>
+        <name>_resourceRegistryVector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="228" column="1" bodyfile="pxr/imaging/hd/perfLog.h" bodystart="228" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_perf_log_1a096e979db21287ad2b56b0ad270ac681" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _enabled</definition>
+        <argsstring></argsstring>
+        <name>_enabled</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="231" column="1" bodyfile="pxr/imaging/hd/perfLog.h" bodystart="231" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_perf_log_1a3f0b4c278cb19f9c2b2dbdb065f51e14" prot="private" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex _mutex</definition>
+        <argsstring></argsstring>
+        <name>_mutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="232" column="1" bodyfile="pxr/imaging/hd/perfLog.h" bodystart="232" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_hd_perf_log_1aed40d2ba6d8f330dd3c91b9dc52bf993" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>HD_API <ref refid="class_hd_perf_log" kindref="compound">HdPerfLog</ref> &amp;</type>
+        <definition>static HD_API HdPerfLog&amp; GetInstance</definition>
+        <argsstring>()</argsstring>
+        <name>GetInstance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="100" column="1" bodyfile="pxr/imaging/hd/perfLog.h" bodystart="100" bodyend="102"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_perf_log_1a43febb7d46d31d4f1884683458f74a0b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void AddCacheHit</definition>
+        <argsstring>(TfToken const &amp;name, SdfPath const &amp;id, TfToken const &amp;tag=TfToken())</argsstring>
+        <name>AddCacheHit</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>tag</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Tracks a cache hit for the named cache, the id and tag are reported when debug logging is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="107" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1a2e7848aeb10a8c8a6991e6e7e65297a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void AddCacheMiss</definition>
+        <argsstring>(TfToken const &amp;name, SdfPath const &amp;id, TfToken const &amp;tag=TfToken())</argsstring>
+        <name>AddCacheMiss</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>tag</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Tracks a cache miss for the named cache, the id and tag are reported when debug logging is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="114" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1a3f02203baeedeb4fe12ab464496c3e9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void ResetCache</definition>
+        <argsstring>(TfToken const &amp;name)</argsstring>
+        <name>ResetCache</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="119" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1abfa371f949ecbbb3f12bfa4b3cef5f8e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API double</type>
+        <definition>HD_API double GetCacheHitRatio</definition>
+        <argsstring>(TfToken const &amp;name)</argsstring>
+        <name>GetCacheHitRatio</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Gets the hit ratio (numHits / totalRequests) of a cache performance counter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="124" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1ad582555a10f45f19670b0e7f15f4448b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API size_t</type>
+        <definition>HD_API size_t GetCacheHits</definition>
+        <argsstring>(TfToken const &amp;name)</argsstring>
+        <name>GetCacheHits</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Gets the number of hit hits for a cache performance counter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="128" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1a521fb7993bbef3aecb8d213f950e39bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API size_t</type>
+        <definition>HD_API size_t GetCacheMisses</definition>
+        <argsstring>(TfToken const &amp;name)</argsstring>
+        <name>GetCacheMisses</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Gets the number of hit misses for a cache performance counter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="132" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1ae2c85ed5f826a44a920f11276db86c04" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref></type>
+        <definition>HD_API TfTokenVector GetCacheNames</definition>
+        <argsstring>()</argsstring>
+        <name>GetCacheNames</name>
+        <briefdescription>
+<para>Returns the names of all cache performance counters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="136" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1aa45ee46a9892ad88b96b72baa7232239" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref></type>
+        <definition>HD_API TfTokenVector GetCounterNames</definition>
+        <argsstring>()</argsstring>
+        <name>GetCounterNames</name>
+        <briefdescription>
+<para>Returns a vector of all performance counter names. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="140" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1af009ce701ebd0c18bc450781e3127d54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void IncrementCounter</definition>
+        <argsstring>(TfToken const &amp;name)</argsstring>
+        <name>IncrementCounter</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Increments a named counter by 1.0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="144" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1a26ef9fdc14e361ed3deb7a0fa4431157" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void DecrementCounter</definition>
+        <argsstring>(TfToken const &amp;name)</argsstring>
+        <name>DecrementCounter</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Decrements a named counter by 1.0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="148" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1ae2d93ca5d4bb0fb529656a1a59e812b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void SetCounter</definition>
+        <argsstring>(TfToken const &amp;name, double value)</argsstring>
+        <name>SetCounter</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Sets the value of a named counter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="152" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1a3eea1cbf0db7fb92e3d05c50fa08edc7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void AddCounter</definition>
+        <argsstring>(TfToken const &amp;name, double value)</argsstring>
+        <name>AddCounter</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Adds value to a named counter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="156" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1ab93bdcc690cbf7dcff37641c488ceb12" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void SubtractCounter</definition>
+        <argsstring>(TfToken const &amp;name, double value)</argsstring>
+        <name>SubtractCounter</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Subtracts value to a named counter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="160" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1a876caa4c65a99210b527030ca9e6e447" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API double</type>
+        <definition>HD_API double GetCounter</definition>
+        <argsstring>(TfToken const &amp;name)</argsstring>
+        <name>GetCounter</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Returns the current value of a named counter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="164" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1a099b294ffb5e8224b565b9d684a58f71" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void ResetCounters</definition>
+        <argsstring>()</argsstring>
+        <name>ResetCounters</name>
+        <briefdescription>
+<para>Reset all conter values to 0.0. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that this doesn&apos;t reset cache counters. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="169" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1ab54a4752efd8105eb26e795c150a0e4c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Enable</definition>
+        <argsstring>()</argsstring>
+        <name>Enable</name>
+        <briefdescription>
+<para>Enable performance logging. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="172" column="1" bodyfile="pxr/imaging/hd/perfLog.h" bodystart="172" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1a0b0a8402327309e2554c218967e472fe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Disable</definition>
+        <argsstring>()</argsstring>
+        <name>Disable</name>
+        <briefdescription>
+<para>Disable performance logging. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="175" column="1" bodyfile="pxr/imaging/hd/perfLog.h" bodystart="175" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1afdbdf95b8ba81976ab5f4bc412a5e34b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void AddResourceRegistry</definition>
+        <argsstring>(HdResourceRegistry *resourceRegistry)</argsstring>
+        <name>AddResourceRegistry</name>
+        <param>
+          <type><ref refid="class_hd_resource_registry" kindref="compound">HdResourceRegistry</ref> *</type>
+          <declname>resourceRegistry</declname>
+        </param>
+        <briefdescription>
+<para>Add a resource registry to the tracking. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="179" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1a68604d7e0e1bb1ead1ddfdd0e22e2310" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void RemoveResourceRegistry</definition>
+        <argsstring>(HdResourceRegistry *resourceRegistry)</argsstring>
+        <name>RemoveResourceRegistry</name>
+        <param>
+          <type><ref refid="class_hd_resource_registry" kindref="compound">HdResourceRegistry</ref> *</type>
+          <declname>resourceRegistry</declname>
+        </param>
+        <briefdescription>
+<para>Remove Resource Registry from the tracking. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="183" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1a5df3cee00086630e2f6a51722909985d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API std::vector&lt; <ref refid="class_hd_resource_registry" kindref="compound">HdResourceRegistry</ref> * &gt; const  &amp;</type>
+        <definition>HD_API std::vector&lt;HdResourceRegistry*&gt; const&amp; GetResourceRegistryVector</definition>
+        <argsstring>()</argsstring>
+        <name>GetResourceRegistryVector</name>
+        <briefdescription>
+<para>Returns a vector of resource registry. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="187" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hd_perf_log_1a8ef053bc8927c36b297f5e28e80dd3f9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdPerfLog</definition>
+        <argsstring>(const HdPerfLog &amp;)=delete</argsstring>
+        <name>HdPerfLog</name>
+        <param>
+          <type>const <ref refid="class_hd_perf_log" kindref="compound">HdPerfLog</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="192" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1a35e64aeb7904d97a82f14b03b5b0994e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hd_perf_log" kindref="compound">HdPerfLog</ref> &amp;</type>
+        <definition>HdPerfLog&amp; operator=</definition>
+        <argsstring>(const HdPerfLog &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_hd_perf_log" kindref="compound">HdPerfLog</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="193" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1aeb260bf4bf75306ee946441d9feeb494" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API HdPerfLog</definition>
+        <argsstring>()</argsstring>
+        <name>HdPerfLog</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="196" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_perf_log_1a3b40edf9f057a7edee176b6c8f3cce39" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API ~HdPerfLog</definition>
+        <argsstring>()</argsstring>
+        <name>~HdPerfLog</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/perfLog.h" line="197" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Performance counter monitoring. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="pxr/imaging/hd/perfLog.h" line="97" column="1" bodyfile="pxr/imaging/hd/perfLog.h" bodystart="96" bodyend="234"/>
+    <listofallmembers>
+      <member refid="class_hd_perf_log_1a2684ded732e00a79cef263e9d7580305" prot="private" virt="non-virtual"><scope>HdPerfLog</scope><name>_CacheMap</name></member>
+      <member refid="class_hd_perf_log_1aff15b3aecad565ceebfd5cc197563d3d" prot="private" virt="non-virtual"><scope>HdPerfLog</scope><name>_cacheMap</name></member>
+      <member refid="class_hd_perf_log_1a51f8dad40262c5b9b39ee614bc98c4cd" prot="private" virt="non-virtual"><scope>HdPerfLog</scope><name>_CounterMap</name></member>
+      <member refid="class_hd_perf_log_1a7604fdded9cc5738408bac7724e1ace9" prot="private" virt="non-virtual"><scope>HdPerfLog</scope><name>_counterMap</name></member>
+      <member refid="class_hd_perf_log_1a096e979db21287ad2b56b0ad270ac681" prot="private" virt="non-virtual"><scope>HdPerfLog</scope><name>_enabled</name></member>
+      <member refid="class_hd_perf_log_1ab9d7e45fb2676fc3740aa4e2db6b0675" prot="private" virt="non-virtual"><scope>HdPerfLog</scope><name>_Lock</name></member>
+      <member refid="class_hd_perf_log_1a3f0b4c278cb19f9c2b2dbdb065f51e14" prot="private" virt="non-virtual"><scope>HdPerfLog</scope><name>_mutex</name></member>
+      <member refid="class_hd_perf_log_1af1cc14eaea03b00784d973cc0e5fa96e" prot="private" virt="non-virtual"><scope>HdPerfLog</scope><name>_resourceRegistryVector</name></member>
+      <member refid="class_hd_perf_log_1a43febb7d46d31d4f1884683458f74a0b" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>AddCacheHit</name></member>
+      <member refid="class_hd_perf_log_1a2e7848aeb10a8c8a6991e6e7e65297a4" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>AddCacheMiss</name></member>
+      <member refid="class_hd_perf_log_1a3eea1cbf0db7fb92e3d05c50fa08edc7" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>AddCounter</name></member>
+      <member refid="class_hd_perf_log_1afdbdf95b8ba81976ab5f4bc412a5e34b" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>AddResourceRegistry</name></member>
+      <member refid="class_hd_perf_log_1a26ef9fdc14e361ed3deb7a0fa4431157" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>DecrementCounter</name></member>
+      <member refid="class_hd_perf_log_1a0b0a8402327309e2554c218967e472fe" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>Disable</name></member>
+      <member refid="class_hd_perf_log_1ab54a4752efd8105eb26e795c150a0e4c" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>Enable</name></member>
+      <member refid="class_hd_perf_log_1abfa371f949ecbbb3f12bfa4b3cef5f8e" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>GetCacheHitRatio</name></member>
+      <member refid="class_hd_perf_log_1ad582555a10f45f19670b0e7f15f4448b" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>GetCacheHits</name></member>
+      <member refid="class_hd_perf_log_1a521fb7993bbef3aecb8d213f950e39bb" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>GetCacheMisses</name></member>
+      <member refid="class_hd_perf_log_1ae2c85ed5f826a44a920f11276db86c04" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>GetCacheNames</name></member>
+      <member refid="class_hd_perf_log_1a876caa4c65a99210b527030ca9e6e447" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>GetCounter</name></member>
+      <member refid="class_hd_perf_log_1aa45ee46a9892ad88b96b72baa7232239" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>GetCounterNames</name></member>
+      <member refid="class_hd_perf_log_1aed40d2ba6d8f330dd3c91b9dc52bf993" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>GetInstance</name></member>
+      <member refid="class_hd_perf_log_1a5df3cee00086630e2f6a51722909985d" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>GetResourceRegistryVector</name></member>
+      <member refid="class_hd_perf_log_1a8ef053bc8927c36b297f5e28e80dd3f9" prot="private" virt="non-virtual"><scope>HdPerfLog</scope><name>HdPerfLog</name></member>
+      <member refid="class_hd_perf_log_1aeb260bf4bf75306ee946441d9feeb494" prot="private" virt="non-virtual"><scope>HdPerfLog</scope><name>HdPerfLog</name></member>
+      <member refid="class_hd_perf_log_1af009ce701ebd0c18bc450781e3127d54" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>IncrementCounter</name></member>
+      <member refid="class_hd_perf_log_1a35e64aeb7904d97a82f14b03b5b0994e" prot="private" virt="non-virtual"><scope>HdPerfLog</scope><name>operator=</name></member>
+      <member refid="class_hd_perf_log_1a68604d7e0e1bb1ead1ddfdd0e22e2310" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>RemoveResourceRegistry</name></member>
+      <member refid="class_hd_perf_log_1a3f02203baeedeb4fe12ab464496c3e9e" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>ResetCache</name></member>
+      <member refid="class_hd_perf_log_1a099b294ffb5e8224b565b9d684a58f71" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>ResetCounters</name></member>
+      <member refid="class_hd_perf_log_1ae2d93ca5d4bb0fb529656a1a59e812b4" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>SetCounter</name></member>
+      <member refid="class_hd_perf_log_1ab93bdcc690cbf7dcff37641c488ceb12" prot="public" virt="non-virtual"><scope>HdPerfLog</scope><name>SubtractCounter</name></member>
+      <member refid="class_hd_perf_log_1a07c18e368f64c8b3c7bbd7bb598a7561" prot="private" virt="non-virtual"><scope>HdPerfLog</scope><name>TfSingleton&lt; HdPerfLog &gt;</name></member>
+      <member refid="class_hd_perf_log_1a3b40edf9f057a7edee176b6c8f3cce39" prot="private" virt="non-virtual"><scope>HdPerfLog</scope><name>~HdPerfLog</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

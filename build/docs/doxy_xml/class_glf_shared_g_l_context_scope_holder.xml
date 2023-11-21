@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_glf_shared_g_l_context_scope_holder" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>GlfSharedGLContextScopeHolder</compoundname>
+    <basecompoundref refid="class_glf_g_l_context_scope_holder" prot="private" virt="non-virtual">GlfGLContextScopeHolder</basecompoundref>
+    <includes refid="gl_context_8h" local="no">glContext.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_glf_shared_g_l_context_scope_holder_1aedb24e04a7c431c488cbecc1e30242ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GlfSharedGLContextScopeHolder</definition>
+        <argsstring>()</argsstring>
+        <name>GlfSharedGLContextScopeHolder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/glContext.h" line="239" column="1" bodyfile="pxr/imaging/glf/glContext.h" bodystart="239" bodyend="243"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_glf_shared_g_l_context_scope_holder_1a75681d199e4f6eeb4e175e89d7881d01" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>GlfGLContextSharedPtr</type>
+        <definition>static GlfGLContextSharedPtr _GetSharedContext</definition>
+        <argsstring>()</argsstring>
+        <name>_GetSharedContext</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/glContext.h" line="246" column="1" bodyfile="pxr/imaging/glf/glContext.h" bodystart="246" bodyend="252"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Helper class to make the shared GL context current. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Example:</para>
+<para><programlisting><codeline><highlight class="normal">class<sp/>MyTexture<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>MyTexture()<sp/>:<sp/>_textureId(0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>allocate<sp/>from<sp/>the<sp/>shared<sp/>context<sp/>pool.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GlfSharedGLContextScopeHolder<sp/>sharedContextScopeHolder;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glGenTextures(1,<sp/>&amp;_textureId);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>~MyTexture()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>delete<sp/>from<sp/>the<sp/>shared<sp/>context<sp/>pool.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GlfSharedGLContextScopeHolder<sp/>sharedContextScopeHolder;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glDeleteTextures(1,<sp/>&amp;_texureId);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_textureId<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>The<sp/>caller<sp/>is<sp/>responsible<sp/>for<sp/>making<sp/>sure<sp/>that<sp/>a<sp/>suitable</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>GL<sp/>context<sp/>is<sp/>current<sp/>before<sp/>calling<sp/>other<sp/>methods.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>Bind()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glBindTexture(GL_TEXTURE_2D,<sp/>_textureId);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>Unbind()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glBindTexture(GL_TEXTURE_2D,<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>GLuint<sp/>_textureId;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+</programlisting> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1469">
+        <label>GlfSharedGLContextScopeHolder</label>
+        <link refid="class_glf_shared_g_l_context_scope_holder"/>
+        <childnode refid="1470" relation="private-inheritance">
+        </childnode>
+      </node>
+      <node id="1470">
+        <label>GlfGLContextScopeHolder</label>
+        <link refid="class_glf_g_l_context_scope_holder"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1471">
+        <label>GlfSharedGLContextScopeHolder</label>
+        <link refid="class_glf_shared_g_l_context_scope_holder"/>
+        <childnode refid="1472" relation="private-inheritance">
+        </childnode>
+      </node>
+      <node id="1472">
+        <label>GlfGLContextScopeHolder</label>
+        <link refid="class_glf_g_l_context_scope_holder"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/glf/glContext.h" line="237" column="1" bodyfile="pxr/imaging/glf/glContext.h" bodystart="236" bodyend="253"/>
+    <listofallmembers>
+      <member refid="class_glf_shared_g_l_context_scope_holder_1a75681d199e4f6eeb4e175e89d7881d01" prot="private" virt="non-virtual"><scope>GlfSharedGLContextScopeHolder</scope><name>_GetSharedContext</name></member>
+      <member refid="class_glf_g_l_context_scope_holder_1a9c1b647a70ebbec19fd18771eabf9165" prot="private" virt="non-virtual"><scope>GlfSharedGLContextScopeHolder</scope><name>_MakeNewContextCurrent</name></member>
+      <member refid="class_glf_g_l_context_scope_holder_1a594e92a76231189d4ebe59ae1ad4e978" prot="private" virt="non-virtual"><scope>GlfSharedGLContextScopeHolder</scope><name>_RestoreOldContext</name></member>
+      <member refid="class_glf_g_l_context_scope_holder_1ac9c0101fe7f8467004625de589a5163c" prot="private" virt="non-virtual"><scope>GlfSharedGLContextScopeHolder</scope><name>GlfGLContextScopeHolder</name></member>
+      <member refid="class_glf_g_l_context_scope_holder_1a7106d0bdc4a054823aee13102d08c295" prot="private" virt="non-virtual"><scope>GlfSharedGLContextScopeHolder</scope><name>GlfGLContextScopeHolder</name></member>
+      <member refid="class_glf_shared_g_l_context_scope_holder_1aedb24e04a7c431c488cbecc1e30242ab" prot="public" virt="non-virtual"><scope>GlfSharedGLContextScopeHolder</scope><name>GlfSharedGLContextScopeHolder</name></member>
+      <member refid="class_glf_g_l_context_scope_holder_1a5f6c66a1252b2a5a6d18e0a18cf3d177" prot="private" virt="non-virtual"><scope>GlfSharedGLContextScopeHolder</scope><name>operator=</name></member>
+      <member refid="class_glf_g_l_context_scope_holder_1ad3716f47a6c41b30e8dcdab9267c79fe" prot="private" virt="non-virtual"><scope>GlfSharedGLContextScopeHolder</scope><name>~GlfGLContextScopeHolder</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

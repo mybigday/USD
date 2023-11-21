@@ -1,0 +1,394 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_imaging_draw_mode_scene_index" kind="class" language="C++" prot="public">
+    <compoundname>UsdImagingDrawModeSceneIndex</compoundname>
+    <basecompoundref refid="class_hd_single_input_filtering_scene_index_base" prot="public" virt="non-virtual">HdSingleInputFilteringSceneIndexBase</basecompoundref>
+    <includes refid="draw_mode_scene_index_8h" local="no">drawModeSceneIndex.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_usd_imaging_draw_mode_scene_index_1aba6f86b522f76f476136b5e987eb8015" prot="private" static="no" mutable="no">
+        <type>std::map&lt; <ref refid="class_sdf_path" kindref="compound">SdfPath</ref>, UsdImaging_DrawModeStandinSharedPtr &gt;</type>
+        <definition>std::map&lt;SdfPath, UsdImaging_DrawModeStandinSharedPtr&gt; _prims</definition>
+        <argsstring></argsstring>
+        <name>_prims</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usdImaging/usdImaging/drawModeSceneIndex.h" line="111" column="1" bodyfile="pxr/usdImaging/usdImaging/drawModeSceneIndex.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_usd_imaging_draw_mode_scene_index_1a335e439e94bdb2786de2fb934a413b12" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDIMAGING_API UsdImagingDrawModeSceneIndexRefPtr</type>
+        <definition>static USDIMAGING_API UsdImagingDrawModeSceneIndexRefPtr New</definition>
+        <argsstring>(const HdSceneIndexBaseRefPtr &amp;inputSceneIndex, const HdContainerDataSourceHandle &amp;inputArgs)</argsstring>
+        <name>New</name>
+        <param>
+          <type>const HdSceneIndexBaseRefPtr &amp;</type>
+          <declname>inputSceneIndex</declname>
+        </param>
+        <param>
+          <type>const HdContainerDataSourceHandle &amp;</type>
+          <declname>inputArgs</declname>
+        </param>
+        <briefdescription>
+<para>inputArgs unused for now. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>In the future, we might use it to say that we want to break up the geometry and use UsdPreviewSurface to work across different renderers. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usdImaging/usdImaging/drawModeSceneIndex.h" line="60" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_imaging_draw_mode_scene_index_1a31fbb4af475e096ed52e3db43db22249" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDIMAGING_API</type>
+        <definition>USDIMAGING_API ~UsdImagingDrawModeSceneIndex</definition>
+        <argsstring>() override</argsstring>
+        <name>~UsdImagingDrawModeSceneIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usdImaging/usdImaging/drawModeSceneIndex.h" line="64" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_imaging_draw_mode_scene_index_1a4838527885ff92539845ba52882d2a56" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USDIMAGING_API <ref refid="struct_hd_scene_index_prim" kindref="compound">HdSceneIndexPrim</ref></type>
+        <definition>USDIMAGING_API HdSceneIndexPrim GetPrim</definition>
+        <argsstring>(const SdfPath &amp;primPath) const override</argsstring>
+        <name>GetPrim</name>
+        <reimplements refid="class_hd_scene_index_base_1abd7fb68e635586e7cabb74b1dd0ddc0e">GetPrim</reimplements>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>primPath</declname>
+        </param>
+        <briefdescription>
+<para>Returns a pair of (prim type, datasource) for the object at <computeroutput>primPath</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no such object exists, the type will be the empty token and the datasource will be null. This function is expected to be threadsafe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usdImaging/usdImaging/drawModeSceneIndex.h" line="67" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_imaging_draw_mode_scene_index_1a33d8098e368b10320813798c8beda58e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USDIMAGING_API SdfPathVector</type>
+        <definition>USDIMAGING_API SdfPathVector GetChildPrimPaths</definition>
+        <argsstring>(const SdfPath &amp;primPath) const override</argsstring>
+        <name>GetChildPrimPaths</name>
+        <reimplements refid="class_hd_scene_index_base_1a15f110d26e84bc60a48a201f8c8315c2">GetChildPrimPaths</reimplements>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>primPath</declname>
+        </param>
+        <briefdescription>
+<para>Returns the paths of all scene index prims located immediately below <computeroutput>primPath</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function can be used to traverse the scene by recursing from <computeroutput><ref refid="class_sdf_path_1a9e77b565c10268c2b55f92559f621606" kindref="member">SdfPath::AbsoluteRootPath()</ref></computeroutput>; such a traversal is expected to give the same set of prims as the flattening of the scene index&apos;s <computeroutput>PrimsAdded</computeroutput> and <computeroutput>PrimsRemoved</computeroutput> messages. This function is expected to be threadsafe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usdImaging/usdImaging/drawModeSceneIndex.h" line="69" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_usd_imaging_draw_mode_scene_index_1a74a6cc6117b075b4e94a6afb59abe0f5" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>UsdImagingDrawModeSceneIndex</definition>
+        <argsstring>(const HdSceneIndexBaseRefPtr &amp;inputSceneIndex, const HdContainerDataSourceHandle &amp;inputArgs)</argsstring>
+        <name>UsdImagingDrawModeSceneIndex</name>
+        <param>
+          <type>const HdSceneIndexBaseRefPtr &amp;</type>
+          <declname>inputSceneIndex</declname>
+        </param>
+        <param>
+          <type>const HdContainerDataSourceHandle &amp;</type>
+          <declname>inputArgs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usdImaging/usdImaging/drawModeSceneIndex.h" line="72" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_imaging_draw_mode_scene_index_1a87740c0bd144a8b31c48db805edb3a49" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void _PrimsAdded</definition>
+        <argsstring>(const HdSceneIndexBase &amp;sender, const HdSceneIndexObserver::AddedPrimEntries &amp;entries) override</argsstring>
+        <name>_PrimsAdded</name>
+        <reimplements refid="class_hd_single_input_filtering_scene_index_base_1ab73b3a87e097c62a5e7ffa019147f81b">_PrimsAdded</reimplements>
+        <param>
+          <type>const <ref refid="class_hd_scene_index_base" kindref="compound">HdSceneIndexBase</ref> &amp;</type>
+          <declname>sender</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_small_vector" kindref="compound">HdSceneIndexObserver::AddedPrimEntries</ref> &amp;</type>
+          <declname>entries</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usdImaging/usdImaging/drawModeSceneIndex.h" line="76" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_imaging_draw_mode_scene_index_1ade837de5fd93db2b113caee8617e7d76" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void _PrimsRemoved</definition>
+        <argsstring>(const HdSceneIndexBase &amp;sender, const HdSceneIndexObserver::RemovedPrimEntries &amp;entries) override</argsstring>
+        <name>_PrimsRemoved</name>
+        <reimplements refid="class_hd_single_input_filtering_scene_index_base_1a5b30c4ddeb52feb26fc9294b303161db">_PrimsRemoved</reimplements>
+        <param>
+          <type>const <ref refid="class_hd_scene_index_base" kindref="compound">HdSceneIndexBase</ref> &amp;</type>
+          <declname>sender</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_small_vector" kindref="compound">HdSceneIndexObserver::RemovedPrimEntries</ref> &amp;</type>
+          <declname>entries</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usdImaging/usdImaging/drawModeSceneIndex.h" line="80" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_imaging_draw_mode_scene_index_1ab521311aec584a24c22a38753e1a05fe" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void _PrimsDirtied</definition>
+        <argsstring>(const HdSceneIndexBase &amp;sender, const HdSceneIndexObserver::DirtiedPrimEntries &amp;entries) override</argsstring>
+        <name>_PrimsDirtied</name>
+        <reimplements refid="class_hd_single_input_filtering_scene_index_base_1a69eee3e4db69de7f8fc55f66923f4f54">_PrimsDirtied</reimplements>
+        <param>
+          <type>const <ref refid="class_hd_scene_index_base" kindref="compound">HdSceneIndexBase</ref> &amp;</type>
+          <declname>sender</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_small_vector" kindref="compound">HdSceneIndexObserver::DirtiedPrimEntries</ref> &amp;</type>
+          <declname>entries</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usdImaging/usdImaging/drawModeSceneIndex.h" line="84" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_usd_imaging_draw_mode_scene_index_1ae3c1ce00423588d243dbc701825bd0bf" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _DeleteSubtree</definition>
+        <argsstring>(const SdfPath &amp;path)</argsstring>
+        <name>_DeleteSubtree</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usdImaging/usdImaging/drawModeSceneIndex.h" line="90" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_imaging_draw_mode_scene_index_1af09c54b55f30bcbe7880b0e7f0ab4509" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RecursePrims</definition>
+        <argsstring>(const TfToken &amp;drawMode, const SdfPath &amp;path, const HdSceneIndexPrim &amp;prim, HdSceneIndexObserver::AddedPrimEntries *entries)</argsstring>
+        <name>_RecursePrims</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>drawMode</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_hd_scene_index_prim" kindref="compound">HdSceneIndexPrim</ref> &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_small_vector" kindref="compound">HdSceneIndexObserver::AddedPrimEntries</ref> *</type>
+          <declname>entries</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usdImaging/usdImaging/drawModeSceneIndex.h" line="95" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_imaging_draw_mode_scene_index_1ad6b79378401ec48a8a058513be716d65" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>UsdImaging_DrawModeStandinSharedPtr</type>
+        <definition>UsdImaging_DrawModeStandinSharedPtr _FindStandinForPrimOrAncestor</definition>
+        <argsstring>(const SdfPath &amp;path, size_t *const relPathLen) const</argsstring>
+        <name>_FindStandinForPrimOrAncestor</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>size_t *const</type>
+          <declname>relPathLen</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usdImaging/usdImaging/drawModeSceneIndex.h" line="105" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A scene index replacing geometry based on the draw mode. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Inspects a prim&apos;s values for drawMode and applyDrawMode (see UsdImagingGeomModelSchema). If the drawMode is valid and not the default and applyDrawMode is true, the prim and all its descendents are replaced by stand-in geometry specified by the draw mode.</para>
+<para>Note that the material that ensures the correct texture is used on each face is using glslfx nodes and thus only works properly in Storm.</para>
+<para>Using a UsdPreviewSurface instead (so that it works accross different renderers) probably requires breaking up the geometry into several pieces. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="7036">
+        <label>HdSingleInputFilteringSceneIndexBase</label>
+        <link refid="class_hd_single_input_filtering_scene_index_base"/>
+        <childnode refid="7037" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7040">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="7035">
+        <label>UsdImagingDrawModeSceneIndex</label>
+        <link refid="class_usd_imaging_draw_mode_scene_index"/>
+        <childnode refid="7036" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7037">
+        <label>HdFilteringSceneIndexBase</label>
+        <link refid="class_hd_filtering_scene_index_base"/>
+        <childnode refid="7038" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7039">
+        <label>TfRefBase</label>
+        <link refid="class_tf_ref_base"/>
+      </node>
+      <node id="7038">
+        <label>HdSceneIndexBase</label>
+        <link refid="class_hd_scene_index_base"/>
+        <childnode refid="7039" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7040" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="7042">
+        <label>HdSingleInputFilteringSceneIndexBase</label>
+        <link refid="class_hd_single_input_filtering_scene_index_base"/>
+        <childnode refid="7043" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7046">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="7041">
+        <label>UsdImagingDrawModeSceneIndex</label>
+        <link refid="class_usd_imaging_draw_mode_scene_index"/>
+        <childnode refid="7042" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7043">
+        <label>HdFilteringSceneIndexBase</label>
+        <link refid="class_hd_filtering_scene_index_base"/>
+        <childnode refid="7044" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7045">
+        <label>TfRefBase</label>
+        <link refid="class_tf_ref_base"/>
+      </node>
+      <node id="7044">
+        <label>HdSceneIndexBase</label>
+        <link refid="class_hd_scene_index_base"/>
+        <childnode refid="7045" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7046" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/usdImaging/usdImaging/drawModeSceneIndex.h" line="52" column="1" bodyfile="pxr/usdImaging/usdImaging/drawModeSceneIndex.h" bodystart="51" bodyend="112"/>
+    <listofallmembers>
+      <member refid="class_tf_weak_base_1a01aa4c4b93df067f2ec9b9e5fa4c35b3" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>__GetTfWeakBase__</name></member>
+      <member refid="class_usd_imaging_draw_mode_scene_index_1ae3c1ce00423588d243dbc701825bd0bf" prot="private" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>_DeleteSubtree</name></member>
+      <member refid="class_usd_imaging_draw_mode_scene_index_1ad6b79378401ec48a8a058513be716d65" prot="private" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>_FindStandinForPrimOrAncestor</name></member>
+      <member refid="class_hd_single_input_filtering_scene_index_base_1a4ede3398cf97c901302e501f191079a9" prot="protected" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>_GetInputSceneIndex</name></member>
+      <member refid="class_tf_weak_base_1a6a5533162e8efab1be47acd6ccd5254c" prot="protected" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>_HasRemnant</name></member>
+      <member refid="class_hd_scene_index_base_1a4c16c67e47002938f665bbef4897e777" prot="protected" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>_IsObserved</name></member>
+      <member refid="class_usd_imaging_draw_mode_scene_index_1aba6f86b522f76f476136b5e987eb8015" prot="private" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>_prims</name></member>
+      <member refid="class_usd_imaging_draw_mode_scene_index_1a87740c0bd144a8b31c48db805edb3a49" prot="protected" virt="virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>_PrimsAdded</name></member>
+      <member refid="class_usd_imaging_draw_mode_scene_index_1ab521311aec584a24c22a38753e1a05fe" prot="protected" virt="virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>_PrimsDirtied</name></member>
+      <member refid="class_usd_imaging_draw_mode_scene_index_1ade837de5fd93db2b113caee8617e7d76" prot="protected" virt="virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>_PrimsRemoved</name></member>
+      <member refid="class_hd_single_input_filtering_scene_index_base_1a606b6ef4eca786e387e420a19b0784be" prot="protected" virt="virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>_PrimsRenamed</name></member>
+      <member refid="class_usd_imaging_draw_mode_scene_index_1af09c54b55f30bcbe7880b0e7f0ab4509" prot="private" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>_RecursePrims</name></member>
+      <member refid="class_tf_weak_base_1a95139d2f4d04eb706664a4f47eb93918" prot="protected" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>_Register</name></member>
+      <member refid="class_tf_weak_base_1ac1312732482c8a286522f703f2cf90d1" prot="protected" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>_Register</name></member>
+      <member refid="class_hd_scene_index_base_1a566958f83fe2054d86628e4c4e2f841e" prot="protected" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>_SendPrimsAdded</name></member>
+      <member refid="class_hd_scene_index_base_1a9c1dac2d67ffd966dfbcd412a22c1179" prot="protected" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>_SendPrimsDirtied</name></member>
+      <member refid="class_hd_scene_index_base_1a16e280a551530aaba14f7ce5df20389a" prot="protected" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>_SendPrimsRemoved</name></member>
+      <member refid="class_hd_scene_index_base_1a3375e09c9ad141da11cebb7d3d7f23e3" prot="protected" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>_SendPrimsRenamed</name></member>
+      <member refid="class_hd_scene_index_base_1a3e9408d451e386dae6530ebb7f171fa6" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>AddObserver</name></member>
+      <member refid="class_hd_scene_index_base_1a8646777300af4dabb1646cc413ba74c0" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>AddTag</name></member>
+      <member refid="class_tf_weak_base_1a16f1e27cc0c7c606ffb397b7d970ed10" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>EnableNotification2</name></member>
+      <member refid="class_usd_imaging_draw_mode_scene_index_1a33d8098e368b10320813798c8beda58e" prot="public" virt="virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>GetChildPrimPaths</name></member>
+      <member refid="class_tf_ref_base_1abcd501e4bb37d7a93faa4e625e96ecf7" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>GetCurrentCount</name></member>
+      <member refid="class_hd_scene_index_base_1a00f5bb082b3df6056ae34e990c90b915" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>GetDataSource</name></member>
+      <member refid="class_hd_scene_index_base_1a6427ae8edac920bdba22e03b2bd26b76" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>GetDisplayName</name></member>
+      <member refid="class_hd_single_input_filtering_scene_index_base_1abff393d6b3b869fdc92e2b0001480b90" prot="public" virt="virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>GetInputScenes</name></member>
+      <member refid="class_usd_imaging_draw_mode_scene_index_1a4838527885ff92539845ba52882d2a56" prot="public" virt="virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>GetPrim</name></member>
+      <member refid="class_tf_ref_base_1abc1926aa1f9b1ad25c5c583b92bcf14b" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>GetRefCount</name></member>
+      <member refid="class_hd_scene_index_base_1a901e14a5ed6b0b161c9ba7ca823900b2" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>GetTags</name></member>
+      <member refid="class_tf_weak_base_1a3241c32a82fbed0716a77049f6134e1e" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>GetUniqueIdentifier</name></member>
+      <member refid="class_hd_scene_index_base_1aca3881af587f5e1f09fb0549b48c7ed3" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>HasTag</name></member>
+      <member refid="class_hd_scene_index_base_1a2450ffd6e3314b82b50c8b5090dfdf4c" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>HdSceneIndexBase</name></member>
+      <member refid="class_hd_single_input_filtering_scene_index_base_1a180fd397c57cabbf749d6e094fa932aa" prot="protected" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>HdSingleInputFilteringSceneIndexBase</name></member>
+      <member refid="class_tf_ref_base_1aab8bc91cf9cff7c6e1da23dc59f5ad1f" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>IsUnique</name></member>
+      <member refid="class_usd_imaging_draw_mode_scene_index_1a335e439e94bdb2786de2fb934a413b12" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>New</name></member>
+      <member refid="class_tf_weak_base_1af890ac314073e903458bf6b2397566b5" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>operator=</name></member>
+      <member refid="class_hd_scene_index_base_1a3483e1a165f156162974f44c4375e833" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>RemoveObserver</name></member>
+      <member refid="class_hd_scene_index_base_1af5404412acb326a31b22ce693129e4f2" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>RemoveTag</name></member>
+      <member refid="class_hd_scene_index_base_1ae0b32e5db6a18d55dcbb753e2159d472" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>SetDisplayName</name></member>
+      <member refid="class_tf_ref_base_1a6ee7fb6df1df9be9afbda405643ecb6c" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>SetShouldInvokeUniqueChangedListener</name></member>
+      <member refid="class_tf_ref_base_1a33e6c8ffe0caf7dac94ba5c4a4485fbd" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>SetUniqueChangedListener</name></member>
+      <member refid="class_tf_ref_base_1aa2d330100c1dde0a28658bbd0bd7e7bd" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>TfRefBase</name></member>
+      <member refid="class_tf_weak_base_1a6e4abdd663654f8c8019702a464de8d6" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_weak_base_1affc4c00d0bbfdfe4f9e6a8b2e81be368" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_ref_base_1a86baed63f8017038997266bdd638f65e" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>UniqueChangedFuncPtr</name></member>
+      <member refid="class_usd_imaging_draw_mode_scene_index_1a74a6cc6117b075b4e94a6afb59abe0f5" prot="protected" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>UsdImagingDrawModeSceneIndex</name></member>
+      <member refid="class_hd_scene_index_base_1a28d69ae317c87d23851c198c0ccbf0d1" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>~HdSceneIndexBase</name></member>
+      <member refid="class_tf_ref_base_1abc8b2a655b2693dacab986b70c30f28a" prot="protected" virt="virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>~TfRefBase</name></member>
+      <member refid="class_tf_weak_base_1a778020f525b66def8a284c6f020592c2" prot="protected" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>~TfWeakBase</name></member>
+      <member refid="class_usd_imaging_draw_mode_scene_index_1a31fbb4af475e096ed52e3db43db22249" prot="public" virt="non-virtual"><scope>UsdImagingDrawModeSceneIndex</scope><name>~UsdImagingDrawModeSceneIndex</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

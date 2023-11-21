@@ -1,0 +1,251 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hdx_selection_tracker" kind="class" language="C++" prot="public">
+    <compoundname>HdxSelectionTracker</compoundname>
+    <includes refid="selection_tracker_8h" local="no">selectionTracker.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hdx_selection_tracker_1af7a15cebe2763668ef92532b27531a25" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; _MergedSelection &gt;</type>
+        <definition>std::unique_ptr&lt;_MergedSelection&gt; _mergedSelection</definition>
+        <argsstring></argsstring>
+        <name>_mergedSelection</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdx/selectionTracker.h" line="176" column="1" bodyfile="pxr/imaging/hdx/selectionTracker.h" bodystart="175" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hdx_selection_tracker_1aad45876915a668bf92565fd93130ddb9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HDX_API</type>
+        <definition>HDX_API HdxSelectionTracker</definition>
+        <argsstring>()</argsstring>
+        <name>HdxSelectionTracker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdx/selectionTracker.h" line="113" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hdx_selection_tracker_1ab32360e50aa6bd360acb5c7ed5c2c35b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual ~HdxSelectionTracker</definition>
+        <argsstring>()</argsstring>
+        <name>~HdxSelectionTracker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdx/selectionTracker.h" line="114" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hdx_selection_tracker_1a24dd3059c81a4966976dcbb36594980d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HDX_API void</type>
+        <definition>virtual HDX_API void UpdateSelection</definition>
+        <argsstring>(HdRenderIndex *index)</argsstring>
+        <name>UpdateSelection</name>
+        <param>
+          <type><ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> *</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Optional override to update the selection (either compute <ref refid="class_hd_selection" kindref="compound">HdSelection</ref> and call SetSelection or update a scene index with selection information using the HdSelectionsSchema) during <ref refid="class_hdx_selection_task_1ad715ec971d8d1be92ef2aa0b4790bb64" kindref="member">HdxSelectionTask::Prepare</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdx/selectionTracker.h" line="120" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hdx_selection_tracker_1a5c58a0d659fc6a37d545968198c1aa99" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HDX_API bool</type>
+        <definition>virtual HDX_API bool GetSelectionOffsetBuffer</definition>
+        <argsstring>(const HdRenderIndex *index, bool enableSelectionHighlight, bool enableLocateHighlight, VtIntArray *offsets) const</argsstring>
+        <name>GetSelectionOffsetBuffer</name>
+        <param>
+          <type>const <ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> *</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>enableSelectionHighlight</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>enableLocateHighlight</declname>
+        </param>
+        <param>
+          <type>VtIntArray *</type>
+          <declname>offsets</declname>
+        </param>
+        <briefdescription>
+<para>Encodes the selection state (HdxSelection) as an integer array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is uploaded to the GPU and decoded in the fragment shader to provide selection highlighting behavior. See <ref refid="class_hdx_selection_task" kindref="compound">HdxSelectionTask</ref>. Returns true if offsets has anything selected. <computeroutput>enableSelectionHighlight</computeroutput> will populate selection buffer for any active selection highlighting if true. <computeroutput>enableLocateHighlight</computeroutput> will populate selection buffer for any active locate (rollover) highlighting if true. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdx/selectionTracker.h" line="131" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hdx_selection_tracker_1a0b4acc92523763082d2a10ba1b13be24" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HDX_API VtVec4fArray</type>
+        <definition>virtual HDX_API VtVec4fArray GetSelectedPointColors</definition>
+        <argsstring>(const HdRenderIndex *index)</argsstring>
+        <name>GetSelectedPointColors</name>
+        <param>
+          <type>const <ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> *</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdx/selectionTracker.h" line="137" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hdx_selection_tracker_1a59e15a60697e2ff0f5a6edc7319c9b06" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HDX_API int</type>
+        <definition>HDX_API int GetVersion</definition>
+        <argsstring>() const</argsstring>
+        <name>GetVersion</name>
+        <briefdescription>
+<para>Returns a monotonically increasing version number, which increments whenever the result of GetBuffers has changed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that this number may overflow and become negative, thus clients should use a not-equal comparison. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdx/selectionTracker.h" line="144" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hdx_selection_tracker_1ac04453fbb7434c00f1e89f74f7b0b6f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HDX_API void</type>
+        <definition>HDX_API void SetSelection</definition>
+        <argsstring>(HdSelectionSharedPtr const &amp;selection)</argsstring>
+        <name>SetSelection</name>
+        <param>
+          <type>HdSelectionSharedPtr const &amp;</type>
+          <declname>selection</declname>
+        </param>
+        <briefdescription>
+<para>Set the collection of selected objects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The ultimate selection (used for selection highlighting) will be the union of the collection set here and the one computed by querying the scene indices (using the <ref refid="class_hdx_selection_scene_index_observer" kindref="compound">HdxSelectionSceneIndexObserver</ref>). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdx/selectionTracker.h" line="151" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hdx_selection_tracker_1a9ad500d1242ae735708529f0d3349bee" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HDX_API HdSelectionSharedPtr const  &amp;</type>
+        <definition>HDX_API HdSelectionSharedPtr const&amp; GetSelectionMap</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSelectionMap</name>
+        <briefdescription>
+<para>Returns selection set with SetSelection. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>XXX: Rename to GetSelection </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdx/selectionTracker.h" line="157" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_hdx_selection_tracker_1a4083c914105006ad28cfab4cd5e80459" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HDX_API void</type>
+        <definition>HDX_API void _IncrementVersion</definition>
+        <argsstring>()</argsstring>
+        <name>_IncrementVersion</name>
+        <briefdescription>
+<para>Increments the internal selection state version, used for invalidation via <ref refid="class_hdx_selection_tracker_1a59e15a60697e2ff0f5a6edc7319c9b06" kindref="member">GetVersion()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdx/selectionTracker.h" line="163" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hdx_selection_tracker_1a5f3269069fb63978d63b25411fcdf813" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _GetSelectionOffsets</definition>
+        <argsstring>(HdSelectionSharedPtr const &amp;selection, HdSelection::HighlightMode mode, const HdRenderIndex *index, size_t modeOffset, std::vector&lt; int &gt; *offsets) const</argsstring>
+        <name>_GetSelectionOffsets</name>
+        <param>
+          <type>HdSelectionSharedPtr const &amp;</type>
+          <declname>selection</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_selection_1a98fbf004fcd9b83c51b34f506ed59a7e" kindref="member">HdSelection::HighlightMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> *</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>modeOffset</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; int &gt; *</type>
+          <declname>offsets</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdx/selectionTracker.h" line="166" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="class_hdx_selection_tracker" kindref="compound">HdxSelectionTracker</ref> takes <ref refid="class_hd_selection" kindref="compound">HdSelection</ref> and generates a GPU buffer to be used. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="class_hdx_selection_tracker" kindref="compound">HdxSelectionTracker</ref> is a base class for observing selection state and providing selection highlighting details to interested clients.</para>
+<para><hruler/>
+ Selection highlighting in Hydra:</para>
+<para>Hydra Storm (*) supports selection highlighting of: (a) a set of rprims, wherein each rprim is entirely highlighted (b) a set of instances of an rprim, wherein each instance is highlighted (c) a set of subprimitives of an rprim, wherein each subprim is highlighted. Subprimitives support is limited to elements (faces of meshes, or individual curves of basis curves), edges of meshes/curves, and points of meshes.</para>
+<para><itemizedlist>
+<listitem><para>While the goal is have an architecture that is extensible by rendering backends, the current implementation is heavily influenced by the Storm backend.</para>
+</listitem></itemizedlist>
+</para>
+<para>Background: The current selection implementation is, in a sense, global in nature. If there are no selected objects, we do not bind any selection-related resources, nor does the shader execute any selection-related operations.</para>
+<para>If there are one or more selected objects, we <emphasis>don&apos;t</emphasis> choose to have them in a separate &apos;selection&apos; collection. Instead, we stick by AZDO principles and avoid command buffer changes as a result of selection updates (which would involve removal of draw items corresponding to the selected objects from each render pass&apos; command buffer and building the selection pass&apos; command buffer). We build an integer buffer encoding of the selected items, for use in the fragment shader, that allows us to perform a small number of lookups to quickly tell us if a fragment needs to be highlighted.</para>
+<para>For scene indices, the <ref refid="class_hdx_selection_tracker" kindref="compound">HdxSelectionTracker</ref> uses the HdSelectionsSchema (instaniated with GetFromParent of a prim data source) for a prim to determine the prim&apos;s selection status. However, to support scene delegates, we do support settings the selection directly with SetSelection. If both are used, the union of the selections is taken.</para>
+<para>Conceptually, the implementation is split into: (a) <ref refid="class_hd_selection" kindref="compound">HdSelection</ref> (for clients using scene delegates) : Client facing API that builds a collection of selected items. This is agnostic of the rendering backend. HdSelectionsSchema (for clients using scene indices) : Scene indices can populate this schema for each selected prim. (b) <ref refid="class_hdx_selection_tracker" kindref="compound">HdxSelectionTracker</ref>: Base class that observes (a) and encodes it as needed by (c). This may be specialized to be backend specific. (c) <ref refid="class_hdx_selection_task" kindref="compound">HdxSelectionTask</ref> : A scene task that, currently, only syncs resources related to selection highlighting. Currently, this is tied to Storm. (d) <ref refid="class_hdx_render_setup_task" kindref="compound">HdxRenderSetupTask</ref> : A scene task that sets up the render pass shader to use the selection highlighting mixin in the render pass(es) of <ref refid="class_hdx_render_task" kindref="compound">HdxRenderTask</ref>. This is relevant only to Storm.</para>
+<para><hruler/>
+</para>
+<para>Applications may use <ref refid="class_hdx_selection_tracker" kindref="compound">HdxSelectionTracker</ref> as-is, or extend it as needed.</para>
+<para><ref refid="class_hdx_selection_task" kindref="compound">HdxSelectionTask</ref> takes <ref refid="class_hdx_selection_tracker" kindref="compound">HdxSelectionTracker</ref> as a task parameter, and uploads the selection buffer encoding to the GPU. </para>
+    </detaileddescription>
+    <location file="pxr/imaging/hdx/selectionTracker.h" line="110" column="1" bodyfile="pxr/imaging/hdx/selectionTracker.h" bodystart="109" bodyend="177"/>
+    <listofallmembers>
+      <member refid="class_hdx_selection_tracker_1a5f3269069fb63978d63b25411fcdf813" prot="private" virt="non-virtual"><scope>HdxSelectionTracker</scope><name>_GetSelectionOffsets</name></member>
+      <member refid="class_hdx_selection_tracker_1a4083c914105006ad28cfab4cd5e80459" prot="protected" virt="non-virtual"><scope>HdxSelectionTracker</scope><name>_IncrementVersion</name></member>
+      <member refid="class_hdx_selection_tracker_1af7a15cebe2763668ef92532b27531a25" prot="private" virt="non-virtual"><scope>HdxSelectionTracker</scope><name>_mergedSelection</name></member>
+      <member refid="class_hdx_selection_tracker_1a0b4acc92523763082d2a10ba1b13be24" prot="public" virt="virtual"><scope>HdxSelectionTracker</scope><name>GetSelectedPointColors</name></member>
+      <member refid="class_hdx_selection_tracker_1a9ad500d1242ae735708529f0d3349bee" prot="public" virt="non-virtual"><scope>HdxSelectionTracker</scope><name>GetSelectionMap</name></member>
+      <member refid="class_hdx_selection_tracker_1a5c58a0d659fc6a37d545968198c1aa99" prot="public" virt="virtual"><scope>HdxSelectionTracker</scope><name>GetSelectionOffsetBuffer</name></member>
+      <member refid="class_hdx_selection_tracker_1a59e15a60697e2ff0f5a6edc7319c9b06" prot="public" virt="non-virtual"><scope>HdxSelectionTracker</scope><name>GetVersion</name></member>
+      <member refid="class_hdx_selection_tracker_1aad45876915a668bf92565fd93130ddb9" prot="public" virt="non-virtual"><scope>HdxSelectionTracker</scope><name>HdxSelectionTracker</name></member>
+      <member refid="class_hdx_selection_tracker_1ac04453fbb7434c00f1e89f74f7b0b6f6" prot="public" virt="non-virtual"><scope>HdxSelectionTracker</scope><name>SetSelection</name></member>
+      <member refid="class_hdx_selection_tracker_1a24dd3059c81a4966976dcbb36594980d" prot="public" virt="virtual"><scope>HdxSelectionTracker</scope><name>UpdateSelection</name></member>
+      <member refid="class_hdx_selection_tracker_1ab32360e50aa6bd360acb5c7ed5c2c35b" prot="public" virt="virtual"><scope>HdxSelectionTracker</scope><name>~HdxSelectionTracker</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

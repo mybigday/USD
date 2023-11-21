@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_sdf_cleanup_enabler" kind="class" language="C++" prot="public">
+    <compoundname>SdfCleanupEnabler</compoundname>
+    <includes refid="cleanup_enabler_8h" local="no">cleanupEnabler.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_sdf_cleanup_enabler_1a8d1bb30dcdbf3077ef9393bacb990fd1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API</type>
+        <definition>SDF_API SdfCleanupEnabler</definition>
+        <argsstring>()</argsstring>
+        <name>SdfCleanupEnabler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/cleanupEnabler.h" line="73" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_cleanup_enabler_1a82e481d95a387ad3f2d131c28ac27dab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API</type>
+        <definition>SDF_API ~SdfCleanupEnabler</definition>
+        <argsstring>()</argsstring>
+        <name>~SdfCleanupEnabler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/cleanupEnabler.h" line="75" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_sdf_cleanup_enabler_1a4e4926d5e3ea8063a0846f2ec7de2061" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API bool</type>
+        <definition>static SDF_API bool IsCleanupEnabled</definition>
+        <argsstring>()</argsstring>
+        <name>IsCleanupEnabled</name>
+        <briefdescription>
+<para>Returns whether cleanup is currently being scheduled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/cleanupEnabler.h" line="78" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>An RAII class which, when an instance is alive, enables scheduling of automatic cleanup of SdfLayers. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Any affected specs which no longer contribute to the scene will be removed when the last <ref refid="class_sdf_cleanup_enabler" kindref="compound">SdfCleanupEnabler</ref> instance goes out of scope. Note that for this purpose, SdfPropertySpecs are removed if they have only required fields (see SdfPropertySpecs::HasOnlyRequiredFields), but only if the property spec itself was affected by an edit that left it with only required fields. This will have the effect of uninstantiating on-demand attributes. For example, if its parent prim was affected by an edit that left it otherwise inert, it will not be removed if it contains an <ref refid="class_sdf_property_spec" kindref="compound">SdfPropertySpec</ref> with only required fields, but if the property spec itself is edited leaving it with only required fields, it will be removed, potentially uninstantiating it if it&apos;s an on-demand property.</para>
+<para>SdfCleanupEnablers are accessible in both C++ and Python.</para>
+<para>/// <ref refid="class_sdf_cleanup_enabler" kindref="compound">SdfCleanupEnabler</ref> can be used in the following manner: <programlisting><codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>SdfCleanupEnabler<sp/>enabler;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Perform<sp/>any<sp/>action<sp/>that<sp/>might<sp/>otherwise<sp/>leave<sp/>inert<sp/>specs<sp/>around,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>such<sp/>as<sp/>removing<sp/>info<sp/>from<sp/>properties<sp/>or<sp/>prims,<sp/>or<sp/>removing<sp/>name<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>children.<sp/>i.e:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>primSpec-&gt;ClearInfo(SdfFieldKeys-&gt;Default);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>When<sp/>enabler<sp/>goes<sp/>out<sp/>of<sp/>scope<sp/>on<sp/>the<sp/>next<sp/>line,<sp/>primSpec<sp/>will<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>be<sp/>removed<sp/>if<sp/>it<sp/>has<sp/>been<sp/>left<sp/>as<sp/>an<sp/>empty<sp/>over.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+    </detaileddescription>
+    <location file="pxr/usd/sdf/cleanupEnabler.h" line="70" column="1" bodyfile="pxr/usd/sdf/cleanupEnabler.h" bodystart="69" bodyend="79"/>
+    <listofallmembers>
+      <member refid="class_sdf_cleanup_enabler_1a4e4926d5e3ea8063a0846f2ec7de2061" prot="public" virt="non-virtual"><scope>SdfCleanupEnabler</scope><name>IsCleanupEnabled</name></member>
+      <member refid="class_sdf_cleanup_enabler_1a8d1bb30dcdbf3077ef9393bacb990fd1" prot="public" virt="non-virtual"><scope>SdfCleanupEnabler</scope><name>SdfCleanupEnabler</name></member>
+      <member refid="class_sdf_cleanup_enabler_1a82e481d95a387ad3f2d131c28ac27dab" prot="public" virt="non-virtual"><scope>SdfCleanupEnabler</scope><name>~SdfCleanupEnabler</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

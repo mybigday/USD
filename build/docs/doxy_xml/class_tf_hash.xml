@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_tf_hash" kind="class" language="C++" prot="public">
+    <compoundname>TfHash</compoundname>
+    <includes refid="tf_2hash_8h" local="no">hash.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_tf_hash_1a14c8bb7640e0f3cde024a5ad166843f4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto operator()</definition>
+        <argsstring>(T &amp;&amp;obj) const -&gt; decltype(Tf_HashImpl(std::declval&lt; Tf_HashState &amp; &gt;(), std::forward&lt; T &gt;(obj), 0), size_t())</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>T &amp;&amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Produce a hash code for <computeroutput>obj</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>See the class documentation for details. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/hash.h" line="509" column="1" bodyfile="pxr/base/tf/hash.h" bodystart="509" bodyend="515"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_tf_hash_1a0eb80aa560c0cac8805bdb99b7691113" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>size_t</type>
+        <definition>static size_t Combine</definition>
+        <argsstring>(Args &amp;&amp;... args)</argsstring>
+        <name>Combine</name>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+<para>Produce a hash code by combining the hash codes of several objects. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/hash.h" line="519" column="1" bodyfile="pxr/base/tf/hash.h" bodystart="519" bodyend="523"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_tf_hash_1a334d49056b05cf68438f2a68d860a108" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class HashState</type>
+          </param>
+          <param>
+            <type>class T</type>
+          </param>
+          <param>
+            <type>class...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void _CombineImpl</definition>
+        <argsstring>(HashState &amp;h, T &amp;&amp;obj, Args &amp;&amp;... rest)</argsstring>
+        <name>_CombineImpl</name>
+        <param>
+          <type>HashState &amp;</type>
+          <declname>h</declname>
+        </param>
+        <param>
+          <type>T &amp;&amp;</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>rest</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/hash.h" line="527" column="1" bodyfile="pxr/base/tf/hash.h" bodystart="527" bodyend="530"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_hash_1a13e4137166b3b11ffc8306eb8eeb2b11" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class HashState</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void _CombineImpl</definition>
+        <argsstring>(HashState &amp;h)</argsstring>
+        <name>_CombineImpl</name>
+        <param>
+          <type>HashState &amp;</type>
+          <declname>h</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/hash.h" line="533" column="1" bodyfile="pxr/base/tf/hash.h" bodystart="533" bodyend="535"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A user-extensible hashing mechanism for use with runtime hash tables. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The hash functions here are appropriate for storing objects in runtime hash tables. They are not appropriate for document signatures / fingerprinting or for storage and offline use. No specific guarantee is made about hash function quality, and the resulting hash codes are only 64-bits wide. Callers must assume that collisions will occur and be prepared to deal with them.</para>
+<para>Additionally, no guarantee is made about repeatability from run-to-run. That is, within a process lifetime an object&apos;s hash code will not change (provided its internal state does not change). But an object with equivalent state in a future run of the same process may hash differently.</para>
+<para>At the time of this writing we observe good performance combined with the &quot;avalanche&quot; quality (~50% output bit flip probability for a single input bit flip) in the low-order 40 output bits. Higher order bits do not achieve avalanche, and the highest order 8 bits are particularly poor. But for our purposes we deem this performance/quality tradeoff acceptable.</para>
+<para>This mechanism has builtin support for integral and floating point types, some STL types and types in Tf. <ref refid="class_tf_hash" kindref="compound">TfHash</ref> uses three methods to attempt to hash a passed object. First, <ref refid="class_tf_hash" kindref="compound">TfHash</ref> tries to call TfHashAppend() on its argument. This is the primary customization point for <ref refid="class_tf_hash" kindref="compound">TfHash</ref>. If that is not viable, <ref refid="class_tf_hash" kindref="compound">TfHash</ref> makes an unqualified call to <ref refid="half_8h_1a46cd4803c1efd2558d7a291d7c288ab3" kindref="member">hash_value()</ref>. We would like <ref refid="class_tf_hash" kindref="compound">TfHash</ref> to try to use std::hash&lt;T&gt; next, but std::hash&lt;T&gt; is not SFINAE-friendly until c++17, and this code needs to support c++14.</para>
+<para>The best way to add <ref refid="class_tf_hash" kindref="compound">TfHash</ref> support for user-defined types is to provide a function overload like the following.</para>
+<para><programlisting><codeline><highlight class="normal">template<sp/>&lt;class<sp/>HashState&gt;</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>TfHashAppend(HashState<sp/>&amp;h,<sp/>MyType<sp/>const<sp/>&amp;myObj)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>h.Append(myObject._member1,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>myObject._member2,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>myObject._member3);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>h.AppendContiguous(myObject._memberArray,<sp/>myObject._numArrayElems);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>The HashState object is left deliberately unspecified, so that different hash state objects may be used in different circumstances without modifying this support code, and without excess abstraction penalty. The methods available for use in TfHashAppend overloads are:</para>
+<para><programlisting><codeline><highlight class="normal">//<sp/>Append<sp/>several<sp/>objects<sp/>to<sp/>the<sp/>hash<sp/>state.<sp/><sp/>This<sp/>invokes<sp/>the<sp/>TfHash</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>mechanism<sp/>so<sp/>it<sp/>works<sp/>for<sp/>any<sp/>types<sp/>supported<sp/>by<sp/>TfHash.</highlight></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class...<sp/>Args&gt;</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>HashState::Append(Args<sp/>&amp;&amp;...<sp/>args);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Append<sp/>contiguous<sp/>objects<sp/>to<sp/>the<sp/>hash<sp/>state.<sp/><sp/>Note<sp/>that<sp/>this<sp/>is</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>explicitly<sp/>*not*<sp/>guaranteed<sp/>to<sp/>produce<sp/>the<sp/>same<sp/>result<sp/>as<sp/>calling</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Append()<sp/>with<sp/>each<sp/>object<sp/>in<sp/>order.</highlight></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>HashState::AppendContiguous(T<sp/>const<sp/>*objects,<sp/>size_t<sp/>numObjects);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Append<sp/>a<sp/>general<sp/>range<sp/>of<sp/>objects<sp/>to<sp/>the<sp/>hash<sp/>state.<sp/><sp/>Note<sp/>that<sp/>this<sp/>is</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>explicitly<sp/>*not*<sp/>guaranteed<sp/>to<sp/>produce<sp/>the<sp/>same<sp/>result<sp/>as<sp/>calling</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Append()<sp/>with<sp/>each<sp/>object<sp/>in<sp/>order.</highlight></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;class<sp/>Iter&gt;</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>AppendRange(Iter<sp/>f,<sp/>Iter<sp/>l);</highlight></codeline>
+</programlisting></para>
+<para>The <computeroutput><ref refid="class_tf_hash" kindref="compound">TfHash</ref></computeroutput> class function object supports: <itemizedlist>
+<listitem><para>integral types (including bool) </para>
+</listitem>
+<listitem><para>floating point types </para>
+</listitem>
+<listitem><para>std::string </para>
+</listitem>
+<listitem><para><ref refid="class_tf_ref_ptr" kindref="compound">TfRefPtr</ref> </para>
+</listitem>
+<listitem><para><ref refid="class_tf_weak_ptr" kindref="compound">TfWeakPtr</ref> </para>
+</listitem>
+<listitem><para><ref refid="class_tf_enum" kindref="compound">TfEnum</ref> </para>
+</listitem>
+<listitem><para>const void* </para>
+</listitem>
+<listitem><para>types that provide overloads for TfHashAppend </para>
+</listitem>
+<listitem><para>types that provide overloads for hash_value</para>
+</listitem>
+</itemizedlist>
+The <computeroutput><ref refid="class_tf_hash" kindref="compound">TfHash</ref></computeroutput> class can be used to instantiate a <computeroutput>TfHashMap</computeroutput> with <computeroutput>string</computeroutput> keys as follows: <programlisting><codeline><highlight class="normal">TfHashMap&lt;string,<sp/>int,<sp/>TfHash&gt;<sp/>m;</highlight></codeline>
+<codeline><highlight class="normal">m[&quot;abc&quot;]<sp/>=<sp/>1;</highlight></codeline>
+</programlisting></para>
+<para><computeroutput><ref refid="class_tf_hash" kindref="compound">TfHash()</ref></computeroutput>(const char*) is disallowed to avoid confusion of whether the pointer or the string is being hashed. If you want to hash a C-string use <computeroutput><ref refid="struct_tf_hash_c_string" kindref="compound">TfHashCString</ref></computeroutput> and if you want to hash a <computeroutput>char*</computeroutput> use <computeroutput><ref refid="struct_tf_hash_char_ptr" kindref="compound">TfHashCharPtr</ref></computeroutput>. </para>
+    </detaileddescription>
+    <location file="pxr/base/tf/hash.h" line="504" column="1" bodyfile="pxr/base/tf/hash.h" bodystart="504" bodyend="536"/>
+    <listofallmembers>
+      <member refid="class_tf_hash_1a334d49056b05cf68438f2a68d860a108" prot="private" virt="non-virtual"><scope>TfHash</scope><name>_CombineImpl</name></member>
+      <member refid="class_tf_hash_1a13e4137166b3b11ffc8306eb8eeb2b11" prot="private" virt="non-virtual"><scope>TfHash</scope><name>_CombineImpl</name></member>
+      <member refid="class_tf_hash_1a0eb80aa560c0cac8805bdb99b7691113" prot="public" virt="non-virtual"><scope>TfHash</scope><name>Combine</name></member>
+      <member refid="class_tf_hash_1a14c8bb7640e0f3cde024a5ad166843f4" prot="public" virt="non-virtual"><scope>TfHash</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

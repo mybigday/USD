@@ -1,0 +1,1258 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_schema_registry" kind="class" language="C++" prot="public">
+    <compoundname>UsdSchemaRegistry</compoundname>
+    <basecompoundref refid="class_tf_weak_base" prot="public" virt="non-virtual">TfWeakBase</basecompoundref>
+    <includes refid="schema_registry_8h" local="no">schemaRegistry.h</includes>
+    <innerclass refid="struct_usd_schema_registry_1_1___a_p_i_schema_definition_info" prot="private">UsdSchemaRegistry::_APISchemaDefinitionInfo</innerclass>
+    <innerclass refid="struct_usd_schema_registry_1_1_schema_info" prot="public">UsdSchemaRegistry::SchemaInfo</innerclass>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="class_usd_schema_registry_1a49aaa704be3b21aaf43f12da6412ca6c" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>VersionPolicy</name>
+        <enumvalue id="class_usd_schema_registry_1a49aaa704be3b21aaf43f12da6412ca6cab1c94ca2fbc3e78fc30069c8d0f01680" prot="public">
+          <name>All</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_usd_schema_registry_1a49aaa704be3b21aaf43f12da6412ca6caf6d044fe1f01fb0c956b80099e2a3072" prot="public">
+          <name>GreaterThan</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_usd_schema_registry_1a49aaa704be3b21aaf43f12da6412ca6ca25c44812e9d75f685d2a0b815dea1ebe" prot="public">
+          <name>GreaterThanOrEqual</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_usd_schema_registry_1a49aaa704be3b21aaf43f12da6412ca6cac6d9d7bb9939f62f01c80f8b1251501c" prot="public">
+          <name>LessThan</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_usd_schema_registry_1a49aaa704be3b21aaf43f12da6412ca6ca4ab671acbbaacb0db7d8477cfe4f4e0b" prot="public">
+          <name>LessThanOrEqual</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>A policy for filtering by schema version when querying for schemas in a particular schema family. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="211" column="1" bodyfile="pxr/usd/usd/schemaRegistry.h" bodystart="211" bodyend="217"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_usd_schema_registry_1aa76d79e9f4f42959f2ec90a1323875b3" prot="public" static="no">
+        <type>std::unordered_map&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref>, <ref refid="class_tf_hash" kindref="compound">TfHash</ref> &gt;</type>
+        <definition>using TokenToTokenVectorMap =  std::unordered_map&lt;TfToken, TfTokenVector, TfHash&gt;</definition>
+        <argsstring></argsstring>
+        <name>TokenToTokenVectorMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="74" column="1" bodyfile="pxr/usd/usd/schemaRegistry.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_usd_schema_registry_1a54e63d46e56c11f2fad7b34d33e0c517" prot="private" static="no">
+        <type>std::unordered_map&lt; std::pair&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, <ref refid="class_tf_token" kindref="compound">TfToken</ref> &gt;, UsdSchemaVersion, <ref refid="class_tf_hash" kindref="compound">TfHash</ref> &gt;</type>
+        <definition>using _FamilyAndInstanceToVersionMap =  std::unordered_map&lt;std::pair&lt;TfToken, TfToken&gt;, UsdSchemaVersion, TfHash&gt;</definition>
+        <argsstring></argsstring>
+        <name>_FamilyAndInstanceToVersionMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="566" column="1" bodyfile="pxr/usd/usd/schemaRegistry.h" bodystart="567" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_usd_schema_registry_1a93a851e20098bdf2b8d3fd65db0fe2a7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class TfSingleton&lt; UsdSchemaRegistry &gt;</definition>
+        <argsstring></argsstring>
+        <name>TfSingleton&lt; UsdSchemaRegistry &gt;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="557" column="1" bodyfile="pxr/usd/usd/schemaRegistry.h" bodystart="562" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_usd_schema_registry_1ade728bcc7f74163c134889e476241fac" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class UsdPrimDefinition</definition>
+        <argsstring></argsstring>
+        <name>UsdPrimDefinition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="595" column="1" bodyfile="pxr/usd/usd/schemaRegistry.h" bodystart="595" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_usd_schema_registry_1a2cb416de7c78db503190af69988439c5" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_tf_ref_ptr" kindref="compound">SdfLayerRefPtr</ref> &gt;</type>
+        <definition>std::vector&lt;SdfLayerRefPtr&gt; _schematicsLayers</definition>
+        <argsstring></argsstring>
+        <name>_schematicsLayers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="579" column="1" bodyfile="pxr/usd/usd/schemaRegistry.h" bodystart="577" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_usd_schema_registry_1a5e88511a7eb8b9a37b6eb845ea337653" prot="private" static="no" mutable="no">
+        <type>std::unordered_map&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, const std::unique_ptr&lt; <ref refid="class_usd_prim_definition" kindref="compound">UsdPrimDefinition</ref> &gt;, <ref refid="class_tf_hash" kindref="compound">TfHash</ref> &gt;</type>
+        <definition>std::unordered_map&lt;TfToken, const std::unique_ptr&lt;UsdPrimDefinition&gt;, TfHash&gt; _concreteTypedPrimDefinitions</definition>
+        <argsstring></argsstring>
+        <name>_concreteTypedPrimDefinitions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="582" column="1" bodyfile="pxr/usd/usd/schemaRegistry.h" bodystart="582" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_usd_schema_registry_1a1609867d571a18bb505f36cfa6d92dec" prot="private" static="no" mutable="no">
+        <type>std::unordered_map&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, const _APISchemaDefinitionInfo, <ref refid="class_tf_hash" kindref="compound">TfHash</ref> &gt;</type>
+        <definition>std::unordered_map&lt;TfToken, const _APISchemaDefinitionInfo, TfHash&gt; _appliedAPIPrimDefinitions</definition>
+        <argsstring></argsstring>
+        <name>_appliedAPIPrimDefinitions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="589" column="1" bodyfile="pxr/usd/usd/schemaRegistry.h" bodystart="589" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_usd_schema_registry_1a630a2897b9f852b21ecfe25d80e6fe3a" prot="private" static="no" mutable="no">
+        <type><ref refid="class_usd_prim_definition" kindref="compound">UsdPrimDefinition</ref> *</type>
+        <definition>UsdPrimDefinition* _emptyPrimDefinition</definition>
+        <argsstring></argsstring>
+        <name>_emptyPrimDefinition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="591" column="1" bodyfile="pxr/usd/usd/schemaRegistry.h" bodystart="591" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_usd_schema_registry_1adabdee334134c68fda36bf18a5be9d53" prot="private" static="no" mutable="no">
+        <type><ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref></type>
+        <definition>VtDictionary _fallbackPrimTypes</definition>
+        <argsstring></argsstring>
+        <name>_fallbackPrimTypes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="593" column="1" bodyfile="pxr/usd/usd/schemaRegistry.h" bodystart="593" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_usd_schema_registry_1a597d3f7ca0a9337aff5ac5e1d1d739bf" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>UsdSchemaRegistry</definition>
+        <argsstring>(const UsdSchemaRegistry &amp;)=delete</argsstring>
+        <name>UsdSchemaRegistry</name>
+        <param>
+          <type>const <ref refid="class_usd_schema_registry" kindref="compound">UsdSchemaRegistry</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="71" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a70a5e7d662890a921fe41627fd42dca2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_usd_schema_registry" kindref="compound">UsdSchemaRegistry</ref> &amp;</type>
+        <definition>UsdSchemaRegistry&amp; operator=</definition>
+        <argsstring>(const UsdSchemaRegistry &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_usd_schema_registry" kindref="compound">UsdSchemaRegistry</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="72" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1ab2fe535bd45b0272a9075013be841b91" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>UsdSchemaRegistry</definition>
+        <argsstring>()</argsstring>
+        <name>UsdSchemaRegistry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="564" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1ac85cfc197405d204562800dd8ad08927" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _ComposeAPISchemasIntoPrimDefinition</definition>
+        <argsstring>(UsdPrimDefinition *primDef, const TfTokenVector &amp;appliedAPISchemas, _FamilyAndInstanceToVersionMap *seenSchemaFamilyVersions) const</argsstring>
+        <name>_ComposeAPISchemasIntoPrimDefinition</name>
+        <param>
+          <type><ref refid="class_usd_prim_definition" kindref="compound">UsdPrimDefinition</ref> *</type>
+          <declname>primDef</declname>
+        </param>
+        <param>
+          <type>const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+          <declname>appliedAPISchemas</declname>
+        </param>
+        <param>
+          <type>_FamilyAndInstanceToVersionMap *</type>
+          <declname>seenSchemaFamilyVersions</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="569" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_usd_schema_registry_1a8e6f6a197e887d8ad51dc9beea507a2a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>USD_API <ref refid="class_usd_schema_registry" kindref="compound">UsdSchemaRegistry</ref> &amp;</type>
+        <definition>static USD_API UsdSchemaRegistry&amp; GetInstance</definition>
+        <argsstring>()</argsstring>
+        <name>GetInstance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="105" column="1" bodyfile="pxr/usd/usd/schemaRegistry.h" bodystart="105" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a4430b1590f52919590df0890cea341b3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>static USD_API TfToken MakeSchemaIdentifierForFamilyAndVersion</definition>
+        <argsstring>(const TfToken &amp;schemaFamily, UsdSchemaVersion schemaVersion)</argsstring>
+        <name>MakeSchemaIdentifierForFamilyAndVersion</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>schemaFamily</declname>
+        </param>
+        <param>
+          <type>UsdSchemaVersion</type>
+          <declname>schemaVersion</declname>
+        </param>
+        <briefdescription>
+<para>Creates the schema identifier that would be used to define a schema of the given <computeroutput>schemaFamily</computeroutput> with the given <computeroutput>schemaVersion</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the provided schema version is zero, the returned identifier will be the schema family itself. For all other versions, the returned identifier will be the family followed by an underscore and the version number.</para>
+<para>If <computeroutput>schemaFamily</computeroutput> is not an <ref refid="class_usd_schema_registry_1a0201e4ae1ae41895baa1ead0b23ee937" kindref="member">allowed schema family</ref>, this function will append the appropriate version suffix, but the returned identifier will not be an <ref refid="class_usd_schema_registry_1a8a7a09856a130b28651835f63acd9263" kindref="member">allowed schema identifier</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="123" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a68fbde1db9710dfe4859734c53e9e061" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API std::pair&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, UsdSchemaVersion &gt;</type>
+        <definition>static USD_API std::pair&lt;TfToken, UsdSchemaVersion&gt; ParseSchemaFamilyAndVersionFromIdentifier</definition>
+        <argsstring>(const TfToken &amp;schemaIdentifier)</argsstring>
+        <name>ParseSchemaFamilyAndVersionFromIdentifier</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>schemaIdentifier</declname>
+        </param>
+        <briefdescription>
+<para>Parses and returns the schema family and version values from the given <computeroutput>schemaIdentifier</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A schema identifier&apos;s version is indicated by a suffix consisting of an underscore followed by a positive integer which is its version. The schema family is the string before this suffix. If the identifier does not have a suffix matching this pattern, then the schema version is zero and the schema family is the identifier itself.</para>
+<para>For example: Identifier &quot;FooAPI_1&quot; returns (&quot;FooAPI&quot;, 1) Identifier &quot;FooAPI&quot; returns (&quot;FooAPI&quot;, 0)</para>
+<para>Note that this function only parses what the schema family and version would be for the given schema identifier and does not require that <computeroutput>schemaIdentifier</computeroutput> be a registered schema itself or even an <ref refid="class_usd_schema_registry_1a8a7a09856a130b28651835f63acd9263" kindref="member">allowed schema identifier</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="146" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a0201e4ae1ae41895baa1ead0b23ee937" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>static USD_API bool IsAllowedSchemaFamily</definition>
+        <argsstring>(const TfToken &amp;schemaFamily)</argsstring>
+        <name>IsAllowedSchemaFamily</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>schemaFamily</declname>
+        </param>
+        <briefdescription>
+<para>Returns whether the given <computeroutput>schemaFamily</computeroutput> is an allowed schema family name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A schema family is allowed if it&apos;s a <ref refid="class_sdf_path_1a1499271167c20dd276d87693b18f5226" kindref="member">valid identifier</ref> and does not itself contain a <ref refid="class_usd_schema_registry_1a68fbde1db9710dfe4859734c53e9e061" kindref="member">version suffix</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="157" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a8a7a09856a130b28651835f63acd9263" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>static USD_API bool IsAllowedSchemaIdentifier</definition>
+        <argsstring>(const TfToken &amp;schemaIdentifier)</argsstring>
+        <name>IsAllowedSchemaIdentifier</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>schemaIdentifier</declname>
+        </param>
+        <briefdescription>
+<para>Returns whether the given <computeroutput>schemaIdentifier</computeroutput> is an allowed schema identifier. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A schema identifier is allowed if it can be</para>
+<para><ref refid="class_usd_schema_registry_1a68fbde1db9710dfe4859734c53e9e061" kindref="member">parsed</ref> into a <ref refid="class_usd_schema_registry_1a0201e4ae1ae41895baa1ead0b23ee937" kindref="member">allowed schema family</ref> and schema version and it is the identifier that would be <ref refid="class_usd_schema_registry_1a4430b1590f52919590df0890cea341b3" kindref="member">created</ref> from that parsed family and version. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="170" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a05f322bee01266f96f0cf7f9580a2abd" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API const <ref refid="struct_usd_schema_registry_1_1_schema_info" kindref="compound">SchemaInfo</ref> *</type>
+        <definition>static USD_API const SchemaInfo* FindSchemaInfo</definition>
+        <argsstring>(const TfType &amp;schemaType)</argsstring>
+        <name>FindSchemaInfo</name>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>schemaType</declname>
+        </param>
+        <briefdescription>
+<para>Finds and returns the schema info for a registered schema with the given <computeroutput>schemaType</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns null if no registered schema with the schema type exists. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="177" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a63d5c54750c583ffbf903d19095aa851" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SchemaType</type>
+          </param>
+        </templateparamlist>
+        <type>const <ref refid="struct_usd_schema_registry_1_1_schema_info" kindref="compound">SchemaInfo</ref> *</type>
+        <definition>static const SchemaInfo* FindSchemaInfo</definition>
+        <argsstring>()</argsstring>
+        <name>FindSchemaInfo</name>
+        <briefdescription>
+<para>Finds and returns the schema info for a registered schema with the C++ schema class <computeroutput>SchemaType</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>All generated C++ schema classes, i.e. classes that derive from <ref refid="class_usd_schema_base" kindref="compound">UsdSchemaBase</ref>, are expected to have their types registered with the schema registry and as such, the return value from this function should never be null. A null return value is indication of a coding error even though this function itself will not report an error. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="189" column="1" bodyfile="pxr/usd/usd/schemaRegistry.h" bodystart="189" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1ad6af910bdba0cf85e64a04af424024d4" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API const <ref refid="struct_usd_schema_registry_1_1_schema_info" kindref="compound">SchemaInfo</ref> *</type>
+        <definition>static USD_API const SchemaInfo* FindSchemaInfo</definition>
+        <argsstring>(const TfToken &amp;schemaIdentifier)</argsstring>
+        <name>FindSchemaInfo</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>schemaIdentifier</declname>
+        </param>
+        <briefdescription>
+<para>Finds and returns the schema info for a registered schema with the given <computeroutput>schemaIdentifier</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns null if no registered schema with the schema identifier exists. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="200" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a434273588c5222ce452767e75daf2979" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API const <ref refid="struct_usd_schema_registry_1_1_schema_info" kindref="compound">SchemaInfo</ref> *</type>
+        <definition>static USD_API const SchemaInfo* FindSchemaInfo</definition>
+        <argsstring>(const TfToken &amp;schemaFamily, UsdSchemaVersion schemaVersion)</argsstring>
+        <name>FindSchemaInfo</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>schemaFamily</declname>
+        </param>
+        <param>
+          <type>UsdSchemaVersion</type>
+          <declname>schemaVersion</declname>
+        </param>
+        <briefdescription>
+<para>Finds and returns the schema info for a registered schema in the given <computeroutput>schemaFamily</computeroutput> with the given <computeroutput>schemaVersion</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns null if no registered schema in the schema family with the given version exists. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="207" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a3891d85a4d5e4e1995759a8a02b57877" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API const std::vector&lt; const <ref refid="struct_usd_schema_registry_1_1_schema_info" kindref="compound">SchemaInfo</ref> * &gt; &amp;</type>
+        <definition>static USD_API const std::vector&lt;const SchemaInfo *&gt;&amp; FindSchemaInfosInFamily</definition>
+        <argsstring>(const TfToken &amp;schemaFamily)</argsstring>
+        <name>FindSchemaInfosInFamily</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>schemaFamily</declname>
+        </param>
+        <briefdescription>
+<para>Finds all schemas in the given <computeroutput>schemaFamily</computeroutput> and returns their their schema info ordered from highest version to lowest version. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="223" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a95557d1c6469a09ac5e234c32a134aca" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API std::vector&lt; const <ref refid="struct_usd_schema_registry_1_1_schema_info" kindref="compound">SchemaInfo</ref> * &gt;</type>
+        <definition>static USD_API std::vector&lt;const SchemaInfo *&gt; FindSchemaInfosInFamily</definition>
+        <argsstring>(const TfToken &amp;schemaFamily, UsdSchemaVersion schemaVersion, VersionPolicy versionPolicy)</argsstring>
+        <name>FindSchemaInfosInFamily</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>schemaFamily</declname>
+        </param>
+        <param>
+          <type>UsdSchemaVersion</type>
+          <declname>schemaVersion</declname>
+        </param>
+        <param>
+          <type><ref refid="class_usd_schema_registry_1a49aaa704be3b21aaf43f12da6412ca6c" kindref="member">VersionPolicy</ref></type>
+          <declname>versionPolicy</declname>
+        </param>
+        <briefdescription>
+<para>Finds all schemas in the given <computeroutput>schemaFamily</computeroutput>, filtered according to the given <computeroutput>schemaVersion</computeroutput> and <computeroutput>versionPolicy</computeroutput>, and returns their their schema info ordered from highest version to lowest version. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="231" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1ab08b87e4986cea204d74128ccccd819a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>static USD_API TfToken GetSchemaTypeName</definition>
+        <argsstring>(const TfType &amp;schemaType)</argsstring>
+        <name>GetSchemaTypeName</name>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>schemaType</declname>
+        </param>
+        <briefdescription>
+<para>Return the type name in the USD schema for prims or API schemas of the given registered <computeroutput>schemaType</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="239" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a9cdc08410bca10646563b58682b6028c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class SchemaType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>static TfToken GetSchemaTypeName</definition>
+        <argsstring>()</argsstring>
+        <name>GetSchemaTypeName</name>
+        <briefdescription>
+<para>Return the type name in the USD schema for prims or API schemas of the given registered <computeroutput>SchemaType</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="245" column="1" bodyfile="pxr/usd/usd/schemaRegistry.h" bodystart="245" bodyend="247"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a8a86752feac3ffdda386b45e1e7ae6d6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>static USD_API TfToken GetConcreteSchemaTypeName</definition>
+        <argsstring>(const TfType &amp;schemaType)</argsstring>
+        <name>GetConcreteSchemaTypeName</name>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>schemaType</declname>
+        </param>
+        <briefdescription>
+<para>Return the type name in the USD schema for concrete prim types only from the given registered <computeroutput>schemaType</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="252" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1adebadba9689337a5e4eb3374098962b2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>static USD_API TfToken GetAPISchemaTypeName</definition>
+        <argsstring>(const TfType &amp;schemaType)</argsstring>
+        <name>GetAPISchemaTypeName</name>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>schemaType</declname>
+        </param>
+        <briefdescription>
+<para>Return the type name in the USD schema for API schema types only from the given registered <computeroutput>schemaType</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="257" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1ab7d2748301e32877fd2073d840ed3ec9" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_tf_type" kindref="compound">TfType</ref></type>
+        <definition>static USD_API TfType GetTypeFromSchemaTypeName</definition>
+        <argsstring>(const TfToken &amp;typeName)</argsstring>
+        <name>GetTypeFromSchemaTypeName</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>typeName</declname>
+        </param>
+        <briefdescription>
+<para>Return the <ref refid="class_tf_type" kindref="compound">TfType</ref> of the schema corresponding to the given prim or API schema name <computeroutput>typeName</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This the inverse of GetSchemaTypeName. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="262" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a359aad87d918b9bcc3c24026af4c592b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_tf_type" kindref="compound">TfType</ref></type>
+        <definition>static USD_API TfType GetConcreteTypeFromSchemaTypeName</definition>
+        <argsstring>(const TfToken &amp;typeName)</argsstring>
+        <name>GetConcreteTypeFromSchemaTypeName</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>typeName</declname>
+        </param>
+        <briefdescription>
+<para>Return the <ref refid="class_tf_type" kindref="compound">TfType</ref> of the schema corresponding to the given concrete prim type name <computeroutput>typeName</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This the inverse of GetConcreteSchemaTypeName. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="267" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1acce1170bd1d0a4e071cdfd6bf6f0f587" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_tf_type" kindref="compound">TfType</ref></type>
+        <definition>static USD_API TfType GetAPITypeFromSchemaTypeName</definition>
+        <argsstring>(const TfToken &amp;typeName)</argsstring>
+        <name>GetAPITypeFromSchemaTypeName</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>typeName</declname>
+        </param>
+        <briefdescription>
+<para>Return the <ref refid="class_tf_type" kindref="compound">TfType</ref> of the schema corresponding to the given API schema type name <computeroutput>typeName</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This the inverse of GetAPISchemaTypeNAme. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="272" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1aa422270c1807db9cf40912dce3f54f41" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>static USD_API bool IsDisallowedField</definition>
+        <argsstring>(const TfToken &amp;fieldName)</argsstring>
+        <name>IsDisallowedField</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>fieldName</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the field <computeroutput>fieldName</computeroutput> cannot have fallback values specified in schemas. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Fields are generally disallowed because their fallback values aren&apos;t used. For instance, fallback values for composition arcs aren&apos;t used during composition, so allowing them to be set in schemas would be misleading. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="282" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a7bbaefbdd3e0bea0b098c777cd656eb8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>static USD_API bool IsTyped</definition>
+        <argsstring>(const TfType &amp;primType)</argsstring>
+        <name>IsTyped</name>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>primType</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the prim type <computeroutput>primType</computeroutput> inherits from <ref refid="class_usd_typed" kindref="compound">UsdTyped</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="286" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1af03cad1878733295c63a5ffed9fc4e1b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref></type>
+        <definition>static USD_API UsdSchemaKind GetSchemaKind</definition>
+        <argsstring>(const TfType &amp;schemaType)</argsstring>
+        <name>GetSchemaKind</name>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>schemaType</declname>
+        </param>
+        <briefdescription>
+<para>Returns the kind of the schema the given <computeroutput>schemaType</computeroutput> represents. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This returns <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741a4bbb8f967da6d1a610596d7257179c2b" kindref="member">UsdSchemaKind::Invalid</ref> if <computeroutput>schemaType</computeroutput> is not a valid schema type or if the kind cannot be determined from type&apos;s plugin information. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="294" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1adda2cb6c71c95f14d484344f824e481b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref></type>
+        <definition>static USD_API UsdSchemaKind GetSchemaKind</definition>
+        <argsstring>(const TfToken &amp;typeName)</argsstring>
+        <name>GetSchemaKind</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>typeName</declname>
+        </param>
+        <briefdescription>
+<para>Returns the kind of the schema the given <computeroutput>typeName</computeroutput> represents. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This returns <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741a4bbb8f967da6d1a610596d7257179c2b" kindref="member">UsdSchemaKind::Invalid</ref> if <computeroutput>typeName</computeroutput> is not a valid schema type name or if the kind cannot be determined from type&apos;s plugin information. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="302" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a4bbccd46aeee7c8968355ea406636ab7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>static USD_API bool IsConcrete</definition>
+        <argsstring>(const TfType &amp;primType)</argsstring>
+        <name>IsConcrete</name>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>primType</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the prim type <computeroutput>primType</computeroutput> is instantiable in scene description. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="307" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1ac7b8d76ddbc860237f845b32ce1717be" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>static USD_API bool IsConcrete</definition>
+        <argsstring>(const TfToken &amp;primType)</argsstring>
+        <name>IsConcrete</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>primType</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the prim type <computeroutput>primType</computeroutput> is instantiable in scene description. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="312" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a50d34f463c3643cf91bf938dd31c271d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>static USD_API bool IsAbstract</definition>
+        <argsstring>(const TfType &amp;primType)</argsstring>
+        <name>IsAbstract</name>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>primType</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the prim type <computeroutput>primType</computeroutput> is an abstract schema type and, unlike a concrete type, is not instantiable in scene description. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="317" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1af144a755603e2ecb0bca600dae8040bf" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>static USD_API bool IsAbstract</definition>
+        <argsstring>(const TfToken &amp;primType)</argsstring>
+        <name>IsAbstract</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>primType</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the prim type <computeroutput>primType</computeroutput> is an abstract schema type and, unlike a concrete type, is not instantiable in scene description. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="322" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a64a2f2592fd8a13dde1ed9ced332b6c5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>static USD_API bool IsAppliedAPISchema</definition>
+        <argsstring>(const TfType &amp;apiSchemaType)</argsstring>
+        <name>IsAppliedAPISchema</name>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>apiSchemaType</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if <computeroutput>apiSchemaType</computeroutput> is an applied API schema type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="326" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a52d021d2f1f89bd8eaebd7a6c73790b2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>static USD_API bool IsAppliedAPISchema</definition>
+        <argsstring>(const TfToken &amp;apiSchemaType)</argsstring>
+        <name>IsAppliedAPISchema</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>apiSchemaType</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if <computeroutput>apiSchemaType</computeroutput> is an applied API schema type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="330" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a50e89b995455f3eb97ad99154e906c34" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>static USD_API bool IsMultipleApplyAPISchema</definition>
+        <argsstring>(const TfType &amp;apiSchemaType)</argsstring>
+        <name>IsMultipleApplyAPISchema</name>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>apiSchemaType</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if <computeroutput>apiSchemaType</computeroutput> is a multiple-apply API schema type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="334" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1aa14af24f2a8254087da50e639754bdc9" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>static USD_API bool IsMultipleApplyAPISchema</definition>
+        <argsstring>(const TfToken &amp;apiSchemaType)</argsstring>
+        <name>IsMultipleApplyAPISchema</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>apiSchemaType</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if <computeroutput>apiSchemaType</computeroutput> is a multiple-apply API schema type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="338" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1aefa0ce3bcfbb24525289bf110ea7aac0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_tf_type" kindref="compound">TfType</ref></type>
+        <definition>static USD_API TfType GetTypeFromName</definition>
+        <argsstring>(const TfToken &amp;typeName)</argsstring>
+        <name>GetTypeFromName</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>typeName</declname>
+        </param>
+        <briefdescription>
+<para>Finds the <ref refid="class_tf_type" kindref="compound">TfType</ref> of a schema with <computeroutput>typeName</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is primarily for when you have been provided Schema typeName (perhaps from a User Interface or Script) and need to identify if a prim&apos;s type inherits/is that typeName. If the type name IS known, then using the schema class is preferred.</para>
+<para><programlisting filename=".py"><codeline><highlight class="comment">#<sp/>This<sp/>code<sp/>attempts<sp/>to<sp/>match<sp/>all<sp/>prims<sp/>on<sp/>a<sp/>stage<sp/>to<sp/>a<sp/>given</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>user<sp/>specified<sp/>type,<sp/>making<sp/>the<sp/>traditional<sp/>schema<sp/>based<sp/>idioms<sp/>not</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>applicable.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">data<sp/>=<sp/>parser.parse_args()</highlight></codeline>
+<codeline><highlight class="normal">tfType<sp/>=<sp/><ref refid="class_usd_schema_registry_1aefa0ce3bcfbb24525289bf110ea7aac0" kindref="member">UsdSchemaRegistry.GetTypeFromName</ref>(data.type)</highlight></codeline>
+<codeline><highlight class="normal">matchedPrims<sp/>=<sp/>[p<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>p<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>stage.Traverse()<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>p.IsA(tfType)]<sp/></highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="note"><para>It&apos;s worth noting that GetTypeFromName(&quot;Sphere&quot;) == GetTypeFromName(&quot;UsdGeomSphere&quot;), as this function resolves both the Schema&apos;s C++ class name and any registered aliases from a libraries plugInfo.json file. However, GetTypeFromName(&quot;Boundable&quot;) != GetTypeFromName(&quot;UsdGeomBoundable&quot;) because type aliases don&apos;t get registered for abstract schema types. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="363" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1aea978c41155de744c39fb7a636e3861b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API std::pair&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, <ref refid="class_tf_token" kindref="compound">TfToken</ref> &gt;</type>
+        <definition>static USD_API std::pair&lt;TfToken, TfToken&gt; GetTypeNameAndInstance</definition>
+        <argsstring>(const TfToken &amp;apiSchemaName)</argsstring>
+        <name>GetTypeNameAndInstance</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>apiSchemaName</declname>
+        </param>
+        <briefdescription>
+<para>Returns the schema type name and the instance name parsed from the given <computeroutput>apiSchemaName</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>apiSchemaName</computeroutput> is the name of an applied schema as it appears in the list of applied schemas on a prim. For single-apply API schemas the name will just be the schema type name. For multiple-apply schemas the name should include the schema type name and the applied instance name separated by a namespace delimiter, for example &apos;CollectionAPI:plasticStuff&apos;.</para>
+<para>This function returns the separated schema type name and instance name component tokens if possible, otherwise it returns the <computeroutput>apiSchemaName</computeroutput> as the type name and an empty instance name.</para>
+<para>Note that no validation is done on the returned tokens. Clients are advised to use <ref refid="class_usd_schema_registry_1ab7d2748301e32877fd2073d840ed3ec9" kindref="member">GetTypeFromSchemaTypeName()</ref> to validate the typeName token.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_prim_1a6a0ea2bd96afa34596c713fa00ee9bee" kindref="member">UsdPrim::AddAppliedSchema(const TfToken&amp;) const</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_prim_1a42cfbef37f98df2c20c15044c333fe4a" kindref="member">UsdPrim::GetAppliedSchemas() const </ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="386" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a583a741dcad67bd1bfb3fc952c3bc15c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>static USD_API bool IsAllowedAPISchemaInstanceName</definition>
+        <argsstring>(const TfToken &amp;apiSchemaName, const TfToken &amp;instanceName)</argsstring>
+        <name>IsAllowedAPISchemaInstanceName</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>apiSchemaName</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>instanceName</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the given <computeroutput>instanceName</computeroutput> is an allowed instance name for the multiple apply API schema named <computeroutput>apiSchemaName</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Any instance name that matches the name of a property provided by the API schema is disallowed and will return false. If the schema type has plugin metadata that specifies allowed instance names, then only those specified names are allowed for the schema type. If the instance name is empty or the API is not a multiple apply schema, this will return false. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="399" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a111ea128b84b68095e7e63d2a0a3afed" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+        <definition>static USD_API const TfTokenVector&amp; GetAPISchemaCanOnlyApplyToTypeNames</definition>
+        <argsstring>(const TfToken &amp;apiSchemaName, const TfToken &amp;instanceName=TfToken())</argsstring>
+        <name>GetAPISchemaCanOnlyApplyToTypeNames</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>apiSchemaName</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>instanceName</declname>
+          <defval><ref refid="class_tf_token" kindref="compound">TfToken</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Returns a list of prim type names that the given <computeroutput>apiSchemaName</computeroutput> can only be applied to. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A non-empty list indicates that the API schema can only be applied to prim that are or derive from prim type names in the list. If the list is empty, the API schema can be applied to prims of any type.</para>
+<para>If a non-empty <computeroutput>instanceName</computeroutput> is provided, this will first look for a list of &quot;can only apply to&quot; names specific to that instance of the API schema and return that if found. If a list is not found for the specific instance, it will fall back to looking for a &quot;can only apply to&quot; list for just the schema name itself. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="416" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1aa1ab5f4198faff6a61573cf4e5bf7787" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API const TokenToTokenVectorMap &amp;</type>
+        <definition>static USD_API const TokenToTokenVectorMap&amp; GetAutoApplyAPISchemas</definition>
+        <argsstring>()</argsstring>
+        <name>GetAutoApplyAPISchemas</name>
+        <briefdescription>
+<para>Returns a map of the names of all registered auto apply API schemas to the list of type names each is registered to be auto applied to. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The list of type names to apply to will directly match what is specified in the plugin metadata for each schema type. While auto apply schemas do account for the existence and validity of the type names and expand to include derived types of the listed types, the type lists returned by this function do not. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="429" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1af8d1f1ce4aa848cb34eb0ab45515f37e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API void</type>
+        <definition>static USD_API void CollectAddtionalAutoApplyAPISchemasFromPlugins</definition>
+        <argsstring>(TokenToTokenVectorMap *autoApplyAPISchemas)</argsstring>
+        <name>CollectAddtionalAutoApplyAPISchemasFromPlugins</name>
+        <param>
+          <type>TokenToTokenVectorMap *</type>
+          <declname>autoApplyAPISchemas</declname>
+        </param>
+        <briefdescription>
+<para>Collects all the additional auto apply schemas that can be defined in a plugin through &quot;AutoApplyAPISchemas&quot; metadata and adds the mappings to <computeroutput>autoApplyAPISchemas</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>These are separate from the auto-apply schemas that are built in to the applied API schema types themselves and can be defined in any plugin to map any applied API schema to any concrete prim type.</para>
+<para>Note that GetAutoApplyAPISchemas will already include API schemas collected from this method; this function is provided for clients that may want to collect just these plugin API schema mappings. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="443" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1ada7847bceb3ebd3efabe3120c27047ed" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>static USD_API TfToken MakeMultipleApplyNameTemplate</definition>
+        <argsstring>(const std::string &amp;namespacePrefix, const std::string &amp;baseName)</argsstring>
+        <name>MakeMultipleApplyNameTemplate</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>namespacePrefix</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>baseName</declname>
+        </param>
+        <briefdescription>
+<para>Creates a name template that can represent a property or API schema that belongs to a multiple apply schema and will therefore have multiple instances with different names. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The name template is created by joining the <computeroutput>namespacePrefix</computeroutput>, the instance name placeholder &quot;__INSTANCE_NAME__&quot;, and the <computeroutput>baseName</computeroutput> using the namespace delimiter. Therefore the returned name template will be of one of the following forms depending on whether either of the inputs is empty:<orderedlist>
+<listitem><para>namespacePrefix:<bold>INSTANCE_NAME</bold>:baseName</para>
+</listitem><listitem><para>namespacePrefix:<bold>INSTANCE_NAME</bold></para>
+</listitem><listitem><para><bold>INSTANCE_NAME</bold>:baseName</para>
+</listitem><listitem><para><bold>INSTANCE_NAME</bold></para>
+</listitem></orderedlist>
+</para>
+<para>Name templates can be passed to MakeMultipleApplyNameInstance along with an instance name to create the name for a particular instance. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="464" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a2d7ecf1f83da9b116abc23e28cef727c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>static USD_API TfToken MakeMultipleApplyNameInstance</definition>
+        <argsstring>(const std::string &amp;nameTemplate, const std::string &amp;instanceName)</argsstring>
+        <name>MakeMultipleApplyNameInstance</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>nameTemplate</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>instanceName</declname>
+        </param>
+        <briefdescription>
+<para>Returns an instance of a multiple apply schema name from the given <computeroutput>nameTemplate</computeroutput> for the given <computeroutput>instanceName</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The returned name is created by replacing the instance name placeholder &quot;__INSTANCE_NAME__&quot; in the name template with the given instance name. If the instance name placeholder is not found in <computeroutput>nameTemplate</computeroutput>, then the name template is not multiple apply name template and is returned as is.</para>
+<para>Note that the instance name placeholder must be found as an exact full word match with one of the tokenized components of the name template, when tokenized by the namespace delimiter, in order for it to be treated as a placeholder and substituted with the instance name. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="483" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a1b6fbfa80a299bb1f0590abe12a00e42" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>static USD_API TfToken GetMultipleApplyNameTemplateBaseName</definition>
+        <argsstring>(const std::string &amp;nameTemplate)</argsstring>
+        <name>GetMultipleApplyNameTemplateBaseName</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>nameTemplate</declname>
+        </param>
+        <briefdescription>
+<para>Returns the base name for the multiple apply schema name template <computeroutput>nameTemplate</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The base name is the substring of the given name template that comes after the instance name placeholder and the subsequent namespace delimiter. If the given property name does not contain the instance name placeholder, it is not a name template and the name template is returned as is. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="497" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1ac302f2e9e3c7cf75f3588d8c626a6e4f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>static USD_API bool IsMultipleApplyNameTemplate</definition>
+        <argsstring>(const std::string &amp;nameTemplate)</argsstring>
+        <name>IsMultipleApplyNameTemplate</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>nameTemplate</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if <computeroutput>nameTemplate</computeroutput> is a multiple apply schema name template. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The given <computeroutput>nameTemplate</computeroutput> is a name template if and only if it contains the instance name place holder &quot;__INSTANCE_NAME__&quot; as an exact match as one of the tokenized components of the name tokenized by the namespace delimiter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="509" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_schema_registry_1a1c4f99bbc9043507e1ed0d495a863d68" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_usd_prim_definition" kindref="compound">UsdPrimDefinition</ref> *</type>
+        <definition>const UsdPrimDefinition* FindConcretePrimDefinition</definition>
+        <argsstring>(const TfToken &amp;typeName) const</argsstring>
+        <name>FindConcretePrimDefinition</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>typeName</declname>
+        </param>
+        <briefdescription>
+<para>Finds the prim definition for the given <computeroutput>typeName</computeroutput> token if <computeroutput>typeName</computeroutput> is a registered concrete typed schema type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns null if it is not. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="515" column="1" bodyfile="pxr/usd/usd/schemaRegistry.h" bodystart="515" bodyend="520"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a583796fd498889a71e6754513e42b2a8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_usd_prim_definition" kindref="compound">UsdPrimDefinition</ref> *</type>
+        <definition>const UsdPrimDefinition* FindAppliedAPIPrimDefinition</definition>
+        <argsstring>(const TfToken &amp;typeName) const</argsstring>
+        <name>FindAppliedAPIPrimDefinition</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>typeName</declname>
+        </param>
+        <briefdescription>
+<para>Finds the prim definition for the given <computeroutput>typeName</computeroutput> token if <computeroutput>typeName</computeroutput> is a registered applied API schema type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns null if it is not. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="525" column="1" bodyfile="pxr/usd/usd/schemaRegistry.h" bodystart="525" bodyend="530"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1af33f0a62b2726b87600661010d6f249e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_usd_prim_definition" kindref="compound">UsdPrimDefinition</ref> *</type>
+        <definition>const UsdPrimDefinition* GetEmptyPrimDefinition</definition>
+        <argsstring>() const</argsstring>
+        <name>GetEmptyPrimDefinition</name>
+        <briefdescription>
+<para>Returns the empty prim definition. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="533" column="1" bodyfile="pxr/usd/usd/schemaRegistry.h" bodystart="533" bodyend="535"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1ac530df3c1845d5fe237163a815439500" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API std::unique_ptr&lt; <ref refid="class_usd_prim_definition" kindref="compound">UsdPrimDefinition</ref> &gt;</type>
+        <definition>USD_API std::unique_ptr&lt;UsdPrimDefinition&gt; BuildComposedPrimDefinition</definition>
+        <argsstring>(const TfToken &amp;primType, const TfTokenVector &amp;appliedAPISchemas) const</argsstring>
+        <name>BuildComposedPrimDefinition</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>primType</declname>
+        </param>
+        <param>
+          <type>const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+          <declname>appliedAPISchemas</declname>
+        </param>
+        <briefdescription>
+<para>Composes and returns a new <ref refid="class_usd_prim_definition" kindref="compound">UsdPrimDefinition</ref> from the given <computeroutput>primType</computeroutput> and list of <computeroutput>appliedSchemas</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This prim definition will contain a union of properties from the registered prim definitions of each of the provided types. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="543" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_schema_registry_1a93921d1510b463b9eea85de97ea45271" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> &amp;</type>
+        <definition>const VtDictionary&amp; GetFallbackPrimTypes</definition>
+        <argsstring>() const</argsstring>
+        <name>GetFallbackPrimTypes</name>
+        <briefdescription>
+<para>Returns a dictionary mapping concrete schema prim type names to a VtTokenArray of fallback prim type names if fallback types are defined for the schema type in its registered schema. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The standard use case for this to provide schema defined metadata that can be saved with a stage to inform an older version of USD - that may not have some schema types - as to which types it can used instead when encountering a prim of one these types.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_stage_1a14897ca124a0fb4a62e6ed2ccbbdbf4f" kindref="member">UsdStage::WriteFallbackPrimTypes</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="_usd__page__object_model_1Usd_OM_FallbackPrimTypes" kindref="member">Fallback Prim Types</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/schemaRegistry.h" line="557" column="1" bodyfile="pxr/usd/usd/schemaRegistry.h" bodystart="557" bodyend="559"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Singleton registry that provides access to schema type information and the prim definitions for registered Usd &quot;IsA&quot; and applied API schema types. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>It also contains the data from the generated schemas that is used by prim definitions to provide properties and fallbacks.</para>
+<para>The data contained herein comes from the generatedSchema.usda file (generated when a schema.usda file is processed by <emphasis>usdGenSchema</emphasis>) of each schema-defining module. The registry expects each schema type to be represented as a single prim spec with its inheritance flattened, i.e. the prim spec contains a union of all its local and class inherited property specs and metadata fields.</para>
+<para>It is used by the Usd core, via <ref refid="class_usd_prim_definition" kindref="compound">UsdPrimDefinition</ref>, to determine how to create scene description for unauthored &quot;built-in&quot; properties of schema classes, to enumerate all properties for a given schema class, and finally to provide fallback values for unauthored built-in properties. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="8136">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="8135">
+        <label>UsdSchemaRegistry</label>
+        <link refid="class_usd_schema_registry"/>
+        <childnode refid="8136" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="8138">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="8137">
+        <label>UsdSchemaRegistry</label>
+        <link refid="class_usd_schema_registry"/>
+        <childnode refid="8138" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/usd/usd/schemaRegistry.h" line="70" column="1" bodyfile="pxr/usd/usd/schemaRegistry.h" bodystart="70" bodyend="596"/>
+    <listofallmembers>
+      <member refid="class_tf_weak_base_1a01aa4c4b93df067f2ec9b9e5fa4c35b3" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>__GetTfWeakBase__</name></member>
+      <member refid="class_usd_schema_registry_1a1609867d571a18bb505f36cfa6d92dec" prot="private" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>_appliedAPIPrimDefinitions</name></member>
+      <member refid="class_usd_schema_registry_1ac85cfc197405d204562800dd8ad08927" prot="private" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>_ComposeAPISchemasIntoPrimDefinition</name></member>
+      <member refid="class_usd_schema_registry_1a5e88511a7eb8b9a37b6eb845ea337653" prot="private" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>_concreteTypedPrimDefinitions</name></member>
+      <member refid="class_usd_schema_registry_1a630a2897b9f852b21ecfe25d80e6fe3a" prot="private" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>_emptyPrimDefinition</name></member>
+      <member refid="class_usd_schema_registry_1adabdee334134c68fda36bf18a5be9d53" prot="private" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>_fallbackPrimTypes</name></member>
+      <member refid="class_usd_schema_registry_1a54e63d46e56c11f2fad7b34d33e0c517" prot="private" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>_FamilyAndInstanceToVersionMap</name></member>
+      <member refid="class_tf_weak_base_1a6a5533162e8efab1be47acd6ccd5254c" prot="protected" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>_HasRemnant</name></member>
+      <member refid="class_tf_weak_base_1a95139d2f4d04eb706664a4f47eb93918" prot="protected" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>_Register</name></member>
+      <member refid="class_tf_weak_base_1ac1312732482c8a286522f703f2cf90d1" prot="protected" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>_Register</name></member>
+      <member refid="class_usd_schema_registry_1a2cb416de7c78db503190af69988439c5" prot="private" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>_schematicsLayers</name></member>
+      <member refid="class_usd_schema_registry_1ac530df3c1845d5fe237163a815439500" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>BuildComposedPrimDefinition</name></member>
+      <member refid="class_usd_schema_registry_1af8d1f1ce4aa848cb34eb0ab45515f37e" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>CollectAddtionalAutoApplyAPISchemasFromPlugins</name></member>
+      <member refid="class_tf_weak_base_1a16f1e27cc0c7c606ffb397b7d970ed10" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>EnableNotification2</name></member>
+      <member refid="class_usd_schema_registry_1a583796fd498889a71e6754513e42b2a8" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>FindAppliedAPIPrimDefinition</name></member>
+      <member refid="class_usd_schema_registry_1a1c4f99bbc9043507e1ed0d495a863d68" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>FindConcretePrimDefinition</name></member>
+      <member refid="class_usd_schema_registry_1a05f322bee01266f96f0cf7f9580a2abd" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>FindSchemaInfo</name></member>
+      <member refid="class_usd_schema_registry_1a63d5c54750c583ffbf903d19095aa851" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>FindSchemaInfo</name></member>
+      <member refid="class_usd_schema_registry_1ad6af910bdba0cf85e64a04af424024d4" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>FindSchemaInfo</name></member>
+      <member refid="class_usd_schema_registry_1a434273588c5222ce452767e75daf2979" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>FindSchemaInfo</name></member>
+      <member refid="class_usd_schema_registry_1a3891d85a4d5e4e1995759a8a02b57877" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>FindSchemaInfosInFamily</name></member>
+      <member refid="class_usd_schema_registry_1a95557d1c6469a09ac5e234c32a134aca" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>FindSchemaInfosInFamily</name></member>
+      <member refid="class_usd_schema_registry_1a111ea128b84b68095e7e63d2a0a3afed" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>GetAPISchemaCanOnlyApplyToTypeNames</name></member>
+      <member refid="class_usd_schema_registry_1adebadba9689337a5e4eb3374098962b2" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>GetAPISchemaTypeName</name></member>
+      <member refid="class_usd_schema_registry_1acce1170bd1d0a4e071cdfd6bf6f0f587" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>GetAPITypeFromSchemaTypeName</name></member>
+      <member refid="class_usd_schema_registry_1aa1ab5f4198faff6a61573cf4e5bf7787" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>GetAutoApplyAPISchemas</name></member>
+      <member refid="class_usd_schema_registry_1a8a86752feac3ffdda386b45e1e7ae6d6" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>GetConcreteSchemaTypeName</name></member>
+      <member refid="class_usd_schema_registry_1a359aad87d918b9bcc3c24026af4c592b" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>GetConcreteTypeFromSchemaTypeName</name></member>
+      <member refid="class_usd_schema_registry_1af33f0a62b2726b87600661010d6f249e" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>GetEmptyPrimDefinition</name></member>
+      <member refid="class_usd_schema_registry_1a93921d1510b463b9eea85de97ea45271" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>GetFallbackPrimTypes</name></member>
+      <member refid="class_usd_schema_registry_1a8e6f6a197e887d8ad51dc9beea507a2a" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>GetInstance</name></member>
+      <member refid="class_usd_schema_registry_1a1b6fbfa80a299bb1f0590abe12a00e42" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>GetMultipleApplyNameTemplateBaseName</name></member>
+      <member refid="class_usd_schema_registry_1af03cad1878733295c63a5ffed9fc4e1b" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>GetSchemaKind</name></member>
+      <member refid="class_usd_schema_registry_1adda2cb6c71c95f14d484344f824e481b" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>GetSchemaKind</name></member>
+      <member refid="class_usd_schema_registry_1ab08b87e4986cea204d74128ccccd819a" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>GetSchemaTypeName</name></member>
+      <member refid="class_usd_schema_registry_1a9cdc08410bca10646563b58682b6028c" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>GetSchemaTypeName</name></member>
+      <member refid="class_usd_schema_registry_1aefa0ce3bcfbb24525289bf110ea7aac0" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>GetTypeFromName</name></member>
+      <member refid="class_usd_schema_registry_1ab7d2748301e32877fd2073d840ed3ec9" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>GetTypeFromSchemaTypeName</name></member>
+      <member refid="class_usd_schema_registry_1aea978c41155de744c39fb7a636e3861b" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>GetTypeNameAndInstance</name></member>
+      <member refid="class_tf_weak_base_1a3241c32a82fbed0716a77049f6134e1e" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>GetUniqueIdentifier</name></member>
+      <member refid="class_usd_schema_registry_1a50d34f463c3643cf91bf938dd31c271d" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>IsAbstract</name></member>
+      <member refid="class_usd_schema_registry_1af144a755603e2ecb0bca600dae8040bf" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>IsAbstract</name></member>
+      <member refid="class_usd_schema_registry_1a583a741dcad67bd1bfb3fc952c3bc15c" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>IsAllowedAPISchemaInstanceName</name></member>
+      <member refid="class_usd_schema_registry_1a0201e4ae1ae41895baa1ead0b23ee937" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>IsAllowedSchemaFamily</name></member>
+      <member refid="class_usd_schema_registry_1a8a7a09856a130b28651835f63acd9263" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>IsAllowedSchemaIdentifier</name></member>
+      <member refid="class_usd_schema_registry_1a64a2f2592fd8a13dde1ed9ced332b6c5" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>IsAppliedAPISchema</name></member>
+      <member refid="class_usd_schema_registry_1a52d021d2f1f89bd8eaebd7a6c73790b2" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>IsAppliedAPISchema</name></member>
+      <member refid="class_usd_schema_registry_1a4bbccd46aeee7c8968355ea406636ab7" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>IsConcrete</name></member>
+      <member refid="class_usd_schema_registry_1ac7b8d76ddbc860237f845b32ce1717be" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>IsConcrete</name></member>
+      <member refid="class_usd_schema_registry_1aa422270c1807db9cf40912dce3f54f41" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>IsDisallowedField</name></member>
+      <member refid="class_usd_schema_registry_1a50e89b995455f3eb97ad99154e906c34" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>IsMultipleApplyAPISchema</name></member>
+      <member refid="class_usd_schema_registry_1aa14af24f2a8254087da50e639754bdc9" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>IsMultipleApplyAPISchema</name></member>
+      <member refid="class_usd_schema_registry_1ac302f2e9e3c7cf75f3588d8c626a6e4f" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>IsMultipleApplyNameTemplate</name></member>
+      <member refid="class_usd_schema_registry_1a7bbaefbdd3e0bea0b098c777cd656eb8" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>IsTyped</name></member>
+      <member refid="class_usd_schema_registry_1a2d7ecf1f83da9b116abc23e28cef727c" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>MakeMultipleApplyNameInstance</name></member>
+      <member refid="class_usd_schema_registry_1ada7847bceb3ebd3efabe3120c27047ed" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>MakeMultipleApplyNameTemplate</name></member>
+      <member refid="class_usd_schema_registry_1a4430b1590f52919590df0890cea341b3" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>MakeSchemaIdentifierForFamilyAndVersion</name></member>
+      <member refid="class_usd_schema_registry_1a70a5e7d662890a921fe41627fd42dca2" prot="private" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>operator=</name></member>
+      <member refid="class_tf_weak_base_1af890ac314073e903458bf6b2397566b5" prot="public" virt="non-virtual" ambiguityscope="TfWeakBase::"><scope>UsdSchemaRegistry</scope><name>operator=</name></member>
+      <member refid="class_usd_schema_registry_1a68fbde1db9710dfe4859734c53e9e061" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>ParseSchemaFamilyAndVersionFromIdentifier</name></member>
+      <member refid="class_usd_schema_registry_1a93a851e20098bdf2b8d3fd65db0fe2a7" prot="private" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>TfSingleton&lt; UsdSchemaRegistry &gt;</name></member>
+      <member refid="class_tf_weak_base_1a6e4abdd663654f8c8019702a464de8d6" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_weak_base_1affc4c00d0bbfdfe4f9e6a8b2e81be368" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>TfWeakBase</name></member>
+      <member refid="class_usd_schema_registry_1aa76d79e9f4f42959f2ec90a1323875b3" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>TokenToTokenVectorMap</name></member>
+      <member refid="class_usd_schema_registry_1ade728bcc7f74163c134889e476241fac" prot="private" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>UsdPrimDefinition</name></member>
+      <member refid="class_usd_schema_registry_1a597d3f7ca0a9337aff5ac5e1d1d739bf" prot="private" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>UsdSchemaRegistry</name></member>
+      <member refid="class_usd_schema_registry_1ab2fe535bd45b0272a9075013be841b91" prot="private" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>UsdSchemaRegistry</name></member>
+      <member refid="class_usd_schema_registry_1a49aaa704be3b21aaf43f12da6412ca6c" prot="public" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>VersionPolicy</name></member>
+      <member refid="class_tf_weak_base_1a778020f525b66def8a284c6f020592c2" prot="protected" virt="non-virtual"><scope>UsdSchemaRegistry</scope><name>~TfWeakBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

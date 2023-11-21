@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="_sdf__page__file_format_plugin" kind="page">
+    <compoundname>Sdf_Page_FileFormatPlugin</compoundname>
+    <title>Creating a File Format Plugin</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>You can create plugins that adapt other file formats to USD, and the plugin will dynamically translate the file&apos;s contents into data recognizable as <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref> &apos;s, <ref refid="class_sdf_property_spec" kindref="compound">SdfPropertySpec</ref> &apos;s, etc.</para>
+<para>If you plan to have the file&apos;s entire contents translated and cached in memory at the time the file is opened, then derive a class from the <ref refid="class_sdf_file_format" kindref="compound">SdfFileFormat</ref> plugin base class.</para>
+<para>If, however, you wish to access the data lazily (as most binary file formats are designed to do), then you should also create an <ref refid="class_sdf_abstract_data" kindref="compound">SdfAbstractData</ref> -derived adapter as part of the plugin.</para>
+<sect1 id="_sdf__page__file_format_plugin_1Capability_Overview">
+<title>File Format Capabilities</title>
+<para>When integrating USD into end user applications it can be helpful to determine if file format plugins provide reading, writing, and/or editing functionality. These collective operations are referred to as a plugin&apos;s capabilities.</para>
+<para>Being able to query a plugin&apos;s capabilities can be helpful in situations such as creating a file format selector for import or export. In the absense of being able to query such capabilities, a user might, for example, select a format for export, and have the operation fail mysteriously due to the operation not being supported by the format plugin.</para>
+<sect2 id="_sdf__page__file_format_plugin_1Declaring_Capabilities">
+<title>Declaring Capabilities</title>
+<para>File format capabilities are specified in the file format plugin&apos;s <computeroutput>plugInfo.json</computeroutput> entry. By default, the system assumes that each file format plugin supports all capabilities. Plugin authors must explicitly enumerate the capabilities that a plugin does not support.</para>
+<para>There are currently three standard file format capabilities: <table rows="4" cols="3"><row>
+<entry thead="yes"><para>Capability </para>
+</entry><entry thead="yes"><para>plugInfo.json property </para>
+</entry><entry thead="yes"><para>Description  </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Reading </para>
+</entry><entry thead="no"><para><computeroutput>supportsReading</computeroutput>  </para>
+</entry><entry thead="no"><para>The plugin supports data import into <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref>. If &quot;supportsReading&quot; is false, <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> API that reads serialized data will issue a coding error and fail if given an identifier that is handled by this plugin.</para>
+<para>This includes:<linebreak/>
+ <ref refid="class_sdf_layer_1aa01062bf4dde3f28c1fc617a1acaf35e" kindref="member">SdfLayer::FindOrOpen</ref><linebreak/>
+ <ref refid="class_sdf_layer_1a031a0d6dd1b5be5a9de24f406dd61f0c" kindref="member">SdfLayer::Import</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Writing </para>
+</entry><entry thead="no"><para><computeroutput>supportsWriting</computeroutput>  </para>
+</entry><entry thead="no"><para>The plugin supports data export from <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref>. If &quot;supportsWriting&quot; is false, <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> API that writes serialized data will issue a coding error and fail if given an identifier that is handled by this plugin.</para>
+<para>This includes:<linebreak/>
+ <ref refid="class_sdf_layer_1aef819927fc1ad0d6fc5ad5fefb58dcdf" kindref="member">SdfLayer::Export</ref><linebreak/>
+ <ref refid="class_sdf_layer_1ad5a54175a9d67b72094f8fdf3e83c9d9" kindref="member">SdfLayer::Save</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Editing </para>
+</entry><entry thead="no"><para><computeroutput>supportsEditing</computeroutput>  </para>
+</entry><entry thead="no"><para>The plugin supports interactive layer modification. Currently this capability is for informational purposes only. No runtime validation is performed.   </para>
+</entry></row>
+</table>
+</para>
+<para>Below is an example <computeroutput>plugInfo.json</computeroutput> file declaring a file format that does not support writing.</para>
+<para><programlisting><codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;Plugins&quot;:<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Info&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Types&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;UnwritableFormat&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;bases&quot;:<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;SdfTextFileFormat&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;displayName&quot;:<sp/>&quot;Format<sp/>that<sp/>does<sp/>not<sp/>support<sp/>writing&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;extensions&quot;:<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;unwritable&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;supportsWriting&quot;:<sp/>false,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;formatId&quot;:<sp/>&quot;UnwritableFormat&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;primary&quot;:<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="_sdf__page__file_format_plugin_1Runtime_Access">
+<title>Querying Capabilities at Runtime</title>
+<para>File format capabilities can be queried at runtime using the <ref refid="class_sdf_file_format" kindref="compound">SdfFileFormat</ref> class: <table rows="4" cols="2"><row>
+<entry thead="yes"><para>Static Method  </para>
+</entry><entry thead="yes"><para>Instance Method   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="class_sdf_file_format_1ada2c1b75bce2485538862ecddc9285bc" kindref="member">SdfFileFormat::FormatSupportsReading</ref>  </para>
+</entry><entry thead="no"><para><ref refid="class_sdf_file_format_1a5f99ff74942b86a7aa1ec7c69a617b64" kindref="member">SdfFileFormat::SupportsReading</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="class_sdf_file_format_1add9fecbf8f4a1acac72dd5f9141f97ee" kindref="member">SdfFileFormat::FormatSupportsWriting</ref>  </para>
+</entry><entry thead="no"><para><ref refid="class_sdf_file_format_1a27f2b45688a158acb95d1d00b6d82e0f" kindref="member">SdfFileFormat::SupportsWriting</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="class_sdf_file_format_1acab8762adf43caac7b35f784babb5ae4" kindref="member">SdfFileFormat::FormatSupportsEditing</ref>  </para>
+</entry><entry thead="no"><para><ref refid="class_sdf_file_format_1a83eab906a0358ebdf94b03316bf66d80" kindref="member">SdfFileFormat::SupportsEditing</ref>   </para>
+</entry></row>
+</table>
+Use of the static methods when possible is preferred because these methods read the metadata authored in <computeroutput>plugInfo.json</computeroutput> to determine capabilities without loading the plugins themselves. This avoids a potentially costly load of large and complex plugins. </para>
+</sect2>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

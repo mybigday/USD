@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_ndr_discovery_plugin" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>NdrDiscoveryPlugin</compoundname>
+    <basecompoundref refid="class_tf_ref_base" prot="public" virt="non-virtual">TfRefBase</basecompoundref>
+    <basecompoundref refid="class_tf_weak_base" prot="public" virt="non-virtual">TfWeakBase</basecompoundref>
+    <derivedcompoundref refid="class___ndr_filesystem_discovery_plugin" prot="public" virt="non-virtual">_NdrFilesystemDiscoveryPlugin</derivedcompoundref>
+    <derivedcompoundref refid="class_usd_hydra_discovery_plugin" prot="public" virt="non-virtual">UsdHydraDiscoveryPlugin</derivedcompoundref>
+    <includes refid="ndr_2discovery_plugin_8h" local="no">discoveryPlugin.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_ndr_discovery_plugin_1a0a83616fbb4b50e88f5e5efe91e8855f" prot="public" static="no">
+        <type><ref refid="class_ndr_discovery_plugin_context" kindref="compound">NdrDiscoveryPluginContext</ref></type>
+        <definition>using Context =  NdrDiscoveryPluginContext</definition>
+        <argsstring></argsstring>
+        <name>Context</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/discoveryPlugin.h" line="146" column="1" bodyfile="pxr/usd/ndr/discoveryPlugin.h" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_ndr_discovery_plugin_1a9ec4274c900f2104436055af1d3592cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API</type>
+        <definition>NDR_API NdrDiscoveryPlugin</definition>
+        <argsstring>()</argsstring>
+        <name>NdrDiscoveryPlugin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/discoveryPlugin.h" line="149" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_discovery_plugin_1abab8119a311293cba8d457244b94bc5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>NDR_API</type>
+        <definition>virtual NDR_API ~NdrDiscoveryPlugin</definition>
+        <argsstring>()</argsstring>
+        <name>~NdrDiscoveryPlugin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/discoveryPlugin.h" line="151" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_discovery_plugin_1a221bced0dd2bddf368977672bd86e8ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>NDR_API NdrNodeDiscoveryResultVec</type>
+        <definition>virtual NDR_API NdrNodeDiscoveryResultVec DiscoverNodes</definition>
+        <argsstring>(const Context &amp;)=0</argsstring>
+        <name>DiscoverNodes</name>
+        <reimplementedby refid="class___ndr_filesystem_discovery_plugin_1aae964c361ac5778200b944aa949fa1f8">DiscoverNodes</reimplementedby>
+        <param>
+          <type>const <ref refid="class_ndr_discovery_plugin_context" kindref="compound">Context</ref> &amp;</type>
+        </param>
+        <briefdescription>
+<para>Finds and returns all nodes that the implementing plugin should be aware of. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/discoveryPlugin.h" line="156" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_discovery_plugin_1ade58587e7e3b410e661f257ce5fc8e1e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>NDR_API const NdrStringVec &amp;</type>
+        <definition>virtual NDR_API const NdrStringVec&amp; GetSearchURIs</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetSearchURIs</name>
+        <reimplementedby refid="class___ndr_filesystem_discovery_plugin_1a9ede5657d6aa930d8e2457471436f1bd">GetSearchURIs</reimplementedby>
+        <briefdescription>
+<para>Gets the URIs that this plugin is searching for nodes in. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/discoveryPlugin.h" line="160" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Interface for discovery plugins. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Discovery plugins, like the name implies, find nodes. Where the plugin searches is up to the plugin that implements this interface. Examples of discovery plugins could include plugins that look for nodes on the filesystem, another that finds nodes in a cloud service, and another that searches a local database. Multiple discovery plugins that search the filesystem in specific locations/ways could also be created. All discovery plugins are executed as soon as the registry is instantiated.</para>
+<para>These plugins simply report back to the registry what nodes they found in a generic way. The registry doesn&apos;t know much about the innards of the nodes yet, just that the nodes exist. Understanding the nodes is the responsibility of another set of plugins defined by the <computeroutput><ref refid="class_ndr_parser_plugin" kindref="compound">NdrParserPlugin</ref></computeroutput> interface.</para>
+<para>Discovery plugins report back to the registry via <computeroutput><ref refid="struct_ndr_node_discovery_result" kindref="compound">NdrNodeDiscoveryResult</ref></computeroutput>s. These are small, lightweight classes that contain the information for a single node that was found during discovery. The discovery result only includes node information that can be gleaned pre-parse, so the data is fairly limited; to see exactly what&apos;s included, and what is expected to be populated, see the documentation for <computeroutput><ref refid="struct_ndr_node_discovery_result" kindref="compound">NdrNodeDiscoveryResult</ref></computeroutput>.</para>
+<sect1 id="class_ndr_parser_plugin_1create">
+<title>How to Create a Discovery Plugin</title>
+<para>There are three steps to creating a discovery plugin: <itemizedlist>
+<listitem>
+<para>Implement the discovery plugin interface, <computeroutput><ref refid="class_ndr_discovery_plugin" kindref="compound">NdrDiscoveryPlugin</ref></computeroutput>  </para>
+</listitem>
+<listitem>
+<para>Register your new plugin with the registry. The registration macro must be called in your plugin&apos;s implementation file: <programlisting filename=".cpp"><codeline><highlight class="normal">NDR_REGISTER_DISCOVERY_PLUGIN(YOUR_DISCOVERY_PLUGIN_CLASS_NAME)</highlight></codeline>
+</programlisting> This macro is available in discoveryPlugin.h.  </para>
+</listitem>
+<listitem>
+<para>In the same folder as your plugin, create a <computeroutput>plugInfo.json</computeroutput> file. This file must be formatted like so, substituting <computeroutput>YOUR_LIBRARY_NAME</computeroutput>, <computeroutput>YOUR_CLASS_NAME</computeroutput>, and <computeroutput>YOUR_DISPLAY_NAME</computeroutput>: <programlisting filename=".json"><codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;Plugins&quot;:<sp/>[{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Type&quot;:<sp/>&quot;library&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Name&quot;:<sp/>&quot;YOUR_LIBRARY_NAME&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Root&quot;:<sp/>&quot;@PLUG_INFO_ROOT@&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;LibraryPath&quot;:<sp/>&quot;@PLUG_INFO_LIBRARY_PATH@&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;ResourcePath&quot;:<sp/>&quot;@PLUG_INFO_RESOURCE_PATH@&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Info&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Types&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;YOUR_CLASS_NAME&quot;<sp/>:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;bases&quot;:<sp/>[&quot;NdrDiscoveryPlugin&quot;],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;displayName&quot;:<sp/>&quot;YOUR_DISPLAY_NAME&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}]</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>The NDR ships with one discovery plugin, the <computeroutput><ref refid="class___ndr_filesystem_discovery_plugin" kindref="compound">_NdrFilesystemDiscoveryPlugin</ref></computeroutput>. Take a look at NDR&apos;s plugInfo.json file for example values for <computeroutput>YOUR_LIBRARY_NAME</computeroutput>, <computeroutput>YOUR_CLASS_NAME</computeroutput>, and <computeroutput>YOUR_DISPLAY_NAME</computeroutput>. If multiple discovery plugins exist in the same folder, you can continue adding additional plugins under the <computeroutput>Types</computeroutput> key in the JSON. More detailed information about the plugInfo.json format can be found in the documentation for the <computeroutput>plug</computeroutput> library (in pxr/base).  </para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4286">
+        <label>NdrDiscoveryPlugin</label>
+        <link refid="class_ndr_discovery_plugin"/>
+        <childnode refid="4287" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4288" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4288">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="4289">
+        <label>_NdrFilesystemDiscoveryPlugin</label>
+        <link refid="class___ndr_filesystem_discovery_plugin"/>
+        <childnode refid="4286" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4287">
+        <label>TfRefBase</label>
+        <link refid="class_tf_ref_base"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4290">
+        <label>NdrDiscoveryPlugin</label>
+        <link refid="class_ndr_discovery_plugin"/>
+        <childnode refid="4291" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4292" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4292">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="4291">
+        <label>TfRefBase</label>
+        <link refid="class_tf_ref_base"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/usd/ndr/discoveryPlugin.h" line="144" column="1" bodyfile="pxr/usd/ndr/discoveryPlugin.h" bodystart="143" bodyend="161"/>
+    <listofallmembers>
+      <member refid="class_tf_weak_base_1a01aa4c4b93df067f2ec9b9e5fa4c35b3" prot="public" virt="non-virtual"><scope>NdrDiscoveryPlugin</scope><name>__GetTfWeakBase__</name></member>
+      <member refid="class_tf_weak_base_1a6a5533162e8efab1be47acd6ccd5254c" prot="protected" virt="non-virtual"><scope>NdrDiscoveryPlugin</scope><name>_HasRemnant</name></member>
+      <member refid="class_tf_weak_base_1a95139d2f4d04eb706664a4f47eb93918" prot="protected" virt="non-virtual"><scope>NdrDiscoveryPlugin</scope><name>_Register</name></member>
+      <member refid="class_tf_weak_base_1ac1312732482c8a286522f703f2cf90d1" prot="protected" virt="non-virtual"><scope>NdrDiscoveryPlugin</scope><name>_Register</name></member>
+      <member refid="class_ndr_discovery_plugin_1a0a83616fbb4b50e88f5e5efe91e8855f" prot="public" virt="non-virtual"><scope>NdrDiscoveryPlugin</scope><name>Context</name></member>
+      <member refid="class_ndr_discovery_plugin_1a221bced0dd2bddf368977672bd86e8ae" prot="public" virt="pure-virtual"><scope>NdrDiscoveryPlugin</scope><name>DiscoverNodes</name></member>
+      <member refid="class_tf_weak_base_1a16f1e27cc0c7c606ffb397b7d970ed10" prot="public" virt="non-virtual"><scope>NdrDiscoveryPlugin</scope><name>EnableNotification2</name></member>
+      <member refid="class_tf_ref_base_1abcd501e4bb37d7a93faa4e625e96ecf7" prot="public" virt="non-virtual"><scope>NdrDiscoveryPlugin</scope><name>GetCurrentCount</name></member>
+      <member refid="class_tf_ref_base_1abc1926aa1f9b1ad25c5c583b92bcf14b" prot="public" virt="non-virtual"><scope>NdrDiscoveryPlugin</scope><name>GetRefCount</name></member>
+      <member refid="class_ndr_discovery_plugin_1ade58587e7e3b410e661f257ce5fc8e1e" prot="public" virt="pure-virtual"><scope>NdrDiscoveryPlugin</scope><name>GetSearchURIs</name></member>
+      <member refid="class_tf_weak_base_1a3241c32a82fbed0716a77049f6134e1e" prot="public" virt="non-virtual"><scope>NdrDiscoveryPlugin</scope><name>GetUniqueIdentifier</name></member>
+      <member refid="class_tf_ref_base_1aab8bc91cf9cff7c6e1da23dc59f5ad1f" prot="public" virt="non-virtual"><scope>NdrDiscoveryPlugin</scope><name>IsUnique</name></member>
+      <member refid="class_ndr_discovery_plugin_1a9ec4274c900f2104436055af1d3592cc" prot="public" virt="non-virtual"><scope>NdrDiscoveryPlugin</scope><name>NdrDiscoveryPlugin</name></member>
+      <member refid="class_tf_weak_base_1af890ac314073e903458bf6b2397566b5" prot="public" virt="non-virtual"><scope>NdrDiscoveryPlugin</scope><name>operator=</name></member>
+      <member refid="class_tf_ref_base_1a6ee7fb6df1df9be9afbda405643ecb6c" prot="public" virt="non-virtual"><scope>NdrDiscoveryPlugin</scope><name>SetShouldInvokeUniqueChangedListener</name></member>
+      <member refid="class_tf_ref_base_1a33e6c8ffe0caf7dac94ba5c4a4485fbd" prot="public" virt="non-virtual"><scope>NdrDiscoveryPlugin</scope><name>SetUniqueChangedListener</name></member>
+      <member refid="class_tf_ref_base_1aa2d330100c1dde0a28658bbd0bd7e7bd" prot="public" virt="non-virtual"><scope>NdrDiscoveryPlugin</scope><name>TfRefBase</name></member>
+      <member refid="class_tf_weak_base_1a6e4abdd663654f8c8019702a464de8d6" prot="public" virt="non-virtual"><scope>NdrDiscoveryPlugin</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_weak_base_1affc4c00d0bbfdfe4f9e6a8b2e81be368" prot="public" virt="non-virtual"><scope>NdrDiscoveryPlugin</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_ref_base_1a86baed63f8017038997266bdd638f65e" prot="public" virt="non-virtual"><scope>NdrDiscoveryPlugin</scope><name>UniqueChangedFuncPtr</name></member>
+      <member refid="class_ndr_discovery_plugin_1abab8119a311293cba8d457244b94bc5f" prot="public" virt="virtual"><scope>NdrDiscoveryPlugin</scope><name>~NdrDiscoveryPlugin</name></member>
+      <member refid="class_tf_ref_base_1abc8b2a655b2693dacab986b70c30f28a" prot="protected" virt="virtual"><scope>NdrDiscoveryPlugin</scope><name>~TfRefBase</name></member>
+      <member refid="class_tf_weak_base_1a778020f525b66def8a284c6f020592c2" prot="protected" virt="non-virtual"><scope>NdrDiscoveryPlugin</scope><name>~TfWeakBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

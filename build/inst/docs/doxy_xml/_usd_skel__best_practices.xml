@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="_usd_skel__best_practices" kind="page">
+    <compoundname>UsdSkel_BestPractices</compoundname>
+    <title>Best Practices</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="_usd_skel__best_practices_1UsdSkel_BestPractices_JointTransforms">
+<title>Joint Transforms</title>
+<para>Currently, UsdSkel only supports encoding orthogonal joint animations. The joint transforms that make up those animations need not be orthonormal, however it is recommended: In practice, not all applications support non-orthonormal transformations on joints, so interchange may not be successful if not adhering to clean, orthonormal transforms.</para>
+</sect1>
+<sect1 id="_usd_skel__best_practices_1UsdSkel_BestPractices_TransformDecomposition">
+<title>Transform Decomposition</title>
+<para>UsdSkel provides its own transform decomposition method, <ref refid="group___usd_skel___transform_composition_utils_1gae08cda17ff7925996d26aace2d51e9d0" kindref="member">UsdSkelDecomposeTransforms</ref>, for decomposing a transform into translate, rotate and scale components.</para>
+<para>Clients may have their own transform decomposition methods with slightly different behavior. As long as <ref refid="group___usd_skel___transform_composition_utils_1gad80f891c3cfe2de677fc04020d5768b1" kindref="member">UsdSkelMakeTransforms</ref> returns the correct results, using alternative decomposition methods is <emphasis>fine</emphasis>.</para>
+<para>However, it is important that the results of decomposition methods are not mixed. Two decomposition methods may produce different translate, rotate and scale components, but that recombine to form the same transforms, so it may not be valid to set, say, rotations but not translations.</para>
+<para>To avoid hard to debug transform composition issues, it is recommended that whenever any of the transform components is set on a <ref refid="class_usd_skel_animation" kindref="compound">UsdSkelAnimation</ref> primitive, <bold>all</bold> of the components are set.</para>
+</sect1>
+<sect1 id="_usd_skel__best_practices_1UsdSkel_BestPractices_CreatingPrimvars">
+<title>Creating Primvars</title>
+<para>When creating primvars using the <ref refid="class_usd_skel_binding_a_p_i" kindref="compound">UsdSkelBindingAPI</ref>, it is good practice to <bold>always</bold> specify both the primvar <emphasis>interpolation</emphasis> and <emphasis>elementSize</emphasis>. Otherwise, it is very easy to end up with invalid data in a composed scene.</para>
+<para>Users are encouraged to use the <ref refid="class_usd_skel_binding_a_p_i_1a404f1352f372d4ba6419abde3bae4402" kindref="member">UsdSkelBindingAPI::CreateJointIndicesPrimvar</ref> and <ref refid="class_usd_skel_binding_a_p_i_1a50e25553069216c12a6683e827fa4457" kindref="member">UsdSkelBindingAPI::CreateJointWeightsPrimvar</ref> helper methods, which ensure that those properties are always correctly defined.</para>
+</sect1>
+<sect1 id="_usd_skel__best_practices_1UsdSkel_BestPractices_SkinnedPrimTypes">
+<title>Skinned Prim Types</title>
+<para>It&apos;s easy to fall into the trap of assuming that all <ref refid="_usd_skel__intro_1UsdSkel_SkinnablePrims" kindref="member">skinnable prims</ref> will be <ref refid="class_usd_geom_mesh" kindref="compound">UsdGeomMesh</ref> types, or similar. This is not true: any <ref refid="class_usd_geom_boundable" kindref="compound">UsdGeomBoundable</ref> primitive may be treated as being skinnable. It is the client&apos;s responsibility to determine if they know how to skin a given primitive.</para>
+</sect1>
+<sect1 id="_usd_skel__best_practices_1UsdSkel_BestPractices_NumInfluences">
+<title>Number of Influences</title>
+<para>Clients should not assume that the number of influences <ndash/> I.e,. the primvar <emphasis>elementSize</emphasis> <ndash/> will be within some threshold that they consider <emphasis>reasonable</emphasis>. If it is desired that a maximum number of influences be enforced, the client should enforce that by truncating the resulting influences themselves. The <ref refid="group___usd_skel___joint_influence_utils_1gaae0d70275a200052d4c1dba80fe388f4" kindref="member">UsdSkelResizeInfluences</ref> helper method may be used towards that end.</para>
+</sect1>
+<sect1 id="_usd_skel__best_practices_1UsdSkel_BestPractices_JointInfluences">
+<title>Joint Influences</title>
+<para>UsdSkel does not currently require joint weighting to be normalized, or sorted. It is, however, recommended. This can be done prior to writing data to USD using the <ref refid="group___usd_skel___joint_influence_utils_1ga3021d3989a6265f6bbf09d72114edfed" kindref="member">UsdSkelNormalizeWeights</ref> and <ref refid="group___usd_skel___joint_influence_utils_1ga58fea609ea13eb8b9f8c6fe7ab709307" kindref="member">UsdSkelSortInfluences</ref> helper methods. </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

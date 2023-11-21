@@ -1,0 +1,8 @@
+# CMake generated Testfile for 
+# Source directory: /home/clachanski/trees/OpenUSD_Vulkan/extras/usd/examples/usdRecursivePayloadsExample
+# Build directory: /home/clachanski/trees/OpenUSD_Vulkan/build/extras/usd/examples/usdRecursivePayloadsExample
+# 
+# This file includes the relevant testing commands required for 
+# testing this directory and lists subdirectories to be tested as well.
+add_test(testUsdRecursivePayloadsExample "/pixar/d2/sets/vfx2022.003/bin/python" "/home/clachanski/trees/OpenUSD_Vulkan/cmake/macros/testWrapper.py" "--verbose" "--testenv-dir=/home/clachanski/trees/OpenUSD_Vulkan/build/inst/tests/ctest/testUsdRecursivePayloadsExample" "--diff-compare=flattenedContents.usda" "--diff-compare=newFlattenedContents.usda" "--baseline-dir=/home/clachanski/trees/OpenUSD_Vulkan/build/inst/tests/ctest/testUsdRecursivePayloadsExample/baseline" "--failures-dir=/home/clachanski/trees/OpenUSD_Vulkan/build/Testing/Failed-Diffs/<PXR_CTEST_RUN_ID>/testUsdRecursivePayloadsExample" "--env-var=PXR_PLUGINPATH_NAME=/home/clachanski/trees/OpenUSD_Vulkan/build/inst/share/usd/examples/plugin/usdRecursivePayloadsExample/resources" "--env-var=PYTHONPATH=/home/clachanski/trees/OpenUSD_Vulkan/build/inst/lib/python:" "/pixar/d2/sets/vfx2022.003/bin/python /home/clachanski/trees/OpenUSD_Vulkan/build/inst/tests/testUsdRecursivePayloadsExample")
+set_tests_properties(testUsdRecursivePayloadsExample PROPERTIES  _BACKTRACE_TRIPLES "/home/clachanski/trees/OpenUSD_Vulkan/cmake/macros/Public.cmake;872;add_test;/home/clachanski/trees/OpenUSD_Vulkan/extras/usd/examples/usdRecursivePayloadsExample/CMakeLists.txt;43;pxr_register_test;/home/clachanski/trees/OpenUSD_Vulkan/extras/usd/examples/usdRecursivePayloadsExample/CMakeLists.txt;0;")

@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_bprim" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>HdBprim</compoundname>
+    <derivedcompoundref refid="class_hd_field" prot="public" virt="non-virtual">HdField</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_render_buffer" prot="public" virt="non-virtual">HdRenderBuffer</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_render_settings" prot="public" virt="non-virtual">HdRenderSettings</derivedcompoundref>
+    <includes refid="bprim_8h" local="no">bprim.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_bprim_1ae87c83b9f3d4f5ba91530df74da5e284" prot="private" static="no" mutable="no">
+        <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SdfPath _id</definition>
+        <argsstring></argsstring>
+        <name>_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bprim.h" line="92" column="1" bodyfile="pxr/imaging/hd/bprim.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_bprim_1aa5ee52b8b01515706d54cf147de7f884" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API HdBprim</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>HdBprim</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bprim.h" line="60" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_bprim_1a214b96ab3e11db88364e8b73b8a6940c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API</type>
+        <definition>virtual HD_API ~HdBprim</definition>
+        <argsstring>()</argsstring>
+        <name>~HdBprim</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bprim.h" line="62" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_bprim_1a9301243d9273afcba6395e86047490ab" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const  &amp;</type>
+        <definition>SdfPath const&amp; GetId</definition>
+        <argsstring>() const</argsstring>
+        <name>GetId</name>
+        <briefdescription>
+<para>Returns the identifier by which this buffer is known. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This identifier is a common associative key used by the SceneDelegate, RenderIndex, and for binding to the buffer </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bprim.h" line="67" column="1" bodyfile="pxr/imaging/hd/bprim.h" bodystart="67" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_bprim_1ac100b9064606ab088306512425439cf7" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void Sync</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, HdDirtyBits *dirtyBits)=0</argsstring>
+        <name>Sync</name>
+        <reimplementedby refid="class_hd_st_field_1a1ff320f5516aeeb22fb8316c87ce08de">Sync</reimplementedby>
+        <reimplementedby refid="class_hd_render_buffer_1a3213755baa58cf8f2da75fb5a5e33566">Sync</reimplementedby>
+        <reimplementedby refid="class_hd_render_settings_1afda3a8bc73b3ad74453dfc693a89aafd">Sync</reimplementedby>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+<para>Synchronizes state from the delegate to this object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">dirtyBits</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>On input specifies which state is is dirty and can be pulled from the scene delegate. On output specifies which bits are still dirty and were not cleaned by the sync. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bprim.h" line="76" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_bprim_1a385eed04c15e636796b187bfdf0fcbf0" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API void</type>
+        <definition>virtual HD_API void Finalize</definition>
+        <argsstring>(HdRenderParam *renderParam)</argsstring>
+        <name>Finalize</name>
+        <reimplementedby refid="class_hd_render_buffer_1a580d2cd68564bd6eafec9294bbcfd0bb">Finalize</reimplementedby>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <briefdescription>
+<para>Finalizes object resources. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function might not delete resources, but it should deal with resource ownership so that the sprim is deletable. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bprim.h" line="84" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_bprim_1ac05e81662ee475cfe52ce97e84e7205d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>HdDirtyBits</type>
+        <definition>virtual HdDirtyBits GetInitialDirtyBitsMask</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetInitialDirtyBitsMask</name>
+        <reimplementedby refid="class_hd_st_field_1a59b589b9042f2173054e853d4d58036f">GetInitialDirtyBitsMask</reimplementedby>
+        <reimplementedby refid="class_hd_render_buffer_1ad2a06c7fe9d266e21307307fc7a0dccd">GetInitialDirtyBitsMask</reimplementedby>
+        <reimplementedby refid="class_hd_render_settings_1ad2a06c7fe9d266e21307307fc7a0dccd">GetInitialDirtyBitsMask</reimplementedby>
+        <briefdescription>
+<para>Returns the minimal set of dirty bits to place in the change tracker for use in the first sync of this prim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Typically this would be all dirty bits. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bprim.h" line="89" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Bprim (buffer prim) is a base class of managing a blob of data that is used to communicate between the scene delegate and render. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Like other prim types (Rprim and Sprim), the Bprim communicates with the scene delegate got get buffer properties (e.g. the size of the buffer) as well as the contents of the buffer.</para>
+<para>Changes to the properties and contents are change tracked and updates are cached in the renderer. The Render Delegate may choose to transform the data into a renderer specific form on download.</para>
+<para>BPrims are sync&apos;ed first and thus, Bprims should not be Dependent on the state of any other prim.</para>
+<para>The most typical use of a Bprim would be a Texture. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1592">
+        <label>HdField</label>
+        <link refid="class_hd_field"/>
+        <childnode refid="1591" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1593">
+        <label>HdStField</label>
+        <link refid="class_hd_st_field"/>
+        <childnode refid="1592" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1594">
+        <label>HdRenderBuffer</label>
+        <link refid="class_hd_render_buffer"/>
+        <childnode refid="1591" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1595">
+        <label>HdRenderSettings</label>
+        <link refid="class_hd_render_settings"/>
+        <childnode refid="1591" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1591">
+        <label>HdBprim</label>
+        <link refid="class_hd_bprim"/>
+      </node>
+    </inheritancegraph>
+    <location file="pxr/imaging/hd/bprim.h" line="57" column="1" bodyfile="pxr/imaging/hd/bprim.h" bodystart="56" bodyend="93"/>
+    <listofallmembers>
+      <member refid="class_hd_bprim_1ae87c83b9f3d4f5ba91530df74da5e284" prot="private" virt="non-virtual"><scope>HdBprim</scope><name>_id</name></member>
+      <member refid="class_hd_bprim_1a385eed04c15e636796b187bfdf0fcbf0" prot="public" virt="virtual"><scope>HdBprim</scope><name>Finalize</name></member>
+      <member refid="class_hd_bprim_1a9301243d9273afcba6395e86047490ab" prot="public" virt="non-virtual"><scope>HdBprim</scope><name>GetId</name></member>
+      <member refid="class_hd_bprim_1ac05e81662ee475cfe52ce97e84e7205d" prot="public" virt="pure-virtual"><scope>HdBprim</scope><name>GetInitialDirtyBitsMask</name></member>
+      <member refid="class_hd_bprim_1aa5ee52b8b01515706d54cf147de7f884" prot="public" virt="non-virtual"><scope>HdBprim</scope><name>HdBprim</name></member>
+      <member refid="class_hd_bprim_1ac100b9064606ab088306512425439cf7" prot="public" virt="pure-virtual"><scope>HdBprim</scope><name>Sync</name></member>
+      <member refid="class_hd_bprim_1a214b96ab3e11db88364e8b73b8a6940c" prot="public" virt="virtual"><scope>HdBprim</scope><name>~HdBprim</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

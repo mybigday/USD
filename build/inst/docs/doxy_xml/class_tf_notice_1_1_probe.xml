@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_tf_notice_1_1_probe" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>TfNotice::Probe</compoundname>
+    <basecompoundref refid="class_tf_weak_base" prot="public" virt="non-virtual">TfWeakBase</basecompoundref>
+    <includes refid="base_2tf_2notice_8h" local="no">notice.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_tf_notice_1_1_probe_1a85074170b07c2030fcea054d870b5a76" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>TF_API</type>
+        <definition>virtual TF_API ~Probe</definition>
+        <argsstring>()=0</argsstring>
+        <name>~Probe</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="221" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1_1_probe_1abf800ea0eb1558ec365e1d65f76a0597" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void BeginSend</definition>
+        <argsstring>(const TfNotice &amp;notice, const TfWeakBase *sender, const std::type_info &amp;senderType)=0</argsstring>
+        <name>BeginSend</name>
+        <param>
+          <type>const <ref refid="class_tf_notice" kindref="compound">TfNotice</ref> &amp;</type>
+          <declname>notice</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_weak_base" kindref="compound">TfWeakBase</ref> *</type>
+          <declname>sender</declname>
+        </param>
+        <param>
+          <type>const std::type_info &amp;</type>
+          <declname>senderType</declname>
+        </param>
+        <briefdescription>
+<para>This method is called just before <computeroutput>notice</computeroutput> is sent to any listeners. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>sender</computeroutput> is NULL if <computeroutput>notice</computeroutput> is sent globally. In this case, <computeroutput>senderType</computeroutput> will be typeid(void). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="226" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1_1_probe_1a43e17199b34df7429e80d5977e58a1cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void EndSend</definition>
+        <argsstring>()=0</argsstring>
+        <name>EndSend</name>
+        <briefdescription>
+<para>This method is called after the notice in the corresponding <computeroutput>BeginSend</computeroutput> call has been delivered to all listeners. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="232" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1_1_probe_1a7e5cc2edea3f57d0cde129e8b861608e" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void BeginDelivery</definition>
+        <argsstring>(const TfNotice &amp;notice, const TfWeakBase *sender, const std::type_info &amp;senderType, const TfWeakBase *listener, const std::type_info &amp;listenerType)=0</argsstring>
+        <name>BeginDelivery</name>
+        <param>
+          <type>const <ref refid="class_tf_notice" kindref="compound">TfNotice</ref> &amp;</type>
+          <declname>notice</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_weak_base" kindref="compound">TfWeakBase</ref> *</type>
+          <declname>sender</declname>
+        </param>
+        <param>
+          <type>const std::type_info &amp;</type>
+          <declname>senderType</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_weak_base" kindref="compound">TfWeakBase</ref> *</type>
+          <declname>listener</declname>
+        </param>
+        <param>
+          <type>const std::type_info &amp;</type>
+          <declname>listenerType</declname>
+        </param>
+        <briefdescription>
+<para>This method is called just before <computeroutput>notice</computeroutput> is delivered to a listener. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>sender</computeroutput> is NULL if <computeroutput>notice</computeroutput> is sent globally or the listener is global. In this case, <computeroutput>senderType</computeroutput> will be typeid(void). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="238" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_notice_1_1_probe_1a293de64e6e64d0b70b9e691d3edb695a" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void EndDelivery</definition>
+        <argsstring>()=0</argsstring>
+        <name>EndDelivery</name>
+        <briefdescription>
+<para>This method is called after the notice in the corresponding <computeroutput>BeginDelivery</computeroutput> call has finished being processed by its listener. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/notice.h" line="247" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="class_tf_notice_1_1_probe" kindref="compound">Probe</ref> interface class which may be implemented and then registered via <computeroutput>InsertProbe</computeroutput> to introspect about notices as they are sent and delivered. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4843">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="4842">
+        <label>TfNotice::Probe</label>
+        <link refid="class_tf_notice_1_1_probe"/>
+        <childnode refid="4843" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4845">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="4844">
+        <label>TfNotice::Probe</label>
+        <link refid="class_tf_notice_1_1_probe"/>
+        <childnode refid="4845" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/base/tf/notice.h" line="218" column="1" bodyfile="pxr/base/tf/notice.h" bodystart="218" bodyend="248"/>
+    <listofallmembers>
+      <member refid="class_tf_weak_base_1a01aa4c4b93df067f2ec9b9e5fa4c35b3" prot="public" virt="non-virtual"><scope>TfNotice::Probe</scope><name>__GetTfWeakBase__</name></member>
+      <member refid="class_tf_weak_base_1a6a5533162e8efab1be47acd6ccd5254c" prot="protected" virt="non-virtual"><scope>TfNotice::Probe</scope><name>_HasRemnant</name></member>
+      <member refid="class_tf_weak_base_1a95139d2f4d04eb706664a4f47eb93918" prot="protected" virt="non-virtual"><scope>TfNotice::Probe</scope><name>_Register</name></member>
+      <member refid="class_tf_weak_base_1ac1312732482c8a286522f703f2cf90d1" prot="protected" virt="non-virtual"><scope>TfNotice::Probe</scope><name>_Register</name></member>
+      <member refid="class_tf_notice_1_1_probe_1a7e5cc2edea3f57d0cde129e8b861608e" prot="public" virt="pure-virtual"><scope>TfNotice::Probe</scope><name>BeginDelivery</name></member>
+      <member refid="class_tf_notice_1_1_probe_1abf800ea0eb1558ec365e1d65f76a0597" prot="public" virt="pure-virtual"><scope>TfNotice::Probe</scope><name>BeginSend</name></member>
+      <member refid="class_tf_weak_base_1a16f1e27cc0c7c606ffb397b7d970ed10" prot="public" virt="non-virtual"><scope>TfNotice::Probe</scope><name>EnableNotification2</name></member>
+      <member refid="class_tf_notice_1_1_probe_1a293de64e6e64d0b70b9e691d3edb695a" prot="public" virt="pure-virtual"><scope>TfNotice::Probe</scope><name>EndDelivery</name></member>
+      <member refid="class_tf_notice_1_1_probe_1a43e17199b34df7429e80d5977e58a1cf" prot="public" virt="pure-virtual"><scope>TfNotice::Probe</scope><name>EndSend</name></member>
+      <member refid="class_tf_weak_base_1a3241c32a82fbed0716a77049f6134e1e" prot="public" virt="non-virtual"><scope>TfNotice::Probe</scope><name>GetUniqueIdentifier</name></member>
+      <member refid="class_tf_weak_base_1af890ac314073e903458bf6b2397566b5" prot="public" virt="non-virtual"><scope>TfNotice::Probe</scope><name>operator=</name></member>
+      <member refid="class_tf_weak_base_1a6e4abdd663654f8c8019702a464de8d6" prot="public" virt="non-virtual"><scope>TfNotice::Probe</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_weak_base_1affc4c00d0bbfdfe4f9e6a8b2e81be368" prot="public" virt="non-virtual"><scope>TfNotice::Probe</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_notice_1_1_probe_1a85074170b07c2030fcea054d870b5a76" prot="public" virt="pure-virtual"><scope>TfNotice::Probe</scope><name>~Probe</name></member>
+      <member refid="class_tf_weak_base_1a778020f525b66def8a284c6f020592c2" prot="protected" virt="non-virtual"><scope>TfNotice::Probe</scope><name>~TfWeakBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

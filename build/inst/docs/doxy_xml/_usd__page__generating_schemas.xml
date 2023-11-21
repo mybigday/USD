@@ -1,0 +1,584 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="_usd__page__generating_schemas" kind="page">
+    <compoundname>Usd_Page_GeneratingSchemas</compoundname>
+    <title>Creating New Schema Classes with usdGenSchema</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>USD provides a code generator script &apos;usdGenSchema&apos; for creating new schema classes. The script is driven by a USD layer (typically named schema.usda) and generates the necessary C++ classes and supporting Python code for all the schema classes defined in it.</para>
+<para>This USD layer must meet the following prerequisites in order for generated code to compile and work with USD Core successfully.</para>
+<para><itemizedlist>
+<listitem><para>Must specify the libraryName as layer metadata.</para>
+</listitem><listitem><para>Schema typenames must be unique across all libraries.</para>
+</listitem><listitem><para>Attribute names and tokens should be camelCased valid C/python identifiers, with the allowance that &apos;:&apos; signifies property namespacing. However if useLiteralIdentifier metadata is provided in the schema.usda, then when creating public tokens for names, token-values, etc, code gen will try to use the tokens as-is substituting underscores where necessary to produce a valid identifier. Any invalid identifier will be updated using TfMakeValidIdentifier. Also note that as per established convention schema tokens, library tokens, relationship names and property namespace prefix tokens follow the use literal identifier pattern. See <ref refid="_usd__page__object_model_1Usd_OM_UsdProperty" kindref="member">UsdProperty: Common Interface for Attributes and Relationships</ref> and <ref refid="_usd__page__generating_schemas_1Usd_NameSpacedPropertiesInCodeGen" kindref="member">Namespaced Properties in Code Generation</ref> for more information.</para>
+</listitem><listitem><para>usd/schema.usda must exist in the LayerStack, not necessarily as a direct subLayer.</para>
+</listitem><listitem><para>If the names, default values and token values are not valid C/python identifiers, then during schema gen we try to update these such that:<itemizedlist>
+<listitem><para>If the first element of the token is a digit, an &apos;_&apos; is prefixed before running it through TfMakeValidIdentifier.</para>
+</listitem><listitem><para>All invalid tokens are updated to replace any illegal element with an &apos;_&apos;.</para>
+</listitem><listitem><para>Do note that since all special characters are replaced with an &apos;_&apos;, tokens like &quot;foo#bar&quot; and &quot;foo$bar&quot;, will result in the same identifier &quot;foo_bar&quot;, hence violating the One-to-One mapping of token identifiers mentioned in <ref refid="_usd__page__generating_schemas_1Usd_NameSpacedPropertiesInCodeGen" kindref="member">Namespaced Properties in Code Generation</ref> below.</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+<para>See pxr/usd/lib/usdGeom/schema.usda for an example.</para>
+<sect1 id="_usd__page__generating_schemas_1Usd_IsAVsAPISchemas">
+<title>IsA Vs. API Schemas</title>
+<para>Schema classes can be classified into the following two types:</para>
+<para><itemizedlist>
+<listitem><para><bold>API schema</bold> - An API schema provides an interface to a prim&apos;s qualities, but does not specify a typeName for the underlying prim. The prim&apos;s qualities include its inheritance structure, attributes, relationships etc. Since it cannot provide a typeName, an API schema is considered to be non-concrete. As a convention, the C++/python class name for an API schema must end with &quot;API&quot;. In core USD, <ref refid="class_usd_model_a_p_i" kindref="compound">UsdModelAPI</ref> is an example of an API schema; <ref refid="class_usd_ri_material_a_p_i" kindref="compound">UsdRiMaterialAPI</ref> is an example from our RenderMan schema module, which adds/extracts RenderMan-specific shading information from a generic UsdShadeMaterial-typed prim. Also by convention (with which usdGenSchema can help), the properties that &quot;belong&quot; to an API schema are typically namespaced with the base-name of the schema, camelCased. For example, <ref refid="class_usd_ri_material_a_p_i_1a3f32be3aef6bcb1e740bbf4f55d38cba" kindref="member">UsdRiMaterialAPI::CreateSurfaceAttr()</ref> will create an attribute named outputs:ri:surface. API schemas are classified into the following two sub-types:<itemizedlist>
+<listitem><para><bold>Non-applied API schemas</bold> - If an API schema only provides an interface to certain core bits of metadata (like <ref refid="class_usd_model_a_p_i" kindref="compound">UsdModelAPI</ref>, which sets model kind and <ref refid="class_usd_clips_a_p_i" kindref="compound">UsdClipsAPI</ref>, which sets value-clips related metadata) or if there is no use of recording the application of the API schema on a prim (for the purpose of interchange), we make it a non-applied API schema. Examples of non-applied API schemas include <ref refid="class_usd_model_a_p_i" kindref="compound">UsdModelAPI</ref>, <ref refid="class_usd_clips_a_p_i" kindref="compound">UsdClipsAPI</ref>, <ref refid="class_usd_shade_connectable_a_p_i" kindref="compound">UsdShadeConnectableAPI</ref> and <ref refid="class_usd_geom_primvars_a_p_i" kindref="compound">UsdGeomPrimvarsAPI</ref>. Typically, non-applied API schemas can apply to any prim-type (eg, <ref refid="class_usd_clips_a_p_i" kindref="compound">UsdClipsAPI</ref>) or to a known fixed set of prim types, like in the case of <ref refid="class_usd_shade_connectable_a_p_i" kindref="compound">UsdShadeConnectableAPI</ref> which is only applicable to types that implement connectability behaviors such as shaders and lights.</para>
+</listitem><listitem><para><bold>Applied API Schemas</bold> - If there is a need to record and discover whether an API schema has been applied to a prim, we make it an applied API schema. An applied schema will impart its properties as additional built-in properties on the prim. A public Apply() method is auto-generated for applied API schemas. Once an API schema has been applied to a prim, prim.HasAPI&lt;APISchemaType&gt;() will return true. An applied API schema must be applied to a prim via a call to the Apply() method, for the schema object to evaluate to true when converted to a bool using the explicit bool conversion operator. Examples of applied API schemas include <ref refid="class_usd_collection_a_p_i" kindref="compound">UsdCollectionAPI</ref>, <ref refid="class_usd_geom_model_a_p_i" kindref="compound">UsdGeomModelAPI</ref> and <ref refid="class_usd_geom_motion_a_p_i" kindref="compound">UsdGeomMotionAPI</ref>. All applied API schemas must inherit from <ref refid="class_usd_a_p_i_schema_base" kindref="compound">UsdAPISchemaBase</ref> directly and cannot inherit from other schemas. However, applied API schemas can include other applied API schemas as <ref refid="_usd__page__generating_schemas_1Usd_BuiltinAPISchemas" kindref="member">built-ins</ref>. Applied API schemas are further classified into the following two categories:<itemizedlist>
+<listitem><para><bold>Single-Apply API Schemas</bold> - Applied API schemas that can only be applied as a single instance to a prim. Examples of single-apply API schemas include <ref refid="class_usd_geom_model_a_p_i" kindref="compound">UsdGeomModelAPI</ref> and <ref refid="class_usd_geom_motion_a_p_i" kindref="compound">UsdGeomMotionAPI</ref>.</para>
+</listitem><listitem><para><bold>Multiple-Apply API Schemas</bold> - Applied API schemas that can be applied multiple times on the same prim with different instance names. For example, <ref refid="class_usd_collection_a_p_i" kindref="compound">UsdCollectionAPI</ref>, which must be applied once per collection owned by a prim. Properties instantiated by this API schema are prefixed with the namespace prefix of the schema followed by the instance name. There is specific metadata one authors in schema.usda to identify the prefix for multi-apply schemas, and the properties for a multi-apply schema should be listed without any prefix.</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para><bold>IsA schema</bold> - An IsA schema can impart a typeName to a prim in addition to providing an interface to a prim&apos;s qualities. Every IsA schema must derive from the core class <ref refid="class_usd_typed" kindref="compound">UsdTyped</ref>, which is the base class for all typed schemas. Furthermore, an IsA schema can be concrete or non-concrete. An IsA schema will be concrete (or instantiable) if its schema declaration provides both a name for the schema (in quotes) and a typeName in the schema.usda file in which it is defined. A non-concrete (abstract) IsA schema provides only a name for the schema, and hence cannot be instantiated; non-concrete schemas exist to serve as super-classes for related sets of concrete IsA schemas. <ref refid="class_usd_geom_imageable" kindref="compound">UsdGeomImageable</ref> is an example of a non-concrete IsA schema. <ref refid="class_usd_geom_scope" kindref="compound">UsdGeomScope</ref> is an example of a concrete, typed IsA schema.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para>&quot;Instantiable,&quot; in this context, means instantiable as a typed prim in scene description. The generated classes for all schemas, be they API, concrete-typed or non-concrete-typed are always instantiable in C++ or python as interface objects through which one can interact with <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> objects.</para>
+</simplesect>
+The definitions of both IsA schemas and applied API schemas are published, at runtime, into an introspectable <ref refid="_usd__page__object_model_1Usd_OM_SchemaDefinitionRegistry" kindref="member">schema definition registry</ref>, which produces the <ref refid="class_usd_prim_definition" kindref="compound">prim definitions</ref> consulted by core USD when performing property value resolution (i.e. retrieving a property&apos;s value at a given <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref>). This allows IsA and applied API schemas to provide <emphasis>fallback</emphasis> <emphasis>values</emphasis> for their properties, that is, a value that the property will possess, even when none has been authored. Because a prim can only have one typeName, a prim can &quot;be&quot; (IsA) at most a single type, but can host data for any number of API schemas. This combination of IsA and applied API schemas constitutes the prim&apos;s complete type signature and is used to construct a single <ref refid="class_usd_prim_definition" kindref="compound">prim definition</ref> that provides all the built-in properties and fallback values for the prim.</para>
+<para>The author of an API schema has to decide on the type of API schema at the time of its creation by setting token-valued customData entry &apos;apiSchemaType&apos; in the schema definition. It can be set to one of &apos;nonApplied&apos;, &apos;singleApply&apos; or &apos;multipleApply&apos;. When unspecified, the fallback apiSchemaType for an API schema is &apos;singleApply&apos;. An API schema can only inherit from another compatible API schema with matching customData[&quot;apiSchemaType&quot;] or from &quot;/APISchemaBase&quot; directly. This is enforced by the schema code generation script &apos;usdGenSchema&apos;.</para>
+<para>API schemas and non-concrete typed schemas must not provide a typeName in their class declaration in a schema.usda file.</para>
+<para>See <ref refid="_usd__page__generating_schemas_1Usd_ExampleSchema" kindref="member">Example Schema Classes</ref> for examples of each type of schema class.</para>
+</sect1>
+<sect1 id="_usd__page__generating_schemas_1Usd_BuiltinAPISchemas">
+<title>Built-in applied API schemas</title>
+<para>In some cases an IsA schema may want to have certain API schemas always applied to prims of its schema type. To avoid having to manually apply these API schemas to all instances of these prim types we provide a few ways to specify built-in applied API schemas for IsA schema types. When a prim of an IsA schema type with built-in applied API schemas is created, all properties from the API schemas will also be built-in properties of the prim. The list of built-in API schemas can be queried from the prim type&apos;s <ref refid="class_usd_prim_definition_1a6a432f1e0c050f831089bb2b546ad05a" kindref="member">prim definition</ref> and the prim will also return true from <ref refid="class_usd_prim_1a582b449631f9e073e0e04582c66ce04a" kindref="member">UsdPrim::HasAPI</ref> for all of its built-in API schemas.</para>
+<para>Furthermore, for some applied API schema types, we may want the application of the API schema to additionally apply one or more other API schemas. We also provide, through the same mechanisms as we have for IsA schemas, the ability to specify built-in applied API schemas for both single-apply and multiple-apply API schema types. When an API schema with built-in API schemas is applied to a prim (or is included as a built-in for another type), all of its built-in API schemas are also applied. These built-ins nest, so an API schema can include another built-in API schema which itself includes yet another built-in API schema and all these will be applied when the top level API schema is applied.</para>
+<para>The built-ins of both IsA and single-apply API schemas may only contain the names of single-apply API schemas and named instances of multiple-apply API schemas (such as &quot;ExampleSingleApplyAPI&quot; and &quot;MultiApplyAPI:foo&quot;).</para>
+<para>For multiple-apply schemas, since they must always be applied to a prim using an instance name, their built-in schemas must be able to be applied to a prim using the same instance name (or a suffixed version of it) as the schema they&apos;re built in to. Thus, the schema names listed as built-ins for multiple-apply API schemas must only refer to other multiple-apply API schemas and can be specified in two ways:</para>
+<para><orderedlist>
+<listitem><para>By a non-instanced multiple-apply API schema name, e.g. &quot;OtherMultiApplyAPI&quot;. This indicates an &quot;inheritance-like&quot; built-in as applying an instance of the multiple-apply API schema will always also apply an instance of built-in API schema with the same instance name.</para>
+</listitem><listitem><para>By a full instance name of a multiple-apply API schema, e.g. &quot;OtherMultiApplyAPI:someName&quot;. This indicates an &quot;encapsulated instance&quot; built-in since it provides an instance name suffix to append to the applied instance name to use for the built-in API schema&apos;s instance name. For example, if we had a multiple-apply API that included the built-in &quot;OtherMultiApplyAPI:someName&quot; and were to apply it using the instance name &quot;foo&quot;, then, OtherMultiApplyAPI would also be applied using the suffixed instance name &quot;foo:someName&quot;</para>
+</listitem></orderedlist>
+</para>
+<sect2 id="_usd__page__generating_schemas_1Usd_SchemaDefinedBuiltinAPIs">
+<title>Schema defined built-in APIs</title>
+<para>The first and most straightforward way an IsA or applied API schema author can specify which applied API schemas it wants built-in is by prepending them to the <emphasis>apiSchemas</emphasis> field in their schema definition like so:</para>
+<para><programlisting><codeline><highlight class="normal">#<sp/>Example<sp/>of<sp/>a<sp/>concrete,<sp/>typed<sp/>(IsA)<sp/>schema<sp/>with<sp/>built-in<sp/>applied<sp/>API<sp/>schemas</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>MyCustomPrim<sp/>&quot;MyCustomPrim&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inherits<sp/>=<sp/>&lt;/Typed&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>These<sp/>listed<sp/>applied<sp/>API<sp/>schemas<sp/>will<sp/>be<sp/>built-in<sp/>to<sp/>this<sp/>schema<sp/>type.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;ExampleSingleApplyAPI&quot;,<sp/>&quot;ExampleMultiApplyAPI:foo&quot;]</highlight></codeline>
+<codeline><highlight class="normal">)<sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>Example<sp/>of<sp/>a<sp/>fallback<sp/>value<sp/>override<sp/>for<sp/>a<sp/>theoretical<sp/>property<sp/>defined<sp/>in<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>the<sp/>API<sp/>schema<sp/>instance<sp/>&quot;ExampleMultiApplyAPI:foo&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>exampleMulti:foo:boolAttr<sp/>=<sp/>true<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>customData<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bool<sp/>apiSchemaOverride<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Example<sp/>of<sp/>a<sp/>single-apply<sp/>API<sp/>schema<sp/>with<sp/>built-in<sp/>applied<sp/>API<sp/>schemas</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>&quot;MyCustomAPI&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inherits<sp/>=<sp/>&lt;/APISchemaBase&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>These<sp/>listed<sp/>applied<sp/>API<sp/>schemas<sp/>will<sp/>be<sp/>built-in<sp/>to<sp/>this<sp/>schema<sp/>type<sp/>and</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>will<sp/>always<sp/>be<sp/>applied<sp/>when<sp/>this<sp/>schema<sp/>is<sp/>applied.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;ExampleSingleApplyAPI&quot;,<sp/>&quot;ExampleMultiApplyAPI:foo&quot;]</highlight></codeline>
+<codeline><highlight class="normal">)<sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>Example<sp/>of<sp/>a<sp/>fallback<sp/>value<sp/>override<sp/>for<sp/>a<sp/>theoretical<sp/>property<sp/>defined<sp/>in<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>the<sp/>API<sp/>schema<sp/>instance<sp/>&quot;ExampleMultiApplyAPI:foo&quot;.<sp/>This<sp/>schema<sp/>will<sp/>be</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>stronger<sp/>when<sp/>applied<sp/>than<sp/>its<sp/>built-in<sp/>API<sp/>schemas<sp/>and<sp/>this<sp/>default<sp/>value</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>will<sp/>be<sp/>used<sp/>for<sp/>the<sp/>added<sp/>property.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>exampleMulti:foo:boolAttr<sp/>=<sp/>true<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>customData<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bool<sp/>apiSchemaOverride<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Example<sp/>of<sp/>a<sp/>multiple-apply<sp/>API<sp/>schema<sp/>with<sp/>built-in<sp/>applied<sp/>API<sp/>schemas</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>&quot;MyCustomMultiApplyAPI&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inherits<sp/>=<sp/>&lt;/APISchemaBase&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>customData<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token<sp/>apiSchemaType<sp/>=<sp/>&quot;multipleApply&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token<sp/>propertyNamespacePrefix<sp/><sp/>=<sp/>&quot;myCustomProp&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>These<sp/>listed<sp/>applied<sp/>API<sp/>schemas<sp/>will<sp/>be<sp/>built-in<sp/>to<sp/>this<sp/>schema<sp/>type<sp/>and</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>will<sp/>always<sp/>be<sp/>applied<sp/>when<sp/>this<sp/>schema<sp/>is<sp/>applied.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>Applying<sp/>MyCustomMultiApplyAPI<sp/>with<sp/>instance<sp/>name<sp/>like<sp/>&quot;bar&quot;<sp/>will<sp/>apply<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>the<sp/>following<sp/>multiple-apply<sp/>schema<sp/>instances:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/><sp/><sp/>MyCustomMultiApplyAPI:bar</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/><sp/><sp/>ExampleMultiApplyAPI:bar</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/><sp/><sp/>OtherMultiApplyAPI:bar:foo</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;ExampleMultiApplyAPI&quot;,<sp/>&quot;OtherMultiApplyAPI:foo&quot;]</highlight></codeline>
+<codeline><highlight class="normal">)<sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>Example<sp/>attribute.<sp/>It<sp/>will<sp/>have<sp/>the<sp/>full<sp/>name<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>myCustomProp:&lt;instanceName&gt;:boolAttr<sp/>when<sp/>applied.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>boolAttr<sp/>=<sp/>true<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;Multiple<sp/>apply<sp/>schema<sp/>attribute<sp/>example&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>The listed API schemas will be built-in to the declared schema type. For IsA schemas, derived types of the schema will inherit its built-in API schemas (applied API schemas cannot inherit from each other). The <emphasis>apiSchemas</emphasis> field must always be specified with <emphasis>prepend</emphasis> as we only allow a schema to add new built-in API schemas that are stronger than any that may be inherited from its parent schema. Any schema can specify overrides to properties that would come from one of its built-in API schemas by declaring the property itself. This should be done carefully to avoid breaking conformance with the built-in schema itself (like changing the property&apos;s type) and is typically used for changing the default value for the property. <simplesect kind="see"><para><ref refid="_usd__page__generating_schemas_1Usd_APISchemaStrengthOrdering" kindref="member">Property conflicts, composition, and API schema strength ordering</ref></para>
+</simplesect>
+</para>
+</sect2>
+<sect2 id="_usd__page__generating_schemas_1Usd_AutoAppliedAPISchemas">
+<title>Auto applied API schemas</title>
+<para>In addition to schemas being able to declare built-in applied API schemas, an applied API schema can specify that it should be automatically applied to any number of IsA or single-apply API schemas. The primary use case for this is when a schema author wants to extend an existing schema with properties from their own applied API schema without altering the existing schema itself. Specifying the API schema to auto apply can accomplish this goal without having to manually apply the API to every prim instance of a schema type (or to every prim instance with a specific API schema applied). A concrete example would be a renderer providing an API schema for its own specific render properties that can then be automatically applied to UsdLux light typed prims when the renderer and its API schema are available.</para>
+<para>An author of an API schema can specify the IsA and/or single-apply API schemas to which it wants to be automatically applied through the <emphasis>apiSchemaAutoApplyTo</emphasis> field in the API schema definition&apos;s customData like so:</para>
+<para><programlisting><codeline><highlight class="normal">#<sp/>Example<sp/>of<sp/>an<sp/>applied<sp/>API<sp/>schema<sp/>specified<sp/>to<sp/>auto<sp/>apply<sp/>to<sp/>both<sp/>a<sp/>concrete</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>and<sp/>an<sp/>abstract<sp/>IsA<sp/>schema<sp/>as<sp/>well<sp/>as<sp/>another<sp/>single-apply<sp/>API<sp/>schema.</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>&quot;MyCustomAPI&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inherits<sp/>=<sp/>&lt;/APISchemaBase&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>customData<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>These<sp/>listed<sp/>IsA<sp/>and<sp/>API<sp/>schemas<sp/>add<sp/>this<sp/>API<sp/>schema<sp/>to<sp/>their<sp/>built-in<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>API<sp/>schemas.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token[]<sp/>apiSchemaAutoApplyTo<sp/>=<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;MyCustomConcretePrim&quot;,<sp/>&quot;MyCustomAbstractPrim&quot;,<sp/>&quot;MyCustomAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">)<sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/>autoApplyApiAttr<sp/>=<sp/>1</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>The specified schema names in the <emphasis>apiSchemaAutoApplyTo</emphasis> field can refer to another single-apply API schema and to both abstract and concrete IsA schema types. For the IsA schema types, the applied schema will be added to the built-in schemas for the listed types as well as for any derived schemas of the listed types. Note that this customData field is only supported for single apply API schemas as multiple apply API schemas cannot be applied without an instance name.</para>
+</sect2>
+<sect2 id="_usd__page__generating_schemas_1Usd_PluginAutoAppliedAPISchemas">
+<title>Plugin defined auto applied API schemas</title>
+<para>Lastly, it is also possible for plugins to specify additional built-in API schemas for other schema types outside of schema generation. This is useful if a client desires schema types to have built-in API schemas but doesn&apos;t want to force this upon all clients by changing the generated schemas themselves. An example use case for this would be a client pipeline that wants an available UI related API schema applied to all shader prim types as this is not something all users of these schemas may necessarily want.</para>
+<para>A plugin author can specify their additional built-in API schemas in their plugin&apos;s plugInfo.json file using the <emphasis>AutoApplyAPISchemas</emphasis> metadata like so:</para>
+<para><programlisting><codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;Plugins&quot;:<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Info&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AutoApplyAPISchemas&quot;<sp/>:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;ExistingSingleApplyAPI&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;apiSchemaAutoApplyTo&quot;:<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;ExistingPrimType&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;ExistingMultiApplyAPI:foo&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;apiSchemaAutoApplyTo&quot;:<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;ExistingPrimType&quot;,<sp/>&quot;ExistingSingleApplyAPI&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>The metadata format is a dictionary of API schema names to a list of the schemas the plugin wants them to be applied to as a built-in API. Like with the schema generated <ref refid="_usd__page__generating_schemas_1Usd_AutoAppliedAPISchemas" kindref="member">auto apply schemas</ref>, the API schemas will also be applied to any derived schema types of any listed IsA schemas. Multiple apply schemas (in addition to single apply) can also be auto applied using this plugin metadata as long as the fully qualified instance name for the mulitple apply schema is provided.</para>
+</sect2>
+<sect2 id="_usd__page__generating_schemas_1Usd_APISchemaStrengthOrdering">
+<title>Property conflicts, composition, and API schema strength ordering</title>
+<para>Given that we encourage (or even require in the case of multi apply schemas) the use of namespace prefixes for API schema property names, we expect most properties defined in API schemas will be unique to the schema. However, there will always be the possibility that properties with the same name may be defined in multiple API schemas applied to the same prim. To account for this, there is a strength ordering for applied API schemas that we use to determine which property definition &quot;wins&quot; when more than one API schema can define it.</para>
+<para>Firstly, the strongest opinion for all aspects of a built-in property in an IsA schema&apos;s <ref refid="class_usd_prim_definition" kindref="compound">prim definition</ref> will always come from the IsA schema itself.</para>
+<para>Next, any auto applied API schemas, whether defined in the <ref refid="_usd__page__generating_schemas_1Usd_AutoAppliedAPISchemas" kindref="member">API schema&apos;s definition</ref> or in a <ref refid="_usd__page__generating_schemas_1Usd_PluginAutoAppliedAPISchemas" kindref="member">plugin&apos;s metadata</ref>, will be appended to the end of the list of built-in applied API schemas for the IsA or single-apply API they apply to. Since the built-in schema list is ordered strongest to weakest for application, this also means that <bold> auto applied schemas will always be weaker relative to the built-in API schemas defined in the schema they are auto applied to</bold>. When more than one API schema is auto applied to the same schema type, they are always sorted into reverse dictionary order by schema name before they are appended to the built-in schemas. The dictionary ordering is arbitrary but deterministic as there is no provided way to indicate strength ordering between auto applied API schemas.</para>
+<para>Lastly, the <ref refid="_usd__page__generating_schemas_1Usd_SchemaDefinedBuiltinAPIs" kindref="member">built-in schemas</ref> that are defined in the apiSchemas metadata of the IsA schema are applied in the order they appear in the composed list operation of the apiSchemas field, using a depth first expansion of any API schema that itself has included built-in API schemas. This list order is strongest to weakest, so property name conflicts will prefer a property definition from an API schema earlier in the list.</para>
+<para>Any API schemas that are applied to a prim instance in scene description (which we&apos;ll refer to as &quot;authored API schemas&quot;) are appended to the prim type&apos;s API schemas and will therefore have a weaker opinion on any properties they define that are also present in the prim type&apos;s schema definition, including all of its built-in and auto-applied API schemas. In other words, authored API schemas cannnot override any properties in the prim type&apos;s definition.</para>
+<para>For properties that are defined by more than one of the included schema, fields for which the strongest property definition does <emphasis>not</emphasis> express an opinion, may** be composed from weaker API schema definitions if the following conditions are met:<itemizedlist>
+<listitem><para>The property type of the stronger and weaker property definitions match. Specifically, the property definitions must both be attributes or both be relationships, and if they are attributes, their type names must be exactly the same.</para>
+</listitem><listitem><para>The field is in the set of <emphasis>allowed composable fields</emphasis> which currently includes only <emphasis>default</emphasis> and <emphasis>hidden</emphasis>. We may expand the set of allowed composable fields in the future.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="_usd__page__generating_schemas_1Usd_APISchemaPropertyOverride">
+<title>API schema property overrides</title>
+<para>Sometimes when an IsA or an API schema includes another API schema as a built-in, it may also want to alter one or more of the built-in schema&apos;s properties to give the property a more reasonable fallback value or change some other metadata on the property like its documentation or its <emphasis>allowedTokens</emphasis>. But we don&apos;t want the schema to have to fully redefine the property when it only wants to sparsely override the metadata it cares about. In order to enable this behavior we allow a schema to explicitly tag a property as an <emphasis>API schema override</emphasis>.</para>
+<para>A schema property that is declared as an API schema override does not define the property in that schema. Instead it behaves as an <emphasis>over</emphasis> for a property with the same name that may be defined by any of its included built-in API schemas. This is different than the standard behavior when included API schemas define the same property (without specifying an override) as in that case, the strongest schema&apos;s property wins and completely stomps over the same property from any weaker schema (as specified in <ref refid="_usd__page__generating_schemas_1Usd_APISchemaStrengthOrdering" kindref="member">Property conflicts, composition, and API schema strength ordering</ref>).</para>
+<para>API schema overrides can be declared for both IsA and applied API schemas in the source schema files through adding <programlisting><codeline><highlight class="normal">bool<sp/>apiSchemaOverride<sp/>=<sp/>true<sp/></highlight></codeline>
+</programlisting> to the <ref refid="_usd__page__generating_schemas_1Usd_CustomizingPerProperty" kindref="member">customData of the property</ref>. When the <ref refid="class_usd_schema_registry" kindref="compound">schema registry</ref> is populated, any properties declared as API schema overrides will be composed over the defined property from the schema&apos;s built-in API schemas if a property with that name is indeed defined in one of the built-in schemas. If no property with the name exists in the included API schemas, the API schema override property is ignored.</para>
+<para>An example of a common use case for this are schemas that include instances of <ref refid="class_usd_collection_a_p_i" kindref="compound">CollectionAPI</ref> and want to only change the fallback for <ref refid="class_usd_collection_a_p_i_1a775b96084922f08c4d8b5f943b1fc94e" kindref="member">includeRoot</ref> or <ref refid="class_usd_collection_a_p_i_1aae2a459d5d05bd2d2b4dd3c2d54c83fd" kindref="member">expansionRule</ref>, e.g.: <programlisting><codeline><highlight class="normal">class<sp/>&quot;MyCustomAPI&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;CollectionAPI:myColl&quot;]</highlight></codeline>
+<codeline><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>Override<sp/>CollectionAPI:myColl<sp/>to<sp/>set<sp/>the<sp/>fallback<sp/>for<sp/>includeRoot<sp/>to<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>instead<sp/>of<sp/>using<sp/>CollectionAPI&apos;s<sp/>normal<sp/>fallback<sp/>of<sp/>false.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uniform<sp/>bool<sp/>collection:myColl:includeRoot<sp/>=<sp/>1<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>customData<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bool<sp/>apiSchemaOverride<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>Because we treat auto-apply API schemas as an extension of the built-in API schemas included in a schema, API schema override properties can also be used to sparsely override properties defined in auto-apply API schemas. Since auto-apply schemas will typically be defined in plugins, API schema override properties are a convenient way to allow a schema to override a property that it expects to come from an auto-apply API schema without defining the property itself when the auto-apply API schema is not present (like when the auto-apply API schema&apos;s plugin isn&apos;t included).</para>
+<para>There are some limitations to how API schema override properties can be used:<orderedlist>
+<listitem><para>Any property declared as an API schema override <bold>must have the exact same type</bold> of the property it overrides. The property type consists of whether the property is an attribute or a relationship and, if the property is an attribute, the type name (int, float, color3f, etc.) of the attribute. Any API schema property overrides that do not conform to the underlying property type are ignored. Note that the variability of an API schema override property is allowed to be different than the defined property but the override&apos;s variability will be ignored.</para>
+</listitem><listitem><para>API schema override properties are currently only resolved when generating the static <ref refid="class_usd_prim_definition" kindref="compound">prim definitions</ref> for registered IsA and applied API schema types in the schema registry. &quot;Dangling overrides&quot; are not retained which means they cannot be used by an IsA schema to provide overrides to properties from authored API schemas applied in scene description.</para>
+</listitem><listitem><para>API schema property overrides only apply to the properties defined by API schemas directly or indirectly included by the schema defining the override itself. What this means is that if you have a schema &quot;A&quot; that includes two built-in API schemas &quot;B&quot; and &quot;C&quot;, property overrides declared in &quot;A&quot; will affect properties defined in both &quot;B&quot; and &quot;C&quot; (as well as properties defined in any API schemas &quot;B&quot; and &quot;C&quot; include). However, property overrides declared in &quot;B&quot; will <bold>not</bold> affect any of the properties defined in &quot;C&quot; (and schemas included by &quot;C&quot;) and vice versa.</para>
+</listitem></orderedlist>
+</para>
+<para>Note that API schema property overrides are specific to overriding properties from built-in API schemas and do not apply to overriding properties via schema inheritance. This is because schema properties always sparsely compose via class inheritance during schema generation so no specification is necessary.</para>
+</sect2>
+</sect1>
+<sect1 id="_usd__page__generating_schemas_1Usd_SchemaCodeGeneration">
+<title>Schema Code Generation</title>
+<para>Simply run the <computeroutput>usdGenSchema</computeroutput> command to generate code in the current directory for the schema classes defined in the file named &apos;schema.usda&apos;.</para>
+<para>The code generator uses <computeroutput>jinja2</computeroutput> templates that are installed with USD. build. The default schema class templates that ship with USD include the following files:</para>
+<para><itemizedlist>
+<listitem><para><bold>schemaClass.h, schemaClass.cpp, wrapSchemaClass.cpp</bold>: One set for each class found in schema.usda</para>
+</listitem><listitem><para><bold>tokens.h, tokens.cpp, wrapTokens.cpp</bold>: Contains static TfTokens for use with all schema in the library.</para>
+</listitem><listitem><para><bold>plugInfo.json</bold>: Every Pxr module that contains plugins has one of these. We add a declaration for every generated schema class into this file so that USD core can discover all plugin prim types cheaply and robustly.</para>
+</listitem><listitem><para><bold>api.h</bold>: Boilerplate macro definitions for exporting symbols on various platforms.</para>
+</listitem></itemizedlist>
+</para>
+<para>In addition to the files in schemata and tokens related files, the following files are edited by the script:</para>
+<para><itemizedlist>
+<listitem><para><bold>generatedSchema.usda</bold>: Processed form of schema definitions that will be consumed at runtime by USD core.</para>
+</listitem></itemizedlist>
+</para>
+<para><parblock><para><simplesect kind="note"><para>usdGenSchema will update existing files in the current directory if it detects any differences with the code it generates. Make sure these files are editable before running usdGenSchema </para>
+</simplesect>
+</para>
+</parblock></para>
+<para><parblock><para><simplesect kind="note"><para>usdGenSchema does not update the CMakeLists.txt and module.cpp files, even if they are editable. If you have added a new class(es), you must add them to these files yourself.</para>
+</simplesect>
+</para>
+</parblock></para>
+<para>Various command-line options are available for customizing the code generation process. Run <computeroutput>usdGenSchema --help</computeroutput> for more details.</para>
+</sect1>
+<sect1 id="_usd__page__generating_schemas_1Usd_NameSpacedPropertiesInCodeGen">
+<title>Namespaced Properties in Code Generation</title>
+<para>usdGenSchema also supports the use of namespaced properties for code generation.</para>
+<para>For example, float foo:bar will generate UsdMyClass::GetFooBarAttr() and UsdTokens-&gt;fooBar (with a value of &quot;foo:bar&quot;). usdGenSchema will raise exceptions to avoid naming collisions in the schema API and enforces a One-to-One mapping of token identifiers to token values, as shown below. Note that irrespective of useLiteralIdentifier value, property names with &apos;:&apos; are always camelCased for the defined convention.</para>
+<para><programlisting><codeline><highlight class="normal">class<sp/>MyClass<sp/>&quot;MyClass&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>Generates<sp/>UsdMyClass::GetFooBarAttr()<sp/>and<sp/>UsdTokens-&gt;fooBar<sp/>with<sp/>value<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>&quot;fooBar&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>float<sp/>fooBar</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>ERROR:<sp/>Naming<sp/>collision<sp/>in<sp/>both<sp/>API<sp/>and<sp/>tokens.<sp/>Generates<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>UsdMyClass::GetFooBarAttr()<sp/>and<sp/>UsdTokens-&gt;fooBar<sp/>with<sp/>value<sp/>&quot;foo:bar&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>float<sp/>foo:bar</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>ERROR:<sp/>Naming<sp/>collision<sp/>in<sp/>tokens.<sp/>Generates<sp/>UsdMyClass::GetMyTokenAttr()<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>and<sp/>UsdTokens-&gt;fooBar<sp/>with<sp/>value<sp/>&quot;foo-bar&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>token<sp/>myToken<sp/>=<sp/>&quot;foo-bar&quot;<sp/>(allowedTokens<sp/>=<sp/>[&quot;foo-bar&quot;])<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="_usd__page__generating_schemas_1Usd_GlobalSchemaProperties">
+<title>Global Schema Properties</title>
+<para>Each schema.usda file can contain a <emphasis>GLOBAL</emphasis> section like the following to provide customizations that apply to all the classes in the module:</para>
+<para><programlisting><codeline><highlight class="normal">over<sp/>&quot;GLOBAL&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>customData<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>libraryName<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>&quot;pxUsdGeom&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>libraryPath<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>&quot;folder/pxUsdGeom&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>libraryPrefix<sp/><sp/><sp/><sp/><sp/>=<sp/>&quot;PxUsdGeom&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>tokensPrefix<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>&quot;PxUsdGeom&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dictionary<sp/>libraryTokens<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dictionary<sp/>libraryToken1<sp/>=<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dictionary<sp/>libraryToken2<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>value<sp/>=<sp/>&quot;/non-identifier-tokenValue!&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>doc<sp/>=<sp/>&quot;&quot;&quot;doc<sp/>for<sp/>libraryToken2&quot;&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bool<sp/>skipCodeGeneration<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+</programlisting></para>
+<para>Here&apos;s a short description of each datum in the global customData dictionary:</para>
+<para><itemizedlist>
+<listitem><para><bold>libraryName</bold> - The name of the module into which the schema-generated files will be installed. <bold>Required!</bold> </para>
+</listitem><listitem><para><bold>libraryPath</bold> - The partial path with which to prefix &apos;#include&apos; statements of generated files for this module. For external (non-Pixar) plugins, we recommend setting libraryPath to &quot;.&quot;, so that the headers inside src directory are included in the generated files. <bold>Required</bold> unless skipCodeGeneration is true!</para>
+</listitem><listitem><para><bold>libraryPrefix</bold> - The prefix for all generated schema classes in the module.</para>
+<para>If not specified, falls back to ProperCase(libraryName)</para>
+</listitem><listitem><para><bold>tokensPrefix</bold> - The prefix to use for the tokens class, if it needs to be different from libraryPrefix</para>
+</listitem><listitem><para><bold>libraryTokens</bold> - a place to declare tokens meaningful to the module. These tokens will be included in the module&apos;s static tokens. If provided, the &quot;doc&quot; string will be included in the tokens documentation. If provided, the &quot;value&quot; string will be assigned as the token&apos;s value; otherwise, the token&apos;s value will be its identifier (as a <ref refid="class_tf_token" kindref="compound">TfToken</ref>).</para>
+</listitem><listitem><para><anchor id="_usd__page__generating_schemas_1codeless_schema"/><bold>skipCodeGeneration</bold> - Flag that, when set to true, tells schema generation that it should not generate any C++ code for the classes in this module. We call a schema without any corresponding C++ classes a &quot;codeless schema&quot;. Note that if skipCodeGeneration is set to true for a schema module, then any other schema module that includes it will also not generate any code. This is because we don&apos;t want to generate C++ code for classes that would possibly inherit from another C++ class that doesn&apos;t exist.</para>
+</listitem><listitem><para><bold>useLiteralIdentifier</bold> - when set for a library all tokens (default values, allowedTokens and property names) will try to use literal names as-is, instead of camelCasing these, which is the default behavior. For invalid tokens defined in schema.usda, usdGenSchema will use TfMakeValidIdentifier to make valid tokens. Note that for property names containing &apos;:&apos;, representing namespace prefixes, usdGenSchema will continue to use camelCase as mentioned in <ref refid="_usd__page__generating_schemas_1Usd_NameSpacedPropertiesInCodeGen" kindref="member">Namespaced Properties in Code Generation</ref>, example &quot;namespacePrefix:attrName&quot; will be camelCased to &quot;namespacePrefixAttrName&quot; irrespective of useLiteralIdentifier being set or not.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="_usd__page__generating_schemas_1Codeless_Schemas">
+<title>Codeless Schemas</title>
+<para>By default <computeroutput>usdGenSchema</computeroutput> generates C++ and Python code, providing appropriate APIs. Clients also have an option of not generating any code by setting the <emphasis>skipCodeGeneration</emphasis> metadata to True for a given schema, hence generating <bold>only generatedSchema.usda and plugInfo.json</bold> which are the only essential products for runtime schema registration.</para>
+<para>Since codeless schemas do not provide any code, clients do not need to recompile USD to use or update these schemas. This &quot;dynamic&quot; nature of codeless schemas is the primary motivation behind using codeless schemas. Also, for the same reasons, clients will have to use basic USD level APIs to query prims and attributes associated with the codeless schemas. This also means codeless schemas concept can not be used for any schema which requires custom code.</para>
+<para>The usdRiPxr schema domain that ships with USD is an example of a codeless schema domain. These are usd schemas generated using renderman shader definitions (args files) using the Sdr library. <computeroutput>usdgenschemafromsdr</computeroutput> is the utility which generates schema.usda, generatedSchema.usda and plugInfo.json for the usdRiPxr schema domain.</para>
+</sect1>
+<sect1 id="_usd__page__generating_schemas_1Usd_PerClassProperties">
+<title>Customizing Per-Class Properties</title>
+<para><programlisting><codeline><highlight class="normal">class<sp/>PxHairman<sp/>&quot;PxHairman&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>customData<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>className<sp/>=<sp/>&quot;Hairman&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>fileName<sp/>=<sp/>&quot;_hairman&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>extraIncludes<sp/>=<sp/>&quot;&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;pxr/usd/usdGeom/primvar.h&quot;</highlight></codeline>
+<codeline><highlight class="normal">&quot;&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dictionary<sp/>extraPlugInfo<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>customString<sp/>=<sp/>&quot;metadata&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bool<sp/>customBool<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int<sp/>customInt<sp/>=<sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dictionary<sp/>customDict<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>customNestedString<sp/>=<sp/>&quot;nested&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dictionary<sp/>schemaTokens<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dictionary<sp/>schemaToken1<sp/>=<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dictionary<sp/>schemaToken2<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>value<sp/>=<sp/>&quot;/non-identifier-tokenValue!&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>doc<sp/>=<sp/>&quot;&quot;&quot;doc<sp/>for<sp/>schemaToken2&quot;&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token[]<sp/>fallbackTypes<sp/>=<sp/>[&quot;PrimTypeName1&quot;,<sp/>&quot;PrimTypeName2&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>Here&apos;s a short description of each datum in the per-class customData dictionary:</para>
+<para><itemizedlist>
+<listitem><para><bold>className</bold> - If the USD prim typeName for the schema must be different than the un-prefixed class name, then use className customData to provide the class name for the C++ (which will be prefixed) and python schema classes.</para>
+</listitem><listitem><para><bold>fileName</bold> - if specified, will be the base name for the .h and .cpp generated files. If not specified, base name falls back to CamelCase(className)</para>
+</listitem><listitem><para><bold>extraIncludes</bold> - if specified, will add extra include paths for files required by the &quot;custom&quot; section of this class only. Note that this will add includes to the generated header file for the class. If includes are only needed in the generated implementation file(.cpp), one can instead add the header includes to the custom section of the cpp file specifically.</para>
+</listitem><listitem><para><bold>extraPlugInfo</bold> - if specified, the (key, value) pairs in this dictionary will be added as additional metadata for this class in the library&apos;s plugInfo.json file. The values in this dictionary must be numeric types, strings, booleans, or dictionaries containing these types. Examples of such extraPlugInfo include <emphasis>providesUsdShadeConnectableAPIBehavior</emphasis>, <emphasis>isUsdShadeContainer</emphasis>, <emphasis>requiresUsdShadeEncapsulation</emphasis> <ndash/> these can be used to configure <ref refid="class_usd_shade_connectable_a_p_i_behavior" kindref="compound">UsdShadeConnectableAPIBehavior</ref> for Typed or API schemas.</para>
+</listitem><listitem><para><bold>schemaTokens</bold> - a place to declare tokens meaningful to the schema. These tokens will be included in the module&apos;s static tokens. See docs above for the libraryTokens entry in the global customData dictionary for details about the contents of this dictionary.</para>
+</listitem><listitem><para><bold>apiSchemaType</bold> - must only be specified for an API schema. Defaults to the token &apos;singleApply&apos;, to indicate a single-apply API schema. Can be set to &apos;nonApplied&apos;, to create a non-applied API schema or to &quot;multipleApply&quot; to create a multiple-apply API schema.</para>
+</listitem><listitem><para><bold>propertyNamespacePrefix</bold> - must only be specified on multiple apply API schemas which have properties. This token, alongside the instance name, will be inserted as a prefix to all properties created by this multiple-apply API schema.</para>
+</listitem><listitem><para><bold>apiSchemaAutoApplyTo</bold> - must only be specified on single apply API schemas. This is a token array value that lists the names of typed schemas and other single apply API schemas that this API schema will be automatically applied to when the listed typed schemas are processed by the <ref refid="_usd__page__object_model_1Usd_OM_SchemaDefinitionRegistry" kindref="member">schema definition registry.</ref></para>
+</listitem><listitem><para><bold>apiSchemaCanOnlyApplyTo</bold> - must only be specified on single and multiple apply API schemas. This is a token array value that, when specified, is used by <ref refid="class_usd_prim_1a2e4b59a7cf7fa0d677270163ea6ad029" kindref="member">UsdPrim::CanApplyAPI</ref> and the schema&apos;s generated CanApply function to limit the prims to which this API schema can be validly applied to only the schema types whose names are in this list.</para>
+</listitem><listitem><para><bold>apiSchemaAllowedInstanceNames</bold> - must only be specified on multiple apply API schemas. This is a token array value that, when specified, is used by <ref refid="class_usd_prim_1a2e4b59a7cf7fa0d677270163ea6ad029" kindref="member">UsdPrim::CanApplyAPI</ref> and the schema&apos;s generated CanApply function to limit the instance names that are valid to use when applying this API schema to only the instance names included in this list.</para>
+</listitem><listitem><para><bold>apiSchemaInstances</bold> - must only be specified on multiple apply API schemas. This is a dictionary value that allows additional custom data to be specified for specific instance names of this multiple apply API schema. This dictionary can map an instance name to another dictionary value containing the custom data fields that will only apply to that instance name. Currently only <emphasis>apiSchemaCanOnlyApplyTo</emphasis> custom data can be specified in these per instance name dictionaries and will take precedence over the <emphasis>apiSchemaCanOnlyApplyTo</emphasis> custom data (specified for the entire schema type) for that instance name when present. The GridCrittersAPI in the <ref refid="_usd__page__generating_schemas_1Usd_ExampleSchema" kindref="member">examples section</ref> demonstrates how this can be used.</para>
+</listitem><listitem><para><bold>fallbackTypes</bold> - must only be specified for a concrete typed schema. This is a token array value used to specify the preferred fallback schema types that can be used instead when this schema isn&apos;t present. This data is used by <ref refid="class_usd_stage_1a14897ca124a0fb4a62e6ed2ccbbdbf4f" kindref="member">UsdStage::WriteFallbackPrimTypes</ref> to record, on a stage, the <ref refid="_usd__page__object_model_1Usd_OM_FallbackPrimTypes" kindref="member">fallback prim types</ref> metadata that USD versions which lack this schema will use to choose a suitable alternative schema type.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="_usd__page__generating_schemas_1Usd_CustomizingPerProperty">
+<title>Customizing Per-Property</title>
+<para><programlisting><codeline><highlight class="normal">ColorFloat[]<sp/>primvars:displayColor<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>customData<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>apiName<sp/>=<sp/>&quot;displayColor&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+</programlisting></para>
+<para>Here&apos;s a short description of each datum in the per-property customData dictionary:</para>
+<para><itemizedlist>
+<listitem><para><bold>apiName</bold> - Schema properties may define an &apos;apiName&apos; in customData to override the default generated accessor API. For example, the above spec produces GetDisplayColorAttr instead of GetPrimVarsDisplayColorAttr as the attribute accessor. As a special case, if &apos;apiName&apos; is set to the empty string, then no accessor API will be generated. Note: The actual name of the property as defined on the prim is still primvars:displayColor.</para>
+</listitem><listitem><para><bold>apiGetImplementation</bold> - Optionally control schema gen behavior for a property&apos;s &apos;Get&apos; implementation. Valid values:<itemizedlist>
+<listitem><para><emphasis>generated</emphasis> - Generate default header and implementation (Fallback value if unspecified).</para>
+</listitem><listitem><para><emphasis>custom</emphasis> - Generate default header ONLY. User must supply the implementation Custom should be used sparingly, primarily as a tool for API migration Given the performance expectations of Get, it is NOT appropriate to add complicated validation logic in this method.</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para><bold>apiSchemaOverride</bold> - If this boolean value is set to true, it indicates this property is an <ref refid="_usd__page__generating_schemas_1Usd_APISchemaPropertyOverride" kindref="member">API schema override</ref>. Additionally, no accessor API will be generated for this property, as if the property had set &apos;apiName&apos; to the empty string.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="_usd__page__generating_schemas_1Usd_ExampleSchema">
+<title>Example Schema Classes</title>
+<para><programlisting><codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline><highlight class="normal">(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;<sp/>This<sp/>file<sp/>describes<sp/>an<sp/>example<sp/>schemata<sp/>used<sp/>for<sp/>code<sp/>generation<sp/>using<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>usdGenSchema.<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>subLayers<sp/>=<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>This<sp/>is<sp/>mainly<sp/>needed<sp/>for<sp/>definition<sp/>of<sp/>UsdTyped.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>@usd/schema.usda@</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">over<sp/>&quot;GLOBAL&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>customData<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>libraryName<sp/>=<sp/>&quot;myLib&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>libraryPath<sp/>=<sp/>&quot;componentName/myLib&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dictionary<sp/>libraryTokens<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dictionary<sp/>sampleToken<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>doc<sp/>=<sp/>&quot;Documentation<sp/>for<sp/>sample<sp/>token.&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Example<sp/>of<sp/>a<sp/>non-concrete<sp/>IsA<sp/>schema</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Note<sp/>that<sp/>non-concrete<sp/>IsA<sp/>schemas<sp/>cannot<sp/>specify<sp/>a<sp/>typeName<sp/>in<sp/>the<sp/>class</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>declaration,<sp/>but<sp/>they<sp/>are<sp/>allowed<sp/>to<sp/>provide<sp/>fallback<sp/>values<sp/>for<sp/>attributes.</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>&quot;MyBaseCustomPrim&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;&quot;&quot;Defines<sp/>a<sp/>non-instantiable<sp/>(non-concrete)<sp/>typed<sp/>schema<sp/>that<sp/>derives</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>from<sp/>MyCustomPrim.<sp/>Derived<sp/>schema<sp/>classes<sp/>can<sp/>inherit<sp/>from<sp/>this<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>schema<sp/>to<sp/>add<sp/>(for<sp/>e.g.)<sp/>geometric<sp/>properties.&quot;&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>IsA<sp/>schemas<sp/>should<sp/>derive<sp/>from<sp/>&lt;/Typed&gt;<sp/>or<sp/>a<sp/>Schema<sp/>that<sp/>derives<sp/>from</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>Typed.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>API<sp/>schemas<sp/>need<sp/>not<sp/>specify<sp/>inherits.<sp/>usdGenSchema<sp/>sets<sp/>the<sp/>parent</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>class<sp/>for<sp/>such<sp/>schemas<sp/>to<sp/>UsdSchemaBase.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inherits<sp/>=<sp/>&lt;/Typed&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>customData<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>className<sp/>=<sp/>&quot;MyBasePrim&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>Some<sp/>base<sp/>attributes<sp/>common<sp/>to<sp/>all<sp/>derived<sp/>schemas</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uniform<sp/>double<sp/>uniformScale<sp/>=<sp/>1.0<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;A<sp/>double<sp/>valued<sp/>uniform<sp/>attribute<sp/>representing<sp/>scale.&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>float3<sp/>rotation<sp/>=<sp/>(0,<sp/>0,<sp/>0)<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;A<sp/>varying<sp/>3D<sp/>vector<sp/>in<sp/>floating-pt<sp/>precision<sp/>representing<sp/>rotation.&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>double3<sp/>translation<sp/>=<sp/>(0,<sp/>0,<sp/>0)<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;A<sp/>varying<sp/>double<sp/>valued<sp/>3D<sp/>vector<sp/>representing<sp/>translation.&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Example<sp/>of<sp/>a<sp/>concrete,<sp/>typed<sp/>(IsA)<sp/>schema</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>MyCustomPrim<sp/>&quot;MyCustomPrim&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;&quot;&quot;Defines<sp/>a<sp/>custom<sp/>typed<sp/>(IsA)<sp/>schema<sp/>prim&quot;&quot;&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inherits<sp/>=<sp/>&lt;/MyBaseCustomPrim&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>customData<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>className<sp/>=<sp/>&quot;MyPrim&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>customData<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>extraIncludes<sp/>=<sp/>&quot;&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&quot;pxr/base/gf/bbox3d.h&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#include<sp/>&quot;pxr/usd/usdGeom/primvar.h&quot;<sp/>&quot;&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">)<sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>Attributes<sp/>with<sp/>fallback<sp/>values.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>asset<sp/>filePath<sp/>=<sp/>@/path/to/default/file@<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;&quot;&quot;An<sp/>asset<sp/>path<sp/>valued<sp/>attribute<sp/>that<sp/>points<sp/>to<sp/>a<sp/>file<sp/>on<sp/>disk.&quot;&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uniform<sp/>token<sp/>axis<sp/>=<sp/>&quot;X&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>allowedTokens<sp/>=<sp/>[&quot;X&quot;,<sp/>&quot;Y&quot;,<sp/>&quot;Z&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;&quot;&quot;A<sp/>token<sp/>valued<sp/>attribute<sp/>representing<sp/>an<sp/>axis.&quot;&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>matrix4d<sp/>transform<sp/>=<sp/>((1,0,0,0),<sp/>(0,1,0,0),<sp/>(0,0,1,0),<sp/>(0,0,0,1))<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;&quot;&quot;Double-precision<sp/>transformation<sp/>matrix,<sp/>which<sp/>should<sp/>encode</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>the<sp/>entire<sp/>local<sp/>transformation<sp/>for<sp/>a<sp/>prim.&quot;&quot;&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>Attributes<sp/>with<sp/>no<sp/>fallback<sp/>values.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>point3f[]<sp/>points<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;&quot;&quot;An<sp/>attribute<sp/>representing<sp/>a<sp/>list<sp/>of<sp/>points<sp/>in<sp/>3D<sp/>space.&quot;&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>string[]<sp/>strArray<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;&quot;&quot;A<sp/>string<sp/>array<sp/>valued<sp/>attribute.&quot;&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>string<sp/>str<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;&quot;&quot;An<sp/>int<sp/>valued<sp/>attribute.&quot;&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>Relationships</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>target<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;&quot;&quot;A<sp/>relationship<sp/>called<sp/>target<sp/>that<sp/>could<sp/>point<sp/>to<sp/>another<sp/>prim</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>or<sp/>a<sp/>property&quot;&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Example<sp/>API<sp/>schema<sp/>that<sp/>provides<sp/>an<sp/>interface<sp/>for<sp/>manipulating<sp/>a<sp/>specific<sp/></highlight></codeline>
+<codeline><highlight class="normal">#<sp/>set<sp/>of<sp/>attributes<sp/>on<sp/>a<sp/>prim.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/></highlight></codeline>
+<codeline><highlight class="normal">#<sp/>API<sp/>schemas<sp/>can<sp/>&quot;declare&quot;<sp/>and<sp/>provide<sp/>access<sp/>to<sp/>properties<sp/>defined<sp/>by</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>collections<sp/>of<sp/>other<sp/>IsA<sp/>and<sp/>API<sp/>schemas,<sp/>gathered<sp/>into<sp/>one<sp/>API<sp/>for<sp/></highlight></codeline>
+<codeline><highlight class="normal">#<sp/>convenience.<sp/><sp/>They<sp/>can<sp/>also<sp/>(more<sp/>commonly,<sp/>in<sp/>our<sp/>use,<sp/>thus<sp/>far),<sp/>define</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>their<sp/>own<sp/>properties<sp/>with<sp/>their<sp/>own<sp/>fallbacks.<sp/><sp/>In<sp/>this<sp/>capacity,</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>the<sp/>convention<sp/>is<sp/>to<sp/>namespace<sp/>each<sp/>property<sp/>with<sp/>the<sp/>API&apos;s<sp/>name<sp/>(camelCased),</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>for<sp/>easy<sp/>identification,<sp/>as<sp/>well<sp/>as<sp/>to<sp/>help<sp/>prevent<sp/>built-in<sp/>properties<sp/>from<sp/></highlight></codeline>
+<codeline><highlight class="normal">#<sp/>API<sp/>schemas<sp/>from<sp/>unintentionally<sp/>overriding<sp/>built-in<sp/>properties<sp/>of<sp/>the<sp/>IsA<sp/></highlight></codeline>
+<codeline><highlight class="normal">#<sp/>schema<sp/>when<sp/>applied.<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">#<sp/>For<sp/>example...</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>&quot;MyParamsAPI&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inherits<sp/>=<sp/>&lt;/APISchemaBase&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>customData<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token<sp/>apiSchemaType<sp/>=<sp/>&quot;singleApply&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>This<sp/>is<sp/>an<sp/>example<sp/>of<sp/>specifying<sp/>typed<sp/>schemas<sp/>that<sp/>this<sp/>single<sp/>apply</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>schema<sp/>will<sp/>be<sp/>automatically<sp/>applied<sp/>to.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token[]<sp/>apiSchemaAutoApplyTo<sp/>=<sp/>[&quot;MyCustomPrim&quot;,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;OutsidePluginCustomPrim&quot;]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>This<sp/>is<sp/>an<sp/>example<sp/>of<sp/>specifying<sp/>typed<sp/>schemas<sp/>that<sp/>this<sp/>single<sp/>apply</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>API<sp/>can<sp/>only<sp/>be<sp/>applied<sp/>to.<sp/>Specifying<sp/>this<sp/>means<sp/>that<sp/>the<sp/>generated<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>MyParamsAPI::CanApply(prim)<sp/>and<sp/>prim.CanApplyAPI&lt;MyParamsAPI&gt;()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>will<sp/>only<sp/>return<sp/>true<sp/>if<sp/>the<sp/>prim<sp/>is<sp/>one<sp/>of<sp/>these<sp/>listed<sp/>types.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token[]<sp/>apiSchemaCanOnlyApplyTo<sp/>=<sp/>[&quot;MyCustomPrim&quot;,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;OutsidePluginCustomPrim&quot;,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AnotherCustomPrim&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>double<sp/>myParams:size<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>customData<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>apiName<sp/>=<sp/>&quot;size&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;double<sp/>specifying<sp/>the<sp/>size.&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uniform<sp/>int<sp/>myParams:numSamples<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>customData<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>apiName<sp/>=<sp/>&quot;numSamples&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;Uniform<sp/>int<sp/>specifying<sp/>the<sp/>number<sp/>of<sp/>samples.&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>double3<sp/>myParams:offset<sp/>=<sp/>(0,<sp/>0,<sp/>0)<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>customData<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>apiName<sp/>=<sp/>&quot;offset&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>doc<sp/>=<sp/>&quot;3D<sp/>offset.&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>By<sp/>default,<sp/>all<sp/>properties<sp/>of<sp/>IsA<sp/>and<sp/>API<sp/>schemas<sp/>are<sp/>considered</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>&quot;builtin&quot;,<sp/>i.e.<sp/>not<sp/>\ref<sp/>UsdProperty::IsCustom()<sp/>&quot;custom&quot;.<sp/><sp/>However,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>one<sp/>can<sp/>force<sp/>a<sp/>schema<sp/>property<sp/>to<sp/>be<sp/>considered<sp/>custom<sp/>by<sp/>explicitly</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>declaring<sp/>it<sp/>to<sp/>be<sp/>so.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>custom<sp/>string<sp/>info</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Example<sp/>multiple-apply<sp/>API<sp/>that<sp/>gives<sp/>an<sp/>interface<sp/>to<sp/>create<sp/>instances<sp/>of<sp/></highlight></codeline>
+<codeline><highlight class="normal">#<sp/>&quot;critters&quot;<sp/>on<sp/>a<sp/>prim.</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>&quot;GridCrittersAPI&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>inherits<sp/>=<sp/>&lt;/APISchemaBase&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>customData<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token<sp/>apiSchemaType<sp/>=<sp/>&quot;multipleApply&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token<sp/>propertyNamespacePrefix<sp/><sp/>=<sp/>&quot;critter&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>This<sp/>is<sp/>an<sp/>example<sp/>of<sp/>all<sp/>the<sp/>ways<sp/>we<sp/>can<sp/>specify<sp/>how<sp/>the<sp/>schema&apos;s<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>generated<sp/>CanApply<sp/>and<sp/>UsdPrim::CanApplyAPI<sp/>behave<sp/>for<sp/>this<sp/>multiple</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>apply<sp/>schema.<sp/>The<sp/>following<sp/>customData<sp/>specifies<sp/>that:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>1.<sp/>GridCrittersAPI::CanApply(prim,<sp/>instanceName)<sp/>will<sp/>return<sp/>false</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/><sp/><sp/><sp/>if<sp/>instanceName<sp/>is<sp/>anything<sp/>but<sp/>&quot;insect&quot;<sp/>or<sp/>&quot;rodent&quot;<sp/>because<sp/>of</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/><sp/><sp/><sp/>apiSchemaAllowedInstanceNames.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>2.<sp/>GridCrittersAPI::CanApply(prim,<sp/>&quot;insect&quot;)<sp/>will<sp/>only<sp/>return<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/><sp/><sp/><sp/>if<sp/>prim.IsA&lt;MyCustomPrim&gt;()<sp/>because<sp/>this<sp/>is<sp/>specified<sp/>in<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/><sp/><sp/><sp/>apiSchemaInstances</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>3.<sp/>GridCrittersAPI::CanApply(prim,<sp/>&quot;rodent&quot;)<sp/>will<sp/>only<sp/>return<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/><sp/><sp/><sp/>if<sp/>prim.IsA&lt;MyCustomPrim&gt;()<sp/>or<sp/>prim.IsA&lt;AnotherCustomPrim&gt;()<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/><sp/><sp/><sp/>because<sp/>this<sp/>is<sp/>specified<sp/>in<sp/>apiSchemaCanOnlyApplyTo<sp/>and<sp/>there<sp/>is</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/><sp/><sp/><sp/>no<sp/>override<sp/>in<sp/>apiSchemaInstances</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token[]<sp/>apiSchemaAllowedInstanceNames<sp/>=<sp/>[&quot;insect&quot;,<sp/>&quot;rodent&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token[]<sp/>apiSchemaCanOnlyApplyTo<sp/>=<sp/>[&quot;MyCustomPrim&quot;,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AnotherCustomPrim&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dictionary<sp/>apiSchemaInstances<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dictionary<sp/>insect<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>token[]<sp/>apiSchemaCanOnlyApplyTo<sp/>=<sp/>[&quot;MyCustomPrim&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>this<sp/>will<sp/>be<sp/>instantiated<sp/>as<sp/>&quot;critter:&lt;instance<sp/>name&gt;:xform&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>matrix4d<sp/>xform<sp/>=<sp/>(<sp/>(1,<sp/>0,<sp/>0,<sp/>0),<sp/>(0,<sp/>1,<sp/>0,<sp/>0),<sp/>(0,<sp/>0,<sp/>1,<sp/>0),<sp/>(0,<sp/>0,<sp/>0,<sp/>1)<sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>this<sp/>will<sp/>be<sp/>instantiated<sp/>as<sp/>&quot;critter:&lt;instance<sp/>name&gt;:color&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>color4f<sp/>color</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>See <ref refid="_usd__page__datatypes" kindref="compound">Basic Datatypes for Scene Description Provided by Sdf</ref> for the list of all data types provided by Sdf.</para>
+</sect1>
+<sect1 id="_usd__page__generating_schemas_1Usd_GeneratedSchemaCustomCode">
+<title>Adding Custom Code To Generated Schemas</title>
+<para>Custom code written after the &quot;// --(BEGIN CUSTOM CODE)--&quot; delimiter in the generated schema files will be preserved between successive usdGenSchema runs. Typically, this will include additional API you may want to provide on your schema classes.</para>
+</sect1>
+<sect1 id="_usd__page__generating_schemas_1Usd_SchemaExtensionPhilosophy">
+<title>Impact on Interchange of Creating and Extending Schemas</title>
+<para>Coming soon! </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="kind_page_front" kind="page">
+    <compoundname>kind_page_front</compoundname>
+    <title>Kind : Extensible Categorization</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="kind_page_front_1mainpage_kind"/> The Kind library provides a runtime-extensible taxonomy known as &quot;kinds&quot;.</para>
+<para>Kinds are just <ref refid="class_tf_token" kindref="compound">TfToken</ref> symbols, but the <ref refid="class_kind_registry" kindref="compound">KindRegistry</ref> allows for organizing kinds into taxonomies of related/refined concepts, and the <ref refid="class_kind_registry_1a95467660d480a198be64d562f4160748" kindref="member">KindRegistry::GetBaseKind()</ref> and <ref refid="class_kind_registry_1acfec2bb2bb93ed2a015f277b10989fca" kindref="member">KindRegistry::IsA()</ref> queries enable reasoning about the hierarchy and classifying objects by kind.</para>
+<para>Kinds are useful for classifying scenegraph objects, such as by tagging objects representing the roots of models with the kind of model it represents; it is scenegraph taxonomy that motivates the &quot;builtin&quot; kind hierarchy.</para>
+<sect1 id="kind_page_front_1kind_coreKinds">
+<title>The Core Kind Hierarchy</title>
+<para>The <ref refid="class_kind_registry" kindref="compound">KindRegistry</ref> begins its life pre-loaded with the following hierarchy of kinds that define our concept of &quot;model hierarchy&quot;, which is so central to our organization and discovery of scene description. Of course, as described in the next section, unlimited new, entirely unrelated taxonomies can be created by extension. <itemizedlist>
+<listitem>
+<para><bold>model</bold> - Everything in the model hierarchy is a kind of model. <itemizedlist>
+<listitem>
+<para><bold>component</bold> - A component model is a terminal model in the model hierarchy - it can have no child models. </para>
+</listitem>
+<listitem>
+<para><bold>group</bold> - a model that is simply a container for other models. <itemizedlist>
+<listitem>
+<para><bold>assembly</bold> - An &quot;important&quot; group model - often because it is itself a published asset. </para>
+</listitem>
+</itemizedlist>
+</para>
+</listitem>
+</itemizedlist>
+</para>
+</listitem>
+<listitem>
+<para><bold>subcomponent</bold> - Within a component model, subcomponents identify important (generally articulable) sub-trees. Subcomponents are &quot;stopping points&quot; when dynamically unrolling/expanding a component. </para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+<sect1 id="kind_page_front_1kind_extensions">
+<title>Extending the KindRegistry</title>
+<para>The kind registry can be <emphasis>extended</emphasis> using the facilities provided by <ref refid="class_plug_registry" kindref="compound">PlugRegistry</ref>, by adding a &apos;Kinds&apos; sub-dictionary to the <emphasis>plugInfo.json</emphasis> file of any module within your &quot;pixar-base aware&quot; build environment. The dictionary entries will look like the following: <programlisting filename=".json"><codeline><highlight class="normal">&quot;Info&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;Kinds&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;chargroup&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;baseKind&quot;:<sp/>&quot;assembly&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;description&quot;:<sp/>&quot;A<sp/>chargroup<sp/>is<sp/>an<sp/>assembly<sp/>comprised<sp/>of<sp/>a<sp/>single<sp/>character<sp/>plus<sp/>some<sp/>associated<sp/>models<sp/>--<sp/>typically<sp/>hair,<sp/>garments,<sp/>and<sp/>charprops.&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;charprop&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;baseKind&quot;:<sp/>&quot;component&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;newRootKind&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> <simplesect kind="note"><para>One cannot alter core kinds or their place in the hierarchy or any other data associated with them by attempting to override them in the extension file. Attempting to do so will result in a registration error. </para>
+</simplesect>
+</para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

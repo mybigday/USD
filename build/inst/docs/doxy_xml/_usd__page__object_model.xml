@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="_usd__page__object_model" kind="page">
+    <compoundname>Usd_Page_ObjectModel</compoundname>
+    <title>Object Model and How the Classes Work Together</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="_usd__page__object_model_1Usd_OM_SdfLayer">
+<title>SdfLayer: Shared Data Files</title>
+<para>An <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> provides the interface to a persistent (in a file) or in-memory only (via &quot;anonymous&quot; layers) container of scene description. The scene description contained in a layer consists of prims, attributes, relationships, user-metadata on all of the above, and composition operators that specify how the contained scene description should be composed with scene description in other files.</para>
+<para>If working directly with an <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref>, clients should be aware that Sdf maintains an internal registry of layers that clients have requested to be opened via <ref refid="class_sdf_layer_1aa01062bf4dde3f28c1fc617a1acaf35e" kindref="member">SdfLayer::FindOrOpen()</ref>, <ref refid="class_sdf_layer_1aad57cd44403a4f95a2bb6c730fa1b0f5" kindref="member">SdfLayer::CreateNew()</ref> or <ref refid="class_sdf_layer_1a863d3cfd8e7c4bbee08f067978e9738e" kindref="member">SdfLayer::CreateAnonymous()</ref>. The registry holds only weak pointers (SdfLayerHandle) to the layers it caches, so it is the client&apos;s responsibility to retain the strong SdfLayerRefPtr that the above methods return, if they expect the layer to persist. <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> takes care of this for the layer for which the stage was opened, and all layers reached during the process of population the stage by traversing composition arcs; the set of &quot;reached&quot; layers may be different for different variant selections on the stage, different activation opinions, and different load-states.</para>
+<para><simplesect kind="note"><para><bold>USDeeper: Layer-related plugins</bold> Sdf also defines the <ref refid="class_sdf_file_format" kindref="compound">SdfFileFormat</ref> plugin mechanism that provides a file-extension-based extensible registry of plugins that can either generate a layer&apos;s worth of scene description procedurally, or translate a different file format into USD&apos;s data model and relevant schemas &quot;on the fly&quot;. Sdf also uses the Ar Asset Resolution plugin API to resolve layer identifiers to external (e.g. file) assets. The Ar plugin API lets USD clients provide customized behavior for resolving &quot;asset identifiers&quot; and querying asset metadata.</para>
+</simplesect>
+</para>
+</sect1>
+<sect1 id="_usd__page__object_model_1Usd_OM_UsdStage">
+<title>UsdStage: Composed View of an SdfLayer</title>
+<para>As described in its class documentation, a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> is the interface to a specific <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> (known as its <emphasis>rootLayer</emphasis>), interpreting the data it contains through the composition rules provided by Pcp. Pcp informs the <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> about which <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> s should be populated on the stage, and provides <ref refid="class_pcp_prim_index" kindref="compound">PcpPrimIndex</ref> objects, per-prim, which allow usd to perform efficient <ref refid="_usd__page__properties_of_scene_description_1Usd_ValueResolution" kindref="member">value resolution</ref>.</para>
+<para>The primary client-facing aspect and purpose of a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> is that it creates and maintains (as new scene description is authored or mutated) a scenegraph of <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> s that enables efficient scene traversal, data extraction and authoring. A <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> can contain any number of &quot;root level&quot; prims, each of which represents a different tree/graph (which may be related to each other via composition operators or <ref refid="_usd__page__object_model_1Usd_OM_UsdRelationship" kindref="member">relationships</ref>). To facilitate traversals that visit all root prims, every <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> has an un-named &quot;pseudo-root&quot; prim that is the parent of all root prims; it can be accessed via <ref refid="class_usd_stage_1a5567a555616cd3bf5fd2fc787f31accc" kindref="member">UsdStage::GetPseudoRoot()</ref>.</para>
+<para>An important property of the stage is that it always presents the accurate, fully-composed view of the data in its underlying <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> s. This has impact on <ref refid="_usd__page__authoring_editing" kindref="compound">Authoring and Editing Scene Description</ref> , and implies that a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> may perform a potentially substantial amount of work in &quot;recomposing&quot; a scene in response to certain kinds of authoring operations, namely the authoring of composition operators. For example, when one adds a reference to a prim using <ref refid="class_usd_references" kindref="compound">UsdReferences</ref>, the stage on which the prim sits will immediately pull in the scene topology information from the referenced <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref>, and repopulate the affected parts of the stage. Something similar occurs even when one changes a variant selection on an existing <ref refid="class_usd_variant_set" kindref="compound">UsdVariantSet</ref>.</para>
+<para><simplesect kind="note"><para><bold>USDeeper: Editing Layers Updates Stage.</bold> <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> recomposes in response to mutations of <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> &apos;s that are composed into the stage. Thus, a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> will remain accurate even if one uses the lower-level Sdf API&apos;s to mutate layers, rather than the USD object API&apos;s.</para>
+</simplesect>
+</para>
+<sect2 id="_usd__page__object_model_1Usd_OM_UsdStage_Management">
+<title>UsdStage Lifetime and Management</title>
+<para><ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> and <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> are the only objects in USD whose lifetime matters. <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> is the true data container in USD, and if a layer is destroyed before its contents are explicitly serialized (<ref refid="class_sdf_layer_1ad5a54175a9d67b72094f8fdf3e83c9d9" kindref="member">SdfLayer::Save()</ref>, <ref refid="class_sdf_layer_1aef819927fc1ad0d6fc5ad5fefb58dcdf" kindref="member">SdfLayer::Export()</ref>), then data may be lost. If a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> is destroyed, it will drop its retention of all of the <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> s it composes; if that results in a layer-with-changes&apos; refcount to drop to zero, the layer will be destroyed.</para>
+<para>Like <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref>, <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> is also managed by strong and weak pointers; all stage-creation methods return a UsdStageRefPtr for the client to retain. UsdStages <emphasis>can</emphasis> also be managed in a registry, known as a <ref refid="class_usd_stage_cache" kindref="compound">UsdStageCache</ref>. Unlike the <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> registry, however:</para>
+<para><itemizedlist>
+<listitem><para>There isn&apos;t a core, global singleton registry - clients can make as many <ref refid="class_usd_stage_cache" kindref="compound">UsdStageCache</ref> registries as they need. UsdUtils does provide a singleton that clients can opt to use, if a single, known registry is appropriate. This is useful in scenarios where multiple, collaborating subsystems in a process each need to access data directly from USD, but have estabished API that cannot be perturbed to pass a UsdStagePtr back and forth.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para><ref refid="class_usd_stage_cache" kindref="compound">UsdStageCache</ref> <emphasis>does</emphasis> retain a strong reference to each of the stages it collects, and the cache can be explicitly cleared.</para>
+</listitem>
+</itemizedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="_usd__page__object_model_1Usd_OM_UsdPrim">
+<title>UsdPrim: Nestable Namespace Containers</title>
+<para><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> is the primary object used to interact with composed scene description, and has the largest API of any of the core objects. A <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> represents a <bold>unique</bold> &quot;namespace location&quot; in a hierarchical composition on a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref>.</para>
+<para>Each <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> can contain <ref refid="_usd__page__object_model_1Usd_OM_UsdProperty" kindref="member">properties</ref> and child <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref>&apos;s, which is what allows us to build hierarchies. If the following usd example were opened on a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref>: <programlisting filename=".unparsed"><codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;World&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Sets&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>over<sp/>&quot;Fx&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> then we would be able to access the <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref>&apos;s on the stage, like so: <programlisting><codeline><highlight class="normal">//<sp/>SdfPath<sp/>identifiers<sp/>can<sp/>be<sp/>constructed<sp/>most<sp/>efficiently<sp/>by<sp/>using<sp/>SdfPath</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>API<sp/>to<sp/>build<sp/>up<sp/>the<sp/>path<sp/>incrementally;<sp/>however,<sp/>they<sp/>can<sp/>always<sp/>also<sp/></highlight></codeline>
+<codeline><highlight class="normal">//<sp/>be<sp/>constructed<sp/>from<sp/>a<sp/>full<sp/>string<sp/>representation;<sp/>we<sp/>demonstrate<sp/>both<sp/>forms.</highlight></codeline>
+<codeline><highlight class="normal">SdfPath<sp/>worldPath<sp/>=<sp/>SdfPath(&quot;/World&quot;);</highlight></codeline>
+<codeline><highlight class="normal">UsdPrim<sp/>world<sp/>=<sp/>stage-&gt;GetPrimAtPath(worldPath);</highlight></codeline>
+<codeline><highlight class="normal">UsdPrim<sp/>sets<sp/><sp/>=<sp/>stage-&gt;GetPrimAtPath(worldPath.AppendChild(TfToken(&quot;Sets&quot;)));</highlight></codeline>
+<codeline><highlight class="normal">UsdPrim<sp/>fx<sp/><sp/><sp/><sp/>=<sp/>stage-&gt;GetPrimAtPath(worldPath.AppendChild(TfToken(&quot;Fx&quot;)));</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="note"><para><bold>USDeeper: def vs over?</bold> You may have noticed in the example above that the prims &lt;/World&gt; and &lt;/World/Sets&gt; were declared as <bold>def</bold>, while &lt;/World/Fx&gt; was declared as <bold>over</bold>. &quot;def&quot; and &quot;over&quot; are two of the three possible &quot;prim specifiers&quot; that inform USD of the intended purpose of the data authored for a prim in a particular layer. For a deeper explanation, please see <ref refid="_usd__page__properties_of_scene_description_1Usd_PrimSpecifiers" kindref="member">Defs, Overs, Classes, and Prim Types</ref> .</para>
+</simplesect>
+</para>
+<sect2 id="_usd__page__object_model_1Usd_OM_UsdPrim_Retention">
+<title>Retaining and Using UsdPrims Safely</title>
+</sect2>
+</sect1>
+<sect1 id="_usd__page__object_model_1Usd_OM_UsdProperty">
+<title>UsdProperty: Common Interface for Attributes and Relationships</title>
+</sect1>
+<sect1 id="_usd__page__object_model_1Usd_OM_UsdAttribute">
+<title>UsdAttribute: Typed, Sampled, Data</title>
+<sect2 id="_usd__page__object_model_1Usd_OM_UsdTimeCode">
+<title>Time and Timing in USD</title>
+</sect2>
+</sect1>
+<sect1 id="_usd__page__object_model_1Usd_OM_UsdRelationship">
+<title>UsdRelationship: Targetting Namespace Objects</title>
+</sect1>
+<sect1 id="_usd__page__object_model_1Usd_OM_Metadata">
+<title>General Metadata in USD</title>
+<para>All of the objects we have described so far, <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref>, <ref refid="class_usd_stage" kindref="compound">UsdStage</ref>, <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref>, and both subclasses of <ref refid="class_usd_property" kindref="compound">UsdProperty</ref>, can possess <emphasis>metadata</emphasis>. In USD, metadata serves several critical roles for describing object behavior and meaning, and is defined by the following properties:</para>
+<para><itemizedlist>
+<listitem><para><emphasis>Metadata is strongly typed</emphasis>, and can possess a fallback value. Both of these pieces of information can be retrieved, using the metadatum&apos;s name, from the <ref refid="class_sdf_schema" kindref="compound">SdfSchema</ref> singleton. Metadata can have any of the types described in <ref refid="_usd__page__datatypes" kindref="compound">Basic Datatypes for Scene Description Provided by Sdf</ref>.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para><emphasis>Metadata is extensible.</emphasis> The implication of the <ref refid="class_sdf_schema" kindref="compound">SdfSchema</ref> providing type information about metadata is that all metadata must be registered with USD/Sdf. The <ref refid="class_sdf_schema" kindref="compound">SdfSchema</ref> itself registers a set of metadata meaningful to the Sdf data model, but any module discoverable by USD&apos;s <ref refid="plug_page_front" kindref="compound">plugin system</ref> can extend the known set of metadata, as described in the <ref refid="sdf_page_front_1sdf_plugin_metadata" kindref="member">Plugin Metadata</ref> documentation. Core USD, and most of the higher-level schema modules use this mechanism to good effect.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para><emphasis>Metadata is unvarying.</emphasis> Although metadata values can be overridden in any layer just as <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> values can be, <emphasis>within</emphasis> a given layer, a metadatum can have only a single value - i.e. it cannot be sampled over time. Removing time as an axis of variation allows metadata to be evaluated and stored more efficiently than attribute values, and also means that metadata authored in <ref refid="_usd__page__value_clips" kindref="compound">Value Clips</ref> will be ignored by USD.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para><emphasis>Core metadata resolution rules vary.</emphasis> <ref refid="_usd__page__properties_of_scene_description_1Usd_ValueResolution" kindref="member">Attribute Value Resolution</ref> is fixed for all attributes, core and custom. Certain of the &quot;core metadata&quot;, however, have value resolution behavior other than &quot;strongest opinion wins.&quot; A class of metadata used to specify composition behavior (as well as relationships) subscribe to <ref refid="_usd__page__object_model_1Usd_OM_ListOps" kindref="member">list-editing composition</ref>. Other metadata, like attribute <emphasis>typeName</emphasis>, adhere to &quot;weakest opinion wins&quot;. The prim metadata <emphasis>specifier</emphasis> has a highly specialized resolution behavior owing to the way in which overs, defs, and classes combine. <emphasis>Value resolution behavior may not be changed for extension metadata,</emphasis> however - all extension metadata will be resolved based on its datatype: strongest wins for primitive datatypes, element-wise strongest wins for dictionaries.</para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+<sect1 id="_usd__page__object_model_1Usd_OM_SchemaDefinitionRegistry">
+<title>Schema and Prim Definition Registry</title>
+<para>The singleton class <ref refid="class_usd_schema_registry" kindref="compound">UsdSchemaRegistry</ref> exists to provide access to all available schemas. It queries plugins to find all registered schema types and generates prim definitions from the processed generatedSchema.usda files (generated when a schema.usda file is processed by <emphasis>usdGenSchema</emphasis>).</para>
+<para>A prim definition, provided by the <ref refid="class_usd_prim_definition" kindref="compound">UsdPrimDefinition</ref> class, is an encapsulation of the built-in data that is imparted on a prim by the schemas for the prim&apos;s complete type signature. The built-in data accessible from a prim definition includes the list of built-in properties, an <ref refid="class_sdf_spec" kindref="compound">SdfSpec</ref> defining each property, the list of built-in metadata fields, and fallback values for attributes and metadata fields.</para>
+<para>The schema registry creates and provides access to prim definitions for each individual &quot;IsA&quot; and applied API schema. It also provides API to build a composite prim definition for a combination of an &quot;IsA&quot; type with a list of applied API schemas. The prim definition that a prim uses is determined by the combination of its type name and the list of any applied API schemas applied to the prim and is generally what we are referring to when we talk about a <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref>&apos;s &quot;prim definition&quot;.</para>
+</sect1>
+<sect1 id="_usd__page__object_model_1Usd_OM_FallbackPrimTypes">
+<title>Fallback Prim Types</title>
+<para>When you create a new &quot;IsA&quot; schema to use as a prim type, there may be an expectation that stages containing prims of your new type will be opened using a version of USD that does not have the new schema. You may want to provide these other, typically older, versions of USD with one or more reasonable alternative prim types to use instead of your type when its schema is not available. We provide the following mechanism for this.</para>
+<para>You can specify an array of <emphasis>fallbackTypes</emphasis> tokens as <ref refid="_usd__page__generating_schemas_1Usd_PerClassProperties" kindref="member">customData</ref> for your class in the schema.usda. Schema generation will process this list of fallback types and add it to the dictionary of all prim fallback types that the <ref refid="_usd__page__object_model_1Usd_OM_SchemaDefinitionRegistry" kindref="member">schema registry</ref> provides.</para>
+<para>To provide the currently registered prim type fallbacks to a version of USD that does not have some of these schemas, they must be recorded into any stages that may want to be opened in one of these versions. At any point before saving or exporting a stage, this can be done by calling the function <ref refid="class_usd_stage_1a14897ca124a0fb4a62e6ed2ccbbdbf4f" kindref="member">UsdStage::WriteFallbackPrimTypes</ref> to write the schema registry&apos;s dictionary of fallback prim types to the stage&apos;s root layer metadata.</para>
+<para>When a stage is opened and a prim with an unrecognized type name is encountered, the stage&apos;s fallback prim types metadata is consulted. If the unrecognized type has a fallback types list in the metadata, all prims with the unrecognized type name will be treated as having the effective schema type of the first recognized type in the list.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_prim_1ab99c37ba85f4c45d558138ca3b604ec5" kindref="member">UsdPrim::GetPrimTypeInfo</ref>, <ref refid="class_usd_prim_1a6cc1b146723c266ae69fb873bcb2df67" kindref="member">UsdPrim::IsA</ref>, <ref refid="class_usd_schema_registry_1a93921d1510b463b9eea85de97ea45271" kindref="member">UsdSchemaRegistry::GetFallbackPrimTypes</ref></para>
+</simplesect>
+</para>
+</sect1>
+<sect1 id="_usd__page__object_model_1Usd_OM_OtherObjects">
+<title>Composition Operator Interfaces: UsdReferences, UsdInherits, UsdVariantSets</title>
+<sect2 id="_usd__page__object_model_1Usd_OM_ListOps">
+<title>ListOps and List Editing</title>
+</sect2>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

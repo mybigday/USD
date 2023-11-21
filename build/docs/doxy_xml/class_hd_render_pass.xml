@@ -1,0 +1,304 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_render_pass" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>HdRenderPass</compoundname>
+    <derivedcompoundref refid="class_hd___unit_test_null_render_pass" prot="public" virt="non-virtual">Hd_UnitTestNullRenderPass</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_embree_render_pass" prot="public" virt="non-virtual">HdEmbreeRenderPass</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_st___image_shader_render_pass" prot="public" virt="non-virtual">HdSt_ImageShaderRenderPass</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_st___render_pass" prot="public" virt="non-virtual">HdSt_RenderPass</derivedcompoundref>
+    <includes refid="render_pass_8h" local="no">renderPass.h</includes>
+      <sectiondef kind="user-defined">
+      <header>Synchronization</header>
+      <memberdef kind="function" id="class_hd_render_pass_1aeda6a03f4b84df3995a2aeff1cc4bb5b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void Sync</definition>
+        <argsstring>()</argsstring>
+        <name>Sync</name>
+        <briefdescription>
+<para>Sync the render pass resources. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderPass.h" line="94" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Execution</header>
+      <memberdef kind="function" id="class_hd_render_pass_1a6bad9788a8700f9bfa9bd622bbe5de9d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void Execute</definition>
+        <argsstring>(HdRenderPassStateSharedPtr const &amp;renderPassState, TfTokenVector const &amp;renderTags)</argsstring>
+        <name>Execute</name>
+        <param>
+          <type>HdRenderPassStateSharedPtr const &amp;</type>
+          <declname>renderPassState</declname>
+        </param>
+        <param>
+          <type><ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> const &amp;</type>
+          <declname>renderTags</declname>
+        </param>
+        <briefdescription>
+<para>Execute a subset of buckets of this renderpass. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderPass.h" line="102" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Optional API hooks for progressive rendering</header>
+      <memberdef kind="variable" id="class_hd_render_pass_1a7a227f86986b6d61692529f2090711c7" prot="private" static="no" mutable="no">
+        <type><ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> *const</type>
+        <definition>HdRenderIndex* const _renderIndex</definition>
+        <argsstring></argsstring>
+        <name>_renderIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderPass.h" line="134" column="1" bodyfile="pxr/imaging/hd/renderPass.h" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_pass_1adb7dbed5a1083ed130e273dba23b16c6" prot="private" static="no" mutable="no">
+        <type><ref refid="class_hd_rprim_collection" kindref="compound">HdRprimCollection</ref></type>
+        <definition>HdRprimCollection _collection</definition>
+        <argsstring></argsstring>
+        <name>_collection</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderPass.h" line="139" column="1" bodyfile="pxr/imaging/hd/renderPass.h" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_pass_1a2e5efe9db8bdaabc45ee1883f141ad77" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool IsConverged</definition>
+        <argsstring>() const</argsstring>
+        <name>IsConverged</name>
+        <reimplementedby refid="class_hd_embree_render_pass_1a8f1c4eb75d4bd31a20404459e5bac005">IsConverged</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderPass.h" line="109" column="1" bodyfile="pxr/imaging/hd/renderPass.h" bodystart="109" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_pass_1a100f31ecf999d0c1f7e4e1c989c9ef90" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void _Execute</definition>
+        <argsstring>(HdRenderPassStateSharedPtr const &amp;renderPassState, TfTokenVector const &amp;renderTags)=0</argsstring>
+        <name>_Execute</name>
+        <reimplementedby refid="class_hd_embree_render_pass_1ab89040e908c4af9e259a01ca06ba968e">_Execute</reimplementedby>
+        <param>
+          <type>HdRenderPassStateSharedPtr const &amp;</type>
+          <declname>renderPassState</declname>
+        </param>
+        <param>
+          <type><ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> const &amp;</type>
+          <declname>renderTags</declname>
+        </param>
+        <briefdescription>
+<para>Virtual API: Execute the buckets corresponding to renderTags; renderTags.empty() implies execute everything. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderPass.h" line="114" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_pass_1ae961d4e33566871ecf27bf4364051ea7" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void _MarkCollectionDirty</definition>
+        <argsstring>()</argsstring>
+        <name>_MarkCollectionDirty</name>
+        <reimplementedby refid="class_hd_embree_render_pass_1a56abc294840e4d8b1c3ede15f1e24bdf">_MarkCollectionDirty</reimplementedby>
+        <briefdescription>
+<para>Optional API: let derived classes mark their collection tracking as dirty. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderPass.h" line="118" column="1" bodyfile="pxr/imaging/hd/renderPass.h" bodystart="118" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_pass_1a241fb9c6c5ffdfd172979b211bec8446" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void _Sync</definition>
+        <argsstring>()</argsstring>
+        <name>_Sync</name>
+        <briefdescription>
+<para>Optional API: let derived classes sync data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderPass.h" line="121" column="1" bodyfile="pxr/imaging/hd/renderPass.h" bodystart="121" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_pass_1ac3ffdf25f6e489ca493b060cd37a2987" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdRenderPass</definition>
+        <argsstring>(const HdRenderPass &amp;)=delete</argsstring>
+        <name>HdRenderPass</name>
+        <param>
+          <type>const <ref refid="class_hd_render_pass" kindref="compound">HdRenderPass</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderPass.h" line="126" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_pass_1a6ebe2d596f2efd05e5f41da0d6860588" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hd_render_pass" kindref="compound">HdRenderPass</ref> &amp;</type>
+        <definition>HdRenderPass&amp; operator=</definition>
+        <argsstring>(const HdRenderPass &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_hd_render_pass" kindref="compound">HdRenderPass</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderPass.h" line="127" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_render_pass_1a425a356c8e34ed1c1996799439461b11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API HdRenderPass</definition>
+        <argsstring>(HdRenderIndex *index, HdRprimCollection const &amp;collection)</argsstring>
+        <name>HdRenderPass</name>
+        <param>
+          <type><ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> *</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_rprim_collection" kindref="compound">HdRprimCollection</ref> const &amp;</type>
+          <declname>collection</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderPass.h" line="73" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_pass_1a53421791c511d70a19f1e523426905ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API</type>
+        <definition>virtual HD_API ~HdRenderPass</definition>
+        <argsstring>()</argsstring>
+        <name>~HdRenderPass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderPass.h" line="75" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_pass_1a72892fd7cd07925e2613db5670bfc796" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_hd_rprim_collection" kindref="compound">HdRprimCollection</ref> const  &amp;</type>
+        <definition>HdRprimCollection const&amp; GetRprimCollection</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRprimCollection</name>
+        <briefdescription>
+<para>Returns the <ref refid="class_hd_rprim_collection" kindref="compound">HdRprimCollection</ref> to be drawn by this RenderPass. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderPass.h" line="78" column="1" bodyfile="pxr/imaging/hd/renderPass.h" bodystart="78" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_pass_1ae22d13af8e3a64f3334a8b181a6f610d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void SetRprimCollection</definition>
+        <argsstring>(HdRprimCollection const &amp;col)</argsstring>
+        <name>SetRprimCollection</name>
+        <param>
+          <type><ref refid="class_hd_rprim_collection" kindref="compound">HdRprimCollection</ref> const &amp;</type>
+          <declname>col</declname>
+        </param>
+        <briefdescription>
+<para>Sets the <ref refid="class_hd_rprim_collection" kindref="compound">HdRprimCollection</ref>, note that this may invalidate internal caches used to accelerate drawing. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderPass.h" line="83" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_pass_1a319d9f99bdd98de147db3549ceed94d4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> *</type>
+        <definition>HdRenderIndex* GetRenderIndex</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRenderIndex</name>
+        <briefdescription>
+<para>Return the render index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderPass.h" line="86" column="1" bodyfile="pxr/imaging/hd/renderPass.h" bodystart="86" bodyend="86"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>An abstract class representing a single render iteration over a set of prims (the <ref refid="class_hd_rprim_collection" kindref="compound">HdRprimCollection</ref>), for the camera/viewport parameters in <ref refid="class_hd_render_pass_state" kindref="compound">HdRenderPassState</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Conceptually, a rendering task may be broken down into one or more <ref refid="class_hd_render_pass" kindref="compound">HdRenderPass(es)</ref>.</para>
+<para>An <ref refid="class_hd_render_pass" kindref="compound">HdRenderPass</ref> has two phases, <ref refid="class_hd_render_pass_1aeda6a03f4b84df3995a2aeff1cc4bb5b" kindref="member">Sync()</ref> and <ref refid="class_hd_render_pass_1a6bad9788a8700f9bfa9bd622bbe5de9d" kindref="member">Execute()</ref>, in line with Hydra&apos;s execution phases (See <ref refid="class_hd_engine_1a75a0815239165c0bf1826a09415013a5" kindref="member">HdEngine::Execute</ref>)</para>
+<para>The base class implementation of <ref refid="class_hd_render_pass_1aeda6a03f4b84df3995a2aeff1cc4bb5b" kindref="member">Sync()</ref> takes care of syncing collection changes with the <ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> via <ref refid="class_hd_dirty_list" kindref="compound">HdDirtyList</ref>, and allows derived classes to track collection changes (via _MarkCollectionDirty) and sync additional resources (via _Sync)</para>
+<para>Renderer backends implement _Execute, wherein the <ref refid="class_hd_draw_item" kindref="compound">HdDrawItem(s)</ref> for the collection may be consumed via <ref refid="class_hd_render_index_1a9a12ab3dcec7825e0068a59f88830bfe" kindref="member">HdRenderIndex::GetDrawItems</ref>. Typically, the <ref refid="class_hd_render_pass_state" kindref="compound">HdRenderPassState</ref> argument of _Execute is made available via the HdTaskContext.</para>
+<para><simplesect kind="note"><para>Rendering backends are expected to specialize this abstract class, and return the specialized object via HdRenderDelegate::CreateRenderPass </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2592">
+        <label>HdEmbreeRenderPass</label>
+        <link refid="class_hd_embree_render_pass"/>
+        <childnode refid="2591" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2591">
+        <label>HdRenderPass</label>
+        <link refid="class_hd_render_pass"/>
+      </node>
+    </inheritancegraph>
+    <location file="pxr/imaging/hd/renderPass.h" line="70" column="1" bodyfile="pxr/imaging/hd/renderPass.h" bodystart="69" bodyend="140"/>
+    <listofallmembers>
+      <member refid="class_hd_render_pass_1adb7dbed5a1083ed130e273dba23b16c6" prot="private" virt="non-virtual"><scope>HdRenderPass</scope><name>_collection</name></member>
+      <member refid="class_hd_render_pass_1a100f31ecf999d0c1f7e4e1c989c9ef90" prot="protected" virt="pure-virtual"><scope>HdRenderPass</scope><name>_Execute</name></member>
+      <member refid="class_hd_render_pass_1ae961d4e33566871ecf27bf4364051ea7" prot="protected" virt="virtual"><scope>HdRenderPass</scope><name>_MarkCollectionDirty</name></member>
+      <member refid="class_hd_render_pass_1a7a227f86986b6d61692529f2090711c7" prot="private" virt="non-virtual"><scope>HdRenderPass</scope><name>_renderIndex</name></member>
+      <member refid="class_hd_render_pass_1a241fb9c6c5ffdfd172979b211bec8446" prot="protected" virt="virtual"><scope>HdRenderPass</scope><name>_Sync</name></member>
+      <member refid="class_hd_render_pass_1a6bad9788a8700f9bfa9bd622bbe5de9d" prot="public" virt="non-virtual"><scope>HdRenderPass</scope><name>Execute</name></member>
+      <member refid="class_hd_render_pass_1a319d9f99bdd98de147db3549ceed94d4" prot="public" virt="non-virtual"><scope>HdRenderPass</scope><name>GetRenderIndex</name></member>
+      <member refid="class_hd_render_pass_1a72892fd7cd07925e2613db5670bfc796" prot="public" virt="non-virtual"><scope>HdRenderPass</scope><name>GetRprimCollection</name></member>
+      <member refid="class_hd_render_pass_1a425a356c8e34ed1c1996799439461b11" prot="public" virt="non-virtual"><scope>HdRenderPass</scope><name>HdRenderPass</name></member>
+      <member refid="class_hd_render_pass_1ac3ffdf25f6e489ca493b060cd37a2987" prot="private" virt="non-virtual"><scope>HdRenderPass</scope><name>HdRenderPass</name></member>
+      <member refid="class_hd_render_pass_1a2e5efe9db8bdaabc45ee1883f141ad77" prot="public" virt="virtual"><scope>HdRenderPass</scope><name>IsConverged</name></member>
+      <member refid="class_hd_render_pass_1a6ebe2d596f2efd05e5f41da0d6860588" prot="private" virt="non-virtual"><scope>HdRenderPass</scope><name>operator=</name></member>
+      <member refid="class_hd_render_pass_1ae22d13af8e3a64f3334a8b181a6f610d" prot="public" virt="non-virtual"><scope>HdRenderPass</scope><name>SetRprimCollection</name></member>
+      <member refid="class_hd_render_pass_1aeda6a03f4b84df3995a2aeff1cc4bb5b" prot="public" virt="non-virtual"><scope>HdRenderPass</scope><name>Sync</name></member>
+      <member refid="class_hd_render_pass_1a53421791c511d70a19f1e523426905ee" prot="public" virt="virtual"><scope>HdRenderPass</scope><name>~HdRenderPass</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

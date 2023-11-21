@@ -1,0 +1,564 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_buffer_array" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>HdBufferArray</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">std::enable_shared_from_this&lt; HdBufferArray &gt;</basecompoundref>
+    <derivedcompoundref refid="class_hd_st_dispatch_buffer" prot="public" virt="non-virtual">HdStDispatchBuffer</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_st_interleaved_memory_manager_1_1___striped_interleaved_buffer" prot="public" virt="non-virtual">HdStInterleavedMemoryManager::_StripedInterleavedBuffer</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_st_v_b_o_memory_manager_1_1___striped_buffer_array" prot="public" virt="non-virtual">HdStVBOMemoryManager::_StripedBufferArray</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_st_v_b_o_simple_memory_manager_1_1___simple_buffer_array" prot="public" virt="non-virtual">HdStVBOSimpleMemoryManager::_SimpleBufferArray</derivedcompoundref>
+    <includes refid="buffer_array_8h" local="no">bufferArray.h</includes>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_hd_buffer_array_1a9bb013fa6c90a50a691aa255c8e0fa61" prot="private" static="no">
+        <type>std::vector&lt; HdBufferArrayRangePtr &gt;</type>
+        <definition>typedef std::vector&lt;HdBufferArrayRangePtr&gt; _RangeList</definition>
+        <argsstring></argsstring>
+        <name>_RangeList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="183" column="1" bodyfile="pxr/imaging/hd/bufferArray.h" bodystart="183" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_hd_buffer_array_1a93c02d15df4b0808858bcddff0fdde69" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _needsReallocation</definition>
+        <argsstring></argsstring>
+        <name>_needsReallocation</name>
+        <briefdescription>
+<para>Dirty bit to set when the ranges attached to the buffer changes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If set <ref refid="class_hd_buffer_array_1a29d764a790a44bd5874a6193f1e8df78" kindref="member">Reallocate()</ref> should be called to clean it. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="166" column="1" bodyfile="pxr/imaging/hd/bufferArray.h" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_buffer_array_1a4afdec4f6aee4f80a0dd9a01c0e3e50c" prot="private" static="no" mutable="no">
+        <type>_RangeList</type>
+        <definition>_RangeList _rangeList</definition>
+        <argsstring></argsstring>
+        <name>_rangeList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="190" column="1" bodyfile="pxr/imaging/hd/bufferArray.h" bodystart="190" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_buffer_array_1a485392aa692ac841bf79a9c4d7d73d68" prot="private" static="no" mutable="no">
+        <type>std::atomic_size_t</type>
+        <definition>std::atomic_size_t _rangeCount</definition>
+        <argsstring></argsstring>
+        <name>_rangeCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="191" column="1" bodyfile="pxr/imaging/hd/bufferArray.h" bodystart="191" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_buffer_array_1a13c7503828d439e3ab86154a84b53853" prot="private" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex _rangeListLock</definition>
+        <argsstring></argsstring>
+        <name>_rangeListLock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="192" column="1" bodyfile="pxr/imaging/hd/bufferArray.h" bodystart="192" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_buffer_array_1a5add902deb8be96180e671efce805731" prot="private" static="no" mutable="no">
+        <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>const TfToken _role</definition>
+        <argsstring></argsstring>
+        <name>_role</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="194" column="1" bodyfile="pxr/imaging/hd/bufferArray.h" bodystart="194" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_buffer_array_1a56cee30dc51fc3daeac0e6c48d6dfd6a" prot="private" static="no" mutable="no">
+        <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>const TfToken _garbageCollectionPerfToken</definition>
+        <argsstring></argsstring>
+        <name>_garbageCollectionPerfToken</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="195" column="1" bodyfile="pxr/imaging/hd/bufferArray.h" bodystart="195" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_buffer_array_1aa1c99f4fcf9b91ccd3c460a72c356289" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t _version</definition>
+        <argsstring></argsstring>
+        <name>_version</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="197" column="1" bodyfile="pxr/imaging/hd/bufferArray.h" bodystart="197" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_buffer_array_1a7b0b906e55f0cc500e2eb925541796a6" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t _maxNumRanges</definition>
+        <argsstring></argsstring>
+        <name>_maxNumRanges</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="199" column="1" bodyfile="pxr/imaging/hd/bufferArray.h" bodystart="199" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_buffer_array_1ad724a1038dbef26038e4c89f22038875" prot="private" static="no" mutable="no">
+        <type><ref refid="union_hd_buffer_array_usage_hint" kindref="compound">HdBufferArrayUsageHint</ref></type>
+        <definition>HdBufferArrayUsageHint _usageHint</definition>
+        <argsstring></argsstring>
+        <name>_usageHint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="200" column="1" bodyfile="pxr/imaging/hd/bufferArray.h" bodystart="200" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_buffer_array_1af8b5995437a5e708eeda464350543f16" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API HdBufferArray</definition>
+        <argsstring>(TfToken const &amp;role, TfToken const garbageCollectionPerfToken, HdBufferArrayUsageHint usageHint)</argsstring>
+        <name>HdBufferArray</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>role</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const</type>
+          <declname>garbageCollectionPerfToken</declname>
+        </param>
+        <param>
+          <type><ref refid="union_hd_buffer_array_usage_hint" kindref="compound">HdBufferArrayUsageHint</ref></type>
+          <declname>usageHint</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="91" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_array_1a20450a4e20aacd9ee223e6a47eadfe92" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API</type>
+        <definition>virtual HD_API ~HdBufferArray</definition>
+        <argsstring>()</argsstring>
+        <name>~HdBufferArray</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="96" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_array_1aafbf8ee2945b8aea41e3627e502d6ec2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const  &amp;</type>
+        <definition>TfToken const&amp; GetRole</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRole</name>
+        <briefdescription>
+<para>Returns the role of the GPU data in this bufferArray. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="99" column="1" bodyfile="pxr/imaging/hd/bufferArray.h" bodystart="99" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_array_1ac13a730dc150777d7cb405148add123a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GetVersion</definition>
+        <argsstring>() const</argsstring>
+        <name>GetVersion</name>
+        <briefdescription>
+<para>Returns the version of this buffer array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Used to determine when to rebuild outdated indirect dispatch buffers </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="103" column="1" bodyfile="pxr/imaging/hd/bufferArray.h" bodystart="103" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_array_1a9566dc2cfe7a59933ec5b0157b9e680e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void IncrementVersion</definition>
+        <argsstring>()</argsstring>
+        <name>IncrementVersion</name>
+        <briefdescription>
+<para>Increments the version of this buffer array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="109" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_array_1ac742e2a16bddc249a1a795ec9d04fa1a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool TryAssignRange</definition>
+        <argsstring>(HdBufferArrayRangeSharedPtr &amp;range)</argsstring>
+        <name>TryAssignRange</name>
+        <param>
+          <type>HdBufferArrayRangeSharedPtr &amp;</type>
+          <declname>range</declname>
+        </param>
+        <briefdescription>
+<para>Attempts to assign a range to this buffer array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Multiple threads could be trying to assign to this buffer at the same time. Returns true is the range is assigned to this buffer otherwise returns false if the buffer doesn&apos;t have space to assign the range. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="116" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_array_1a0cb377d7abe60cfcc5b697ff6ef76e1f" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool GarbageCollect</definition>
+        <argsstring>()=0</argsstring>
+        <name>GarbageCollect</name>
+        <reimplementedby refid="class_hd_st_dispatch_buffer_1a5f9010b31b42a68ebc2a665049a416f2">GarbageCollect</reimplementedby>
+        <reimplementedby refid="class_hd_st_interleaved_memory_manager_1_1___striped_interleaved_buffer_1a1576280f3d90155381e2d8d53bffa549">GarbageCollect</reimplementedby>
+        <reimplementedby refid="class_hd_st_v_b_o_simple_memory_manager_1_1___simple_buffer_array_1a5f9010b31b42a68ebc2a665049a416f2">GarbageCollect</reimplementedby>
+        <reimplementedby refid="class_hd_st_v_b_o_memory_manager_1_1___striped_buffer_array_1a5f9010b31b42a68ebc2a665049a416f2">GarbageCollect</reimplementedby>
+        <briefdescription>
+<para>Performs compaction if necessary and returns true if it becomes empty. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="119" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_array_1a29d764a790a44bd5874a6193f1e8df78" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void Reallocate</definition>
+        <argsstring>(std::vector&lt; HdBufferArrayRangeSharedPtr &gt; const &amp;ranges, HdBufferArraySharedPtr const &amp;curRangeOwner)=0</argsstring>
+        <name>Reallocate</name>
+        <reimplementedby refid="class_hd_st_dispatch_buffer_1a2c4f0a949b3dcdc858fe96a73e5cfea9">Reallocate</reimplementedby>
+        <reimplementedby refid="class_hd_st_interleaved_memory_manager_1_1___striped_interleaved_buffer_1abb569c04071e3526d0a37a199e4bf153">Reallocate</reimplementedby>
+        <reimplementedby refid="class_hd_st_v_b_o_simple_memory_manager_1_1___simple_buffer_array_1a50df360eb5efa1c708b3de7ccdc28e2d">Reallocate</reimplementedby>
+        <reimplementedby refid="class_hd_st_v_b_o_memory_manager_1_1___striped_buffer_array_1a50df360eb5efa1c708b3de7ccdc28e2d">Reallocate</reimplementedby>
+        <param>
+          <type>std::vector&lt; HdBufferArrayRangeSharedPtr &gt; const &amp;</type>
+          <declname>ranges</declname>
+        </param>
+        <param>
+          <type>HdBufferArraySharedPtr const &amp;</type>
+          <declname>curRangeOwner</declname>
+        </param>
+        <briefdescription>
+<para>Performs reallocation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>After reallocation, the buffer will contain the specified <emphasis>ranges</emphasis>. If these ranges are currently held by a different buffer array instance, then their data will be copied from the specified <emphasis>curRangeOwner</emphasis>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="125" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_array_1a397a08148e24f14f877445e6156c3fa2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API size_t</type>
+        <definition>virtual HD_API size_t GetMaxNumElements</definition>
+        <argsstring>() const</argsstring>
+        <name>GetMaxNumElements</name>
+        <reimplementedby refid="class_hd_st_v_b_o_simple_memory_manager_1_1___simple_buffer_array_1a7501c7a8f278b11095f2e614590ac874">GetMaxNumElements</reimplementedby>
+        <reimplementedby refid="class_hd_st_v_b_o_memory_manager_1_1___striped_buffer_array_1a7501c7a8f278b11095f2e614590ac874">GetMaxNumElements</reimplementedby>
+        <briefdescription>
+<para>Returns the maximum number of elements capacity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="131" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_array_1a1d73c3578ae8bc963a88e8ec7eacda20" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void DebugDump</definition>
+        <argsstring>(std::ostream &amp;out) const =0</argsstring>
+        <name>DebugDump</name>
+        <reimplementedby refid="class_hd_st_dispatch_buffer_1a6a48d7fbd02ba4c98eda7e7fa1a716ed">DebugDump</reimplementedby>
+        <reimplementedby refid="class_hd_st_interleaved_memory_manager_1_1___striped_interleaved_buffer_1a472bcc069546e2c6129faeea63d3bda0">DebugDump</reimplementedby>
+        <reimplementedby refid="class_hd_st_v_b_o_simple_memory_manager_1_1___simple_buffer_array_1a6a48d7fbd02ba4c98eda7e7fa1a716ed">DebugDump</reimplementedby>
+        <reimplementedby refid="class_hd_st_v_b_o_memory_manager_1_1___striped_buffer_array_1a6a48d7fbd02ba4c98eda7e7fa1a716ed">DebugDump</reimplementedby>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Debug output. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="134" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_array_1add00eb5e4d61e76656a7e34a1cc1fae5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GetRangeCount</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRangeCount</name>
+        <briefdescription>
+<para>How many ranges are attached to the buffer array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="137" column="1" bodyfile="pxr/imaging/hd/bufferArray.h" bodystart="137" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_array_1abe22f4d5dc3fe18c11c7574230ad9f65" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API HdBufferArrayRangePtr</type>
+        <definition>HD_API HdBufferArrayRangePtr GetRange</definition>
+        <argsstring>(size_t idx) const</argsstring>
+        <name>GetRange</name>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>Get the attached range at the specified index. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="141" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_array_1aa54b967fa38e565cff9275b60807b47b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void RemoveUnusedRanges</definition>
+        <argsstring>()</argsstring>
+        <name>RemoveUnusedRanges</name>
+        <briefdescription>
+<para>Remove any ranges from the range list that have been deallocated Returns number of ranges after clean-up. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="146" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_array_1a8774936bd0385297a3f1b113ffe761e2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool NeedsReallocation</definition>
+        <argsstring>() const</argsstring>
+        <name>NeedsReallocation</name>
+        <briefdescription>
+<para>Returns true if <ref refid="class_hd_buffer_array_1a29d764a790a44bd5874a6193f1e8df78" kindref="member">Reallocate()</ref> needs to be called on this buffer array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="149" column="1" bodyfile="pxr/imaging/hd/bufferArray.h" bodystart="149" bodyend="151"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_array_1a5eef7725fbdaff5123abd7ba4bb4aa86" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool IsImmutable</definition>
+        <argsstring>() const</argsstring>
+        <name>IsImmutable</name>
+        <briefdescription>
+<para>Returns true if this buffer array is marked as immutable. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="154" column="1" bodyfile="pxr/imaging/hd/bufferArray.h" bodystart="154" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_array_1ab41a2692243892966815fba28c1f65bb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="union_hd_buffer_array_usage_hint" kindref="compound">HdBufferArrayUsageHint</ref></type>
+        <definition>HdBufferArrayUsageHint GetUsageHint</definition>
+        <argsstring>() const</argsstring>
+        <name>GetUsageHint</name>
+        <briefdescription>
+<para>Returns the usage hints for this buffer array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="159" column="1" bodyfile="pxr/imaging/hd/bufferArray.h" bodystart="159" bodyend="161"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_hd_buffer_array_1a7317a6d3d67ebefe2abf4c8d965f7ce7" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _SetMaxNumRanges</definition>
+        <argsstring>(size_t max)</argsstring>
+        <name>_SetMaxNumRanges</name>
+        <param>
+          <type>size_t</type>
+          <declname>max</declname>
+        </param>
+        <briefdescription>
+<para>Limits the number of ranges that can be allocated to this buffer to max. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="170" column="1" bodyfile="pxr/imaging/hd/bufferArray.h" bodystart="170" bodyend="170"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_array_1ad5fadff5878adff3580c953edf55c102" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void _SetRangeList</definition>
+        <argsstring>(std::vector&lt; HdBufferArrayRangeSharedPtr &gt; const &amp;ranges)</argsstring>
+        <name>_SetRangeList</name>
+        <param>
+          <type>std::vector&lt; HdBufferArrayRangeSharedPtr &gt; const &amp;</type>
+          <declname>ranges</declname>
+        </param>
+        <briefdescription>
+<para>Swap the rangelist with <computeroutput>ranges</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="174" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hd_buffer_array_1abbc970bbbc39e4356f4dc8a055ca90fb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdBufferArray</definition>
+        <argsstring>(const HdBufferArray &amp;)=delete</argsstring>
+        <name>HdBufferArray</name>
+        <param>
+          <type>const <ref refid="class_hd_buffer_array" kindref="compound">HdBufferArray</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="179" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_buffer_array_1a1883aa759d45ab1aca05784616baaceb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hd_buffer_array" kindref="compound">HdBufferArray</ref> &amp;</type>
+        <definition>HdBufferArray&amp; operator=</definition>
+        <argsstring>(const HdBufferArray &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_hd_buffer_array" kindref="compound">HdBufferArray</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/bufferArray.h" line="180" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Similar to a VAO, this object is a bundle of coherent buffers. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This object can be shared across multiple HdRprims, in the context of buffer aggregation. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1601">
+        <label>_SimpleBufferArray</label>
+        <link refid="class_hd_st_v_b_o_simple_memory_manager_1_1___simple_buffer_array"/>
+        <childnode refid="1597" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1597">
+        <label>HdBufferArray</label>
+        <link refid="class_hd_buffer_array"/>
+      </node>
+      <node id="1600">
+        <label>_StripedBufferArray</label>
+        <link refid="class_hd_st_v_b_o_memory_manager_1_1___striped_buffer_array"/>
+        <childnode refid="1597" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1599">
+        <label>_StripedInterleavedBuffer</label>
+        <link refid="class_hd_st_interleaved_memory_manager_1_1___striped_interleaved_buffer"/>
+        <childnode refid="1597" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1598">
+        <label>HdStDispatchBuffer</label>
+        <link refid="class_hd_st_dispatch_buffer"/>
+        <childnode refid="1597" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="pxr/imaging/hd/bufferArray.h" line="88" column="1" bodyfile="pxr/imaging/hd/bufferArray.h" bodystart="87" bodyend="201"/>
+    <listofallmembers>
+      <member refid="class_hd_buffer_array_1a56cee30dc51fc3daeac0e6c48d6dfd6a" prot="private" virt="non-virtual"><scope>HdBufferArray</scope><name>_garbageCollectionPerfToken</name></member>
+      <member refid="class_hd_buffer_array_1a7b0b906e55f0cc500e2eb925541796a6" prot="private" virt="non-virtual"><scope>HdBufferArray</scope><name>_maxNumRanges</name></member>
+      <member refid="class_hd_buffer_array_1a93c02d15df4b0808858bcddff0fdde69" prot="protected" virt="non-virtual"><scope>HdBufferArray</scope><name>_needsReallocation</name></member>
+      <member refid="class_hd_buffer_array_1a485392aa692ac841bf79a9c4d7d73d68" prot="private" virt="non-virtual"><scope>HdBufferArray</scope><name>_rangeCount</name></member>
+      <member refid="class_hd_buffer_array_1a9bb013fa6c90a50a691aa255c8e0fa61" prot="private" virt="non-virtual"><scope>HdBufferArray</scope><name>_RangeList</name></member>
+      <member refid="class_hd_buffer_array_1a4afdec4f6aee4f80a0dd9a01c0e3e50c" prot="private" virt="non-virtual"><scope>HdBufferArray</scope><name>_rangeList</name></member>
+      <member refid="class_hd_buffer_array_1a13c7503828d439e3ab86154a84b53853" prot="private" virt="non-virtual"><scope>HdBufferArray</scope><name>_rangeListLock</name></member>
+      <member refid="class_hd_buffer_array_1a5add902deb8be96180e671efce805731" prot="private" virt="non-virtual"><scope>HdBufferArray</scope><name>_role</name></member>
+      <member refid="class_hd_buffer_array_1a7317a6d3d67ebefe2abf4c8d965f7ce7" prot="protected" virt="non-virtual"><scope>HdBufferArray</scope><name>_SetMaxNumRanges</name></member>
+      <member refid="class_hd_buffer_array_1ad5fadff5878adff3580c953edf55c102" prot="protected" virt="non-virtual"><scope>HdBufferArray</scope><name>_SetRangeList</name></member>
+      <member refid="class_hd_buffer_array_1ad724a1038dbef26038e4c89f22038875" prot="private" virt="non-virtual"><scope>HdBufferArray</scope><name>_usageHint</name></member>
+      <member refid="class_hd_buffer_array_1aa1c99f4fcf9b91ccd3c460a72c356289" prot="private" virt="non-virtual"><scope>HdBufferArray</scope><name>_version</name></member>
+      <member refid="class_hd_buffer_array_1a1d73c3578ae8bc963a88e8ec7eacda20" prot="public" virt="pure-virtual"><scope>HdBufferArray</scope><name>DebugDump</name></member>
+      <member refid="class_hd_buffer_array_1a0cb377d7abe60cfcc5b697ff6ef76e1f" prot="public" virt="pure-virtual"><scope>HdBufferArray</scope><name>GarbageCollect</name></member>
+      <member refid="class_hd_buffer_array_1a397a08148e24f14f877445e6156c3fa2" prot="public" virt="virtual"><scope>HdBufferArray</scope><name>GetMaxNumElements</name></member>
+      <member refid="class_hd_buffer_array_1abe22f4d5dc3fe18c11c7574230ad9f65" prot="public" virt="non-virtual"><scope>HdBufferArray</scope><name>GetRange</name></member>
+      <member refid="class_hd_buffer_array_1add00eb5e4d61e76656a7e34a1cc1fae5" prot="public" virt="non-virtual"><scope>HdBufferArray</scope><name>GetRangeCount</name></member>
+      <member refid="class_hd_buffer_array_1aafbf8ee2945b8aea41e3627e502d6ec2" prot="public" virt="non-virtual"><scope>HdBufferArray</scope><name>GetRole</name></member>
+      <member refid="class_hd_buffer_array_1ab41a2692243892966815fba28c1f65bb" prot="public" virt="non-virtual"><scope>HdBufferArray</scope><name>GetUsageHint</name></member>
+      <member refid="class_hd_buffer_array_1ac13a730dc150777d7cb405148add123a" prot="public" virt="non-virtual"><scope>HdBufferArray</scope><name>GetVersion</name></member>
+      <member refid="class_hd_buffer_array_1af8b5995437a5e708eeda464350543f16" prot="public" virt="non-virtual"><scope>HdBufferArray</scope><name>HdBufferArray</name></member>
+      <member refid="class_hd_buffer_array_1abbc970bbbc39e4356f4dc8a055ca90fb" prot="private" virt="non-virtual"><scope>HdBufferArray</scope><name>HdBufferArray</name></member>
+      <member refid="class_hd_buffer_array_1a9566dc2cfe7a59933ec5b0157b9e680e" prot="public" virt="non-virtual"><scope>HdBufferArray</scope><name>IncrementVersion</name></member>
+      <member refid="class_hd_buffer_array_1a5eef7725fbdaff5123abd7ba4bb4aa86" prot="public" virt="non-virtual"><scope>HdBufferArray</scope><name>IsImmutable</name></member>
+      <member refid="class_hd_buffer_array_1a8774936bd0385297a3f1b113ffe761e2" prot="public" virt="non-virtual"><scope>HdBufferArray</scope><name>NeedsReallocation</name></member>
+      <member refid="class_hd_buffer_array_1a1883aa759d45ab1aca05784616baaceb" prot="private" virt="non-virtual"><scope>HdBufferArray</scope><name>operator=</name></member>
+      <member refid="class_hd_buffer_array_1a29d764a790a44bd5874a6193f1e8df78" prot="public" virt="pure-virtual"><scope>HdBufferArray</scope><name>Reallocate</name></member>
+      <member refid="class_hd_buffer_array_1aa54b967fa38e565cff9275b60807b47b" prot="public" virt="non-virtual"><scope>HdBufferArray</scope><name>RemoveUnusedRanges</name></member>
+      <member refid="class_hd_buffer_array_1ac742e2a16bddc249a1a795ec9d04fa1a" prot="public" virt="non-virtual"><scope>HdBufferArray</scope><name>TryAssignRange</name></member>
+      <member refid="class_hd_buffer_array_1a20450a4e20aacd9ee223e6a47eadfe92" prot="public" virt="virtual"><scope>HdBufferArray</scope><name>~HdBufferArray</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

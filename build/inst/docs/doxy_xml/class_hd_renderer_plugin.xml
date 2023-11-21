@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_renderer_plugin" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>HdRendererPlugin</compoundname>
+    <basecompoundref refid="class_hf_plugin_base" prot="public" virt="non-virtual">HfPluginBase</basecompoundref>
+    <derivedcompoundref refid="class_hd_embree_renderer_plugin" prot="public" virt="non-virtual">HdEmbreeRendererPlugin</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_prman_loader_renderer_plugin" prot="public" virt="non-virtual">HdPrmanLoaderRendererPlugin</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_storm_renderer_plugin" prot="public" virt="non-virtual">HdStormRendererPlugin</derivedcompoundref>
+    <includes refid="renderer_plugin_8h" local="no">rendererPlugin.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_renderer_plugin_1aa0c3fcdf6df5d4dece176f40fa2e7a90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API <ref refid="class_hd_plugin_render_delegate_unique_handle" kindref="compound">HdPluginRenderDelegateUniqueHandle</ref></type>
+        <definition>HD_API HdPluginRenderDelegateUniqueHandle CreateDelegate</definition>
+        <argsstring>(HdRenderSettingsMap const &amp;settingsMap={})</argsstring>
+        <name>CreateDelegate</name>
+        <param>
+          <type>HdRenderSettingsMap const &amp;</type>
+          <declname>settingsMap</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Create a render delegate through the plugin and wrap it in a handle that keeps this plugin alive until render delegate is destroyed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initial settings can be passed in. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rendererPlugin.h" line="58" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_renderer_plugin_1a00b00fe3c9fd953dd02c7e08c6d75ff5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>HD_API TfToken GetPluginId</definition>
+        <argsstring>() const</argsstring>
+        <name>GetPluginId</name>
+        <briefdescription>
+<para>Look-up plugin id in plugin registry. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rendererPlugin.h" line="65" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_renderer_plugin_1acd8cf596a3c6a58ae7e0c47f688578de" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HdRenderDelegate *</type>
+        <definition>virtual HdRenderDelegate* CreateRenderDelegate</definition>
+        <argsstring>()=0</argsstring>
+        <name>CreateRenderDelegate</name>
+        <reimplementedby refid="class_hd_embree_renderer_plugin_1a369083f97f77404724004974a64d7cea">CreateRenderDelegate</reimplementedby>
+        <briefdescription>
+<para>Clients should use CreateDelegate since this method will eventually become protected, use CreateRenderDelegateHandle instead. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Factory a Render Delegate object, that Hydra can use to factory prims and communicate with a renderer. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rendererPlugin.h" line="75" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_renderer_plugin_1a667320a56a5c5cb9fbd45b8c53cf85a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API HdRenderDelegate *</type>
+        <definition>virtual HD_API HdRenderDelegate* CreateRenderDelegate</definition>
+        <argsstring>(HdRenderSettingsMap const &amp;settingsMap)</argsstring>
+        <name>CreateRenderDelegate</name>
+        <reimplementedby refid="class_hd_embree_renderer_plugin_1a4cfe8cbe72444b5006f24e29c0c8512e">CreateRenderDelegate</reimplementedby>
+        <param>
+          <type>HdRenderSettingsMap const &amp;</type>
+          <declname>settingsMap</declname>
+        </param>
+        <briefdescription>
+<para>Clients should use CreateDelegate since this method will eventually become protected. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Factory a Render Delegate object, that Hydra can use to factory prims and communicate with a renderer. Pass in initial settings... </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rendererPlugin.h" line="86" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_renderer_plugin_1a400c65a5ec43618e14b78e2f3c798ac1" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void DeleteRenderDelegate</definition>
+        <argsstring>(HdRenderDelegate *renderDelegate)=0</argsstring>
+        <name>DeleteRenderDelegate</name>
+        <reimplementedby refid="class_hd_embree_renderer_plugin_1abe6864d427928a99ad632ca315c2ac46">DeleteRenderDelegate</reimplementedby>
+        <param>
+          <type>HdRenderDelegate *</type>
+          <declname>renderDelegate</declname>
+        </param>
+        <briefdescription>
+<para>Clients should use CreateDelegate since this method will eventually become protected. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Release the object factoried by <ref refid="class_hd_renderer_plugin_1acd8cf596a3c6a58ae7e0c47f688578de" kindref="member">CreateRenderDelegate()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rendererPlugin.h" line="95" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_renderer_plugin_1a78c6f884573a0458765fbacee91865de" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool IsSupported</definition>
+        <argsstring>(bool gpuEnabled=true) const =0</argsstring>
+        <name>IsSupported</name>
+        <reimplementedby refid="class_hd_embree_renderer_plugin_1aff24617f20ffd44b491ceb6de01868a1">IsSupported</reimplementedby>
+        <param>
+          <type>bool</type>
+          <declname>gpuEnabled</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if this renderer plugin is supported in the running process and <computeroutput>false</computeroutput> if not. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This gives the plugin a chance to perform some runtime checks to make sure that the system meets minimum requirements. The <computeroutput>gpuEnabled</computeroutput> parameter indicates if the GPU is available for use by the plugin in case this information is necessary to make this determination. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rendererPlugin.h" line="106" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_hd_renderer_plugin_1ad2161b7d53016bc0bbdede2cd8f20d52" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdRendererPlugin</definition>
+        <argsstring>()=default</argsstring>
+        <name>HdRendererPlugin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rendererPlugin.h" line="109" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_renderer_plugin_1a8475da9805425c01cd581db03e2a658d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API ~HdRendererPlugin</definition>
+        <argsstring>() override</argsstring>
+        <name>~HdRendererPlugin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rendererPlugin.h" line="111" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hd_renderer_plugin_1a1c89bf67806e98c1f97d08db48f40018" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdRendererPlugin</definition>
+        <argsstring>(const HdRendererPlugin &amp;)=delete</argsstring>
+        <name>HdRendererPlugin</name>
+        <param>
+          <type>const <ref refid="class_hd_renderer_plugin" kindref="compound">HdRendererPlugin</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rendererPlugin.h" line="115" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_renderer_plugin_1afea66d749db36a0f3e318df81ea4fb4e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hd_renderer_plugin" kindref="compound">HdRendererPlugin</ref> &amp;</type>
+        <definition>HdRendererPlugin&amp; operator=</definition>
+        <argsstring>(const HdRendererPlugin &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_hd_renderer_plugin" kindref="compound">HdRendererPlugin</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/rendererPlugin.h" line="116" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This class defines a renderer plugin interface for Hydra. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A renderer plugin is a dynamically discovered and loaded at run-time using the Plug system.</para>
+<para>This object has singleton behavior, in that is instantiated once per library (managed by the plugin registry).</para>
+<para>The class is used to factory objects that provide delegate support to other parts of the Hydra Ecosystem. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2574">
+        <label>HdRendererPlugin</label>
+        <link refid="class_hd_renderer_plugin"/>
+        <childnode refid="2575" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2576">
+        <label>HdEmbreeRendererPlugin</label>
+        <link refid="class_hd_embree_renderer_plugin"/>
+        <childnode refid="2574" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2575">
+        <label>HfPluginBase</label>
+        <link refid="class_hf_plugin_base"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2577">
+        <label>HdRendererPlugin</label>
+        <link refid="class_hd_renderer_plugin"/>
+        <childnode refid="2578" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2578">
+        <label>HfPluginBase</label>
+        <link refid="class_hf_plugin_base"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/hd/rendererPlugin.h" line="49" column="1" bodyfile="pxr/imaging/hd/rendererPlugin.h" bodystart="49" bodyend="118"/>
+    <listofallmembers>
+      <member refid="class_hd_renderer_plugin_1aa0c3fcdf6df5d4dece176f40fa2e7a90" prot="public" virt="non-virtual"><scope>HdRendererPlugin</scope><name>CreateDelegate</name></member>
+      <member refid="class_hd_renderer_plugin_1acd8cf596a3c6a58ae7e0c47f688578de" prot="public" virt="pure-virtual"><scope>HdRendererPlugin</scope><name>CreateRenderDelegate</name></member>
+      <member refid="class_hd_renderer_plugin_1a667320a56a5c5cb9fbd45b8c53cf85a8" prot="public" virt="virtual"><scope>HdRendererPlugin</scope><name>CreateRenderDelegate</name></member>
+      <member refid="class_hd_renderer_plugin_1a400c65a5ec43618e14b78e2f3c798ac1" prot="public" virt="pure-virtual"><scope>HdRendererPlugin</scope><name>DeleteRenderDelegate</name></member>
+      <member refid="class_hd_renderer_plugin_1a00b00fe3c9fd953dd02c7e08c6d75ff5" prot="public" virt="non-virtual"><scope>HdRendererPlugin</scope><name>GetPluginId</name></member>
+      <member refid="class_hd_renderer_plugin_1ad2161b7d53016bc0bbdede2cd8f20d52" prot="protected" virt="non-virtual"><scope>HdRendererPlugin</scope><name>HdRendererPlugin</name></member>
+      <member refid="class_hd_renderer_plugin_1a1c89bf67806e98c1f97d08db48f40018" prot="private" virt="non-virtual"><scope>HdRendererPlugin</scope><name>HdRendererPlugin</name></member>
+      <member refid="class_hf_plugin_base_1a2d89b4e92e8949fb180cfaa6f8e6bd4d" prot="protected" virt="non-virtual"><scope>HdRendererPlugin</scope><name>HfPluginBase</name></member>
+      <member refid="class_hd_renderer_plugin_1a78c6f884573a0458765fbacee91865de" prot="public" virt="pure-virtual"><scope>HdRendererPlugin</scope><name>IsSupported</name></member>
+      <member refid="class_hd_renderer_plugin_1afea66d749db36a0f3e318df81ea4fb4e" prot="private" virt="non-virtual"><scope>HdRendererPlugin</scope><name>operator=</name></member>
+      <member refid="class_hd_renderer_plugin_1a8475da9805425c01cd581db03e2a658d" prot="protected" virt="non-virtual"><scope>HdRendererPlugin</scope><name>~HdRendererPlugin</name></member>
+      <member refid="class_hf_plugin_base_1a04f2660995af26e071d064bc5cadc785" prot="public" virt="virtual"><scope>HdRendererPlugin</scope><name>~HfPluginBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

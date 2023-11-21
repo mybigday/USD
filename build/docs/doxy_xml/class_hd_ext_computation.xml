@@ -1,0 +1,549 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_ext_computation" kind="class" language="C++" prot="public">
+    <compoundname>HdExtComputation</compoundname>
+    <basecompoundref refid="class_hd_sprim" prot="public" virt="non-virtual">HdSprim</basecompoundref>
+    <derivedcompoundref refid="class_hd_st_ext_computation" prot="public" virt="non-virtual">HdStExtComputation</derivedcompoundref>
+    <includes refid="ext_computation_8h" local="no">extComputation.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8f" prot="public" static="no" strong="no">
+        <type>HdDirtyBits</type>
+        <name>DirtyBits</name>
+        <enumvalue id="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8faccea35f717039c64bc6ea05604ecddc0" prot="public">
+          <name>Clean</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8faff9834772b4e7ad17028dce00cbc96db" prot="public">
+          <name>DirtyInputDesc</name>
+          <initializer>= 1 &lt;&lt; 0</initializer>
+          <briefdescription>
+<para>The list of inputs or input bindings changed. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8faf489a23f92b34cc89a446edea5d905ee" prot="public">
+          <name>DirtyOutputDesc</name>
+          <initializer>= 1 &lt;&lt; 1</initializer>
+          <briefdescription>
+<para>The list of outputs changed. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8fae99b2e7ed6d41024e49db8077889e7b5" prot="public">
+          <name>DirtyElementCount</name>
+          <initializer>= 1 &lt;&lt; 2</initializer>
+          <briefdescription>
+<para>The number of elements in the output arrays changed. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8fadfe207b8165bc6e1ca816decc73aef01" prot="public">
+          <name>DirtySceneInput</name>
+          <initializer>= 1 &lt;&lt; 3</initializer>
+          <briefdescription>
+<para>A scene input changed value. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8fa4e15d823328a32fdfaf3099af889a69f" prot="public">
+          <name>DirtyCompInput</name>
+          <initializer>= 1 &lt;&lt; 4</initializer>
+          <briefdescription>
+<para>A computation input changed value. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8fa5faa3893d41be8930e4cec898b7290a1" prot="public">
+          <name>DirtyKernel</name>
+          <initializer>= 1 &lt;&lt; 5</initializer>
+          <briefdescription>
+<para>The compute kernel binding changed. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8fae3c8b26d47268e24cfd033aa0acd8636" prot="public">
+          <name>DirtyDispatchCount</name>
+          <initializer>= 1 &lt;&lt; 6</initializer>
+          <briefdescription>
+<para>The number of kernel invocations to execute changed. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8fa6f2ec4167b47e7269ed7b56e1928e731" prot="public">
+          <name>AllDirty</name>
+          <initializer>= (DirtyInputDesc
+                                |DirtyOutputDesc
+                                |DirtyElementCount
+                                |DirtySceneInput
+                                |DirtyCompInput
+                                |DirtyKernel
+                                |DirtyDispatchCount)</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Change tracking. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="69" column="1" bodyfile="pxr/imaging/hd/extComputation.h" bodystart="69" bodyend="90"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_ext_computation_1ade5788087a313f89bef793373312f13b" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t _dispatchCount</definition>
+        <argsstring></argsstring>
+        <name>_dispatchCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="143" column="1" bodyfile="pxr/imaging/hd/extComputation.h" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_ext_computation_1a4357dbd52c642d037b3adcb45f938fd2" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t _elementCount</definition>
+        <argsstring></argsstring>
+        <name>_elementCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="144" column="1" bodyfile="pxr/imaging/hd/extComputation.h" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_ext_computation_1a3f410223d5d492281c30873f1391d7a9" prot="private" static="no" mutable="no">
+        <type><ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref></type>
+        <definition>TfTokenVector _sceneInputNames</definition>
+        <argsstring></argsstring>
+        <name>_sceneInputNames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="145" column="1" bodyfile="pxr/imaging/hd/extComputation.h" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_ext_computation_1ae47523efbf70f8679925da03426513dc" prot="private" static="no" mutable="no">
+        <type>HdExtComputationInputDescriptorVector</type>
+        <definition>HdExtComputationInputDescriptorVector _computationInputs</definition>
+        <argsstring></argsstring>
+        <name>_computationInputs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="146" column="1" bodyfile="pxr/imaging/hd/extComputation.h" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_ext_computation_1ac70a9e9b06c3d91dbd1882a0a915b8e0" prot="private" static="no" mutable="no">
+        <type>HdExtComputationOutputDescriptorVector</type>
+        <definition>HdExtComputationOutputDescriptorVector _computationOutputs</definition>
+        <argsstring></argsstring>
+        <name>_computationOutputs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="147" column="1" bodyfile="pxr/imaging/hd/extComputation.h" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_ext_computation_1ad63f0c1ab20f3d3594f104cf322e261e" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string _gpuKernelSource</definition>
+        <argsstring></argsstring>
+        <name>_gpuKernelSource</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="148" column="1" bodyfile="pxr/imaging/hd/extComputation.h" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_ext_computation_1adccdf6a49a4a63685bab5610ab1482e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API HdExtComputation</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>HdExtComputation</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new ExtComputation identified by id. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="61" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_ext_computation_1a2561223b5814a74138081d5e17d8a3cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API ~HdExtComputation</definition>
+        <argsstring>() override</argsstring>
+        <name>~HdExtComputation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="64" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_ext_computation_1a3213755baa58cf8f2da75fb5a5e33566" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void Sync</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, HdDirtyBits *dirtyBits) override</argsstring>
+        <name>Sync</name>
+        <reimplements refid="class_hd_sprim_1ac100b9064606ab088306512425439cf7">Sync</reimplements>
+        <reimplementedby refid="class_hd_st_ext_computation_1a1ff320f5516aeeb22fb8316c87ce08de">Sync</reimplementedby>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+<para>Synchronizes state from the delegate to this object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">dirtyBits</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>On input specifies which state is is dirty and can be pulled from the scene delegate. On output specifies which bits are still dirty and were not cleaned by the sync. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="93" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_ext_computation_1ad2a06c7fe9d266e21307307fc7a0dccd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API HdDirtyBits</type>
+        <definition>HD_API HdDirtyBits GetInitialDirtyBitsMask</definition>
+        <argsstring>() const override</argsstring>
+        <name>GetInitialDirtyBitsMask</name>
+        <reimplements refid="class_hd_sprim_1ac05e81662ee475cfe52ce97e84e7205d">GetInitialDirtyBitsMask</reimplements>
+        <briefdescription>
+<para>Returns the minimal set of dirty bits to place in the change tracker for use in the first sync of this prim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Typically this would be all dirty bits. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="98" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_ext_computation_1a95ab09dc9ca67f689f2ec823e459a4ef" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API size_t</type>
+        <definition>HD_API size_t GetDispatchCount</definition>
+        <argsstring>() const</argsstring>
+        <name>GetDispatchCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="101" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_ext_computation_1a334f76dec300aa5c49583cfa4e6fc065" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>HD_API size_t</type>
+        <definition>HD_API size_t GetElementCount</definition>
+        <argsstring>() const</argsstring>
+        <name>GetElementCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="104" column="1" bodyfile="pxr/imaging/hd/extComputation.h" bodystart="104" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_ext_computation_1a4b44055c4897dd60bf051473e53a6ca2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>HD_API <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> const  &amp;</type>
+        <definition>HD_API TfTokenVector const&amp; GetSceneInputNames</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSceneInputNames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="107" column="1" bodyfile="pxr/imaging/hd/extComputation.h" bodystart="107" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_ext_computation_1a9d03b1e0de9bed4d46018b9a3f53bf9e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref></type>
+        <definition>HD_API TfTokenVector GetOutputNames</definition>
+        <argsstring>() const</argsstring>
+        <name>GetOutputNames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="112" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_ext_computation_1acd10856b23ee9f409f3b3092d330c14d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>HD_API HdExtComputationInputDescriptorVector const  &amp;</type>
+        <definition>HD_API HdExtComputationInputDescriptorVector const&amp; GetComputationInputs</definition>
+        <argsstring>() const</argsstring>
+        <name>GetComputationInputs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="116" column="1" bodyfile="pxr/imaging/hd/extComputation.h" bodystart="116" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_ext_computation_1a4372c5545674fe6482da1eb332b376aa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>HD_API HdExtComputationOutputDescriptorVector const  &amp;</type>
+        <definition>HD_API HdExtComputationOutputDescriptorVector const&amp; GetComputationOutputs</definition>
+        <argsstring>() const</argsstring>
+        <name>GetComputationOutputs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="122" column="1" bodyfile="pxr/imaging/hd/extComputation.h" bodystart="122" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_ext_computation_1a725336fc8ca148a05362f632532c3031" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>HD_API const std::string &amp;</type>
+        <definition>HD_API const std::string&amp; GetGpuKernelSource</definition>
+        <argsstring>() const</argsstring>
+        <name>GetGpuKernelSource</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="127" column="1" bodyfile="pxr/imaging/hd/extComputation.h" bodystart="127" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_ext_computation_1ad43422641d2a1836d35ffd8d9ea0c1b1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsInputAggregation</definition>
+        <argsstring>() const</argsstring>
+        <name>IsInputAggregation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="130" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_hd_ext_computation_1a8cde2d2e51afe2f261ebc7f0b20edfbd" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void _Sync</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, HdDirtyBits *dirtyBits)</argsstring>
+        <name>_Sync</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="135" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-static-func">
+      <memberdef kind="function" id="class_hd_ext_computation_1a0857713139258d1b5f6d3144cb79d20a" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>static HD_API bool _IsEnabledSharedExtComputationData</definition>
+        <argsstring>()</argsstring>
+        <name>_IsEnabledSharedExtComputationData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="140" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hd_ext_computation_1a86a84ae7c05fa5a510f59dbfda77edcd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdExtComputation</definition>
+        <argsstring>()=delete</argsstring>
+        <name>HdExtComputation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="151" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_ext_computation_1a140732b2117962fa073d11de9fca883a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdExtComputation</definition>
+        <argsstring>(const HdExtComputation &amp;)=delete</argsstring>
+        <name>HdExtComputation</name>
+        <param>
+          <type>const <ref refid="class_hd_ext_computation" kindref="compound">HdExtComputation</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="152" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_ext_computation_1a839e621edcedf4402a64dfcef60c1357" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hd_ext_computation" kindref="compound">HdExtComputation</ref> &amp;</type>
+        <definition>HdExtComputation&amp; operator=</definition>
+        <argsstring>(const HdExtComputation &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_hd_ext_computation" kindref="compound">HdExtComputation</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputation.h" line="153" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Hydra Representation of a Client defined computation. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A computation provides a way to procedurally generate a primvar.</para>
+<para>It represents a basic Input -&gt; Processing -&gt; Output model.</para>
+<para>Primarily inputs are provided by the scene delegate via the Get() mechanism.</para>
+<para>Computations can also be chained together, such that the output from one computation can be an input to another.</para>
+<para>The results of a computation is designed to be in SOA form (structure or array), where each output is a member of the &quot;structure&quot; producing several parallel arrays. While the type of the elements of the array is defined by the output member, the number of elements in each array is the same across all outputs.</para>
+<para>ExtComputations use a pull model, so processing is only triggered if a downstream computation or prim pulls on one the computations outputs. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1922">
+        <label>HdStExtComputation</label>
+        <link refid="class_hd_st_ext_computation"/>
+        <childnode refid="1920" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1921">
+        <label>HdSprim</label>
+        <link refid="class_hd_sprim"/>
+      </node>
+      <node id="1920">
+        <label>HdExtComputation</label>
+        <link refid="class_hd_ext_computation"/>
+        <childnode refid="1921" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1924">
+        <label>HdSprim</label>
+        <link refid="class_hd_sprim"/>
+      </node>
+      <node id="1923">
+        <label>HdExtComputation</label>
+        <link refid="class_hd_ext_computation"/>
+        <childnode refid="1924" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/hd/extComputation.h" line="57" column="1" bodyfile="pxr/imaging/hd/extComputation.h" bodystart="56" bodyend="155"/>
+    <listofallmembers>
+      <member refid="class_hd_ext_computation_1ae47523efbf70f8679925da03426513dc" prot="private" virt="non-virtual"><scope>HdExtComputation</scope><name>_computationInputs</name></member>
+      <member refid="class_hd_ext_computation_1ac70a9e9b06c3d91dbd1882a0a915b8e0" prot="private" virt="non-virtual"><scope>HdExtComputation</scope><name>_computationOutputs</name></member>
+      <member refid="class_hd_ext_computation_1ade5788087a313f89bef793373312f13b" prot="private" virt="non-virtual"><scope>HdExtComputation</scope><name>_dispatchCount</name></member>
+      <member refid="class_hd_ext_computation_1a4357dbd52c642d037b3adcb45f938fd2" prot="private" virt="non-virtual"><scope>HdExtComputation</scope><name>_elementCount</name></member>
+      <member refid="class_hd_ext_computation_1ad63f0c1ab20f3d3594f104cf322e261e" prot="private" virt="non-virtual"><scope>HdExtComputation</scope><name>_gpuKernelSource</name></member>
+      <member refid="class_hd_ext_computation_1a0857713139258d1b5f6d3144cb79d20a" prot="protected" virt="non-virtual"><scope>HdExtComputation</scope><name>_IsEnabledSharedExtComputationData</name></member>
+      <member refid="class_hd_ext_computation_1a3f410223d5d492281c30873f1391d7a9" prot="private" virt="non-virtual"><scope>HdExtComputation</scope><name>_sceneInputNames</name></member>
+      <member refid="class_hd_ext_computation_1a8cde2d2e51afe2f261ebc7f0b20edfbd" prot="protected" virt="non-virtual"><scope>HdExtComputation</scope><name>_Sync</name></member>
+      <member refid="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8fa6f2ec4167b47e7269ed7b56e1928e731" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>AllDirty</name></member>
+      <member refid="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8faccea35f717039c64bc6ea05604ecddc0" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>Clean</name></member>
+      <member refid="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8f" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>DirtyBits</name></member>
+      <member refid="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8fa4e15d823328a32fdfaf3099af889a69f" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>DirtyCompInput</name></member>
+      <member refid="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8fae3c8b26d47268e24cfd033aa0acd8636" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>DirtyDispatchCount</name></member>
+      <member refid="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8fae99b2e7ed6d41024e49db8077889e7b5" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>DirtyElementCount</name></member>
+      <member refid="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8faff9834772b4e7ad17028dce00cbc96db" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>DirtyInputDesc</name></member>
+      <member refid="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8fa5faa3893d41be8930e4cec898b7290a1" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>DirtyKernel</name></member>
+      <member refid="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8faf489a23f92b34cc89a446edea5d905ee" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>DirtyOutputDesc</name></member>
+      <member refid="class_hd_ext_computation_1a2f2dbbbe47e871395a781c8105398c8fadfe207b8165bc6e1ca816decc73aef01" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>DirtySceneInput</name></member>
+      <member refid="class_hd_sprim_1a385eed04c15e636796b187bfdf0fcbf0" prot="public" virt="virtual"><scope>HdExtComputation</scope><name>Finalize</name></member>
+      <member refid="class_hd_ext_computation_1acd10856b23ee9f409f3b3092d330c14d" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>GetComputationInputs</name></member>
+      <member refid="class_hd_ext_computation_1a4372c5545674fe6482da1eb332b376aa" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>GetComputationOutputs</name></member>
+      <member refid="class_hd_ext_computation_1a95ab09dc9ca67f689f2ec823e459a4ef" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>GetDispatchCount</name></member>
+      <member refid="class_hd_ext_computation_1a334f76dec300aa5c49583cfa4e6fc065" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>GetElementCount</name></member>
+      <member refid="class_hd_ext_computation_1a725336fc8ca148a05362f632532c3031" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>GetGpuKernelSource</name></member>
+      <member refid="class_hd_sprim_1a9301243d9273afcba6395e86047490ab" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>GetId</name></member>
+      <member refid="class_hd_ext_computation_1ad2a06c7fe9d266e21307307fc7a0dccd" prot="public" virt="virtual"><scope>HdExtComputation</scope><name>GetInitialDirtyBitsMask</name></member>
+      <member refid="class_hd_ext_computation_1a9d03b1e0de9bed4d46018b9a3f53bf9e" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>GetOutputNames</name></member>
+      <member refid="class_hd_ext_computation_1a4b44055c4897dd60bf051473e53a6ca2" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>GetSceneInputNames</name></member>
+      <member refid="class_hd_ext_computation_1adccdf6a49a4a63685bab5610ab1482e2" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>HdExtComputation</name></member>
+      <member refid="class_hd_ext_computation_1a86a84ae7c05fa5a510f59dbfda77edcd" prot="private" virt="non-virtual"><scope>HdExtComputation</scope><name>HdExtComputation</name></member>
+      <member refid="class_hd_ext_computation_1a140732b2117962fa073d11de9fca883a" prot="private" virt="non-virtual"><scope>HdExtComputation</scope><name>HdExtComputation</name></member>
+      <member refid="class_hd_sprim_1a15a586d4a5f4e5c4f4e0ae664914dd26" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>HdSprim</name></member>
+      <member refid="class_hd_ext_computation_1ad43422641d2a1836d35ffd8d9ea0c1b1" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>IsInputAggregation</name></member>
+      <member refid="class_hd_ext_computation_1a839e621edcedf4402a64dfcef60c1357" prot="private" virt="non-virtual"><scope>HdExtComputation</scope><name>operator=</name></member>
+      <member refid="class_hd_ext_computation_1a3213755baa58cf8f2da75fb5a5e33566" prot="public" virt="virtual"><scope>HdExtComputation</scope><name>Sync</name></member>
+      <member refid="class_hd_ext_computation_1a2561223b5814a74138081d5e17d8a3cb" prot="public" virt="non-virtual"><scope>HdExtComputation</scope><name>~HdExtComputation</name></member>
+      <member refid="class_hd_sprim_1a35830c433fc9268fc4fe5ed23d8cc86b" prot="public" virt="virtual"><scope>HdExtComputation</scope><name>~HdSprim</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

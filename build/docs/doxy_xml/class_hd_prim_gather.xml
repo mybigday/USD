@@ -1,0 +1,602 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_prim_gather" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>HdPrimGather</compoundname>
+    <innerclass refid="struct_hd_prim_gather_1_1___path_filter" prot="private">HdPrimGather::_PathFilter</innerclass>
+    <innerclass refid="struct_hd_prim_gather_1_1___range" prot="private">HdPrimGather::_Range</innerclass>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_hd_prim_gather_1a7ffef259ee511b51940c0f84f4baa01c" prot="public" static="no">
+        <type>bool(*</type>
+        <definition>typedef bool(* FilterPredicateFn) (const SdfPath &amp;path, const void *param)</definition>
+        <argsstring>)(const SdfPath &amp;path, const void *param)</argsstring>
+        <name>FilterPredicateFn</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="40" column="1" bodyfile="pxr/imaging/hd/primGather.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_hd_prim_gather_1ac0448637560fe5257b47f77dccec22ae" prot="private" static="no">
+        <type>std::vector&lt; _PathFilter &gt;</type>
+        <definition>typedef std::vector&lt;_PathFilter&gt; _PathFilterArray</definition>
+        <argsstring></argsstring>
+        <name>_PathFilterArray</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="156" column="1" bodyfile="pxr/imaging/hd/primGather.h" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hd_prim_gather_1a834922b9e17260b4a7ef8ad45fff5570" prot="private" static="no">
+        <type>std::vector&lt; _Range &gt;</type>
+        <definition>typedef std::vector&lt;_Range&gt; _RangeArray</definition>
+        <argsstring></argsstring>
+        <name>_RangeArray</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="174" column="1" bodyfile="pxr/imaging/hd/primGather.h" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hd_prim_gather_1aa7c5b17f1a31fa587de6bf3f1e2cb53d" prot="private" static="no">
+        <type>tbb::enumerable_thread_specific&lt; _RangeArray &gt;</type>
+        <definition>typedef tbb::enumerable_thread_specific&lt;_RangeArray&gt; _ConcurrentRangeArray</definition>
+        <argsstring></argsstring>
+        <name>_ConcurrentRangeArray</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="175" column="1" bodyfile="pxr/imaging/hd/primGather.h" bodystart="175" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hd_prim_gather_1aee227719aa10b52cf9933cd66d8a33b9" prot="private" static="no">
+        <type>tbb::blocked_range&lt; size_t &gt;</type>
+        <definition>typedef tbb::blocked_range&lt;size_t&gt; _ConcurrentRange</definition>
+        <argsstring></argsstring>
+        <name>_ConcurrentRange</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="176" column="1" bodyfile="pxr/imaging/hd/primGather.h" bodystart="176" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_prim_gather_1a0501a9fd7f25158c247262fca59ae385" prot="private" static="no" mutable="no">
+        <type>_PathFilterArray</type>
+        <definition>_PathFilterArray _filterList</definition>
+        <argsstring></argsstring>
+        <name>_filterList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="180" column="1" bodyfile="pxr/imaging/hd/primGather.h" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_prim_gather_1a178f3f808492db07ca39407541541ed0" prot="private" static="no" mutable="no">
+        <type>_RangeArray</type>
+        <definition>_RangeArray _gatheredRanges</definition>
+        <argsstring></argsstring>
+        <name>_gatheredRanges</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="181" column="1" bodyfile="pxr/imaging/hd/primGather.h" bodystart="181" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_prim_gather_1a3ea7995384eba07aee9e7534d24664ef" prot="private" static="no" mutable="no">
+        <type>_ConcurrentRangeArray</type>
+        <definition>_ConcurrentRangeArray _resultRanges</definition>
+        <argsstring></argsstring>
+        <name>_resultRanges</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="182" column="1" bodyfile="pxr/imaging/hd/primGather.h" bodystart="182" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_prim_gather_1a1a597697f7132dd6907922eb73482e20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdPrimGather</definition>
+        <argsstring>()=default</argsstring>
+        <name>HdPrimGather</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="42" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prim_gather_1aaedcd45501a5fabc48721bd08e071115" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>~HdPrimGather</definition>
+        <argsstring>()=default</argsstring>
+        <name>~HdPrimGather</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="43" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prim_gather_1a2e4eb7d3007c4c109a89549b01440405" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void Filter</definition>
+        <argsstring>(const SdfPathVector &amp;paths, const SdfPathVector &amp;includePaths, const SdfPathVector &amp;excludePaths, SdfPathVector *results)</argsstring>
+        <name>Filter</name>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>paths</declname>
+        </param>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>includePaths</declname>
+        </param>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>excludePaths</declname>
+        </param>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>results</declname>
+        </param>
+        <briefdescription>
+<para>Filter takes a list of paths and returns a list of paths that match the following criteria: </para>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>A path is prefixed by at least one include path</para>
+</listitem><listitem><para>A path is not prefixed by an exclude path that has more elements than the include path with the most element that is a prefix of the path.</para>
+</listitem></itemizedlist>
+</para>
+<para>The list of paths to filter must be pre-sorted with ordering defined by std::less&lt;SdfPath &amp;&gt;.</para>
+<para>The list of include and exclude paths do not need to be pre-sorted.</para>
+<para>If the same path appears in the list of include and exclude paths results are undefined.</para>
+<para>The resulting set of paths are stored in results arg, the results might not be in sorted order. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="66" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prim_gather_1aff4c72a41dbfc686f60af03aed0d5ebc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void PredicatedFilter</definition>
+        <argsstring>(const SdfPathVector &amp;paths, const SdfPathVector &amp;includePaths, const SdfPathVector &amp;excludePaths, FilterPredicateFn predicateFn, void *predicateParam, SdfPathVector *results)</argsstring>
+        <name>PredicatedFilter</name>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>paths</declname>
+        </param>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>includePaths</declname>
+        </param>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>excludePaths</declname>
+        </param>
+        <param>
+          <type>FilterPredicateFn</type>
+          <declname>predicateFn</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>predicateParam</declname>
+        </param>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>results</declname>
+        </param>
+        <briefdescription>
+<para>PredicatedFilter takes a list of paths and returns a list of paths that match the following criteria: </para>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>A path is prefixed by at least one include path</para>
+</listitem><listitem><para>A path is not prefixed by an exclude path that has more elements than the include path with the most element that is a prefix of the path.</para>
+</listitem><listitem><para>The predicate function for the path returns true.</para>
+</listitem></itemizedlist>
+</para>
+<para>The list of paths to filter must be pre-sorted with ordering defined by std::less&lt;SdfPath &amp;&gt;.</para>
+<para>The list of include and exclude paths do not need to be pre-sorted.</para>
+<para>If the same path appears in the list of include and exclude paths results are undefined.</para>
+<para>The predicate function has the prototype: bool Predicate(const SdfPath &amp;path, void *param);</para>
+<para>The function should return true if the path should appear in the results and false if not. The Predicate function may be called on worker threads and as such must be thread-safe.</para>
+<para>The resulting set of paths are stored in results arg, the results might not be in sorted order. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="100" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prim_gather_1a3d24686dbdb362a7a778031da33c6530" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void Subtree</definition>
+        <argsstring>(const SdfPathVector &amp;paths, const SdfPath &amp;rootPath, SdfPathVector *results)</argsstring>
+        <name>Subtree</name>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>paths</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>rootPath</declname>
+        </param>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>results</declname>
+        </param>
+        <briefdescription>
+<para>Subtree is a simplified form of filter, that gathers all prims that meet the single rootPath prefix condition. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The list of paths to filter must be pre-sorted with ordering defined by std::less&lt;SdfPath &amp;&gt;.</para>
+<para>The returned result maintain the sorted order. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="117" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prim_gather_1aa6375552be1e1d7f82139a29f6eaf2e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool SubtreeAsRange</definition>
+        <argsstring>(const SdfPathVector &amp;paths, const SdfPath &amp;rootPath, size_t *start, size_t *end)</argsstring>
+        <name>SubtreeAsRange</name>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>paths</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>rootPath</declname>
+        </param>
+        <param>
+          <type>size_t *</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>size_t *</type>
+          <declname>end</declname>
+        </param>
+        <briefdescription>
+<para>Subtree is a simplified form of filter, that gathers all prims that meet the single rootPath prefix condition. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The list of paths to filter must be pre-sorted with ordering defined by std::less&lt;SdfPath &amp;&gt;.</para>
+<para>Rather than returning a list the paths, it instead returns the start and end (inclusive) indexes into the paths vector of that subtree range.</para>
+<para>If the rootPath wasn&apos;t found or an error occurred, that otherwise produces an invalid range. The method returns false. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="135" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hd_prim_gather_1a4746e97b07ba625e41ff6f7984178a21" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t _FindLowerBound</definition>
+        <argsstring>(const SdfPathVector &amp;paths, size_t start, size_t end, const SdfPath &amp;path) const</argsstring>
+        <name>_FindLowerBound</name>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>paths</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>end</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="186" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prim_gather_1a33acc354677ae0efb267de4a4ea8e909" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t _FindUpperBound</definition>
+        <argsstring>(const SdfPathVector &amp;paths, size_t start, size_t end, const SdfPath &amp;path) const</argsstring>
+        <name>_FindUpperBound</name>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>paths</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>end</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="190" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prim_gather_1a8e140764fe387bb0a468e8cc7efcc017" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _FilterRange</definition>
+        <argsstring>(const SdfPathVector &amp;paths, size_t start, size_t end, bool include)</argsstring>
+        <name>_FilterRange</name>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>paths</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>end</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>include</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="195" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prim_gather_1a6a98264651bc7ec643e2a3e7193ca8b3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _SetupFilter</definition>
+        <argsstring>(const SdfPathVector &amp;includePaths, const SdfPathVector &amp;excludePaths)</argsstring>
+        <name>_SetupFilter</name>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>includePaths</declname>
+        </param>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>excludePaths</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="200" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prim_gather_1a811a4775d367a90279c6fe6f8bd0b23a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _GatherPaths</definition>
+        <argsstring>(const SdfPathVector &amp;paths)</argsstring>
+        <name>_GatherPaths</name>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>paths</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="203" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prim_gather_1a05dee111a6ac9621a02421bd175f17e0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _DoPredicateTestOnRange</definition>
+        <argsstring>(const SdfPathVector &amp;paths, const _Range &amp;range, FilterPredicateFn predicateFn, void *predicateParam)</argsstring>
+        <name>_DoPredicateTestOnRange</name>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>paths</declname>
+        </param>
+        <param>
+          <type>const _Range &amp;</type>
+          <declname>range</declname>
+        </param>
+        <param>
+          <type>FilterPredicateFn</type>
+          <declname>predicateFn</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>predicateParam</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="206" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prim_gather_1a81327a5cea1d7ceac195aa505eb8ea49" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _DoPredicateTestOnPrims</definition>
+        <argsstring>(const SdfPathVector &amp;paths, _ConcurrentRange &amp;range, FilterPredicateFn predicateFn, void *predicateParam)</argsstring>
+        <name>_DoPredicateTestOnPrims</name>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>paths</declname>
+        </param>
+        <param>
+          <type>_ConcurrentRange &amp;</type>
+          <declname>range</declname>
+        </param>
+        <param>
+          <type>FilterPredicateFn</type>
+          <declname>predicateFn</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>predicateParam</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="212" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prim_gather_1a3915f5074246124737cc0e6d54485aeb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _FilterSubTree</definition>
+        <argsstring>(const SdfPathVector &amp;paths, const SdfPath &amp;rootPath)</argsstring>
+        <name>_FilterSubTree</name>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>paths</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>rootPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="223" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prim_gather_1a1016ed726ea4ee86552cd47c6da24351" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdPrimGather</definition>
+        <argsstring>(const HdPrimGather &amp;)=delete</argsstring>
+        <name>HdPrimGather</name>
+        <param>
+          <type>const HdPrimGather &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="227" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_prim_gather_1a804c6e7e66c93d630e38b7ba74c86655" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HdPrimGather &amp;</type>
+        <definition>HdPrimGather&amp; operator=</definition>
+        <argsstring>(const HdPrimGather &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const HdPrimGather &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="228" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_hd_prim_gather_1a1b83af03d316badeb0bd88a0d7a40014" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Iterator</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void _WriteResults</definition>
+        <argsstring>(const SdfPathVector &amp;paths, const Iterator &amp;rangesBegin, const Iterator &amp;rangesEnd, SdfPathVector *results)</argsstring>
+        <name>_WriteResults</name>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>paths</declname>
+        </param>
+        <param>
+          <type>const Iterator &amp;</type>
+          <declname>rangesBegin</declname>
+        </param>
+        <param>
+          <type>const Iterator &amp;</type>
+          <declname>rangesEnd</declname>
+        </param>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>results</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/primGather.h" line="218" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="pxr/imaging/hd/primGather.h" line="38" column="1" bodyfile="pxr/imaging/hd/primGather.h" bodystart="38" bodyend="230"/>
+    <listofallmembers>
+      <member refid="class_hd_prim_gather_1aee227719aa10b52cf9933cd66d8a33b9" prot="private" virt="non-virtual"><scope>HdPrimGather</scope><name>_ConcurrentRange</name></member>
+      <member refid="class_hd_prim_gather_1aa7c5b17f1a31fa587de6bf3f1e2cb53d" prot="private" virt="non-virtual"><scope>HdPrimGather</scope><name>_ConcurrentRangeArray</name></member>
+      <member refid="class_hd_prim_gather_1a81327a5cea1d7ceac195aa505eb8ea49" prot="private" virt="non-virtual"><scope>HdPrimGather</scope><name>_DoPredicateTestOnPrims</name></member>
+      <member refid="class_hd_prim_gather_1a05dee111a6ac9621a02421bd175f17e0" prot="private" virt="non-virtual"><scope>HdPrimGather</scope><name>_DoPredicateTestOnRange</name></member>
+      <member refid="class_hd_prim_gather_1a0501a9fd7f25158c247262fca59ae385" prot="private" virt="non-virtual"><scope>HdPrimGather</scope><name>_filterList</name></member>
+      <member refid="class_hd_prim_gather_1a8e140764fe387bb0a468e8cc7efcc017" prot="private" virt="non-virtual"><scope>HdPrimGather</scope><name>_FilterRange</name></member>
+      <member refid="class_hd_prim_gather_1a3915f5074246124737cc0e6d54485aeb" prot="private" virt="non-virtual"><scope>HdPrimGather</scope><name>_FilterSubTree</name></member>
+      <member refid="class_hd_prim_gather_1a4746e97b07ba625e41ff6f7984178a21" prot="private" virt="non-virtual"><scope>HdPrimGather</scope><name>_FindLowerBound</name></member>
+      <member refid="class_hd_prim_gather_1a33acc354677ae0efb267de4a4ea8e909" prot="private" virt="non-virtual"><scope>HdPrimGather</scope><name>_FindUpperBound</name></member>
+      <member refid="class_hd_prim_gather_1a178f3f808492db07ca39407541541ed0" prot="private" virt="non-virtual"><scope>HdPrimGather</scope><name>_gatheredRanges</name></member>
+      <member refid="class_hd_prim_gather_1a811a4775d367a90279c6fe6f8bd0b23a" prot="private" virt="non-virtual"><scope>HdPrimGather</scope><name>_GatherPaths</name></member>
+      <member refid="class_hd_prim_gather_1ac0448637560fe5257b47f77dccec22ae" prot="private" virt="non-virtual"><scope>HdPrimGather</scope><name>_PathFilterArray</name></member>
+      <member refid="class_hd_prim_gather_1a834922b9e17260b4a7ef8ad45fff5570" prot="private" virt="non-virtual"><scope>HdPrimGather</scope><name>_RangeArray</name></member>
+      <member refid="class_hd_prim_gather_1a3ea7995384eba07aee9e7534d24664ef" prot="private" virt="non-virtual"><scope>HdPrimGather</scope><name>_resultRanges</name></member>
+      <member refid="class_hd_prim_gather_1a6a98264651bc7ec643e2a3e7193ca8b3" prot="private" virt="non-virtual"><scope>HdPrimGather</scope><name>_SetupFilter</name></member>
+      <member refid="class_hd_prim_gather_1a1b83af03d316badeb0bd88a0d7a40014" prot="private" virt="non-virtual"><scope>HdPrimGather</scope><name>_WriteResults</name></member>
+      <member refid="class_hd_prim_gather_1a2e4eb7d3007c4c109a89549b01440405" prot="public" virt="non-virtual"><scope>HdPrimGather</scope><name>Filter</name></member>
+      <member refid="class_hd_prim_gather_1a7ffef259ee511b51940c0f84f4baa01c" prot="public" virt="non-virtual"><scope>HdPrimGather</scope><name>FilterPredicateFn</name></member>
+      <member refid="class_hd_prim_gather_1a1a597697f7132dd6907922eb73482e20" prot="public" virt="non-virtual"><scope>HdPrimGather</scope><name>HdPrimGather</name></member>
+      <member refid="class_hd_prim_gather_1a1016ed726ea4ee86552cd47c6da24351" prot="private" virt="non-virtual"><scope>HdPrimGather</scope><name>HdPrimGather</name></member>
+      <member refid="class_hd_prim_gather_1a804c6e7e66c93d630e38b7ba74c86655" prot="private" virt="non-virtual"><scope>HdPrimGather</scope><name>operator=</name></member>
+      <member refid="class_hd_prim_gather_1aff4c72a41dbfc686f60af03aed0d5ebc" prot="public" virt="non-virtual"><scope>HdPrimGather</scope><name>PredicatedFilter</name></member>
+      <member refid="class_hd_prim_gather_1a3d24686dbdb362a7a778031da33c6530" prot="public" virt="non-virtual"><scope>HdPrimGather</scope><name>Subtree</name></member>
+      <member refid="class_hd_prim_gather_1aa6375552be1e1d7f82139a29f6eaf2e2" prot="public" virt="non-virtual"><scope>HdPrimGather</scope><name>SubtreeAsRange</name></member>
+      <member refid="class_hd_prim_gather_1aaedcd45501a5fabc48721bd08e071115" prot="public" virt="non-virtual"><scope>HdPrimGather</scope><name>~HdPrimGather</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

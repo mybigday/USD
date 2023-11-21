@@ -1,0 +1,284 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_ext_computation_utils" kind="class" language="C++" prot="public">
+    <compoundname>HdExtComputationUtils</compoundname>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_hd_ext_computation_utils_1a4f8645ca48e8c664d9ea9d8250de86b1" prot="public" static="no">
+        <type>std::unordered_map&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, <ref refid="class_vt_value" kindref="compound">VtValue</ref>, <ref refid="struct_tf_token_1_1_hash_functor" kindref="compound">TfToken::HashFunctor</ref> &gt;</type>
+        <definition>using ValueStore =  std::unordered_map&lt;TfToken, VtValue, TfToken::HashFunctor&gt;</definition>
+        <argsstring></argsstring>
+        <name>ValueStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputationUtils.h" line="52" column="1" bodyfile="pxr/imaging/hd/extComputationUtils.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hd_ext_computation_utils_1a3656fa6bd24e2d2ced86092084c357f5" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>unsigned int</type>
+            <declname>CAPACITY</declname>
+            <defname>CAPACITY</defname>
+          </param>
+        </templateparamlist>
+        <type>std::unordered_map&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, <ref refid="struct_hd_time_sample_array" kindref="compound">HdTimeSampleArray</ref>&lt; <ref refid="class_vt_value" kindref="compound">VtValue</ref>, CAPACITY &gt;, <ref refid="struct_tf_token_1_1_hash_functor" kindref="compound">TfToken::HashFunctor</ref> &gt;</type>
+        <definition>using SampledValueStore =  std::unordered_map&lt;TfToken, HdTimeSampleArray&lt;VtValue, CAPACITY&gt;, TfToken::HashFunctor&gt;</definition>
+        <argsstring></argsstring>
+        <name>SampledValueStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputationUtils.h" line="66" column="1" bodyfile="pxr/imaging/hd/extComputationUtils.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hd_ext_computation_utils_1a81a60e6fb9ba593d3743c732e13f84b5" prot="public" static="no">
+        <type>std::unordered_map&lt; <ref refid="class_hd_ext_computation" kindref="compound">HdExtComputation</ref> const *, HdExtComputationConstPtrVector &gt;</type>
+        <definition>using ComputationDependencyMap =  std::unordered_map&lt;HdExtComputation const *, HdExtComputationConstPtrVector&gt;</definition>
+        <argsstring></argsstring>
+        <name>ComputationDependencyMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputationUtils.h" line="83" column="1" bodyfile="pxr/imaging/hd/extComputationUtils.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_hd_ext_computation_utils_1a07f695f99753b6a88b78853c2fc202ec" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API ValueStore</type>
+        <definition>static HD_API ValueStore GetComputedPrimvarValues</definition>
+        <argsstring>(HdExtComputationPrimvarDescriptorVector const &amp;compPrimvars, HdSceneDelegate *sceneDelegate)</argsstring>
+        <name>GetComputedPrimvarValues</name>
+        <param>
+          <type>HdExtComputationPrimvarDescriptorVector const &amp;</type>
+          <declname>compPrimvars</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputationUtils.h" line="61" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_ext_computation_utils_1aed8f22e57eeb62b488e631d2c0990478" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>unsigned int</type>
+            <declname>CAPACITY</declname>
+            <defname>CAPACITY</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void SampleComputedPrimvarValues</definition>
+        <argsstring>(HdExtComputationPrimvarDescriptorVector const &amp;compPrimvars, HdSceneDelegate *sceneDelegate, size_t maxSampleCount, SampledValueStore&lt; CAPACITY &gt; *computedPrimvarValueStore)</argsstring>
+        <name>SampleComputedPrimvarValues</name>
+        <param>
+          <type>HdExtComputationPrimvarDescriptorVector const &amp;</type>
+          <declname>compPrimvars</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>maxSampleCount</declname>
+        </param>
+        <param>
+          <type>SampledValueStore&lt; CAPACITY &gt; *</type>
+          <declname>computedPrimvarValueStore</declname>
+        </param>
+        <briefdescription>
+<para>Returns a map containing the (token, samples) pairs for each computation primvar, with up to <emphasis>maxSampleCount</emphasis> samples. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The participating computations are ordered based on their dependency and then, the CPU kernel is executed for each computation. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputationUtils.h" line="76" column="1" bodyfile="pxr/imaging/hd/extComputationUtils.h" bodystart="139" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_ext_computation_utils_1aa90ef1c4de1e231ccd014f8f25b9c475" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>static HD_API bool DependencySort</definition>
+        <argsstring>(ComputationDependencyMap cdm, HdExtComputationConstPtrVector *sortedComps)</argsstring>
+        <name>DependencySort</name>
+        <param>
+          <type>ComputationDependencyMap</type>
+          <declname>cdm</declname>
+        </param>
+        <param>
+          <type>HdExtComputationConstPtrVector *</type>
+          <declname>sortedComps</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputationUtils.h" line="94" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_ext_computation_utils_1a191efd2c85bc939fac28a09ec21e1e0c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>static HD_API void PrintDependencyMap</definition>
+        <argsstring>(ComputationDependencyMap const &amp;cdm)</argsstring>
+        <name>PrintDependencyMap</name>
+        <param>
+          <type>ComputationDependencyMap const &amp;</type>
+          <declname>cdm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputationUtils.h" line="99" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_hd_ext_computation_utils_1a74d36abd426ef090f991487b8b795150" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API ComputationDependencyMap</type>
+        <definition>static HD_API ComputationDependencyMap _GenerateDependencyMap</definition>
+        <argsstring>(HdExtComputationPrimvarDescriptorVector const &amp;compPrimvars, HdSceneDelegate *sceneDelegate)</argsstring>
+        <name>_GenerateDependencyMap</name>
+        <param>
+          <type>HdExtComputationPrimvarDescriptorVector const &amp;</type>
+          <declname>compPrimvars</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputationUtils.h" line="104" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_ext_computation_utils_1a7da4fbfe8042837b792b08169af2a668" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>unsigned int</type>
+            <declname>CAPACITY</declname>
+            <defname>CAPACITY</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void _ExecuteSampledComputations</definition>
+        <argsstring>(HdExtComputationConstPtrVector computations, HdSceneDelegate *sceneDelegate, size_t maxSampleCount, SampledValueStore&lt; CAPACITY &gt; *valueStore)</argsstring>
+        <name>_ExecuteSampledComputations</name>
+        <param>
+          <type>HdExtComputationConstPtrVector</type>
+          <declname>computations</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>maxSampleCount</declname>
+        </param>
+        <param>
+          <type>SampledValueStore&lt; CAPACITY &gt; *</type>
+          <declname>valueStore</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputationUtils.h" line="110" column="1" bodyfile="pxr/imaging/hd/extComputationUtils.h" bodystart="173" bodyend="276"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_ext_computation_utils_1a0105f6bb0ecec17351d9f0809f5b613c" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>static HD_API void _LimitTimeSamples</definition>
+        <argsstring>(size_t maxSampleCount, std::vector&lt; double &gt; *times)</argsstring>
+        <name>_LimitTimeSamples</name>
+        <param>
+          <type>size_t</type>
+          <declname>maxSampleCount</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt; *</type>
+          <declname>times</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputationUtils.h" line="120" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_ext_computation_utils_1ac816637c1d88bac108ebd5eefedbf691" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>static HD_API bool _InvokeComputation</definition>
+        <argsstring>(HdSceneDelegate &amp;sceneDelegate, HdExtComputation const &amp;computation, TfSpan&lt; const VtValue &gt; sceneInputValues, TfSpan&lt; const VtValue &gt; compInputValues, TfSpan&lt; VtValue &gt; compOutputValues)</argsstring>
+        <name>_InvokeComputation</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> &amp;</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_ext_computation" kindref="compound">HdExtComputation</ref> const &amp;</type>
+          <declname>computation</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_span" kindref="compound">TfSpan</ref>&lt; const <ref refid="class_vt_value" kindref="compound">VtValue</ref> &gt;</type>
+          <declname>sceneInputValues</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_span" kindref="compound">TfSpan</ref>&lt; const <ref refid="class_vt_value" kindref="compound">VtValue</ref> &gt;</type>
+          <declname>compInputValues</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_span" kindref="compound">TfSpan</ref>&lt; <ref refid="class_vt_value" kindref="compound">VtValue</ref> &gt;</type>
+          <declname>compOutputValues</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/extComputationUtils.h" line="129" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="pxr/imaging/hd/extComputationUtils.h" line="50" column="1" bodyfile="pxr/imaging/hd/extComputationUtils.h" bodystart="50" bodyend="135"/>
+    <listofallmembers>
+      <member refid="class_hd_ext_computation_utils_1a7da4fbfe8042837b792b08169af2a668" prot="private" virt="non-virtual"><scope>HdExtComputationUtils</scope><name>_ExecuteSampledComputations</name></member>
+      <member refid="class_hd_ext_computation_utils_1a74d36abd426ef090f991487b8b795150" prot="private" virt="non-virtual"><scope>HdExtComputationUtils</scope><name>_GenerateDependencyMap</name></member>
+      <member refid="class_hd_ext_computation_utils_1ac816637c1d88bac108ebd5eefedbf691" prot="private" virt="non-virtual"><scope>HdExtComputationUtils</scope><name>_InvokeComputation</name></member>
+      <member refid="class_hd_ext_computation_utils_1a0105f6bb0ecec17351d9f0809f5b613c" prot="private" virt="non-virtual"><scope>HdExtComputationUtils</scope><name>_LimitTimeSamples</name></member>
+      <member refid="class_hd_ext_computation_utils_1a81a60e6fb9ba593d3743c732e13f84b5" prot="public" virt="non-virtual"><scope>HdExtComputationUtils</scope><name>ComputationDependencyMap</name></member>
+      <member refid="class_hd_ext_computation_utils_1aa90ef1c4de1e231ccd014f8f25b9c475" prot="public" virt="non-virtual"><scope>HdExtComputationUtils</scope><name>DependencySort</name></member>
+      <member refid="class_hd_ext_computation_utils_1a07f695f99753b6a88b78853c2fc202ec" prot="public" virt="non-virtual"><scope>HdExtComputationUtils</scope><name>GetComputedPrimvarValues</name></member>
+      <member refid="class_hd_ext_computation_utils_1a191efd2c85bc939fac28a09ec21e1e0c" prot="public" virt="non-virtual"><scope>HdExtComputationUtils</scope><name>PrintDependencyMap</name></member>
+      <member refid="class_hd_ext_computation_utils_1aed8f22e57eeb62b488e631d2c0990478" prot="public" virt="non-virtual"><scope>HdExtComputationUtils</scope><name>SampleComputedPrimvarValues</name></member>
+      <member refid="class_hd_ext_computation_utils_1a3656fa6bd24e2d2ced86092084c357f5" prot="public" virt="non-virtual"><scope>HdExtComputationUtils</scope><name>SampledValueStore</name></member>
+      <member refid="class_hd_ext_computation_utils_1a4f8645ca48e8c664d9ea9d8250de86b1" prot="public" virt="non-virtual"><scope>HdExtComputationUtils</scope><name>ValueStore</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

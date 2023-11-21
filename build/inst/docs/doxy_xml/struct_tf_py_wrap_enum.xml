@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="struct_tf_py_wrap_enum" kind="class" language="C++" prot="public">
+    <compoundname>TfPyWrapEnum</compoundname>
+    <includes refid="py_enum_8h" local="no">pyEnum.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+      <param>
+        <type>bool</type>
+        <declname>IsScopedEnum</declname>
+        <defname>IsScopedEnum</defname>
+        <defval>!std::is_convertible&lt;T, int&gt;::value</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="struct_tf_py_wrap_enum_1a28fc6382a0c97712fc9baee407a88f3c" prot="private" static="no">
+        <type>boost::python::class_&lt; Tf_TypedPyEnumWrapper&lt; T &gt;, boost::python::bases&lt; Tf_PyEnumWrapper &gt; &gt;</type>
+        <definition>typedef boost::python::class_&lt; Tf_TypedPyEnumWrapper&lt;T&gt;, boost::python::bases&lt;Tf_PyEnumWrapper&gt; &gt; _EnumPyClassType</definition>
+        <argsstring></argsstring>
+        <name>_EnumPyClassType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pyEnum.h" line="385" column="1" bodyfile="pxr/base/tf/pyEnum.h" bodystart="385" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_tf_py_wrap_enum_1a0859620f8be36e683660c9f3417623a5" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfPyWrapEnum</definition>
+        <argsstring>(std::string const &amp;name=std::string())</argsstring>
+        <name>TfPyWrapEnum</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>name</declname>
+          <defval>std::string()</defval>
+        </param>
+        <briefdescription>
+<para>Construct an enum wrapper object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <emphasis>name</emphasis> is provided, it is used as the name of the enum. Otherwise the type name of <emphasis>T</emphasis> is used, with a leading MFB package name stripped. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pyEnum.h" line="393" column="1" bodyfile="pxr/base/tf/pyEnum.h" bodystart="393" bodyend="459"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="struct_tf_py_wrap_enum_1a3320274d863ee1a689ad4ca0293f4214" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _ExportValues</definition>
+        <argsstring>(bool stripPackageName, _EnumPyClassType &amp;enumClass)</argsstring>
+        <name>_ExportValues</name>
+        <param>
+          <type>bool</type>
+          <declname>stripPackageName</declname>
+        </param>
+        <param>
+          <type>_EnumPyClassType &amp;</type>
+          <declname>enumClass</declname>
+        </param>
+        <briefdescription>
+<para>Export all values in this enum to the enclosing scope. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no explicit names have been registered, this will export the <ref refid="class_tf_enum" kindref="compound">TfEnum</ref> registered names and values (if any). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pyEnum.h" line="466" column="1" bodyfile="pxr/base/tf/pyEnum.h" bodystart="466" bodyend="503"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Used to wrap enum types for script. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="struct_tf_py_wrap_enum" kindref="compound">TfPyWrapEnum</ref> provides a way to wrap enums for python, tying in with the <emphasis><ref refid="class_tf_enum" kindref="compound">TfEnum</ref></emphasis> system, and potentially providing automatic wrapping by using names registered with the <emphasis><ref refid="class_tf_enum" kindref="compound">TfEnum</ref></emphasis> system and by making some assumptions about the way we structure our code. Enums that are not registered with <ref refid="class_tf_enum" kindref="compound">TfEnum</ref> may be manually wrapped using boost::python::enum_ instead.</para>
+<para>Example usage. For an enum that looks like this: <programlisting><codeline><highlight class="normal">enum<sp/>FooChoices<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>FooFirst,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>FooSecond,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>FooThird</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+</programlisting></para>
+<para>Which has been registered in the <emphasis><ref refid="class_tf_enum" kindref="compound">TfEnum</ref></emphasis> system and has names provided for all values, it may be wrapped like this: <programlisting><codeline><highlight class="normal">TfPyWrapEnum&lt;FooChoices&gt;();</highlight></codeline>
+</programlisting></para>
+<para>The enum will appear in script as Foo.Choices.{First, Second, Third} and the values will also appear as Foo.{First, Second, Third}.</para>
+<para>An enum may be given an explicit name by passing a string to <ref refid="struct_tf_py_wrap_enum" kindref="compound">TfPyWrapEnum</ref>&apos;s constructor.</para>
+<para>If the enum is a C++11 scoped enum (aka enum class), the values will appear as Foo.Choices.{First, Second, Third} in the following example: <programlisting><codeline><highlight class="normal">enum<sp/>class<sp/>FooChoices<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>First,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>Second,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>Third</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+</programlisting> </para>
+    </detaileddescription>
+    <location file="pxr/base/tf/pyEnum.h" line="380" column="1" bodyfile="pxr/base/tf/pyEnum.h" bodystart="380" bodyend="505"/>
+    <listofallmembers>
+      <member refid="struct_tf_py_wrap_enum_1a28fc6382a0c97712fc9baee407a88f3c" prot="private" virt="non-virtual"><scope>TfPyWrapEnum</scope><name>_EnumPyClassType</name></member>
+      <member refid="struct_tf_py_wrap_enum_1a3320274d863ee1a689ad4ca0293f4214" prot="private" virt="non-virtual"><scope>TfPyWrapEnum</scope><name>_ExportValues</name></member>
+      <member refid="struct_tf_py_wrap_enum_1a0859620f8be36e683660c9f3417623a5" prot="public" virt="non-virtual"><scope>TfPyWrapEnum</scope><name>TfPyWrapEnum</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

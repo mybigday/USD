@@ -1,0 +1,333 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="_usd_skel__schemas" kind="page">
+    <compoundname>UsdSkel_Schemas</compoundname>
+    <title>Schemas In-Depth</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Data in UsdSkel is stored in modular, reusable, instanceable parts, adhering to the following design principles:</para>
+<para><itemizedlist>
+<listitem><para><emphasis>Skeleton</emphasis> &quot;rigs&quot; can be defined and published, to be referenced in wherever needed. Encapsulating skeletons this way is not necessarily a requirement for the interchange of skeletal data, but facilitates scalability and maintainability when deploying directly-rendered, skinned crowds at scale in VFX pipelines.</para>
+</listitem><listitem><para><emphasis>Animations</emphasis> can be published individually and referenced back into scenes. This not only allows re-use, but also enables sequencing of animations as <ulink url="http://openusd.org/docs/USD-Glossary.html#USDGlossary-ValueClips">Value Clips</ulink>.</para>
+</listitem><listitem><para>Separating the binding of a <emphasis>skeleton</emphasis> and its <emphasis>animation</emphasis> as bound to geometry allows assets to be published with a bound <emphasis>skeleton</emphasis>, inside of a <ref refid="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_Overview" kindref="member">instance primitive</ref>, which can still be driven by a separate animation.</para>
+</listitem><listitem><para>All posing and animation data is vectorized. This encoding is concise and ideal for scalability and speed of data consumption in the USD APIs.</para>
+<para>Although vectorization may seem unnecessary to the client attempting to interchange individual models only, it is an important consideration for achieving a scalable encoding of crowds in VFX pipelines.</para>
+</listitem></itemizedlist>
+</para>
+<para>Following these principles, UsdSkel defines skeletal data using the following schema types:</para>
+<para><itemizedlist>
+<listitem><para><ref refid="_usd_skel__schemas_1UsdSkel_SkelRoot" kindref="member">Skel Root</ref>:</para>
+<para>Identifies where in a scene graph skeletal processing takes place, in addition to providing bounds for skinned models.</para>
+</listitem><listitem><para><ref refid="_usd_skel__schemas_1UsdSkel_Skeleton" kindref="member">Skeleton</ref>:</para>
+<para>Defines the <ref refid="_usd_skel__intro_1UsdSkel_Term_SkeletonTopology" kindref="member">topology</ref> of the skeleton, as well as storing a <emphasis>bind pose</emphasis>. Skeletons are animated by attaching a SkelAnimation.</para>
+</listitem><listitem><para><ref refid="_usd_skel__schemas_1UsdSkel_SkelAnimation" kindref="member">Skel Animation</ref>:</para>
+<para>Stores joint and blend shape animations, which may be applied to any <emphasis>Skeleton</emphasis>.</para>
+</listitem><listitem><para><ref refid="_usd_skel__schemas_1UsdSkel_BlendShape" kindref="member">Blend Shape</ref>:</para>
+<para>Stores an individual blend shape, and optional in-betweens, for a geometric primitive.</para>
+</listitem><listitem><para><ref refid="_usd_skel__schemas_1UsdSkel_BindingAPI" kindref="member">Binding API</ref>:</para>
+<para>API schema used to describe which skeletons affect which primitives, as well as basic skinning properties like joint influences. The BindingAPI is also used to attach a <emphasis>SkelAnimation</emphasis> to a <emphasis>Skeleton</emphasis>.</para>
+</listitem></itemizedlist>
+</para>
+<sect1 id="_usd_skel__schemas_1UsdSkel_JointOrder">
+<title>Joint Order</title>
+<para>Joint data in UsdSkel is stored in vectorized arrays. Throughout UsdSkel, these arrays may be ordered in slightly different ways. For instance, a <emphasis>skeleton</emphasis> has its own explicit joint ordering, but an <emphasis>animation</emphasis> may have another order, representing either a different ordering of joints, or a sparse subset of joints.</para>
+<para>These data orderings are referred to as a primitive&apos;s <bold>joint order</bold>, and are defined using token arrays.</para>
+<para>The tokens in a joint array are given as Sdf-style paths, where parent-child relationships in the given paths establish a <ref refid="_usd_skel__schemas_1UsdSkel_JointHierarchy" kindref="member">joint hierarchy.</ref> Note that these paths do not need to refer to actual primitives in the scene. They are used as a way to name and order joints in vectorized data. For example:</para>
+<para><programlisting><codeline><highlight class="normal">def<sp/>SkelAnimation<sp/>&quot;Anim&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uniform<sp/>token[]<sp/>=<sp/>[&quot;A&quot;,<sp/>&quot;A/B&quot;]</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">def<sp/>Skeleton<sp/>&quot;Skel&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uniform<sp/>token[]<sp/>=<sp/>[&quot;A/B&quot;,<sp/>&quot;A&quot;]</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>Note that in both example primitives above, the given paths do not reference any real primitives. Also note that each primitive has its own joint ordering, and that those orders need not be identical.</para>
+<para>The purpose of encoding orderings in this manner is to allow for the creation of <bold>self-contained</bold> assets. For example, it is possible to construct a <ref refid="_usd_skel__schemas_1UsdSkel_SkelAnimation" kindref="member">skel animation</ref> primitive independently from any skeleton definitions, which will remain valid even if a <emphasis>skeleton</emphasis> that the animation is mapped to has a slightly different ordering.</para>
+<para>Part of the motivation for this is to allow for more robust, composed assets. When orderings are required to remain fixed, maintenance difficulties may arise. For example, if animation assets are produced through a process independent from the process that produces a shared definition of a <emphasis>skeleton asset</emphasis>, data can easily get out of sync.</para>
+<para>On top of allowing for more robust assets, these flexible joint orderings allow for additional features like sparse authoring of animation data.</para>
+<para>Data can be remapped from one joint ordering to another using a UsdSkelAnimMapper, and is done so by matching joint names.</para>
+<para><simplesect kind="see"><para><ref refid="class_usd_skel_anim_query_1aab38abf001974901d97c0d9e07006262" kindref="member">UsdSkelAnimQuery::GetJointOrder</ref>, <ref refid="class_usd_skel_skeleton_query_1aab38abf001974901d97c0d9e07006262" kindref="member">UsdSkelSkeletonQuery::GetJointOrder</ref>, <ref refid="class_usd_skel_skinning_query_1aea958370dc06691a3c1740e87bfde910" kindref="member">UsdSkelSkinningQuery::GetJointOrder</ref></para>
+</simplesect>
+</para>
+</sect1>
+<sect1 id="_usd_skel__schemas_1UsdSkel_SkelRoot">
+<title>Skeleton Root Schema</title>
+<para>The <ref refid="class_usd_skel_root" kindref="compound">UsdSkelRoot</ref> schema is used to <bold>encapsulate</bold> primitives with skeletal skinning behaviors, and is required when authoring skeletal data.</para>
+<para>A SkelRoot is a boundable primitive, and provides a place to encode the extents of all skinned primitives beneath it. It is neither expected nor required the descendent primitives that are being skinned will encode their own skinned extents. These extents are made available to renders to enable operations like out-of-camera culling, without requiring that skinned geometry be computed first.</para>
+<para>A SkelRoot additionally gives DCC apps a way of identifying which parts of a scene graph require skeletal processing, so that they can take different code paths, as is often required to consume skeletal data.</para>
+<para>It is possible to override a primitive&apos;s composed type in USD, in order to either enable or disable skeletal processing. For example:</para>
+<para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Enable<sp/>skeletal<sp/>processing<sp/>by<sp/>setting<sp/>the<sp/>type<sp/>to<sp/>UsdSkelRoot.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">UsdSkel.Root.Define(prim.GetStage(),<sp/>prim.GetPath());</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Disable<sp/>skeletal<sp/>processing<sp/>by<sp/>changing<sp/>the<sp/>type<sp/>to<sp/>a<sp/>normal<sp/>transform.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">UsdGeomTransform.Define(prim.GetStage(),<sp/>prim.GetPath());</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="_usd_skel__schemas_1UsdSkel_Skeleton">
+<title>Skeleton Schema</title>
+<para>The <ref refid="class_usd_skel_skeleton" kindref="compound">UsdSkelSkeleton</ref> schema describes a skeleton. This schema is responsible both for establishing the <emphasis>topology</emphasis> of a skeleton, as well as for identifying a <emphasis>bind pose</emphasis>.</para>
+<para>A skeleton itself provides only structure. Meshes are posed with a skeleton by way of <ref refid="_usd_skel__schemas_1UsdSkel_BindingAPI" kindref="member">skeletal bindings</ref> inside of the &quot;geometry hierarchy&quot; of primitives.</para>
+<sect2 id="_usd_skel__schemas_1UsdSkel_JointHierarchy">
+<title>Skeleton Schema: Joint Hierarchy</title>
+<para>The joints of a Skeleton are defined by the <emphasis>joints</emphasis> attribute. This attribute encodes joint paths <ndash/> each of which is a valid <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> strings. The parent-child relationships that these paths describe are used to define the parent-child relationships of the joints themselves.</para>
+<para>For example:</para>
+<para><programlisting><codeline><highlight class="normal">def<sp/>Skeleton<sp/>&quot;Skel&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uniform<sp/>token[]<sp/>joints<sp/>=<sp/>[&quot;A&quot;,<sp/>&quot;A/B&quot;,<sp/><sp/>&quot;C&quot;,<sp/>&quot;C/D/E&quot;]</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>In the above example, there are four joints:<itemizedlist>
+<listitem><para><computeroutput>A</computeroutput>: A root joint (no parent)</para>
+</listitem><listitem><para><computeroutput>A/B</computeroutput>: A joint parented beneath joint <computeroutput>A</computeroutput></para>
+</listitem><listitem><para><computeroutput>C</computeroutput>: Another root joint (no parent). There can be any number of root joints.</para>
+</listitem><listitem><para><computeroutput>C/D/E</computeroutput>: A joint which, since <computeroutput>C/D</computeroutput> has not been defined, will be parented beneath joint <computeroutput>C</computeroutput>.</para>
+</listitem></itemizedlist>
+</para>
+<para>In addition to providing parent-child relationships, this token array also establishes the <ref refid="_usd_skel__schemas_1UsdSkel_JointOrder" kindref="member">joint order</ref> of the skeleton.</para>
+<para>The targets of the <emphasis>joints</emphasis> attribute are required to be authored such that all parent joints come before any of their children in the array. This is a requirement because it simplifies some computations without necessitating the creation of additional data structures. This ordering can most easily be achieved by simply sorting the array.</para>
+<para>It&apos;s possible to test whether or not an array of joint paths defines a valid topology as follows:</para>
+<para><itemizedlist>
+<listitem><para>C++: <programlisting filename=".cpp"><codeline><highlight class="normal">std::string<sp/>whyNot;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isValid<sp/>=<sp/><ref refid="class_usd_skel_topology" kindref="compound">UsdSkelTopology</ref>(paths).<ref refid="class_usd_skel_topology_1ab8dd322bd2af52830487af0d2de84371" kindref="member">Validate</ref>(&amp;whyNot);</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para>Python: <programlisting filename=".py"><codeline><highlight class="normal">(isValid,whyNot)<sp/>=<sp/>UsdSkel.Topology(paths).Validate()</highlight></codeline>
+</programlisting></para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="_usd_skel__schemas_1UsdSkel_SkelAnimation">
+<title>Skel Animation Schema</title>
+<para>Schema describing skeletal animation, within which joint animations and blend shapes are stored in a vecorized form. A SkelAnimation encodes the animation of a Skeleton as a separate primitive to facilitate instancing workflows.</para>
+<para>Both as a storage optimization and to allow for value interpolation that preserves transform orthogonality, joint transforms are encoded as separate translate, rotate and scale components, given in <emphasis>joint local</emphasis> space. Transforms are constructed from components using an order of scale-rotate-translate. Client code may make use of the <ref refid="group___usd_skel___transform_composition_utils" kindref="compound">transform composition utilities</ref> for converting transforms to and from this component form.</para>
+<para>Joint data is stored in arrays, using the <ref refid="_usd_skel__schemas_1UsdSkel_JointOrder" kindref="member">joint order</ref> specified by the <emphasis>joints</emphasis> attribute. This ordering may be different from the Skeletons that the animation maps to, and may also only identify a sparse subset of the joints in a skeleton. When an animation provides sparse data, fallback values are taken from the rest pose on the <ref refid="class_usd_skel_skeleton" kindref="compound">UsdSkelSkeleton</ref> primitive to which they apply.</para>
+<para>An animation source is only valid if its <emphasis>translation</emphasis>, <emphasis>rotation</emphasis>, and <emphasis>scale</emphasis> components are all authored, storing arrays size to the same size as the authored <emphasis>joints</emphasis> array. The effect of a skel animation prim may also be directly nullified by either deactivating the primitive, or by blocking the component attributes.</para>
+<para>In addition to providing joint animations, a SkelAnimation may also provide blend shape weight animations. Blend shape weights are specified in a vectorized form using the <emphasis>blendShapeWeights</emphasis> attribute. The <emphasis>blendShapes</emphasis> attribute holds a token array which, for every element authored in <emphasis>blendShapeWeights</emphasis>, identifies which blend shape each weight value applies to.</para>
+<para>The point of this encoding is to decouple the blendshape weight animation from the description of how that animation maps to different skinnable shapes. Refer to the <ref refid="_usd_skel__schemas_1UsdSkel_BindingAPI_BlendShapes" kindref="member">BindingAPI: Binding Blend Shapes</ref> &apos;BindingAPI: Blend Shapes&apos; documentation for information on how these weights are mapped to skinnable primitives.</para>
+</sect1>
+<sect1 id="_usd_skel__schemas_1UsdSkel_SkelAnimation_Binding">
+<title>Skel Animation Schema: Binding to Skeletons</title>
+<para>A <emphasis>SkelAnimation</emphasis> is made to affect a <emphasis>Skeleton</emphasis> by <emphasis>binding</emphasis> the animation to the skeleton, using the <emphasis>skel:animationSource</emphasis> property of <ref refid="class_usd_skel_binding_a_p_i" kindref="compound">UsdSkelBindingAPI</ref> schema (use <ref refid="class_usd_skel_binding_a_p_i_1a82e008f7c638888bea48d2e6f5172fdb" kindref="member">UsdSkelBindingAPI::Apply()</ref> to fetch a properly-applied binding API object). For example:</para>
+<para><programlisting><codeline><highlight class="normal">def<sp/>SkelAnimation<sp/>&quot;Anim&quot;<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;Model&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:animationSource<sp/>=<sp/>&lt;/Anim&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Skeleton<sp/>&quot;Skel&quot;<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>When a <emphasis>skel:animationSource</emphasis> property is defined, it is &quot;inherited&quot; down namespace, onto any <emphasis>Skeleton</emphasis> primitive beneath it. So in the above example, <computeroutput>&lt;/Model/Skel&gt;</computeroutput> will be affected by the SkelAnimation at <computeroutput>&lt;/Anim&gt;</computeroutput>.</para>
+<para>There are a couple reasons why data is separated in this manner:<itemizedlist>
+<listitem><para>Encoding animation separately means that different schemes can be developed for describing the animation of a Skeleton. For example, it is possible to define a &quot;blender&quot; animation type that encodes the blending of animation.</para>
+</listitem><listitem><para>It is possible to apply different animations to <emphasis>instanced assets</emphasis>. <simplesect kind="see"><para><ref refid="_usd_skel__instancing" kindref="compound">Instancing in UsdSkel</ref></para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="_usd_skel__schemas_1UsdSkel_BlendShape">
+<title>Blend Shape Schema</title>
+<para>Schema describing a single blend shape.</para>
+<para>Blend shapes specify a target shape, in terms of point offsets, for a point-based primitive. The offsets may hold a direct correspondance with the points of the point-based primitive to which they are meant to apply, or the points may specify a shape using a sparse subset of points. The mapping in the latter case is described using the <emphasis>pointIndices</emphasis> attribute. If a blend shape defines any <ref refid="_usd_skel__schemas_1UsdSkel_BlendShape_Inbetweens" kindref="member">in-between shapes</ref>, the same pointIndices* mapping additionaly applies to all in-between shapes.</para>
+<para>When a mesh is skinned in UsdSkel, blend shape application precedes the effect of skinning using joint transformations. If no in-between shapes are defined, a set of blend shapes is applied against an input point as follows:</para>
+<para><image type="html" name="blendshapes.svg"></image>
+ </para>
+<para>In other words, the position offsets are multiplied against the corresponding weight value, and added against the input positions. Note that the above equation only describes application of blend shapes in the absence of in-between shapes.</para>
+<sect2 id="_usd_skel__schemas_1UsdSkel_BlendShape_Inbetweens">
+<title>Blend Shape: In-betweens</title>
+<para>Each blend shape prim may define in-between shapes, which specify explicit corrective shape to apply when the blend shape is resolved at different weights.</para>
+<para>For example, suppose that a blend shape defines a &apos;smile&apos; shape. At a weight of 1, we apply the full effect of the shape. At in-between weight values, we linearly interpolate the shape back towards a neutral pose to derive an in-between shape. Using in-betweens, we can instead specify those in-between shapes explicitly. So instead of linearly interpolating to derive a &apos;half-smile&apos; pose, we might provide an explicit shape corresponding to a weight of 0.5.</para>
+<para>Scene description for the scenario described above is as follows:</para>
+<para><programlisting><codeline><highlight class="normal">def<sp/>BlendShape<sp/>&quot;Smile&quot;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uniform<sp/>vector3f[]<sp/>inbetweens:halfSmile<sp/>=<sp/>[...]<sp/>(weight<sp/>=<sp/>0.5)</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>While an equivalent animation could be defined without in-betweens by animating the weights of two blend shapes separately, using in-betweens provides a more convenient encoding that allows us to decouple the specification of in-betweens from the primary weight animation.</para>
+<para>In-between shapes can be created via <ref refid="class_usd_skel_blend_shape_1aabcae2b42b6c45d0f33e758f54cd0ac8" kindref="member">UsdSkelBlendShape::CreateInbetween()</ref>, and are manipulated and introspected using <ref refid="class_usd_skel_inbetween_shape" kindref="compound">UsdSkelInbetweenShape</ref> objects. The in-between shapes themselves are encoded as attributes in the &apos;inbetweens:&apos; namespace, using the &apos;weight&apos; metadata field to indicate the weight value at which they apply.</para>
+<para>The in-between shapes corresponding to <computeroutput>weight = 0</computeroutput> and <computeroutput>weight = 1</computeroutput> are <bold>implicitly</bold> defined on a blend shape. The former defines the null shape, for which all shape offset are zero, while the latter is the shape given by the <emphasis>offsets</emphasis> property of the <ref refid="class_usd_skel_blend_shape" kindref="compound">UsdSkelBlendShape</ref> primitive. Because the existence of those in-betweens is implied, it is considered an authoring error for any in-betweens to specify a weight of 0 or 1.</para>
+<para>We must also consider the behavior when multiple in-betweens have matching weight values. Although it would be possible to adopt an interpretation that allows all shapes to have meaning <ndash/> such as averaging across all shapes <ndash/> this introduces some ambiguity for interchange: If the in-betweens are averaged together, it&apos;s unclear what the <emphasis>name</emphasis> should be given to the resulting shape. To avoid this ambiguous interpretation, in addition to treating in-betweens with a weight value of 0 or 1 as an authoring error, it is also considered an error for any two in-betweens of a blend shape to have the same weight value. Typical run-time behavior for these malformed in-betweens is to produce an error, but continue to process the blend shape while ignoring the malformed in-betweens.</para>
+<para>If we consider only the set of valid in-betweens, a set of blend shapes containing in-betweens are applied to a point as follows:</para>
+<para><image type="html" name="blendshapesWithInbetweens.svg"></image>
+ </para>
+<para>For example, given in-between weights of <computeroutput>[0.25, 0.5]</computeroutput>, if a blendshape weight is greater than 0.5, we interpolate between the shape at 0.5 and the implicit primary shape (<computeroutput>weight = 1</computeroutput>), adding the result to the base shape. If the weight is in the <computeroutput>[0.25,0.5]</computeroutput> interval, we interpolate between the shapes at 0.25 and 0.5, adding the result to the base shape. Finally, if the weight is less than 0.25, we interpolate between the implicit null shape (<computeroutput>weight = 0</computeroutput>) and the shape at 0.25. Note also that this interpolation is <emphasis>unbounded</emphasis>, so if the input weight is, say, -0.25, then we have:</para>
+<para><image type="html" name="unboundedInterpolationExample.svg"></image>
+ </para>
+<para>So at a weight value of -0.25, the shape at 0.25 is applied with a weight of -1.</para>
+</sect2>
+</sect1>
+<sect1 id="_usd_skel__schemas_1UsdSkel_BindingAPI">
+<title>Binding API Schema</title>
+<para>The <ref refid="class_usd_skel_binding_a_p_i" kindref="compound">UsdSkelBindingAPI</ref> schema provides a means of binding both <emphasis>Skeleton</emphasis> and <emphasis>SkelAnimation</emphasis> into a geometry hierarchy. This schema is also responsible for defining joint influences, as well as an optional <emphasis>geomBindTransform</emphasis> property to define the space for skinning. Whenever using a <ref refid="class_usd_skel_binding_a_p_i" kindref="compound">UsdSkelBindingAPI</ref> to <bold>author</bold> data, make sure to &quot;apply&quot; it properly, using <ref refid="class_usd_skel_binding_a_p_i_1a82e008f7c638888bea48d2e6f5172fdb" kindref="member">UsdSkelBindingAPI::Apply()</ref>.</para>
+<para>Since a <ref refid="class_usd_skel_root" kindref="compound">UsdSkelRoot</ref> primitive provides encapsulation of skeletal data, bindings defined on any primitives that do not have a <ref refid="class_usd_skel_root" kindref="compound">UsdSkelRoot</ref> primitive as one of their ancestors have no meaning, and should be ignored.</para>
+<sect2 id="_usd_skel__schemas_1UsdSkel_BindingAPI_Skeletons">
+<title>BindingAPI: Binding Skeletons</title>
+<para>Meshes are skinned based on skinning transforms, computed from a <ref refid="class_usd_skel_skeleton_query" kindref="compound">UsdSkelSkeletonQuery</ref>, which is bound hierarchically using the <emphasis>skel:skeleton</emphasis> relationship. The transforms for a bound skeleton are driven from an animation source, such as a <ref refid="_usd_skel__schemas_1UsdSkel_SkelAnimation" kindref="member">skel animation</ref>, which is also bound hierarchically, via the <emphasis>skel:animationSource</emphasis> binding relationship.</para>
+<para>By defining bindings hierarchically, it is possible to define models that each have unique skeletal animations, while also being <ref refid="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_Overview" kindref="member">instanced</ref>. For example:</para>
+<para><programlisting><codeline><highlight class="normal">def<sp/>&quot;Character&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:skeleton<sp/>=<sp/>&lt;Skel&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Skeleton<sp/>&quot;Skel&quot;<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>SkelAnimation<sp/>&quot;Anim&quot;<sp/>{}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">over<sp/>&quot;Instance&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>references<sp/>=<sp/>&lt;/Character&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>instanceable=true</highlight></codeline>
+<codeline><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:animationSource<sp/>=<sp/>&lt;/Anim&gt;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>Each <emphasis>skel:skeleton</emphasis> binding may be thought of as identifying a Skeleton Instance, animated according to whichever inherited <emphasis>skel:animationSource</emphasis> is defined at the location at which the <emphasis>skel:skeleton</emphasis> is bound.</para>
+<para>Although <emphasis>skel:animationSource</emphasis> bindings are inherited, they only apply when a <emphasis>skel:skeleton</emphasis> is resolved. For example:</para>
+<para><programlisting><codeline><highlight class="normal">over<sp/>&quot;A&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:animationSource<sp/>=<sp/>&lt;/Anim&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>over<sp/>&quot;B&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rel<sp/>skel:skeleton<sp/>=<sp/>&lt;/Skel1&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>over<sp/>&quot;C&quot;<sp/><sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rel<sp/>skel:skeleton<sp/>=<sp/>&lt;/Skel2&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>The above example includes two separate <emphasis>skeleton instances</emphasis>, with the same animation being applied to each instance. Contrast that with the following case:</para>
+<para><programlisting><codeline><highlight class="normal">over<sp/>&quot;A&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:skeleton<sp/>=<sp/>&lt;/Skel&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>over<sp/>&quot;B&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rel<sp/>skel:animationSource<sp/>=<sp/>&lt;/Anim1&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>over<sp/>&quot;C&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rel<sp/>skel:animationSource<sp/>=<sp/>&lt;/Anim2&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>In the above example, there is only a single <emphasis>skeleton instance</emphasis> (at <computeroutput>&lt;/A&gt;</computeroutput>), which has no animation, because a <emphasis>skel:animationSource</emphasis> binding is not considered to have any effect until the next <emphasis>skel:skeleton</emphasis> binding at or beneath the binding location in namespace.</para>
+<para>One final example may clarify behavior:</para>
+<para><programlisting><codeline><highlight class="normal">over<sp/>&quot;A&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:skeleton<sp/>=<sp/>&lt;/Skel&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:animationSource<sp/>=<sp/>&lt;/Anim1&gt;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>over<sp/>&quot;B&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rel<sp/>skel:animationSource<sp/>=<sp/>&lt;/Anim2&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>over<sp/>&quot;C&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rel<sp/>skel:animationSource<sp/>=<sp/>&lt;/Anim2&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rel<sp/>skel:skeleton<sp/>=<sp/>&lt;/Skel&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>In this case, there are two <emphasis>skeleton instances</emphasis>: One at <computeroutput>&lt;/A&gt;</computeroutput>, referencing the animation at <computeroutput>&lt;/Anim1&gt;</computeroutput>, and one at <computeroutput>&lt;/A/C&gt;</computeroutput>, referencing the animation at <computeroutput>&lt;/Anim2&gt;</computeroutput>. The <emphasis>skel:animationSource</emphasis> relationship at <computeroutput>&lt;/A/B&gt;</computeroutput> has no effect.</para>
+</sect2>
+<sect2 id="_usd_skel__schemas_1UsdSkel_BindingAPI_JointInfluences">
+<title>BindingAPI: Joint Influences</title>
+<para>Joint influences for skinning points are defined by setting the <emphasis>primvars:skel:jointIndices</emphasis> and <emphasis>primvars:skel:jointWeights</emphasis> <ulink url="https://openusd.org/release/glossary.html#usdglossary-primvar">primvars</ulink>, using the <ref refid="class_usd_skel_binding_a_p_i" kindref="compound">UsdSkelBindingAPI</ref>. The <emphasis>jointIndices</emphasis> primvar provides an array giving the joint index of an influence, while the <emphasis>jointWeights</emphasis> primvar provides a weight value corresponding to each of those indices.</para>
+<para>Above, since <computeroutput>&lt;/MeshA&gt;</computeroutput> does not specify a <emphasis>skel:joints</emphasis> ordering of its own, the joint indices refer to the ordering of the bound Skeleton, and so the joint indices refer to joints <computeroutput>A/B</computeroutput> and <computeroutput>A</computeroutput>, respectively. However, <computeroutput>&lt;/MeshB&gt;</computeroutput> specifies a <computeroutput>skel:joints</computeroutput> property that gives an alternate joint ordering. Using that, the indices of <computeroutput>&lt;/MeshB&gt;</computeroutput> refer to joints <computeroutput>A/B/C</computeroutput> and <computeroutput>A/B</computeroutput>, in that order.</para>
+<para>In the common case, the joint influence primvars are configured with <emphasis>vertex</emphasis> interpolation, and define a fixed number of contiguous influences per point. The primvar&apos;s <emphasis>elementSize</emphasis> defines the fixed number of influences for each point.</para>
+<para><emphasis>elementSize</emphasis> of the primvar. I.e., <image type="html" name="influencesPrimvarLayout.svg"></image>
+ </para>
+<para>If a point has fewer influences than are needed for other points, the unused array elements of that point should be filled with 0, both for joint indices and for weights.</para>
+<para>See <ref refid="class_usd_geom_primvar" kindref="compound">UsdGeomPrimvar</ref> for more information on the meaning of primvar interpolation and elementSize.</para>
+<para>No restrictions are placed on the <emphasis>elementSize</emphasis> when defining joint influences. Because such a limit may vary among different DCC applications, we feel that it is inappropriate to hard-code any such restrictions at the file storage level. Instead, for clients that require a strict limit on the number of influences per point, UsdSkel provides helper method, <ref refid="group___usd_skel___joint_influence_utils_1gaae0d70275a200052d4c1dba80fe388f4" kindref="member">UsdSkelResizeInfluences</ref>, that can be used to enforce such limits within each client, as necessary.</para>
+<para>See the skinning coding examples for an example of how resolved joint influences may be read.</para>
+<para>The interpolation, element size and the size of the stored arrays must be consistent across both the <emphasis>joindIndices</emphasis> and <emphasis>jointWeights</emphasis> primvars.</para>
+<para>Aside from <emphasis>vertex</emphasis> interpolation, the only other valid primvar interpolation for joint influences is <emphasis>constant</emphasis> interpolation, which is used in defining rigid deformations. It is considered an error to apply any other type of interpolation.</para>
+</sect2>
+<sect2 id="_usd_skel__schemas_1UsdSkel_BindingAPI_RigidDeformations">
+<title>BindingAPI: Rigid Deformations</title>
+<para>In addition to defining influences that vary per point, joint influences may also be defined with <emphasis>constant</emphasis> interpolation. In this form, the <emphasis>jointIndices</emphasis> and <emphasis>jointWeights</emphasis> arrays define a set of influences that apply the same way to all points. Constant joint influences are supported both as a form of storage optimization, as well as for the sake of encoding <emphasis>rigid deformations</emphasis>. By identifying rigid deformations, some clients may be able to retain instancing properties that would otherwise be lost by skinning, by affecting only the transform of an instance rather than the deforming points of that instance.</para>
+<para>For example:</para>
+<para><programlisting><codeline><highlight class="normal">def<sp/>&quot;MeshA&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int[]<sp/>primvars:skel:jointIndices<sp/>=<sp/>[0]<sp/>(interpolation<sp/>=<sp/>&quot;constant&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>float[]<sp/>primvars:skel:jointWeights<sp/>=<sp/>[1]<sp/>(interpolation<sp/>=<sp/>&quot;constant&quot;)</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;MeshB&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int[]<sp/>primvars:skel:jointIndices<sp/>=<sp/>[0,1]<sp/>(interpolation<sp/>=<sp/>&quot;constant&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>float[]<sp/>primvars:skel:jointWeights<sp/>=<sp/>[0.5,0.5]<sp/>(interpolation<sp/>=<sp/>&quot;constant&quot;)</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>In the example above, <computeroutput>&lt;/MeshA&gt;</computeroutput> can be seen as being ridigly constrained to infuence 0. <computeroutput>&lt;/MeshB&gt;</computeroutput> is rigidly deformed, but it&apos;s also important to note that even though it is rigidly deformed, it is still influenced by more than one joint.</para>
+<para>It is not expected that all applications know how to deal with rigid deformations. For applications that don&apos;t understand them, UsdSkel provides the helper methods <ref refid="class_usd_skel_skinning_query_1ae9c6fae1e6724c31e15f04295da5e976" kindref="member">UsdSkelSkinningQuery::ComputeVaryingJointInfluences</ref> and <ref refid="group___usd_skel___joint_influence_utils_1gaa59dc369a78f21fbeeda0ee11292650f" kindref="member">UsdSkelExpandConstantInfluencesToVarying</ref>, which both provide a means of querying rigid deformations as if they had been encoded with per-point influences.</para>
+</sect2>
+<sect2 id="_usd_skel__schemas_1UsdSkel_BindingAPI_StoringInfluences">
+<title>BindingAPI: Storing Influences</title>
+<para>To ensure correct skinning, joint influences should be normalized when they are written using the <ref refid="class_usd_skel_binding_a_p_i" kindref="compound">UsdSkelBindingAPI</ref>. UsdSkel does <emphasis>not</emphasis> automatically normalize weights when reading data. Clients should instead use the <ref refid="group___usd_skel___joint_influence_utils_1ga3021d3989a6265f6bbf09d72114edfed" kindref="member">UsdSkelNormalizeWeights</ref> helper method to normalize weights prior to storing them.</para>
+<para>Additionally, as part of our <ref refid="_usd_skel__best_practices" kindref="compound">best practices</ref>, we suggest that joint influences be sorted from largest weight value to smallest. The <ref refid="group___usd_skel___joint_influence_utils_1ga58fea609ea13eb8b9f8c6fe7ab709307" kindref="member">UsdSkelSortInfluences</ref> utility can be used to do so. UsdSkel does not currently <emphasis>require</emphasis> sorted joint influences, but may later add such restrictions, since they enable some skinning optimizations, such as allowing a skinning kernel to exit from a point-deformation loop early.</para>
+</sect2>
+<sect2 id="_usd_skel__schemas_1UsdSkel_BindingAPI_GeomBindTransform">
+<title>BindingAPI: GeomBindTransform</title>
+<para>For skinning to apply correctly, the constant <emphasis>primvars:skel:geomBindTransform</emphasis> <ulink url="https://openusd.org/release/glossary.html#usdglossary-primvar">primvar</ulink> should be authored on each skinnable primitive, using the <ref refid="class_usd_skel_binding_a_p_i" kindref="compound">UsdSkelBindingAPI</ref>. This primvar stores the world space transform of a skinned primitive at bind time. When skinning is applied, points of each skinnable primitive are trasnformed by their <emphasis>geomBindTransform</emphasis> into bind space, after which joint transforms are applied, placing the result in either <emphasis>skeleton space</emphasis> or <emphasis>world space</emphasis>.</para>
+<para>When a primitive is skinned, any transform on the prim authored by way of the typical <ref refid="class_usd_geom_xformable" kindref="compound">UsdGeomXformable</ref> schema has <bold>no effect</bold> on the rendered results. Skinned geometry primitives are rendered in <emphasis>skeleton space</emphasis>, rather than being transformed back into local gprim space. This avoids double-transform problems that can otherwise occur, for example, if an ancestor of both a skinnable primitive and its driving Skeleton is moved.</para>
+</sect2>
+<sect2 id="_usd_skel__schemas_1UsdSkel_BindingAPI_BlendShapes">
+<title>BindingAPI: Binding Blend Shapes</title>
+<para>UsdSkel decouples the encoding of blend shape animations from the description of how those animations map to skinnable primitives. This has numerous advantages, such as allowing the set of primitives skinned by a particular Skeleton Instance to be swapped out <ndash/> via variants or other composition features <ndash/> with a different set of skinnable primitives, holding different blend shapes. This decoupling also means that an existing blend shape animation is not necessarily invalidated by asset changes that alter the set of shapes defined for a character.</para>
+<para>Given a skinnable primitive, the <emphasis>skel:blendShapes</emphasis> and <emphasis>skel:blendShapeTargets</emphasis> properties of the <ref refid="class_usd_skel_binding_a_p_i" kindref="compound">UsdSkelBindingAPI</ref> specify a mapping from the animation of the bound Skeleton Instance to different skinnable primitives.</para>
+<para>Note that because blend shapes are usually tightly coupled with individual geometric primitives, whereas other properties of <ref refid="class_usd_skel_binding_a_p_i" kindref="compound">UsdSkelBindingAPI</ref> are hierarchically inherited, these blendshape-related properties are <emphasis>not</emphasis> inherited from ancestor primitives in namespace, and are relevant only when specified directly on primitives.</para>
+<para>To bind blend shapes, the <emphasis>skel:blendShapeTargets</emphasis> rel should be created, and set to target <ref refid="class_usd_skel_blend_shape" kindref="compound">UsdSkelBlendShape</ref> primitives, which define each shape. Additionally, the <emphasis>skel:blendShapes</emphasis> array should also be defined, providing a unique token per bound blend shape. For example:</para>
+<para><programlisting><codeline><highlight class="normal">def<sp/>Skeleton<sp/>&quot;Skel&quot;<sp/>{}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>SkelAnimation<sp/>&quot;Anim&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uniform<sp/>token[]<sp/>blendShapes<sp/>=<sp/>[&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>float[]<sp/>blendShapeWeights<sp/>=<sp/>[1,0.75,0,0]</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>Mesh<sp/>&quot;Mesh<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>BlendShape<sp/>&quot;Foo&quot;<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>BlendShape<sp/>&quot;Bar&quot;<sp/>{}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uniform<sp/>token[]<sp/>skel:blendShapes<sp/>=<sp/>[&quot;B&quot;,<sp/>&quot;A&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:blendShapeTargets<sp/>=<sp/>[&lt;Foo&gt;,<sp/>&lt;Bar&gt;]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:skeleton<sp/>=<sp/>&lt;/Skel&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:animationSource<sp/>=<sp/>&lt;/Anim&gt;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>In the above example, note that the <computeroutput>&lt;/Anim&gt;</computeroutput> primitive specifies more blend shapes than are actually used on <computeroutput>&lt;/Mesh&gt;</computeroutput>. This is because an animation source is providing animation data for a <bold>complete model</bold> (I.e., multiple geometric primitives). The <emphasis>skel:blendShape</emphasis> attribute, as defined on <computeroutput>&lt;/Mesh&gt;</computeroutput>, provides a mapping between the <emphasis>blendShapeWeights</emphasis> animation data on <computeroutput>&lt;/Anim</computeroutput>&gt; <ndash/> which holds weight animation for multiple geometric primitives (although in this example <emphasis>blendShapeWeights</emphasis> is not animated). The set of blend shape targets specified by the <emphasis>skel:blendShapeTargets</emphasis> rel identifies, for each mapped blend shape token in <emphasis>skel:blendShapes</emphasis>, the target <ref refid="class_usd_skel_blend_shape" kindref="compound">UsdSkelBlendShape</ref> primitive to which animation data should apply.</para>
+<para>From the example above, <computeroutput>&lt;/Mesh&gt;</computeroutput> is using shapes mapped to <lsquo/>[&apos;B<rsquo/>, &apos;A&apos;]` (in that order). First we map the <emphasis>blendShapeWeights</emphasis> from the ordering specified by <computeroutput>&lt;/Anim.blendShapes&gt;</computeroutput> to the ordering on <computeroutput>&lt;/Mesh.blendShapes&gt;</computeroutput>, which gives local weight values of [0.75,1.0]. For each token in <computeroutput>&lt;/Mesh.blendShapes&gt;</computeroutput>, the <computeroutput>&lt;/Mesh.blendShapeTargets&gt;</computeroutput> rel identifies which <ref refid="class_usd_skel_blend_shape" kindref="compound">UsdSkelBlendShape</ref> primitive that token maps to. So <computeroutput>B = &lt;/Mesh/Foo&gt;</computeroutput> and <computeroutput>A = &lt;/Mesh/Bar&gt;</computeroutput>. From this, we find that we our final blend shapes and weights, as pairs, are <computeroutput>[(&lt;/Mesh/Foo&gt;, 0.75), (&lt;/Mesh/Bar&gt;, 1.0)</computeroutput>. </para>
+</sect2>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

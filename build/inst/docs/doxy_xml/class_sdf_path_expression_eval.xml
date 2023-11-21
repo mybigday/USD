@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_sdf_path_expression_eval" kind="class" language="C++" prot="public">
+    <compoundname>SdfPathExpressionEval</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Sdf_PathExpressionEvalBase</basecompoundref>
+    <includes refid="path_expression_eval_8h" local="no">pathExpressionEval.h</includes>
+    <innerclass refid="class_sdf_path_expression_eval_1_1___pattern_impl" prot="private">SdfPathExpressionEval::_PatternImpl</innerclass>
+    <innerclass refid="class_sdf_path_expression_eval_1_1_incremental_searcher" prot="public">SdfPathExpressionEval::IncrementalSearcher</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>DomainType</declname>
+        <defname>DomainType</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_sdf_path_expression_eval_1a4563ea3440d4f01880bad68af4a0cf95" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; _PatternImpl &gt;</type>
+        <definition>std::vector&lt;_PatternImpl&gt; _patternImpls</definition>
+        <argsstring></argsstring>
+        <name>_patternImpls</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathExpressionEval.h" line="350" column="1" bodyfile="pxr/usd/sdf/pathExpressionEval.h" bodystart="350" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_sdf_path_expression_eval_1a62495aa2f8fa92d82badfbf65816fb33" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend <ref refid="class_sdf_path_expression_eval" kindref="compound">SdfPathExpressionEval</ref></type>
+        <definition>SdfPathExpressionEval SdfMakePathExpressionEval</definition>
+        <argsstring>(SdfPathExpression const &amp;expr, SdfPredicateLibrary&lt; DomainType &gt; const &amp;lib)</argsstring>
+        <name>SdfMakePathExpressionEval</name>
+        <param>
+          <type><ref refid="class_sdf_path_expression" kindref="compound">SdfPathExpression</ref> const &amp;</type>
+          <declname>expr</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_predicate_library" kindref="compound">SdfPredicateLibrary</ref>&lt; DomainType &gt; const &amp;</type>
+          <declname>lib</declname>
+        </param>
+        <briefdescription>
+<para>Make an <ref refid="class_sdf_path_expression_eval" kindref="compound">SdfPathExpressionEval</ref> object to evaluate <computeroutput>expr</computeroutput> using <computeroutput>lib</computeroutput> to link any embedded predicate expressions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that <computeroutput>expr</computeroutput> must be &quot;complete&quot;, meaning that SdfPathExpression::IsComplete() must return true. If an evaluator cannot succesfully be made, possibly because the passed \expr is not complete, or if any embedded <ref refid="class_sdf_predicate_expression" kindref="compound">SdfPredicateExpression</ref> s cannot be successfully linked with <computeroutput>lib</computeroutput>, or another reason, issue an error and return the empty <ref refid="class_sdf_path_expression_eval" kindref="compound">SdfPathExpressionEval</ref> object. See SdfPathExpressionEval::IsEmpty(). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathExpressionEval.h" line="233" column="1" bodyfile="pxr/usd/sdf/pathExpressionEval.h" bodystart="366" bodyend="386"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_sdf_path_expression_eval_1a8e12342fc420701fbffd97025421575a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool IsEmpty</definition>
+        <argsstring>() const</argsstring>
+        <name>IsEmpty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathExpressionEval.h" line="238" column="1" bodyfile="pxr/usd/sdf/pathExpressionEval.h" bodystart="238" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_expression_eval_1a7257990e81abaef35027af55a727c9e4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ObjectToPath</type>
+          </param>
+          <param>
+            <type>class PathToObject</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_sdf_predicate_function_result" kindref="compound">SdfPredicateFunctionResult</ref></type>
+        <definition>SdfPredicateFunctionResult Match</definition>
+        <argsstring>(DomainType const &amp;obj, ObjectToPath const &amp;objToPath, PathToObject const &amp;pathToObj) const</argsstring>
+        <name>Match</name>
+        <param>
+          <type>DomainType const &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type>ObjectToPath const &amp;</type>
+          <declname>objToPath</declname>
+        </param>
+        <param>
+          <type>PathToObject const &amp;</type>
+          <declname>pathToObj</declname>
+        </param>
+        <briefdescription>
+<para>Test <computeroutput>obj</computeroutput> for a match with this expression. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathExpressionEval.h" line="245" column="1" bodyfile="pxr/usd/sdf/pathExpressionEval.h" bodystart="245" bodyend="257"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_expression_eval_1a1d2d318bcf6f55653f62eb7f98f11015" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ObjectToPath</type>
+          </param>
+          <param>
+            <type>class PathToObject</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_sdf_path_expression_eval_1_1_incremental_searcher" kindref="compound">IncrementalSearcher</ref>&lt; std::decay_t&lt; ObjectToPath &gt;, std::decay_t&lt; PathToObject &gt; &gt;</type>
+        <definition>IncrementalSearcher&lt;std::decay_t&lt;ObjectToPath&gt;, std::decay_t&lt;PathToObject&gt; &gt; MakeIncrementalSearcher</definition>
+        <argsstring>(ObjectToPath &amp;&amp;objToPath, PathToObject &amp;&amp;pathToObj) const</argsstring>
+        <name>MakeIncrementalSearcher</name>
+        <param>
+          <type>ObjectToPath &amp;&amp;</type>
+          <declname>objToPath</declname>
+        </param>
+        <param>
+          <type>PathToObject &amp;&amp;</type>
+          <declname>pathToObj</declname>
+        </param>
+        <briefdescription>
+<para>Create an <ref refid="class_sdf_path_expression_eval_1_1_incremental_searcher" kindref="compound">IncrementalSearcher</ref> object, using <computeroutput>objToPath</computeroutput> and <computeroutput>pathToObject</computeroutput> to map DomainType instances to their paths and vice-versa. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathExpressionEval.h" line="340" column="1" bodyfile="pxr/usd/sdf/pathExpressionEval.h" bodystart="340" bodyend="347"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Objects of this class evaluate complete SdfPathExpressions. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>See <ref refid="class_sdf_path_expression_eval_1a62495aa2f8fa92d82badfbf65816fb33" kindref="member">SdfMakePathExpressionEval()</ref> to create instances of this class, passing the expression to evaluate and an <ref refid="class_sdf_predicate_library" kindref="compound">SdfPredicateLibrary</ref> to evaluate any embedded predicates. </para>
+    </detaileddescription>
+    <location file="pxr/usd/sdf/pathExpressionEval.h" line="46" column="1" bodyfile="pxr/usd/sdf/pathExpressionEval.h" bodystart="46" bodyend="-1"/>
+    <listofallmembers>
+      <member refid="class_sdf_path_expression_eval_1a4563ea3440d4f01880bad68af4a0cf95" prot="private" virt="non-virtual"><scope>SdfPathExpressionEval</scope><name>_patternImpls</name></member>
+      <member refid="class_sdf_path_expression_eval_1a8e12342fc420701fbffd97025421575a" prot="public" virt="non-virtual"><scope>SdfPathExpressionEval</scope><name>IsEmpty</name></member>
+      <member refid="class_sdf_path_expression_eval_1a1d2d318bcf6f55653f62eb7f98f11015" prot="public" virt="non-virtual"><scope>SdfPathExpressionEval</scope><name>MakeIncrementalSearcher</name></member>
+      <member refid="class_sdf_path_expression_eval_1a7257990e81abaef35027af55a727c9e4" prot="public" virt="non-virtual"><scope>SdfPathExpressionEval</scope><name>Match</name></member>
+      <member refid="class_sdf_path_expression_eval_1a62495aa2f8fa92d82badfbf65816fb33" prot="public" virt="non-virtual"><scope>SdfPathExpressionEval</scope><name>SdfMakePathExpressionEval</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

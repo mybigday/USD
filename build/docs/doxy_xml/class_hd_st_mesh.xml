@@ -1,0 +1,1450 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_st_mesh" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>HdStMesh</compoundname>
+    <basecompoundref refid="class_hd_mesh" prot="public" virt="non-virtual">HdMesh</basecompoundref>
+    <includes refid="imaging_2hd_st_2mesh_8h" local="no">mesh.h</includes>
+    <innerclass refid="class_hd_st_mesh_1_1___fvar_topology_tracker" prot="protected">HdStMesh::_FvarTopologyTracker</innerclass>
+      <sectiondef kind="private-type">
+      <memberdef kind="enum" id="class_hd_st_mesh_1a46951d84c88bbc389c0ce4f1f6194d95" prot="private" static="no" strong="no">
+        <type></type>
+        <name>DrawingCoord</name>
+        <enumvalue id="class_hd_st_mesh_1a46951d84c88bbc389c0ce4f1f6194d95ac9aeed4de761670792b32ebc62d4ac56" prot="private">
+          <name>HullTopology</name>
+          <initializer>= HdDrawingCoord::CustomSlotsBegin</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_st_mesh_1a46951d84c88bbc389c0ce4f1f6194d95ab5353a545c31a7aa0875aa357db520a2" prot="private">
+          <name>PointsTopology</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_st_mesh_1a46951d84c88bbc389c0ce4f1f6194d95a4626849364cb25cc9d0456cdefcf5a47" prot="private">
+          <name>FreeSlot</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="316" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="316" bodyend="323"/>
+      </memberdef>
+      <memberdef kind="enum" id="class_hd_st_mesh_1a2f2dbbbe47e871395a781c8105398c8f" prot="private" static="no" strong="no">
+        <type>HdDirtyBits</type>
+        <name>DirtyBits</name>
+        <enumvalue id="class_hd_st_mesh_1a2f2dbbbe47e871395a781c8105398c8faab29f8185fb3dfe87d6d373d1dc8583d" prot="private">
+          <name>DirtySmoothNormals</name>
+          <initializer>= HdChangeTracker::CustomBitsBegin</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_st_mesh_1a2f2dbbbe47e871395a781c8105398c8fa3384a41ef48329fa95440e17d0dfaf13" prot="private">
+          <name>DirtyFlatNormals</name>
+          <initializer>= (DirtySmoothNormals &lt;&lt; 1)</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_st_mesh_1a2f2dbbbe47e871395a781c8105398c8fad0f47e2fa2329fb12caba39857b7b8f6" prot="private">
+          <name>DirtyIndices</name>
+          <initializer>= (DirtyFlatNormals   &lt;&lt; 1)</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_st_mesh_1a2f2dbbbe47e871395a781c8105398c8fa4b468e596804ffdf18c057ed1c63814a" prot="private">
+          <name>DirtyHullIndices</name>
+          <initializer>= (DirtyIndices       &lt;&lt; 1)</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_st_mesh_1a2f2dbbbe47e871395a781c8105398c8fa7e5f25d1237e404777f2b847c19f37a0" prot="private">
+          <name>DirtyPointsIndices</name>
+          <initializer>= (DirtyHullIndices   &lt;&lt; 1)</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="325" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="325" bodyend="331"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_st_mesh_1a4c6f98f3bbaca0752aefa443cb401ca3" prot="private" static="no" mutable="no">
+        <type>HdSt_MeshTopologySharedPtr</type>
+        <definition>HdSt_MeshTopologySharedPtr _topology</definition>
+        <argsstring></argsstring>
+        <name>_topology</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="333" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="333" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_mesh_1a20502e214dfd83495fb711627435c1c4" prot="private" static="no" mutable="no">
+        <type>HdSt_VertexAdjacencyBuilderSharedPtr</type>
+        <definition>HdSt_VertexAdjacencyBuilderSharedPtr _vertexAdjacencyBuilder</definition>
+        <argsstring></argsstring>
+        <name>_vertexAdjacencyBuilder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="334" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="334" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_mesh_1a4cfd448c5f6a741eb51c3058a2d16faf" prot="private" static="no" mutable="no">
+        <type>HdTopology::ID</type>
+        <definition>HdTopology::ID _topologyId</definition>
+        <argsstring></argsstring>
+        <name>_topologyId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="336" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="336" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_mesh_1af20a1bb47f2c432beaf6eb7c2984451d" prot="private" static="no" mutable="no">
+        <type>HdTopology::ID</type>
+        <definition>HdTopology::ID _vertexPrimvarId</definition>
+        <argsstring></argsstring>
+        <name>_vertexPrimvarId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="337" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="337" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_mesh_1a113a4b178fdd2dfde975b1dff7174680" prot="private" static="no" mutable="no">
+        <type>HdDirtyBits</type>
+        <definition>HdDirtyBits _customDirtyBitsInUse</definition>
+        <argsstring></argsstring>
+        <name>_customDirtyBitsInUse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="338" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="338" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_mesh_1abde40993697fc5a36c13e535680ebd36" prot="private" static="no" mutable="no">
+        <type>HdType</type>
+        <definition>HdType _pointsDataType</definition>
+        <argsstring></argsstring>
+        <name>_pointsDataType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="340" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="340" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_mesh_1a774d0ae3275e82efd54cffc9b0630e76" prot="private" static="no" mutable="no">
+        <type>HdInterpolation</type>
+        <definition>HdInterpolation _sceneNormalsInterpolation</definition>
+        <argsstring></argsstring>
+        <name>_sceneNormalsInterpolation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="341" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="341" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_mesh_1a0d10aa0ce3116bd56034c5e4cbcb3c5b" prot="private" static="no" mutable="no">
+        <type>HdCullStyle</type>
+        <definition>HdCullStyle _cullStyle</definition>
+        <argsstring></argsstring>
+        <name>_cullStyle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="342" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="342" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_mesh_1acc194fc1b488dd3c2252546a1ad3f852" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _hasMirroredTransform</definition>
+        <argsstring></argsstring>
+        <name>_hasMirroredTransform</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="343" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="343" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_mesh_1ad23ea0a4c8ca7a6f5459d5aa75a4b662" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _doubleSided</definition>
+        <argsstring></argsstring>
+        <name>_doubleSided</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="344" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="344" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_mesh_1af3cfceab4d00553e2ac20588c6432244" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _flatShadingEnabled</definition>
+        <argsstring></argsstring>
+        <name>_flatShadingEnabled</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="345" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="345" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_mesh_1ac1d18c7ec61d8c115b30c673a89b69f7" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _displacementEnabled</definition>
+        <argsstring></argsstring>
+        <name>_displacementEnabled</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="346" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="346" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_mesh_1a782bc3b361bec7cea8f2f3e6189132aa" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _limitNormals</definition>
+        <argsstring></argsstring>
+        <name>_limitNormals</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="347" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="347" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_mesh_1a7939d4179ed15aac5509d25a366f854f" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _sceneNormals</definition>
+        <argsstring></argsstring>
+        <name>_sceneNormals</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="348" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="348" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_mesh_1ac6180a9dd806976e0768bdd999667ceb" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _hasVaryingTopology</definition>
+        <argsstring></argsstring>
+        <name>_hasVaryingTopology</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="349" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="349" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_mesh_1a4982eba9dc68d60f9a017aaf07c32f26" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _displayOpacity</definition>
+        <argsstring></argsstring>
+        <name>_displayOpacity</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="351" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="351" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_mesh_1a8d014cf5010c8f9c4193129e1c602c6b" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _occludedSelectionShowsThrough</definition>
+        <argsstring></argsstring>
+        <name>_occludedSelectionShowsThrough</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="352" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="352" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_mesh_1a3ad7ac2216f65954a9c35f97d0c9b497" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _pointsShadingEnabled</definition>
+        <argsstring></argsstring>
+        <name>_pointsShadingEnabled</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="353" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="353" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_mesh_1ab0e3cfce8eea9aafad2be477b8204bbc" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; _FvarTopologyTracker &gt;</type>
+        <definition>std::unique_ptr&lt;_FvarTopologyTracker&gt; _fvarTopologyTracker</definition>
+        <argsstring></argsstring>
+        <name>_fvarTopologyTracker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="355" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="355" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_st_mesh_1ada8ae643a33819186f4f341667bf670f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HF_MALLOC_TAG_NEW</definition>
+        <argsstring>(&quot;new HdStMesh&quot;)</argsstring>
+        <name>HF_MALLOC_TAG_NEW</name>
+        <param>
+          <type>&quot;new <ref refid="class_hd_st_mesh" kindref="compound">HdStMesh</ref>&quot;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="59" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1a8947c93d2794a5de0031f1eb510934e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HDST_API</type>
+        <definition>HDST_API HdStMesh</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>HdStMesh</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="62" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1a68494abff93add831b48345bf72bac1f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HDST_API</type>
+        <definition>HDST_API ~HdStMesh</definition>
+        <argsstring>() override</argsstring>
+        <name>~HdStMesh</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="65" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1a1dd447a19bfb779147fe23a7cd152852" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HDST_API void</type>
+        <definition>HDST_API void UpdateRenderTag</definition>
+        <argsstring>(HdSceneDelegate *delegate, HdRenderParam *renderParam) override</argsstring>
+        <name>UpdateRenderTag</name>
+        <reimplements refid="class_hd_rprim_1af4ab6abf1e3c972387514dca88ebddce">UpdateRenderTag</reimplements>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="68" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1a072a970822c6880f78f513372dab87c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HDST_API void</type>
+        <definition>HDST_API void Sync</definition>
+        <argsstring>(HdSceneDelegate *delegate, HdRenderParam *renderParam, HdDirtyBits *dirtyBits, TfToken const &amp;reprToken) override</argsstring>
+        <name>Sync</name>
+        <reimplements refid="class_hd_rprim_1accb912c87d0f4772cec8b9b51c6bed89">Sync</reimplements>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>reprToken</declname>
+        </param>
+        <briefdescription>
+<para>Pull invalidated scene data and prepare/update the renderable representation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is told which scene data to pull through the dirtyBits parameter. The first time it&apos;s called, dirtyBits comes from _GetInitialDirtyBits(), which provides initial dirty state, but after that it&apos;s driven by invalidation tracking in the scene delegate.</para>
+<para>The contract for this function is that the prim can only pull on scene delegate buffers that are marked dirty. Scene delegates can and do implement just-in-time data schemes that mean that pulling on clean data will be at best incorrect, and at worst a crash.</para>
+<para>This function is called in parallel from worker threads, so it needs to be threadsafe; calls into <ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> are ok.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sceneDelegate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The data source for this geometry item. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>renderParam</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A render delegate object that holds rendering parameters that scene geometry may use. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dirtyBits</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A specifier for which scene data has changed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>reprToken</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The representation that needs to be updated. This is useful for backends that support multiple display representations for an rprim. A given representation may choose to pull on a subset of the dirty state. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dirtyBits</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>On input specifies which state is dirty and can be pulled from the scene delegate. On output specifies which bits are still dirty and were not cleaned by the sync. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="72" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1afacd7217dce1f83fe450e78b1624a8b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HDST_API void</type>
+        <definition>HDST_API void Finalize</definition>
+        <argsstring>(HdRenderParam *renderParam) override</argsstring>
+        <name>Finalize</name>
+        <reimplements refid="class_hd_rprim_1a385eed04c15e636796b187bfdf0fcbf0">Finalize</reimplements>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <briefdescription>
+<para>Finalizes object resources. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function might not delete resources, but it should deal with resource ownership so that the rprim is deletable. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="78" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1a59b589b9042f2173054e853d4d58036f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HDST_API HdDirtyBits</type>
+        <definition>HDST_API HdDirtyBits GetInitialDirtyBitsMask</definition>
+        <argsstring>() const override</argsstring>
+        <name>GetInitialDirtyBitsMask</name>
+        <reimplements refid="class_hd_rprim_1ac05e81662ee475cfe52ce97e84e7205d">GetInitialDirtyBitsMask</reimplements>
+        <briefdescription>
+<para>Returns the set of dirty bits that should be added to the change tracker for this prim, when this prim is inserted. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="81" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1a95c0b7a9439f984441a2469935c9ca36" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HDST_API HdMeshTopologySharedPtr</type>
+        <definition>HDST_API HdMeshTopologySharedPtr GetTopology</definition>
+        <argsstring>() const override</argsstring>
+        <name>GetTopology</name>
+        <reimplements refid="class_hd_mesh_1a6bec7096aa2c78aea762dce06dc86717">GetTopology</reimplements>
+        <briefdescription>
+<para>Topology (member) getter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="85" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_hd_st_mesh_1aa09b8f463f83192784f5f1d18c80bdb1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HDST_API bool</type>
+        <definition>static HDST_API bool IsEnabledPackedNormals</definition>
+        <argsstring>()</argsstring>
+        <name>IsEnabledPackedNormals</name>
+        <briefdescription>
+<para>Returns whether packed (10_10_10 bits) normals to be used. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="89" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_hd_st_mesh_1a3b198b2ed119be2418d2efc679a12d39" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HDST_API void</type>
+        <definition>HDST_API void _InitRepr</definition>
+        <argsstring>(TfToken const &amp;reprToken, HdDirtyBits *dirtyBits) override</argsstring>
+        <name>_InitRepr</name>
+        <reimplements refid="class_hd_rprim_1ae8808b3a20d4f5c297884e53490eafdc">_InitRepr</reimplements>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>reprToken</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+<para>Initialize the given representation of this Rprim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is called prior to syncing the prim, the first time the repr is used.</para>
+<para>reprToken is the name of the representation to initalize.</para>
+<para>dirtyBits is an in/out value. It is initialized to the dirty bits from the change tracker. InitRepr can then set additional dirty bits if additional data is required from the scene delegate when this repr is synced. InitRepr occurs before dirty bit propagation.</para>
+<para>See <ref refid="class_hd_rprim_1af62f2311f5580ddc32ecd571a0f559d4" kindref="member">HdRprim::InitRepr()</ref> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="93" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1a1e965b1d836f1868947bb1a54439bbba" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HDST_API HdDirtyBits</type>
+        <definition>HDST_API HdDirtyBits _PropagateDirtyBits</definition>
+        <argsstring>(HdDirtyBits bits) const override</argsstring>
+        <name>_PropagateDirtyBits</name>
+        <reimplements refid="class_hd_rprim_1a6ab9057a8d24d811a6f99f8cfb2fc0fd">_PropagateDirtyBits</reimplements>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>bits</declname>
+        </param>
+        <briefdescription>
+<para>This callback from Rprim gives the prim an opportunity to set additional dirty bits based on those already set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is done before the dirty bits are passed to the scene delegate, so can be used to communicate that extra information is needed by the prim to process the changes.</para>
+<para>The return value is the new set of dirty bits, which replaces the bits passed in.</para>
+<para>See <ref refid="class_hd_rprim_1af80a9b6a6565e86769cf248698122958" kindref="member">HdRprim::PropagateRprimDirtyBits()</ref> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="96" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1ad9c75cfd6e0d776f011ee18046428abd" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _UpdateRepr</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, TfToken const &amp;reprToken, HdDirtyBits *dirtyBitsState)</argsstring>
+        <name>_UpdateRepr</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>reprToken</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBitsState</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="98" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1ab83c6ec961e8c44e9111acaec7e1fc94" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HdBufferArrayRangeSharedPtr</type>
+        <definition>HdBufferArrayRangeSharedPtr _GetSharedPrimvarRange</definition>
+        <argsstring>(uint64_t primvarId, HdBufferSpecVector const &amp;updatedOrAddedSpecs, HdBufferSpecVector const &amp;removedSpecs, HdBufferArrayRangeSharedPtr const &amp;curRange, bool *isFirstInstance, HdStResourceRegistrySharedPtr const &amp;resourceRegistry) const</argsstring>
+        <name>_GetSharedPrimvarRange</name>
+        <param>
+          <type>uint64_t</type>
+          <declname>primvarId</declname>
+        </param>
+        <param>
+          <type>HdBufferSpecVector const &amp;</type>
+          <declname>updatedOrAddedSpecs</declname>
+        </param>
+        <param>
+          <type>HdBufferSpecVector const &amp;</type>
+          <declname>removedSpecs</declname>
+        </param>
+        <param>
+          <type>HdBufferArrayRangeSharedPtr const &amp;</type>
+          <declname>curRange</declname>
+        </param>
+        <param>
+          <type>bool *</type>
+          <declname>isFirstInstance</declname>
+        </param>
+        <param>
+          <type>HdStResourceRegistrySharedPtr const &amp;</type>
+          <declname>resourceRegistry</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="104" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1afdabcaf123b4331259921fceaeaf9fa0" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _MaterialHasPtex</definition>
+        <argsstring>(const HdRenderIndex &amp;renderIndex, const SdfPath &amp;materialId) const</argsstring>
+        <name>_MaterialHasPtex</name>
+        <param>
+          <type>const <ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> &amp;</type>
+          <declname>renderIndex</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>materialId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="111" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1acf346328fa7e8e043b821005eb42b497" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _UseQuadIndices</definition>
+        <argsstring>(const HdRenderIndex &amp;renderIndex, const HdSt_MeshTopologySharedPtr &amp;topology) const</argsstring>
+        <name>_UseQuadIndices</name>
+        <param>
+          <type>const <ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> &amp;</type>
+          <declname>renderIndex</declname>
+        </param>
+        <param>
+          <type>const HdSt_MeshTopologySharedPtr &amp;</type>
+          <declname>topology</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="114" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1ad9e941503c4fed3a58245ad823f2f4af" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _MaterialHasLimitSurface</definition>
+        <argsstring>(const HdRenderIndex &amp;renderIndex, const SdfPath &amp;materialId) const</argsstring>
+        <name>_MaterialHasLimitSurface</name>
+        <param>
+          <type>const <ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> &amp;</type>
+          <declname>renderIndex</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>materialId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="117" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1a23330e9978e2cc611139c9264369f5e4" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _UseLimitRefinement</definition>
+        <argsstring>(const HdRenderIndex &amp;renderIndex, const HdMeshTopology &amp;topology) const</argsstring>
+        <name>_UseLimitRefinement</name>
+        <param>
+          <type>const <ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> &amp;</type>
+          <declname>renderIndex</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_hd_mesh_topology" kindref="compound">HdMeshTopology</ref> &amp;</type>
+          <declname>topology</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="120" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1a76331a9998fcedd5dd923db2fe56e3b1" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _UseSmoothNormals</definition>
+        <argsstring>(HdSt_MeshTopologySharedPtr const &amp;topology) const</argsstring>
+        <name>_UseSmoothNormals</name>
+        <param>
+          <type>HdSt_MeshTopologySharedPtr const &amp;</type>
+          <declname>topology</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="123" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1a9c87236a8f42aa599f6cb49d60d77811" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _UseFlatNormals</definition>
+        <argsstring>(const HdMeshReprDesc &amp;desc) const</argsstring>
+        <name>_UseFlatNormals</name>
+        <param>
+          <type>const <ref refid="struct_hd_mesh_repr_desc" kindref="compound">HdMeshReprDesc</ref> &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="125" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1acb09b18321ab3aea7b31ca8a5cae10d7" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _UpdateDrawItem</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, HdStDrawItem *drawItem, HdDirtyBits *dirtyBits, const TfToken &amp;reprToken, const HdReprSharedPtr &amp;repr, const HdMeshReprDesc &amp;desc, bool requireSmoothNormals, bool requireFlatNormals, int geomSubsetDescIndex)</argsstring>
+        <name>_UpdateDrawItem</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>HdStDrawItem *</type>
+          <declname>drawItem</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>reprToken</declname>
+        </param>
+        <param>
+          <type>const HdReprSharedPtr &amp;</type>
+          <declname>repr</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_hd_mesh_repr_desc" kindref="compound">HdMeshReprDesc</ref> &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>requireSmoothNormals</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>requireFlatNormals</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>geomSubsetDescIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="127" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1aef17de71761bfa33737a9dda776108b3" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _UpdateDrawItemGeometricShader</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, HdStDrawItem *drawItem, const HdMeshReprDesc &amp;desc, const SdfPath &amp;materialId)</argsstring>
+        <name>_UpdateDrawItemGeometricShader</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>HdStDrawItem *</type>
+          <declname>drawItem</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_hd_mesh_repr_desc" kindref="compound">HdMeshReprDesc</ref> &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>materialId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="138" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1ab3df5347ab3b505d35e529658db6edcf" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _UpdateShadersForAllReprs</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, bool updateMaterialNetworkShader, bool updateGeometricShader)</argsstring>
+        <name>_UpdateShadersForAllReprs</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>updateMaterialNetworkShader</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>updateGeometricShader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="144" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1a1a90ae5ce2b65a2a05f9dbdeda386e80" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _UpdateMaterialTagsForAllReprs</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam)</argsstring>
+        <name>_UpdateMaterialTagsForAllReprs</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="149" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1acd166891737390c90bc08cd9ac38c157" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _PopulateTopology</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, HdStDrawItem *drawItem, HdDirtyBits *dirtyBits, const TfToken &amp;reprToken, const HdReprSharedPtr &amp;repr, const HdMeshReprDesc &amp;desc, int geomSubsetDescIndex)</argsstring>
+        <name>_PopulateTopology</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>HdStDrawItem *</type>
+          <declname>drawItem</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>reprToken</declname>
+        </param>
+        <param>
+          <type>const HdReprSharedPtr &amp;</type>
+          <declname>repr</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_hd_mesh_repr_desc" kindref="compound">HdMeshReprDesc</ref> &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>geomSubsetDescIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="152" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1a77dc5452948ab259c4d16cec4e4dc4a1" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _UpdateDrawItemsForGeomSubsets</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, HdStDrawItem *drawItem, const TfToken &amp;reprToken, const HdReprSharedPtr &amp;repr, const HdGeomSubsets &amp;geomSubsets, size_t oldNumGeomSubsets)</argsstring>
+        <name>_UpdateDrawItemsForGeomSubsets</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>HdStDrawItem *</type>
+          <declname>drawItem</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>reprToken</declname>
+        </param>
+        <param>
+          <type>const HdReprSharedPtr &amp;</type>
+          <declname>repr</declname>
+        </param>
+        <param>
+          <type>const HdGeomSubsets &amp;</type>
+          <declname>geomSubsets</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>oldNumGeomSubsets</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="161" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1a3260f37f08b69d7fc26c98ff1f9d7ae0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _CreateTopologyRangeForGeomSubset</definition>
+        <argsstring>(HdStResourceRegistrySharedPtr resourceRegistry, HdChangeTracker &amp;changeTracker, HdRenderParam *renderParam, HdStDrawItem *drawItem, const TfToken &amp;indexToken, HdBufferSourceSharedPtr indicesSource, HdBufferSourceSharedPtr fvarIndicesSource, HdBufferSourceSharedPtr geomSubsetFaceIndicesHelperSource, const VtIntArray &amp;faceIndices, bool refined)</argsstring>
+        <name>_CreateTopologyRangeForGeomSubset</name>
+        <param>
+          <type>HdStResourceRegistrySharedPtr</type>
+          <declname>resourceRegistry</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_change_tracker" kindref="compound">HdChangeTracker</ref> &amp;</type>
+          <declname>changeTracker</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>HdStDrawItem *</type>
+          <declname>drawItem</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>indexToken</declname>
+        </param>
+        <param>
+          <type>HdBufferSourceSharedPtr</type>
+          <declname>indicesSource</declname>
+        </param>
+        <param>
+          <type>HdBufferSourceSharedPtr</type>
+          <declname>fvarIndicesSource</declname>
+        </param>
+        <param>
+          <type>HdBufferSourceSharedPtr</type>
+          <declname>geomSubsetFaceIndicesHelperSource</declname>
+        </param>
+        <param>
+          <type>const VtIntArray &amp;</type>
+          <declname>faceIndices</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>refined</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="169" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1ab118ef54deadda8a5d5f5260d8a0434e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _GatherFaceVaryingTopologies</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, const HdReprSharedPtr &amp;repr, const HdMeshReprDesc &amp;desc, HdStDrawItem *drawItem, int geomSubsetDescIndex, HdDirtyBits *dirtyBits, const SdfPath &amp;id, HdSt_MeshTopologySharedPtr topology)</argsstring>
+        <name>_GatherFaceVaryingTopologies</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type>const HdReprSharedPtr &amp;</type>
+          <declname>repr</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_hd_mesh_repr_desc" kindref="compound">HdMeshReprDesc</ref> &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <param>
+          <type>HdStDrawItem *</type>
+          <declname>drawItem</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>geomSubsetDescIndex</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdSt_MeshTopologySharedPtr</type>
+          <declname>topology</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="181" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1a107e29c9b07e7ea7cc32e2d56c9ec292" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _PopulateAdjacency</definition>
+        <argsstring>(HdStResourceRegistrySharedPtr const &amp;resourceRegistry)</argsstring>
+        <name>_PopulateAdjacency</name>
+        <param>
+          <type>HdStResourceRegistrySharedPtr const &amp;</type>
+          <declname>resourceRegistry</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="190" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1a45cccc17920cccdc041657e001def177" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _PopulateVertexPrimvars</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, const HdReprSharedPtr &amp;repr, const HdMeshReprDesc &amp;desc, HdStDrawItem *drawItem, int geomSubsetDescIndex, HdDirtyBits *dirtyBits, bool requireSmoothNormals)</argsstring>
+        <name>_PopulateVertexPrimvars</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>const HdReprSharedPtr &amp;</type>
+          <declname>repr</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_hd_mesh_repr_desc" kindref="compound">HdMeshReprDesc</ref> &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <param>
+          <type>HdStDrawItem *</type>
+          <declname>drawItem</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>geomSubsetDescIndex</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>requireSmoothNormals</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="193" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1a0ae8a7a234b115b5349ef6c9c4aecd59" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _PopulateFaceVaryingPrimvars</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, const HdReprSharedPtr &amp;repr, const HdMeshReprDesc &amp;desc, HdStDrawItem *drawItem, int geomSubsetDescIndex, HdDirtyBits *dirtyBits)</argsstring>
+        <name>_PopulateFaceVaryingPrimvars</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>const HdReprSharedPtr &amp;</type>
+          <declname>repr</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_hd_mesh_repr_desc" kindref="compound">HdMeshReprDesc</ref> &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <param>
+          <type>HdStDrawItem *</type>
+          <declname>drawItem</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>geomSubsetDescIndex</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="202" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1a9c24b0879aa05a3d35336de467faf37a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _PopulateElementPrimvars</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, const HdReprSharedPtr &amp;repr, const HdMeshReprDesc &amp;desc, HdStDrawItem *drawItem, int geomSubsetDescIndex, HdDirtyBits *dirtyBits, bool requireFlatNormals)</argsstring>
+        <name>_PopulateElementPrimvars</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>const HdReprSharedPtr &amp;</type>
+          <declname>repr</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_hd_mesh_repr_desc" kindref="compound">HdMeshReprDesc</ref> &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <param>
+          <type>HdStDrawItem *</type>
+          <declname>drawItem</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>geomSubsetDescIndex</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>requireFlatNormals</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="210" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_mesh_1a4ac2758606efdb18eaeaff2ef609e979" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int _GetRefineLevelForDesc</definition>
+        <argsstring>(const HdMeshReprDesc &amp;desc) const</argsstring>
+        <name>_GetRefineLevelForDesc</name>
+        <param>
+          <type>const <ref refid="struct_hd_mesh_repr_desc" kindref="compound">HdMeshReprDesc</ref> &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/mesh.h" line="219" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A subdivision surface or poly-mesh object. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3235">
+        <label>HdRprim</label>
+        <link refid="class_hd_rprim"/>
+      </node>
+      <node id="3233">
+        <label>HdStMesh</label>
+        <link refid="class_hd_st_mesh"/>
+        <childnode refid="3234" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3234">
+        <label>HdMesh</label>
+        <link refid="class_hd_mesh"/>
+        <childnode refid="3235" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3238">
+        <label>HdRprim</label>
+        <link refid="class_hd_rprim"/>
+        <childnode refid="3239" relation="usage">
+          <edgelabel>_renderTag</edgelabel>
+        </childnode>
+        <childnode refid="3240" relation="usage">
+          <edgelabel>_authoredReprSelector</edgelabel>
+        </childnode>
+      </node>
+      <node id="3236">
+        <label>HdStMesh</label>
+        <link refid="class_hd_st_mesh"/>
+        <childnode refid="3237" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3237">
+        <label>HdMesh</label>
+        <link refid="class_hd_mesh"/>
+        <childnode refid="3238" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3239">
+        <label>TfToken</label>
+        <link refid="class_tf_token"/>
+      </node>
+      <node id="3240">
+        <label>HdReprSelector</label>
+        <link refid="class_hd_repr_selector"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/hdSt/mesh.h" line="57" column="1" bodyfile="pxr/imaging/hdSt/mesh.h" bodystart="56" bodyend="356"/>
+    <listofallmembers>
+      <member refid="class_hd_rprim_1af99cc7d4b20df2fd31786a21ebe68331" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_authoredReprSelector</name></member>
+      <member refid="class_hd_st_mesh_1a3260f37f08b69d7fc26c98ff1f9d7ae0" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_CreateTopologyRangeForGeomSubset</name></member>
+      <member refid="class_hd_st_mesh_1a0d10aa0ce3116bd56034c5e4cbcb3c5b" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>_cullStyle</name></member>
+      <member refid="class_hd_st_mesh_1a113a4b178fdd2dfde975b1dff7174680" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>_customDirtyBitsInUse</name></member>
+      <member refid="class_hd_st_mesh_1ac1d18c7ec61d8c115b30c673a89b69f7" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>_displacementEnabled</name></member>
+      <member refid="class_hd_st_mesh_1a4982eba9dc68d60f9a017aaf07c32f26" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>_displayOpacity</name></member>
+      <member refid="class_hd_st_mesh_1ad23ea0a4c8ca7a6f5459d5aa75a4b662" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>_doubleSided</name></member>
+      <member refid="class_hd_st_mesh_1af3cfceab4d00553e2ac20588c6432244" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>_flatShadingEnabled</name></member>
+      <member refid="class_hd_st_mesh_1ab0e3cfce8eea9aafad2be477b8204bbc" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>_fvarTopologyTracker</name></member>
+      <member refid="class_hd_st_mesh_1ab118ef54deadda8a5d5f5260d8a0434e" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_GatherFaceVaryingTopologies</name></member>
+      <member refid="class_hd_st_mesh_1a4ac2758606efdb18eaeaff2ef609e979" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_GetRefineLevelForDesc</name></member>
+      <member refid="class_hd_rprim_1a7536f2dc14a09b5e59047a845435d895" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_GetRepr</name></member>
+      <member refid="class_hd_mesh_1acc46514b81355d00a235ae69612ff3f8" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_GetReprDesc</name></member>
+      <member refid="class_hd_st_mesh_1ab83c6ec961e8c44e9111acaec7e1fc94" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_GetSharedPrimvarRange</name></member>
+      <member refid="class_hd_st_mesh_1acc194fc1b488dd3c2252546a1ad3f852" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>_hasMirroredTransform</name></member>
+      <member refid="class_hd_st_mesh_1ac6180a9dd806976e0768bdd999667ceb" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>_hasVaryingTopology</name></member>
+      <member refid="class_hd_st_mesh_1a3b198b2ed119be2418d2efc679a12d39" prot="protected" virt="virtual"><scope>HdStMesh</scope><name>_InitRepr</name></member>
+      <member refid="class_hd_st_mesh_1a782bc3b361bec7cea8f2f3e6189132aa" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>_limitNormals</name></member>
+      <member refid="class_hd_st_mesh_1ad9e941503c4fed3a58245ad823f2f4af" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_MaterialHasLimitSurface</name></member>
+      <member refid="class_hd_st_mesh_1afdabcaf123b4331259921fceaeaf9fa0" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_MaterialHasPtex</name></member>
+      <member refid="class_hd_mesh_1ad6d2f16f0664962d2a9697d6b1807cf8" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_MeshReprConfig</name></member>
+      <member refid="class_hd_st_mesh_1a8d014cf5010c8f9c4193129e1c602c6b" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>_occludedSelectionShowsThrough</name></member>
+      <member refid="class_hd_st_mesh_1abde40993697fc5a36c13e535680ebd36" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>_pointsDataType</name></member>
+      <member refid="class_hd_st_mesh_1a3ad7ac2216f65954a9c35f97d0c9b497" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>_pointsShadingEnabled</name></member>
+      <member refid="class_hd_st_mesh_1a107e29c9b07e7ea7cc32e2d56c9ec292" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_PopulateAdjacency</name></member>
+      <member refid="class_hd_st_mesh_1a9c24b0879aa05a3d35336de467faf37a" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_PopulateElementPrimvars</name></member>
+      <member refid="class_hd_st_mesh_1a0ae8a7a234b115b5349ef6c9c4aecd59" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_PopulateFaceVaryingPrimvars</name></member>
+      <member refid="class_hd_st_mesh_1acd166891737390c90bc08cd9ac38c157" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_PopulateTopology</name></member>
+      <member refid="class_hd_st_mesh_1a45cccc17920cccdc041657e001def177" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_PopulateVertexPrimvars</name></member>
+      <member refid="class_hd_st_mesh_1a1e965b1d836f1868947bb1a54439bbba" prot="protected" virt="virtual"><scope>HdStMesh</scope><name>_PropagateDirtyBits</name></member>
+      <member refid="class_hd_rprim_1ad83e4473062b97f26cf76c844bf7a3a1" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_renderTag</name></member>
+      <member refid="class_hd_rprim_1a136710a8b140e2e6350f01f80f1d85a4" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_reprs</name></member>
+      <member refid="class_hd_rprim_1aad438bd2af17cf2eafbfbd90cc2a2db1" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_ReprVector</name></member>
+      <member refid="class_hd_st_mesh_1a7939d4179ed15aac5509d25a366f854f" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>_sceneNormals</name></member>
+      <member refid="class_hd_st_mesh_1a774d0ae3275e82efd54cffc9b0630e76" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>_sceneNormalsInterpolation</name></member>
+      <member refid="class_hd_rprim_1ab47ac9b77df39ee8de77b10486ea24c5" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_sharedData</name></member>
+      <member refid="class_hd_st_mesh_1a4c6f98f3bbaca0752aefa443cb401ca3" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>_topology</name></member>
+      <member refid="class_hd_st_mesh_1a4cfd448c5f6a741eb51c3058a2d16faf" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>_topologyId</name></member>
+      <member refid="class_hd_st_mesh_1acb09b18321ab3aea7b31ca8a5cae10d7" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_UpdateDrawItem</name></member>
+      <member refid="class_hd_st_mesh_1aef17de71761bfa33737a9dda776108b3" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_UpdateDrawItemGeometricShader</name></member>
+      <member refid="class_hd_st_mesh_1a77dc5452948ab259c4d16cec4e4dc4a1" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_UpdateDrawItemsForGeomSubsets</name></member>
+      <member refid="class_hd_rprim_1a07b717bf883db5ca574acb6a17b0c192" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_UpdateInstancer</name></member>
+      <member refid="class_hd_st_mesh_1a1a90ae5ce2b65a2a05f9dbdeda386e80" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_UpdateMaterialTagsForAllReprs</name></member>
+      <member refid="class_hd_st_mesh_1ad9c75cfd6e0d776f011ee18046428abd" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_UpdateRepr</name></member>
+      <member refid="class_hd_st_mesh_1ab3df5347ab3b505d35e529658db6edcf" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_UpdateShadersForAllReprs</name></member>
+      <member refid="class_hd_rprim_1a2a2640835d0c96bfa94425428ec00633" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_UpdateVisibility</name></member>
+      <member refid="class_hd_st_mesh_1a9c87236a8f42aa599f6cb49d60d77811" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_UseFlatNormals</name></member>
+      <member refid="class_hd_st_mesh_1a23330e9978e2cc611139c9264369f5e4" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_UseLimitRefinement</name></member>
+      <member refid="class_hd_st_mesh_1acf346328fa7e8e043b821005eb42b497" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_UseQuadIndices</name></member>
+      <member refid="class_hd_st_mesh_1a76331a9998fcedd5dd923db2fe56e3b1" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>_UseSmoothNormals</name></member>
+      <member refid="class_hd_st_mesh_1a20502e214dfd83495fb711627435c1c4" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>_vertexAdjacencyBuilder</name></member>
+      <member refid="class_hd_st_mesh_1af20a1bb47f2c432beaf6eb7c2984451d" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>_vertexPrimvarId</name></member>
+      <member refid="class_hd_rprim_1ac363dc6fc79936a3e2147e4676b07472" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>CanSkipDirtyBitPropagationAndSync</name></member>
+      <member refid="class_hd_mesh_1adacc042b89829aa332360a772d925d3b" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>ConfigureRepr</name></member>
+      <member refid="class_hd_st_mesh_1a2f2dbbbe47e871395a781c8105398c8f" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>DirtyBits</name></member>
+      <member refid="class_hd_st_mesh_1a2f2dbbbe47e871395a781c8105398c8fa3384a41ef48329fa95440e17d0dfaf13" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>DirtyFlatNormals</name></member>
+      <member refid="class_hd_st_mesh_1a2f2dbbbe47e871395a781c8105398c8fa4b468e596804ffdf18c057ed1c63814a" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>DirtyHullIndices</name></member>
+      <member refid="class_hd_st_mesh_1a2f2dbbbe47e871395a781c8105398c8fad0f47e2fa2329fb12caba39857b7b8f6" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>DirtyIndices</name></member>
+      <member refid="class_hd_st_mesh_1a2f2dbbbe47e871395a781c8105398c8fa7e5f25d1237e404777f2b847c19f37a0" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>DirtyPointsIndices</name></member>
+      <member refid="class_hd_st_mesh_1a2f2dbbbe47e871395a781c8105398c8faab29f8185fb3dfe87d6d373d1dc8583d" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>DirtySmoothNormals</name></member>
+      <member refid="class_hd_st_mesh_1a46951d84c88bbc389c0ce4f1f6194d95" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>DrawingCoord</name></member>
+      <member refid="class_hd_st_mesh_1afacd7217dce1f83fe450e78b1624a8b4" prot="public" virt="virtual"><scope>HdStMesh</scope><name>Finalize</name></member>
+      <member refid="class_hd_st_mesh_1a46951d84c88bbc389c0ce4f1f6194d95a4626849364cb25cc9d0456cdefcf5a47" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>FreeSlot</name></member>
+      <member refid="class_hd_mesh_1a9538b3d6f03d3ff12f61734caaa559a9" prot="public" virt="virtual"><scope>HdStMesh</scope><name>GetBuiltinPrimvarNames</name></member>
+      <member refid="class_hd_mesh_1a963952eb300f82db0a7e9b491b283299" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetCullStyle</name></member>
+      <member refid="class_hd_mesh_1a19272f8ea7e8b1e345bb9b8a7513dc0b" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetDisplayStyle</name></member>
+      <member refid="class_hd_rprim_1acdeab568daeb62af72f3cf5f7359f216" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetDrawItems</name></member>
+      <member refid="class_hd_rprim_1a606da02b739d7eb4d1b19fe04d985f2e" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetExtent</name></member>
+      <member refid="class_hd_rprim_1a9301243d9273afcba6395e86047490ab" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetId</name></member>
+      <member refid="class_hd_rprim_1a81f906afa368c0de559aba39fc57bff8" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetIndexedPrimvar</name></member>
+      <member refid="class_hd_st_mesh_1a59b589b9042f2173054e853d4d58036f" prot="public" virt="virtual"><scope>HdStMesh</scope><name>GetInitialDirtyBitsMask</name></member>
+      <member refid="class_hd_rprim_1a7119f60143f27b3e561ffa04464c1ca7" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetInstancerId</name></member>
+      <member refid="class_hd_rprim_1a8b6da4a9d65f37cc07b2647808093bbe" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetInstancerTransforms</name></member>
+      <member refid="class_hd_rprim_1a8124f95bf477fa1aedd20bbb2dbf589e" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetMaterialId</name></member>
+      <member refid="class_hd_mesh_1aecda8475e5a6c317284f20404891db23" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetMeshTopology</name></member>
+      <member refid="class_hd_mesh_1a6c89cf314f569ee255a4a50c8d7b57c4" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetNormals</name></member>
+      <member refid="class_hd_mesh_1a749b09c63040e8a4f7bfff82670c76a9" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetPoints</name></member>
+      <member refid="class_hd_rprim_1ae37ae1625cd178d6d940eebcea42698f" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetPrimId</name></member>
+      <member refid="class_hd_rprim_1a9065fe959f49db479d2e37e6daed9b2d" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetPrimvar</name></member>
+      <member refid="class_hd_rprim_1a6d78d1d22dab6a2e814277c49f77d8da" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetPrimvarDescriptors</name></member>
+      <member refid="class_hd_rprim_1ad69d62d157f59712c736b827eb212100" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetRenderTag</name></member>
+      <member refid="class_hd_rprim_1ac759696985c687f4047ed065c999c3c1" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetRenderTag</name></member>
+      <member refid="class_hd_rprim_1ae0a7b4f61b90ca488a28a7b075543612" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetReprSelector</name></member>
+      <member refid="class_hd_mesh_1a703ec5862df1483b0fcb72832db4204a" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetShadingStyle</name></member>
+      <member refid="class_hd_mesh_1a01475c67a75fabb15de2d08b317fba70" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>GetSubdivTags</name></member>
+      <member refid="class_hd_st_mesh_1a95c0b7a9439f984441a2469935c9ca36" prot="public" virt="virtual"><scope>HdStMesh</scope><name>GetTopology</name></member>
+      <member refid="class_hd_mesh_1a5f9767ffb3b3606a920d361e24b7bac1" prot="protected" virt="non-virtual"><scope>HdStMesh</scope><name>HdMesh</name></member>
+      <member refid="class_hd_rprim_1a3a4bcc257ba5af64bf9627291cc7ddb5" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>HdRprim</name></member>
+      <member refid="class_hd_st_mesh_1a8947c93d2794a5de0031f1eb510934e2" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>HdStMesh</name></member>
+      <member refid="class_hd_st_mesh_1ada8ae643a33819186f4f341667bf670f" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>HF_MALLOC_TAG_NEW</name></member>
+      <member refid="class_hd_st_mesh_1a46951d84c88bbc389c0ce4f1f6194d95ac9aeed4de761670792b32ebc62d4ac56" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>HullTopology</name></member>
+      <member refid="class_hd_rprim_1af62f2311f5580ddc32ecd571a0f559d4" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>InitRepr</name></member>
+      <member refid="class_hd_rprim_1a894cef8181ed5adf7abc88616c3a8e94" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>IsDirty</name></member>
+      <member refid="class_hd_mesh_1afcd0bc6b8619a8e33a3acd394f48df27" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>IsDoubleSided</name></member>
+      <member refid="class_hd_st_mesh_1aa09b8f463f83192784f5f1d18c80bdb1" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>IsEnabledPackedNormals</name></member>
+      <member refid="class_hd_rprim_1a638cd13b75c2dd9d1ccd84e9dd311d6f" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>IsVisible</name></member>
+      <member refid="class_hd_st_mesh_1a46951d84c88bbc389c0ce4f1f6194d95ab5353a545c31a7aa0875aa357db520a2" prot="private" virt="non-virtual"><scope>HdStMesh</scope><name>PointsTopology</name></member>
+      <member refid="class_hd_rprim_1af80a9b6a6565e86769cf248698122958" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>PropagateRprimDirtyBits</name></member>
+      <member refid="class_hd_rprim_1a9fc27f601b7bb56ab9f7c62f76bcb6fb" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>SetMaterialId</name></member>
+      <member refid="class_hd_rprim_1a348af2854c0f8c81d848ed55795a1751" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>SetPrimId</name></member>
+      <member refid="class_hd_st_mesh_1a072a970822c6880f78f513372dab87c2" prot="public" virt="virtual"><scope>HdStMesh</scope><name>Sync</name></member>
+      <member refid="class_hd_st_mesh_1a1dd447a19bfb779147fe23a7cd152852" prot="public" virt="virtual"><scope>HdStMesh</scope><name>UpdateRenderTag</name></member>
+      <member refid="class_hd_rprim_1af70add9253213db0665940375da392a0" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>UpdateReprSelector</name></member>
+      <member refid="class_hd_mesh_1af6bb07dbd192dcc7646e172627b0bb07" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>~HdMesh</name></member>
+      <member refid="class_hd_rprim_1a84054b7edae1ba797c1bd4f8b121001c" prot="public" virt="virtual"><scope>HdStMesh</scope><name>~HdRprim</name></member>
+      <member refid="class_hd_st_mesh_1a68494abff93add831b48345bf72bac1f" prot="public" virt="non-virtual"><scope>HdStMesh</scope><name>~HdStMesh</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

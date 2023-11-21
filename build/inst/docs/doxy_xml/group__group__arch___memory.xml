@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="group__group__arch___memory" kind="group">
+    <compoundname>group_arch_Memory</compoundname>
+    <title>Memory Management</title>
+    <innerfile refid="align_8h">align.h</innerfile>
+    <innerfile refid="malloc_hook_8h">mallocHook.h</innerfile>
+    <innerclass refid="class_arch_malloc_hook" prot="public">ArchMallocHook</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__group__arch___memory_1gac1700f875faee11949b4908f49ceae1e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ArchAlignMemorySize</definition>
+        <argsstring>(size_t nBytes)</argsstring>
+        <name>ArchAlignMemorySize</name>
+        <param>
+          <type>size_t</type>
+          <declname>nBytes</declname>
+        </param>
+        <briefdescription>
+<para>Return suitably aligned memory size. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Requests to <computeroutput>malloc()</computeroutput> or <computeroutput>::new</computeroutput> for a given size are often rounded upward. Given a request for <computeroutput>nBytes</computeroutput> bytes of storage, this function returns the amount that would actually be consumed by the system to satisfy it. This is needed for efficient user-defined memory management. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/align.h" line="54" column="1" bodyfile="pxr/base/arch/align.h" bodystart="54" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__arch___memory_1gaf2aa2fad73fa2a352d3f9a62a705aedf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void *</type>
+        <definition>void* ArchAlignMemory</definition>
+        <argsstring>(void *base)</argsstring>
+        <name>ArchAlignMemory</name>
+        <param>
+          <type>void *</type>
+          <declname>base</declname>
+        </param>
+        <briefdescription>
+<para>Align memory to the next &quot;best&quot; alignment value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This will take a pointer and bump it to the next ideal alignment boundary that will work for all data types. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/align.h" line="72" column="1" bodyfile="pxr/base/arch/align.h" bodystart="72" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__arch___memory_1ga884cbaaa5a6d9a8bd8ce63951678935f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ARCH_API void *</type>
+        <definition>ARCH_API void* ArchAlignedAlloc</definition>
+        <argsstring>(size_t alignment, size_t size)</argsstring>
+        <name>ArchAlignedAlloc</name>
+        <param>
+          <type>size_t</type>
+          <declname>alignment</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>Aligned memory allocation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/align.h" line="90" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__arch___memory_1gaa28ba3a6009d0c641ceb685770c4aae8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ARCH_API void</type>
+        <definition>ARCH_API void ArchAlignedFree</definition>
+        <argsstring>(void *ptr)</argsstring>
+        <name>ArchAlignedFree</name>
+        <param>
+          <type>void *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+<para>Free memory allocated by ArchAlignedAlloc. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/align.h" line="95" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__arch___memory_1gaccb57380beabe7ab3e243c3c12255f64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ARCH_API bool</type>
+        <definition>ARCH_API bool ArchIsPtmallocActive</definition>
+        <argsstring>()</argsstring>
+        <name>ArchIsPtmallocActive</name>
+        <briefdescription>
+<para>Return true if ptmalloc is being used as the memory allocator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>ptmalloc3 is an external shared library providing implementations of the standard memory allocation functions (e.g. malloc, free). Consumers with special behavior that depends on this library may use this function to determine if it is the active allocator. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/mallocHook.h" line="47" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__arch___memory_1ga2d6886b4d5ccb20a88366c46ec168ee7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ARCH_API bool</type>
+        <definition>ARCH_API bool ArchIsStlAllocatorOff</definition>
+        <argsstring>()</argsstring>
+        <name>ArchIsStlAllocatorOff</name>
+        <briefdescription>
+<para>Return true if the C++ STL allocator was requested to be turned off. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Under gcc, this is done by setting the environment variable GLIBCXX_FORCE_NEW, but it might differ (or not even be possible) for other platforms. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/mallocHook.h" line="56" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__group__arch___memory_1gae41dfc0c4ab056202bad64055e0b5ff8" prot="public" static="no">
+        <name>ARCH_MAX_ALIGNMENT_INCREASE</name>
+        <briefdescription>
+<para>Maximum extra space needed for alignment. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The <computeroutput><ref refid="group__group__arch___memory_1gac1700f875faee11949b4908f49ceae1e" kindref="member">ArchAlignMemorySize()</ref></computeroutput> can increase the required memory by no more than <computeroutput>ARCH_MAX_ALIGNMENT_INCREASE</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/align.h" line="64" column="9" bodyfile="pxr/base/arch/align.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__arch___memory_1ga02e4c5740adba2d9e9fa154c93f38144" prot="public" static="no">
+        <name>ARCH_CACHE_LINE_SIZE</name>
+        <briefdescription>
+<para>The size of a CPU cache line on the current processor architecture in bytes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/align.h" line="84" column="10" bodyfile="pxr/base/arch/align.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Functions having to do with memory allocation/handling. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,27 @@
+var class_ndr_registry =
+[
+    [ "DiscoveryPluginRefPtrVec", "class_ndr_registry.html#a4d86409a818ebd4d0025e3eee6925c55", null ],
+    [ "NdrRegistry", "class_ndr_registry.html#a174ebee0e92922ae7256125beec8ec77", null ],
+    [ "NdrRegistry", "class_ndr_registry.html#a64586392a0470ad14fe9d01314413100", null ],
+    [ "~NdrRegistry", "class_ndr_registry.html#ae65c1bb482465bf21e49e59e3704fd83", null ],
+    [ "AddDiscoveryResult", "class_ndr_registry.html#a18b5a0d433c3c1150ee638cc1c814121", null ],
+    [ "AddDiscoveryResult", "class_ndr_registry.html#a36b678bc03a457dbfb3773001b80b3d3", null ],
+    [ "GetAllNodeSourceTypes", "class_ndr_registry.html#a7c451ef8b27fb5858d714b2614d1df93", null ],
+    [ "GetNodeByIdentifier", "class_ndr_registry.html#a5bacc6de8683232867fa5a45121e3780", null ],
+    [ "GetNodeByIdentifierAndType", "class_ndr_registry.html#a302de2b47bdf8af387d9273bc797f9a7", null ],
+    [ "GetNodeByName", "class_ndr_registry.html#a2b78ea888fcb8cb1fd755d62d551f285", null ],
+    [ "GetNodeByNameAndType", "class_ndr_registry.html#aa2c7d46e4adecc575c28ab686c46ff27", null ],
+    [ "GetNodeFromAsset", "class_ndr_registry.html#aaadbd8fe1df4f30bb9dd2e2bb0b4970f", null ],
+    [ "GetNodeFromSourceCode", "class_ndr_registry.html#a391e8cb4eeb3223aff3d725920830564", null ],
+    [ "GetNodeIdentifiers", "class_ndr_registry.html#ad9ea47727622f4f5cb677b487bbcfa64", null ],
+    [ "GetNodeNames", "class_ndr_registry.html#aad5c6eb89c893e959d6e66620945295e", null ],
+    [ "GetNodesByFamily", "class_ndr_registry.html#a5e9a9d1947c1ba283161fc8a8121c3d5", null ],
+    [ "GetNodesByIdentifier", "class_ndr_registry.html#a3db1bd9c3d178aaba60718cbaba66486", null ],
+    [ "GetNodesByName", "class_ndr_registry.html#a5d61c1cf418e9034439ea95681e22323", null ],
+    [ "GetSearchURIs", "class_ndr_registry.html#a51ca010b4493ec6ed866619be7984023", null ],
+    [ "operator=", "class_ndr_registry.html#a52beb5118749a199b34a1196e4f38b3c", null ],
+    [ "SetExtraDiscoveryPlugins", "class_ndr_registry.html#ab111939c2df38b3e33afd43acc018249", null ],
+    [ "SetExtraDiscoveryPlugins", "class_ndr_registry.html#a1eb836b69c5e2612564e9711017099d4", null ],
+    [ "SetExtraParserPlugins", "class_ndr_registry.html#ad6b6226c83cb2a771d18b8e3b46603e8", null ],
+    [ "_DiscoveryContext", "class_ndr_registry.html#a046d72a3ef13be4806ba4cfde566a5c9", null ]
+];

@@ -1,0 +1,28 @@
+var pragmas_8h =
+[
+    [ "ARCH_PRAGMA", "pragmas_8h.html#af374524e90a0fbd4dc5aa21e27476159", null ],
+    [ "ARCH_PRAGMA_CONVERSION_FROM_SIZET", "pragmas_8h.html#a2e4f0efb1b68359d734286c9c7b86bd4", null ],
+    [ "ARCH_PRAGMA_DEPRECATED_POSIX_NAME", "pragmas_8h.html#ac31dbf8ea698a006c1e73ab3b4f5a9d5", null ],
+    [ "ARCH_PRAGMA_DESTRUCTOR_IMPLICIT_DEFINE", "pragmas_8h.html#abd1d7b5b954b67b2f75e720c78961872", null ],
+    [ "ARCH_PRAGMA_FORCING_TO_BOOL", "pragmas_8h.html#a9409622b1156ab9ee931f0d37ea6e2bd", null ],
+    [ "ARCH_PRAGMA_INSTANCE_METHOD_NOT_FOUND", "pragmas_8h.html#aaf76fa59ca11fddfcd88264e4e898cbd", null ],
+    [ "ARCH_PRAGMA_INSTANTIATION_AFTER_SPECIALIZATION", "pragmas_8h.html#af6b8ff88930734eef61a4001a83f6c23", null ],
+    [ "ARCH_PRAGMA_MACRO_REDEFINITION", "pragmas_8h.html#a44d94020dae9e6c54bcc2c288f2adbd0", null ],
+    [ "ARCH_PRAGMA_MACRO_TOO_FEW_ARGUMENTS", "pragmas_8h.html#abe3732e88c1c618715e352f91c9c5c06", null ],
+    [ "ARCH_PRAGMA_MAY_NOT_BE_ALIGNED", "pragmas_8h.html#a58408ddf98be4fe43e6d6a918429933c", null ],
+    [ "ARCH_PRAGMA_MAYBE_UNINITIALIZED", "pragmas_8h.html#a19c26858aa304b2ba7aabc5765bd48f5", null ],
+    [ "ARCH_PRAGMA_NEEDS_EXPORT_INTERFACE", "pragmas_8h.html#aa3ef3b621b1267130ed0edad4f6a33ea", null ],
+    [ "ARCH_PRAGMA_POP", "pragmas_8h.html#a4f9b9e6edf9a2d36e011df648bc65d00", null ],
+    [ "ARCH_PRAGMA_POP_MACRO", "pragmas_8h.html#a485ce3712964e44e7b244950a0a3b392", null ],
+    [ "ARCH_PRAGMA_PUSH", "pragmas_8h.html#a6c906c2b2b7a576c83dcef38ed759ec3", null ],
+    [ "ARCH_PRAGMA_PUSH_MACRO", "pragmas_8h.html#a7b92aaacb5d1e503fee02b27be369f02", null ],
+    [ "ARCH_PRAGMA_QUALIFIER_HAS_NO_MEANING", "pragmas_8h.html#ae9c6e3c4debdf839c7b9b3459bd20947", null ],
+    [ "ARCH_PRAGMA_SHIFT_TO_64_BITS", "pragmas_8h.html#a9933cd69129bcb73bbbc4c569e4f2289", null ],
+    [ "ARCH_PRAGMA_UNARY_MINUS_ON_UNSIGNED", "pragmas_8h.html#aacf8e4b73ec839b8e365ac647922bf83", null ],
+    [ "ARCH_PRAGMA_UNDEFINED_VAR_TEMPLATE", "pragmas_8h.html#adc5387d82b171b3bb664b5669e3e2810", null ],
+    [ "ARCH_PRAGMA_UNSAFE_USE_OF_BOOL", "pragmas_8h.html#ab7ca199ab751fecb97b9ff76f184b60a", null ],
+    [ "ARCH_PRAGMA_UNUSED_FUNCTION", "pragmas_8h.html#a512e1c4f522fd0a30bb6e737631c08e1", null ],
+    [ "ARCH_PRAGMA_UNUSED_PRIVATE_FIELD", "pragmas_8h.html#a853567ce6767f14ee37757660d963bd8", null ],
+    [ "ARCH_PRAGMA_WRITE_STRINGS", "pragmas_8h.html#a81f1bbdaf40af526bc23b1abcfdf479e", null ],
+    [ "ARCH_PRAGMA_ZERO_SIZED_STRUCT", "pragmas_8h.html#af9d3b29a3513a143d4b07a958442b29d", null ]
+];

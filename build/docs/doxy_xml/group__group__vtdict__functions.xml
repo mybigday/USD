@@ -1,0 +1,287 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="group__group__vtdict__functions" kind="group">
+    <compoundname>group_vtdict_functions</compoundname>
+    <title>VtDictionary Functions</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__group__vtdict__functions_1gaa1b59cce384f60ecb2e302eb7ee591e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool VtDictionaryIsHolding</definition>
+        <argsstring>(const VtDictionary &amp;dictionary, const std::string &amp;key)</argsstring>
+        <name>VtDictionaryIsHolding</name>
+        <param>
+          <type>const <ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> &amp;</type>
+          <declname>dictionary</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if <computeroutput>dictionary</computeroutput> contains <computeroutput>key</computeroutput> and the corresponding value is of type <computeroutput>T</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/vt/dictionary.h" line="416" column="1" bodyfile="pxr/base/vt/dictionary.h" bodystart="416" bodyend="425"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__vtdict__functions_1ga6856fbc9c4bbdf905a5eddebb4eb5b28" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>const T &amp;</type>
+        <definition>const T&amp; VtDictionaryGet</definition>
+        <argsstring>(const VtDictionary &amp;dictionary, const std::string &amp;key)</argsstring>
+        <name>VtDictionaryGet</name>
+        <param>
+          <type>const <ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> &amp;</type>
+          <declname>dictionary</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Return a value held in a <ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> by reference. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>key</computeroutput> is in <computeroutput>dictionary</computeroutput> and the corresponding value is of type <computeroutput>T</computeroutput>, returns a reference to the value.</para>
+<para><simplesect kind="remark"><para>If <computeroutput>key</computeroutput> is not in <computeroutput>dictionary</computeroutput>, or the value for <computeroutput>key</computeroutput> is of the wrong type, a fatal error occurs, so clients should always call VtDictionaryIsHolding first. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/vt/dictionary.h" line="454" column="1" bodyfile="pxr/base/vt/dictionary.h" bodystart="454" bodyend="464"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__vtdict__functions_1ga530a7a2574bac3cdee2aa9e473bb5318" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+          <param>
+            <type>class U</type>
+          </param>
+        </templateparamlist>
+        <type>T</type>
+        <definition>T VtDictionaryGet</definition>
+        <argsstring>(const VtDictionary &amp;dictionary, const std::string &amp;key, Vt_DefaultHolder&lt; U &gt; const &amp;def)</argsstring>
+        <name>VtDictionaryGet</name>
+        <param>
+          <type>const <ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> &amp;</type>
+          <declname>dictionary</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>Vt_DefaultHolder&lt; U &gt; const &amp;</type>
+          <declname>def</declname>
+        </param>
+        <briefdescription>
+<para>Return a value held in a <ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref>, or a default value either if the supplied key is missing or if the types do not match. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For example, this code will get a bool value under key &quot;key&quot; if &quot;key&quot; has a boolean value in the dictionary. If there is no such key, or the value under the key is not a bool, the specified default (false) is returned.</para>
+<para><programlisting><codeline><highlight class="normal">bool<sp/>val<sp/>=<sp/>VtDictionaryGet&lt;bool&gt;(dict,<sp/>&quot;key&quot;,<sp/>VtDefault<sp/>=<sp/>false);</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/vt/dictionary.h" line="517" column="1" bodyfile="pxr/base/vt/dictionary.h" bodystart="517" bodyend="525"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__vtdict__functions_1gaa0d953dd29a8c20f3c84f24b84425610" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VT_API <ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref></type>
+        <definition>VT_API VtDictionary VtDictionaryOver</definition>
+        <argsstring>(const VtDictionary &amp;strong, const VtDictionary &amp;weak, bool coerceToWeakerOpinionType=false)</argsstring>
+        <name>VtDictionaryOver</name>
+        <param>
+          <type>const <ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> &amp;</type>
+          <declname>strong</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> &amp;</type>
+          <declname>weak</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>coerceToWeakerOpinionType</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Creates a dictionary containing <computeroutput>strong</computeroutput> composed over <computeroutput>weak</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The new dictionary will contain all key-value pairs from <computeroutput>strong</computeroutput> together with the key-value pairs from <computeroutput>weak</computeroutput> whose keys are not in <computeroutput>strong</computeroutput>.</para>
+<para>If <computeroutput>coerceToWeakerOpinionType</computeroutput> is <computeroutput>true</computeroutput> then coerce a strong value to the weaker value&apos;s type, if there is a weaker value. This is mainly intended to promote to enum types. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/vt/dictionary.h" line="553" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__vtdict__functions_1ga658b4e210772d24c2c60f1a777c83c98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VT_API void</type>
+        <definition>VT_API void VtDictionaryOver</definition>
+        <argsstring>(VtDictionary *strong, const VtDictionary &amp;weak, bool coerceToWeakerOpinionType=false)</argsstring>
+        <name>VtDictionaryOver</name>
+        <param>
+          <type><ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> *</type>
+          <declname>strong</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> &amp;</type>
+          <declname>weak</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>coerceToWeakerOpinionType</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Updates <computeroutput>strong</computeroutput> to become <computeroutput>strong</computeroutput> composed over <computeroutput>weak</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The updated contents of <computeroutput>strong</computeroutput> will be all key-value pairs from <computeroutput>strong</computeroutput> together with the key-value pairs from <computeroutput>weak</computeroutput> whose keys are not in <computeroutput>strong</computeroutput>.</para>
+<para>If <computeroutput>coerceToWeakerOpinionType</computeroutput> is <computeroutput>true</computeroutput> then coerce a strong value to the weaker value&apos;s type, if there is a weaker value. This is mainly intended to promote to enum types. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/vt/dictionary.h" line="568" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__vtdict__functions_1ga3c965ee8af34927ce4f6a2c2e7a7fc56" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VT_API void</type>
+        <definition>VT_API void VtDictionaryOver</definition>
+        <argsstring>(const VtDictionary &amp;strong, VtDictionary *weak, bool coerceToWeakerOpinionType=false)</argsstring>
+        <name>VtDictionaryOver</name>
+        <param>
+          <type>const <ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> &amp;</type>
+          <declname>strong</declname>
+        </param>
+        <param>
+          <type><ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> *</type>
+          <declname>weak</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>coerceToWeakerOpinionType</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Updates <computeroutput>weak</computeroutput> to become <computeroutput>strong</computeroutput> composed over <computeroutput>weak</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The updated contents of <computeroutput>weak</computeroutput> will be all key-value pairs from <computeroutput>strong</computeroutput> together with the key-value pairs from <computeroutput>weak</computeroutput> whose keys are not in <computeroutput>strong</computeroutput>.</para>
+<para>If <computeroutput>coerceToWeakerOpinionType</computeroutput> is <computeroutput>true</computeroutput> then coerce a strong value to the weaker value&apos;s type, if there is a weaker value. This is mainly intended to promote to enum types. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/vt/dictionary.h" line="583" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__vtdict__functions_1ga4d63147e46c84e5a985d454ec803996a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VT_API <ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref></type>
+        <definition>VT_API VtDictionary VtDictionaryOverRecursive</definition>
+        <argsstring>(const VtDictionary &amp;strong, const VtDictionary &amp;weak, bool coerceToWeakerOpinionType=false)</argsstring>
+        <name>VtDictionaryOverRecursive</name>
+        <param>
+          <type>const <ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> &amp;</type>
+          <declname>strong</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> &amp;</type>
+          <declname>weak</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>coerceToWeakerOpinionType</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Returns a dictionary containing <computeroutput>strong</computeroutput> recursively composed over <computeroutput>weak</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The new dictionary will be all key-value pairs from <computeroutput>strong</computeroutput> together with the key-value pairs from <computeroutput>weak</computeroutput> whose keys are not in <computeroutput>strong</computeroutput>.</para>
+<para>If a value for a key is in turn a dictionary, and both <emphasis>strong</emphasis> and <emphasis>weak</emphasis> have values for that key, then the result may not contain strong&apos;s exact value for the subdict. Rather, the result will contain a subdict that is the result of a recursive call to this method. Hence, the subdict, too, will contain values from <emphasis>weak</emphasis> that are not found in <emphasis>strong</emphasis>.</para>
+<para>If <computeroutput>coerceToWeakerOpinionType</computeroutput> is <computeroutput>true</computeroutput> then coerce a strong value to the weaker value&apos;s type, if there is a weaker value. This is mainly intended to promote to enum types. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/vt/dictionary.h" line="605" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__vtdict__functions_1gafe8c8fe7bfd587c0a28947aaad7453c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VT_API void</type>
+        <definition>VT_API void VtDictionaryOverRecursive</definition>
+        <argsstring>(VtDictionary *strong, const VtDictionary &amp;weak, bool coerceToWeakerOpinionType=false)</argsstring>
+        <name>VtDictionaryOverRecursive</name>
+        <param>
+          <type><ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> *</type>
+          <declname>strong</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> &amp;</type>
+          <declname>weak</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>coerceToWeakerOpinionType</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Updates <computeroutput>strong</computeroutput> to become <computeroutput>strong</computeroutput> composed recursively over <computeroutput>weak</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The updated contents of <computeroutput>strong</computeroutput> will be all key-value pairs from <computeroutput>strong</computeroutput> together with the key-value pairs from <computeroutput>weak</computeroutput> whose keys are not in <computeroutput>strong</computeroutput>.</para>
+<para>If a value for a key is in turn a dictionary, and both <emphasis>strong</emphasis> and <emphasis>weak</emphasis> have values for that key, then <emphasis>strong&apos;s</emphasis> subdict may not be left untouched. Rather, the dictionary will be replaced by the result of a recursive call to this method in which <emphasis>strong&apos;s</emphasis> subdictionary will have entries added if they are contained in <emphasis>weak</emphasis> but not in <emphasis>strong</emphasis> </para>
+<para>If <computeroutput>coerceToWeakerOpinionType</computeroutput> is <computeroutput>true</computeroutput> then coerce a strong value to the weaker value&apos;s type, if there is a weaker value. This is mainly intended to promote to enum types. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/vt/dictionary.h" line="626" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__vtdict__functions_1ga7e0e2858bb041975fb60ccf1baff803a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VT_API void</type>
+        <definition>VT_API void VtDictionaryOverRecursive</definition>
+        <argsstring>(const VtDictionary &amp;strong, VtDictionary *weak, bool coerceToWeakerOpinionType=false)</argsstring>
+        <name>VtDictionaryOverRecursive</name>
+        <param>
+          <type>const <ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> &amp;</type>
+          <declname>strong</declname>
+        </param>
+        <param>
+          <type><ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> *</type>
+          <declname>weak</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>coerceToWeakerOpinionType</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Updates <computeroutput>weak</computeroutput> to become <computeroutput>strong</computeroutput> composed recursively over <computeroutput>weak</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The updated contents of <computeroutput>weak</computeroutput> will be all key-value pairs from <computeroutput>strong</computeroutput> together with the key-value pairs from <computeroutput>weak</computeroutput> whose keys are not in <computeroutput>strong</computeroutput>.</para>
+<para>If a value is in turn a dictionary, the dictionary in <emphasis>weak</emphasis> may not be replaced wholesale by that of <emphasis>strong</emphasis>. Rather, the dictionary will be replaced by the result of a recursive call to this method in which <emphasis>weak&apos;s</emphasis> subdictionary is recursively overlayed by <emphasis>strong&apos;s</emphasis> subdictionary.</para>
+<para>The result is that no key/value pairs of <emphasis>will</emphasis> be lost in nested dictionaries. Rather, only non-dictionary values will be overwritten</para>
+<para>If <computeroutput>coerceToWeakerOpinionType</computeroutput> is <computeroutput>true</computeroutput> then coerce a strong value to the weaker value&apos;s type, if there is a weaker value. This is mainly intended to promote to enum types. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/vt/dictionary.h" line="650" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Functions for manipulating <ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> objects. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

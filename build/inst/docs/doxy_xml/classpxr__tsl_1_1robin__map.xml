@@ -1,0 +1,2761 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classpxr__tsl_1_1robin__map" kind="class" language="C++" prot="public">
+    <compoundname>pxr_tsl::robin_map</compoundname>
+    <includes refid="robin__map_8h" local="no">robin_map.h</includes>
+    <innerclass refid="classpxr__tsl_1_1robin__map_1_1_key_select" prot="private">pxr_tsl::robin_map::KeySelect</innerclass>
+    <innerclass refid="classpxr__tsl_1_1robin__map_1_1_value_select" prot="private">pxr_tsl::robin_map::ValueSelect</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>Key</declname>
+        <defname>Key</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>Hash</declname>
+        <defname>Hash</defname>
+        <defval>std::hash&lt;Key&gt;</defval>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>KeyEqual</declname>
+        <defname>KeyEqual</defname>
+        <defval>std::equal_to&lt;Key&gt;</defval>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>Allocator</declname>
+        <defname>Allocator</defname>
+        <defval>std::allocator&lt;std::pair&lt;Key, T&gt;&gt;</defval>
+      </param>
+      <param>
+        <type>bool</type>
+        <declname>StoreHash</declname>
+        <defname>StoreHash</defname>
+        <defval>false</defval>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>GrowthPolicy</declname>
+        <defname>GrowthPolicy</defname>
+        <defval><ref refid="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy" kindref="compound">pxr_tsl::rh::power_of_two_growth_policy</ref>&lt;2&gt;</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classpxr__tsl_1_1robin__map_1a657de4a33eb936996e50fc25d87a634c" prot="private" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename U</type>
+          </param>
+        </templateparamlist>
+        <type>pxr_tsl::detail_robin_hash::has_is_transparent&lt; U &gt;</type>
+        <definition>using has_is_transparent =  pxr_tsl::detail_robin_hash::has_is_transparent&lt;U&gt;</definition>
+        <argsstring></argsstring>
+        <name>has_is_transparent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="99" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1robin__map_1a7c4d1d459d4b712ae6ea0db0730f1b3a" prot="private" static="no">
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash" kindref="compound">detail_robin_hash::robin_hash</ref>&lt; std::pair&lt; Key, T &gt;, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy &gt;</type>
+        <definition>using ht =  detail_robin_hash::robin_hash&lt;std::pair&lt;Key, T&gt;, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy&gt;</definition>
+        <argsstring></argsstring>
+        <name>ht</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="129" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classpxr__tsl_1_1robin__map_1a71ca9361ab9a9ce293c143de1b9d782d" prot="public" static="no">
+        <type>typename ht::key_type</type>
+        <definition>using key_type =  typename ht::key_type</definition>
+        <argsstring></argsstring>
+        <name>key_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="134" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1robin__map_1a4a7e20d07107ab91e14fd38ff522a217" prot="public" static="no">
+        <type>T</type>
+        <definition>using mapped_type =  T</definition>
+        <argsstring></argsstring>
+        <name>mapped_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="135" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1robin__map_1a1d5e40ba2cc5604846158297136dd06f" prot="public" static="no">
+        <type>typename ht::value_type</type>
+        <definition>using value_type =  typename ht::value_type</definition>
+        <argsstring></argsstring>
+        <name>value_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="136" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1robin__map_1a4e12d06075970f30d6fa98909e1f2275" prot="public" static="no">
+        <type>typename ht::size_type</type>
+        <definition>using size_type =  typename ht::size_type</definition>
+        <argsstring></argsstring>
+        <name>size_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="137" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1robin__map_1a5fd75f23bdd81e8486824de421f0b277" prot="public" static="no">
+        <type>typename ht::difference_type</type>
+        <definition>using difference_type =  typename ht::difference_type</definition>
+        <argsstring></argsstring>
+        <name>difference_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="138" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1robin__map_1a2bde34e4cf112d1229eae845e9eeadfc" prot="public" static="no">
+        <type>typename ht::hasher</type>
+        <definition>using hasher =  typename ht::hasher</definition>
+        <argsstring></argsstring>
+        <name>hasher</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="139" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1robin__map_1a4b5c2bdf28a83e3c786459f5ce7de13b" prot="public" static="no">
+        <type>typename ht::key_equal</type>
+        <definition>using key_equal =  typename ht::key_equal</definition>
+        <argsstring></argsstring>
+        <name>key_equal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="140" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1robin__map_1abf75b8d8f1c5582ed054a753633fcdcd" prot="public" static="no">
+        <type>typename ht::allocator_type</type>
+        <definition>using allocator_type =  typename ht::allocator_type</definition>
+        <argsstring></argsstring>
+        <name>allocator_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="141" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1robin__map_1ad7f6fba9addb50291cd00da9bbdb270e" prot="public" static="no">
+        <type>typename ht::reference</type>
+        <definition>using reference =  typename ht::reference</definition>
+        <argsstring></argsstring>
+        <name>reference</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="142" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1robin__map_1a88c079b4c90fca49f20794ef595bd45c" prot="public" static="no">
+        <type>typename ht::const_reference</type>
+        <definition>using const_reference =  typename ht::const_reference</definition>
+        <argsstring></argsstring>
+        <name>const_reference</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="143" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1robin__map_1a6df36618f79468bfe70da25ba6cae230" prot="public" static="no">
+        <type>typename ht::pointer</type>
+        <definition>using pointer =  typename ht::pointer</definition>
+        <argsstring></argsstring>
+        <name>pointer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="144" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1robin__map_1abc31d826a168689abe121f7c958eb64f" prot="public" static="no">
+        <type>typename ht::const_pointer</type>
+        <definition>using const_pointer =  typename ht::const_pointer</definition>
+        <argsstring></argsstring>
+        <name>const_pointer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="145" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1robin__map_1a257c17d47f641f36507c5059d94b0fb0" prot="public" static="no">
+        <type>typename ht::iterator</type>
+        <definition>using iterator =  typename ht::iterator</definition>
+        <argsstring></argsstring>
+        <name>iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="146" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classpxr__tsl_1_1robin__map_1a3cca28ef8650f3ee6d12684b8b5172b4" prot="public" static="no">
+        <type>typename ht::const_iterator</type>
+        <definition>using const_iterator =  typename ht::const_iterator</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="147" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classpxr__tsl_1_1robin__map_1a9080879390c54de5c88475a6e4d92c42" prot="private" static="no" mutable="no">
+        <type><ref refid="classpxr__tsl_1_1detail__robin__hash_1_1robin__hash" kindref="compound">ht</ref></type>
+        <definition>ht m_ht</definition>
+        <argsstring></argsstring>
+        <name>m_ht</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="796" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="796" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1ab7410e470cf7f91af42483cc9d4fec97" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robin_map</definition>
+        <argsstring>()</argsstring>
+        <name>robin_map</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="153" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="153" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a1068567d3c4cd4b384c93499596ae924" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robin_map</definition>
+        <argsstring>(size_type bucket_count, const Hash &amp;hash=Hash(), const KeyEqual &amp;equal=KeyEqual(), const Allocator &amp;alloc=Allocator())</argsstring>
+        <name>robin_map</name>
+        <param>
+          <type>size_type</type>
+          <declname>bucket_count</declname>
+        </param>
+        <param>
+          <type>const Hash &amp;</type>
+          <declname>hash</declname>
+          <defval>Hash()</defval>
+        </param>
+        <param>
+          <type>const KeyEqual &amp;</type>
+          <declname>equal</declname>
+          <defval>KeyEqual()</defval>
+        </param>
+        <param>
+          <type>const Allocator &amp;</type>
+          <declname>alloc</declname>
+          <defval>Allocator()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="155" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="155" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a77d0a31132315c6061dc91f7db4ba178" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robin_map</definition>
+        <argsstring>(size_type bucket_count, const Allocator &amp;alloc)</argsstring>
+        <name>robin_map</name>
+        <param>
+          <type>size_type</type>
+          <declname>bucket_count</declname>
+        </param>
+        <param>
+          <type>const Allocator &amp;</type>
+          <declname>alloc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="160" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="160" bodyend="161"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a5dc0422ea717df83b7d13fb1f6cc24a0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robin_map</definition>
+        <argsstring>(size_type bucket_count, const Hash &amp;hash, const Allocator &amp;alloc)</argsstring>
+        <name>robin_map</name>
+        <param>
+          <type>size_type</type>
+          <declname>bucket_count</declname>
+        </param>
+        <param>
+          <type>const Hash &amp;</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>const Allocator &amp;</type>
+          <declname>alloc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="163" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="163" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a29b118efa6b3d33349d84be194c2df92" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robin_map</definition>
+        <argsstring>(const Allocator &amp;alloc)</argsstring>
+        <name>robin_map</name>
+        <param>
+          <type>const Allocator &amp;</type>
+          <declname>alloc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="166" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="166" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a8fc903d3013e954bd6429bf2237b20df" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class InputIt</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>robin_map</definition>
+        <argsstring>(InputIt first, InputIt last, size_type bucket_count=ht::DEFAULT_INIT_BUCKETS_SIZE, const Hash &amp;hash=Hash(), const KeyEqual &amp;equal=KeyEqual(), const Allocator &amp;alloc=Allocator())</argsstring>
+        <name>robin_map</name>
+        <param>
+          <type>InputIt</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>InputIt</type>
+          <declname>last</declname>
+        </param>
+        <param>
+          <type>size_type</type>
+          <declname>bucket_count</declname>
+          <defval>ht::DEFAULT_INIT_BUCKETS_SIZE</defval>
+        </param>
+        <param>
+          <type>const Hash &amp;</type>
+          <declname>hash</declname>
+          <defval>Hash()</defval>
+        </param>
+        <param>
+          <type>const KeyEqual &amp;</type>
+          <declname>equal</declname>
+          <defval>KeyEqual()</defval>
+        </param>
+        <param>
+          <type>const Allocator &amp;</type>
+          <declname>alloc</declname>
+          <defval>Allocator()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="170" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="170" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a402f57f2cbceb079a1902f498243c718" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class InputIt</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>robin_map</definition>
+        <argsstring>(InputIt first, InputIt last, size_type bucket_count, const Allocator &amp;alloc)</argsstring>
+        <name>robin_map</name>
+        <param>
+          <type>InputIt</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>InputIt</type>
+          <declname>last</declname>
+        </param>
+        <param>
+          <type>size_type</type>
+          <declname>bucket_count</declname>
+        </param>
+        <param>
+          <type>const Allocator &amp;</type>
+          <declname>alloc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="179" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="179" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1af4a926154b09913d4fbfdf3f86282b5c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class InputIt</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>robin_map</definition>
+        <argsstring>(InputIt first, InputIt last, size_type bucket_count, const Hash &amp;hash, const Allocator &amp;alloc)</argsstring>
+        <name>robin_map</name>
+        <param>
+          <type>InputIt</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>InputIt</type>
+          <declname>last</declname>
+        </param>
+        <param>
+          <type>size_type</type>
+          <declname>bucket_count</declname>
+        </param>
+        <param>
+          <type>const Hash &amp;</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>const Allocator &amp;</type>
+          <declname>alloc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="184" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="184" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a6e061862f8d2731f77218f1b74f493d0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robin_map</definition>
+        <argsstring>(std::initializer_list&lt; value_type &gt; init, size_type bucket_count=ht::DEFAULT_INIT_BUCKETS_SIZE, const Hash &amp;hash=Hash(), const KeyEqual &amp;equal=KeyEqual(), const Allocator &amp;alloc=Allocator())</argsstring>
+        <name>robin_map</name>
+        <param>
+          <type>std::initializer_list&lt; value_type &gt;</type>
+          <declname>init</declname>
+        </param>
+        <param>
+          <type>size_type</type>
+          <declname>bucket_count</declname>
+          <defval>ht::DEFAULT_INIT_BUCKETS_SIZE</defval>
+        </param>
+        <param>
+          <type>const Hash &amp;</type>
+          <declname>hash</declname>
+          <defval>Hash()</defval>
+        </param>
+        <param>
+          <type>const KeyEqual &amp;</type>
+          <declname>equal</declname>
+          <defval>KeyEqual()</defval>
+        </param>
+        <param>
+          <type>const Allocator &amp;</type>
+          <declname>alloc</declname>
+          <defval>Allocator()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="188" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="188" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a4e5161c02e492a4eaff1a85e47ad0292" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robin_map</definition>
+        <argsstring>(std::initializer_list&lt; value_type &gt; init, size_type bucket_count, const Allocator &amp;alloc)</argsstring>
+        <name>robin_map</name>
+        <param>
+          <type>std::initializer_list&lt; value_type &gt;</type>
+          <declname>init</declname>
+        </param>
+        <param>
+          <type>size_type</type>
+          <declname>bucket_count</declname>
+        </param>
+        <param>
+          <type>const Allocator &amp;</type>
+          <declname>alloc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="194" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="194" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1abaea6a0df4e316ae99b1263979e845be" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>robin_map</definition>
+        <argsstring>(std::initializer_list&lt; value_type &gt; init, size_type bucket_count, const Hash &amp;hash, const Allocator &amp;alloc)</argsstring>
+        <name>robin_map</name>
+        <param>
+          <type>std::initializer_list&lt; value_type &gt;</type>
+          <declname>init</declname>
+        </param>
+        <param>
+          <type>size_type</type>
+          <declname>bucket_count</declname>
+        </param>
+        <param>
+          <type>const Hash &amp;</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>const Allocator &amp;</type>
+          <declname>alloc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="199" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="199" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a421be944048856f53edcb062f940e3ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classpxr__tsl_1_1robin__map" kindref="compound">robin_map</ref> &amp;</type>
+        <definition>robin_map&amp; operator=</definition>
+        <argsstring>(std::initializer_list&lt; value_type &gt; ilist)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>std::initializer_list&lt; value_type &gt;</type>
+          <declname>ilist</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="204" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="204" bodyend="211"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a6e99c6263568d88f95ca01dc694f1051" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>allocator_type</type>
+        <definition>allocator_type get_allocator</definition>
+        <argsstring>() const</argsstring>
+        <name>get_allocator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="213" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="213" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a979556eb331ec35eb33472a90a160f99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator begin</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="218" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="218" bodyend="218"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a1ca1fc2c9fc3e169d5d0decfd1e54221" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator begin</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="219" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="219" bodyend="219"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1abeb76f7f3414f270020e6f467586bd93" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator cbegin</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>cbegin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="220" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="220" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1afc5380afa64b233d0df01a147616974b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator end</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="222" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="222" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a5b9b57293fae9b18b26349ac0b3fdcd3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator end</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="223" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="223" bodyend="223"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a9859a454bb6f50c654e280274d6a9d13" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator cend</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>cend</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="224" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="224" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a3f6fc5de06a318920d84f3c3742db07f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool empty</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="229" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="229" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a0801762a3fe36fe32dca5f16e515478d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_type</type>
+        <definition>size_type size</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="230" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="230" bodyend="230"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1ac2a85e463df4e95c1bf051cfb8237805" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_type</type>
+        <definition>size_type max_size</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>max_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="231" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="231" bodyend="231"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a03bfacfaaba9195e4498375659f43531" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void clear</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>clear</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="236" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="236" bodyend="236"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a89db0a18088925c423aaa5ec00d02705" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::pair&lt; iterator, bool &gt;</type>
+        <definition>std::pair&lt;iterator, bool&gt; insert</definition>
+        <argsstring>(const value_type &amp;value)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>const value_type &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="238" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="238" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a15fbf1deb9ee5b30985eb1b0b658f3a7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class P</type>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; std::is_constructible&lt; value_type, P &amp;&amp; &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; iterator, bool &gt;</type>
+        <definition>std::pair&lt;iterator, bool&gt; insert</definition>
+        <argsstring>(P &amp;&amp;value)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>P &amp;&amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="244" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="244" bodyend="246"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1ab034948893161a8e02cd8f8b7c91fb07" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::pair&lt; iterator, bool &gt;</type>
+        <definition>std::pair&lt;iterator, bool&gt; insert</definition>
+        <argsstring>(value_type &amp;&amp;value)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>value_type &amp;&amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="248" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="248" bodyend="250"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1ae4c3c7c7ef9f0e53751e927447e07b26" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator insert</definition>
+        <argsstring>(const_iterator hint, const value_type &amp;value)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>const_iterator</type>
+          <declname>hint</declname>
+        </param>
+        <param>
+          <type>const value_type &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="252" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="252" bodyend="254"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a04e9e33159347316d3f00e480cf05dad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class P</type>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; std::is_constructible&lt; value_type, P &amp;&amp; &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>iterator</type>
+        <definition>iterator insert</definition>
+        <argsstring>(const_iterator hint, P &amp;&amp;value)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>const_iterator</type>
+          <declname>hint</declname>
+        </param>
+        <param>
+          <type>P &amp;&amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="258" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="258" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1ab0f735db4267778060c126f8925a4569" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator insert</definition>
+        <argsstring>(const_iterator hint, value_type &amp;&amp;value)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>const_iterator</type>
+          <declname>hint</declname>
+        </param>
+        <param>
+          <type>value_type &amp;&amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="262" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="262" bodyend="264"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a327bfe8ae1f7565885bce845f31eaca1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class InputIt</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void insert</definition>
+        <argsstring>(InputIt first, InputIt last)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>InputIt</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>InputIt</type>
+          <declname>last</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="267" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="267" bodyend="269"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1acf6887e321581fe6a77912a5535af4cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void insert</definition>
+        <argsstring>(std::initializer_list&lt; value_type &gt; ilist)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>std::initializer_list&lt; value_type &gt;</type>
+          <declname>ilist</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="271" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="271" bodyend="273"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a273b78d6ae5fd7682c4c508110ca1a26" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class M</type>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; iterator, bool &gt;</type>
+        <definition>std::pair&lt;iterator, bool&gt; insert_or_assign</definition>
+        <argsstring>(const key_type &amp;k, M &amp;&amp;obj)</argsstring>
+        <name>insert_or_assign</name>
+        <param>
+          <type>const key_type &amp;</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>M &amp;&amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="276" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="276" bodyend="278"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a1d6af31328df975c49d410cd530f90e0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class M</type>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; iterator, bool &gt;</type>
+        <definition>std::pair&lt;iterator, bool&gt; insert_or_assign</definition>
+        <argsstring>(key_type &amp;&amp;k, M &amp;&amp;obj)</argsstring>
+        <name>insert_or_assign</name>
+        <param>
+          <type>key_type &amp;&amp;</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>M &amp;&amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="281" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="281" bodyend="283"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a1c6b61c6799f1e405067367143fbd9ef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class M</type>
+          </param>
+        </templateparamlist>
+        <type>iterator</type>
+        <definition>iterator insert_or_assign</definition>
+        <argsstring>(const_iterator hint, const key_type &amp;k, M &amp;&amp;obj)</argsstring>
+        <name>insert_or_assign</name>
+        <param>
+          <type>const_iterator</type>
+          <declname>hint</declname>
+        </param>
+        <param>
+          <type>const key_type &amp;</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>M &amp;&amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="286" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="286" bodyend="288"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a6e7bd50cf7732875f65a33196512b151" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class M</type>
+          </param>
+        </templateparamlist>
+        <type>iterator</type>
+        <definition>iterator insert_or_assign</definition>
+        <argsstring>(const_iterator hint, key_type &amp;&amp;k, M &amp;&amp;obj)</argsstring>
+        <name>insert_or_assign</name>
+        <param>
+          <type>const_iterator</type>
+          <declname>hint</declname>
+        </param>
+        <param>
+          <type>key_type &amp;&amp;</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>M &amp;&amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="291" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="291" bodyend="293"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a3266031b8b423571de004ddf5bcddd24" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; iterator, bool &gt;</type>
+        <definition>std::pair&lt;iterator, bool&gt; emplace</definition>
+        <argsstring>(Args &amp;&amp;... args)</argsstring>
+        <name>emplace</name>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+<para>Due to the way elements are stored, emplace will need to move or copy the key-value once. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The method is equivalent to insert(value_type(std::forward&lt;Args&gt;(args)...));</para>
+<para>Mainly here for compatibility with the std::unordered_map interface. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="303" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="303" bodyend="305"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1aaa893704f6fe9989f1ada11c2c503886" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>iterator</type>
+        <definition>iterator emplace_hint</definition>
+        <argsstring>(const_iterator hint, Args &amp;&amp;... args)</argsstring>
+        <name>emplace_hint</name>
+        <param>
+          <type>const_iterator</type>
+          <declname>hint</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+<para>Due to the way elements are stored, emplace_hint will need to move or copy the key-value once. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The method is equivalent to insert(hint, value_type(std::forward&lt;Args&gt;(args)...));</para>
+<para>Mainly here for compatibility with the std::unordered_map interface. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="315" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="315" bodyend="317"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a0d628483fdcbe735da459a3f2351ac32" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; iterator, bool &gt;</type>
+        <definition>std::pair&lt;iterator, bool&gt; try_emplace</definition>
+        <argsstring>(const key_type &amp;k, Args &amp;&amp;... args)</argsstring>
+        <name>try_emplace</name>
+        <param>
+          <type>const key_type &amp;</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="320" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="320" bodyend="322"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a247b6f83236b79b6c7a551852747d93b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; iterator, bool &gt;</type>
+        <definition>std::pair&lt;iterator, bool&gt; try_emplace</definition>
+        <argsstring>(key_type &amp;&amp;k, Args &amp;&amp;... args)</argsstring>
+        <name>try_emplace</name>
+        <param>
+          <type>key_type &amp;&amp;</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="325" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="325" bodyend="327"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a53e3e443561c8cdeaaec07a43546e283" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>iterator</type>
+        <definition>iterator try_emplace</definition>
+        <argsstring>(const_iterator hint, const key_type &amp;k, Args &amp;&amp;... args)</argsstring>
+        <name>try_emplace</name>
+        <param>
+          <type>const_iterator</type>
+          <declname>hint</declname>
+        </param>
+        <param>
+          <type>const key_type &amp;</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="330" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="330" bodyend="332"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a33533f876a256cf77cfa5cc7743e5a53" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>iterator</type>
+        <definition>iterator try_emplace</definition>
+        <argsstring>(const_iterator hint, key_type &amp;&amp;k, Args &amp;&amp;... args)</argsstring>
+        <name>try_emplace</name>
+        <param>
+          <type>const_iterator</type>
+          <declname>hint</declname>
+        </param>
+        <param>
+          <type>key_type &amp;&amp;</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="335" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="335" bodyend="338"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1af7659d9799f06df763bf397101941dd7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator erase</definition>
+        <argsstring>(iterator pos)</argsstring>
+        <name>erase</name>
+        <param>
+          <type>iterator</type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="340" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="340" bodyend="340"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a29790c28710ec0e64b48c2f4edd0b08c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator erase</definition>
+        <argsstring>(const_iterator pos)</argsstring>
+        <name>erase</name>
+        <param>
+          <type>const_iterator</type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="341" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="341" bodyend="341"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1aa3af768723cd533218ea3d83af440713" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator erase</definition>
+        <argsstring>(const_iterator first, const_iterator last)</argsstring>
+        <name>erase</name>
+        <param>
+          <type>const_iterator</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>const_iterator</type>
+          <declname>last</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="342" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="342" bodyend="344"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1ae57ff6dd1cb4dc347b892dfa87ea6613" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_type</type>
+        <definition>size_type erase</definition>
+        <argsstring>(const key_type &amp;key)</argsstring>
+        <name>erase</name>
+        <param>
+          <type>const key_type &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="345" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="345" bodyend="345"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1aa0f50653fc58cc15e1ecdddf42078e74" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_type</type>
+        <definition>size_type erase</definition>
+        <argsstring>(const key_type &amp;key, std::size_t precalculated_hash)</argsstring>
+        <name>erase</name>
+        <param>
+          <type>const key_type &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>precalculated_hash</declname>
+        </param>
+        <briefdescription>
+<para>Use the hash value &apos;precalculated_hash&apos; instead of hashing the key. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The hash value should be the same as hash_function()(key). Useful to speed-up the lookup to the value if you already have the hash. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="352" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="352" bodyend="354"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1adcb30fce010ea21568f9b6056af45b81" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class KE</type>
+            <defval>KeyEqual</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_is_transparent&lt; KE &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>size_type</type>
+        <definition>size_type erase</definition>
+        <argsstring>(const K &amp;key)</argsstring>
+        <name>erase</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>This overload only participates in the overload resolution if the typedef KeyEqual::is_transparent exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If so, K must be hashable and comparable to Key. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="364" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="364" bodyend="366"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1ae666d3fa05f9584e01e4e733ea7def05" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class KE</type>
+            <defval>KeyEqual</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_is_transparent&lt; KE &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>size_type</type>
+        <definition>size_type erase</definition>
+        <argsstring>(const K &amp;key, std::size_t precalculated_hash)</argsstring>
+        <name>erase</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>precalculated_hash</declname>
+        </param>
+        <briefdescription>
+<para>This overload only participates in the overload resolution if the typedef KeyEqual::is_transparent exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If so, K must be hashable and comparable to Key.</para>
+<para>Use the hash value &apos;precalculated_hash&apos; instead of hashing the key. The hash value should be the same as hash_function()(key). Useful to speed-up the lookup to the value if you already have the hash. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="378" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="378" bodyend="380"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a8fc8a8f8fcf14ed94ff2dee365473956" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void swap</definition>
+        <argsstring>(robin_map &amp;other)</argsstring>
+        <name>swap</name>
+        <param>
+          <type><ref refid="classpxr__tsl_1_1robin__map" kindref="compound">robin_map</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="382" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="382" bodyend="382"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a5fdf120997aed2af4d9f08f9a88bdc4f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T &amp;</type>
+        <definition>T&amp; at</definition>
+        <argsstring>(const Key &amp;key)</argsstring>
+        <name>at</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="387" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="387" bodyend="387"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a8b66aff80545226d490d9a04905a9db5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T &amp;</type>
+        <definition>T&amp; at</definition>
+        <argsstring>(const Key &amp;key, std::size_t precalculated_hash)</argsstring>
+        <name>at</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>precalculated_hash</declname>
+        </param>
+        <briefdescription>
+<para>Use the hash value &apos;precalculated_hash&apos; instead of hashing the key. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The hash value should be the same as hash_function()(key). Useful to speed-up the lookup if you already have the hash. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="394" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="394" bodyend="396"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1af3b972b3d9b337015e8427bf7f4039e2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const T &amp;</type>
+        <definition>const T&amp; at</definition>
+        <argsstring>(const Key &amp;key) const</argsstring>
+        <name>at</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="398" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="398" bodyend="398"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1ac71b3544dac5a7c94d22b2e4bc89cdf3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const T &amp;</type>
+        <definition>const T&amp; at</definition>
+        <argsstring>(const Key &amp;key, std::size_t precalculated_hash) const</argsstring>
+        <name>at</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>precalculated_hash</declname>
+        </param>
+        <briefdescription>
+<para>Use the hash value &apos;precalculated_hash&apos; instead of hashing the key. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The hash value should be the same as hash_function()(key). Useful to speed-up the lookup if you already have the hash. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="403" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="403" bodyend="405"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a0e3fb169febbf71088eb394f997cceb9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class KE</type>
+            <defval>KeyEqual</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_is_transparent&lt; KE &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>T &amp;</type>
+        <definition>T&amp; at</definition>
+        <argsstring>(const K &amp;key)</argsstring>
+        <name>at</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>This overload only participates in the overload resolution if the typedef KeyEqual::is_transparent exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If so, K must be hashable and comparable to Key. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="415" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="415" bodyend="417"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a1559cc866f6082c39a196eebf33dfad8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class KE</type>
+            <defval>KeyEqual</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_is_transparent&lt; KE &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>T &amp;</type>
+        <definition>T&amp; at</definition>
+        <argsstring>(const K &amp;key, std::size_t precalculated_hash)</argsstring>
+        <name>at</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>precalculated_hash</declname>
+        </param>
+        <briefdescription>
+<para>This overload only participates in the overload resolution if the typedef KeyEqual::is_transparent exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If so, K must be hashable and comparable to Key.</para>
+<para>Use the hash value &apos;precalculated_hash&apos; instead of hashing the key. The hash value should be the same as hash_function()(key). Useful to speed-up the lookup if you already have the hash. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="429" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="429" bodyend="431"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a588d387e9112cb7672e1352805f233f2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class KE</type>
+            <defval>KeyEqual</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_is_transparent&lt; KE &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>const T &amp;</type>
+        <definition>const T&amp; at</definition>
+        <argsstring>(const K &amp;key) const</argsstring>
+        <name>at</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>This overload only participates in the overload resolution if the typedef KeyEqual::is_transparent exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If so, K must be hashable and comparable to Key. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="439" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="439" bodyend="441"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a75de79b5baf8cb88e1284aeba85bcab9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class KE</type>
+            <defval>KeyEqual</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_is_transparent&lt; KE &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>const T &amp;</type>
+        <definition>const T&amp; at</definition>
+        <argsstring>(const K &amp;key, std::size_t precalculated_hash) const</argsstring>
+        <name>at</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>precalculated_hash</declname>
+        </param>
+        <briefdescription>
+<para>This overload only participates in the overload resolution if the typedef KeyEqual::is_transparent exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If so, K must be hashable and comparable to Key.</para>
+<para>Use the hash value &apos;precalculated_hash&apos; instead of hashing the key. The hash value should be the same as hash_function()(key). Useful to speed-up the lookup if you already have the hash. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="449" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="449" bodyend="451"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a648458f95c49e85d647702cace4d8ccc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T &amp;</type>
+        <definition>T&amp; operator[]</definition>
+        <argsstring>(const Key &amp;key)</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="453" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="453" bodyend="453"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1ac1b2a42ca08ceea790efd8576077cf88" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T &amp;</type>
+        <definition>T&amp; operator[]</definition>
+        <argsstring>(Key &amp;&amp;key)</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>Key &amp;&amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="454" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="454" bodyend="454"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a06d7b5c3d9ab3cb983dd15a180eefe18" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_type</type>
+        <definition>size_type count</definition>
+        <argsstring>(const Key &amp;key) const</argsstring>
+        <name>count</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="456" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="456" bodyend="456"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a4eefd88b96cf835514fd765dfff0498b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_type</type>
+        <definition>size_type count</definition>
+        <argsstring>(const Key &amp;key, std::size_t precalculated_hash) const</argsstring>
+        <name>count</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>precalculated_hash</declname>
+        </param>
+        <briefdescription>
+<para>Use the hash value &apos;precalculated_hash&apos; instead of hashing the key. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The hash value should be the same as hash_function()(key). Useful to speed-up the lookup if you already have the hash. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="463" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="463" bodyend="465"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1ab9302b6142f9037bb489e6717e0af56b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class KE</type>
+            <defval>KeyEqual</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_is_transparent&lt; KE &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>size_type</type>
+        <definition>size_type count</definition>
+        <argsstring>(const K &amp;key) const</argsstring>
+        <name>count</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>This overload only participates in the overload resolution if the typedef KeyEqual::is_transparent exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If so, K must be hashable and comparable to Key. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="475" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="475" bodyend="477"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1af9a9f3a334c8e885cb68883e252d87d9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class KE</type>
+            <defval>KeyEqual</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_is_transparent&lt; KE &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>size_type</type>
+        <definition>size_type count</definition>
+        <argsstring>(const K &amp;key, std::size_t precalculated_hash) const</argsstring>
+        <name>count</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>precalculated_hash</declname>
+        </param>
+        <briefdescription>
+<para>This overload only participates in the overload resolution if the typedef KeyEqual::is_transparent exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If so, K must be hashable and comparable to Key.</para>
+<para>Use the hash value &apos;precalculated_hash&apos; instead of hashing the key. The hash value should be the same as hash_function()(key). Useful to speed-up the lookup if you already have the hash. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="489" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="489" bodyend="491"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a141abb735cd4a5a9c55326b30bf419ca" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator find</definition>
+        <argsstring>(const Key &amp;key)</argsstring>
+        <name>find</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="493" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="493" bodyend="493"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1aa3d4e52e5fcbace902503a645524760a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator find</definition>
+        <argsstring>(const Key &amp;key, std::size_t precalculated_hash)</argsstring>
+        <name>find</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>precalculated_hash</declname>
+        </param>
+        <briefdescription>
+<para>Use the hash value &apos;precalculated_hash&apos; instead of hashing the key. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The hash value should be the same as hash_function()(key). Useful to speed-up the lookup if you already have the hash. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="500" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="500" bodyend="502"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a68e7605bb212d1d4665e05cebcbde886" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator find</definition>
+        <argsstring>(const Key &amp;key) const</argsstring>
+        <name>find</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="504" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="504" bodyend="504"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a1e129b22f90474ce92d6b2b837554cc1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator find</definition>
+        <argsstring>(const Key &amp;key, std::size_t precalculated_hash) const</argsstring>
+        <name>find</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>precalculated_hash</declname>
+        </param>
+        <briefdescription>
+<para>Use the hash value &apos;precalculated_hash&apos; instead of hashing the key. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The hash value should be the same as hash_function()(key). Useful to speed-up the lookup if you already have the hash. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="509" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="509" bodyend="511"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1ae482efbeca6bc4c4661659f855e05e30" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class KE</type>
+            <defval>KeyEqual</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_is_transparent&lt; KE &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>iterator</type>
+        <definition>iterator find</definition>
+        <argsstring>(const K &amp;key)</argsstring>
+        <name>find</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>This overload only participates in the overload resolution if the typedef KeyEqual::is_transparent exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If so, K must be hashable and comparable to Key. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="521" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="521" bodyend="523"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1aab7e6161d9e44421a88e1127ac703b7e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class KE</type>
+            <defval>KeyEqual</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_is_transparent&lt; KE &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>iterator</type>
+        <definition>iterator find</definition>
+        <argsstring>(const K &amp;key, std::size_t precalculated_hash)</argsstring>
+        <name>find</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>precalculated_hash</declname>
+        </param>
+        <briefdescription>
+<para>This overload only participates in the overload resolution if the typedef KeyEqual::is_transparent exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If so, K must be hashable and comparable to Key.</para>
+<para>Use the hash value &apos;precalculated_hash&apos; instead of hashing the key. The hash value should be the same as hash_function()(key). Useful to speed-up the lookup if you already have the hash. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="535" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="535" bodyend="537"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a900919d13db42a973b642182c837af6f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class KE</type>
+            <defval>KeyEqual</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_is_transparent&lt; KE &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>const_iterator</type>
+        <definition>const_iterator find</definition>
+        <argsstring>(const K &amp;key) const</argsstring>
+        <name>find</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>This overload only participates in the overload resolution if the typedef KeyEqual::is_transparent exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If so, K must be hashable and comparable to Key. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="545" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="545" bodyend="547"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a1c65830a6989831a96514c7dc75613cb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class KE</type>
+            <defval>KeyEqual</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_is_transparent&lt; KE &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>const_iterator</type>
+        <definition>const_iterator find</definition>
+        <argsstring>(const K &amp;key, std::size_t precalculated_hash) const</argsstring>
+        <name>find</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>precalculated_hash</declname>
+        </param>
+        <briefdescription>
+<para>This overload only participates in the overload resolution if the typedef KeyEqual::is_transparent exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If so, K must be hashable and comparable to Key.</para>
+<para>Use the hash value &apos;precalculated_hash&apos; instead of hashing the key. The hash value should be the same as hash_function()(key). Useful to speed-up the lookup if you already have the hash. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="559" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="559" bodyend="561"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a4ba0005e319eda1ba871a1a01be7764e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool contains</definition>
+        <argsstring>(const Key &amp;key) const</argsstring>
+        <name>contains</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="563" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="563" bodyend="563"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a0f5822954e3c2e3debe2db48740892a7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool contains</definition>
+        <argsstring>(const Key &amp;key, std::size_t precalculated_hash) const</argsstring>
+        <name>contains</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>precalculated_hash</declname>
+        </param>
+        <briefdescription>
+<para>Use the hash value &apos;precalculated_hash&apos; instead of hashing the key. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The hash value should be the same as hash_function()(key). Useful to speed-up the lookup if you already have the hash. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="570" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="570" bodyend="572"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1ab1eb6dff57572f9e6e2360c7ca6bd456" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class KE</type>
+            <defval>KeyEqual</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_is_transparent&lt; KE &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool contains</definition>
+        <argsstring>(const K &amp;key) const</argsstring>
+        <name>contains</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>This overload only participates in the overload resolution if the typedef KeyEqual::is_transparent exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If so, K must be hashable and comparable to Key. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="582" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="582" bodyend="584"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a43904eb84db5090ff895ee1d90b3b154" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class KE</type>
+            <defval>KeyEqual</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_is_transparent&lt; KE &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool contains</definition>
+        <argsstring>(const K &amp;key, std::size_t precalculated_hash) const</argsstring>
+        <name>contains</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>precalculated_hash</declname>
+        </param>
+        <briefdescription>
+<para>This overload only participates in the overload resolution if the typedef KeyEqual::is_transparent exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If so, K must be hashable and comparable to Key.</para>
+<para>Use the hash value &apos;precalculated_hash&apos; instead of hashing the key. The hash value should be the same as hash_function()(key). Useful to speed-up the lookup if you already have the hash. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="596" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="596" bodyend="598"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a744c88d4ddecd64d94ac37114ebd0c71" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::pair&lt; iterator, iterator &gt;</type>
+        <definition>std::pair&lt;iterator, iterator&gt; equal_range</definition>
+        <argsstring>(const Key &amp;key)</argsstring>
+        <name>equal_range</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="600" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="600" bodyend="602"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1ac580a1eb1053b5412102ad2d5d6489ca" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::pair&lt; iterator, iterator &gt;</type>
+        <definition>std::pair&lt;iterator, iterator&gt; equal_range</definition>
+        <argsstring>(const Key &amp;key, std::size_t precalculated_hash)</argsstring>
+        <name>equal_range</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>precalculated_hash</declname>
+        </param>
+        <briefdescription>
+<para>Use the hash value &apos;precalculated_hash&apos; instead of hashing the key. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The hash value should be the same as hash_function()(key). Useful to speed-up the lookup if you already have the hash. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="609" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="609" bodyend="612"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1ae66207d9bab00c632610ddb88331cb05" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::pair&lt; const_iterator, const_iterator &gt;</type>
+        <definition>std::pair&lt;const_iterator, const_iterator&gt; equal_range</definition>
+        <argsstring>(const Key &amp;key) const</argsstring>
+        <name>equal_range</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="614" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="614" bodyend="616"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a7211f6328ab446351332e327503ceb5b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::pair&lt; const_iterator, const_iterator &gt;</type>
+        <definition>std::pair&lt;const_iterator, const_iterator&gt; equal_range</definition>
+        <argsstring>(const Key &amp;key, std::size_t precalculated_hash) const</argsstring>
+        <name>equal_range</name>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>precalculated_hash</declname>
+        </param>
+        <briefdescription>
+<para>Use the hash value &apos;precalculated_hash&apos; instead of hashing the key. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The hash value should be the same as hash_function()(key). Useful to speed-up the lookup if you already have the hash. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="621" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="621" bodyend="624"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a063fa547f1200f2f9c464099c28a3366" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class KE</type>
+            <defval>KeyEqual</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_is_transparent&lt; KE &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; iterator, iterator &gt;</type>
+        <definition>std::pair&lt;iterator, iterator&gt; equal_range</definition>
+        <argsstring>(const K &amp;key)</argsstring>
+        <name>equal_range</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>This overload only participates in the overload resolution if the typedef KeyEqual::is_transparent exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If so, K must be hashable and comparable to Key. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="634" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="634" bodyend="636"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a31955f79a9c3cf5b27bd738f633bcb28" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class KE</type>
+            <defval>KeyEqual</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_is_transparent&lt; KE &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; iterator, iterator &gt;</type>
+        <definition>std::pair&lt;iterator, iterator&gt; equal_range</definition>
+        <argsstring>(const K &amp;key, std::size_t precalculated_hash)</argsstring>
+        <name>equal_range</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>precalculated_hash</declname>
+        </param>
+        <briefdescription>
+<para>This overload only participates in the overload resolution if the typedef KeyEqual::is_transparent exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If so, K must be hashable and comparable to Key.</para>
+<para>Use the hash value &apos;precalculated_hash&apos; instead of hashing the key. The hash value should be the same as hash_function()(key). Useful to speed-up the lookup if you already have the hash. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="648" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="648" bodyend="651"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1aab526ba688ea72265ac0f2b21801474b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class KE</type>
+            <defval>KeyEqual</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_is_transparent&lt; KE &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; const_iterator, const_iterator &gt;</type>
+        <definition>std::pair&lt;const_iterator, const_iterator&gt; equal_range</definition>
+        <argsstring>(const K &amp;key) const</argsstring>
+        <name>equal_range</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>This overload only participates in the overload resolution if the typedef KeyEqual::is_transparent exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If so, K must be hashable and comparable to Key. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="659" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="659" bodyend="661"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a5e2535eea8e61800b2682356b3530f53" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class K</type>
+          </param>
+          <param>
+            <type>class KE</type>
+            <defval>KeyEqual</defval>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt; has_is_transparent&lt; KE &gt;::value &gt;::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; const_iterator, const_iterator &gt;</type>
+        <definition>std::pair&lt;const_iterator, const_iterator&gt; equal_range</definition>
+        <argsstring>(const K &amp;key, std::size_t precalculated_hash) const</argsstring>
+        <name>equal_range</name>
+        <param>
+          <type>const K &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>precalculated_hash</declname>
+        </param>
+        <briefdescription>
+<para>This overload only participates in the overload resolution if the typedef KeyEqual::is_transparent exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If so, K must be hashable and comparable to Key.</para>
+<para>Use the hash value &apos;precalculated_hash&apos; instead of hashing the key. The hash value should be the same as hash_function()(key). Useful to speed-up the lookup if you already have the hash. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="669" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="669" bodyend="672"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a2ca98f2678c442ff9bf916525525448b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_type</type>
+        <definition>size_type bucket_count</definition>
+        <argsstring>() const</argsstring>
+        <name>bucket_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="677" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="677" bodyend="677"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a4ae69adb72b0f4809ce9b67a1861b9d3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_type</type>
+        <definition>size_type max_bucket_count</definition>
+        <argsstring>() const</argsstring>
+        <name>max_bucket_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="678" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="678" bodyend="678"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a627db9dbe713266cb53c24cc5332d817" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float load_factor</definition>
+        <argsstring>() const</argsstring>
+        <name>load_factor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="683" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="683" bodyend="683"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1ab53469fa213c4a9351d83175288bed23" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float min_load_factor</definition>
+        <argsstring>() const</argsstring>
+        <name>min_load_factor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="685" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="685" bodyend="685"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a85fbd2f301194e1fc85bcf09ab3308c4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float max_load_factor</definition>
+        <argsstring>() const</argsstring>
+        <name>max_load_factor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="686" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="686" bodyend="686"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a4899ac5f6e805d6796166b308a190988" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void min_load_factor</definition>
+        <argsstring>(float ml)</argsstring>
+        <name>min_load_factor</name>
+        <param>
+          <type>float</type>
+          <declname>ml</declname>
+        </param>
+        <briefdescription>
+<para>Set the <computeroutput>min_load_factor</computeroutput> to <computeroutput>ml</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>When the <computeroutput>load_factor</computeroutput> of the map goes below <computeroutput>min_load_factor</computeroutput> after some erase operations, the map will be shrunk when an insertion occurs. The erase method itself never shrinks the map.</para>
+<para>The default value of <computeroutput>min_load_factor</computeroutput> is 0.0f, the map never shrinks by default. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="697" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="697" bodyend="697"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1ae72e230f99198c334e8c599b8fa4cc12" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void max_load_factor</definition>
+        <argsstring>(float ml)</argsstring>
+        <name>max_load_factor</name>
+        <param>
+          <type>float</type>
+          <declname>ml</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="698" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="698" bodyend="698"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a58bad5e8253ee3308d2a7a47816083bd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void rehash</definition>
+        <argsstring>(size_type count_)</argsstring>
+        <name>rehash</name>
+        <param>
+          <type>size_type</type>
+          <declname>count_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="700" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="700" bodyend="700"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a490a9e62f58529e43aa7ffafa5830f1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void reserve</definition>
+        <argsstring>(size_type count_)</argsstring>
+        <name>reserve</name>
+        <param>
+          <type>size_type</type>
+          <declname>count_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="701" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="701" bodyend="701"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a72ffe2880da1c06d22d90000f9720967" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>hasher</type>
+        <definition>hasher hash_function</definition>
+        <argsstring>() const</argsstring>
+        <name>hash_function</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="706" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="706" bodyend="706"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a10b2be386447b0ab61e83d0f5527b688" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>key_equal</type>
+        <definition>key_equal key_eq</definition>
+        <argsstring>() const</argsstring>
+        <name>key_eq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="707" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="707" bodyend="707"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1aa9a08d0e44e9e00fe05e2dfe467a98b5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator mutable_iterator</definition>
+        <argsstring>(const_iterator pos)</argsstring>
+        <name>mutable_iterator</name>
+        <param>
+          <type>const_iterator</type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+<para>Convert a const_iterator to an iterator. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="716" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="716" bodyend="718"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1afaa50020d576b4292bdd62f16869fb97" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Serializer</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void serialize</definition>
+        <argsstring>(Serializer &amp;serializer) const</argsstring>
+        <name>serialize</name>
+        <param>
+          <type>Serializer &amp;</type>
+          <declname>serializer</declname>
+        </param>
+        <briefdescription>
+<para>Serialize the map through the <computeroutput>serializer</computeroutput> parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The <computeroutput>serializer</computeroutput> parameter must be a function object that supports the following call:<itemizedlist>
+<listitem><para><computeroutput>template&lt;typename U&gt; void operator()(const U&amp; value);</computeroutput> where the types <computeroutput>std::int16_t</computeroutput>, <computeroutput>std::uint32_t</computeroutput>, <computeroutput>std::uint64_t</computeroutput>, <computeroutput>float</computeroutput> and <computeroutput>std::pair&lt;Key, T&gt;</computeroutput> must be supported for U.</para>
+</listitem></itemizedlist>
+</para>
+<para>The implementation leaves binary compatibility (endianness, IEEE 754 for floats, ...) of the types it serializes in the hands of the <computeroutput>Serializer</computeroutput> function object if compatibility is required. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="734" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="734" bodyend="736"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classpxr__tsl_1_1robin__map_1a22890733b2f18b07ecac71014fab9e6c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Deserializer</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classpxr__tsl_1_1robin__map" kindref="compound">robin_map</ref></type>
+        <definition>static robin_map deserialize</definition>
+        <argsstring>(Deserializer &amp;deserializer, bool hash_compatible=false)</argsstring>
+        <name>deserialize</name>
+        <param>
+          <type>Deserializer &amp;</type>
+          <declname>deserializer</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>hash_compatible</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Deserialize a previously serialized map through the <computeroutput>deserializer</computeroutput> parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The <computeroutput>deserializer</computeroutput> parameter must be a function object that supports the following call:<itemizedlist>
+<listitem><para><computeroutput>template&lt;typename U&gt; U operator()();</computeroutput> where the types <computeroutput>std::int16_t</computeroutput>, <computeroutput>std::uint32_t</computeroutput>, <computeroutput>std::uint64_t</computeroutput>, <computeroutput>float</computeroutput> and <computeroutput>std::pair&lt;Key, T&gt;</computeroutput> must be supported for U.</para>
+</listitem></itemizedlist>
+</para>
+<para>If the deserialized hash map type is hash compatible with the serialized map, the deserialization process can be sped up by setting <computeroutput>hash_compatible</computeroutput> to true. To be hash compatible, the Hash, KeyEqual and GrowthPolicy must behave the same way than the ones used on the serialized map and the StoreHash must have the same value. The <computeroutput>std::size_t</computeroutput> must also be of the same size as the one on the platform used to serialize the map. If these criteria are not met, the behaviour is undefined with <computeroutput>hash_compatible</computeroutput> sets to true.</para>
+<para>The behaviour is undefined if the type <computeroutput>Key</computeroutput> and <computeroutput>T</computeroutput> of the <computeroutput><ref refid="classpxr__tsl_1_1robin__map" kindref="compound">robin_map</ref></computeroutput> are not the same as the types used during serialization.</para>
+<para>The implementation leaves binary compatibility (endianness, IEEE 754 for floats, size of int, ...) of the types it deserializes in the hands of the <computeroutput>Deserializer</computeroutput> function object if compatibility is required. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="765" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="765" bodyend="771"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classpxr__tsl_1_1robin__map_1a6f9f96c16441c4c025b121d944fdc026" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend bool</type>
+        <definition>bool operator==</definition>
+        <argsstring>(const robin_map &amp;lhs, const robin_map &amp;rhs)</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="classpxr__tsl_1_1robin__map" kindref="compound">robin_map</ref> &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classpxr__tsl_1_1robin__map" kindref="compound">robin_map</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="773" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="773" bodyend="787"/>
+      </memberdef>
+      <memberdef kind="friend" id="classpxr__tsl_1_1robin__map_1a0bce684f2a3901680d3def8db9f92471" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend bool</type>
+        <definition>bool operator!=</definition>
+        <argsstring>(const robin_map &amp;lhs, const robin_map &amp;rhs)</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type>const <ref refid="classpxr__tsl_1_1robin__map" kindref="compound">robin_map</ref> &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classpxr__tsl_1_1robin__map" kindref="compound">robin_map</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="789" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="789" bodyend="791"/>
+      </memberdef>
+      <memberdef kind="friend" id="classpxr__tsl_1_1robin__map_1a614982dcc0873a246c7cfca6395c6d8f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend void</type>
+        <definition>void swap</definition>
+        <argsstring>(robin_map &amp;lhs, robin_map &amp;rhs)</argsstring>
+        <name>swap</name>
+        <param>
+          <type><ref refid="classpxr__tsl_1_1robin__map" kindref="compound">robin_map</ref> &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type><ref refid="classpxr__tsl_1_1robin__map" kindref="compound">robin_map</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="793" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="793" bodyend="793"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Implementation of a hash map using open-addressing and the robin hood hashing algorithm with backward shift deletion. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>For operations modifying the hash map (insert, erase, rehash, ...), the strong exception guarantee is only guaranteed when the expression <computeroutput>std::is_nothrow_swappable&lt;std::pair&lt;Key, T&gt;&gt;::value &amp;&amp; std::is_nothrow_move_constructible&lt;std::pair&lt;Key, T&gt;&gt;::value</computeroutput> is true, otherwise if an exception is thrown during the swap or the move, the hash map may end up in a undefined state. Per the standard a <computeroutput>Key</computeroutput> or <computeroutput>T</computeroutput> with a noexcept copy constructor and no move constructor also satisfies the <computeroutput>std::is_nothrow_move_constructible&lt;std::pair&lt;Key, T&gt;&gt;::value</computeroutput> criterion (and will thus guarantee the strong exception for the map).</para>
+<para>When <computeroutput>StoreHash</computeroutput> is true, 32 bits of the hash are stored alongside the values. It can improve the performance during lookups if the <computeroutput>KeyEqual</computeroutput> function takes time (if it engenders a cache-miss for example) as we then compare the stored hashes before comparing the keys. When <computeroutput><ref refid="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy" kindref="compound">pxr_tsl::rh::power_of_two_growth_policy</ref></computeroutput> is used as <computeroutput>GrowthPolicy</computeroutput>, it may also speed-up the rehash process as we can avoid to recalculate the hash. When it is detected that storing the hash will not incur any memory penalty due to alignment (i.e. <computeroutput>sizeof(<ref refid="classpxr__tsl_1_1detail__robin__hash_1_1bucket__entry" kindref="compound">pxr_tsl::detail_robin_hash::bucket_entry</ref>&lt;ValueType, true&gt;) == sizeof(<ref refid="classpxr__tsl_1_1detail__robin__hash_1_1bucket__entry" kindref="compound">pxr_tsl::detail_robin_hash::bucket_entry</ref>&lt;ValueType, false&gt;)</computeroutput>) and <computeroutput><ref refid="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy" kindref="compound">pxr_tsl::rh::power_of_two_growth_policy</ref></computeroutput> is used, the hash will be stored even if <computeroutput>StoreHash</computeroutput> is false so that we can speed-up the rehash (but it will not be used on lookups unless <computeroutput>StoreHash</computeroutput> is true).</para>
+<para><computeroutput>GrowthPolicy</computeroutput> defines how the map grows and consequently how a hash value is mapped to a bucket. By default the map uses <computeroutput><ref refid="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy" kindref="compound">pxr_tsl::rh::power_of_two_growth_policy</ref></computeroutput>. This policy keeps the number of buckets to a power of two and uses a mask to map the hash to a bucket instead of the slow modulo. Other growth policies are available and you may define your own growth policy, check <computeroutput><ref refid="classpxr__tsl_1_1rh_1_1power__of__two__growth__policy" kindref="compound">pxr_tsl::rh::power_of_two_growth_policy</ref></computeroutput> for the interface.</para>
+<para><computeroutput>std::pair&lt;Key, T&gt;</computeroutput> must be swappable.</para>
+<para><computeroutput>Key</computeroutput> and <computeroutput>T</computeroutput> must be copy and/or move constructible.</para>
+<para>If the destructor of <computeroutput>Key</computeroutput> or <computeroutput>T</computeroutput> throws an exception, the behaviour of the class is undefined.</para>
+<para>Iterators invalidation:<itemizedlist>
+<listitem><para>clear, operator=, reserve, rehash: always invalidate the iterators.</para>
+</listitem><listitem><para>insert, emplace, emplace_hint, operator[]: if there is an effective insert, invalidate the iterators.</para>
+</listitem><listitem><para>erase: always invalidate the iterators. </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <location file="pxr/base/tf/pxrTslRobinMap/robin_map.h" line="96" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_map.h" bodystart="96" bodyend="797"/>
+    <listofallmembers>
+      <member refid="classpxr__tsl_1_1robin__map_1abf75b8d8f1c5582ed054a753633fcdcd" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>allocator_type</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a5fdf120997aed2af4d9f08f9a88bdc4f" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>at</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a8b66aff80545226d490d9a04905a9db5" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>at</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1af3b972b3d9b337015e8427bf7f4039e2" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>at</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1ac71b3544dac5a7c94d22b2e4bc89cdf3" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>at</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a0e3fb169febbf71088eb394f997cceb9" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>at</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a1559cc866f6082c39a196eebf33dfad8" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>at</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a588d387e9112cb7672e1352805f233f2" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>at</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a75de79b5baf8cb88e1284aeba85bcab9" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>at</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a979556eb331ec35eb33472a90a160f99" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>begin</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a1ca1fc2c9fc3e169d5d0decfd1e54221" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>begin</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a2ca98f2678c442ff9bf916525525448b" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>bucket_count</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1abeb76f7f3414f270020e6f467586bd93" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>cbegin</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a9859a454bb6f50c654e280274d6a9d13" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>cend</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a03bfacfaaba9195e4498375659f43531" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>clear</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a3cca28ef8650f3ee6d12684b8b5172b4" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>const_iterator</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1abc31d826a168689abe121f7c958eb64f" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>const_pointer</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a88c079b4c90fca49f20794ef595bd45c" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>const_reference</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a4ba0005e319eda1ba871a1a01be7764e" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>contains</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a0f5822954e3c2e3debe2db48740892a7" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>contains</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1ab1eb6dff57572f9e6e2360c7ca6bd456" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>contains</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a43904eb84db5090ff895ee1d90b3b154" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>contains</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a06d7b5c3d9ab3cb983dd15a180eefe18" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>count</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a4eefd88b96cf835514fd765dfff0498b" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>count</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1ab9302b6142f9037bb489e6717e0af56b" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>count</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1af9a9f3a334c8e885cb68883e252d87d9" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>count</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a22890733b2f18b07ecac71014fab9e6c" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>deserialize</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a5fd75f23bdd81e8486824de421f0b277" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>difference_type</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a3266031b8b423571de004ddf5bcddd24" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>emplace</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1aaa893704f6fe9989f1ada11c2c503886" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>emplace_hint</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a3f6fc5de06a318920d84f3c3742db07f" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>empty</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1afc5380afa64b233d0df01a147616974b" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>end</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a5b9b57293fae9b18b26349ac0b3fdcd3" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>end</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a744c88d4ddecd64d94ac37114ebd0c71" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>equal_range</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1ac580a1eb1053b5412102ad2d5d6489ca" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>equal_range</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1ae66207d9bab00c632610ddb88331cb05" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>equal_range</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a7211f6328ab446351332e327503ceb5b" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>equal_range</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a063fa547f1200f2f9c464099c28a3366" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>equal_range</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a31955f79a9c3cf5b27bd738f633bcb28" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>equal_range</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1aab526ba688ea72265ac0f2b21801474b" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>equal_range</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a5e2535eea8e61800b2682356b3530f53" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>equal_range</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1af7659d9799f06df763bf397101941dd7" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>erase</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a29790c28710ec0e64b48c2f4edd0b08c" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>erase</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1aa3af768723cd533218ea3d83af440713" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>erase</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1ae57ff6dd1cb4dc347b892dfa87ea6613" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>erase</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1aa0f50653fc58cc15e1ecdddf42078e74" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>erase</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1adcb30fce010ea21568f9b6056af45b81" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>erase</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1ae666d3fa05f9584e01e4e733ea7def05" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>erase</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a141abb735cd4a5a9c55326b30bf419ca" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>find</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1aa3d4e52e5fcbace902503a645524760a" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>find</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a68e7605bb212d1d4665e05cebcbde886" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>find</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a1e129b22f90474ce92d6b2b837554cc1" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>find</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1ae482efbeca6bc4c4661659f855e05e30" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>find</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1aab7e6161d9e44421a88e1127ac703b7e" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>find</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a900919d13db42a973b642182c837af6f" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>find</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a1c65830a6989831a96514c7dc75613cb" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>find</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a6e99c6263568d88f95ca01dc694f1051" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>get_allocator</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a657de4a33eb936996e50fc25d87a634c" prot="private" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>has_is_transparent</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a72ffe2880da1c06d22d90000f9720967" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>hash_function</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a2bde34e4cf112d1229eae845e9eeadfc" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>hasher</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a7c4d1d459d4b712ae6ea0db0730f1b3a" prot="private" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>ht</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a89db0a18088925c423aaa5ec00d02705" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>insert</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a15fbf1deb9ee5b30985eb1b0b658f3a7" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>insert</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1ab034948893161a8e02cd8f8b7c91fb07" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>insert</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1ae4c3c7c7ef9f0e53751e927447e07b26" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>insert</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a04e9e33159347316d3f00e480cf05dad" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>insert</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1ab0f735db4267778060c126f8925a4569" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>insert</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a327bfe8ae1f7565885bce845f31eaca1" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>insert</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1acf6887e321581fe6a77912a5535af4cb" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>insert</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a273b78d6ae5fd7682c4c508110ca1a26" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>insert_or_assign</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a1d6af31328df975c49d410cd530f90e0" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>insert_or_assign</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a1c6b61c6799f1e405067367143fbd9ef" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>insert_or_assign</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a6e7bd50cf7732875f65a33196512b151" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>insert_or_assign</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a257c17d47f641f36507c5059d94b0fb0" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>iterator</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a10b2be386447b0ab61e83d0f5527b688" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>key_eq</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a4b5c2bdf28a83e3c786459f5ce7de13b" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>key_equal</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a71ca9361ab9a9ce293c143de1b9d782d" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>key_type</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a627db9dbe713266cb53c24cc5332d817" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>load_factor</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a9080879390c54de5c88475a6e4d92c42" prot="private" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>m_ht</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a4a7e20d07107ab91e14fd38ff522a217" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>mapped_type</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a4ae69adb72b0f4809ce9b67a1861b9d3" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>max_bucket_count</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a85fbd2f301194e1fc85bcf09ab3308c4" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>max_load_factor</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1ae72e230f99198c334e8c599b8fa4cc12" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>max_load_factor</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1ac2a85e463df4e95c1bf051cfb8237805" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>max_size</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1ab53469fa213c4a9351d83175288bed23" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>min_load_factor</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a4899ac5f6e805d6796166b308a190988" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>min_load_factor</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1aa9a08d0e44e9e00fe05e2dfe467a98b5" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>mutable_iterator</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a0bce684f2a3901680d3def8db9f92471" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>operator!=</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a421be944048856f53edcb062f940e3ee" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>operator=</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a6f9f96c16441c4c025b121d944fdc026" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>operator==</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a648458f95c49e85d647702cace4d8ccc" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>operator[]</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1ac1b2a42ca08ceea790efd8576077cf88" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>operator[]</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a6df36618f79468bfe70da25ba6cae230" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>pointer</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1ad7f6fba9addb50291cd00da9bbdb270e" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>reference</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a58bad5e8253ee3308d2a7a47816083bd" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>rehash</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a490a9e62f58529e43aa7ffafa5830f1b" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>reserve</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1ab7410e470cf7f91af42483cc9d4fec97" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>robin_map</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a1068567d3c4cd4b384c93499596ae924" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>robin_map</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a77d0a31132315c6061dc91f7db4ba178" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>robin_map</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a5dc0422ea717df83b7d13fb1f6cc24a0" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>robin_map</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a29b118efa6b3d33349d84be194c2df92" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>robin_map</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a8fc903d3013e954bd6429bf2237b20df" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>robin_map</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a402f57f2cbceb079a1902f498243c718" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>robin_map</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1af4a926154b09913d4fbfdf3f86282b5c" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>robin_map</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a6e061862f8d2731f77218f1b74f493d0" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>robin_map</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a4e5161c02e492a4eaff1a85e47ad0292" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>robin_map</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1abaea6a0df4e316ae99b1263979e845be" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>robin_map</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1afaa50020d576b4292bdd62f16869fb97" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>serialize</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a0801762a3fe36fe32dca5f16e515478d" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>size</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a4e12d06075970f30d6fa98909e1f2275" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>size_type</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a8fc8a8f8fcf14ed94ff2dee365473956" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>swap</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a614982dcc0873a246c7cfca6395c6d8f" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>swap</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a0d628483fdcbe735da459a3f2351ac32" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>try_emplace</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a247b6f83236b79b6c7a551852747d93b" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>try_emplace</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a53e3e443561c8cdeaaec07a43546e283" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>try_emplace</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a33533f876a256cf77cfa5cc7743e5a53" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>try_emplace</name></member>
+      <member refid="classpxr__tsl_1_1robin__map_1a1d5e40ba2cc5604846158297136dd06f" prot="public" virt="non-virtual"><scope>pxr_tsl::robin_map</scope><name>value_type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

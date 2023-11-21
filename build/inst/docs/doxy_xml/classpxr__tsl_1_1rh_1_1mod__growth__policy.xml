@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="classpxr__tsl_1_1rh_1_1mod__growth__policy" kind="class" language="C++" prot="public">
+    <compoundname>pxr_tsl::rh::mod_growth_policy</compoundname>
+    <includes refid="robin__growth__policy_8h" local="no">robin_growth_policy.h</includes>
+    <templateparamlist>
+      <param>
+        <type>class GrowthFactor</type>
+        <defval>std::ratio&lt;3, 2&gt;</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classpxr__tsl_1_1rh_1_1mod__growth__policy_1a90dbdcd23a2f532865a56f0e50592273" prot="private" static="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double REHASH_SIZE_MULTIPLICATION_FACTOR</definition>
+        <argsstring></argsstring>
+        <name>REHASH_SIZE_MULTIPLICATION_FACTOR</name>
+        <initializer>=
+      1.0 * GrowthFactor::num / GrowthFactor::den</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" line="229" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" bodystart="229" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classpxr__tsl_1_1rh_1_1mod__growth__policy_1acc9de4382c835895264240636cce6a9e" prot="private" static="yes" mutable="no">
+        <type>const std::size_t</type>
+        <definition>const std::size_t MAX_BUCKET_COUNT</definition>
+        <argsstring></argsstring>
+        <name>MAX_BUCKET_COUNT</name>
+        <initializer>=
+      std::size_t(double(std::numeric_limits&lt;std::size_t&gt;::max() /
+                         REHASH_SIZE_MULTIPLICATION_FACTOR))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" line="231" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" bodystart="231" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classpxr__tsl_1_1rh_1_1mod__growth__policy_1afc13a4aca7538c3d95794ad3458421f6" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t m_mod</definition>
+        <argsstring></argsstring>
+        <name>m_mod</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" line="238" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" bodystart="236" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classpxr__tsl_1_1rh_1_1mod__growth__policy_1a7edf3419271e08262bb49e71ebb197e1" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>mod_growth_policy</definition>
+        <argsstring>(std::size_t &amp;min_bucket_count_in_out)</argsstring>
+        <name>mod_growth_policy</name>
+        <param>
+          <type>std::size_t &amp;</type>
+          <declname>min_bucket_count_in_out</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" line="187" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" bodystart="187" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1rh_1_1mod__growth__policy_1af1f0118280a53f24eb442f648568fe8e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t bucket_for_hash</definition>
+        <argsstring>(std::size_t hash) const noexcept</argsstring>
+        <name>bucket_for_hash</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" line="200" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" bodystart="200" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1rh_1_1mod__growth__policy_1a616a31c9d534fd21a0537b0ade05ca69" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t next_bucket_count</definition>
+        <argsstring>() const</argsstring>
+        <name>next_bucket_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" line="204" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" bodystart="204" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1rh_1_1mod__growth__policy_1a8a00b6bc91baf394c35510939fa1778d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t max_bucket_count</definition>
+        <argsstring>() const</argsstring>
+        <name>max_bucket_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" line="224" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" bodystart="224" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="classpxr__tsl_1_1rh_1_1mod__growth__policy_1a03bfacfaaba9195e4498375659f43531" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void clear</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>clear</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" line="226" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" bodystart="226" bodyend="226"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Grow the hash table by GrowthFactor::num / GrowthFactor::den and use a modulo to map a hash to a bucket. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Slower but it can be useful if you want a slower growth. </para>
+    </detaileddescription>
+    <location file="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" line="185" column="1" bodyfile="pxr/base/tf/pxrTslRobinMap/robin_growth_policy.h" bodystart="185" bodyend="239"/>
+    <listofallmembers>
+      <member refid="classpxr__tsl_1_1rh_1_1mod__growth__policy_1af1f0118280a53f24eb442f648568fe8e" prot="public" virt="non-virtual"><scope>pxr_tsl::rh::mod_growth_policy</scope><name>bucket_for_hash</name></member>
+      <member refid="classpxr__tsl_1_1rh_1_1mod__growth__policy_1a03bfacfaaba9195e4498375659f43531" prot="public" virt="non-virtual"><scope>pxr_tsl::rh::mod_growth_policy</scope><name>clear</name></member>
+      <member refid="classpxr__tsl_1_1rh_1_1mod__growth__policy_1afc13a4aca7538c3d95794ad3458421f6" prot="private" virt="non-virtual"><scope>pxr_tsl::rh::mod_growth_policy</scope><name>m_mod</name></member>
+      <member refid="classpxr__tsl_1_1rh_1_1mod__growth__policy_1a8a00b6bc91baf394c35510939fa1778d" prot="public" virt="non-virtual"><scope>pxr_tsl::rh::mod_growth_policy</scope><name>max_bucket_count</name></member>
+      <member refid="classpxr__tsl_1_1rh_1_1mod__growth__policy_1acc9de4382c835895264240636cce6a9e" prot="private" virt="non-virtual"><scope>pxr_tsl::rh::mod_growth_policy</scope><name>MAX_BUCKET_COUNT</name></member>
+      <member refid="classpxr__tsl_1_1rh_1_1mod__growth__policy_1a7edf3419271e08262bb49e71ebb197e1" prot="public" virt="non-virtual"><scope>pxr_tsl::rh::mod_growth_policy</scope><name>mod_growth_policy</name></member>
+      <member refid="classpxr__tsl_1_1rh_1_1mod__growth__policy_1a616a31c9d534fd21a0537b0ade05ca69" prot="public" virt="non-virtual"><scope>pxr_tsl::rh::mod_growth_policy</scope><name>next_bucket_count</name></member>
+      <member refid="classpxr__tsl_1_1rh_1_1mod__growth__policy_1a90dbdcd23a2f532865a56f0e50592273" prot="private" virt="non-virtual"><scope>pxr_tsl::rh::mod_growth_policy</scope><name>REHASH_SIZE_MULTIPLICATION_FACTOR</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

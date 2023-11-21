@@ -1,0 +1,1960 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_pcp_cache" kind="class" language="C++" prot="public">
+    <compoundname>PcpCache</compoundname>
+    <includes refid="pcp_2cache_8h" local="no">cache.h</includes>
+    <innerclass refid="struct_pcp_cache_1_1___untyped_indexing_children_predicate" prot="private">PcpCache::_UntypedIndexingChildrenPredicate</innerclass>
+    <innerclass refid="struct_pcp_cache_1_1___untyped_indexing_payload_predicate" prot="private">PcpCache::_UntypedIndexingPayloadPredicate</innerclass>
+      <sectiondef kind="user-defined">
+      <header>Parameters</header>
+      <memberdef kind="typedef" id="class_pcp_cache_1a006884c57fc666f8f69292cd68497d66" prot="public" static="no">
+        <type>std::unordered_set&lt; <ref refid="class_sdf_path" kindref="compound">SdfPath</ref>, SdfPath::Hash &gt;</type>
+        <definition>using PayloadSet =  std::unordered_set&lt;SdfPath, SdfPath::Hash&gt;</definition>
+        <argsstring></argsstring>
+        <name>PayloadSet</name>
+        <briefdescription>
+<para>Returns the payloads requested for inclusion. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="170" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="170" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a08d830779e268f6bda770ef7450ba92b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API const <ref refid="class_pcp_layer_stack_identifier" kindref="compound">PcpLayerStackIdentifier</ref> &amp;</type>
+        <definition>PCP_API const PcpLayerStackIdentifier&amp; GetLayerStackIdentifier</definition>
+        <argsstring>() const</argsstring>
+        <name>GetLayerStackIdentifier</name>
+        <briefdescription>
+<para>Get the identifier of the layerStack used for composition. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="119" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a3032310279fc40362a567bf4452abfb7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API PcpLayerStackPtr</type>
+        <definition>PCP_API PcpLayerStackPtr GetLayerStack</definition>
+        <argsstring>() const</argsstring>
+        <name>GetLayerStack</name>
+        <briefdescription>
+<para>Get the layer stack for <ref refid="class_pcp_cache_1a08d830779e268f6bda770ef7450ba92b" kindref="member">GetLayerStackIdentifier()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that this will neither compute the layer stack nor report errors. So if the layer stack has not been computed yet this will return <computeroutput>NULL</computeroutput>. Use <ref refid="class_pcp_cache_1a316a2ebde2a1f18e3ffd14c3c6e662d8" kindref="member">ComputeLayerStack()</ref> if you need to compute the layer stack if it hasn&apos;t been computed already and/or get errors caused by computing the layer stack. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="128" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a6d5c9e0242c37d231967611d2f5eccd1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool HasRootLayerStack</definition>
+        <argsstring>(PcpLayerStackRefPtr const &amp;layerStack) const</argsstring>
+        <name>HasRootLayerStack</name>
+        <param>
+          <type>PcpLayerStackRefPtr const &amp;</type>
+          <declname>layerStack</declname>
+        </param>
+        <briefdescription>
+<para>Return true if this cache&apos;s root layer stack is <computeroutput>layerStack</computeroutput>, false otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is functionally equivalent to comparing against the result of <ref refid="class_pcp_cache_1a3032310279fc40362a567bf4452abfb7" kindref="member">GetLayerStack()</ref>, but does not require constructing a <ref refid="class_tf_weak_ptr" kindref="compound">TfWeakPtr</ref> or any refcount operations. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="134" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="134" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a98719777d6ad28a536fa42ec3edfc597" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API bool</type>
+        <definition>PCP_API bool HasRootLayerStack</definition>
+        <argsstring>(PcpLayerStackPtr const &amp;layerStack) const</argsstring>
+        <name>HasRootLayerStack</name>
+        <param>
+          <type>PcpLayerStackPtr const &amp;</type>
+          <declname>layerStack</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="140" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a959d34686e5ba4df5f776be6e5efd86f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API bool</type>
+        <definition>PCP_API bool IsUsd</definition>
+        <argsstring>() const</argsstring>
+        <name>IsUsd</name>
+        <briefdescription>
+<para>Return true if the cache is configured in Usd mode. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="144" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a51d27ff049e15338bffe1ac25b99d6d2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API const std::string &amp;</type>
+        <definition>PCP_API const std::string&amp; GetFileFormatTarget</definition>
+        <argsstring>() const</argsstring>
+        <name>GetFileFormatTarget</name>
+        <briefdescription>
+<para>Returns the file format target this cache is configured for. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="148" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a2e115abd7466c935edd9d47cb0936032" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API <ref refid="usd_2pcp_2types_8h_1a72ae489ff9c2601b5f289baf87cece28" kindref="member">PcpVariantFallbackMap</ref></type>
+        <definition>PCP_API PcpVariantFallbackMap GetVariantFallbacks</definition>
+        <argsstring>() const</argsstring>
+        <name>GetVariantFallbacks</name>
+        <briefdescription>
+<para>Get the list of fallbacks to attempt to use when evaluating variant sets that lack an authored selection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="153" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a7e4146ac269e86cb8b033b8c71d55581" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API void</type>
+        <definition>PCP_API void SetVariantFallbacks</definition>
+        <argsstring>(const PcpVariantFallbackMap &amp;map, PcpChanges *changes=NULL)</argsstring>
+        <name>SetVariantFallbacks</name>
+        <param>
+          <type>const <ref refid="usd_2pcp_2types_8h_1a72ae489ff9c2601b5f289baf87cece28" kindref="member">PcpVariantFallbackMap</ref> &amp;</type>
+          <declname>map</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pcp_changes" kindref="compound">PcpChanges</ref> *</type>
+          <declname>changes</declname>
+          <defval>NULL</defval>
+        </param>
+        <briefdescription>
+<para>Set the list of fallbacks to attempt to use when evaluating variant sets that lack an authored selection. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>changes</computeroutput> is not <computeroutput>NULL</computeroutput> then it&apos;s adjusted to reflect the changes necessary to see the change in standin preferences, otherwise those changes are applied immediately. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="162" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1ad0432ea3758714e3576bbafb94655793" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API bool</type>
+        <definition>PCP_API bool IsPayloadIncluded</definition>
+        <argsstring>(const SdfPath &amp;path) const</argsstring>
+        <name>IsPayloadIncluded</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Return true if the payload is included for the given path. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="167" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1acfbfc63965ab24efbb0bed1c59d76295" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API <ref refid="class_pcp_cache_1a006884c57fc666f8f69292cd68497d66" kindref="member">PayloadSet</ref> const  &amp;</type>
+        <definition>PCP_API PayloadSet const&amp; GetIncludedPayloads</definition>
+        <argsstring>() const</argsstring>
+        <name>GetIncludedPayloads</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="172" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a1e66b152b678df77bf4ca463d759df76" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API void</type>
+        <definition>PCP_API void RequestPayloads</definition>
+        <argsstring>(const SdfPathSet &amp;pathsToInclude, const SdfPathSet &amp;pathsToExclude, PcpChanges *changes=NULL)</argsstring>
+        <name>RequestPayloads</name>
+        <param>
+          <type>const SdfPathSet &amp;</type>
+          <declname>pathsToInclude</declname>
+        </param>
+        <param>
+          <type>const SdfPathSet &amp;</type>
+          <declname>pathsToExclude</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pcp_changes" kindref="compound">PcpChanges</ref> *</type>
+          <declname>changes</declname>
+          <defval>NULL</defval>
+        </param>
+        <briefdescription>
+<para>Request payloads to be included or excluded from composition. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pathsToInclude</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a set of paths to add to the set for payload inclusion. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pathsToExclude</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is a set of paths to remove from the set for payload inclusion. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>changes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if not <computeroutput>NULL</computeroutput>, is adjusted to reflect the changes necessary to see the change in payloads; otherwise those changes are applied immediately. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>If a path is listed in both pathsToInclude and pathsToExclude, it will be treated as an inclusion only. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="186" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a442f27205bfe2232696c6069e7fd8a63" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API void</type>
+        <definition>PCP_API void RequestLayerMuting</definition>
+        <argsstring>(const std::vector&lt; std::string &gt; &amp;layersToMute, const std::vector&lt; std::string &gt; &amp;layersToUnmute, PcpChanges *changes=nullptr, std::vector&lt; std::string &gt; *newLayersMuted=nullptr, std::vector&lt; std::string &gt; *newLayersUnmuted=nullptr)</argsstring>
+        <name>RequestLayerMuting</name>
+        <param>
+          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <declname>layersToMute</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <declname>layersToUnmute</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pcp_changes" kindref="compound">PcpChanges</ref> *</type>
+          <declname>changes</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt; *</type>
+          <declname>newLayersMuted</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt; *</type>
+          <declname>newLayersUnmuted</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Request layers to be muted or unmuted in this cache. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Muted layers are ignored during composition and do not appear in any layer stacks. The root layer of this stage may not be muted; attempting to do so will generate a coding error. If the root layer of a reference or payload layer stack is muted, the behavior is as if the muted layer did not exist, which means a composition error will be generated.</para>
+<para>A canonical identifier for each layer in <computeroutput>layersToMute</computeroutput> will be computed using <ref refid="class_ar_resolver_1a68e5ae6385d1733b79f734c59682ff61" kindref="member">ArResolver::CreateIdentifier</ref> using the cache&apos;s root layer as the anchoring asset. Any layer encountered during composition with the same identifier will be considered muted and ignored.</para>
+<para>Note that muting a layer will cause this cache to release all references to that layer. If no other client is holding on to references to that layer, it will be unloaded. In this case, if there are unsaved edits to the muted layer, those edits are lost.</para>
+<para>Since anonymous layers are not serialized, muting an anonymous layer will cause that layer and its contents to be lost in this case.</para>
+<para>If <computeroutput>changes</computeroutput> is not <computeroutput>nullptr</computeroutput>, it is adjusted to reflect the changes necessary to see the change in muted layers. Otherwise, those changes are applied immediately.</para>
+<para><computeroutput>newLayersMuted</computeroutput> and <computeroutput>newLayersUnmuted</computeroutput> contains the pruned vector of layers which are muted or unmuted by this call to RequestLayerMuting. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="219" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a45b7829b41a29610a08b120ad49dbc0b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API const std::vector&lt; std::string &gt; &amp;</type>
+        <definition>PCP_API const std::vector&lt;std::string&gt;&amp; GetMutedLayers</definition>
+        <argsstring>() const</argsstring>
+        <name>GetMutedLayers</name>
+        <briefdescription>
+<para>Returns the list of canonical identifiers for muted layers in this cache. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>See documentation on RequestLayerMuting for more details. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="230" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a642079b52ee90d678c471180283a83a2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API bool</type>
+        <definition>PCP_API bool IsLayerMuted</definition>
+        <argsstring>(const std::string &amp;layerIdentifier) const</argsstring>
+        <name>IsLayerMuted</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>layerIdentifier</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the layer specified by <computeroutput>layerIdentifier</computeroutput> is muted in this cache, false otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>layerIdentifier</computeroutput> is relative, it is assumed to be relative to this cache&apos;s root layer. See documentation on RequestLayerMuting for more details. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="238" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1af0379049d8a5361522fee5e1bef8f2ee" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API bool</type>
+        <definition>PCP_API bool IsLayerMuted</definition>
+        <argsstring>(const SdfLayerHandle &amp;anchorLayer, const std::string &amp;layerIdentifier, std::string *canonicalMutedLayerIdentifier=nullptr) const</argsstring>
+        <name>IsLayerMuted</name>
+        <param>
+          <type>const SdfLayerHandle &amp;</type>
+          <declname>anchorLayer</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>layerIdentifier</declname>
+        </param>
+        <param>
+          <type>std::string *</type>
+          <declname>canonicalMutedLayerIdentifier</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Returns true if the layer specified by <computeroutput>layerIdentifier</computeroutput> is muted in this cache, false otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>layerIdentifier</computeroutput> is relative, it is assumed to be relative to <computeroutput>anchorLayer</computeroutput>. If <computeroutput>canonicalMutedLayerIdentifier</computeroutput> is supplied, it will be populated with the canonical identifier of the muted layer if this function returns true. See documentation on RequestLayerMuting for more details. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="248" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a846225e4dd5b1de08c4d5bd344321d88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API <ref refid="class_pcp_prim_index_inputs" kindref="compound">PcpPrimIndexInputs</ref></type>
+        <definition>PCP_API PcpPrimIndexInputs GetPrimIndexInputs</definition>
+        <argsstring>()</argsstring>
+        <name>GetPrimIndexInputs</name>
+        <briefdescription>
+<para>Returns parameter object containing all inputs for the prim index computation used by this cache. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="256" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Computations</header>
+      <memberdef kind="function" id="class_pcp_cache_1a316a2ebde2a1f18e3ffd14c3c6e662d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API PcpLayerStackRefPtr</type>
+        <definition>PCP_API PcpLayerStackRefPtr ComputeLayerStack</definition>
+        <argsstring>(const PcpLayerStackIdentifier &amp;identifier, PcpErrorVector *allErrors)</argsstring>
+        <name>ComputeLayerStack</name>
+        <param>
+          <type>const <ref refid="class_pcp_layer_stack_identifier" kindref="compound">PcpLayerStackIdentifier</ref> &amp;</type>
+          <declname>identifier</declname>
+        </param>
+        <param>
+          <type>PcpErrorVector *</type>
+          <declname>allErrors</declname>
+        </param>
+        <briefdescription>
+<para>Returns the layer stack for <computeroutput>identifier</computeroutput> if it exists, otherwise creates a new layer stack for <computeroutput>identifier</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This returns <computeroutput>NULL</computeroutput> if <computeroutput>identifier</computeroutput> is invalid (i.e. its root layer is <computeroutput>NULL</computeroutput>). <computeroutput>allErrors</computeroutput> will contain any errors encountered while creating a new layer stack. It&apos;ll be unchanged if the layer stack already existed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="270" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a8197bdd39cb465843a59b2299e4c117a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API PcpLayerStackPtr</type>
+        <definition>PCP_API PcpLayerStackPtr FindLayerStack</definition>
+        <argsstring>(const PcpLayerStackIdentifier &amp;identifier) const</argsstring>
+        <name>FindLayerStack</name>
+        <param>
+          <type>const <ref refid="class_pcp_layer_stack_identifier" kindref="compound">PcpLayerStackIdentifier</ref> &amp;</type>
+          <declname>identifier</declname>
+        </param>
+        <briefdescription>
+<para>Returns the layer stack for <computeroutput>identifier</computeroutput> if it has been computed and cached, otherwise returns <computeroutput>NULL</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="277" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a91550db50d25ec82dee97cb207c84148" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API bool</type>
+        <definition>PCP_API bool UsesLayerStack</definition>
+        <argsstring>(const PcpLayerStackPtr &amp;layerStack) const</argsstring>
+        <name>UsesLayerStack</name>
+        <param>
+          <type>const PcpLayerStackPtr &amp;</type>
+          <declname>layerStack</declname>
+        </param>
+        <briefdescription>
+<para>Return true if <computeroutput>layerStack</computeroutput> is used by this cache in its composition, false otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="282" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a65e7a19d2c33d5dd2de28423299b85ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API const <ref refid="class_pcp_prim_index" kindref="compound">PcpPrimIndex</ref> &amp;</type>
+        <definition>PCP_API const PcpPrimIndex&amp; ComputePrimIndex</definition>
+        <argsstring>(const SdfPath &amp;primPath, PcpErrorVector *allErrors)</argsstring>
+        <name>ComputePrimIndex</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>primPath</declname>
+        </param>
+        <param>
+          <type>PcpErrorVector *</type>
+          <declname>allErrors</declname>
+        </param>
+        <briefdescription>
+<para>Compute and return a reference to the cached result for the prim index for the given path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>allErrors</computeroutput> will contain any errors encountered while performing this operation. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="289" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a8148727da89fcc27c85c846ec2a9875b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ChildrenPredicate</type>
+          </param>
+          <param>
+            <type>class PayloadPredicate</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void ComputePrimIndexesInParallel</definition>
+        <argsstring>(const SdfPath &amp;path, PcpErrorVector *allErrors, const ChildrenPredicate &amp;childrenPred, const PayloadPredicate &amp;payloadPred)</argsstring>
+        <name>ComputePrimIndexesInParallel</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>PcpErrorVector *</type>
+          <declname>allErrors</declname>
+        </param>
+        <param>
+          <type>const ChildrenPredicate &amp;</type>
+          <declname>childrenPred</declname>
+        </param>
+        <param>
+          <type>const PayloadPredicate &amp;</type>
+          <declname>payloadPred</declname>
+        </param>
+        <briefdescription>
+<para>Compute PcpPrimIndexes in the subtree rooted at path in parallel, recursing to children based on the supplied <computeroutput>childrenPred</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Also include payloads not already in this cache&apos;s included payloads (see GetIncludedPayloads()) according to <computeroutput>payloadPred</computeroutput>.</para>
+<para>This is similar to <ref refid="class_pcp_cache_1a65e7a19d2c33d5dd2de28423299b85ae" kindref="member">ComputePrimIndex()</ref>, except it computes an entire subtree of indexes in parallel so it can be much more efficient. This function invokes both <computeroutput>childrenPred</computeroutput> and <computeroutput>payloadPred</computeroutput> concurrently, so it must be safe to do so.</para>
+<para>When a <ref refid="class_pcp_prim_index" kindref="compound">PcpPrimIndex</ref> computation completes invoke <computeroutput>childrenPred</computeroutput>, passing it the <ref refid="class_pcp_prim_index" kindref="compound">PcpPrimIndex</ref>. If <computeroutput>childrenPred</computeroutput> returns true, continue indexing children prim indexes. In this case, <computeroutput>childrenPred</computeroutput> may provide a list of names of the children prim indexes to compute. If it does not, all children prim indexes will be computed. If <computeroutput>childrenPred</computeroutput> returns false, stop indexing in that subtree.</para>
+<para>If payloads discovered during indexing do not already appear in this cache&apos;s set of included payloads, invoke <computeroutput>payloadPred</computeroutput>, passing it the path for the prim with the payload. If <computeroutput>payloadPred</computeroutput> returns true, include its payload and add it to the cache&apos;s set of included payloads upon completion. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="314" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="314" bodyend="321"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a296a95e5c9862da92c87fe619786fe53" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ChildrenPredicate</type>
+          </param>
+          <param>
+            <type>class PayloadPredicate</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void ComputePrimIndexesInParallel</definition>
+        <argsstring>(const SdfPath &amp;path, PcpErrorVector *allErrors, const ChildrenPredicate &amp;childrenPred, const PayloadPredicate &amp;payloadPred, const char *mallocTag1, const char *mallocTag2)</argsstring>
+        <name>ComputePrimIndexesInParallel</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>PcpErrorVector *</type>
+          <declname>allErrors</declname>
+        </param>
+        <param>
+          <type>const ChildrenPredicate &amp;</type>
+          <declname>childrenPred</declname>
+        </param>
+        <param>
+          <type>const PayloadPredicate &amp;</type>
+          <declname>payloadPred</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>mallocTag1</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>mallocTag2</declname>
+        </param>
+        <briefdescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. XXX Do not add new callers of this method. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>It is needed as a workaround for bug #132031, which we hope to tackle soon (as of 6/2016) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="327" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="327" bodyend="336"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1ab70672b1171530466df9955e4dda981c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ChildrenPredicate</type>
+          </param>
+          <param>
+            <type>class PayloadPredicate</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void ComputePrimIndexesInParallel</definition>
+        <argsstring>(const SdfPathVector &amp;paths, PcpErrorVector *allErrors, const ChildrenPredicate &amp;childrenPred, const PayloadPredicate &amp;payloadPred)</argsstring>
+        <name>ComputePrimIndexesInParallel</name>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>paths</declname>
+        </param>
+        <param>
+          <type>PcpErrorVector *</type>
+          <declname>allErrors</declname>
+        </param>
+        <param>
+          <type>const ChildrenPredicate &amp;</type>
+          <declname>childrenPred</declname>
+        </param>
+        <param>
+          <type>const PayloadPredicate &amp;</type>
+          <declname>payloadPred</declname>
+        </param>
+        <briefdescription>
+<para>Vectorized form of <ref refid="class_pcp_cache_1a8148727da89fcc27c85c846ec2a9875b" kindref="member">ComputePrimIndexesInParallel()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Equivalent to invoking that method for each path in <computeroutput>paths</computeroutput>, but more efficient. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="341" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="341" bodyend="349"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a011be08e5df427e14cfb54c2cb634a4d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ChildrenPredicate</type>
+          </param>
+          <param>
+            <type>class PayloadPredicate</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void ComputePrimIndexesInParallel</definition>
+        <argsstring>(const SdfPathVector &amp;paths, PcpErrorVector *allErrors, const ChildrenPredicate &amp;childrenPred, const PayloadPredicate &amp;payloadPred, const char *mallocTag1, const char *mallocTag2)</argsstring>
+        <name>ComputePrimIndexesInParallel</name>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>paths</declname>
+        </param>
+        <param>
+          <type>PcpErrorVector *</type>
+          <declname>allErrors</declname>
+        </param>
+        <param>
+          <type>const ChildrenPredicate &amp;</type>
+          <declname>childrenPred</declname>
+        </param>
+        <param>
+          <type>const PayloadPredicate &amp;</type>
+          <declname>payloadPred</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>mallocTag1</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>mallocTag2</declname>
+        </param>
+        <briefdescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. XXX Do not add new callers of this method. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>It is needed as a workaround for bug #132031, which we hope to tackle soon (as of 6/2016) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="355" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="355" bodyend="365"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a96fbf4df256f960ff2a5fed8ffc716b5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API const <ref refid="class_pcp_prim_index" kindref="compound">PcpPrimIndex</ref> *</type>
+        <definition>PCP_API const PcpPrimIndex* FindPrimIndex</definition>
+        <argsstring>(const SdfPath &amp;primPath) const</argsstring>
+        <name>FindPrimIndex</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>primPath</declname>
+        </param>
+        <briefdescription>
+<para>Returns a pointer to the cached computed prim index for the given path, or NULL if it has not been computed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="371" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a12a63babf1e8baf998a48fc06c60cb3c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Callback</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void ForEachPrimIndex</definition>
+        <argsstring>(const Callback &amp;callback) const</argsstring>
+        <name>ForEachPrimIndex</name>
+        <param>
+          <type>const Callback &amp;</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+<para>Run the given <computeroutput>callback</computeroutput> on every prim index in the cache. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The callback must have the signature: void(const PcpPrimIndex&amp;). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="377" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="377" bodyend="381"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1aede3a9aa1f6efd932a87f13ba002a19b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API const <ref refid="class_pcp_property_index" kindref="compound">PcpPropertyIndex</ref> &amp;</type>
+        <definition>PCP_API const PcpPropertyIndex&amp; ComputePropertyIndex</definition>
+        <argsstring>(const SdfPath &amp;propPath, PcpErrorVector *allErrors)</argsstring>
+        <name>ComputePropertyIndex</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>propPath</declname>
+        </param>
+        <param>
+          <type>PcpErrorVector *</type>
+          <declname>allErrors</declname>
+        </param>
+        <briefdescription>
+<para>Compute and return a reference to the cached result for the property index for the given path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>allErrors</computeroutput> will contain any errors encountered while performing this operation. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="388" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a22f5417de104b822cdc331b1298dd374" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API const <ref refid="class_pcp_property_index" kindref="compound">PcpPropertyIndex</ref> *</type>
+        <definition>PCP_API const PcpPropertyIndex* FindPropertyIndex</definition>
+        <argsstring>(const SdfPath &amp;propPath) const</argsstring>
+        <name>FindPropertyIndex</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>propPath</declname>
+        </param>
+        <briefdescription>
+<para>Returns a pointer to the cached computed property index for the given path, or NULL if it has not been computed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="394" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1aac905bf0ec5b616f0f7bc92b6f2228b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API void</type>
+        <definition>PCP_API void ComputeRelationshipTargetPaths</definition>
+        <argsstring>(const SdfPath &amp;relationshipPath, SdfPathVector *paths, bool localOnly, const SdfSpecHandle &amp;stopProperty, bool includeStopProperty, SdfPathVector *deletedPaths, PcpErrorVector *allErrors)</argsstring>
+        <name>ComputeRelationshipTargetPaths</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>relationshipPath</declname>
+        </param>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>paths</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>localOnly</declname>
+        </param>
+        <param>
+          <type>const SdfSpecHandle &amp;</type>
+          <declname>stopProperty</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>includeStopProperty</declname>
+        </param>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>deletedPaths</declname>
+        </param>
+        <param>
+          <type>PcpErrorVector *</type>
+          <declname>allErrors</declname>
+        </param>
+        <briefdescription>
+<para>Compute the relationship target paths for the relationship at <computeroutput>relationshipPath</computeroutput> into <computeroutput>paths</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>localOnly</computeroutput> is <computeroutput>true</computeroutput> then this will compose relationship targets from local nodes only. If <computeroutput>stopProperty</computeroutput> is not <computeroutput>NULL</computeroutput> then this will stop composing relationship targets at <computeroutput>stopProperty</computeroutput>, including <computeroutput>stopProperty</computeroutput> iff <computeroutput>includeStopProperty</computeroutput> is <computeroutput>true</computeroutput>. If not <computeroutput>NULL</computeroutput>, <computeroutput>deletedPaths</computeroutput> will be populated with target paths whose deletion contributed to the computed result. <computeroutput>allErrors</computeroutput> will contain any errors encountered while performing this operation. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="407" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a2868ca7cc8823357cb05367de61340c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API void</type>
+        <definition>PCP_API void ComputeAttributeConnectionPaths</definition>
+        <argsstring>(const SdfPath &amp;attributePath, SdfPathVector *paths, bool localOnly, const SdfSpecHandle &amp;stopProperty, bool includeStopProperty, SdfPathVector *deletedPaths, PcpErrorVector *allErrors)</argsstring>
+        <name>ComputeAttributeConnectionPaths</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>attributePath</declname>
+        </param>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>paths</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>localOnly</declname>
+        </param>
+        <param>
+          <type>const SdfSpecHandle &amp;</type>
+          <declname>stopProperty</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>includeStopProperty</declname>
+        </param>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>deletedPaths</declname>
+        </param>
+        <param>
+          <type>PcpErrorVector *</type>
+          <declname>allErrors</declname>
+        </param>
+        <briefdescription>
+<para>Compute the attribute connection paths for the attribute at <computeroutput>attributePath</computeroutput> into <computeroutput>paths</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>localOnly</computeroutput> is <computeroutput>true</computeroutput> then this will compose attribute connections from local nodes only. If <computeroutput>stopProperty</computeroutput> is not <computeroutput>NULL</computeroutput> then this will stop composing attribute connections at <computeroutput>stopProperty</computeroutput>, including <computeroutput>stopProperty</computeroutput> iff <computeroutput>includeStopProperty</computeroutput> is <computeroutput>true</computeroutput>. If not <computeroutput>NULL</computeroutput>, <computeroutput>deletedPaths</computeroutput> will be populated with connection paths whose deletion contributed to the computed result. <computeroutput>allErrors</computeroutput> will contain any errors encountered while performing this operation. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="426" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Dependencies</header>
+      <memberdef kind="function" id="class_pcp_cache_1accc21b563933a964a6f565e600788c75" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API SdfLayerHandleSet</type>
+        <definition>PCP_API SdfLayerHandleSet GetUsedLayers</definition>
+        <argsstring>() const</argsstring>
+        <name>GetUsedLayers</name>
+        <briefdescription>
+<para>Returns set of all layers used by this cache. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="440" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a9ceff6bdebf15987eb68207b9b68a401" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API size_t</type>
+        <definition>PCP_API size_t GetUsedLayersRevision</definition>
+        <argsstring>() const</argsstring>
+        <name>GetUsedLayersRevision</name>
+        <briefdescription>
+<para>Return a number that can be used to determine whether or not the set of layers used by this cache may have changed or not. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For example, if one calls <ref refid="class_pcp_cache_1accc21b563933a964a6f565e600788c75" kindref="member">GetUsedLayers()</ref> and saves the <ref refid="class_pcp_cache_1a9ceff6bdebf15987eb68207b9b68a401" kindref="member">GetUsedLayersRevision()</ref>, and then later calls <ref refid="class_pcp_cache_1a9ceff6bdebf15987eb68207b9b68a401" kindref="member">GetUsedLayersRevision()</ref> again, if the number is unchanged, then <ref refid="class_pcp_cache_1accc21b563933a964a6f565e600788c75" kindref="member">GetUsedLayers()</ref> is guaranteed to be unchanged as well. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="448" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a2e2f976871ba19918b1e44cf88eaf16b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API SdfLayerHandleSet</type>
+        <definition>PCP_API SdfLayerHandleSet GetUsedRootLayers</definition>
+        <argsstring>() const</argsstring>
+        <name>GetUsedRootLayers</name>
+        <briefdescription>
+<para>Returns set of all root layers used by this cache. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="452" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a9b942fed51a649c73c6e56e4bdf16d4e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API const PcpLayerStackPtrVector &amp;</type>
+        <definition>PCP_API const PcpLayerStackPtrVector&amp; FindAllLayerStacksUsingLayer</definition>
+        <argsstring>(const SdfLayerHandle &amp;layer) const</argsstring>
+        <name>FindAllLayerStacksUsingLayer</name>
+        <param>
+          <type>const SdfLayerHandle &amp;</type>
+          <declname>layer</declname>
+        </param>
+        <briefdescription>
+<para>Returns every computed &amp; cached layer stack that includes <computeroutput>layer</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="457" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1af04adf403cfa215f80492e97cee20075" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Callback</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void ForEachLayerStack</definition>
+        <argsstring>(const Callback &amp;callback) const</argsstring>
+        <name>ForEachLayerStack</name>
+        <param>
+          <type>const Callback &amp;</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+<para>Run the given <computeroutput>callbcack</computeroutput> on every layer stack used by prim indexes in the cache. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The callback must have the signature: void(const PcpLayerStackPtr&amp;). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="464" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="464" bodyend="468"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1af37222ecf13dfa784cb634410ae9ba2f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API PcpDependencyVector</type>
+        <definition>PCP_API PcpDependencyVector FindSiteDependencies</definition>
+        <argsstring>(const PcpLayerStackPtr &amp;siteLayerStack, const SdfPath &amp;sitePath, PcpDependencyFlags depMask, bool recurseOnSite, bool recurseOnIndex, bool filterForExistingCachesOnly) const</argsstring>
+        <name>FindSiteDependencies</name>
+        <param>
+          <type>const PcpLayerStackPtr &amp;</type>
+          <declname>siteLayerStack</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>sitePath</declname>
+        </param>
+        <param>
+          <type>PcpDependencyFlags</type>
+          <declname>depMask</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>recurseOnSite</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>recurseOnIndex</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>filterForExistingCachesOnly</declname>
+        </param>
+        <briefdescription>
+<para>Returns dependencies on the given site of scene description, as discovered by the cached index computations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>depMask</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies what classes of dependency to include; see PcpDependencyFlags for details </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>recurseOnSite</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>includes incoming dependencies on children of sitePath </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>recurseOnIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>extends the result to include all <ref refid="class_pcp_cache" kindref="compound">PcpCache</ref> child indexes below discovered results </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>filterForExistingCachesOnly</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>filters the results to only paths representing computed prim and property index caches; otherwise a recursively-expanded result can include un-computed paths that are expected to depend on the site </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="485" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1ab93db0f1b103daf63093b072f1bbd411" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API PcpDependencyVector</type>
+        <definition>PCP_API PcpDependencyVector FindSiteDependencies</definition>
+        <argsstring>(const SdfLayerHandle &amp;siteLayer, const SdfPath &amp;sitePath, PcpDependencyFlags depMask, bool recurseOnSite, bool recurseOnIndex, bool filterForExistingCachesOnly) const</argsstring>
+        <name>FindSiteDependencies</name>
+        <param>
+          <type>const SdfLayerHandle &amp;</type>
+          <declname>siteLayer</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>sitePath</declname>
+        </param>
+        <param>
+          <type>PcpDependencyFlags</type>
+          <declname>depMask</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>recurseOnSite</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>recurseOnIndex</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>filterForExistingCachesOnly</declname>
+        </param>
+        <briefdescription>
+<para>Returns dependencies on the given site of scene description, as discovered by the cached index computations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method overload takes a site layer rather than a layer stack. It will check every layer stack using that layer, and apply any relevant sublayer offsets to the map functions in the returned PcpDependencyVector.</para>
+<para>See the other method for parameter details. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="503" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1aa080b6bdd403af24152b007df589ac88" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API bool</type>
+        <definition>PCP_API bool CanHaveOpinionForSite</definition>
+        <argsstring>(const SdfPath &amp;localPcpSitePath, const SdfLayerHandle &amp;layer, SdfPath *allowedPathInLayer) const</argsstring>
+        <name>CanHaveOpinionForSite</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>localPcpSitePath</declname>
+        </param>
+        <param>
+          <type>const SdfLayerHandle &amp;</type>
+          <declname>layer</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> *</type>
+          <declname>allowedPathInLayer</declname>
+        </param>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if an opinion for the site at <computeroutput>localPcpSitePath</computeroutput> in the cache&apos;s layer stack can be provided by an opinion in <computeroutput>layer</computeroutput>, <computeroutput>false</computeroutput> otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>true</computeroutput> and <computeroutput>allowedPathInLayer</computeroutput> is not <computeroutput>NULL</computeroutput> then it&apos;s set to a path in <computeroutput>layer</computeroutput> that would provide an opinion.</para>
+<para>This returns <computeroutput>false</computeroutput> if no prim index has yet been computed for <computeroutput>localPcpSitePath</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="519" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1aee59af48a4eea375ac80d95446a5a549" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API std::vector&lt; std::string &gt;</type>
+        <definition>PCP_API std::vector&lt;std::string&gt; GetInvalidSublayerIdentifiers</definition>
+        <argsstring>() const</argsstring>
+        <name>GetInvalidSublayerIdentifiers</name>
+        <briefdescription>
+<para>Returns a vector of sublayer asset paths used in the layer stack that didn&apos;t resolve to valid assets. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="526" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1aeceb677d3e011e2ccc251b9151c9c4fa" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API bool</type>
+        <definition>PCP_API bool IsInvalidSublayerIdentifier</definition>
+        <argsstring>(const std::string &amp;identifier) const</argsstring>
+        <name>IsInvalidSublayerIdentifier</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>identifier</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if <computeroutput>identifier</computeroutput> was used as a sublayer path in a layer stack but did not identify a valid layer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is functionally equivalent to examining the values in the vector returned by GetInvalidSublayerIdentifiers, but more efficient. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="533" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a93dd2e793974c329e8d0b7a60b930ae5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API std::map&lt; <ref refid="class_sdf_path" kindref="compound">SdfPath</ref>, std::vector&lt; std::string &gt;, SdfPath::FastLessThan &gt;</type>
+        <definition>PCP_API std::map&lt;SdfPath, std::vector&lt;std::string&gt;, SdfPath::FastLessThan&gt; GetInvalidAssetPaths</definition>
+        <argsstring>() const</argsstring>
+        <name>GetInvalidAssetPaths</name>
+        <briefdescription>
+<para>Returns a map of prim paths to asset paths used by that prim (e.g. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>in a reference) that didn&apos;t resolve to valid assets. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="539" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a99d2dc9a6dd6595032e6e8a3f554f542" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API bool</type>
+        <definition>PCP_API bool IsInvalidAssetPath</definition>
+        <argsstring>(const std::string &amp;resolvedAssetPath) const</argsstring>
+        <name>IsInvalidAssetPath</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>resolvedAssetPath</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if <computeroutput>resolvedAssetPath</computeroutput> was used by a prim (e.g. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>in a reference) but did not resolve to a valid asset. This is functionally equivalent to examining the values in the map returned by GetInvalidAssetPaths, but more efficient. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="546" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1aa98da62ae892a59ea214ee919dfd50e0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API bool</type>
+        <definition>PCP_API bool HasAnyDynamicFileFormatArgumentFieldDependencies</definition>
+        <argsstring>() const</argsstring>
+        <name>HasAnyDynamicFileFormatArgumentFieldDependencies</name>
+        <briefdescription>
+<para>Returns true if any prim index in this cache has a dependency on a dynamic file format argument field. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="551" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1afc36e5f5edc0c3b3b22b2c219483c7a7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API bool</type>
+        <definition>PCP_API bool HasAnyDynamicFileFormatArgumentAttributeDependencies</definition>
+        <argsstring>() const</argsstring>
+        <name>HasAnyDynamicFileFormatArgumentAttributeDependencies</name>
+        <briefdescription>
+<para>Returns true if any prim index in this cache has a dependency on a dynamic file format argument attribute&apos;s default value field. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="556" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a4a3981dba89620eaa70d6db10ea2440b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API bool</type>
+        <definition>PCP_API bool IsPossibleDynamicFileFormatArgumentField</definition>
+        <argsstring>(const TfToken &amp;field) const</argsstring>
+        <name>IsPossibleDynamicFileFormatArgumentField</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>field</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the given <computeroutput>field</computeroutput> is the name of a field that was composed while generating dynamic file format arguments for any prim index in this cache. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="562" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a5a6051ad9de95519043c10d4356c001a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API bool</type>
+        <definition>PCP_API bool IsPossibleDynamicFileFormatArgumentAttribute</definition>
+        <argsstring>(const TfToken &amp;attributeName) const</argsstring>
+        <name>IsPossibleDynamicFileFormatArgumentAttribute</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>attributeName</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if the given <computeroutput>attributeName</computeroutput> is the name of an attribute whose default value field was composed while generating dynamic file format arguments for any prim index in this cache. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="568" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a7ccca22f81de09c334eabcdd198bbddc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API const <ref refid="class_pcp_dynamic_file_format_dependency_data" kindref="compound">PcpDynamicFileFormatDependencyData</ref> &amp;</type>
+        <definition>PCP_API const PcpDynamicFileFormatDependencyData&amp; GetDynamicFileFormatArgumentDependencyData</definition>
+        <argsstring>(const SdfPath &amp;primIndexPath) const</argsstring>
+        <name>GetDynamicFileFormatArgumentDependencyData</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>primIndexPath</declname>
+        </param>
+        <briefdescription>
+<para>Returns the dynamic file format dependency data object for the prim index with the given <computeroutput>primIndexPath</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This will return an empty dependency data if either there is no cache prim index for the path or if the prim index has no dynamic file formats that it depends on. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="577" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1af40ad447da0d475d2c45462e786e0104" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API const SdfPathVector &amp;</type>
+        <definition>PCP_API const SdfPathVector&amp; GetPrimsUsingExpressionVariablesFromLayerStack</definition>
+        <argsstring>(const PcpLayerStackPtr &amp;layerStack) const</argsstring>
+        <name>GetPrimsUsingExpressionVariablesFromLayerStack</name>
+        <param>
+          <type>const PcpLayerStackPtr &amp;</type>
+          <declname>layerStack</declname>
+        </param>
+        <briefdescription>
+<para>Returns the list of prim index paths that depend on one or more expression variables from <computeroutput>layerStack</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="583" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a66f1de4ca6ea3751f94426ed83b0741f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API const std::unordered_set&lt; std::string &gt; &amp;</type>
+        <definition>PCP_API const std::unordered_set&lt;std::string&gt;&amp; GetExpressionVariablesFromLayerStackUsedByPrim</definition>
+        <argsstring>(const SdfPath &amp;primIndexPath, const PcpLayerStackPtr &amp;layerStack) const</argsstring>
+        <name>GetExpressionVariablesFromLayerStackUsedByPrim</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>primIndexPath</declname>
+        </param>
+        <param>
+          <type>const PcpLayerStackPtr &amp;</type>
+          <declname>layerStack</declname>
+        </param>
+        <briefdescription>
+<para>Returns the set of expression variables in <computeroutput>layerStack</computeroutput> that are used by the prim index at <computeroutput>primIndexPath</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="590" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Change handling</header>
+      <memberdef kind="function" id="class_pcp_cache_1a3f9b0f07cd0b437a480fbc1fb7c77d9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API void</type>
+        <definition>PCP_API void Apply</definition>
+        <argsstring>(const PcpCacheChanges &amp;changes, PcpLifeboat *lifeboat)</argsstring>
+        <name>Apply</name>
+        <param>
+          <type>const <ref refid="class_pcp_cache_changes" kindref="compound">PcpCacheChanges</ref> &amp;</type>
+          <declname>changes</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pcp_lifeboat" kindref="compound">PcpLifeboat</ref> *</type>
+          <declname>lifeboat</declname>
+        </param>
+        <briefdescription>
+<para>Apply the changes in <computeroutput>changes</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This blows caches. It&apos;s up to the client to pull on those caches again as needed.</para>
+<para>Objects that are no longer needed and would be destroyed are retained in <computeroutput>lifeboat</computeroutput> and won&apos;t be destroyed until <computeroutput>lifeboat</computeroutput> is itself destroyed. This gives the client control over the timing of the destruction of those objects. Clients may choose to pull on the caches before destroying <computeroutput>lifeboat</computeroutput>. That may cause the caches to again retain the objects, meaning they won&apos;t be destroyed when <computeroutput>lifeboat</computeroutput> is destroyed.</para>
+<para>For example, if blowing a cache means an <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> is no longer needed then <computeroutput>lifeboat</computeroutput> will hold an SdfLayerRefPtr to that layer. The client can then pull on that cache, which could cause the cache to hold an SdfLayerRefPtr to the layer again. If so then destroying <computeroutput>changes</computeroutput> will not destroy the layer. In any case, we don&apos;t destroy the layer and then read it again. However, if the client destroys <computeroutput>lifeboat</computeroutput> before pulling on the cache then we would destroy the layer then read it again. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="619" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a13d8b91fd17eb86b918242922c4b826c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API void</type>
+        <definition>PCP_API void Reload</definition>
+        <argsstring>(PcpChanges *changes)</argsstring>
+        <name>Reload</name>
+        <param>
+          <type><ref refid="class_pcp_changes" kindref="compound">PcpChanges</ref> *</type>
+          <declname>changes</declname>
+        </param>
+        <briefdescription>
+<para>Reload the layers of the layer stack, except session layers and sublayers of session layers. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This will also try to load sublayers in this cache&apos;s layer stack that could not be loaded previously. It will also try to load any referenced or payloaded layer that could not be loaded previously. Clients should subsequently <computeroutput><ref refid="class_pcp_cache_1a3f9b0f07cd0b437a480fbc1fb7c77d9e" kindref="member">Apply()</ref></computeroutput> <computeroutput>changes</computeroutput> to use any now-valid layers. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="628" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a0d1dcab7b9144ebd8266c37314b46377" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API void</type>
+        <definition>PCP_API void ReloadReferences</definition>
+        <argsstring>(PcpChanges *changes, const SdfPath &amp;primPath)</argsstring>
+        <name>ReloadReferences</name>
+        <param>
+          <type><ref refid="class_pcp_changes" kindref="compound">PcpChanges</ref> *</type>
+          <declname>changes</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>primPath</declname>
+        </param>
+        <briefdescription>
+<para>Reload every layer used by the prim at <computeroutput>primPath</computeroutput> that&apos;s across a reference or payload. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Clients should subsequently apply the changes to use any now valid layers.</para>
+<para>Note: If a reference or payload was to an invalid asset and this asset is valid upon reloading then this call will not necessarily reload every layer accessible across the reference or payload. For example, say prim R has an invalid reference and prim Q has a valid reference to layer X with sublayer Y. If on reload R now has a valid reference to layer Z with sublayer Y, we will load Z but we will not reload Y. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="642" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Diagnostics</header>
+      <memberdef kind="function" id="class_pcp_cache_1ae930cda55ec639abd1e9e723553b9a0d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API void</type>
+        <definition>PCP_API void PrintStatistics</definition>
+        <argsstring>() const</argsstring>
+        <name>PrintStatistics</name>
+        <briefdescription>
+<para>Prints various statistics about the data stored in this cache. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="651" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_pcp_cache_1a7f3a41ba55dfab70e81651e7d0194fdd" prot="private" static="no">
+        <type>Pcp_LayerStackRegistryRefPtr</type>
+        <definition>typedef Pcp_LayerStackRegistryRefPtr _LayerStackCache</definition>
+        <argsstring></argsstring>
+        <name>_LayerStackCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="790" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="790" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_pcp_cache_1a3eddbed7c64a0df5583b7662d346979e" prot="private" static="no">
+        <type><ref refid="class_sdf_path_table" kindref="compound">SdfPathTable</ref>&lt; <ref refid="class_pcp_prim_index" kindref="compound">PcpPrimIndex</ref> &gt;</type>
+        <definition>typedef SdfPathTable&lt;PcpPrimIndex&gt; _PrimIndexCache</definition>
+        <argsstring></argsstring>
+        <name>_PrimIndexCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="791" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="791" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_pcp_cache_1ac395801d1a0821cff25e7d60374ccaba" prot="private" static="no">
+        <type><ref refid="class_sdf_path_table" kindref="compound">SdfPathTable</ref>&lt; <ref refid="class_pcp_property_index" kindref="compound">PcpPropertyIndex</ref> &gt;</type>
+        <definition>typedef SdfPathTable&lt;PcpPropertyIndex&gt; _PropertyIndexCache</definition>
+        <argsstring></argsstring>
+        <name>_PropertyIndexCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="792" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="792" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_pcp_cache_1a1a61fe3fdaa9cda325ddfcb5179d8433" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class PcpChanges</definition>
+        <argsstring></argsstring>
+        <name>PcpChanges</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="656" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="656" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_pcp_cache_1ac9f159c5186bdd86da6ccf7e71524002" prot="private" static="no" mutable="no">
+        <type><ref refid="class_tf_ref_ptr" kindref="compound">SdfLayerRefPtr</ref></type>
+        <definition>SdfLayerRefPtr _rootLayer</definition>
+        <argsstring></argsstring>
+        <name>_rootLayer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="763" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="763" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pcp_cache_1ab155eccd509d1205b7e9bbab27abef42" prot="private" static="no" mutable="no">
+        <type><ref refid="class_tf_ref_ptr" kindref="compound">SdfLayerRefPtr</ref></type>
+        <definition>SdfLayerRefPtr _sessionLayer</definition>
+        <argsstring></argsstring>
+        <name>_sessionLayer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="764" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="764" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pcp_cache_1a65c435b5fd14d1351a33987bb5722207" prot="private" static="no" mutable="no">
+        <type>const <ref refid="class_pcp_layer_stack_identifier" kindref="compound">PcpLayerStackIdentifier</ref></type>
+        <definition>const PcpLayerStackIdentifier _layerStackIdentifier</definition>
+        <argsstring></argsstring>
+        <name>_layerStackIdentifier</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="765" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="765" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pcp_cache_1af74dfb37da0bfe97df107fb74b770aa8" prot="private" static="no" mutable="no">
+        <type>const bool</type>
+        <definition>const bool _usd</definition>
+        <argsstring></argsstring>
+        <name>_usd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="772" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="772" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pcp_cache_1ac7f6cce43be5f087130499ba4b69702a" prot="private" static="no" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string _fileFormatTarget</definition>
+        <argsstring></argsstring>
+        <name>_fileFormatTarget</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="776" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="776" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pcp_cache_1a630b9bcfde8e21840589cab612589904" prot="private" static="no" mutable="no">
+        <type>PcpLayerStackRefPtr</type>
+        <definition>PcpLayerStackRefPtr _layerStack</definition>
+        <argsstring></argsstring>
+        <name>_layerStack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="781" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="781" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pcp_cache_1a0d6d294a999e42e912db11864e98d642" prot="private" static="no" mutable="no">
+        <type><ref refid="class_pcp_cache_1a006884c57fc666f8f69292cd68497d66" kindref="member">PayloadSet</ref></type>
+        <definition>PayloadSet _includedPayloads</definition>
+        <argsstring></argsstring>
+        <name>_includedPayloads</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="786" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="786" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pcp_cache_1ab5e5ed4129c227ae0bdeb4868e56d8bc" prot="private" static="no" mutable="no">
+        <type><ref refid="usd_2pcp_2types_8h_1a72ae489ff9c2601b5f289baf87cece28" kindref="member">PcpVariantFallbackMap</ref></type>
+        <definition>PcpVariantFallbackMap _variantFallbackMap</definition>
+        <argsstring></argsstring>
+        <name>_variantFallbackMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="787" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="787" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pcp_cache_1a9114bab76222b484f0e4d93c0cfa3757" prot="private" static="no" mutable="no">
+        <type>_LayerStackCache</type>
+        <definition>_LayerStackCache _layerStackCache</definition>
+        <argsstring></argsstring>
+        <name>_layerStackCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="795" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="795" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pcp_cache_1a32293a258a1641440361ae24050ab2de" prot="private" static="no" mutable="no">
+        <type><ref refid="class_sdf_path_table" kindref="compound">_PrimIndexCache</ref></type>
+        <definition>_PrimIndexCache _primIndexCache</definition>
+        <argsstring></argsstring>
+        <name>_primIndexCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="796" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="796" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pcp_cache_1afc6c6ae90b45d819fa95cf83df12ccdc" prot="private" static="no" mutable="no">
+        <type><ref refid="class_sdf_path_table" kindref="compound">_PropertyIndexCache</ref></type>
+        <definition>_PropertyIndexCache _propertyIndexCache</definition>
+        <argsstring></argsstring>
+        <name>_propertyIndexCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="797" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="797" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pcp_cache_1a890f0e2356410f47521f72518ee4b0f5" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; Pcp_Dependencies &gt;</type>
+        <definition>std::unique_ptr&lt;Pcp_Dependencies&gt; _primDependencies</definition>
+        <argsstring></argsstring>
+        <name>_primDependencies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="798" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="798" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pcp_cache_1afb3106da66df3878a9b179a230177b46" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; _ParallelIndexer &gt;</type>
+        <definition>std::unique_ptr&lt;_ParallelIndexer&gt; _parallelIndexer</definition>
+        <argsstring></argsstring>
+        <name>_parallelIndexer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="801" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="801" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_pcp_cache_1acc60df3596d211fcf40c49d08ce6645b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PcpCache</definition>
+        <argsstring>(PcpCache const &amp;)=delete</argsstring>
+        <name>PcpCache</name>
+        <param>
+          <type><ref refid="class_pcp_cache" kindref="compound">PcpCache</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="95" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a8dd6e52b94ce43a43c657753b4ae0e2d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_pcp_cache" kindref="compound">PcpCache</ref> &amp;</type>
+        <definition>PcpCache&amp; operator=</definition>
+        <argsstring>(PcpCache const &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="class_pcp_cache" kindref="compound">PcpCache</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="96" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a7cd6a644ed55b63fcaede1677ffcb50e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="class_pcp_prim_index" kindref="compound">PcpPrimIndex</ref> &amp;</type>
+        <definition>const PcpPrimIndex&amp; _ComputePrimIndexWithCompatibleInputs</definition>
+        <argsstring>(const SdfPath &amp;path, const PcpPrimIndexInputs &amp;inputs, PcpErrorVector *allErrors)</argsstring>
+        <name>_ComputePrimIndexWithCompatibleInputs</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_pcp_prim_index_inputs" kindref="compound">PcpPrimIndexInputs</ref> &amp;</type>
+          <declname>inputs</declname>
+        </param>
+        <param>
+          <type>PcpErrorVector *</type>
+          <declname>allErrors</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="716" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a925c62567ecb57d390ca6411d721f8fd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API void</type>
+        <definition>PCP_API void _ComputePrimIndexesInParallel</definition>
+        <argsstring>(const SdfPathVector &amp;paths, PcpErrorVector *allErrors, _UntypedIndexingChildrenPredicate childrenPred, _UntypedIndexingPayloadPredicate payloadPred, const char *mallocTag1, const char *mallocTag2)</argsstring>
+        <name>_ComputePrimIndexesInParallel</name>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>paths</declname>
+        </param>
+        <param>
+          <type>PcpErrorVector *</type>
+          <declname>allErrors</declname>
+        </param>
+        <param>
+          <type>_UntypedIndexingChildrenPredicate</type>
+          <declname>childrenPred</declname>
+        </param>
+        <param>
+          <type>_UntypedIndexingPayloadPredicate</type>
+          <declname>payloadPred</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>mallocTag1</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>mallocTag2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="729" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a02f7f03947dd8b6fb0243d60373fcf8b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RemovePrimCache</definition>
+        <argsstring>(const SdfPath &amp;primPath, PcpLifeboat *lifeboat)</argsstring>
+        <name>_RemovePrimCache</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>primPath</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pcp_lifeboat" kindref="compound">PcpLifeboat</ref> *</type>
+          <declname>lifeboat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="737" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1ad1246c0a5e4b3fe30796d4620c0cb4f8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RemovePrimAndPropertyCaches</definition>
+        <argsstring>(const SdfPath &amp;root, PcpLifeboat *lifeboat)</argsstring>
+        <name>_RemovePrimAndPropertyCaches</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pcp_lifeboat" kindref="compound">PcpLifeboat</ref> *</type>
+          <declname>lifeboat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="738" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a318eb1bda5c0898a67ce8488e0eccb69" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RemovePropertyCache</definition>
+        <argsstring>(const SdfPath &amp;root, PcpLifeboat *lifeboat)</argsstring>
+        <name>_RemovePropertyCache</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pcp_lifeboat" kindref="compound">PcpLifeboat</ref> *</type>
+          <declname>lifeboat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="740" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a2c568d4dbb9662bdbf34672cf4bde80b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RemovePropertyCaches</definition>
+        <argsstring>(const SdfPath &amp;root, PcpLifeboat *lifeboat)</argsstring>
+        <name>_RemovePropertyCaches</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pcp_lifeboat" kindref="compound">PcpLifeboat</ref> *</type>
+          <declname>lifeboat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="741" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1ab8399b57a5a3a37e2a97ef121d30d6a9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_pcp_prim_index" kindref="compound">PcpPrimIndex</ref> *</type>
+        <definition>PcpPrimIndex* _GetPrimIndex</definition>
+        <argsstring>(const SdfPath &amp;path)</argsstring>
+        <name>_GetPrimIndex</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="744" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1abf7fc71aa7f8d6da816007f7e1d8984a" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="class_pcp_prim_index" kindref="compound">PcpPrimIndex</ref> *</type>
+        <definition>const PcpPrimIndex* _GetPrimIndex</definition>
+        <argsstring>(const SdfPath &amp;path) const</argsstring>
+        <name>_GetPrimIndex</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="745" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a5427ed6990daa79953b3c6393019bedd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_pcp_property_index" kindref="compound">PcpPropertyIndex</ref> *</type>
+        <definition>PcpPropertyIndex* _GetPropertyIndex</definition>
+        <argsstring>(const SdfPath &amp;path)</argsstring>
+        <name>_GetPropertyIndex</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="748" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a64700a8941b41cb0244b6d1725e1ec9f" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="class_pcp_property_index" kindref="compound">PcpPropertyIndex</ref> *</type>
+        <definition>const PcpPropertyIndex* _GetPropertyIndex</definition>
+        <argsstring>(const SdfPath &amp;path) const</argsstring>
+        <name>_GetPropertyIndex</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="749" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1ab4f763bb8125f000ca55e48c12e9bb74" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API void</type>
+        <definition>PCP_API void _ForEachPrimIndex</definition>
+        <argsstring>(const TfFunctionRef&lt; void(const PcpPrimIndex &amp;)&gt; &amp;fn) const</argsstring>
+        <name>_ForEachPrimIndex</name>
+        <param>
+          <type>const <ref refid="class_tf_function_ref" kindref="compound">TfFunctionRef</ref>&lt; void(const <ref refid="class_pcp_prim_index" kindref="compound">PcpPrimIndex</ref> &amp;)&gt; &amp;</type>
+          <declname>fn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="752" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1a5afc1e634c0fbddc504e073f47add6ef" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API void</type>
+        <definition>PCP_API void _ForEachLayerStack</definition>
+        <argsstring>(const TfFunctionRef&lt; void(const PcpLayerStackPtr &amp;)&gt; &amp;fn) const</argsstring>
+        <name>_ForEachLayerStack</name>
+        <param>
+          <type>const <ref refid="class_tf_function_ref" kindref="compound">TfFunctionRef</ref>&lt; void(const PcpLayerStackPtr &amp;)&gt; &amp;</type>
+          <declname>fn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="756" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pcp_cache_1ac0fec6b1b4615a3b5b2c9e6d0564d018" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API</type>
+        <definition>PCP_API PcpCache</definition>
+        <argsstring>(const PcpLayerStackIdentifier &amp;layerStackIdentifier, const std::string &amp;fileFormatTarget=std::string(), bool usd=false)</argsstring>
+        <name>PcpCache</name>
+        <param>
+          <type>const <ref refid="class_pcp_layer_stack_identifier" kindref="compound">PcpLayerStackIdentifier</ref> &amp;</type>
+          <declname>layerStackIdentifier</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>fileFormatTarget</declname>
+          <defval>std::string()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>usd</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="class_pcp_cache" kindref="compound">PcpCache</ref> to compose results for the layer stack identified by <emphasis>layerStackIdentifier</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>fileFormatTarget</computeroutput> is given, Pcp will specify <computeroutput>fileFormatTarget</computeroutput> as the file format target when searching for or opening a layer.</para>
+<para>If <computeroutput>usd</computeroutput> is true, computation of prim indices and composition of prim child names are performed without relocates, inherits, permissions, symmetry, or payloads, and without populating the prim stack and gathering its dependencies. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="109" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pcp_cache_1aea08cce4f2b27524026e9073d363f94a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PCP_API</type>
+        <definition>PCP_API ~PcpCache</definition>
+        <argsstring>()</argsstring>
+        <name>~PcpCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/pcp/cache.h" line="112" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="class_pcp_cache" kindref="compound">PcpCache</ref> is the context required to make requests of the Pcp composition algorithm and cache the results. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Because the algorithms are recursive <ndash/> making a request typically makes other internal requests to solve subproblems <ndash/> caching subproblem results is required for reasonable performance, and so this cache is the only entrypoint to the algorithms.</para>
+<para>There is a set of parameters that affect the composition results:</para>
+<para><itemizedlist>
+<listitem><para>variant fallbacks: per named variant set, an ordered list of fallback values to use when composing a prim that defines a variant set but does not specify a selection </para>
+</listitem>
+<listitem><para>payload inclusion set: an <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> set used to identify which prims should have their payloads included during composition; this is the basis for explicit control over the &quot;working set&quot; of composition </para>
+</listitem>
+<listitem><para>file format target: the file format target that Pcp will request when opening scene description layers </para>
+</listitem>
+<listitem><para>&quot;USD mode&quot; configures the Pcp composition algorithm to provide only a custom, lighter subset of the full feature set, as needed by the Universal Scene Description system</para>
+</listitem>
+</itemizedlist>
+There are a number of different computations that can be requested. These include computing a layer stack from a <ref refid="class_pcp_layer_stack_identifier" kindref="compound">PcpLayerStackIdentifier</ref>, computing a prim index or prim stack, and computing a property index. </para>
+    </detaileddescription>
+    <location file="pxr/usd/pcp/cache.h" line="94" column="1" bodyfile="pxr/usd/pcp/cache.h" bodystart="93" bodyend="802"/>
+    <listofallmembers>
+      <member refid="class_pcp_cache_1a925c62567ecb57d390ca6411d721f8fd" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_ComputePrimIndexesInParallel</name></member>
+      <member refid="class_pcp_cache_1a7cd6a644ed55b63fcaede1677ffcb50e" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_ComputePrimIndexWithCompatibleInputs</name></member>
+      <member refid="class_pcp_cache_1ac7f6cce43be5f087130499ba4b69702a" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_fileFormatTarget</name></member>
+      <member refid="class_pcp_cache_1a5afc1e634c0fbddc504e073f47add6ef" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_ForEachLayerStack</name></member>
+      <member refid="class_pcp_cache_1ab4f763bb8125f000ca55e48c12e9bb74" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_ForEachPrimIndex</name></member>
+      <member refid="class_pcp_cache_1ab8399b57a5a3a37e2a97ef121d30d6a9" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_GetPrimIndex</name></member>
+      <member refid="class_pcp_cache_1abf7fc71aa7f8d6da816007f7e1d8984a" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_GetPrimIndex</name></member>
+      <member refid="class_pcp_cache_1a5427ed6990daa79953b3c6393019bedd" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_GetPropertyIndex</name></member>
+      <member refid="class_pcp_cache_1a64700a8941b41cb0244b6d1725e1ec9f" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_GetPropertyIndex</name></member>
+      <member refid="class_pcp_cache_1a0d6d294a999e42e912db11864e98d642" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_includedPayloads</name></member>
+      <member refid="class_pcp_cache_1a630b9bcfde8e21840589cab612589904" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_layerStack</name></member>
+      <member refid="class_pcp_cache_1a7f3a41ba55dfab70e81651e7d0194fdd" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_LayerStackCache</name></member>
+      <member refid="class_pcp_cache_1a9114bab76222b484f0e4d93c0cfa3757" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_layerStackCache</name></member>
+      <member refid="class_pcp_cache_1a65c435b5fd14d1351a33987bb5722207" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_layerStackIdentifier</name></member>
+      <member refid="class_pcp_cache_1afb3106da66df3878a9b179a230177b46" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_parallelIndexer</name></member>
+      <member refid="class_pcp_cache_1a890f0e2356410f47521f72518ee4b0f5" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_primDependencies</name></member>
+      <member refid="class_pcp_cache_1a3eddbed7c64a0df5583b7662d346979e" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_PrimIndexCache</name></member>
+      <member refid="class_pcp_cache_1a32293a258a1641440361ae24050ab2de" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_primIndexCache</name></member>
+      <member refid="class_pcp_cache_1afc6c6ae90b45d819fa95cf83df12ccdc" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_propertyIndexCache</name></member>
+      <member refid="class_pcp_cache_1ac395801d1a0821cff25e7d60374ccaba" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_PropertyIndexCache</name></member>
+      <member refid="class_pcp_cache_1ad1246c0a5e4b3fe30796d4620c0cb4f8" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_RemovePrimAndPropertyCaches</name></member>
+      <member refid="class_pcp_cache_1a02f7f03947dd8b6fb0243d60373fcf8b" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_RemovePrimCache</name></member>
+      <member refid="class_pcp_cache_1a318eb1bda5c0898a67ce8488e0eccb69" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_RemovePropertyCache</name></member>
+      <member refid="class_pcp_cache_1a2c568d4dbb9662bdbf34672cf4bde80b" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_RemovePropertyCaches</name></member>
+      <member refid="class_pcp_cache_1ac9f159c5186bdd86da6ccf7e71524002" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_rootLayer</name></member>
+      <member refid="class_pcp_cache_1ab155eccd509d1205b7e9bbab27abef42" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_sessionLayer</name></member>
+      <member refid="class_pcp_cache_1af74dfb37da0bfe97df107fb74b770aa8" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_usd</name></member>
+      <member refid="class_pcp_cache_1ab5e5ed4129c227ae0bdeb4868e56d8bc" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>_variantFallbackMap</name></member>
+      <member refid="class_pcp_cache_1a3f9b0f07cd0b437a480fbc1fb7c77d9e" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>Apply</name></member>
+      <member refid="class_pcp_cache_1aa080b6bdd403af24152b007df589ac88" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>CanHaveOpinionForSite</name></member>
+      <member refid="class_pcp_cache_1a2868ca7cc8823357cb05367de61340c7" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>ComputeAttributeConnectionPaths</name></member>
+      <member refid="class_pcp_cache_1a316a2ebde2a1f18e3ffd14c3c6e662d8" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>ComputeLayerStack</name></member>
+      <member refid="class_pcp_cache_1a65e7a19d2c33d5dd2de28423299b85ae" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>ComputePrimIndex</name></member>
+      <member refid="class_pcp_cache_1a8148727da89fcc27c85c846ec2a9875b" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>ComputePrimIndexesInParallel</name></member>
+      <member refid="class_pcp_cache_1a296a95e5c9862da92c87fe619786fe53" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>ComputePrimIndexesInParallel</name></member>
+      <member refid="class_pcp_cache_1ab70672b1171530466df9955e4dda981c" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>ComputePrimIndexesInParallel</name></member>
+      <member refid="class_pcp_cache_1a011be08e5df427e14cfb54c2cb634a4d" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>ComputePrimIndexesInParallel</name></member>
+      <member refid="class_pcp_cache_1aede3a9aa1f6efd932a87f13ba002a19b" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>ComputePropertyIndex</name></member>
+      <member refid="class_pcp_cache_1aac905bf0ec5b616f0f7bc92b6f2228b2" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>ComputeRelationshipTargetPaths</name></member>
+      <member refid="class_pcp_cache_1a9b942fed51a649c73c6e56e4bdf16d4e" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>FindAllLayerStacksUsingLayer</name></member>
+      <member refid="class_pcp_cache_1a8197bdd39cb465843a59b2299e4c117a" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>FindLayerStack</name></member>
+      <member refid="class_pcp_cache_1a96fbf4df256f960ff2a5fed8ffc716b5" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>FindPrimIndex</name></member>
+      <member refid="class_pcp_cache_1a22f5417de104b822cdc331b1298dd374" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>FindPropertyIndex</name></member>
+      <member refid="class_pcp_cache_1af37222ecf13dfa784cb634410ae9ba2f" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>FindSiteDependencies</name></member>
+      <member refid="class_pcp_cache_1ab93db0f1b103daf63093b072f1bbd411" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>FindSiteDependencies</name></member>
+      <member refid="class_pcp_cache_1af04adf403cfa215f80492e97cee20075" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>ForEachLayerStack</name></member>
+      <member refid="class_pcp_cache_1a12a63babf1e8baf998a48fc06c60cb3c" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>ForEachPrimIndex</name></member>
+      <member refid="class_pcp_cache_1a7ccca22f81de09c334eabcdd198bbddc" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>GetDynamicFileFormatArgumentDependencyData</name></member>
+      <member refid="class_pcp_cache_1a66f1de4ca6ea3751f94426ed83b0741f" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>GetExpressionVariablesFromLayerStackUsedByPrim</name></member>
+      <member refid="class_pcp_cache_1a51d27ff049e15338bffe1ac25b99d6d2" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>GetFileFormatTarget</name></member>
+      <member refid="class_pcp_cache_1acfbfc63965ab24efbb0bed1c59d76295" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>GetIncludedPayloads</name></member>
+      <member refid="class_pcp_cache_1a93dd2e793974c329e8d0b7a60b930ae5" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>GetInvalidAssetPaths</name></member>
+      <member refid="class_pcp_cache_1aee59af48a4eea375ac80d95446a5a549" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>GetInvalidSublayerIdentifiers</name></member>
+      <member refid="class_pcp_cache_1a3032310279fc40362a567bf4452abfb7" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>GetLayerStack</name></member>
+      <member refid="class_pcp_cache_1a08d830779e268f6bda770ef7450ba92b" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>GetLayerStackIdentifier</name></member>
+      <member refid="class_pcp_cache_1a45b7829b41a29610a08b120ad49dbc0b" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>GetMutedLayers</name></member>
+      <member refid="class_pcp_cache_1a846225e4dd5b1de08c4d5bd344321d88" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>GetPrimIndexInputs</name></member>
+      <member refid="class_pcp_cache_1af40ad447da0d475d2c45462e786e0104" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>GetPrimsUsingExpressionVariablesFromLayerStack</name></member>
+      <member refid="class_pcp_cache_1accc21b563933a964a6f565e600788c75" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>GetUsedLayers</name></member>
+      <member refid="class_pcp_cache_1a9ceff6bdebf15987eb68207b9b68a401" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>GetUsedLayersRevision</name></member>
+      <member refid="class_pcp_cache_1a2e2f976871ba19918b1e44cf88eaf16b" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>GetUsedRootLayers</name></member>
+      <member refid="class_pcp_cache_1a2e115abd7466c935edd9d47cb0936032" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>GetVariantFallbacks</name></member>
+      <member refid="class_pcp_cache_1afc36e5f5edc0c3b3b22b2c219483c7a7" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>HasAnyDynamicFileFormatArgumentAttributeDependencies</name></member>
+      <member refid="class_pcp_cache_1aa98da62ae892a59ea214ee919dfd50e0" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>HasAnyDynamicFileFormatArgumentFieldDependencies</name></member>
+      <member refid="class_pcp_cache_1a6d5c9e0242c37d231967611d2f5eccd1" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>HasRootLayerStack</name></member>
+      <member refid="class_pcp_cache_1a98719777d6ad28a536fa42ec3edfc597" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>HasRootLayerStack</name></member>
+      <member refid="class_pcp_cache_1a99d2dc9a6dd6595032e6e8a3f554f542" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>IsInvalidAssetPath</name></member>
+      <member refid="class_pcp_cache_1aeceb677d3e011e2ccc251b9151c9c4fa" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>IsInvalidSublayerIdentifier</name></member>
+      <member refid="class_pcp_cache_1a642079b52ee90d678c471180283a83a2" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>IsLayerMuted</name></member>
+      <member refid="class_pcp_cache_1af0379049d8a5361522fee5e1bef8f2ee" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>IsLayerMuted</name></member>
+      <member refid="class_pcp_cache_1ad0432ea3758714e3576bbafb94655793" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>IsPayloadIncluded</name></member>
+      <member refid="class_pcp_cache_1a5a6051ad9de95519043c10d4356c001a" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>IsPossibleDynamicFileFormatArgumentAttribute</name></member>
+      <member refid="class_pcp_cache_1a4a3981dba89620eaa70d6db10ea2440b" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>IsPossibleDynamicFileFormatArgumentField</name></member>
+      <member refid="class_pcp_cache_1a959d34686e5ba4df5f776be6e5efd86f" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>IsUsd</name></member>
+      <member refid="class_pcp_cache_1a8dd6e52b94ce43a43c657753b4ae0e2d" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>operator=</name></member>
+      <member refid="class_pcp_cache_1a006884c57fc666f8f69292cd68497d66" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>PayloadSet</name></member>
+      <member refid="class_pcp_cache_1acc60df3596d211fcf40c49d08ce6645b" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>PcpCache</name></member>
+      <member refid="class_pcp_cache_1ac0fec6b1b4615a3b5b2c9e6d0564d018" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>PcpCache</name></member>
+      <member refid="class_pcp_cache_1a1a61fe3fdaa9cda325ddfcb5179d8433" prot="private" virt="non-virtual"><scope>PcpCache</scope><name>PcpChanges</name></member>
+      <member refid="class_pcp_cache_1ae930cda55ec639abd1e9e723553b9a0d" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>PrintStatistics</name></member>
+      <member refid="class_pcp_cache_1a13d8b91fd17eb86b918242922c4b826c" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>Reload</name></member>
+      <member refid="class_pcp_cache_1a0d1dcab7b9144ebd8266c37314b46377" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>ReloadReferences</name></member>
+      <member refid="class_pcp_cache_1a442f27205bfe2232696c6069e7fd8a63" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>RequestLayerMuting</name></member>
+      <member refid="class_pcp_cache_1a1e66b152b678df77bf4ca463d759df76" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>RequestPayloads</name></member>
+      <member refid="class_pcp_cache_1a7e4146ac269e86cb8b033b8c71d55581" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>SetVariantFallbacks</name></member>
+      <member refid="class_pcp_cache_1a91550db50d25ec82dee97cb207c84148" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>UsesLayerStack</name></member>
+      <member refid="class_pcp_cache_1aea08cce4f2b27524026e9073d363f94a" prot="public" virt="non-virtual"><scope>PcpCache</scope><name>~PcpCache</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

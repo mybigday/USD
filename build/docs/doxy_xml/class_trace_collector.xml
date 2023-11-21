@@ -1,0 +1,1477 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_trace_collector" kind="class" language="C++" prot="public">
+    <compoundname>TraceCollector</compoundname>
+    <basecompoundref refid="class_tf_weak_base" prot="public" virt="non-virtual">TfWeakBase</basecompoundref>
+    <includes refid="collector_8h" local="no">collector.h</includes>
+    <innerclass refid="class_trace_collector_1_1___per_thread_data" prot="private">TraceCollector::_PerThreadData</innerclass>
+    <innerclass refid="struct_trace_collector_1_1_default_category" prot="public">TraceCollector::DefaultCategory</innerclass>
+      <sectiondef kind="user-defined">
+      <header>Event Recording</header>
+      <memberdef kind="function" id="class_trace_collector_1abe87d69be453135038d83c3c0ec7aaa7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Category</type>
+            <defval><ref refid="struct_trace_collector_1_1_default_category" kindref="compound">DefaultCategory</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>TimeStamp</type>
+        <definition>TimeStamp BeginEvent</definition>
+        <argsstring>(const Key &amp;key)</argsstring>
+        <name>BeginEvent</name>
+        <param>
+          <type>const <ref refid="class_trace_dynamic_key" kindref="compound">Key</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Record a begin event with <emphasis>key</emphasis> if <computeroutput>Category</computeroutput> is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A matching end event is expected some time in the future.</para>
+<para>If the key is known at compile time <computeroutput>BeginScope</computeroutput> and <computeroutput>Scope</computeroutput> methods are preferred because they have lower overhead. <simplesect kind="return"><para>The TimeStamp of the <ref refid="class_trace_event" kindref="compound">TraceEvent</ref> or 0 if the collector is disabled. </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_trace_collector_1a409090b70e87d4d47a9a37f6e3b07aee" kindref="member">BeginScope</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_trace_collector_1a81f8d63e47276778589f4642747829d7" kindref="member">Scope</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="136" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="136" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a1132b5470b89934547dd8ea78144b9a4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Category</type>
+            <defval><ref refid="struct_trace_collector_1_1_default_category" kindref="compound">DefaultCategory</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void BeginEventAtTime</definition>
+        <argsstring>(const Key &amp;key, double ms)</argsstring>
+        <name>BeginEventAtTime</name>
+        <param>
+          <type>const <ref refid="class_trace_dynamic_key" kindref="compound">Key</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ms</declname>
+        </param>
+        <briefdescription>
+<para>Record a begin event with <emphasis>key</emphasis> at a specified time if <computeroutput>Category</computeroutput> is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This version of the method allows the passing of a specific number of elapsed milliseconds, <emphasis>ms</emphasis>, to use for this event. This method is used for testing and debugging code. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="149" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="149" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a434e0b198a0cdb83acf662439f19f237" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Category</type>
+            <defval><ref refid="struct_trace_collector_1_1_default_category" kindref="compound">DefaultCategory</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>TimeStamp</type>
+        <definition>TimeStamp EndEvent</definition>
+        <argsstring>(const Key &amp;key)</argsstring>
+        <name>EndEvent</name>
+        <param>
+          <type>const <ref refid="class_trace_dynamic_key" kindref="compound">Key</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Record an end event with <emphasis>key</emphasis> if <computeroutput>Category</computeroutput> is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A matching begin event must have preceded this end event.</para>
+<para>If the key is known at compile time EndScope and Scope methods are preferred because they have lower overhead. <simplesect kind="return"><para>The TimeStamp of the <ref refid="class_trace_event" kindref="compound">TraceEvent</ref> or 0 if the collector is disabled. </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_trace_collector_1adf33c1ce0c294c2c5e96109f87a73b35" kindref="member">EndScope</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_trace_collector_1a81f8d63e47276778589f4642747829d7" kindref="member">Scope</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="165" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="165" bodyend="170"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a1f9e33b267232faeb121ea52954782af" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Category</type>
+            <defval><ref refid="struct_trace_collector_1_1_default_category" kindref="compound">DefaultCategory</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void EndEventAtTime</definition>
+        <argsstring>(const Key &amp;key, double ms)</argsstring>
+        <name>EndEventAtTime</name>
+        <param>
+          <type>const <ref refid="class_trace_dynamic_key" kindref="compound">Key</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ms</declname>
+        </param>
+        <briefdescription>
+<para>Record an end event with <emphasis>key</emphasis> at a specified time if <computeroutput>Category</computeroutput> is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This version of the method allows the passing of a specific number of elapsed milliseconds, <emphasis>ms</emphasis>, to use for this event. This method is used for testing and debugging code. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="178" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="178" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a1a3a887bb79fceffb57ea09b53aa2802" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Category</type>
+            <defval><ref refid="struct_trace_collector_1_1_default_category" kindref="compound">DefaultCategory</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>TimeStamp</type>
+        <definition>TimeStamp MarkerEvent</definition>
+        <argsstring>(const Key &amp;key)</argsstring>
+        <name>MarkerEvent</name>
+        <param>
+          <type>const <ref refid="class_trace_dynamic_key" kindref="compound">Key</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Record a marker event with <emphasis>key</emphasis> if <computeroutput>Category</computeroutput> is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Unlike begin/end, there is no matching event for marker events </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="191" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="191" bodyend="196"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a762c7dc7ed10c95e86c4eda42303e9a2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Category</type>
+            <defval><ref refid="struct_trace_collector_1_1_default_category" kindref="compound">DefaultCategory</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void MarkerEventAtTime</definition>
+        <argsstring>(const Key &amp;key, double ms)</argsstring>
+        <name>MarkerEventAtTime</name>
+        <param>
+          <type>const <ref refid="class_trace_dynamic_key" kindref="compound">Key</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ms</declname>
+        </param>
+        <briefdescription>
+<para>Record a marker event with <emphasis>key</emphasis> at a specified time if <computeroutput>Category</computeroutput> is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This version of the method allows the passing of a specific number of elapsed milliseconds, <emphasis>ms</emphasis>, to use for this event. This method is used for testing and debugging code. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="204" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="204" bodyend="209"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a409090b70e87d4d47a9a37f6e3b07aee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Category</type>
+            <defval><ref refid="struct_trace_collector_1_1_default_category" kindref="compound">DefaultCategory</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void BeginScope</definition>
+        <argsstring>(const TraceKey &amp;_key)</argsstring>
+        <name>BeginScope</name>
+        <param>
+          <type>const <ref refid="class_trace_key" kindref="compound">TraceKey</ref> &amp;</type>
+          <declname>_key</declname>
+        </param>
+        <briefdescription>
+<para>Record a begin event for a scope described by <emphasis>key</emphasis> if <computeroutput>Category</computeroutput> is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>It is more efficient to use the <computeroutput>Scope</computeroutput> method than to call both <computeroutput>BeginScope</computeroutput> and <computeroutput>EndScope</computeroutput>. <simplesect kind="see"><para><ref refid="class_trace_collector_1adf33c1ce0c294c2c5e96109f87a73b35" kindref="member">EndScope</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_trace_collector_1a81f8d63e47276778589f4642747829d7" kindref="member">Scope</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="217" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="217" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1aeb08fa7315890082f202886a99206c91" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Category</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void BeginScope</definition>
+        <argsstring>(const TraceKey &amp;key, Args &amp;&amp;... args)</argsstring>
+        <name>BeginScope</name>
+        <param>
+          <type>const <ref refid="class_trace_key" kindref="compound">TraceKey</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+<para>Record a begin event for a scope described by <emphasis>key</emphasis> and a specified category and store data arguments if <computeroutput>Category</computeroutput> is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The variadic arguments <emphasis>args</emphasis> must be an even number of parameters in the form <ref refid="class_trace_key" kindref="compound">TraceKey</ref>, Value. <simplesect kind="see"><para><ref refid="class_trace_collector_1adf33c1ce0c294c2c5e96109f87a73b35" kindref="member">EndScope</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_trace_collector_1a81f8d63e47276778589f4642747829d7" kindref="member">Scope</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_trace_collector_1a6aee2449d436b9327a839d8d865b0f86" kindref="member">StoreData</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="230" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="230" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1ae40874970bad02a56bd51bfaff68e6b4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void BeginScope</definition>
+        <argsstring>(const TraceKey &amp;key, Args &amp;&amp;... args)</argsstring>
+        <name>BeginScope</name>
+        <param>
+          <type>const <ref refid="class_trace_key" kindref="compound">TraceKey</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+<para>Record a begin event for a scope described by <emphasis>key</emphasis> and store data arguments if <computeroutput>Category</computeroutput> is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The variadic arguments <emphasis>args</emphasis> must be an even number of parameters in the form <ref refid="class_trace_key" kindref="compound">TraceKey</ref>, Value. <simplesect kind="see"><para><ref refid="class_trace_collector_1adf33c1ce0c294c2c5e96109f87a73b35" kindref="member">EndScope</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_trace_collector_1a81f8d63e47276778589f4642747829d7" kindref="member">Scope</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_trace_collector_1a6aee2449d436b9327a839d8d865b0f86" kindref="member">StoreData</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="248" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="248" bodyend="256"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1adf33c1ce0c294c2c5e96109f87a73b35" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Category</type>
+            <defval><ref refid="struct_trace_collector_1_1_default_category" kindref="compound">DefaultCategory</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void EndScope</definition>
+        <argsstring>(const TraceKey &amp;key)</argsstring>
+        <name>EndScope</name>
+        <param>
+          <type>const <ref refid="class_trace_key" kindref="compound">TraceKey</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Record an end event described by <emphasis>key</emphasis> if <computeroutput>Category</computeroutput> is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>It is more efficient to use the <computeroutput>Scope</computeroutput> method than to call both <computeroutput>BeginScope</computeroutput> and <computeroutput>EndScope</computeroutput>. <simplesect kind="see"><para><ref refid="class_trace_collector_1a409090b70e87d4d47a9a37f6e3b07aee" kindref="member">BeginScope</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_trace_collector_1a81f8d63e47276778589f4642747829d7" kindref="member">Scope</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="263" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="263" bodyend="268"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1ace377a05040cb48b00e186d64ecff1b3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Category</type>
+            <defval><ref refid="struct_trace_collector_1_1_default_category" kindref="compound">DefaultCategory</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Scope</definition>
+        <argsstring>(const TraceKey &amp;key, TimeStamp start, TimeStamp stop)</argsstring>
+        <name>Scope</name>
+        <param>
+          <type>const <ref refid="class_trace_key" kindref="compound">TraceKey</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>TimeStamp</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>TimeStamp</type>
+          <declname>stop</declname>
+        </param>
+        <briefdescription>
+<para>Record a scope event described by <emphasis>key</emphasis> that started at <emphasis>start</emphasis> if <computeroutput>Category</computeroutput> is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is used by the TRACE_FUNCTION, TRACE_SCOPE and TRACE_FUNCTION_SCOPE macros. <simplesect kind="see"><para><ref refid="class_trace_collector_1a409090b70e87d4d47a9a37f6e3b07aee" kindref="member">BeginScope</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_trace_collector_1adf33c1ce0c294c2c5e96109f87a73b35" kindref="member">EndScope</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="287" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="287" bodyend="293"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a85f42c728e71ba00dee09dda22a93ac7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Category</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void ScopeArgs</definition>
+        <argsstring>(Args &amp;&amp;... args)</argsstring>
+        <name>ScopeArgs</name>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+<para>Record multiple data events with category <emphasis>cat</emphasis> if <computeroutput>Category</computeroutput> is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_trace_collector_1a6aee2449d436b9327a839d8d865b0f86" kindref="member">StoreData</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="299" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="299" bodyend="308"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a277b6997c6804dd968251827991ad5a0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void ScopeArgs</definition>
+        <argsstring>(Args &amp;&amp;... args)</argsstring>
+        <name>ScopeArgs</name>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+<para>Record multiple data events with the default category if collection of events is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The variadic arguments <emphasis>args</emphasis> must be an even number of parameters in the form <ref refid="class_trace_key" kindref="compound">TraceKey</ref>, Value. It is more efficient to use this method to store multiple data items than to use multiple calls to <computeroutput>StoreData</computeroutput>. <simplesect kind="see"><para><ref refid="class_trace_collector_1a6aee2449d436b9327a839d8d865b0f86" kindref="member">StoreData</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="317" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="317" bodyend="322"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1af6471778247e37185f213fc29ff2dfad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Category</type>
+            <defval><ref refid="struct_trace_collector_1_1_default_category" kindref="compound">DefaultCategory</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void MarkerEventStatic</definition>
+        <argsstring>(const TraceKey &amp;key)</argsstring>
+        <name>MarkerEventStatic</name>
+        <param>
+          <type>const <ref refid="class_trace_key" kindref="compound">TraceKey</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Record a scope event described by <emphasis>key</emphasis> that started at <emphasis>start</emphasis> if <computeroutput>Category</computeroutput> is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is used by the TRACE_FUNCTION, TRACE_SCOPE and TRACE_FUNCTION_SCOPE macros. <simplesect kind="see"><para><ref refid="class_trace_collector_1a409090b70e87d4d47a9a37f6e3b07aee" kindref="member">BeginScope</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_trace_collector_1adf33c1ce0c294c2c5e96109f87a73b35" kindref="member">EndScope</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="332" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="332" bodyend="339"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a6aee2449d436b9327a839d8d865b0f86" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Category</type>
+            <defval><ref refid="struct_trace_collector_1_1_default_category" kindref="compound">DefaultCategory</ref></defval>
+          </param>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void StoreData</definition>
+        <argsstring>(const TraceKey &amp;key, const T &amp;value)</argsstring>
+        <name>StoreData</name>
+        <param>
+          <type>const <ref refid="class_trace_key" kindref="compound">TraceKey</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Record a data event with the given <emphasis>key</emphasis> and <emphasis>value</emphasis> if <computeroutput>Category</computeroutput> is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><emphasis>value</emphasis> may be of any type which a <ref refid="class_trace_event" kindref="compound">TraceEvent</ref> can be constructed from (bool, int, std::string, uint64, double). <simplesect kind="see"><para><ref refid="class_trace_collector_1a85f42c728e71ba00dee09dda22a93ac7" kindref="member">ScopeArgs</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="346" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="346" bodyend="350"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a19b4d09df7c51c157bebc19f36339faf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Category</type>
+            <defval><ref refid="struct_trace_collector_1_1_default_category" kindref="compound">DefaultCategory</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void RecordCounterDelta</definition>
+        <argsstring>(const TraceKey &amp;key, double delta)</argsstring>
+        <name>RecordCounterDelta</name>
+        <param>
+          <type>const <ref refid="class_trace_key" kindref="compound">TraceKey</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>delta</declname>
+        </param>
+        <briefdescription>
+<para>Record a counter <emphasis>delta</emphasis> for a name <emphasis>key</emphasis> if <computeroutput>Category</computeroutput> is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="354" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="354" bodyend="362"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1af8ced28b4c5e88606eff7108142c1910" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Category</type>
+            <defval><ref refid="struct_trace_collector_1_1_default_category" kindref="compound">DefaultCategory</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void RecordCounterDelta</definition>
+        <argsstring>(const Key &amp;key, double delta)</argsstring>
+        <name>RecordCounterDelta</name>
+        <param>
+          <type>const <ref refid="class_trace_dynamic_key" kindref="compound">Key</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>delta</declname>
+        </param>
+        <briefdescription>
+<para>Record a counter <emphasis>delta</emphasis> for a name <emphasis>key</emphasis> if <computeroutput>Category</computeroutput> is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="366" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="366" bodyend="371"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1aa30e743a52551ee5fd482dda7b04d894" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Category</type>
+            <defval><ref refid="struct_trace_collector_1_1_default_category" kindref="compound">DefaultCategory</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void RecordCounterValue</definition>
+        <argsstring>(const TraceKey &amp;key, double value)</argsstring>
+        <name>RecordCounterValue</name>
+        <param>
+          <type>const <ref refid="class_trace_key" kindref="compound">TraceKey</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Record a counter <emphasis>value</emphasis> for a name <emphasis>key</emphasis> if <computeroutput>Category</computeroutput> is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="375" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="375" bodyend="382"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1acce6cd85b39f0cafecf627d0b19d0f0c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Category</type>
+            <defval><ref refid="struct_trace_collector_1_1_default_category" kindref="compound">DefaultCategory</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void RecordCounterValue</definition>
+        <argsstring>(const Key &amp;key, double value)</argsstring>
+        <name>RecordCounterValue</name>
+        <param>
+          <type>const <ref refid="class_trace_dynamic_key" kindref="compound">Key</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Record a counter <emphasis>value</emphasis> for a name <emphasis>key</emphasis> and delta <emphasis>value</emphasis> if <computeroutput>Category</computeroutput> is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="387" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="387" bodyend="393"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a81f8d63e47276778589f4642747829d7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>static TRACE_API void Scope</definition>
+        <argsstring>(const TraceKey &amp;key, TimeStamp start, TimeStamp stop) noexcept</argsstring>
+        <name>Scope</name>
+        <param>
+          <type>const <ref refid="class_trace_key" kindref="compound">TraceKey</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>TimeStamp</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>TimeStamp</type>
+          <declname>stop</declname>
+        </param>
+        <briefdescription>
+<para>Record a scope event described by <emphasis>key</emphasis> that started at <emphasis>start</emphasis> for the <ref refid="struct_trace_collector_1_1_default_category" kindref="compound">DefaultCategory</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is used by the TRACE_FUNCTION, TRACE_SCOPE and TRACE_FUNCTION_SCOPE macros. <simplesect kind="see"><para><ref refid="class_trace_collector_1a409090b70e87d4d47a9a37f6e3b07aee" kindref="member">BeginScope</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_trace_collector_1adf33c1ce0c294c2c5e96109f87a73b35" kindref="member">EndScope</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="278" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_trace_collector_1a0d54a1a8126548ecf1b680c7a1611b7d" prot="public" static="no">
+        <type><ref refid="class_trace_collector" kindref="compound">TraceCollector</ref></type>
+        <definition>using This =  TraceCollector</definition>
+        <argsstring></argsstring>
+        <name>This</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="76" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_trace_collector_1a0464f6061238ed4fb08c01e81a92e1a4" prot="public" static="no">
+        <type>TraceCollectorPtr</type>
+        <definition>using ThisPtr =  TraceCollectorPtr</definition>
+        <argsstring></argsstring>
+        <name>ThisPtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="77" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_trace_collector_1a60ce363d3c6be5bd3a28a2ce4c1f1d21" prot="public" static="no">
+        <type><ref refid="class_trace_event_1a166027cc433a33197d502f882979d160" kindref="member">TraceEvent::TimeStamp</ref></type>
+        <definition>using TimeStamp =  TraceEvent::TimeStamp</definition>
+        <argsstring></argsstring>
+        <name>TimeStamp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="79" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_trace_collector_1a15ecca4396025e4c2a0f57fe6fedcf7f" prot="public" static="no">
+        <type><ref refid="class_trace_dynamic_key" kindref="compound">TraceDynamicKey</ref></type>
+        <definition>using Key =  TraceDynamicKey</definition>
+        <argsstring></argsstring>
+        <name>Key</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="81" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_trace_collector_1a425d228e8572f5bae0acae7ef1bdd2ab" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class TfSingleton&lt; TraceCollector &gt;</definition>
+        <argsstring></argsstring>
+        <name>TfSingleton&lt; TraceCollector &gt;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="410" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="412" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_trace_collector_1a9e73981877327c6c84b406c97be04798" prot="private" static="yes" mutable="no">
+        <type>TRACE_API std::atomic&lt; int &gt;</type>
+        <definition>TRACE_API std::atomic&lt;int&gt; _isEnabled</definition>
+        <argsstring></argsstring>
+        <name>_isEnabled</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="615" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="615" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_trace_collector_1a387a41a613a293426b910393f234f1a1" prot="private" static="no" mutable="no">
+        <type><ref refid="class_trace_concurrent_list" kindref="compound">TraceConcurrentList</ref>&lt; _PerThreadData &gt;</type>
+        <definition>TraceConcurrentList&lt;_PerThreadData&gt; _allPerThreadData</definition>
+        <argsstring></argsstring>
+        <name>_allPerThreadData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="618" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="618" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_trace_collector_1a4338ddf03fc0c06eebd83dd0980e318d" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string _label</definition>
+        <argsstring></argsstring>
+        <name>_label</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="620" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="620" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_trace_collector_1a66ed158834f24cc1087b3778ee4bbf86" prot="private" static="no" mutable="no">
+        <type>TimeStamp</type>
+        <definition>TimeStamp _measuredScopeOverhead</definition>
+        <argsstring></argsstring>
+        <name>_measuredScopeOverhead</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="622" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="622" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_trace_collector_1aef5c13442e3a822da8c9fba885a55d9d" prot="private" static="no" mutable="no">
+        <type>std::atomic&lt; int &gt;</type>
+        <definition>std::atomic&lt;int&gt; _isPythonTracingEnabled</definition>
+        <argsstring></argsstring>
+        <name>_isPythonTracingEnabled</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="631" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="631" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_trace_collector_1a12de5e179dc3344ae5d990bc3c4da0f3" prot="private" static="no" mutable="no">
+        <type>TfPyTraceFnId</type>
+        <definition>TfPyTraceFnId _pyTraceFnId</definition>
+        <argsstring></argsstring>
+        <name>_pyTraceFnId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="632" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="632" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_trace_collector_1aa6d7bc89e2a800dc44742bf40f3e9922" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TF_MALLOC_TAG_NEW</definition>
+        <argsstring>(&quot;Trace&quot;, &quot;TraceCollector&quot;)</argsstring>
+        <name>TF_MALLOC_TAG_NEW</name>
+        <param>
+          <type>&quot;Trace&quot;</type>
+        </param>
+        <param>
+          <type>&quot;TraceCollector&quot;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="74" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1abb60a323f7819fa0968e60cde7f854de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API</type>
+        <definition>TRACE_API ~TraceCollector</definition>
+        <argsstring>()</argsstring>
+        <name>~TraceCollector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="88" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a0bd350fc68d56a8bb66c20531e7d3587" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void SetEnabled</definition>
+        <argsstring>(bool isEnabled)</argsstring>
+        <name>SetEnabled</name>
+        <param>
+          <type>bool</type>
+          <declname>isEnabled</declname>
+        </param>
+        <briefdescription>
+<para>Enables or disables collection of events for <ref refid="struct_trace_collector_1_1_default_category" kindref="compound">DefaultCategory</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="91" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a1268fce31f204097d83a3203583242cb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool IsPythonTracingEnabled</definition>
+        <argsstring>() const</argsstring>
+        <name>IsPythonTracingEnabled</name>
+        <briefdescription>
+<para>Returns whether automatic tracing of all python scopes is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="109" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="109" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a320516bf4af4be3d9008d85c23ecd94c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void SetPythonTracingEnabled</definition>
+        <argsstring>(bool enabled)</argsstring>
+        <name>SetPythonTracingEnabled</name>
+        <param>
+          <type>bool</type>
+          <declname>enabled</declname>
+        </param>
+        <briefdescription>
+<para>Set whether automatic tracing of all python scopes is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="114" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1ab38f463eea3fee1a8be24cde3590b34c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API TimeStamp</type>
+        <definition>TRACE_API TimeStamp GetScopeOverhead</definition>
+        <argsstring>() const</argsstring>
+        <name>GetScopeOverhead</name>
+        <briefdescription>
+<para>Return the overhead cost to measure a scope. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="118" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a91e32d7011f5bc3bd911b87e30b02ba3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <briefdescription>
+<para>Clear all pending events from the collector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>No <ref refid="class_trace_collection" kindref="compound">TraceCollection</ref> will be made for these events. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="122" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1af1ec47098f4ada6664a7f25be4962cc4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::string &amp;</type>
+        <definition>const std::string&amp; GetLabel</definition>
+        <argsstring>()</argsstring>
+        <name>GetLabel</name>
+        <briefdescription>
+<para>Return the label associated with this collector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="398" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="398" bodyend="400"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a6662f531d89c418a2266ecf7487c44a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void CreateCollection</definition>
+        <argsstring>()</argsstring>
+        <name>CreateCollection</name>
+        <briefdescription>
+<para>Produces a <ref refid="class_trace_collection" kindref="compound">TraceCollection</ref> from all the events that recorded in the collector and issues a <ref refid="class_trace_collection_available" kindref="compound">TraceCollectionAvailable</ref> notice. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that creating a collection restarts tracing, i.e. events contained in this collection will not be present in subsequent collections. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="406" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_trace_collector_1a7c6ef45a242396370e5d51e4c0ed8ec7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>TRACE_API <ref refid="class_trace_collector" kindref="compound">TraceCollector</ref> &amp;</type>
+        <definition>static TRACE_API TraceCollector&amp; GetInstance</definition>
+        <argsstring>()</argsstring>
+        <name>GetInstance</name>
+        <briefdescription>
+<para>Returns the singleton instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="84" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="84" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a8a49d253d7a89ed87906e2ac33c48eaa" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool IsEnabled</definition>
+        <argsstring>()</argsstring>
+        <name>IsEnabled</name>
+        <briefdescription>
+<para>Returns whether collection of events is enabled for <ref refid="struct_trace_collector_1_1_default_category" kindref="compound">DefaultCategory</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="94" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="94" bodyend="96"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_trace_collector_1a9c50db4a4c3723920538390ada7bf2d8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TraceCollector</definition>
+        <argsstring>()</argsstring>
+        <name>TraceCollector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="410" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a765cd7949b77f007bd749a534c9537e3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API _PerThreadData *</type>
+        <definition>TRACE_API _PerThreadData* _GetThreadData</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>_GetThreadData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="418" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a59a43e8005ffad0e2963b6b0899b6e29" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API TimeStamp</type>
+        <definition>TRACE_API TimeStamp _BeginEvent</definition>
+        <argsstring>(const Key &amp;key, TraceCategoryId cat)</argsstring>
+        <name>_BeginEvent</name>
+        <param>
+          <type>const <ref refid="class_trace_dynamic_key" kindref="compound">Key</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type><ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref></type>
+          <declname>cat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="420" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1aee97f61112c2d439a8954114b8e0215d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void _BeginEventAtTime</definition>
+        <argsstring>(const Key &amp;key, double ms, TraceCategoryId cat)</argsstring>
+        <name>_BeginEventAtTime</name>
+        <param>
+          <type>const <ref refid="class_trace_dynamic_key" kindref="compound">Key</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ms</declname>
+        </param>
+        <param>
+          <type><ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref></type>
+          <declname>cat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="422" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1ab50d620773f29568a868109bb8eafeca" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API TimeStamp</type>
+        <definition>TRACE_API TimeStamp _EndEvent</definition>
+        <argsstring>(const Key &amp;key, TraceCategoryId cat)</argsstring>
+        <name>_EndEvent</name>
+        <param>
+          <type>const <ref refid="class_trace_dynamic_key" kindref="compound">Key</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type><ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref></type>
+          <declname>cat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="425" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a48c3d110e58ea8a49d66b03aefa805de" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void _EndEventAtTime</definition>
+        <argsstring>(const Key &amp;key, double ms, TraceCategoryId cat)</argsstring>
+        <name>_EndEventAtTime</name>
+        <param>
+          <type>const <ref refid="class_trace_dynamic_key" kindref="compound">Key</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ms</declname>
+        </param>
+        <param>
+          <type><ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref></type>
+          <declname>cat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="427" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a9be32d7273524e92c46a7f7e4ce39ac5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API TimeStamp</type>
+        <definition>TRACE_API TimeStamp _MarkerEvent</definition>
+        <argsstring>(const Key &amp;key, TraceCategoryId cat)</argsstring>
+        <name>_MarkerEvent</name>
+        <param>
+          <type>const <ref refid="class_trace_dynamic_key" kindref="compound">Key</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type><ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref></type>
+          <declname>cat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="430" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a94d9570ba525ea75e4573802ab8cba2c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void _MarkerEventAtTime</definition>
+        <argsstring>(const Key &amp;key, double ms, TraceCategoryId cat)</argsstring>
+        <name>_MarkerEventAtTime</name>
+        <param>
+          <type>const <ref refid="class_trace_dynamic_key" kindref="compound">Key</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ms</declname>
+        </param>
+        <param>
+          <type><ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref></type>
+          <declname>cat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="432" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a25d96cd3be1665917cc1070eb8a84b39" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _BeginScope</definition>
+        <argsstring>(const TraceKey &amp;key, TraceCategoryId cat)</argsstring>
+        <name>_BeginScope</name>
+        <param>
+          <type>const <ref refid="class_trace_key" kindref="compound">TraceKey</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type><ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref></type>
+          <declname>cat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="437" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="437" bodyend="442"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a3924035c3ae05d9479acac99096f36a6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void _EndScope</definition>
+        <argsstring>(const TraceKey &amp;key, TraceCategoryId cat)</argsstring>
+        <name>_EndScope</name>
+        <param>
+          <type>const <ref refid="class_trace_key" kindref="compound">TraceKey</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type><ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref></type>
+          <declname>cat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="446" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a119ad554d067934f90a40a1c2adf4b64" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRACE_API void</type>
+        <definition>TRACE_API void _MeasureScopeOverhead</definition>
+        <argsstring>()</argsstring>
+        <name>_MeasureScopeOverhead</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="448" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a9ee05a8fc7dcf4dcef61c8c1c06a0f4b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _PyTracingCallback</definition>
+        <argsstring>(const TfPyTraceInfo &amp;info)</argsstring>
+        <name>_PyTracingCallback</name>
+        <param>
+          <type>const <ref refid="struct_tf_py_trace_info" kindref="compound">TfPyTraceInfo</ref> &amp;</type>
+          <declname>info</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="452" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a595c0de47fe33e6bfdde937e816892da" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>StoreData</definition>
+        <argsstring>(key, value, cat)</argsstring>
+        <name>StoreData</name>
+        <param>
+          <type>key</type>
+        </param>
+        <param>
+          <type>value</type>
+        </param>
+        <param>
+          <type>cat</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="462" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a49a719496e1146d86bf7d4101d520d6c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename std::enable_if&lt;</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void _StoreData</definition>
+        <argsstring>(_PerThreadData *threadData, const TraceKey &amp;key, TraceCategoryId cat, const T &amp;value)</argsstring>
+        <name>_StoreData</name>
+        <param>
+          <type>_PerThreadData *</type>
+          <declname>threadData</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_trace_key" kindref="compound">TraceKey</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type><ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref></type>
+          <declname>cat</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="470" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="470" bodyend="473"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a3297a1a961ce4560370e0a85a2f7260b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _StoreData</definition>
+        <argsstring>(_PerThreadData *threadData, const TraceKey &amp;key, TraceCategoryId cat, const char *value)</argsstring>
+        <name>_StoreData</name>
+        <param>
+          <type>_PerThreadData *</type>
+          <declname>threadData</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_trace_key" kindref="compound">TraceKey</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type><ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref></type>
+          <declname>cat</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="476" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="476" bodyend="482"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1adc4c149044a82d10ee380632ba12d927" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _StoreData</definition>
+        <argsstring>(_PerThreadData *threadData, const TraceKey &amp;key, TraceCategoryId cat, const std::string &amp;value)</argsstring>
+        <name>_StoreData</name>
+        <param>
+          <type>_PerThreadData *</type>
+          <declname>threadData</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_trace_key" kindref="compound">TraceKey</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type><ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref></type>
+          <declname>cat</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="485" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="485" bodyend="491"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1a7a49f27859ae7aa88206a8f715e5cf00" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename K</type>
+          </param>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void _StoreDataRec</definition>
+        <argsstring>(_PerThreadData *threadData, TraceCategoryId cat, K &amp;&amp;key, const T &amp;value, Args &amp;&amp;... args)</argsstring>
+        <name>_StoreDataRec</name>
+        <param>
+          <type>_PerThreadData *</type>
+          <declname>threadData</declname>
+        </param>
+        <param>
+          <type><ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref></type>
+          <declname>cat</declname>
+        </param>
+        <param>
+          <type>K &amp;&amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="495" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="495" bodyend="500"/>
+      </memberdef>
+      <memberdef kind="function" id="class_trace_collector_1acd6ced2a0e310db33972b3c561b60f06" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _StoreDataRec</definition>
+        <argsstring>(_PerThreadData *threadData, TraceCategoryId cat)</argsstring>
+        <name>_StoreDataRec</name>
+        <param>
+          <type>_PerThreadData *</type>
+          <declname>threadData</declname>
+        </param>
+        <param>
+          <type><ref refid="category_8h_1a3a221cd36270fa5e1bee9476d0c6013e" kindref="member">TraceCategoryId</ref></type>
+          <declname>cat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/trace/collector.h" line="503" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="503" bodyend="503"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This is a singleton class that records <ref refid="class_trace_event" kindref="compound">TraceEvent</ref> instances and populates <ref refid="class_trace_collection" kindref="compound">TraceCollection</ref> instances. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>All public methods of <ref refid="class_trace_collector" kindref="compound">TraceCollector</ref> are safe to call from any thread. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5855">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="5854">
+        <label>TraceCollector</label>
+        <link refid="class_trace_collector"/>
+        <childnode refid="5855" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5857">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="5856">
+        <label>TraceCollector</label>
+        <link refid="class_trace_collector"/>
+        <childnode refid="5857" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/base/trace/collector.h" line="71" column="1" bodyfile="pxr/base/trace/collector.h" bodystart="71" bodyend="636"/>
+    <listofallmembers>
+      <member refid="class_tf_weak_base_1a01aa4c4b93df067f2ec9b9e5fa4c35b3" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>__GetTfWeakBase__</name></member>
+      <member refid="class_trace_collector_1a387a41a613a293426b910393f234f1a1" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_allPerThreadData</name></member>
+      <member refid="class_trace_collector_1a59a43e8005ffad0e2963b6b0899b6e29" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_BeginEvent</name></member>
+      <member refid="class_trace_collector_1aee97f61112c2d439a8954114b8e0215d" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_BeginEventAtTime</name></member>
+      <member refid="class_trace_collector_1a25d96cd3be1665917cc1070eb8a84b39" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_BeginScope</name></member>
+      <member refid="class_trace_collector_1ab50d620773f29568a868109bb8eafeca" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_EndEvent</name></member>
+      <member refid="class_trace_collector_1a48c3d110e58ea8a49d66b03aefa805de" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_EndEventAtTime</name></member>
+      <member refid="class_trace_collector_1a3924035c3ae05d9479acac99096f36a6" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_EndScope</name></member>
+      <member refid="class_trace_collector_1a765cd7949b77f007bd749a534c9537e3" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_GetThreadData</name></member>
+      <member refid="class_tf_weak_base_1a6a5533162e8efab1be47acd6ccd5254c" prot="protected" virt="non-virtual"><scope>TraceCollector</scope><name>_HasRemnant</name></member>
+      <member refid="class_trace_collector_1a9e73981877327c6c84b406c97be04798" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_isEnabled</name></member>
+      <member refid="class_trace_collector_1aef5c13442e3a822da8c9fba885a55d9d" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_isPythonTracingEnabled</name></member>
+      <member refid="class_trace_collector_1a4338ddf03fc0c06eebd83dd0980e318d" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_label</name></member>
+      <member refid="class_trace_collector_1a9be32d7273524e92c46a7f7e4ce39ac5" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_MarkerEvent</name></member>
+      <member refid="class_trace_collector_1a94d9570ba525ea75e4573802ab8cba2c" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_MarkerEventAtTime</name></member>
+      <member refid="class_trace_collector_1a66ed158834f24cc1087b3778ee4bbf86" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_measuredScopeOverhead</name></member>
+      <member refid="class_trace_collector_1a119ad554d067934f90a40a1c2adf4b64" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_MeasureScopeOverhead</name></member>
+      <member refid="class_trace_collector_1a12de5e179dc3344ae5d990bc3c4da0f3" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_pyTraceFnId</name></member>
+      <member refid="class_trace_collector_1a9ee05a8fc7dcf4dcef61c8c1c06a0f4b" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_PyTracingCallback</name></member>
+      <member refid="class_tf_weak_base_1a95139d2f4d04eb706664a4f47eb93918" prot="protected" virt="non-virtual"><scope>TraceCollector</scope><name>_Register</name></member>
+      <member refid="class_tf_weak_base_1ac1312732482c8a286522f703f2cf90d1" prot="protected" virt="non-virtual"><scope>TraceCollector</scope><name>_Register</name></member>
+      <member refid="class_trace_collector_1a49a719496e1146d86bf7d4101d520d6c" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_StoreData</name></member>
+      <member refid="class_trace_collector_1a3297a1a961ce4560370e0a85a2f7260b" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_StoreData</name></member>
+      <member refid="class_trace_collector_1adc4c149044a82d10ee380632ba12d927" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_StoreData</name></member>
+      <member refid="class_trace_collector_1a7a49f27859ae7aa88206a8f715e5cf00" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_StoreDataRec</name></member>
+      <member refid="class_trace_collector_1acd6ced2a0e310db33972b3c561b60f06" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>_StoreDataRec</name></member>
+      <member refid="class_trace_collector_1abe87d69be453135038d83c3c0ec7aaa7" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>BeginEvent</name></member>
+      <member refid="class_trace_collector_1a1132b5470b89934547dd8ea78144b9a4" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>BeginEventAtTime</name></member>
+      <member refid="class_trace_collector_1a409090b70e87d4d47a9a37f6e3b07aee" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>BeginScope</name></member>
+      <member refid="class_trace_collector_1aeb08fa7315890082f202886a99206c91" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>BeginScope</name></member>
+      <member refid="class_trace_collector_1ae40874970bad02a56bd51bfaff68e6b4" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>BeginScope</name></member>
+      <member refid="class_trace_collector_1a91e32d7011f5bc3bd911b87e30b02ba3" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>Clear</name></member>
+      <member refid="class_trace_collector_1a6662f531d89c418a2266ecf7487c44a2" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>CreateCollection</name></member>
+      <member refid="class_tf_weak_base_1a16f1e27cc0c7c606ffb397b7d970ed10" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>EnableNotification2</name></member>
+      <member refid="class_trace_collector_1a434e0b198a0cdb83acf662439f19f237" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>EndEvent</name></member>
+      <member refid="class_trace_collector_1a1f9e33b267232faeb121ea52954782af" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>EndEventAtTime</name></member>
+      <member refid="class_trace_collector_1adf33c1ce0c294c2c5e96109f87a73b35" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>EndScope</name></member>
+      <member refid="class_trace_collector_1a7c6ef45a242396370e5d51e4c0ed8ec7" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>GetInstance</name></member>
+      <member refid="class_trace_collector_1af1ec47098f4ada6664a7f25be4962cc4" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>GetLabel</name></member>
+      <member refid="class_trace_collector_1ab38f463eea3fee1a8be24cde3590b34c" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>GetScopeOverhead</name></member>
+      <member refid="class_tf_weak_base_1a3241c32a82fbed0716a77049f6134e1e" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>GetUniqueIdentifier</name></member>
+      <member refid="class_trace_collector_1a8a49d253d7a89ed87906e2ac33c48eaa" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>IsEnabled</name></member>
+      <member refid="class_trace_collector_1a1268fce31f204097d83a3203583242cb" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>IsPythonTracingEnabled</name></member>
+      <member refid="class_trace_collector_1a15ecca4396025e4c2a0f57fe6fedcf7f" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>Key</name></member>
+      <member refid="class_trace_collector_1a1a3a887bb79fceffb57ea09b53aa2802" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>MarkerEvent</name></member>
+      <member refid="class_trace_collector_1a762c7dc7ed10c95e86c4eda42303e9a2" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>MarkerEventAtTime</name></member>
+      <member refid="class_trace_collector_1af6471778247e37185f213fc29ff2dfad" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>MarkerEventStatic</name></member>
+      <member refid="class_tf_weak_base_1af890ac314073e903458bf6b2397566b5" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>operator=</name></member>
+      <member refid="class_trace_collector_1a19b4d09df7c51c157bebc19f36339faf" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>RecordCounterDelta</name></member>
+      <member refid="class_trace_collector_1af8ced28b4c5e88606eff7108142c1910" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>RecordCounterDelta</name></member>
+      <member refid="class_trace_collector_1aa30e743a52551ee5fd482dda7b04d894" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>RecordCounterValue</name></member>
+      <member refid="class_trace_collector_1acce6cd85b39f0cafecf627d0b19d0f0c" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>RecordCounterValue</name></member>
+      <member refid="class_trace_collector_1a81f8d63e47276778589f4642747829d7" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>Scope</name></member>
+      <member refid="class_trace_collector_1ace377a05040cb48b00e186d64ecff1b3" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>Scope</name></member>
+      <member refid="class_trace_collector_1a85f42c728e71ba00dee09dda22a93ac7" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>ScopeArgs</name></member>
+      <member refid="class_trace_collector_1a277b6997c6804dd968251827991ad5a0" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>ScopeArgs</name></member>
+      <member refid="class_trace_collector_1a0bd350fc68d56a8bb66c20531e7d3587" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>SetEnabled</name></member>
+      <member refid="class_trace_collector_1a320516bf4af4be3d9008d85c23ecd94c" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>SetPythonTracingEnabled</name></member>
+      <member refid="class_trace_collector_1a6aee2449d436b9327a839d8d865b0f86" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>StoreData</name></member>
+      <member refid="class_trace_collector_1a595c0de47fe33e6bfdde937e816892da" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>StoreData</name></member>
+      <member refid="class_trace_collector_1aa6d7bc89e2a800dc44742bf40f3e9922" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>TF_MALLOC_TAG_NEW</name></member>
+      <member refid="class_trace_collector_1a425d228e8572f5bae0acae7ef1bdd2ab" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>TfSingleton&lt; TraceCollector &gt;</name></member>
+      <member refid="class_tf_weak_base_1a6e4abdd663654f8c8019702a464de8d6" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_weak_base_1affc4c00d0bbfdfe4f9e6a8b2e81be368" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>TfWeakBase</name></member>
+      <member refid="class_trace_collector_1a0d54a1a8126548ecf1b680c7a1611b7d" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>This</name></member>
+      <member refid="class_trace_collector_1a0464f6061238ed4fb08c01e81a92e1a4" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>ThisPtr</name></member>
+      <member refid="class_trace_collector_1a60ce363d3c6be5bd3a28a2ce4c1f1d21" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>TimeStamp</name></member>
+      <member refid="class_trace_collector_1a9c50db4a4c3723920538390ada7bf2d8" prot="private" virt="non-virtual"><scope>TraceCollector</scope><name>TraceCollector</name></member>
+      <member refid="class_tf_weak_base_1a778020f525b66def8a284c6f020592c2" prot="protected" virt="non-virtual"><scope>TraceCollector</scope><name>~TfWeakBase</name></member>
+      <member refid="class_trace_collector_1abb60a323f7819fa0968e60cde7f854de" prot="public" virt="non-virtual"><scope>TraceCollector</scope><name>~TraceCollector</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

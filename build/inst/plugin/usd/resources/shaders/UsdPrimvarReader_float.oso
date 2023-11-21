@@ -1,0 +1,17 @@
+OpenShadingLanguage 1.00
+# Compiled by oslc 1.11.0@OPROJECT_VERSION_RELEASE_TYPE@
+# options: -o /home/clachanski/trees/OpenUSD_Vulkan/build/third_party/renderman-25/shaders/UsdPrimvarReader_float.oso
+shader UsdPrimvarReader_float	%meta{string,category,"generator"} %meta{string,role,"primvar"} %meta{string,primvars,"$varname"} 
+param	string	varname	""		%meta{int,connectable,0} %meta{string,help,"Name of requested primvar."}  %read{1,1} %write{2147483647,-1}
+param	float	fallback	0		%meta{string,help,"return value if primvar not found."}  %read{0,0} %write{2147483647,-1}
+oparam	float	result	0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{0,1}
+temp	int	$tmp1	%read{2147483647,-1} %write{1,1}
+const	string	$const1	"primvar"		%read{1,1} %write{2147483647,-1}
+code ___main___
+# /home/clachanski/trees/OpenUSD_Vulkan/pxr/usdImaging/plugin/usdShaders/shaders/UsdPrimvarReader_float.osl:44
+#     result = fallback;
+	assign		result fallback 	%filename{"/home/clachanski/trees/OpenUSD_Vulkan/pxr/usdImaging/plugin/usdShaders/shaders/UsdPrimvarReader_float.osl"} %line{44} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/pxr/usdImaging/plugin/usdShaders/shaders/UsdPrimvarReader_float.osl:45
+#     getattribute("primvar", varname, result); 
+	getattribute	$tmp1 $const1 varname result 	%line{45} %argrw{"wrrw"}
+	end

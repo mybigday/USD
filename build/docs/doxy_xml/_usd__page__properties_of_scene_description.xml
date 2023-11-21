@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="_usd__page__properties_of_scene_description" kind="page">
+    <compoundname>Usd_Page_PropertiesOfSceneDescription</compoundname>
+    <title>Important Properties of Scene Description</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="_usd__page__properties_of_scene_description_1Usd_Ordering">
+<title>Names, Namespace Ordering, and Property Namespaces</title>
+</sect1>
+<sect1 id="_usd__page__properties_of_scene_description_1Usd_ValueResolution">
+<title>TimeSamples, Defaults, and Value Resolution</title>
+</sect1>
+<sect1 id="_usd__page__properties_of_scene_description_1Usd_PrimSpecifiers">
+<title>Defs, Overs, Classes, and Prim Types</title>
+<para><simplesect kind="see"><para><ulink url="https://openusd.org/release/usdfaq.html#what-s-the-difference-between-an-over-and-a-typeless-def">What&apos;s the difference between an &quot;over&quot; and a &quot;typeless def&quot;? </ulink></para>
+</simplesect>
+</para>
+</sect1>
+<sect1 id="_usd__page__properties_of_scene_description_1Usd_ModelHierarchy">
+<title>Model Hierarchy: Meaning and Purpose</title>
+<para>Borrowing from <ref refid="kind_page_front_1kind_coreKinds" kindref="member">The Core Kind Hierarchy</ref>, we review the primary <emphasis>kinds</emphasis> we use to create the model hierarchy. <itemizedlist>
+<listitem>
+<para><bold>model</bold> - Everything in the model hierarchy is a kind of model. <itemizedlist>
+<listitem>
+<para><bold>component</bold> - A component model is a terminal model in the model hierarchy - it can have no child models. </para>
+</listitem>
+<listitem>
+<para><bold>group</bold> - a model that is simply a container for other models. <itemizedlist>
+<listitem>
+<para><bold>assembly</bold> - An &quot;important&quot; group model - often because it is itself a published asset. </para>
+</listitem>
+</itemizedlist>
+</para>
+</listitem>
+</itemizedlist>
+</para>
+</listitem>
+<listitem>
+<para><bold>subcomponent</bold> - Within a component model, subcomponents identify important (generally articulable) sub-trees. Subcomponents are &quot;stopping points&quot; when dynamically unrolling/expanding a component into an application&apos;s native scene description. </para>
+</listitem>
+</itemizedlist>
+</para>
+<para>We interrogate and author kinds on <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> using <ref refid="class_usd_model_a_p_i_1a3c54c7584441d0f92eeb6893068f92d2" kindref="member">UsdModelAPI::GetKind()</ref> and <ref refid="class_usd_model_a_p_i_1a1d091aa55a2380411e0ab738397ca5fc" kindref="member">UsdModelAPI::SetKind()</ref>, in order to establish a <emphasis>Model Hierarchy</emphasis>, which is a contiguous prefix of a scene&apos;s namespace. The intention of model hierarchy is to recognize that we often organize our scenes into hierarchical collections of &quot;components&quot; each of which is a substantial, meaningful partition of the scene (generally, but not required to be, referenced assets), and codify that organization to facilitate navigating and reasoning about the scene at a high-level. In other words, <emphasis>Model Hierarchy</emphasis> acts as a scene&apos;s table of contents.</para>
+<para>Assuming that the prims on a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> are organized into <emphasis>assembly</emphasis>, <emphasis>group</emphasis>, and <emphasis>component</emphasis> models, we can use the <ref refid="prim_flags_8h_1Usd_PrimFlags" kindref="member">Prim Predicate Flags</ref> <computeroutput>UsdPrimIsModel</computeroutput> and <computeroutput>UsdPrimIsGroup</computeroutput> in constructing predicates for <ref refid="class_usd_prim_range" kindref="compound">UsdPrimRange</ref> and <ref refid="class_usd_stage_1adba675b55f41cc1b305bed414fc4f178" kindref="member">UsdStage::Traverse()</ref> that will visit all models on a stage, and no &quot;sub-model&quot; prims. <ref refid="class_usd_prim_1ad93a1d74f88e0a32113df97b3358e9d3" kindref="member">UsdPrim::IsModel()</ref> and <ref refid="class_usd_prim_1ad534b1a75ec6ebe6cb3d5883d683ec93" kindref="member">UsdPrim::IsGroup()</ref> answer the corresponding questions.</para>
+</sect1>
+<sect1 id="_usd__page__properties_of_scene_description_1Usd_ActiveInactive">
+<title>How &quot;active&quot; Affects Prims on a UsdStage</title>
+<para>How does one &quot;delete a prim&quot; in USD? Considering that any given <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> on a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> may be comprised of <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref>&apos;s from numerous layers, and that one or more (typically many) may not be editable by the user who wants to delete a prim or subtree rooted at a prim, the &quot;obvious&quot; approach of directly editing all of the participating layers, while <emphasis>possible</emphasis>, is not often practical or desirable.</para>
+<para>Therefore USD provides a &quot;non-destructive&quot; and reversible form of prim deletion, which we call <bold>deactivation</bold>. One deactivates a prim using <computeroutput>UsdPrim::SetActive(false)</computeroutput>, which sets the prim metadata <emphasis>active</emphasis> to false. For any prim on a stage whose <emphasis>active</emphasis> metadata resolves to false, we consider the prim to be <emphasis>deactivated</emphasis>, which has two important consequences:</para>
+<para><itemizedlist>
+<listitem><para>The prim will be excluded from default stage traversals as determined by the <ref refid="prim_flags_8h_1a29cc22af3e47af74a71814d9cca1c1fe" kindref="member">UsdPrimDefaultPredicate</ref>. It is important that the deactivated prim still be <emphasis>present</emphasis> on the stage, or else we would no longer be able to re-activate the prim; however, we promote <ref refid="prim_flags_8h_1a29cc22af3e47af74a71814d9cca1c1fe" kindref="member">UsdPrimDefaultPredicate</ref> as the means to visit/process the &quot;important&quot; part of the stage, thus deactivation effectively removes the prim. </para>
+</listitem>
+<listitem><para>All scene description for prims <emphasis>beneath</emphasis> the deactivated prim will not be composed - therefore, the deactivated prim will become a leaf node in the scenegraph. This property makes deactivation a useful tool for reducing scene complexity and cost.</para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+<sect1 id="_usd__page__properties_of_scene_description_1Usd_Filetypes">
+<title>Text, Binary, and Plugin Filetypes</title>
+</sect1>
+<sect1 id="_usd__page__properties_of_scene_description_1Usd_AssetResolution">
+<title>Resolving Asset References</title>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

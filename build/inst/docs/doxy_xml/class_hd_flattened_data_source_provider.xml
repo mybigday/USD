@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_flattened_data_source_provider" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>HdFlattenedDataSourceProvider</compoundname>
+    <derivedcompoundref refid="class_hd_flattened_material_bindings_data_source_provider" prot="public" virt="non-virtual">HdFlattenedMaterialBindingsDataSourceProvider</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_flattened_overlay_data_source_provider" prot="public" virt="non-virtual">HdFlattenedOverlayDataSourceProvider</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_flattened_primvars_data_source_provider" prot="public" virt="non-virtual">HdFlattenedPrimvarsDataSourceProvider</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_flattened_purpose_data_source_provider" prot="public" virt="non-virtual">HdFlattenedPurposeDataSourceProvider</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_flattened_visibility_data_source_provider" prot="public" virt="non-virtual">HdFlattenedVisibilityDataSourceProvider</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_flattened_xform_data_source_provider" prot="public" virt="non-virtual">HdFlattenedXformDataSourceProvider</derivedcompoundref>
+    <derivedcompoundref refid="class_usd_imaging_flattened_geom_model_data_source_provider" prot="public" virt="non-virtual">UsdImagingFlattenedGeomModelDataSourceProvider</derivedcompoundref>
+    <derivedcompoundref refid="class_usd_imaging_flattened_model_data_source_provider" prot="public" virt="non-virtual">UsdImagingFlattenedModelDataSourceProvider</derivedcompoundref>
+    <innerclass refid="class_hd_flattened_data_source_provider_1_1_01_given" prot="public">HdFlattenedDataSourceProvider:: Given</innerclass>
+    <innerclass refid="class_hd_flattened_data_source_provider_1_1_context" prot="public">HdFlattenedDataSourceProvider::Context</innerclass>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_flattened_data_source_provider_1a46b8692b6b79633add1ce9716d77e085" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>HdContainerDataSourceHandle</type>
+        <definition>virtual HdContainerDataSourceHandle GetFlattenedDataSource</definition>
+        <argsstring>(const Context &amp;ctx) const =0</argsstring>
+        <name>GetFlattenedDataSource</name>
+        <param>
+          <type>const Context &amp;</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>Returns flattened data source. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/flattenedDataSourceProvider.h" line="80" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_flattened_data_source_provider_1a0c664b911c166358f012866685137fc7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void ComputeDirtyLocatorsForDescendants</definition>
+        <argsstring>(HdDataSourceLocatorSet *locators) const =0</argsstring>
+        <name>ComputeDirtyLocatorsForDescendants</name>
+        <param>
+          <type><ref refid="class_hd_data_source_locator_set" kindref="compound">HdDataSourceLocatorSet</ref> *</type>
+          <declname>locators</declname>
+        </param>
+        <briefdescription>
+<para>If data source locators are dirtied in the input scene index, the locators relevant for the input data source serving this provider are extracted and made relative to the input data source. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>They are later used to invalidate the flattened data source of the dirtied prim and its descendants and send prim dirtied messages to the descendants.</para>
+<para>Example: If a prim dirtied for locator xform:matrix was received, the flattening scene index will call the flattened data source provider for xform. The locators given to ComputeDirtyLocatorsForDescendants will be { matrix }. If ComputeDirtyLocatorsForDescendants sets it to the universal set, the flatening scene index will emit a prim dirtied locator xform for the descendants.</para>
+<para>The implementation of ComputeDirtyLocatorsForDescendants gives a chance to drop locators or expand the locator set in between.</para>
+<para>Note that ComputeDirtyLocatorsForDescendants will never be called with the empty or universal set as these cases are already handled by the callee. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/flattenedDataSourceProvider.h" line="105" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2018">
+        <label>HdFlattenedOverlayDataSourceProvider</label>
+        <link refid="class_hd_flattened_overlay_data_source_provider"/>
+        <childnode refid="2017" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2017">
+        <label>HdFlattenedDataSourceProvider</label>
+      </node>
+    </inheritancegraph>
+    <location file="pxr/imaging/hd/flattenedDataSourceProvider.h" line="46" column="1" bodyfile="pxr/imaging/hd/flattenedDataSourceProvider.h" bodystart="45" bodyend="107"/>
+    <listofallmembers>
+      <member refid="class_hd_flattened_data_source_provider_1a0c664b911c166358f012866685137fc7" prot="public" virt="pure-virtual"><scope>HdFlattenedDataSourceProvider</scope><name>ComputeDirtyLocatorsForDescendants</name></member>
+      <member refid="class_hd_flattened_data_source_provider_1a46b8692b6b79633add1ce9716d77e085" prot="public" virt="pure-virtual"><scope>HdFlattenedDataSourceProvider</scope><name>GetFlattenedDataSource</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

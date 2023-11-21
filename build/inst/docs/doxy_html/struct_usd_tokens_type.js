@@ -1,0 +1,25 @@
+var struct_usd_tokens_type =
+[
+    [ "UsdTokensType", "struct_usd_tokens_type.html#a90691688e6011da46277bdc53fefa991", null ],
+    [ "allTokens", "struct_usd_tokens_type.html#a06ed732eeddfeba03daedd49167195fa", null ],
+    [ "APISchemaBase", "struct_usd_tokens_type.html#abfe6a3d7c48f54ae0da4e61c103c9803", null ],
+    [ "apiSchemas", "struct_usd_tokens_type.html#a8c7557a72cd302e83d6799487363e0d7", null ],
+    [ "clips", "struct_usd_tokens_type.html#aec2f09ea04058812ff68122c508ba9ea", null ],
+    [ "ClipsAPI", "struct_usd_tokens_type.html#ac8e7951478b71d9b587f7b689c37224c", null ],
+    [ "clipSets", "struct_usd_tokens_type.html#a362a42080fa6768e43e56d99afe1dc90", null ],
+    [ "collection", "struct_usd_tokens_type.html#a36bcfb49606f32f40f7070ef9dced06e", null ],
+    [ "collection_MultipleApplyTemplate_", "struct_usd_tokens_type.html#aacfad43c0bd09ec6815cc0a2c1c0ddc6", null ],
+    [ "collection_MultipleApplyTemplate_Excludes", "struct_usd_tokens_type.html#aa945ffefd4951c2f5ae3e2b804e2f74d", null ],
+    [ "collection_MultipleApplyTemplate_ExpansionRule", "struct_usd_tokens_type.html#a362b83bd48956b7158291c4d0cc6249f", null ],
+    [ "collection_MultipleApplyTemplate_IncludeRoot", "struct_usd_tokens_type.html#a37c6e3d8023db8da17e8116e156a7546", null ],
+    [ "collection_MultipleApplyTemplate_Includes", "struct_usd_tokens_type.html#a6567cbab8f157157c755a5a7d83a57da", null ],
+    [ "collection_MultipleApplyTemplate_MembershipExpression", "struct_usd_tokens_type.html#a0962d2cc96f7419b75b21d26f4c8c1bb", null ],
+    [ "CollectionAPI", "struct_usd_tokens_type.html#abb8889756c3e5ff44520c1e692068720", null ],
+    [ "exclude", "struct_usd_tokens_type.html#a32e9a5b708d282c10b3f4f078f6459a4", null ],
+    [ "expandPrims", "struct_usd_tokens_type.html#a97db27a89d1d996762bbe9cf78ecc7b7", null ],
+    [ "expandPrimsAndProperties", "struct_usd_tokens_type.html#a55784b27303e9a32858d55a615910bb0", null ],
+    [ "explicitOnly", "struct_usd_tokens_type.html#ae78ef658683fe7b818980ee56549363f", null ],
+    [ "fallbackPrimTypes", "struct_usd_tokens_type.html#ae9ab2dc4b2514eafc77b1b2c246feb12", null ],
+    [ "ModelAPI", "struct_usd_tokens_type.html#aaadc077f51d57c011a21e15fc19afe5f", null ],
+    [ "Typed", "struct_usd_tokens_type.html#a39733c9d21f72c170afaedc0ffae3b6f", null ]
+];

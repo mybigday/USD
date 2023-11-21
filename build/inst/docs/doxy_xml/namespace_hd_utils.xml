@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="namespace_hd_utils" kind="namespace" language="C++">
+    <compoundname>HdUtils</compoundname>
+    <innerclass refid="class_hd_utils_1_1_render_instance_tracker" prot="public">HdUtils::RenderInstanceTracker</innerclass>
+      <sectiondef kind="user-defined">
+      <header>RenderInstanceTracker facility below provides a simple way</header>
+      <description><para>A simple facility to associate an application object managed by std::shared_ptr with a render instance id.</para>
+<para>This is useful when using the scene index callback registration facility. The callback is registered only once, but may be invoked each time the scene index graph is created (this currently happens during the render index construction). Futhermore, an application may spawn several render index instances and thus the (same) callback may be invoked several times, necessitating a way to map the callback back to the associated scene index instance.</para>
+<para>The to register, unregister and query an object that is tied to a render instance id, which is provided as a callback argument.</para>
+<para><simplesect kind="note"><para>The <emphasis>RegisterInstance</emphasis> method should be invoked before the scene index callback is invoked (i.e., prior to render index construction).</para>
+</simplesect>
+The <emphasis>UnregisterInstance</emphasis> method is typically invoked prior to render index destruction.</para>
+<para><simplesect kind="note"><para>This facility isn&apos;t thread-safe.</para>
+</simplesect>
+<simplesect kind="see"><para>HdSceneIndexPluginRegistry::SceneIndexAppendCallback </para>
+</simplesect>
+<simplesect kind="see"><para>HdSceneIndexPluginRegistry::RegisterSceneIndexForRenderer </para>
+</simplesect>
+</para>
+</description>
+      <memberdef kind="function" id="imaging_2hd_2utils_8h_1ab906b49c3e4021906c88507814182e56" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool HdUtils::HasActiveRenderSettingsPrim</definition>
+        <argsstring>(const HdSceneIndexBaseRefPtr &amp;si, SdfPath *primPath=nullptr)</argsstring>
+        <name>HasActiveRenderSettingsPrim</name>
+        <param>
+          <type>const HdSceneIndexBaseRefPtr &amp;</type>
+          <declname>si</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> *</type>
+          <declname>primPath</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Retreives the active render settings prim path from the input scene index <computeroutput>si</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns true if a data source for the associated locator was found with the result in <computeroutput>primPath</computeroutput>, and false otherwise. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/utils.h" line="135" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="imaging_2hd_2utils_8h_1a9600dc858c1b81f7b0968374cd3d6487" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API CameraUtilConformWindowPolicy</type>
+        <definition>HD_API CameraUtilConformWindowPolicy HdUtils::ToConformWindowPolicy</definition>
+        <argsstring>(const TfToken &amp;token)</argsstring>
+        <name>ToConformWindowPolicy</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>token</declname>
+        </param>
+        <briefdescription>
+<para>Translate the given aspect ratio conform policy <computeroutput>token</computeroutput> into an equivalent CameraUtilConformWindowPolicy enum. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/utils.h" line="143" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="pxr/imaging/hd/utils.h" line="45" column="1"/>
+  </compounddef>
+</doxygen>

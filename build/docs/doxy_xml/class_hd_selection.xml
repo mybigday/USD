@@ -1,0 +1,437 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_selection" kind="class" language="C++" prot="public">
+    <compoundname>HdSelection</compoundname>
+    <includes refid="selection_8h" local="no">selection.h</includes>
+    <innerclass refid="struct_hd_selection_1_1_prim_selection_state" prot="public">HdSelection::PrimSelectionState</innerclass>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="class_hd_selection_1a98fbf004fcd9b83c51b34f506ed59a7e" prot="public" static="no" strong="no">
+        <type></type>
+        <name>HighlightMode</name>
+        <enumvalue id="class_hd_selection_1a98fbf004fcd9b83c51b34f506ed59a7ea9d461bb8936d43411d1e03825cc6ff87" prot="public">
+          <name>HighlightModeSelect</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_selection_1a98fbf004fcd9b83c51b34f506ed59a7ea1599e94e0f5f7398a72e30e47f3d12e2" prot="public">
+          <name>HighlightModeLocate</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_selection_1a98fbf004fcd9b83c51b34f506ed59a7ea99539810991049cc5d9eb382d764dfaf" prot="public">
+          <name>HighlightModeCount</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Selection modes allow differentiation in selection highlight behavior. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/selection.h" line="56" column="1" bodyfile="pxr/imaging/hd/selection.h" bodystart="56" bodyend="61"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-type">
+      <memberdef kind="typedef" id="class_hd_selection_1ab7c9b786863cae82729c7cd9fb8fa8ca" prot="protected" static="no">
+        <type>std::unordered_map&lt; <ref refid="class_sdf_path" kindref="compound">SdfPath</ref>, PrimSelectionState, SdfPath::Hash &gt;</type>
+        <definition>using _PrimSelectionStateMap =  std::unordered_map&lt;SdfPath, PrimSelectionState, SdfPath::Hash&gt;</definition>
+        <argsstring></argsstring>
+        <name>_PrimSelectionStateMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/selection.h" line="160" column="1" bodyfile="pxr/imaging/hd/selection.h" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_hd_selection_1a744b2d7b04ac35115e2642f659aeabc8" prot="protected" static="no" mutable="no">
+        <type>_PrimSelectionStateMap</type>
+        <definition>_PrimSelectionStateMap _selMap[HighlightModeCount]</definition>
+        <argsstring>[HighlightModeCount]</argsstring>
+        <name>_selMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/selection.h" line="163" column="1" bodyfile="pxr/imaging/hd/selection.h" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_selection_1a401b87711e4c8f58fd4f9ac768169b75" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_gf_vec4f" kindref="compound">GfVec4f</ref> &gt;</type>
+        <definition>std::vector&lt;GfVec4f&gt; _selectedPointColors</definition>
+        <argsstring></argsstring>
+        <name>_selectedPointColors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/selection.h" line="166" column="1" bodyfile="pxr/imaging/hd/selection.h" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_selection_1a5c854f2c4706b5379694e1c7217e9ca1" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API</type>
+        <definition>virtual HD_API ~HdSelection</definition>
+        <argsstring>()</argsstring>
+        <name>~HdSelection</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/selection.h" line="64" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_selection_1a1132fef7cc5cff89469834d7eb1cf9d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void AddRprim</definition>
+        <argsstring>(HighlightMode const &amp;mode, SdfPath const &amp;renderIndexPath)</argsstring>
+        <name>AddRprim</name>
+        <param>
+          <type><ref refid="class_hd_selection_1a98fbf004fcd9b83c51b34f506ed59a7e" kindref="member">HighlightMode</ref> const &amp;</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>renderIndexPath</declname>
+        </param>
+        <briefdescription>
+<para>---------------------<mdash/> Population API -----------------------------<mdash/> </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/selection.h" line="68" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_selection_1ac526825009c8e3b8674399220017c8a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void AddInstance</definition>
+        <argsstring>(HighlightMode const &amp;mode, SdfPath const &amp;renderIndexPath, VtIntArray const &amp;instanceIndex=VtIntArray())</argsstring>
+        <name>AddInstance</name>
+        <param>
+          <type><ref refid="class_hd_selection_1a98fbf004fcd9b83c51b34f506ed59a7e" kindref="member">HighlightMode</ref> const &amp;</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>renderIndexPath</declname>
+        </param>
+        <param>
+          <type>VtIntArray const &amp;</type>
+          <declname>instanceIndex</declname>
+          <defval>VtIntArray()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/selection.h" line="72" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_selection_1a5e941a9c396d110b537aa22ca76d4c19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void AddElements</definition>
+        <argsstring>(HighlightMode const &amp;mode, SdfPath const &amp;renderIndexPath, VtIntArray const &amp;elementIndices)</argsstring>
+        <name>AddElements</name>
+        <param>
+          <type><ref refid="class_hd_selection_1a98fbf004fcd9b83c51b34f506ed59a7e" kindref="member">HighlightMode</ref> const &amp;</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>renderIndexPath</declname>
+        </param>
+        <param>
+          <type>VtIntArray const &amp;</type>
+          <declname>elementIndices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/selection.h" line="77" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_selection_1ae0cedfedefe4357ed188c04939ec1a54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void AddEdges</definition>
+        <argsstring>(HighlightMode const &amp;mode, SdfPath const &amp;renderIndexPath, VtIntArray const &amp;edgeIndices)</argsstring>
+        <name>AddEdges</name>
+        <param>
+          <type><ref refid="class_hd_selection_1a98fbf004fcd9b83c51b34f506ed59a7e" kindref="member">HighlightMode</ref> const &amp;</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>renderIndexPath</declname>
+        </param>
+        <param>
+          <type>VtIntArray const &amp;</type>
+          <declname>edgeIndices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/selection.h" line="82" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_selection_1a29cdf16a423369dde88e9634bfe19c0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void AddPoints</definition>
+        <argsstring>(HighlightMode const &amp;mode, SdfPath const &amp;renderIndexPath, VtIntArray const &amp;pointIndices)</argsstring>
+        <name>AddPoints</name>
+        <param>
+          <type><ref refid="class_hd_selection_1a98fbf004fcd9b83c51b34f506ed59a7e" kindref="member">HighlightMode</ref> const &amp;</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>renderIndexPath</declname>
+        </param>
+        <param>
+          <type>VtIntArray const &amp;</type>
+          <declname>pointIndices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/selection.h" line="87" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_selection_1aa03d2e57496e0d02dc8b4c700719c9d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void AddPoints</definition>
+        <argsstring>(HighlightMode const &amp;mode, SdfPath const &amp;renderIndexPath, VtIntArray const &amp;pointIndices, GfVec4f const &amp;pointColor)</argsstring>
+        <name>AddPoints</name>
+        <param>
+          <type><ref refid="class_hd_selection_1a98fbf004fcd9b83c51b34f506ed59a7e" kindref="member">HighlightMode</ref> const &amp;</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>renderIndexPath</declname>
+        </param>
+        <param>
+          <type>VtIntArray const &amp;</type>
+          <declname>pointIndices</declname>
+        </param>
+        <param>
+          <type><ref refid="class_gf_vec4f" kindref="compound">GfVec4f</ref> const &amp;</type>
+          <declname>pointColor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/selection.h" line="94" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_selection_1a1bf91f563a65eb5c7766c37d6017e07d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API PrimSelectionState const  *</type>
+        <definition>HD_API PrimSelectionState const* GetPrimSelectionState</definition>
+        <argsstring>(HighlightMode const &amp;mode, SdfPath const &amp;renderIndexPath) const</argsstring>
+        <name>GetPrimSelectionState</name>
+        <param>
+          <type><ref refid="class_hd_selection_1a98fbf004fcd9b83c51b34f506ed59a7e" kindref="member">HighlightMode</ref> const &amp;</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>renderIndexPath</declname>
+        </param>
+        <briefdescription>
+<para>-------------------------<mdash/> Query API ------------------------------<mdash/> </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/selection.h" line="123" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_selection_1af98016a0e85d7b8b89b9ea7c63e68143" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API SdfPathVector</type>
+        <definition>HD_API SdfPathVector GetAllSelectedPrimPaths</definition>
+        <argsstring>() const</argsstring>
+        <name>GetAllSelectedPrimPaths</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/selection.h" line="130" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_selection_1accee9605682ff51970a86709d3174da6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API SdfPathVector</type>
+        <definition>HD_API SdfPathVector GetSelectedPrimPaths</definition>
+        <argsstring>(HighlightMode const &amp;mode) const</argsstring>
+        <name>GetSelectedPrimPaths</name>
+        <param>
+          <type><ref refid="class_hd_selection_1a98fbf004fcd9b83c51b34f506ed59a7e" kindref="member">HighlightMode</ref> const &amp;</type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/selection.h" line="135" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_selection_1acb0ad6a16cafad86881ebb127749ac60" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API std::vector&lt; <ref refid="class_gf_vec4f" kindref="compound">GfVec4f</ref> &gt; const  &amp;</type>
+        <definition>HD_API std::vector&lt;GfVec4f&gt; const&amp; GetSelectedPointColors</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSelectedPointColors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/selection.h" line="138" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_selection_1a519ed8819c00757febece7032308fd5e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>HD_API bool IsEmpty</definition>
+        <argsstring>() const</argsstring>
+        <name>IsEmpty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/selection.h" line="142" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_hd_selection_1a5eb0a55014756684d66826b1ce0266fe" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API HdSelectionSharedPtr</type>
+        <definition>static HD_API HdSelectionSharedPtr Merge</definition>
+        <argsstring>(HdSelectionSharedPtr const &amp;, HdSelectionSharedPtr const &amp;)</argsstring>
+        <name>Merge</name>
+        <param>
+          <type>HdSelectionSharedPtr const &amp;</type>
+        </param>
+        <param>
+          <type>HdSelectionSharedPtr const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/selection.h" line="146" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hd_selection_1ac43c566259b9011f4ebe3d00cc932267" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _AddPoints</definition>
+        <argsstring>(HighlightMode const &amp;mode, SdfPath const &amp;renderIndexPath, VtIntArray const &amp;pointIndices, int pointColorIndex)</argsstring>
+        <name>_AddPoints</name>
+        <param>
+          <type><ref refid="class_hd_selection_1a98fbf004fcd9b83c51b34f506ed59a7e" kindref="member">HighlightMode</ref> const &amp;</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>renderIndexPath</declname>
+        </param>
+        <param>
+          <type>VtIntArray const &amp;</type>
+          <declname>pointIndices</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pointColorIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/selection.h" line="151" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_selection_1aaf1ae17772548487727be018c6d38797" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _GetSelectionPrimPathsForMode</definition>
+        <argsstring>(HighlightMode const &amp;mode, SdfPathVector *paths) const</argsstring>
+        <name>_GetSelectionPrimPathsForMode</name>
+        <param>
+          <type><ref refid="class_hd_selection_1a98fbf004fcd9b83c51b34f506ed59a7e" kindref="member">HighlightMode</ref> const &amp;</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>paths</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/selection.h" line="156" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="class_hd_selection" kindref="compound">HdSelection</ref> holds a collection of selected items per selection mode. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The items may be rprims, instances of an rprim and subprimitives of an rprim, such as elements (faces for meshes, individual curves for basis curves), edges &amp; points. Each item is referred to by the render index path.</para>
+<para>It current supports active and rollover selection modes, and may be inherited for customization. </para>
+    </detaileddescription>
+    <location file="pxr/imaging/hd/selection.h" line="53" column="1" bodyfile="pxr/imaging/hd/selection.h" bodystart="52" bodyend="167"/>
+    <listofallmembers>
+      <member refid="class_hd_selection_1ac43c566259b9011f4ebe3d00cc932267" prot="private" virt="non-virtual"><scope>HdSelection</scope><name>_AddPoints</name></member>
+      <member refid="class_hd_selection_1aaf1ae17772548487727be018c6d38797" prot="private" virt="non-virtual"><scope>HdSelection</scope><name>_GetSelectionPrimPathsForMode</name></member>
+      <member refid="class_hd_selection_1ab7c9b786863cae82729c7cd9fb8fa8ca" prot="protected" virt="non-virtual"><scope>HdSelection</scope><name>_PrimSelectionStateMap</name></member>
+      <member refid="class_hd_selection_1a401b87711e4c8f58fd4f9ac768169b75" prot="protected" virt="non-virtual"><scope>HdSelection</scope><name>_selectedPointColors</name></member>
+      <member refid="class_hd_selection_1a744b2d7b04ac35115e2642f659aeabc8" prot="protected" virt="non-virtual"><scope>HdSelection</scope><name>_selMap</name></member>
+      <member refid="class_hd_selection_1ae0cedfedefe4357ed188c04939ec1a54" prot="public" virt="non-virtual"><scope>HdSelection</scope><name>AddEdges</name></member>
+      <member refid="class_hd_selection_1a5e941a9c396d110b537aa22ca76d4c19" prot="public" virt="non-virtual"><scope>HdSelection</scope><name>AddElements</name></member>
+      <member refid="class_hd_selection_1ac526825009c8e3b8674399220017c8a1" prot="public" virt="non-virtual"><scope>HdSelection</scope><name>AddInstance</name></member>
+      <member refid="class_hd_selection_1a29cdf16a423369dde88e9634bfe19c0c" prot="public" virt="non-virtual"><scope>HdSelection</scope><name>AddPoints</name></member>
+      <member refid="class_hd_selection_1aa03d2e57496e0d02dc8b4c700719c9d6" prot="public" virt="non-virtual"><scope>HdSelection</scope><name>AddPoints</name></member>
+      <member refid="class_hd_selection_1a1132fef7cc5cff89469834d7eb1cf9d4" prot="public" virt="non-virtual"><scope>HdSelection</scope><name>AddRprim</name></member>
+      <member refid="class_hd_selection_1af98016a0e85d7b8b89b9ea7c63e68143" prot="public" virt="non-virtual"><scope>HdSelection</scope><name>GetAllSelectedPrimPaths</name></member>
+      <member refid="class_hd_selection_1a1bf91f563a65eb5c7766c37d6017e07d" prot="public" virt="non-virtual"><scope>HdSelection</scope><name>GetPrimSelectionState</name></member>
+      <member refid="class_hd_selection_1acb0ad6a16cafad86881ebb127749ac60" prot="public" virt="non-virtual"><scope>HdSelection</scope><name>GetSelectedPointColors</name></member>
+      <member refid="class_hd_selection_1accee9605682ff51970a86709d3174da6" prot="public" virt="non-virtual"><scope>HdSelection</scope><name>GetSelectedPrimPaths</name></member>
+      <member refid="class_hd_selection_1a98fbf004fcd9b83c51b34f506ed59a7e" prot="public" virt="non-virtual"><scope>HdSelection</scope><name>HighlightMode</name></member>
+      <member refid="class_hd_selection_1a98fbf004fcd9b83c51b34f506ed59a7ea99539810991049cc5d9eb382d764dfaf" prot="public" virt="non-virtual"><scope>HdSelection</scope><name>HighlightModeCount</name></member>
+      <member refid="class_hd_selection_1a98fbf004fcd9b83c51b34f506ed59a7ea1599e94e0f5f7398a72e30e47f3d12e2" prot="public" virt="non-virtual"><scope>HdSelection</scope><name>HighlightModeLocate</name></member>
+      <member refid="class_hd_selection_1a98fbf004fcd9b83c51b34f506ed59a7ea9d461bb8936d43411d1e03825cc6ff87" prot="public" virt="non-virtual"><scope>HdSelection</scope><name>HighlightModeSelect</name></member>
+      <member refid="class_hd_selection_1a519ed8819c00757febece7032308fd5e" prot="public" virt="non-virtual"><scope>HdSelection</scope><name>IsEmpty</name></member>
+      <member refid="class_hd_selection_1a5eb0a55014756684d66826b1ce0266fe" prot="public" virt="non-virtual"><scope>HdSelection</scope><name>Merge</name></member>
+      <member refid="class_hd_selection_1a5c854f2c4706b5379694e1c7217e9ca1" prot="public" virt="virtual"><scope>HdSelection</scope><name>~HdSelection</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

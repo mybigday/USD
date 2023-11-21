@@ -1,0 +1,931 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_sdf_change_list" kind="class" language="C++" prot="public">
+    <compoundname>SdfChangeList</compoundname>
+    <includes refid="change_list_8h" local="no">changeList.h</includes>
+    <innerclass refid="struct_sdf_change_list_1_1_entry" prot="public">SdfChangeList::Entry</innerclass>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="class_sdf_change_list_1a800662eb359e7266ac2474bfb0a4340c" prot="public" static="no" strong="no">
+        <type></type>
+        <name>SubLayerChangeType</name>
+        <enumvalue id="class_sdf_change_list_1a800662eb359e7266ac2474bfb0a4340ca05d8b32487d7632af04145e3b89fd5f5" prot="public">
+          <name>SubLayerAdded</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_sdf_change_list_1a800662eb359e7266ac2474bfb0a4340cae4a9c5eb1164a9db949920b6ed0b7008" prot="public">
+          <name>SubLayerRemoved</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_sdf_change_list_1a800662eb359e7266ac2474bfb0a4340ca2f6223bb6e05410f6b1cfce6540fd541" prot="public">
+          <name>SubLayerOffset</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="62" column="1" bodyfile="pxr/usd/sdf/changeList.h" bodystart="62" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_sdf_change_list_1a28f84ffde3c73d98fe39ab4c8961d3a0" prot="public" static="no">
+        <type><ref refid="class_tf_small_vector" kindref="compound">TfSmallVector</ref>&lt; std::pair&lt; <ref refid="class_sdf_path" kindref="compound">SdfPath</ref>, <ref refid="struct_sdf_change_list_1_1_entry" kindref="compound">Entry</ref> &gt;, 1 &gt;</type>
+        <definition>using EntryList =  TfSmallVector&lt;std::pair&lt;SdfPath, Entry&gt;, 1&gt;</definition>
+        <argsstring></argsstring>
+        <name>EntryList</name>
+        <briefdescription>
+<para>Map of change entries at various paths in a layer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>We store one entry in local space, since it&apos;s very common to edit just a single spec in a single round of changes. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="205" column="1" bodyfile="pxr/usd/sdf/changeList.h" bodystart="205" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_sdf_change_list_1aa20b47c5b0c004616787374f1f748f5b" prot="public" static="no">
+        <type>EntryList::const_iterator</type>
+        <definition>using const_iterator =  EntryList::const_iterator</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="214" column="1" bodyfile="pxr/usd/sdf/changeList.h" bodystart="214" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_sdf_change_list_1aef2bce82fdf7ade97e6397854539f67c" prot="private" static="no">
+        <type>std::unordered_map&lt; <ref refid="class_sdf_path" kindref="compound">SdfPath</ref>, size_t, SdfPath::Hash &gt;</type>
+        <definition>using _AccelTable =  std::unordered_map&lt;SdfPath, size_t, SdfPath::Hash&gt;</definition>
+        <argsstring></argsstring>
+        <name>_AccelTable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="257" column="1" bodyfile="pxr/usd/sdf/changeList.h" bodystart="257" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_sdf_change_list_1a0760f169dc46b9278ba75baf17234c64" prot="private" static="no" mutable="no">
+        <type><ref refid="class_sdf_change_list_1a28f84ffde3c73d98fe39ab4c8961d3a0" kindref="member">EntryList</ref></type>
+        <definition>EntryList _entries</definition>
+        <argsstring></argsstring>
+        <name>_entries</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="256" column="1" bodyfile="pxr/usd/sdf/changeList.h" bodystart="256" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_sdf_change_list_1a8acbc362566ec673cb5c4c6e82053ffe" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; _AccelTable &gt;</type>
+        <definition>std::unique_ptr&lt;_AccelTable&gt; _entriesAccel</definition>
+        <argsstring></argsstring>
+        <name>_entriesAccel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="258" column="1" bodyfile="pxr/usd/sdf/changeList.h" bodystart="258" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_sdf_change_list_1a3b07f4369df3d3bc82ad34cd6639a74d" prot="private" static="yes" mutable="no">
+        <type>constexpr size_t</type>
+        <definition>constexpr size_t _AccelThreshold</definition>
+        <argsstring></argsstring>
+        <name>_AccelThreshold</name>
+        <initializer>= 64</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="259" column="1" bodyfile="pxr/usd/sdf/changeList.h" bodystart="259" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_sdf_change_list_1a0fd10f4cde8b13fb713a2fbfb0a6d306" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>SdfChangeList</definition>
+        <argsstring>()=default</argsstring>
+        <name>SdfChangeList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="56" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a4f1eb7dd7d5da917c1e8e77bb0f1bdd7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API</type>
+        <definition>SDF_API SdfChangeList</definition>
+        <argsstring>(SdfChangeList const &amp;)</argsstring>
+        <name>SdfChangeList</name>
+        <param>
+          <type><ref refid="class_sdf_change_list" kindref="compound">SdfChangeList</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="57" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1aa25635fbfd6d17c6b239a0bc5762873b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>SdfChangeList</definition>
+        <argsstring>(SdfChangeList &amp;&amp;)=default</argsstring>
+        <name>SdfChangeList</name>
+        <param>
+          <type><ref refid="class_sdf_change_list" kindref="compound">SdfChangeList</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="58" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1ac0fd981192dfabca639fd135620289e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="class_sdf_change_list" kindref="compound">SdfChangeList</ref> &amp;</type>
+        <definition>SDF_API SdfChangeList&amp; operator=</definition>
+        <argsstring>(SdfChangeList const &amp;)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="class_sdf_change_list" kindref="compound">SdfChangeList</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="59" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a813eaca3f9f7ce19a14715e4be989ee6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_sdf_change_list" kindref="compound">SdfChangeList</ref> &amp;</type>
+        <definition>SdfChangeList&amp; operator=</definition>
+        <argsstring>(SdfChangeList &amp;&amp;)=default</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="class_sdf_change_list" kindref="compound">SdfChangeList</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="60" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1ab533b1022e455cccfcbca7e69af2c9e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidReplaceLayerContent</definition>
+        <argsstring>()</argsstring>
+        <name>DidReplaceLayerContent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="68" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1adc9751c48a2d3d6e95ae8dd0efc4d6bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidReloadLayerContent</definition>
+        <argsstring>()</argsstring>
+        <name>DidReloadLayerContent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="69" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a91e577a8e9e88f0f329260dba577454b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidChangeLayerResolvedPath</definition>
+        <argsstring>()</argsstring>
+        <name>DidChangeLayerResolvedPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="70" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a69d5344752e09989896fc3a046309984" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidChangeLayerIdentifier</definition>
+        <argsstring>(const std::string &amp;oldIdentifier)</argsstring>
+        <name>DidChangeLayerIdentifier</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>oldIdentifier</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="71" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a99564f4b22144201a8b527cf206e4a42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidChangeSublayerPaths</definition>
+        <argsstring>(const std::string &amp;subLayerPath, SubLayerChangeType changeType)</argsstring>
+        <name>DidChangeSublayerPaths</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>subLayerPath</declname>
+        </param>
+        <param>
+          <type>SubLayerChangeType</type>
+          <declname>changeType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="72" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a81eef0d71292cf52685108312fe08a2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidAddPrim</definition>
+        <argsstring>(const SdfPath &amp;primPath, bool inert)</argsstring>
+        <name>DidAddPrim</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>primPath</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>inert</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="75" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a8d437f8923a8b43ffd52b4fe8b611bd9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidRemovePrim</definition>
+        <argsstring>(const SdfPath &amp;primPath, bool inert)</argsstring>
+        <name>DidRemovePrim</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>primPath</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>inert</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="76" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1acfb2f7b155db3ed32cc58fa5de087210" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidMovePrim</definition>
+        <argsstring>(const SdfPath &amp;oldPath, const SdfPath &amp;newPath)</argsstring>
+        <name>DidMovePrim</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>oldPath</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>newPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="77" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1af99d46289d5ad701748f22e23d79a2de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidReorderPrims</definition>
+        <argsstring>(const SdfPath &amp;parentPath)</argsstring>
+        <name>DidReorderPrims</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>parentPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="78" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1ae96a1bbd3fd937ffb6929a7ff04999a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidChangePrimName</definition>
+        <argsstring>(const SdfPath &amp;oldPath, const SdfPath &amp;newPath)</argsstring>
+        <name>DidChangePrimName</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>oldPath</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>newPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="79" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a0c9371313a70299ae28642315a968e44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidChangePrimVariantSets</definition>
+        <argsstring>(const SdfPath &amp;primPath)</argsstring>
+        <name>DidChangePrimVariantSets</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>primPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="80" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1ae71eec0fa70f5e5c424707fe93edaae6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidChangePrimInheritPaths</definition>
+        <argsstring>(const SdfPath &amp;primPath)</argsstring>
+        <name>DidChangePrimInheritPaths</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>primPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="81" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a2e1a92ff608bf24120bd44134036cd95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidChangePrimReferences</definition>
+        <argsstring>(const SdfPath &amp;primPath)</argsstring>
+        <name>DidChangePrimReferences</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>primPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="82" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1aeb966f8a8fe1e6e3d540f07fe6c6b99a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidChangePrimSpecializes</definition>
+        <argsstring>(const SdfPath &amp;primPath)</argsstring>
+        <name>DidChangePrimSpecializes</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>primPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="83" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a49917e228105d68b9ce19dbd7b32a92a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidAddProperty</definition>
+        <argsstring>(const SdfPath &amp;propPath, bool hasOnlyRequiredFields)</argsstring>
+        <name>DidAddProperty</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>propPath</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>hasOnlyRequiredFields</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="85" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a5f3b74bd38c4a41b1da26d8a4a00be5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidRemoveProperty</definition>
+        <argsstring>(const SdfPath &amp;propPath, bool hasOnlyRequiredFields)</argsstring>
+        <name>DidRemoveProperty</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>propPath</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>hasOnlyRequiredFields</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="86" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a97cec4b2d7b24731d3baa39952775004" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidReorderProperties</definition>
+        <argsstring>(const SdfPath &amp;propPath)</argsstring>
+        <name>DidReorderProperties</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>propPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="87" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a6212011b11a4dd3bdf01df65e031ecd8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidChangePropertyName</definition>
+        <argsstring>(const SdfPath &amp;oldPath, const SdfPath &amp;newPath)</argsstring>
+        <name>DidChangePropertyName</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>oldPath</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>newPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="88" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1ab1b49f9bc3b65966f91fbe5f141f7116" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidChangeAttributeTimeSamples</definition>
+        <argsstring>(const SdfPath &amp;attrPath)</argsstring>
+        <name>DidChangeAttributeTimeSamples</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>attrPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="90" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a85296c6dc930d0c61157643bf4f8c893" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidChangeAttributeConnection</definition>
+        <argsstring>(const SdfPath &amp;attrPath)</argsstring>
+        <name>DidChangeAttributeConnection</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>attrPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="91" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1aaa3f37fe64ed933d1283018b916f28ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidChangeRelationshipTargets</definition>
+        <argsstring>(const SdfPath &amp;relPath)</argsstring>
+        <name>DidChangeRelationshipTargets</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>relPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="92" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1acf1664af0ed394ea27dc92b9931bcf3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidAddTarget</definition>
+        <argsstring>(const SdfPath &amp;targetPath)</argsstring>
+        <name>DidAddTarget</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>targetPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="93" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a0180f60697793721f0a23e6e0ec76520" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidRemoveTarget</definition>
+        <argsstring>(const SdfPath &amp;targetPath)</argsstring>
+        <name>DidRemoveTarget</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>targetPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="94" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1aab2a8b748ef6f38176b8da8d3d65f36f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DidChangeInfo</definition>
+        <argsstring>(const SdfPath &amp;path, const TfToken &amp;key, VtValue &amp;&amp;oldValue, const VtValue &amp;newValue)</argsstring>
+        <name>DidChangeInfo</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> &amp;&amp;</type>
+          <declname>oldValue</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_vt_value" kindref="compound">VtValue</ref> &amp;</type>
+          <declname>newValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="96" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a8b2fc1d81b108f73bc3d96c05d6b7269" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_sdf_change_list_1a28f84ffde3c73d98fe39ab4c8961d3a0" kindref="member">EntryList</ref> &amp;</type>
+        <definition>const EntryList&amp; GetEntryList</definition>
+        <argsstring>() const</argsstring>
+        <name>GetEntryList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="208" column="1" bodyfile="pxr/usd/sdf/changeList.h" bodystart="208" bodyend="208"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a3ebb952b8f9d5bf90e1ac315c39447d1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API <ref refid="struct_sdf_change_list_1_1_entry" kindref="compound">Entry</ref> const  &amp;</type>
+        <definition>SDF_API Entry const&amp; GetEntry</definition>
+        <argsstring>(const SdfPath &amp;) const</argsstring>
+        <name>GetEntry</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="212" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a6b7ceb79971d099e72fc715abda98d38" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API const_iterator</type>
+        <definition>SDF_API const_iterator FindEntry</definition>
+        <argsstring>(SdfPath const &amp;) const</argsstring>
+        <name>FindEntry</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="217" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a29305669b60ca1680752e2fc3592ba99" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator begin</definition>
+        <argsstring>() const</argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="219" column="1" bodyfile="pxr/usd/sdf/changeList.h" bodystart="219" bodyend="221"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a39112ae08f6ffc7ee58c6aa79772e094" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator cbegin</definition>
+        <argsstring>() const</argsstring>
+        <name>cbegin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="223" column="1" bodyfile="pxr/usd/sdf/changeList.h" bodystart="223" bodyend="225"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1accf9a4bd0c34d4a5f6a7dab66ea10cdc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator end</definition>
+        <argsstring>() const</argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="227" column="1" bodyfile="pxr/usd/sdf/changeList.h" bodystart="227" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a93791e61ab486b4022c389d634b4facc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator cend</definition>
+        <argsstring>() const</argsstring>
+        <name>cend</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="231" column="1" bodyfile="pxr/usd/sdf/changeList.h" bodystart="231" bodyend="233"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_sdf_change_list_1aebbda105783738fee691b44a691ba2d4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend void</type>
+        <definition>void swap</definition>
+        <argsstring>(SdfChangeList &amp;a, SdfChangeList &amp;b)</argsstring>
+        <name>swap</name>
+        <param>
+          <type><ref refid="class_sdf_change_list" kindref="compound">SdfChangeList</ref> &amp;</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_change_list" kindref="compound">SdfChangeList</ref> &amp;</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="236" column="1" bodyfile="pxr/usd/sdf/changeList.h" bodystart="236" bodyend="239"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_sdf_change_list_1a14e250cfbadc9ae79b0947697562fa57" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_sdf_change_list_1_1_entry" kindref="compound">Entry</ref> &amp;</type>
+        <definition>Entry&amp; _GetEntry</definition>
+        <argsstring>(SdfPath const &amp;)</argsstring>
+        <name>_GetEntry</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="241" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a49b63cb0b0289a96cd0d866fa4f955da" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_sdf_change_list_1_1_entry" kindref="compound">Entry</ref> &amp;</type>
+        <definition>Entry&amp; _MoveEntry</definition>
+        <argsstring>(SdfPath const &amp;oldPath, SdfPath const &amp;newPath)</argsstring>
+        <name>_MoveEntry</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>oldPath</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>newPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="246" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a26e4da2c78afb1171a61d481fd62cba2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>EntryList::iterator</type>
+        <definition>EntryList::iterator _MakeNonConstIterator</definition>
+        <argsstring>(EntryList::const_iterator i)</argsstring>
+        <name>_MakeNonConstIterator</name>
+        <param>
+          <type>EntryList::const_iterator</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="248" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a1fccf34d87a5d9927d81c06c5b8f677f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_sdf_change_list_1_1_entry" kindref="compound">Entry</ref> &amp;</type>
+        <definition>Entry&amp; _AddNewEntry</definition>
+        <argsstring>(SdfPath const &amp;path)</argsstring>
+        <name>_AddNewEntry</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="250" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1aaea514bd8165509b1fd0ff9ade2a0a04" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _EraseEntry</definition>
+        <argsstring>(SdfPath const &amp;)</argsstring>
+        <name>_EraseEntry</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="252" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_list_1a214dfca681f7a0196db55a692bdd6a5d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RebuildAccel</definition>
+        <argsstring>()</argsstring>
+        <name>_RebuildAccel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeList.h" line="254" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A list of scene description modifications, organized by the namespace paths where the changes occur. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="pxr/usd/sdf/changeList.h" line="53" column="1" bodyfile="pxr/usd/sdf/changeList.h" bodystart="52" bodyend="260"/>
+    <listofallmembers>
+      <member refid="class_sdf_change_list_1aef2bce82fdf7ade97e6397854539f67c" prot="private" virt="non-virtual"><scope>SdfChangeList</scope><name>_AccelTable</name></member>
+      <member refid="class_sdf_change_list_1a3b07f4369df3d3bc82ad34cd6639a74d" prot="private" virt="non-virtual"><scope>SdfChangeList</scope><name>_AccelThreshold</name></member>
+      <member refid="class_sdf_change_list_1a1fccf34d87a5d9927d81c06c5b8f677f" prot="private" virt="non-virtual"><scope>SdfChangeList</scope><name>_AddNewEntry</name></member>
+      <member refid="class_sdf_change_list_1a0760f169dc46b9278ba75baf17234c64" prot="private" virt="non-virtual"><scope>SdfChangeList</scope><name>_entries</name></member>
+      <member refid="class_sdf_change_list_1a8acbc362566ec673cb5c4c6e82053ffe" prot="private" virt="non-virtual"><scope>SdfChangeList</scope><name>_entriesAccel</name></member>
+      <member refid="class_sdf_change_list_1aaea514bd8165509b1fd0ff9ade2a0a04" prot="private" virt="non-virtual"><scope>SdfChangeList</scope><name>_EraseEntry</name></member>
+      <member refid="class_sdf_change_list_1a14e250cfbadc9ae79b0947697562fa57" prot="private" virt="non-virtual"><scope>SdfChangeList</scope><name>_GetEntry</name></member>
+      <member refid="class_sdf_change_list_1a26e4da2c78afb1171a61d481fd62cba2" prot="private" virt="non-virtual"><scope>SdfChangeList</scope><name>_MakeNonConstIterator</name></member>
+      <member refid="class_sdf_change_list_1a49b63cb0b0289a96cd0d866fa4f955da" prot="private" virt="non-virtual"><scope>SdfChangeList</scope><name>_MoveEntry</name></member>
+      <member refid="class_sdf_change_list_1a214dfca681f7a0196db55a692bdd6a5d" prot="private" virt="non-virtual"><scope>SdfChangeList</scope><name>_RebuildAccel</name></member>
+      <member refid="class_sdf_change_list_1a29305669b60ca1680752e2fc3592ba99" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>begin</name></member>
+      <member refid="class_sdf_change_list_1a39112ae08f6ffc7ee58c6aa79772e094" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>cbegin</name></member>
+      <member refid="class_sdf_change_list_1a93791e61ab486b4022c389d634b4facc" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>cend</name></member>
+      <member refid="class_sdf_change_list_1aa20b47c5b0c004616787374f1f748f5b" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>const_iterator</name></member>
+      <member refid="class_sdf_change_list_1a81eef0d71292cf52685108312fe08a2e" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidAddPrim</name></member>
+      <member refid="class_sdf_change_list_1a49917e228105d68b9ce19dbd7b32a92a" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidAddProperty</name></member>
+      <member refid="class_sdf_change_list_1acf1664af0ed394ea27dc92b9931bcf3b" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidAddTarget</name></member>
+      <member refid="class_sdf_change_list_1a85296c6dc930d0c61157643bf4f8c893" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidChangeAttributeConnection</name></member>
+      <member refid="class_sdf_change_list_1ab1b49f9bc3b65966f91fbe5f141f7116" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidChangeAttributeTimeSamples</name></member>
+      <member refid="class_sdf_change_list_1aab2a8b748ef6f38176b8da8d3d65f36f" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidChangeInfo</name></member>
+      <member refid="class_sdf_change_list_1a69d5344752e09989896fc3a046309984" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidChangeLayerIdentifier</name></member>
+      <member refid="class_sdf_change_list_1a91e577a8e9e88f0f329260dba577454b" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidChangeLayerResolvedPath</name></member>
+      <member refid="class_sdf_change_list_1ae71eec0fa70f5e5c424707fe93edaae6" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidChangePrimInheritPaths</name></member>
+      <member refid="class_sdf_change_list_1ae96a1bbd3fd937ffb6929a7ff04999a7" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidChangePrimName</name></member>
+      <member refid="class_sdf_change_list_1a2e1a92ff608bf24120bd44134036cd95" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidChangePrimReferences</name></member>
+      <member refid="class_sdf_change_list_1aeb966f8a8fe1e6e3d540f07fe6c6b99a" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidChangePrimSpecializes</name></member>
+      <member refid="class_sdf_change_list_1a0c9371313a70299ae28642315a968e44" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidChangePrimVariantSets</name></member>
+      <member refid="class_sdf_change_list_1a6212011b11a4dd3bdf01df65e031ecd8" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidChangePropertyName</name></member>
+      <member refid="class_sdf_change_list_1aaa3f37fe64ed933d1283018b916f28ef" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidChangeRelationshipTargets</name></member>
+      <member refid="class_sdf_change_list_1a99564f4b22144201a8b527cf206e4a42" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidChangeSublayerPaths</name></member>
+      <member refid="class_sdf_change_list_1acfb2f7b155db3ed32cc58fa5de087210" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidMovePrim</name></member>
+      <member refid="class_sdf_change_list_1adc9751c48a2d3d6e95ae8dd0efc4d6bc" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidReloadLayerContent</name></member>
+      <member refid="class_sdf_change_list_1a8d437f8923a8b43ffd52b4fe8b611bd9" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidRemovePrim</name></member>
+      <member refid="class_sdf_change_list_1a5f3b74bd38c4a41b1da26d8a4a00be5f" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidRemoveProperty</name></member>
+      <member refid="class_sdf_change_list_1a0180f60697793721f0a23e6e0ec76520" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidRemoveTarget</name></member>
+      <member refid="class_sdf_change_list_1af99d46289d5ad701748f22e23d79a2de" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidReorderPrims</name></member>
+      <member refid="class_sdf_change_list_1a97cec4b2d7b24731d3baa39952775004" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidReorderProperties</name></member>
+      <member refid="class_sdf_change_list_1ab533b1022e455cccfcbca7e69af2c9e8" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>DidReplaceLayerContent</name></member>
+      <member refid="class_sdf_change_list_1accf9a4bd0c34d4a5f6a7dab66ea10cdc" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>end</name></member>
+      <member refid="class_sdf_change_list_1a28f84ffde3c73d98fe39ab4c8961d3a0" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>EntryList</name></member>
+      <member refid="class_sdf_change_list_1a6b7ceb79971d099e72fc715abda98d38" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>FindEntry</name></member>
+      <member refid="class_sdf_change_list_1a3ebb952b8f9d5bf90e1ac315c39447d1" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>GetEntry</name></member>
+      <member refid="class_sdf_change_list_1a8b2fc1d81b108f73bc3d96c05d6b7269" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>GetEntryList</name></member>
+      <member refid="class_sdf_change_list_1ac0fd981192dfabca639fd135620289e6" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>operator=</name></member>
+      <member refid="class_sdf_change_list_1a813eaca3f9f7ce19a14715e4be989ee6" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>operator=</name></member>
+      <member refid="class_sdf_change_list_1a0fd10f4cde8b13fb713a2fbfb0a6d306" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>SdfChangeList</name></member>
+      <member refid="class_sdf_change_list_1a4f1eb7dd7d5da917c1e8e77bb0f1bdd7" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>SdfChangeList</name></member>
+      <member refid="class_sdf_change_list_1aa25635fbfd6d17c6b239a0bc5762873b" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>SdfChangeList</name></member>
+      <member refid="class_sdf_change_list_1a800662eb359e7266ac2474bfb0a4340ca05d8b32487d7632af04145e3b89fd5f5" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>SubLayerAdded</name></member>
+      <member refid="class_sdf_change_list_1a800662eb359e7266ac2474bfb0a4340c" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>SubLayerChangeType</name></member>
+      <member refid="class_sdf_change_list_1a800662eb359e7266ac2474bfb0a4340ca2f6223bb6e05410f6b1cfce6540fd541" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>SubLayerOffset</name></member>
+      <member refid="class_sdf_change_list_1a800662eb359e7266ac2474bfb0a4340cae4a9c5eb1164a9db949920b6ed0b7008" prot="public" virt="non-virtual"><scope>SdfChangeList</scope><name>SubLayerRemoved</name></member>
+      <member refid="class_sdf_change_list_1aebbda105783738fee691b44a691ba2d4" prot="private" virt="non-virtual"><scope>SdfChangeList</scope><name>swap</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

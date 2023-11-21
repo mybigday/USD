@@ -1,0 +1,554 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hio_image" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>HioImage</compoundname>
+    <includes refid="image_8h" local="no">image.h</includes>
+    <innerclass refid="class_hio_image_1_1_storage_spec" prot="public">HioImage::StorageSpec</innerclass>
+      <sectiondef kind="user-defined">
+      <header>Reading</header>
+      <description><para>{@ </para>
+</description>
+      <memberdef kind="function" id="class_hio_image_1ab88dbed9f035ed0bca2695502de97bdb" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool Read</definition>
+        <argsstring>(StorageSpec const &amp;storage)=0</argsstring>
+        <name>Read</name>
+        <param>
+          <type><ref refid="class_hio_image_1_1_storage_spec" kindref="compound">StorageSpec</ref> const &amp;</type>
+          <declname>storage</declname>
+        </param>
+        <briefdescription>
+<para>Reads the image file into <emphasis>storage</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="125" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hio_image_1a0b33ff00da5e6303d806143bcb2b4b58" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool ReadCropped</definition>
+        <argsstring>(int const cropTop, int const cropBottom, int const cropLeft, int const cropRight, StorageSpec const &amp;storage)=0</argsstring>
+        <name>ReadCropped</name>
+        <param>
+          <type>int const</type>
+          <declname>cropTop</declname>
+        </param>
+        <param>
+          <type>int const</type>
+          <declname>cropBottom</declname>
+        </param>
+        <param>
+          <type>int const</type>
+          <declname>cropLeft</declname>
+        </param>
+        <param>
+          <type>int const</type>
+          <declname>cropRight</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hio_image_1_1_storage_spec" kindref="compound">StorageSpec</ref> const &amp;</type>
+          <declname>storage</declname>
+        </param>
+        <briefdescription>
+<para>Reads the cropped sub-image into <emphasis>storage</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="128" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hio_image_1a7d3f5182b2463d80c6f02d83efdb1904" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HIO_API HioImageSharedPtr</type>
+        <definition>static HIO_API HioImageSharedPtr OpenForReading</definition>
+        <argsstring>(std::string const &amp;filename, int subimage=0, int mip=0, SourceColorSpace sourceColorSpace=SourceColorSpace::Auto, bool suppressErrors=false)</argsstring>
+        <name>OpenForReading</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>subimage</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>mip</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type><ref refid="class_hio_image_1ac1059a5d68d55a93cf748cc3cc11ba48" kindref="member">SourceColorSpace</ref></type>
+          <declname>sourceColorSpace</declname>
+          <defval>SourceColorSpace::Auto</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>suppressErrors</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Opens <emphasis>filename</emphasis> for reading from the given <emphasis>subimage</emphasis> at mip level <emphasis>mip</emphasis>, using <emphasis>sourceColorSpace</emphasis> to help determine the color space with which to interpret the texture. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="117" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Writing</header>
+      <description><para>}@</para>
+<para>{@ </para>
+</description>
+      <memberdef kind="function" id="class_hio_image_1a27d82bd66efe7ed78a49799069693e9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool Write</definition>
+        <argsstring>(StorageSpec const &amp;storage, VtDictionary const &amp;metadata=VtDictionary())=0</argsstring>
+        <name>Write</name>
+        <param>
+          <type><ref refid="class_hio_image_1_1_storage_spec" kindref="compound">StorageSpec</ref> const &amp;</type>
+          <declname>storage</declname>
+        </param>
+        <param>
+          <type><ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref> const &amp;</type>
+          <declname>metadata</declname>
+          <defval><ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Writes the image with <emphasis>metadata</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="144" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hio_image_1aea8944cc43d7b153985b001d7f4c252d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::string const  &amp;</type>
+        <definition>virtual std::string const&amp; GetFilename</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetFilename</name>
+        <briefdescription>
+<para>}@ </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the image filename. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="150" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hio_image_1a6701c7e0dcb33caffc34e93ee56156bb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int GetWidth</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetWidth</name>
+        <briefdescription>
+<para>Returns the image width. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="153" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hio_image_1a6d9e728f017ddac200a90d1b21de980c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int GetHeight</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetHeight</name>
+        <briefdescription>
+<para>Returns the image height. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="156" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hio_image_1a5aed1903a79f9a4de157b307b66dcc8c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>HioFormat</type>
+        <definition>virtual HioFormat GetFormat</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetFormat</name>
+        <briefdescription>
+<para>Returns the destination HioFormat. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="159" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hio_image_1a6c73f1df9a4f7ee0994c1655d5e323e5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int GetBytesPerPixel</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetBytesPerPixel</name>
+        <briefdescription>
+<para>Returns the number of bytes per pixel. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="162" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hio_image_1a63564c6c1f02d9938738e0199618a205" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int GetNumMipLevels</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetNumMipLevels</name>
+        <briefdescription>
+<para>Returns the number of mips available. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="165" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hio_image_1afae3b1b449da61bc1428b9253b009018" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool IsColorSpaceSRGB</definition>
+        <argsstring>() const =0</argsstring>
+        <name>IsColorSpaceSRGB</name>
+        <briefdescription>
+<para>Returns whether the image is in the sRGB color space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="168" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hio_image_1acc3271b1d83fb9418f109c63be1fdf1b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HIO_API HioImageSharedPtr</type>
+        <definition>static HIO_API HioImageSharedPtr OpenForWriting</definition>
+        <argsstring>(std::string const &amp;filename)</argsstring>
+        <name>OpenForWriting</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Opens <emphasis>filename</emphasis> for writing from the given <emphasis>storage</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="141" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Metadata</header>
+      <description><para>{@ </para>
+</description>
+      <memberdef kind="function" id="class_hio_image_1a68b5a1afb6e9ed27b7fca567209a3270" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool GetMetadata</definition>
+        <argsstring>(TfToken const &amp;key, T *value) const</argsstring>
+        <name>GetMetadata</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>T *</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="173" column="1" bodyfile="pxr/imaging/hio/image.h" bodystart="194" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hio_image_1ae6942d9a657c734b0c95d0766314d8ea" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool GetMetadata</definition>
+        <argsstring>(TfToken const &amp;key, VtValue *value) const =0</argsstring>
+        <name>GetMetadata</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> *</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="175" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hio_image_1a8e1fed77c34ba3bac7d814c4746aa47f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool GetSamplerMetadata</definition>
+        <argsstring>(HioAddressDimension dim, HioAddressMode *param) const =0</argsstring>
+        <name>GetSamplerMetadata</name>
+        <param>
+          <type>HioAddressDimension</type>
+          <declname>dim</declname>
+        </param>
+        <param>
+          <type>HioAddressMode *</type>
+          <declname>param</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="177" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hio_image_1a3cf8f9aed7fd25e3daad83107a0aea3a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool _OpenForReading</definition>
+        <argsstring>(std::string const &amp;filename, int subimage, int mip, SourceColorSpace sourceColorSpace, bool suppressErrors)=0</argsstring>
+        <name>_OpenForReading</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>subimage</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>mip</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hio_image_1ac1059a5d68d55a93cf748cc3cc11ba48" kindref="member">SourceColorSpace</ref></type>
+          <declname>sourceColorSpace</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>suppressErrors</declname>
+        </param>
+        <briefdescription>
+<para>}@ </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="183" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hio_image_1ab4744c22730bf961ae0df8d6063678a2" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool _OpenForWriting</definition>
+        <argsstring>(std::string const &amp;filename)=0</argsstring>
+        <name>_OpenForWriting</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="189" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="class_hio_image_1ad6ce89ecac0ea2be40a867f580fe4106" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ImageOriginLocation</name>
+        <enumvalue id="class_hio_image_1ad6ce89ecac0ea2be40a867f580fe4106a2088055fe6227e4e7bfffaf98fb84b11" prot="public">
+          <name>OriginUpperLeft</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hio_image_1ad6ce89ecac0ea2be40a867f580fe4106a779859034ec2e425d5807b64d0a5a3c3" prot="public">
+          <name>OriginLowerLeft</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Specifies whether to treat the image origin as the upper-left corner or the lower left. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="61" column="1" bodyfile="pxr/imaging/hio/image.h" bodystart="60" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="enum" id="class_hio_image_1ac1059a5d68d55a93cf748cc3cc11ba48" prot="public" static="no" strong="no">
+        <type></type>
+        <name>SourceColorSpace</name>
+        <enumvalue id="class_hio_image_1ac1059a5d68d55a93cf748cc3cc11ba48a5bdc2d0b1113f3630fc502864541fc23" prot="public">
+          <name>Raw</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hio_image_1ac1059a5d68d55a93cf748cc3cc11ba48a395e27aef6d0c51834a0dcdc441cf90b" prot="public">
+          <name>SRGB</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hio_image_1ac1059a5d68d55a93cf748cc3cc11ba48ab81b7469043e9c54603ca3aebbe38e90" prot="public">
+          <name>Auto</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Specifies the source color space in which the texture is encoded, with &quot;Auto&quot; indicating the texture reader should determine color space based on hints from the image (e.g. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>file type, number of channels, image metadata) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="71" column="1" bodyfile="pxr/imaging/hio/image.h" bodystart="70" bodyend="75"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hio_image_1a8924ea84afa2ae95e8868f2e28ea8130" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HioImage</definition>
+        <argsstring>()=default</argsstring>
+        <name>HioImage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="97" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hio_image_1a3a15f036fd051988f470a5d504cfdc00" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HIO_API</type>
+        <definition>virtual HIO_API ~HioImage</definition>
+        <argsstring>()</argsstring>
+        <name>~HioImage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="100" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hio_image_1aa26220453aecfd1b5ef8b24de72ee479" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HioImage</definition>
+        <argsstring>(const HioImage &amp;)=delete</argsstring>
+        <name>HioImage</name>
+        <param>
+          <type>const <ref refid="class_hio_image" kindref="compound">HioImage</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="103" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hio_image_1a7d0cd41a6bb8bd6b2e3cb4b222590176" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hio_image" kindref="compound">HioImage</ref> &amp;</type>
+        <definition>HioImage&amp; operator=</definition>
+        <argsstring>(const HioImage &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_hio_image" kindref="compound">HioImage</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="104" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_hio_image_1ac5af21a5533809783b1aaad53eb99efa" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HIO_API bool</type>
+        <definition>static HIO_API bool IsSupportedImageFile</definition>
+        <argsstring>(std::string const &amp;filename)</argsstring>
+        <name>IsSupportedImageFile</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Returns whether <emphasis>filename</emphasis> opened as a texture image. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hio/image.h" line="108" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A base class for reading and writing texture image data. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The class allows basic access to texture image file data.</para>
+<para>Texture paths are UTF-8 strings, resolvable by AR. Texture system dispatch is driven by extension, with [A-Z] (and no other characters) case folded. </para>
+    </detaileddescription>
+    <location file="pxr/imaging/hio/image.h" line="55" column="1" bodyfile="pxr/imaging/hio/image.h" bodystart="54" bodyend="190"/>
+    <listofallmembers>
+      <member refid="class_hio_image_1a3cf8f9aed7fd25e3daad83107a0aea3a" prot="protected" virt="pure-virtual"><scope>HioImage</scope><name>_OpenForReading</name></member>
+      <member refid="class_hio_image_1ab4744c22730bf961ae0df8d6063678a2" prot="protected" virt="pure-virtual"><scope>HioImage</scope><name>_OpenForWriting</name></member>
+      <member refid="class_hio_image_1ac1059a5d68d55a93cf748cc3cc11ba48ab81b7469043e9c54603ca3aebbe38e90" prot="public" virt="non-virtual"><scope>HioImage</scope><name>Auto</name></member>
+      <member refid="class_hio_image_1a6c73f1df9a4f7ee0994c1655d5e323e5" prot="public" virt="pure-virtual"><scope>HioImage</scope><name>GetBytesPerPixel</name></member>
+      <member refid="class_hio_image_1aea8944cc43d7b153985b001d7f4c252d" prot="public" virt="pure-virtual"><scope>HioImage</scope><name>GetFilename</name></member>
+      <member refid="class_hio_image_1a5aed1903a79f9a4de157b307b66dcc8c" prot="public" virt="pure-virtual"><scope>HioImage</scope><name>GetFormat</name></member>
+      <member refid="class_hio_image_1a6d9e728f017ddac200a90d1b21de980c" prot="public" virt="pure-virtual"><scope>HioImage</scope><name>GetHeight</name></member>
+      <member refid="class_hio_image_1a68b5a1afb6e9ed27b7fca567209a3270" prot="public" virt="non-virtual"><scope>HioImage</scope><name>GetMetadata</name></member>
+      <member refid="class_hio_image_1ae6942d9a657c734b0c95d0766314d8ea" prot="public" virt="pure-virtual"><scope>HioImage</scope><name>GetMetadata</name></member>
+      <member refid="class_hio_image_1a63564c6c1f02d9938738e0199618a205" prot="public" virt="pure-virtual"><scope>HioImage</scope><name>GetNumMipLevels</name></member>
+      <member refid="class_hio_image_1a8e1fed77c34ba3bac7d814c4746aa47f" prot="public" virt="pure-virtual"><scope>HioImage</scope><name>GetSamplerMetadata</name></member>
+      <member refid="class_hio_image_1a6701c7e0dcb33caffc34e93ee56156bb" prot="public" virt="pure-virtual"><scope>HioImage</scope><name>GetWidth</name></member>
+      <member refid="class_hio_image_1a8924ea84afa2ae95e8868f2e28ea8130" prot="public" virt="non-virtual"><scope>HioImage</scope><name>HioImage</name></member>
+      <member refid="class_hio_image_1aa26220453aecfd1b5ef8b24de72ee479" prot="public" virt="non-virtual"><scope>HioImage</scope><name>HioImage</name></member>
+      <member refid="class_hio_image_1ad6ce89ecac0ea2be40a867f580fe4106" prot="public" virt="non-virtual"><scope>HioImage</scope><name>ImageOriginLocation</name></member>
+      <member refid="class_hio_image_1afae3b1b449da61bc1428b9253b009018" prot="public" virt="pure-virtual"><scope>HioImage</scope><name>IsColorSpaceSRGB</name></member>
+      <member refid="class_hio_image_1ac5af21a5533809783b1aaad53eb99efa" prot="public" virt="non-virtual"><scope>HioImage</scope><name>IsSupportedImageFile</name></member>
+      <member refid="class_hio_image_1a7d3f5182b2463d80c6f02d83efdb1904" prot="public" virt="non-virtual"><scope>HioImage</scope><name>OpenForReading</name></member>
+      <member refid="class_hio_image_1acc3271b1d83fb9418f109c63be1fdf1b" prot="public" virt="non-virtual"><scope>HioImage</scope><name>OpenForWriting</name></member>
+      <member refid="class_hio_image_1a7d0cd41a6bb8bd6b2e3cb4b222590176" prot="public" virt="non-virtual"><scope>HioImage</scope><name>operator=</name></member>
+      <member refid="class_hio_image_1ad6ce89ecac0ea2be40a867f580fe4106a779859034ec2e425d5807b64d0a5a3c3" prot="public" virt="non-virtual"><scope>HioImage</scope><name>OriginLowerLeft</name></member>
+      <member refid="class_hio_image_1ad6ce89ecac0ea2be40a867f580fe4106a2088055fe6227e4e7bfffaf98fb84b11" prot="public" virt="non-virtual"><scope>HioImage</scope><name>OriginUpperLeft</name></member>
+      <member refid="class_hio_image_1ac1059a5d68d55a93cf748cc3cc11ba48a5bdc2d0b1113f3630fc502864541fc23" prot="public" virt="non-virtual"><scope>HioImage</scope><name>Raw</name></member>
+      <member refid="class_hio_image_1ab88dbed9f035ed0bca2695502de97bdb" prot="public" virt="pure-virtual"><scope>HioImage</scope><name>Read</name></member>
+      <member refid="class_hio_image_1a0b33ff00da5e6303d806143bcb2b4b58" prot="public" virt="pure-virtual"><scope>HioImage</scope><name>ReadCropped</name></member>
+      <member refid="class_hio_image_1ac1059a5d68d55a93cf748cc3cc11ba48" prot="public" virt="non-virtual"><scope>HioImage</scope><name>SourceColorSpace</name></member>
+      <member refid="class_hio_image_1ac1059a5d68d55a93cf748cc3cc11ba48a395e27aef6d0c51834a0dcdc441cf90b" prot="public" virt="non-virtual"><scope>HioImage</scope><name>SRGB</name></member>
+      <member refid="class_hio_image_1a27d82bd66efe7ed78a49799069693e9b" prot="public" virt="pure-virtual"><scope>HioImage</scope><name>Write</name></member>
+      <member refid="class_hio_image_1a3a15f036fd051988f470a5d504cfdc00" prot="public" virt="virtual"><scope>HioImage</scope><name>~HioImage</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

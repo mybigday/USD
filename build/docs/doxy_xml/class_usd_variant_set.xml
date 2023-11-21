@@ -1,0 +1,409 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_variant_set" kind="class" language="C++" prot="public">
+    <compoundname>UsdVariantSet</compoundname>
+    <includes refid="variant_sets_8h" local="no">variantSets.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_usd_variant_set_1acdc34f90758c0dce41b95b4ec86a717d" prot="private" static="no" mutable="no">
+        <type><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref></type>
+        <definition>UsdPrim _prim</definition>
+        <argsstring></argsstring>
+        <name>_prim</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="199" column="1" bodyfile="pxr/usd/usd/variantSets.h" bodystart="199" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_usd_variant_set_1a6c8b9bb0b339b7ceeb70995ec4584c3a" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string _variantSetName</definition>
+        <argsstring></argsstring>
+        <name>_variantSetName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="200" column="1" bodyfile="pxr/usd/usd/variantSets.h" bodystart="200" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_usd_variant_set_1a2456ef04cace6b3b67dad91da7f430b8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class UsdPrim</definition>
+        <argsstring></argsstring>
+        <name>UsdPrim</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="202" column="1" bodyfile="pxr/usd/usd/variantSets.h" bodystart="202" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_usd_variant_set_1a4b76e42b0c2af879e36c8f304d7b0838" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class UsdVariantSets</definition>
+        <argsstring></argsstring>
+        <name>UsdVariantSets</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="203" column="1" bodyfile="pxr/usd/usd/variantSets.h" bodystart="203" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_variant_set_1a13cac327430d050108a8c22cada16b45" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool AddVariant</definition>
+        <argsstring>(const std::string &amp;variantName, UsdListPosition position=UsdListPositionBackOfPrependList)</argsstring>
+        <name>AddVariant</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>variantName</declname>
+        </param>
+        <param>
+          <type><ref refid="common_8h_1a28349701078995dc76a99331bb60c555" kindref="member">UsdListPosition</ref></type>
+          <declname>position</declname>
+          <defval><ref refid="common_8h_1a28349701078995dc76a99331bb60c555a681727d9e5aecd6058825ab1fe888028" kindref="member">UsdListPositionBackOfPrependList</ref></defval>
+        </param>
+        <briefdescription>
+<para>Author a variant spec for <emphasis>variantName</emphasis> in this VariantSet at the stage&apos;s current EditTarget, in the position specified by <computeroutput>position</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Return true if the spec was successfully authored, false otherwise.</para>
+<para>This will create the VariantSet itself, if necessary, so as long as <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &quot;prim&quot; is valid, the following should always work: <programlisting><codeline><highlight class="normal">UsdVariantSet<sp/>vs<sp/>=<sp/>prim.GetVariantSet(&quot;myVariantSet&quot;);</highlight></codeline>
+<codeline><highlight class="normal">vs.AddVariant(&quot;myFirstVariation&quot;);</highlight></codeline>
+<codeline><highlight class="normal">vs.SetVariantSelection(&quot;myFirstVariation&quot;);</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>UsdEditContext<sp/>ctx(vs.GetVariantEditContext());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Now<sp/>all<sp/>of<sp/>our<sp/>subsequent<sp/>edits<sp/>will<sp/>go<sp/>&quot;inside&quot;<sp/>the<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>&apos;myFirstVariation&apos;<sp/>variant<sp/>of<sp/>&apos;myVariantSet&apos;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="76" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_variant_set_1ac696c88b18fe7e5a9f08ecb26cd679fe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API std::vector&lt; std::string &gt;</type>
+        <definition>USD_API std::vector&lt;std::string&gt; GetVariantNames</definition>
+        <argsstring>() const</argsstring>
+        <name>GetVariantNames</name>
+        <briefdescription>
+<para>Return the composed variant names for this VariantSet, ordered lexicographically. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="82" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_variant_set_1a4c24ed85f37ac5bb3a19b4abc3cac58b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool HasAuthoredVariant</definition>
+        <argsstring>(const std::string &amp;variantName) const</argsstring>
+        <name>HasAuthoredVariant</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>variantName</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if this VariantSet already possesses a variant. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="87" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_variant_set_1a03df87003379a0f57478409e194c50da" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API std::string</type>
+        <definition>USD_API std::string GetVariantSelection</definition>
+        <argsstring>() const</argsstring>
+        <name>GetVariantSelection</name>
+        <briefdescription>
+<para>Return the variant selection for this VariantSet. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If there is no selection, return the empty string. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="92" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_variant_set_1a7e4fb6fef558c30db742c346996c882e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool HasAuthoredVariantSelection</definition>
+        <argsstring>(std::string *value=nullptr) const</argsstring>
+        <name>HasAuthoredVariantSelection</name>
+        <param>
+          <type>std::string *</type>
+          <declname>value</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Returns true if there is a selection authored for this VariantSet in any layer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If requested, the variant selection (if any) will be returned in <computeroutput>value</computeroutput> . </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="100" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_variant_set_1a51fe1abe65de6440b81799393b1a424f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool SetVariantSelection</definition>
+        <argsstring>(const std::string &amp;variantName)</argsstring>
+        <name>SetVariantSelection</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>variantName</declname>
+        </param>
+        <briefdescription>
+<para>Author a variant selection for this VariantSet, setting it to <emphasis>variantName</emphasis> in the stage&apos;s current EditTarget. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>variantName</computeroutput> is empty, clear the variant selection (see ClearVariantSelection). Call BlockVariantSelection to explicitly set an empty variant selection.</para>
+<para>Return true if the selection was successfully authored or cleared, false otherwise. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="111" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_variant_set_1ae8e8d9ed501d143199c72f899255c057" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool ClearVariantSelection</definition>
+        <argsstring>()</argsstring>
+        <name>ClearVariantSelection</name>
+        <briefdescription>
+<para>Clear any selection for this VariantSet from the current EditTarget. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Return true on success, false otherwise. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="116" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_variant_set_1a2ff59cc1c1cea4968a300ac8931ea618" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool BlockVariantSelection</definition>
+        <argsstring>()</argsstring>
+        <name>BlockVariantSelection</name>
+        <briefdescription>
+<para>Block any weaker selections for this VariantSet by authoring an empty string at the stage&apos;s current EditTarget. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Return true on success, false otherwise. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="122" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_variant_set_1a8c7d2a577d1d191dbeeaacf44ad5e080" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref></type>
+        <definition>USD_API UsdEditTarget GetVariantEditTarget</definition>
+        <argsstring>(const SdfLayerHandle &amp;layer=SdfLayerHandle()) const</argsstring>
+        <name>GetVariantEditTarget</name>
+        <param>
+          <type>const SdfLayerHandle &amp;</type>
+          <declname>layer</declname>
+          <defval>SdfLayerHandle()</defval>
+        </param>
+        <briefdescription>
+<para>Return a <emphasis><ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref></emphasis> that edits the currently selected variant in this VariantSet in <emphasis>layer</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If there is no currently selected variant in this VariantSet, return an invalid EditTarget.</para>
+<para>If <emphasis>layer</emphasis> is unspecified, then we will use the layer of our prim&apos;s stage&apos;s current <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref>.</para>
+<para>Currently, we require <emphasis>layer</emphasis> to be in the stage&apos;s local LayerStack (see <ref refid="class_usd_stage_1aaff8c7b5cd9cdee23c5209c0ec7281b7" kindref="member">UsdStage::HasLocalLayer()</ref>), and will issue an error and return an invalid EditTarget if <emphasis>layer</emphasis> is not. We may relax this restriction in the future, if need arises, but it introduces several complications in specification and behavior. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="138" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_variant_set_1a7e0767da11618ebe7aa2e6b6ef3c7021" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API std::pair&lt; UsdStagePtr, <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> &gt;</type>
+        <definition>USD_API std::pair&lt;UsdStagePtr, UsdEditTarget&gt; GetVariantEditContext</definition>
+        <argsstring>(const SdfLayerHandle &amp;layer=SdfLayerHandle()) const</argsstring>
+        <name>GetVariantEditContext</name>
+        <param>
+          <type>const SdfLayerHandle &amp;</type>
+          <declname>layer</declname>
+          <defval>SdfLayerHandle()</defval>
+        </param>
+        <briefdescription>
+<para>Helper function for configuring a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref>&apos;s EditTarget to author into the currently selected variant. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns configuration for a <ref refid="class_usd_edit_context" kindref="compound">UsdEditContext</ref></para>
+<para>To begin editing into VariantSet <emphasis>varSet&apos;s</emphasis> currently selected variant:</para>
+<para>In C++, we would use the following pattern: <programlisting><codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>UsdEditContext<sp/>ctxt(varSet.GetVariantEditContext());</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>All<sp/>Usd<sp/>mutation<sp/>of<sp/>the<sp/>UsdStage<sp/>on<sp/>which<sp/>varSet<sp/>sits<sp/>will</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>now<sp/>go<sp/>&quot;inside&quot;<sp/>the<sp/>currently<sp/>selected<sp/>variant<sp/>of<sp/>varSet</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>In python, the pattern is: <programlisting filename=".py"><codeline><highlight class="keyword">with</highlight><highlight class="normal"><sp/>varSet.GetVariantEditContext():</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Now<sp/>sending<sp/>mutations<sp/>to<sp/>current<sp/>variant</highlight></codeline>
+</programlisting></para>
+<para>See <ref refid="class_usd_variant_set_1a8c7d2a577d1d191dbeeaacf44ad5e080" kindref="member">GetVariantEditTarget()</ref> for discussion of <computeroutput>layer</computeroutput> parameter </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="166" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_variant_set_1aa2b3760d7ce01241215bd155ec3f1bf1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> const  &amp;</type>
+        <definition>UsdPrim const&amp; GetPrim</definition>
+        <argsstring>() const</argsstring>
+        <name>GetPrim</name>
+        <briefdescription>
+<para>Return this VariantSet&apos;s held prim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="170" column="1" bodyfile="pxr/usd/usd/variantSets.h" bodystart="170" bodyend="170"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_variant_set_1aed3ce8807bc2a1360288d9b9a3bf7f6f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string const  &amp;</type>
+        <definition>std::string const&amp; GetName</definition>
+        <argsstring>() const</argsstring>
+        <name>GetName</name>
+        <briefdescription>
+<para>Return this VariantSet&apos;s name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="174" column="1" bodyfile="pxr/usd/usd/variantSets.h" bodystart="174" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_variant_set_1ac532c4b500b1a85ea22217f2c65a70ed" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool IsValid</definition>
+        <argsstring>() const</argsstring>
+        <name>IsValid</name>
+        <briefdescription>
+<para>Is this <ref refid="class_usd_variant_set" kindref="compound">UsdVariantSet</ref> object usable? If not, calling any of its other methods is likely to crash. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="179" column="1" bodyfile="pxr/usd/usd/variantSets.h" bodystart="179" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_variant_set_1a67b76affb3b5d35fa419ac234144038b" prot="public" static="no" const="yes" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>operator bool</definition>
+        <argsstring>() const</argsstring>
+        <name>operator bool</name>
+        <briefdescription>
+<para>Equivalent to <ref refid="class_usd_variant_set_1ac532c4b500b1a85ea22217f2c65a70ed" kindref="member">IsValid()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="184" column="1" bodyfile="pxr/usd/usd/variantSets.h" bodystart="184" bodyend="186"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_usd_variant_set_1adea2072143ff1b067c8f21b7fa0e1bd3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdVariantSet</definition>
+        <argsstring>(const UsdPrim &amp;prim, const std::string &amp;variantSetName)</argsstring>
+        <name>UsdVariantSet</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>variantSetName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="189" column="1" bodyfile="pxr/usd/usd/variantSets.h" bodystart="189" bodyend="194"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_variant_set_1aee7cf44223f5cefa678c6dd67e8b34b9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SdfPrimSpecHandle</type>
+        <definition>SdfPrimSpecHandle _CreatePrimSpecForEditing</definition>
+        <argsstring>()</argsstring>
+        <name>_CreatePrimSpecForEditing</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="196" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_variant_set_1adc6e5b04adf1609d212761d5c95b0fc9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SdfVariantSetSpecHandle</type>
+        <definition>SdfVariantSetSpecHandle _AddVariantSet</definition>
+        <argsstring>(UsdListPosition position)</argsstring>
+        <name>_AddVariantSet</name>
+        <param>
+          <type><ref refid="common_8h_1a28349701078995dc76a99331bb60c555" kindref="member">UsdListPosition</ref></type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/variantSets.h" line="197" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A <ref refid="class_usd_variant_set" kindref="compound">UsdVariantSet</ref> represents a single VariantSet in USD (e.g. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>modelingVariant or shadingVariant), which can have multiple variations that express different sets of opinions about the scene description rooted at the prim that defines the VariantSet.</para>
+<para>(More detailed description of variants to follow) </para>
+    </detaileddescription>
+    <location file="pxr/usd/usd/variantSets.h" line="56" column="1" bodyfile="pxr/usd/usd/variantSets.h" bodystart="56" bodyend="204"/>
+    <listofallmembers>
+      <member refid="class_usd_variant_set_1adc6e5b04adf1609d212761d5c95b0fc9" prot="private" virt="non-virtual"><scope>UsdVariantSet</scope><name>_AddVariantSet</name></member>
+      <member refid="class_usd_variant_set_1aee7cf44223f5cefa678c6dd67e8b34b9" prot="private" virt="non-virtual"><scope>UsdVariantSet</scope><name>_CreatePrimSpecForEditing</name></member>
+      <member refid="class_usd_variant_set_1acdc34f90758c0dce41b95b4ec86a717d" prot="private" virt="non-virtual"><scope>UsdVariantSet</scope><name>_prim</name></member>
+      <member refid="class_usd_variant_set_1a6c8b9bb0b339b7ceeb70995ec4584c3a" prot="private" virt="non-virtual"><scope>UsdVariantSet</scope><name>_variantSetName</name></member>
+      <member refid="class_usd_variant_set_1a13cac327430d050108a8c22cada16b45" prot="public" virt="non-virtual"><scope>UsdVariantSet</scope><name>AddVariant</name></member>
+      <member refid="class_usd_variant_set_1a2ff59cc1c1cea4968a300ac8931ea618" prot="public" virt="non-virtual"><scope>UsdVariantSet</scope><name>BlockVariantSelection</name></member>
+      <member refid="class_usd_variant_set_1ae8e8d9ed501d143199c72f899255c057" prot="public" virt="non-virtual"><scope>UsdVariantSet</scope><name>ClearVariantSelection</name></member>
+      <member refid="class_usd_variant_set_1aed3ce8807bc2a1360288d9b9a3bf7f6f" prot="public" virt="non-virtual"><scope>UsdVariantSet</scope><name>GetName</name></member>
+      <member refid="class_usd_variant_set_1aa2b3760d7ce01241215bd155ec3f1bf1" prot="public" virt="non-virtual"><scope>UsdVariantSet</scope><name>GetPrim</name></member>
+      <member refid="class_usd_variant_set_1a7e0767da11618ebe7aa2e6b6ef3c7021" prot="public" virt="non-virtual"><scope>UsdVariantSet</scope><name>GetVariantEditContext</name></member>
+      <member refid="class_usd_variant_set_1a8c7d2a577d1d191dbeeaacf44ad5e080" prot="public" virt="non-virtual"><scope>UsdVariantSet</scope><name>GetVariantEditTarget</name></member>
+      <member refid="class_usd_variant_set_1ac696c88b18fe7e5a9f08ecb26cd679fe" prot="public" virt="non-virtual"><scope>UsdVariantSet</scope><name>GetVariantNames</name></member>
+      <member refid="class_usd_variant_set_1a03df87003379a0f57478409e194c50da" prot="public" virt="non-virtual"><scope>UsdVariantSet</scope><name>GetVariantSelection</name></member>
+      <member refid="class_usd_variant_set_1a4c24ed85f37ac5bb3a19b4abc3cac58b" prot="public" virt="non-virtual"><scope>UsdVariantSet</scope><name>HasAuthoredVariant</name></member>
+      <member refid="class_usd_variant_set_1a7e4fb6fef558c30db742c346996c882e" prot="public" virt="non-virtual"><scope>UsdVariantSet</scope><name>HasAuthoredVariantSelection</name></member>
+      <member refid="class_usd_variant_set_1ac532c4b500b1a85ea22217f2c65a70ed" prot="public" virt="non-virtual"><scope>UsdVariantSet</scope><name>IsValid</name></member>
+      <member refid="class_usd_variant_set_1a67b76affb3b5d35fa419ac234144038b" prot="public" virt="non-virtual"><scope>UsdVariantSet</scope><name>operator bool</name></member>
+      <member refid="class_usd_variant_set_1a51fe1abe65de6440b81799393b1a424f" prot="public" virt="non-virtual"><scope>UsdVariantSet</scope><name>SetVariantSelection</name></member>
+      <member refid="class_usd_variant_set_1a2456ef04cace6b3b67dad91da7f430b8" prot="private" virt="non-virtual"><scope>UsdVariantSet</scope><name>UsdPrim</name></member>
+      <member refid="class_usd_variant_set_1adea2072143ff1b067c8f21b7fa0e1bd3" prot="private" virt="non-virtual"><scope>UsdVariantSet</scope><name>UsdVariantSet</name></member>
+      <member refid="class_usd_variant_set_1a4b76e42b0c2af879e36c8f304d7b0838" prot="private" virt="non-virtual"><scope>UsdVariantSet</scope><name>UsdVariantSets</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,315 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_tf_spin_r_w_mutex" kind="class" language="C++" prot="public">
+    <compoundname>TfSpinRWMutex</compoundname>
+    <includes refid="spin_r_w_mutex_8h" local="no">spinRWMutex.h</includes>
+    <innerclass refid="struct_tf_spin_r_w_mutex_1_1_scoped_lock" prot="public">TfSpinRWMutex::ScopedLock</innerclass>
+      <sectiondef kind="private-type">
+      <memberdef kind="enum" id="class_tf_spin_r_w_mutex_1a501709b1ff65d139a9d5dc60c02e630c" prot="private" static="no" strong="no">
+        <type></type>
+        <name>_StagedAcquireWriteState</name>
+        <enumvalue id="class_tf_spin_r_w_mutex_1a501709b1ff65d139a9d5dc60c02e630caaba64a4246e11c1c8ce990155b30ef03" prot="private">
+          <name>_StageNotAcquired</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_tf_spin_r_w_mutex_1a501709b1ff65d139a9d5dc60c02e630ca60fdc3cc263403565aa9b93292bdd11a" prot="private">
+          <name>_StageAcquiring</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_tf_spin_r_w_mutex_1a501709b1ff65d139a9d5dc60c02e630ca9e30f20d8e6dd387bc753adcd6702391" prot="private">
+          <name>_StageAcquired</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/spinRWMutex.h" line="314" column="1" bodyfile="pxr/base/tf/spinRWMutex.h" bodystart="314" bodyend="318"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_tf_spin_r_w_mutex_1a40a80cf5d2870ab72bef957137e49893" prot="private" static="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int OneReader</definition>
+        <argsstring></argsstring>
+        <name>OneReader</name>
+        <initializer>= 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/spinRWMutex.h" line="69" column="1" bodyfile="pxr/base/tf/spinRWMutex.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_tf_spin_r_w_mutex_1a5edddebe8e5723044ae7fff38dab6c68" prot="private" static="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int WriterFlag</definition>
+        <argsstring></argsstring>
+        <name>WriterFlag</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/spinRWMutex.h" line="70" column="1" bodyfile="pxr/base/tf/spinRWMutex.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_tf_spin_r_w_mutex_1ac3e451bb31cd1c47d1062e305945f9f8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class TfBigRWMutex</definition>
+        <argsstring></argsstring>
+        <name>TfBigRWMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/spinRWMutex.h" line="311" column="1" bodyfile="pxr/base/tf/spinRWMutex.h" bodystart="311" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_tf_spin_r_w_mutex_1aaa30be4373a0b70d8d443e4bfda584b8" prot="private" static="no" mutable="no">
+        <type>std::atomic&lt; int &gt;</type>
+        <definition>std::atomic&lt;int&gt; _lockState</definition>
+        <argsstring></argsstring>
+        <name>_lockState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/spinRWMutex.h" line="353" column="1" bodyfile="pxr/base/tf/spinRWMutex.h" bodystart="353" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_tf_spin_r_w_mutex_1a5c254a16c8c9de4b1ce20f01d9e8f120" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfSpinRWMutex</definition>
+        <argsstring>()</argsstring>
+        <name>TfSpinRWMutex</name>
+        <briefdescription>
+<para>Construct a mutex, initially unlocked. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/spinRWMutex.h" line="75" column="1" bodyfile="pxr/base/tf/spinRWMutex.h" bodystart="75" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_spin_r_w_mutex_1a4cfb4d586c3b2bebc2cb861a4b27eaa8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TryAcquireRead</definition>
+        <argsstring>()</argsstring>
+        <name>TryAcquireRead</name>
+        <briefdescription>
+<para>Attempt to acquire a read lock on this mutex without waiting for writers. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This thread must not already hold a lock on this mutex (either read or write). Return true if the lock is acquired, false otherwise. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/spinRWMutex.h" line="200" column="1" bodyfile="pxr/base/tf/spinRWMutex.h" bodystart="200" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_spin_r_w_mutex_1aea82059734813662236ac5c264a87bbd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AcquireRead</definition>
+        <argsstring>()</argsstring>
+        <name>AcquireRead</name>
+        <briefdescription>
+<para>Acquire a read lock on this mutex. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This thread must not already hold a lock on this mutex (either read or write). Consider calling <ref refid="class_tf_spin_r_w_mutex_1a4c848a43c16a8b1847f885d014eb592b" kindref="member">DowngradeToReader()</ref> if this thread holds a write lock. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/spinRWMutex.h" line="217" column="1" bodyfile="pxr/base/tf/spinRWMutex.h" bodystart="217" bodyend="226"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_spin_r_w_mutex_1a706aede109d78a1c04d98656e82cbe61" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ReleaseRead</definition>
+        <argsstring>()</argsstring>
+        <name>ReleaseRead</name>
+        <briefdescription>
+<para>Release this thread&apos;s read lock on this mutex. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/spinRWMutex.h" line="229" column="1" bodyfile="pxr/base/tf/spinRWMutex.h" bodystart="229" bodyend="232"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_spin_r_w_mutex_1a7582612dc26786938211a20044f04985" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TryAcquireWrite</definition>
+        <argsstring>()</argsstring>
+        <name>TryAcquireWrite</name>
+        <briefdescription>
+<para>Attempt to acquire a write lock on this mutex without waiting for other writers. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This thread must not already hold a lock on this mutex (either read or write). Return true if the lock is acquired, false otherwise. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/spinRWMutex.h" line="237" column="1" bodyfile="pxr/base/tf/spinRWMutex.h" bodystart="237" bodyend="248"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_spin_r_w_mutex_1ae26cf2a0b6c906a79d7afc652ec6be24" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AcquireWrite</definition>
+        <argsstring>()</argsstring>
+        <name>AcquireWrite</name>
+        <briefdescription>
+<para>Acquire a write lock on this mutex. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This thread must not already hold a lock on this mutex (either read or write). Consider calling <ref refid="class_tf_spin_r_w_mutex_1a042b2ad177df032a8a617c043ac8626d" kindref="member">UpgradeToWriter()</ref> if this thread holds a read lock. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/spinRWMutex.h" line="253" column="1" bodyfile="pxr/base/tf/spinRWMutex.h" bodystart="253" bodyend="262"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_spin_r_w_mutex_1ac7d9738a9364a56bc815c81f0903bc81" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ReleaseWrite</definition>
+        <argsstring>()</argsstring>
+        <name>ReleaseWrite</name>
+        <briefdescription>
+<para>Release this thread&apos;s write lock on this mutex. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/spinRWMutex.h" line="265" column="1" bodyfile="pxr/base/tf/spinRWMutex.h" bodystart="265" bodyend="267"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_spin_r_w_mutex_1a042b2ad177df032a8a617c043ac8626d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool UpgradeToWriter</definition>
+        <argsstring>()</argsstring>
+        <name>UpgradeToWriter</name>
+        <briefdescription>
+<para>Upgrade this thread&apos;s lock on this mutex (which must be a read lock) to a write lock. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Return true if the upgrade is done &quot;atomically&quot; meaning that the read lock was not released (and thus no other writer could have acquired the lock in the interim). Return false if this lock was released and thus another writer could have taken the lock in the interim. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/spinRWMutex.h" line="275" column="1" bodyfile="pxr/base/tf/spinRWMutex.h" bodystart="275" bodyend="296"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_spin_r_w_mutex_1a4c848a43c16a8b1847f885d014eb592b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DowngradeToReader</definition>
+        <argsstring>()</argsstring>
+        <name>DowngradeToReader</name>
+        <briefdescription>
+<para>Downgrade this mutex, which must be locked for write by this thread, to being locked for read by this thread. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Return true if the downgrade happened &quot;atomically&quot;, meaning that the write lock was not released (and thus possibly acquired by another thread). This implementation currently always returns true. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/spinRWMutex.h" line="303" column="1" bodyfile="pxr/base/tf/spinRWMutex.h" bodystart="303" bodyend="308"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_tf_spin_r_w_mutex_1ae7048f0ec8209c5a80bb183025d76e11" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>_StagedAcquireWriteState</type>
+        <definition>_StagedAcquireWriteState _StagedAcquireWriteStep</definition>
+        <argsstring>(_StagedAcquireWriteState curState)</argsstring>
+        <name>_StagedAcquireWriteStep</name>
+        <param>
+          <type>_StagedAcquireWriteState</type>
+          <declname>curState</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/spinRWMutex.h" line="328" column="1" bodyfile="pxr/base/tf/spinRWMutex.h" bodystart="328" bodyend="348"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_spin_r_w_mutex_1a6497ea060c4f4b6d83c13e394bef8635" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void _WaitForReaders</definition>
+        <argsstring>() const</argsstring>
+        <name>_WaitForReaders</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/spinRWMutex.h" line="350" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_spin_r_w_mutex_1aa2bdfdbe55e0c343b0183d19672a0a14" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void _WaitForWriter</definition>
+        <argsstring>() const</argsstring>
+        <name>_WaitForWriter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/spinRWMutex.h" line="351" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This class implements a readers-writer spin lock that emphasizes throughput when there is light contention or moderate contention dominated by readers. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Like all spin locks, significant contention performs poorly; consider a different algorithm design or synchronization strategy in that case.</para>
+<para>In the best case, acquiring a read lock is an atomic add followed by a conditional branch, and acquiring a write lock is an atomic bitwise-or followed by a conditional branch.</para>
+<para>When contended by only readers, acquiring a read lock is the same: an atomic add followed by a conditional branch. Of course the shared cache line being concurrently read and modified will affect performance.</para>
+<para>In the worst case, acquiring a read lock does the atomic add and conditional branch, but the condition shows writer activity, so the add must be undone by a subtraction, and then the thread must wait to see no writer activity before trying again.</para>
+<para>Similarly in the worst case for acquiring a write lock, the thread does the atomic bitwise-or, but sees another active writer, and then must wait to see no writer activity before trying again. Once the exclusive-or is done successfully, then the writer must wait for any pending readers to clear out before it can proceed.</para>
+<para>This class provides a nested <ref refid="struct_tf_spin_r_w_mutex_1_1_scoped_lock" kindref="compound">TfSpinRWMutex::ScopedLock</ref> that makes it easy to acquire locks, upgrade reader to writer, downgrade writer to reader, and have those locks automatically release when the <ref refid="struct_tf_spin_r_w_mutex_1_1_scoped_lock" kindref="compound">ScopedLock</ref> is destroyed. </para>
+    </detaileddescription>
+    <location file="pxr/base/tf/spinRWMutex.h" line="68" column="1" bodyfile="pxr/base/tf/spinRWMutex.h" bodystart="67" bodyend="354"/>
+    <listofallmembers>
+      <member refid="class_tf_spin_r_w_mutex_1aaa30be4373a0b70d8d443e4bfda584b8" prot="private" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>_lockState</name></member>
+      <member refid="class_tf_spin_r_w_mutex_1a501709b1ff65d139a9d5dc60c02e630ca9e30f20d8e6dd387bc753adcd6702391" prot="private" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>_StageAcquired</name></member>
+      <member refid="class_tf_spin_r_w_mutex_1a501709b1ff65d139a9d5dc60c02e630ca60fdc3cc263403565aa9b93292bdd11a" prot="private" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>_StageAcquiring</name></member>
+      <member refid="class_tf_spin_r_w_mutex_1a501709b1ff65d139a9d5dc60c02e630c" prot="private" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>_StagedAcquireWriteState</name></member>
+      <member refid="class_tf_spin_r_w_mutex_1ae7048f0ec8209c5a80bb183025d76e11" prot="private" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>_StagedAcquireWriteStep</name></member>
+      <member refid="class_tf_spin_r_w_mutex_1a501709b1ff65d139a9d5dc60c02e630caaba64a4246e11c1c8ce990155b30ef03" prot="private" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>_StageNotAcquired</name></member>
+      <member refid="class_tf_spin_r_w_mutex_1a6497ea060c4f4b6d83c13e394bef8635" prot="private" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>_WaitForReaders</name></member>
+      <member refid="class_tf_spin_r_w_mutex_1aa2bdfdbe55e0c343b0183d19672a0a14" prot="private" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>_WaitForWriter</name></member>
+      <member refid="class_tf_spin_r_w_mutex_1aea82059734813662236ac5c264a87bbd" prot="public" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>AcquireRead</name></member>
+      <member refid="class_tf_spin_r_w_mutex_1ae26cf2a0b6c906a79d7afc652ec6be24" prot="public" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>AcquireWrite</name></member>
+      <member refid="class_tf_spin_r_w_mutex_1a4c848a43c16a8b1847f885d014eb592b" prot="public" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>DowngradeToReader</name></member>
+      <member refid="class_tf_spin_r_w_mutex_1a40a80cf5d2870ab72bef957137e49893" prot="private" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>OneReader</name></member>
+      <member refid="class_tf_spin_r_w_mutex_1a706aede109d78a1c04d98656e82cbe61" prot="public" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>ReleaseRead</name></member>
+      <member refid="class_tf_spin_r_w_mutex_1ac7d9738a9364a56bc815c81f0903bc81" prot="public" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>ReleaseWrite</name></member>
+      <member refid="class_tf_spin_r_w_mutex_1ac3e451bb31cd1c47d1062e305945f9f8" prot="private" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>TfBigRWMutex</name></member>
+      <member refid="class_tf_spin_r_w_mutex_1a5c254a16c8c9de4b1ce20f01d9e8f120" prot="public" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>TfSpinRWMutex</name></member>
+      <member refid="class_tf_spin_r_w_mutex_1a4cfb4d586c3b2bebc2cb861a4b27eaa8" prot="public" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>TryAcquireRead</name></member>
+      <member refid="class_tf_spin_r_w_mutex_1a7582612dc26786938211a20044f04985" prot="public" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>TryAcquireWrite</name></member>
+      <member refid="class_tf_spin_r_w_mutex_1a042b2ad177df032a8a617c043ac8626d" prot="public" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>UpgradeToWriter</name></member>
+      <member refid="class_tf_spin_r_w_mutex_1a5edddebe8e5723044ae7fff38dab6c68" prot="private" virt="non-virtual"><scope>TfSpinRWMutex</scope><name>WriterFlag</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

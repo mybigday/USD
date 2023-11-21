@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="trace_page_front" kind="page">
+    <compoundname>trace_page_front</compoundname>
+    <title>Trace: Performance tracking</title>
+    <innerpage refid="trace_page_detail">Trace Details</innerpage>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="trace_page_front_1trace_contents">
+<title>Contents</title>
+<para><itemizedlist>
+<listitem><para><ref refid="trace_page_front_1trace_overview" kindref="member">Overview</ref> </para>
+</listitem>
+<listitem><para><ref refid="trace_page_front_1trace_instrumentation" kindref="member">Instrumentation</ref> </para>
+</listitem>
+<listitem><para><ref refid="trace_page_front_1trace_recording_reporting" kindref="member">Recording and Reporting</ref> </para>
+</listitem>
+<listitem><para><ref refid="trace_page_front_1trace_performance" kindref="member">Performance Overhead</ref> </para>
+</listitem>
+<listitem><para><ref refid="trace_page_front_1trace_details" kindref="member">Details</ref></para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+<sect1 id="trace_page_front_1trace_overview">
+<title>Overview</title>
+<para>Defines utility classes for counting, timing, measuring, and recording events. The <ref refid="class_trace_collector" kindref="compound">TraceCollector</ref> class records <ref refid="class_trace_event" kindref="compound">TraceEvent</ref> objects. The <ref refid="class_trace_reporter" kindref="compound">TraceReporter</ref> class contains functions to generate reports on events gathered by the <ref refid="class_trace_collector" kindref="compound">TraceCollector</ref> object.</para>
+</sect1>
+<sect1 id="trace_page_front_1trace_instrumentation">
+<title>Instrumentation</title>
+<para>Instrumentation is done by adding TRACE macros to code.</para>
+<para>For example:</para>
+<para><programlisting filename=".cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="trace_8h" kindref="compound">pxr/base/trace/trace.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Typical<sp/>usage.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Foo()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="trace_8h_1a5b0af4118bc65ec32e2f5d2558fe90d5" kindref="member">TRACE_FUNCTION</ref>();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>More<sp/>work<sp/>is<sp/>done<sp/>here<sp/>that<sp/>needs<sp/>timing<sp/>separated.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trace_8h_1a39c16c77a53bc0aaaf4f2f39cd37f6c0" kindref="member">TRACE_SCOPE</ref>(</highlight><highlight class="stringliteral">&quot;Inner<sp/>Scope&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>Python tracing is also supported: <programlisting filename=".py"><codeline><highlight class="keyword">from</highlight><highlight class="normal"><sp/>pxr<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>Trace</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">@Trace.TraceFunction</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal">foo():</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">with</highlight><highlight class="normal"><sp/>Trace.TraceScope(</highlight><highlight class="stringliteral">&quot;Inner<sp/>Scope&quot;</highlight><highlight class="normal">):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>...</highlight></codeline>
+</programlisting></para>
+<para>Adding Trace macros does have a small <ref refid="trace_page_front_1trace_performance" kindref="member">overhead </ref> even when tracing is disabled. Sometimes a performance sensitive function may have a slow path that is taken infrequently, but timing information is needed. In cases like this, it is possible to reduce the overhead of the instrumentation to specific scopes.</para>
+<para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>This<sp/>is<sp/>an<sp/>example<sp/>of<sp/>a<sp/>performance<sp/>sensitive<sp/>function<sp/>that<sp/>has<sp/>a<sp/>slow<sp/>path.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>PerformanceSensitiveFunction(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>slowPath)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>No<sp/>TRACE<sp/>Macro<sp/>is<sp/>used<sp/>in<sp/>the<sp/>fast<sp/>path<sp/>to<sp/>avoid<sp/>any<sp/>overhead.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(slowPath)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>will<sp/>only<sp/>pay<sp/>the<sp/>overhead<sp/>cost<sp/>of<sp/>the<sp/>trace<sp/>instrumentation<sp/>on</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>slow<sp/>path.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trace_8h_1aec9f2bb2b5d0fd9be6ba7cddbce26cf1" kindref="member">TRACE_FUNCTION_SCOPE</ref>(</highlight><highlight class="stringliteral">&quot;Slow<sp/>path&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="trace_page_front_1trace_recording_reporting">
+<title>Recording and Reporting</title>
+<para>Recording is done through the <ref refid="class_trace_collector" kindref="compound">TraceCollector</ref> class. Enabling the collector will cause TRACE macros to record events. Reports are generated with the <ref refid="class_trace_reporter" kindref="compound">TraceReporter</ref> class. <programlisting filename=".cpp"><codeline><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>argv[])</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Start<sp/>recording<sp/>events.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_trace_collector_1a7c6ef45a242396370e5d51e4c0ed8ec7" kindref="member">TraceCollector::GetInstance</ref>().<ref refid="class_trace_collector_1a0bd350fc68d56a8bb66c20531e7d3587" kindref="member">SetEnabled</ref>(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Foo();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Stop<sp/>recording<sp/>events.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_trace_collector_1a7c6ef45a242396370e5d51e4c0ed8ec7" kindref="member">TraceCollector::GetInstance</ref>().<ref refid="class_trace_collector_1a0bd350fc68d56a8bb66c20531e7d3587" kindref="member">SetEnabled</ref>(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Print<sp/>the<sp/>ASCII<sp/>report</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ofstream<sp/>reportFile(</highlight><highlight class="stringliteral">&quot;report.trace&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_trace_reporter_1ad5f989cdbc2e4103bf6594f4c043625c" kindref="member">TraceReporter::GetGlobalReporter</ref>().Report(reportFile);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Print<sp/>the<sp/>chrome-compatible<sp/>report</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ofstream<sp/>chromeReportFile(</highlight><highlight class="stringliteral">&quot;report.json&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_trace_reporter_1ad5f989cdbc2e4103bf6594f4c043625c" kindref="member">TraceReporter::GetGlobalReporter</ref>().ReportChromeTracing(chromeReportFile);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>And in Python: <programlisting filename=".py"><codeline><highlight class="keyword">from</highlight><highlight class="normal"><sp/>pxr<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>Trace</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>Start<sp/>recording<sp/>events.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Trace.Collector().enabled<sp/>=<sp/></highlight><highlight class="keyword">True</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Foo()</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>Stop<sp/>recording<sp/>events.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Trace.Collector().enabled<sp/>=<sp/></highlight><highlight class="keyword">False</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>Print<sp/>the<sp/>ASCII<sp/>report</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Trace.Reporter.globalReporter.Report(</highlight><highlight class="stringliteral">&quot;report.trace&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>Print<sp/>the<sp/>chrome-compatible<sp/>report</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">Trace.Reporter.globalReporter.ReportChromeTracingToFile(</highlight><highlight class="stringliteral">&quot;report.json&quot;</highlight><highlight class="normal">)</highlight></codeline>
+</programlisting></para>
+<para>The default report is an aggregated call graph showing the include time, exclusive time, and call count of each scope.</para>
+<para>Example Report: <programlisting filename=".unparsed"><codeline><highlight class="normal">Tree<sp/>view<sp/><sp/>==============</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>inclusive<sp/><sp/><sp/><sp/>exclusive<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>13.000<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/>samples<sp/><sp/><sp/><sp/>MainThread</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>13.000<sp/>ms<sp/><sp/><sp/><sp/><sp/>4.000<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/>samples<sp/><sp/><sp/><sp/>|<sp/>OuterScope</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>9.000<sp/>ms<sp/><sp/><sp/><sp/><sp/>8.000<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/>samples<sp/><sp/><sp/><sp/>|<sp/><sp/><sp/>InnerScope</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>1.000<sp/>ms<sp/><sp/><sp/><sp/><sp/>1.000<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/>2<sp/>samples<sp/><sp/><sp/><sp/>|<sp/><sp/><sp/>|<sp/>Inner<sp/>Scope<sp/>2</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>13.000<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/>samples<sp/><sp/><sp/><sp/>Thread<sp/>1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>13.000<sp/>ms<sp/><sp/><sp/><sp/><sp/>4.000<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/>samples<sp/><sp/><sp/><sp/>|<sp/>OuterScope</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>9.000<sp/>ms<sp/><sp/><sp/><sp/><sp/>8.000<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/>samples<sp/><sp/><sp/><sp/>|<sp/><sp/><sp/>InnerScope</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>1.000<sp/>ms<sp/><sp/><sp/><sp/><sp/>1.000<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/>2<sp/>samples<sp/><sp/><sp/><sp/>|<sp/><sp/><sp/>|<sp/>Inner<sp/>Scope<sp/>2</highlight></codeline>
+</programlisting></para>
+<para>The Chrome tracing format is also supported using the <ref refid="class_trace_reporter_1aa4f518c0353299885a977a1c3e56792d" kindref="member">TraceReporter::ReportChromeTracing</ref> method.</para>
+<para>A report can also be generated from a program instrumented with libtrace using the PXR_ENABLE_GLOBAL_TRACE environment variable. If this variable is set, the <ref refid="class_trace_collector" kindref="compound">TraceCollector</ref> singleton will start recording on initialization, and a report will be written to stdout at program exit. <programlisting filename=".unparsed"><codeline><highlight class="normal">&gt;env<sp/>PXR_ENABLE_GLOBAL_TRACE=1<sp/>usdview<sp/>HelloWorld.usda<sp/>--quitAfterStartup</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Tree<sp/>view<sp/><sp/>==============</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>inclusive<sp/><sp/><sp/><sp/>exclusive<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>358.500<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/>samples<sp/><sp/><sp/><sp/>Main<sp/>Thread</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>0.701<sp/>ms<sp/><sp/><sp/><sp/><sp/>0.701<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/>8<sp/>samples<sp/><sp/><sp/><sp/>|<sp/>SdfPath::_InitWithString</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>0.003<sp/>ms<sp/><sp/><sp/><sp/><sp/>0.003<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/>2<sp/>samples<sp/><sp/><sp/><sp/>|<sp/>{anonymous}::VtDictionaryToPython::convert</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>275.580<sp/>ms<sp/><sp/><sp/>275.580<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/>3<sp/>samples<sp/><sp/><sp/><sp/>|<sp/>PlugPlugin::_Load</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>0.014<sp/>ms<sp/><sp/><sp/><sp/><sp/>0.014<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/>3<sp/>samples<sp/><sp/><sp/><sp/>|<sp/>UcGetCurrentUnit</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>1.470<sp/>ms<sp/><sp/><sp/><sp/><sp/>0.002<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/>samples<sp/><sp/><sp/><sp/>|<sp/>UcIsKnownUnit</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>1.467<sp/>ms<sp/><sp/><sp/><sp/><sp/>0.026<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/>samples<sp/><sp/><sp/><sp/>|<sp/><sp/><sp/>Uc::_InitUnitData<sp/>[initialization]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>1.442<sp/>ms<sp/><sp/><sp/><sp/><sp/>1.442<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/>samples<sp/><sp/><sp/><sp/>|<sp/><sp/><sp/>|<sp/>Uc_Engine::GetValue</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>0.750<sp/>ms<sp/><sp/><sp/><sp/><sp/>0.000<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/>samples<sp/><sp/><sp/><sp/>|<sp/>UcGetValue</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>0.750<sp/>ms<sp/><sp/><sp/><sp/><sp/>0.750<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/>samples<sp/><sp/><sp/><sp/>|<sp/><sp/><sp/>Uc_Engine::GetValue</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>9.141<sp/>ms<sp/><sp/><sp/><sp/><sp/>0.053<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/>samples<sp/><sp/><sp/><sp/>|<sp/>PrCreatePathResolverForUnit</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>0.002<sp/>ms<sp/><sp/><sp/><sp/><sp/>0.002<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/>6<sp/>samples<sp/><sp/><sp/><sp/>|<sp/><sp/><sp/>UcIsKnownUnit</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+</programlisting></para>
+<para>The aggregated call graph can be accessed through <ref refid="class_trace_reporter_1adbb3ebc5685d873651cae232365df0c3" kindref="member">TraceReporter::GetAggregateTreeRoot</ref>. The non-aggregated call graph can be access through <ref refid="class_trace_reporter_1aff02407d216138b36773bebb30d47dd1" kindref="member">TraceReporter::GetEventTree</ref>.</para>
+</sect1>
+<sect1 id="trace_page_front_1trace_performance">
+<title>Performance Overhead</title>
+<para>Adding trace instrumentation macros has the following overhead: <itemizedlist>
+<listitem>
+<para>When tracing is disabled, <ref refid="trace_8h_1a5b0af4118bc65ec32e2f5d2558fe90d5" kindref="member">TRACE_FUNCTION()</ref>, <ref refid="trace_8h_1aec9f2bb2b5d0fd9be6ba7cddbce26cf1" kindref="member">TRACE_FUNCTION_SCOPE()</ref>, and <ref refid="trace_8h_1a39c16c77a53bc0aaaf4f2f39cd37f6c0" kindref="member">TRACE_SCOPE()</ref> initialize 16 bytes of stack memory, read an atomic int, and have 2 branches.  </para>
+</listitem>
+<listitem>
+<para>When tracing is enabled, overhead of <ref refid="trace_8h_1a5b0af4118bc65ec32e2f5d2558fe90d5" kindref="member">TRACE_FUNCTION()</ref>, <ref refid="trace_8h_1aec9f2bb2b5d0fd9be6ba7cddbce26cf1" kindref="member">TRACE_FUNCTION_SCOPE()</ref>, and <ref refid="trace_8h_1a39c16c77a53bc0aaaf4f2f39cd37f6c0" kindref="member">TRACE_SCOPE()</ref> is about 100 times larger than the disabled case. (.33ns vs 33ns in microbenchmarks on our workstations).  </para>
+</listitem>
+<listitem>
+<para>The dynamic versions of the macros <ref refid="trace_8h_1a024be3c93cc9f0ae55494e619992b59e" kindref="member">TRACE_FUNCTION_DYNAMIC()</ref>, <ref refid="trace_8h_1a9e691dcf1121767f4b93c0615f64084c" kindref="member">TRACE_SCOPE_DYNAMIC()</ref> have a much higher overhead than the static versions. The reason for this is that for the static versions, the names of the scopes are compiled as constexpr data, but the dynamic versions construct strings at runtime. This overhead of dynamic macros is true whether tracing is enabled or not. Because of this, the static versions should be preferred whenever possible.  </para>
+</listitem>
+</itemizedlist>
+It is possible to disable TRACE macros from generating code by defining TRACE_DISABLE in the preprocessor.</para>
+<para>The <ref refid="class_trace_collector" kindref="compound">TraceCollector</ref> class and TRACE macros are thread-safe.</para>
+</sect1>
+<sect1 id="trace_page_front_1trace_details">
+<title>Details</title>
+<para>For more detailed information see <ref refid="trace_page_detail" kindref="compound">Trace Details</ref> </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

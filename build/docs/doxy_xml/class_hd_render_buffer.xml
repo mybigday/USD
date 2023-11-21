@@ -1,0 +1,407 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_render_buffer" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>HdRenderBuffer</compoundname>
+    <basecompoundref refid="class_hd_bprim" prot="public" virt="non-virtual">HdBprim</basecompoundref>
+    <derivedcompoundref refid="class_hd_embree_render_buffer" prot="public" virt="non-virtual">HdEmbreeRenderBuffer</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_st_render_buffer" prot="public" virt="non-virtual">HdStRenderBuffer</derivedcompoundref>
+    <includes refid="render_buffer_8h" local="no">renderBuffer.h</includes>
+      <sectiondef kind="user-defined">
+      <header>Prim API</header>
+      <memberdef kind="function" id="class_hd_render_buffer_1ad2a06c7fe9d266e21307307fc7a0dccd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API HdDirtyBits</type>
+        <definition>HD_API HdDirtyBits GetInitialDirtyBitsMask</definition>
+        <argsstring>() const override</argsstring>
+        <name>GetInitialDirtyBitsMask</name>
+        <reimplements refid="class_hd_bprim_1ac05e81662ee475cfe52ce97e84e7205d">GetInitialDirtyBitsMask</reimplements>
+        <briefdescription>
+<para>Get initial invalidation state. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderBuffer.h" line="70" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_buffer_1a3213755baa58cf8f2da75fb5a5e33566" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void Sync</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, HdDirtyBits *dirtyBits) override</argsstring>
+        <name>Sync</name>
+        <reimplements refid="class_hd_bprim_1ac100b9064606ab088306512425439cf7">Sync</reimplements>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+<para>Get allocation information from the scene delegate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderBuffer.h" line="74" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_buffer_1a580d2cd68564bd6eafec9294bbcfd0bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void Finalize</definition>
+        <argsstring>(HdRenderParam *renderParam) override</argsstring>
+        <name>Finalize</name>
+        <reimplements refid="class_hd_bprim_1a385eed04c15e636796b187bfdf0fcbf0">Finalize</reimplements>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <briefdescription>
+<para>Deallocate before deletion. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderBuffer.h" line="80" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Renderbuffer API</header>
+      <memberdef kind="function" id="class_hd_render_buffer_1ade9b8f2f4720bd4cbe6b3f0dd0abc0c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool Allocate</definition>
+        <argsstring>(GfVec3i const &amp;dimensions, HdFormat format, bool multiSampled)=0</argsstring>
+        <name>Allocate</name>
+        <param>
+          <type><ref refid="class_gf_vec3i" kindref="compound">GfVec3i</ref> const &amp;</type>
+          <declname>dimensions</declname>
+        </param>
+        <param>
+          <type>HdFormat</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>multiSampled</declname>
+        </param>
+        <briefdescription>
+<para>Allocate a buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Can be called from <ref refid="class_hd_render_buffer_1a3213755baa58cf8f2da75fb5a5e33566" kindref="member">Sync()</ref>, or directly. If the buffer has already been allocated, calling <ref refid="class_hd_render_buffer_1ade9b8f2f4720bd4cbe6b3f0dd0abc0c2" kindref="member">Allocate()</ref> again will destroy the old buffer and allocate a new one.</para>
+<para>A negative dimension or invalid format will cause an allocation error. If the requested buffer can&apos;t be allocated, the function will return false. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderBuffer.h" line="93" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_buffer_1a1b872b7a860133e0fbdf4b3e08b4582f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>unsigned int</type>
+        <definition>virtual unsigned int GetWidth</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetWidth</name>
+        <briefdescription>
+<para>Get the buffer&apos;s width. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderBuffer.h" line="98" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_buffer_1a43a973a05f66c93adc28466e6c69ebbd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>unsigned int</type>
+        <definition>virtual unsigned int GetHeight</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetHeight</name>
+        <briefdescription>
+<para>Get the buffer&apos;s height. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderBuffer.h" line="100" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_buffer_1a9da7daf7a4498138820bfcead21a90c0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>unsigned int</type>
+        <definition>virtual unsigned int GetDepth</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetDepth</name>
+        <briefdescription>
+<para>Get the buffer&apos;s depth. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderBuffer.h" line="102" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_buffer_1ab2319615da37928498deed293365d375" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>HdFormat</type>
+        <definition>virtual HdFormat GetFormat</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetFormat</name>
+        <briefdescription>
+<para>Get the buffer&apos;s per-pixel format. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderBuffer.h" line="104" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_buffer_1ab70f19de67b5ce0c21b9b1962e5259e8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool IsMultiSampled</definition>
+        <argsstring>() const =0</argsstring>
+        <name>IsMultiSampled</name>
+        <briefdescription>
+<para>Get whether the buffer is multisampled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderBuffer.h" line="106" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_buffer_1ad3871cfdc4a5d7efcccc4be5817cc39a" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void *</type>
+        <definition>virtual void* Map</definition>
+        <argsstring>()=0</argsstring>
+        <name>Map</name>
+        <briefdescription>
+<para>Map the buffer for reading. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderBuffer.h" line="109" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_buffer_1a692c008d617abcb5984f4b1d9f79661c" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void Unmap</definition>
+        <argsstring>()=0</argsstring>
+        <name>Unmap</name>
+        <briefdescription>
+<para>Unmap the buffer. It is no longer safe to read from the buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderBuffer.h" line="111" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_buffer_1a55d600d9a5606dc1fab77b9698531568" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool IsMapped</definition>
+        <argsstring>() const =0</argsstring>
+        <name>IsMapped</name>
+        <briefdescription>
+<para>Return whether the buffer is currently mapped by anybody. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderBuffer.h" line="113" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_buffer_1a0c488a63eca1ddce16233d0e4d4e013b" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void Resolve</definition>
+        <argsstring>()=0</argsstring>
+        <name>Resolve</name>
+        <briefdescription>
+<para>Resolve the buffer so that reads reflect the latest writes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Some buffer implementations may defer final processing of writes until a buffer is read, for efficiency; examples include OpenGL MSAA or multi-sampled raytraced buffers. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderBuffer.h" line="120" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_buffer_1aa80144689f169624711b8993a3d81c6d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool IsConverged</definition>
+        <argsstring>() const =0</argsstring>
+        <name>IsConverged</name>
+        <briefdescription>
+<para>Return whether the buffer is converged (whether the renderer is still adding samples or not). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderBuffer.h" line="124" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_buffer_1ab7c96258e8a452089c5533aaac8232f1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="class_vt_value" kindref="compound">VtValue</ref></type>
+        <definition>virtual VtValue GetResource</definition>
+        <argsstring>(bool multiSampled) const</argsstring>
+        <name>GetResource</name>
+        <param>
+          <type>bool</type>
+          <declname>multiSampled</declname>
+        </param>
+        <briefdescription>
+<para>This optional API returns a (type-erased) resource that backs this render buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For example, a render buffer implementation may allocate a gpu texture that holds the data of the buffer. This function allows other parts of Hydra, such as a HdTask to get access to this resource. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderBuffer.h" line="130" column="1" bodyfile="pxr/imaging/hd/renderBuffer.h" bodystart="130" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_buffer_1a608493489bac4f905885efb46f225d68" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void _Deallocate</definition>
+        <argsstring>()=0</argsstring>
+        <name>_Deallocate</name>
+        <briefdescription>
+<para>Deallocate the buffer, freeing any owned resources. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderBuffer.h" line="134" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="class_hd_render_buffer_1a2f2dbbbe47e871395a781c8105398c8f" prot="public" static="no" strong="no">
+        <type>HdDirtyBits</type>
+        <name>DirtyBits</name>
+        <enumvalue id="class_hd_render_buffer_1a2f2dbbbe47e871395a781c8105398c8faccea35f717039c64bc6ea05604ecddc0" prot="public">
+          <name>Clean</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_render_buffer_1a2f2dbbbe47e871395a781c8105398c8fa8e5fc22bc32d32b3da6337b1c7ad2f39" prot="public">
+          <name>DirtyDescription</name>
+          <initializer>= 1 &lt;&lt; 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_render_buffer_1a2f2dbbbe47e871395a781c8105398c8fa6f2ec4167b47e7269ed7b56e1928e731" prot="public">
+          <name>AllDirty</name>
+          <initializer>= (DirtyDescription)</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderBuffer.h" line="53" column="1" bodyfile="pxr/imaging/hd/renderBuffer.h" bodystart="53" bodyend="57"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_render_buffer_1a95a6a2d6df2376353323e3a5081f0005" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API HdRenderBuffer</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>HdRenderBuffer</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderBuffer.h" line="60" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_buffer_1a37df1a3eb10072020e53ce8afc961304" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API ~HdRenderBuffer</definition>
+        <argsstring>() override</argsstring>
+        <name>~HdRenderBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderBuffer.h" line="62" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A render buffer is a handle to a data resource that can be rendered into, such as a 2d image for a draw target or auxiliary rendering output. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The render buffer can be used as an indexed prim, in which case it communicates with the scene delegate to get buffer properties, or it can be created out of band and supplied directly with allocation parameters.</para>
+<para>Render buffers can be targeted by render passes. They also contain mapping functionality for reading and writing buffer data. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2555">
+        <label>HdRenderBuffer</label>
+        <link refid="class_hd_render_buffer"/>
+        <childnode refid="2556" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2556">
+        <label>HdBprim</label>
+        <link refid="class_hd_bprim"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2557">
+        <label>HdRenderBuffer</label>
+        <link refid="class_hd_render_buffer"/>
+        <childnode refid="2558" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2558">
+        <label>HdBprim</label>
+        <link refid="class_hd_bprim"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/hd/renderBuffer.h" line="50" column="1" bodyfile="pxr/imaging/hd/renderBuffer.h" bodystart="49" bodyend="135"/>
+    <listofallmembers>
+      <member refid="class_hd_render_buffer_1a608493489bac4f905885efb46f225d68" prot="protected" virt="pure-virtual"><scope>HdRenderBuffer</scope><name>_Deallocate</name></member>
+      <member refid="class_hd_render_buffer_1a2f2dbbbe47e871395a781c8105398c8fa6f2ec4167b47e7269ed7b56e1928e731" prot="public" virt="non-virtual"><scope>HdRenderBuffer</scope><name>AllDirty</name></member>
+      <member refid="class_hd_render_buffer_1ade9b8f2f4720bd4cbe6b3f0dd0abc0c2" prot="public" virt="pure-virtual"><scope>HdRenderBuffer</scope><name>Allocate</name></member>
+      <member refid="class_hd_render_buffer_1a2f2dbbbe47e871395a781c8105398c8faccea35f717039c64bc6ea05604ecddc0" prot="public" virt="non-virtual"><scope>HdRenderBuffer</scope><name>Clean</name></member>
+      <member refid="class_hd_render_buffer_1a2f2dbbbe47e871395a781c8105398c8f" prot="public" virt="non-virtual"><scope>HdRenderBuffer</scope><name>DirtyBits</name></member>
+      <member refid="class_hd_render_buffer_1a2f2dbbbe47e871395a781c8105398c8fa8e5fc22bc32d32b3da6337b1c7ad2f39" prot="public" virt="non-virtual"><scope>HdRenderBuffer</scope><name>DirtyDescription</name></member>
+      <member refid="class_hd_render_buffer_1a580d2cd68564bd6eafec9294bbcfd0bb" prot="public" virt="virtual"><scope>HdRenderBuffer</scope><name>Finalize</name></member>
+      <member refid="class_hd_render_buffer_1a9da7daf7a4498138820bfcead21a90c0" prot="public" virt="pure-virtual"><scope>HdRenderBuffer</scope><name>GetDepth</name></member>
+      <member refid="class_hd_render_buffer_1ab2319615da37928498deed293365d375" prot="public" virt="pure-virtual"><scope>HdRenderBuffer</scope><name>GetFormat</name></member>
+      <member refid="class_hd_render_buffer_1a43a973a05f66c93adc28466e6c69ebbd" prot="public" virt="pure-virtual"><scope>HdRenderBuffer</scope><name>GetHeight</name></member>
+      <member refid="class_hd_bprim_1a9301243d9273afcba6395e86047490ab" prot="public" virt="non-virtual"><scope>HdRenderBuffer</scope><name>GetId</name></member>
+      <member refid="class_hd_render_buffer_1ad2a06c7fe9d266e21307307fc7a0dccd" prot="public" virt="virtual"><scope>HdRenderBuffer</scope><name>GetInitialDirtyBitsMask</name></member>
+      <member refid="class_hd_render_buffer_1ab7c96258e8a452089c5533aaac8232f1" prot="public" virt="virtual"><scope>HdRenderBuffer</scope><name>GetResource</name></member>
+      <member refid="class_hd_render_buffer_1a1b872b7a860133e0fbdf4b3e08b4582f" prot="public" virt="pure-virtual"><scope>HdRenderBuffer</scope><name>GetWidth</name></member>
+      <member refid="class_hd_bprim_1aa5ee52b8b01515706d54cf147de7f884" prot="public" virt="non-virtual"><scope>HdRenderBuffer</scope><name>HdBprim</name></member>
+      <member refid="class_hd_render_buffer_1a95a6a2d6df2376353323e3a5081f0005" prot="public" virt="non-virtual"><scope>HdRenderBuffer</scope><name>HdRenderBuffer</name></member>
+      <member refid="class_hd_render_buffer_1aa80144689f169624711b8993a3d81c6d" prot="public" virt="pure-virtual"><scope>HdRenderBuffer</scope><name>IsConverged</name></member>
+      <member refid="class_hd_render_buffer_1a55d600d9a5606dc1fab77b9698531568" prot="public" virt="pure-virtual"><scope>HdRenderBuffer</scope><name>IsMapped</name></member>
+      <member refid="class_hd_render_buffer_1ab70f19de67b5ce0c21b9b1962e5259e8" prot="public" virt="pure-virtual"><scope>HdRenderBuffer</scope><name>IsMultiSampled</name></member>
+      <member refid="class_hd_render_buffer_1ad3871cfdc4a5d7efcccc4be5817cc39a" prot="public" virt="pure-virtual"><scope>HdRenderBuffer</scope><name>Map</name></member>
+      <member refid="class_hd_render_buffer_1a0c488a63eca1ddce16233d0e4d4e013b" prot="public" virt="pure-virtual"><scope>HdRenderBuffer</scope><name>Resolve</name></member>
+      <member refid="class_hd_render_buffer_1a3213755baa58cf8f2da75fb5a5e33566" prot="public" virt="virtual"><scope>HdRenderBuffer</scope><name>Sync</name></member>
+      <member refid="class_hd_render_buffer_1a692c008d617abcb5984f4b1d9f79661c" prot="public" virt="pure-virtual"><scope>HdRenderBuffer</scope><name>Unmap</name></member>
+      <member refid="class_hd_bprim_1a214b96ab3e11db88364e8b73b8a6940c" prot="public" virt="virtual"><scope>HdRenderBuffer</scope><name>~HdBprim</name></member>
+      <member refid="class_hd_render_buffer_1a37df1a3eb10072020e53ce8afc961304" prot="public" virt="non-virtual"><scope>HdRenderBuffer</scope><name>~HdRenderBuffer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

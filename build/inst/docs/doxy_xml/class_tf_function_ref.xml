@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_tf_function_ref" kind="class" language="C++" prot="public">
+    <compoundname>TfFunctionRef</compoundname>
+    <includes refid="function_ref_8h" local="no">functionRef.h</includes>
+    <templateparamlist>
+      <param>
+        <type>class Sig</type>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+<para>This class provides a non-owning reference to a type-erased callable object with a specified signature. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This is useful in cases where you want to write a function that takes a user-provided callback, and that callback is used only in the duration of the function call, and you want to keep your function&apos;s implementation out-of-line.</para>
+<para>For technical reasons, <ref refid="class_tf_function_ref" kindref="compound">TfFunctionRef</ref> does not support function pointers; only function objects. Internally <ref refid="class_tf_function_ref" kindref="compound">TfFunctionRef</ref> stores a void pointer to the function object it&apos;s referencing, but C++ does not allow function pointers to be cast to void pointers. Supporting this case would increase this class&apos;s size and add complexity to its implementation. Instead, callers may wrap function pointers in lambdas to sidestep the issue.</para>
+<para>The advantage over std::function is that <ref refid="class_tf_function_ref" kindref="compound">TfFunctionRef</ref> is lighter-weight. Since it is non-owning, it guarantees no heap allocation; a possibility with std::function. The cost to call a <ref refid="class_tf_function_ref" kindref="compound">TfFunctionRef</ref> is an indirect function call.</para>
+<para>For example:</para>
+<para><programlisting><codeline><highlight class="normal">//<sp/>widgetUtil.h<sp/>////////////////////////////////</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">class<sp/>WidgetUtil</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>template<sp/>&lt;class<sp/>WidgetPredicate&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>AnyWidgetsMatch(WidgetPredicate<sp/>const<sp/>&amp;predicate)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TfFunctionRef&lt;bool<sp/>(Widget<sp/>const<sp/>&amp;)&gt;<sp/>predRef(predicate);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>_AnyWidgetsMatchImpl(predRef);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">private:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>_AnyWidgetsMatchImpl(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TfFunctionRef&lt;bool<sp/>(Widget<sp/>const<sp/>&amp;)&gt;<sp/>const<sp/>&amp;pred);</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>widgetUtil.cpp<sp/>//////////////////////////////</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;widgetUtil.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">bool<sp/>WidgetUtil::_AnyWidgetsMatchImpl(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TfFunctionRef&lt;bool<sp/>(Widget<sp/>const<sp/>&amp;)&gt;<sp/>const<sp/>&amp;pred)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(Widget<sp/>const<sp/>&amp;widget:<sp/>GetAllTheWidgets())<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(pred(widget))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>true;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>false;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>Here the implementation of _AnyWidgetsMatchImpl is kept out-of-line, callers can pass their own function objects for the predicate, there is no heap allocation, and the cost to invoke the predicate in the implementation is just the cost of calling a function pointer. </para>
+    </detaileddescription>
+    <location file="pxr/base/tf/functionRef.h" line="36" column="1" bodyfile="pxr/base/tf/functionRef.h" bodystart="36" bodyend="-1"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="_usd__page__multi_threading" kind="page">
+    <compoundname>Usd_Page_MultiThreading</compoundname>
+    <title>Threading Model and Performance Considerations</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>stl threading model : multiple readers <emphasis>or</emphasis> a single writer</para>
+<para>Although some clients may find it inconvenient that they must provide their own exclusive sections for writing to the same stage from multiple threads, what <emphasis>all</emphasis> clients get in exchange is a thread-efficient USD core, in which nearly all read access to USD data is lockless.</para>
+<sect1 id="_usd__page__multi_threading_1Usd_ThreadSafetyModel">
+<title>Thread-safety Guarantee</title>
+<para>Any UsdStage-mutating or SdfLayer-mutating operation considered a write.</para>
+<para><ref refid="class_usd_stage_1aece3d46e8cff565af399bfda419964e7" kindref="member">UsdStage::Load()</ref> and <ref refid="class_usd_prim_1ac9116ef1816249c339317e9a585f7a6d" kindref="member">UsdPrim::Load()</ref> (and unload) are considered write operations because they mutate a stage&apos;s contents, even though no scene description is authored.</para>
+<para>Although it is not possible for multiple threads to simultaneously write &quot;to the same stage&quot;, it is safe for different threads to write simultaneously to <emphasis>different</emphasis> stages. Note the subtlety here of what &quot;different stages&quot; means, however. If stages A and B consist each solely of layers A.usd and B.usd, respectively, then two different threads are entirely free to mutate the two stages simultaneously. However, if A.usd and B.usd both sublayer C.usd, the stages A and B, while distinct, share dependence on C.usd. If one thread, therefore, is mutating C.usd, then <bold>no other thread can mutate A.usd or B.usd</bold> because either would cause simultaneous changes to either stage A or stage B.</para>
+</sect1>
+<sect1 id="_usd__page__multi_threading_1Usd_InternalMultiThreading">
+<title>Usd&apos;s Internal Use of Multi-threading</title>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

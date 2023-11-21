@@ -1,0 +1,40 @@
+file(REMOVE_RECURSE
+  "../../../../docs/include/pxr/imaging/hdPrman/api.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/basisCurves.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/camera.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/cone.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/coordSys.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/coordSysPrimSceneIndexPlugin.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/cylinder.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/debugCodes.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/dependencyForwardingSceneIndexPlugin.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/displayFilter.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/gprim.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/gprimbase.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/instancer.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/integrator.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/light.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/lightFilter.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/material.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/matfiltConvertPreviewMaterial.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/matfiltResolveVstructs.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/mesh.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/points.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/renderDelegate.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/renderSettings.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/renderTerminalOutputInvalidatingSceneIndexPlugin.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/rileyRenderOutputSchema.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/rileyRenderTargetSchema.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/rixStrings.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/sampleFilter.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/sphere.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/tokens.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/volume.h"
+  "../../../../docs/include/pxr/imaging/hdPrman/xcpt.h"
+  "CMakeFiles/hdPrman_docfiles"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang )
+  include(CMakeFiles/hdPrman_docfiles.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

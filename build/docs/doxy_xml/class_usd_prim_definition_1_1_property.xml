@@ -1,0 +1,346 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_prim_definition_1_1_property" kind="class" language="C++" prot="public">
+    <compoundname>UsdPrimDefinition::Property</compoundname>
+    <derivedcompoundref refid="class_usd_prim_definition_1_1_attribute" prot="public" virt="non-virtual">UsdPrimDefinition::Attribute</derivedcompoundref>
+    <derivedcompoundref refid="class_usd_prim_definition_1_1_relationship" prot="public" virt="non-virtual">UsdPrimDefinition::Relationship</derivedcompoundref>
+    <includes refid="prim_definition_8h" local="no">primDefinition.h</includes>
+      <sectiondef kind="user-defined">
+      <header>Field Access Methods</header>
+      <description><para>These methods help get values for fields defined on a property in a prim definition.</para>
+<para>None of the data access methods check that the property is valid before trying to access the property. I.e. they all assume the property is already known to be valid when called.</para>
+<para>Client code is on the hook for verifying the validity of the <ref refid="class_usd_prim_definition_1_1_property" kindref="compound">Property</ref> before calling any of these methods. The validity can be determined by converting the <ref refid="class_usd_prim_definition_1_1_property" kindref="compound">Property</ref> to bool. </para>
+</description>
+      <memberdef kind="function" id="class_usd_prim_definition_1_1_property_1a56b16e5fef03cb6c94881c6a93124f44" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="usd_2sdf_2types_8h_1a1393f770f7685f4c58baf0b34679e522" kindref="member">SdfSpecType</ref></type>
+        <definition>USD_API SdfSpecType GetSpecType</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSpecType</name>
+        <briefdescription>
+<para>Returns the spec type of this property in the prim definition. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primDefinition.h" line="121" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_definition_1_1_property_1ae080ba93a1ddac47fea4b346d89e7f3c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref></type>
+        <definition>USD_API TfTokenVector ListMetadataFields</definition>
+        <argsstring>() const</argsstring>
+        <name>ListMetadataFields</name>
+        <briefdescription>
+<para>Returns the list of names of metadata fields that are defined for this property in the prim definition. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primDefinition.h" line="126" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_definition_1_1_property_1ad2d76f736733f3ad51aa1ea1df6f4d44" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool GetMetadata</definition>
+        <argsstring>(const TfToken &amp;key, T *value) const</argsstring>
+        <name>GetMetadata</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>T *</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves the fallback value for the metadata field named <computeroutput>key</computeroutput>, that is defined for this property in the prim definition, and stores it in <computeroutput>value</computeroutput> if possible. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns true if a value is defined for the given metadata <computeroutput>key</computeroutput> for this property. Returns false otherwise. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primDefinition.h" line="135" column="1" bodyfile="pxr/usd/usd/primDefinition.h" bodystart="632" bodyend="638"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_definition_1_1_property_1aba47c41ec8cc536290c04e219f12589c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool GetMetadataByDictKey</definition>
+        <argsstring>(const TfToken &amp;key, const TfToken &amp;keyPath, T *value) const</argsstring>
+        <name>GetMetadataByDictKey</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>keyPath</declname>
+        </param>
+        <param>
+          <type>T *</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves the value at <computeroutput>keyPath</computeroutput> from the dictionary value for the dictionary metadata field named <computeroutput>key</computeroutput>, that is defined for this property in the prim definition, and stores it in <computeroutput>value</computeroutput> if possible. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns true if a dictionary value is defined for the given metadata <computeroutput>key</computeroutput> for this property and it contains a value at <computeroutput>keyPath</computeroutput>. Returns false otherwise. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primDefinition.h" line="146" column="1" bodyfile="pxr/usd/usd/primDefinition.h" bodystart="642" bodyend="649"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_definition_1_1_property_1a79655ab3c82828093c685a1582d5e4bc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="usd_2sdf_2types_8h_1a71cdb29b28ede8b72fcf36fa6f8d320f" kindref="member">SdfVariability</ref></type>
+        <definition>USD_API SdfVariability GetVariability</definition>
+        <argsstring>() const</argsstring>
+        <name>GetVariability</name>
+        <briefdescription>
+<para>Returns the variability of this property in the prim definition. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primDefinition.h" line="151" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_definition_1_1_property_1afbeb96db494ea5fa795d937e532083c9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API std::string</type>
+        <definition>USD_API std::string GetDocumentation</definition>
+        <argsstring>() const</argsstring>
+        <name>GetDocumentation</name>
+        <briefdescription>
+<para>Returns the documentation metadata defined by the prim definition for this property. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primDefinition.h" line="156" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_usd_prim_definition_1_1_property_1ade728bcc7f74163c134889e476241fac" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class UsdPrimDefinition</definition>
+        <argsstring></argsstring>
+        <name>UsdPrimDefinition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primDefinition.h" line="162" column="1" bodyfile="pxr/usd/usd/primDefinition.h" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_usd_prim_definition_1_1_property_1a073299b165fbc77310a8ada4902f85f8" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>TfToken _name</definition>
+        <argsstring></argsstring>
+        <name>_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primDefinition.h" line="168" column="1" bodyfile="pxr/usd/usd/primDefinition.h" bodystart="168" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_usd_prim_definition_1_1_property_1af95bdd53be947597dfd2d3e187bfe9e8" prot="protected" static="no" mutable="no">
+        <type>const _LayerAndPath *</type>
+        <definition>const _LayerAndPath* _layerAndPath</definition>
+        <argsstring></argsstring>
+        <name>_layerAndPath</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primDefinition.h" line="169" column="1" bodyfile="pxr/usd/usd/primDefinition.h" bodystart="169" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_prim_definition_1_1_property_1a52297e4f290e1f6d1341e2d057690f58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Property</definition>
+        <argsstring>()=default</argsstring>
+        <name>Property</name>
+        <briefdescription>
+<para>Default constructor returns an invalid property. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primDefinition.h" line="80" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_definition_1_1_property_1aa2cb4f332d21ee60d8f5853c186e3e96" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+        <definition>USD_API const TfToken&amp; GetName</definition>
+        <argsstring>() const</argsstring>
+        <name>GetName</name>
+        <briefdescription>
+<para>Returns the name of the requested property. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that the return value of GetName gives no indication as to whether this is a valid property. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primDefinition.h" line="86" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_definition_1_1_property_1a67b76affb3b5d35fa419ac234144038b" prot="public" static="no" const="yes" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>operator bool</definition>
+        <argsstring>() const</argsstring>
+        <name>operator bool</name>
+        <briefdescription>
+<para>Conversion to bool returns true if this represents a valid property in the prim definition, and false otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primDefinition.h" line="90" column="1" bodyfile="pxr/usd/usd/primDefinition.h" bodystart="90" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_definition_1_1_property_1acf1d0cd52006d2c61c7bb36e05583dfb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool IsAttribute</definition>
+        <argsstring>() const</argsstring>
+        <name>IsAttribute</name>
+        <briefdescription>
+<para>Return true if the property is a valid is a valid property in the prim definition and is an attribute. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primDefinition.h" line="98" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_definition_1_1_property_1a6a5d0db739ceeee2dc73105b79149e96" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool IsRelationship</definition>
+        <argsstring>() const</argsstring>
+        <name>IsRelationship</name>
+        <briefdescription>
+<para>Return true if the property is a valid is a valid property in the prim definition and is a relationship. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primDefinition.h" line="103" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_usd_prim_definition_1_1_property_1a09d4e515c2fe6deee8b1127cec569588" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Property</definition>
+        <argsstring>(const TfToken &amp;name, const _LayerAndPath *layerAndPath)</argsstring>
+        <name>Property</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const _LayerAndPath *</type>
+          <declname>layerAndPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primDefinition.h" line="163" column="1" bodyfile="pxr/usd/usd/primDefinition.h" bodystart="163" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_prim_definition_1_1_property_1a979304085846ec2a4c19e4a888a60a29" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Property</definition>
+        <argsstring>(const _LayerAndPath *layerAndPath)</argsstring>
+        <name>Property</name>
+        <param>
+          <type>const _LayerAndPath *</type>
+          <declname>layerAndPath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/primDefinition.h" line="165" column="1" bodyfile="pxr/usd/usd/primDefinition.h" bodystart="165" bodyend="166"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Accessor to a property&apos;s definition in the prim definition. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>These are returned by calls to <ref refid="class_usd_prim_definition_1a49ef17988596ec23ee299104450b4e89" kindref="member">UsdPrimDefinition::GetPropertyDefinition</ref> and can be used check the existence of a property (via conversion to bool) and get field values that a defined for a property in the prim definition.</para>
+<para>This class is just a thin wrapper around the property representation in the <ref refid="class_usd_prim_definition" kindref="compound">UsdPrimDefinition</ref> that creates it and cannot be stored or accessed beyond the lifetime of the prim definition itself. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4856">
+        <label>Relationship</label>
+        <link refid="class_usd_prim_definition_1_1_relationship"/>
+        <childnode refid="4854" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4854">
+        <label>UsdPrimDefinition::Property</label>
+        <link refid="class_usd_prim_definition_1_1_property"/>
+      </node>
+      <node id="4855">
+        <label>Attribute</label>
+        <link refid="class_usd_prim_definition_1_1_attribute"/>
+        <childnode refid="4854" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4857">
+        <label>UsdPrimDefinition::Property</label>
+        <link refid="class_usd_prim_definition_1_1_property"/>
+        <childnode refid="4858" relation="usage">
+          <edgelabel>_name</edgelabel>
+        </childnode>
+      </node>
+      <node id="4858">
+        <label>TfToken</label>
+        <link refid="class_tf_token"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/usd/usd/primDefinition.h" line="77" column="1" bodyfile="pxr/usd/usd/primDefinition.h" bodystart="77" bodyend="170"/>
+    <listofallmembers>
+      <member refid="class_usd_prim_definition_1_1_property_1af95bdd53be947597dfd2d3e187bfe9e8" prot="protected" virt="non-virtual"><scope>UsdPrimDefinition::Property</scope><name>_layerAndPath</name></member>
+      <member refid="class_usd_prim_definition_1_1_property_1a073299b165fbc77310a8ada4902f85f8" prot="protected" virt="non-virtual"><scope>UsdPrimDefinition::Property</scope><name>_name</name></member>
+      <member refid="class_usd_prim_definition_1_1_property_1afbeb96db494ea5fa795d937e532083c9" prot="public" virt="non-virtual"><scope>UsdPrimDefinition::Property</scope><name>GetDocumentation</name></member>
+      <member refid="class_usd_prim_definition_1_1_property_1ad2d76f736733f3ad51aa1ea1df6f4d44" prot="public" virt="non-virtual"><scope>UsdPrimDefinition::Property</scope><name>GetMetadata</name></member>
+      <member refid="class_usd_prim_definition_1_1_property_1aba47c41ec8cc536290c04e219f12589c" prot="public" virt="non-virtual"><scope>UsdPrimDefinition::Property</scope><name>GetMetadataByDictKey</name></member>
+      <member refid="class_usd_prim_definition_1_1_property_1aa2cb4f332d21ee60d8f5853c186e3e96" prot="public" virt="non-virtual"><scope>UsdPrimDefinition::Property</scope><name>GetName</name></member>
+      <member refid="class_usd_prim_definition_1_1_property_1a56b16e5fef03cb6c94881c6a93124f44" prot="public" virt="non-virtual"><scope>UsdPrimDefinition::Property</scope><name>GetSpecType</name></member>
+      <member refid="class_usd_prim_definition_1_1_property_1a79655ab3c82828093c685a1582d5e4bc" prot="public" virt="non-virtual"><scope>UsdPrimDefinition::Property</scope><name>GetVariability</name></member>
+      <member refid="class_usd_prim_definition_1_1_property_1acf1d0cd52006d2c61c7bb36e05583dfb" prot="public" virt="non-virtual"><scope>UsdPrimDefinition::Property</scope><name>IsAttribute</name></member>
+      <member refid="class_usd_prim_definition_1_1_property_1a6a5d0db739ceeee2dc73105b79149e96" prot="public" virt="non-virtual"><scope>UsdPrimDefinition::Property</scope><name>IsRelationship</name></member>
+      <member refid="class_usd_prim_definition_1_1_property_1ae080ba93a1ddac47fea4b346d89e7f3c" prot="public" virt="non-virtual"><scope>UsdPrimDefinition::Property</scope><name>ListMetadataFields</name></member>
+      <member refid="class_usd_prim_definition_1_1_property_1a67b76affb3b5d35fa419ac234144038b" prot="public" virt="non-virtual"><scope>UsdPrimDefinition::Property</scope><name>operator bool</name></member>
+      <member refid="class_usd_prim_definition_1_1_property_1a52297e4f290e1f6d1341e2d057690f58" prot="public" virt="non-virtual"><scope>UsdPrimDefinition::Property</scope><name>Property</name></member>
+      <member refid="class_usd_prim_definition_1_1_property_1a09d4e515c2fe6deee8b1127cec569588" prot="protected" virt="non-virtual"><scope>UsdPrimDefinition::Property</scope><name>Property</name></member>
+      <member refid="class_usd_prim_definition_1_1_property_1a979304085846ec2a4c19e4a888a60a29" prot="protected" virt="non-virtual"><scope>UsdPrimDefinition::Property</scope><name>Property</name></member>
+      <member refid="class_usd_prim_definition_1_1_property_1ade728bcc7f74163c134889e476241fac" prot="protected" virt="non-virtual"><scope>UsdPrimDefinition::Property</scope><name>UsdPrimDefinition</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

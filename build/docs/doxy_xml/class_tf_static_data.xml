@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_tf_static_data" kind="class" language="C++" prot="public">
+    <compoundname>TfStaticData</compoundname>
+    <includes refid="static_data_8h" local="no">staticData.h</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>Factory</declname>
+        <defname>Factory</defname>
+        <defval>Tf_StaticDataDefaultFactory&lt;T&gt;</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_tf_static_data_1a55b5602e40bbe33845fe0319b49d3c29" prot="private" static="no" mutable="yes">
+        <type>std::atomic&lt; T * &gt;</type>
+        <definition>std::atomic&lt;T *&gt; _data</definition>
+        <argsstring></argsstring>
+        <name>_data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/staticData.h" line="149" column="1" bodyfile="pxr/base/tf/staticData.h" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_tf_static_data_1a5c1735ebb61cb9b40f6d0ed30be8a288" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T *</type>
+        <definition>T* operator-&gt;</definition>
+        <argsstring>() const</argsstring>
+        <name>operator-&gt;</name>
+        <briefdescription>
+<para>Return a pointer to the underlying data object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>It is created and initialized if necessary. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/staticData.h" line="117" column="1" bodyfile="pxr/base/tf/staticData.h" bodystart="117" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_static_data_1a2477b013cf44492b54afd64d151de6aa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T &amp;</type>
+        <definition>T&amp; operator *</definition>
+        <argsstring>() const</argsstring>
+        <name>operator *</name>
+        <briefdescription>
+<para>Member lookup. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The underlying data object is created and initialized if necessary. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/staticData.h" line="121" column="1" bodyfile="pxr/base/tf/staticData.h" bodystart="121" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_static_data_1a3bf5f6ad4bfe2a7e44e584b723c1718e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T *</type>
+        <definition>T* Get</definition>
+        <argsstring>() const</argsstring>
+        <name>Get</name>
+        <briefdescription>
+<para>Return a pointer to the underlying object, creating and initializing it if necessary. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/staticData.h" line="125" column="1" bodyfile="pxr/base/tf/staticData.h" bodystart="125" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_static_data_1a475d2bd8072f3c9df7b37581c4f1eca4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool IsInitialized</definition>
+        <argsstring>() const</argsstring>
+        <name>IsInitialized</name>
+        <briefdescription>
+<para>Return true if the underlying data object is created and initialized. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Return false otherwise. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/staticData.h" line="132" column="1" bodyfile="pxr/base/tf/staticData.h" bodystart="132" bodyend="132"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_tf_static_data_1a7108f7d357c029aa118877304bab8111" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T *</type>
+        <definition>T* _TryToCreateData</definition>
+        <argsstring>() const</argsstring>
+        <name>_TryToCreateData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/staticData.h" line="135" column="1" bodyfile="pxr/base/tf/staticData.h" bodystart="135" bodyend="147"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Create or return a previously created object instance of global data. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Any form of global data that requires an constructor (even a default constructor) is unsafe to declare as global data. By global data we mean either a variable defined at file-scope (outside of a function) or a static member of a class. This is because the initialization order of globals is undefined across translation units.</para>
+<para>The only exceptions are constexpr constructors and &quot;plain old data&quot; types such as integral or float/double type and pointers. In contrast, <computeroutput>std::string</computeroutput> requires construction, as do most <computeroutput>STL</computeroutput> types, and most user-defined types as well. Note that static local variables in functions are also safe and are initialized in a thread-safe manner the first time they&apos;re encountered.</para>
+<para>One way to handle this problem is to go the singleton route, which can be done using the <computeroutput><ref refid="class_tf_singleton" kindref="compound">TfSingleton</ref></computeroutput> pattern. However, a fair amount of coding is required for this, and at times, something more lightweight is appropriate. For these few cases, the following construct may be employed:</para>
+<para><programlisting><codeline><highlight class="normal">//<sp/>source<sp/>file:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;set&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;string&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">static<sp/>TfStaticData&lt;set&lt;string&gt;<sp/>&gt;<sp/>Xyz_nameSet;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">void<sp/>XyzAddName(string<sp/>name)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Xyz_nameSet-&gt;insert(name);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>One uses a <computeroutput>TfStaticData&lt;T&gt;</computeroutput> as if it were a pointer; upon first use however, the item is initialized to point at a new object of type <computeroutput>T</computeroutput>. Note that the type <computeroutput>T</computeroutput> must have a default constructor; that is, the newly created object is created by calling <computeroutput>&quot;new T&quot;</computeroutput>.</para>
+<para>If you have no need to access the data, but need to make sure it has been initialized (for example, if the type&apos;s constructor will have some effect that you need to be sure has happened), you can call the Touch() method.</para>
+<para>Warning: the <computeroutput><ref refid="class_tf_static_data" kindref="compound">TfStaticData</ref></computeroutput> construct relies upon zero-initialization of global data: therefore, you can only use this structure for static data member of classes or variables declare at file-scope. Do <emphasis>not</emphasis> declare a <computeroutput><ref refid="class_tf_static_data" kindref="compound">TfStaticData</ref></computeroutput> object as a local variable, as a member of a class or structure, or as a function parameter. Use normal static local variable initialization inside a function.</para>
+<para>One can either call member functions using the &quot;-&gt;&quot; operator, or use the dereference &quot;*&quot; operator:</para>
+<para><programlisting><codeline><highlight class="normal">TfStaticData&lt;string&gt;<sp/>Xyz_curName;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">void<sp/>Xyz_SetLastName(string<sp/>s)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*Xyz_curName<sp/>=<sp/>s;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/>v;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>v.push_back(*Xyz_curName);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+    </detaileddescription>
+    <location file="pxr/base/tf/staticData.h" line="113" column="1" bodyfile="pxr/base/tf/staticData.h" bodystart="113" bodyend="150"/>
+    <listofallmembers>
+      <member refid="class_tf_static_data_1a55b5602e40bbe33845fe0319b49d3c29" prot="private" virt="non-virtual"><scope>TfStaticData</scope><name>_data</name></member>
+      <member refid="class_tf_static_data_1a7108f7d357c029aa118877304bab8111" prot="private" virt="non-virtual"><scope>TfStaticData</scope><name>_TryToCreateData</name></member>
+      <member refid="class_tf_static_data_1a3bf5f6ad4bfe2a7e44e584b723c1718e" prot="public" virt="non-virtual"><scope>TfStaticData</scope><name>Get</name></member>
+      <member refid="class_tf_static_data_1a475d2bd8072f3c9df7b37581c4f1eca4" prot="public" virt="non-virtual"><scope>TfStaticData</scope><name>IsInitialized</name></member>
+      <member refid="class_tf_static_data_1a2477b013cf44492b54afd64d151de6aa" prot="public" virt="non-virtual"><scope>TfStaticData</scope><name>operator *</name></member>
+      <member refid="class_tf_static_data_1a5c1735ebb61cb9b40f6d0ed30be8a288" prot="public" virt="non-virtual"><scope>TfStaticData</scope><name>operator-&gt;</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,794 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hgi" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>Hgi</compoundname>
+    <derivedcompoundref refid="class_hgi_g_l" prot="public" virt="non-virtual">HgiGL</derivedcompoundref>
+    <includes refid="hgi_8h" local="no">hgi.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hgi_1a6fd1372d2ed35ce69e95d3933765ffa6" prot="private" static="no" mutable="no">
+        <type>std::atomic&lt; uint64_t &gt;</type>
+        <definition>std::atomic&lt;uint64_t&gt; _uniqueIdCounter</definition>
+        <argsstring></argsstring>
+        <name>_uniqueIdCounter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="339" column="1" bodyfile="pxr/imaging/hgi/hgi.h" bodystart="339" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hgi_1a168c9be9f4721a54a3086809b9e03347" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HGI_API</type>
+        <definition>HGI_API Hgi</definition>
+        <argsstring>()</argsstring>
+        <name>Hgi</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="114" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a2a4b0145a502bf7fe878191c0365d5cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HGI_API</type>
+        <definition>virtual HGI_API ~Hgi</definition>
+        <argsstring>()</argsstring>
+        <name>~Hgi</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="117" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1aed132723e59980a774aa58da9d2c3ff9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HGI_API void</type>
+        <definition>HGI_API void SubmitCmds</definition>
+        <argsstring>(HgiCmds *cmds, HgiSubmitWaitType wait=HgiSubmitWaitTypeNoWait)</argsstring>
+        <name>SubmitCmds</name>
+        <param>
+          <type><ref refid="class_hgi_cmds" kindref="compound">HgiCmds</ref> *</type>
+          <declname>cmds</declname>
+        </param>
+        <param>
+          <type>HgiSubmitWaitType</type>
+          <declname>wait</declname>
+          <defval>HgiSubmitWaitTypeNoWait</defval>
+        </param>
+        <briefdescription>
+<para>Submit one <ref refid="class_hgi_cmds" kindref="compound">HgiCmds</ref> objects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Once the cmds object is submitted it cannot be re-used to record cmds. A call to SubmitCmds would usually result in the hgi backend submitting the cmd buffers of the cmds object(s) to the device queue. Derived classes can override _SubmitCmds to customize submission. Thread safety: This call is not thread-safe. Submission must happen on the main thread so we can continue to support the OpenGL platform. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="128" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a407d8e78d04e6dd96f3ade45514d20c8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API bool</type>
+        <definition>virtual HGI_API bool IsBackendSupported</definition>
+        <argsstring>() const =0</argsstring>
+        <name>IsBackendSupported</name>
+        <reimplementedby refid="class_hgi_g_l_1a1a4bcb48912d5588e4182f6840281145">IsBackendSupported</reimplementedby>
+        <briefdescription>
+<para>Determine if <ref refid="class_hgi" kindref="compound">Hgi</ref> instance can run on current hardware. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread safety: This call is thread safe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="147" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a7bcca31b306a8e305d782af95cc18b32" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API HgiGraphicsCmdsUniquePtr</type>
+        <definition>virtual HGI_API HgiGraphicsCmdsUniquePtr CreateGraphicsCmds</definition>
+        <argsstring>(HgiGraphicsCmdsDesc const &amp;desc)=0</argsstring>
+        <name>CreateGraphicsCmds</name>
+        <reimplementedby refid="class_hgi_g_l_1a077e0f6839b485c1b3a55be66f3c5f01">CreateGraphicsCmds</reimplementedby>
+        <param>
+          <type><ref refid="struct_hgi_graphics_cmds_desc" kindref="compound">HgiGraphicsCmdsDesc</ref> const &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+<para>Returns a GraphicsCmds object (for temporary use) that is ready to record draw commands. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>GraphicsCmds is a lightweight object that should be re-acquired each frame (don&apos;t hold onto it after EndEncoding). Thread safety: Each <ref refid="class_hgi" kindref="compound">Hgi</ref> backend must ensure that a Cmds object can be created on the main thread, recorded into (exclusively) by one secondary thread and be submitted on the main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="162" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1ac2b2da7d952d0f750ed48695fc9a61eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API HgiBlitCmdsUniquePtr</type>
+        <definition>virtual HGI_API HgiBlitCmdsUniquePtr CreateBlitCmds</definition>
+        <argsstring>()=0</argsstring>
+        <name>CreateBlitCmds</name>
+        <reimplementedby refid="class_hgi_g_l_1a879677caf90451945e84826187ee2441">CreateBlitCmds</reimplementedby>
+        <briefdescription>
+<para>Returns a BlitCmds object (for temporary use) that is ready to execute resource copy commands. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>BlitCmds is a lightweight object that should be re-acquired each frame (don&apos;t hold onto it after EndEncoding). Thread safety: Each <ref refid="class_hgi" kindref="compound">Hgi</ref> backend must ensure that a Cmds object can be created on the main thread, recorded into (exclusively) by one secondary thread and be submitted on the main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="172" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1ab90de4e93cf496894b0d4ba81434140d" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API HgiComputeCmdsUniquePtr</type>
+        <definition>virtual HGI_API HgiComputeCmdsUniquePtr CreateComputeCmds</definition>
+        <argsstring>(HgiComputeCmdsDesc const &amp;desc)=0</argsstring>
+        <name>CreateComputeCmds</name>
+        <reimplementedby refid="class_hgi_g_l_1aa96795934ae3a3a23528f3d7f9e1b2e6">CreateComputeCmds</reimplementedby>
+        <param>
+          <type><ref refid="struct_hgi_compute_cmds_desc" kindref="compound">HgiComputeCmdsDesc</ref> const &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+<para>Returns a ComputeCmds object (for temporary use) that is ready to record dispatch commands. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>ComputeCmds is a lightweight object that should be re-acquired each frame (don&apos;t hold onto it after EndEncoding). Thread safety: Each <ref refid="class_hgi" kindref="compound">Hgi</ref> backend must ensure that a Cmds object can be created on the main thread, recorded into (exclusively) by one secondary thread and be submitted on the main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="181" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a203cd5ef883f0ba41ce00831af6e96cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API HgiTextureHandle</type>
+        <definition>virtual HGI_API HgiTextureHandle CreateTexture</definition>
+        <argsstring>(HgiTextureDesc const &amp;desc)=0</argsstring>
+        <name>CreateTexture</name>
+        <reimplementedby refid="class_hgi_g_l_1ae7df62d096c0a12f92a36bf1c4a24076">CreateTexture</reimplementedby>
+        <param>
+          <type><ref refid="struct_hgi_texture_desc" kindref="compound">HgiTextureDesc</ref> const &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+<para>Create a texture in rendering backend. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread safety: Creation must happen on main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="187" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a74ebd666f2aa6f3d65db3b97dd1ee509" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API void</type>
+        <definition>virtual HGI_API void DestroyTexture</definition>
+        <argsstring>(HgiTextureHandle *texHandle)=0</argsstring>
+        <name>DestroyTexture</name>
+        <reimplementedby refid="class_hgi_g_l_1a55028233d46438a5704cd25c89443862">DestroyTexture</reimplementedby>
+        <param>
+          <type>HgiTextureHandle *</type>
+          <declname>texHandle</declname>
+        </param>
+        <briefdescription>
+<para>Destroy a texture in rendering backend. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread safety: Destruction must happen on main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="192" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1ab15f3473097b06ba3313a4d68993292f" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API <ref refid="class_hgi_handle" kindref="compound">HgiTextureViewHandle</ref></type>
+        <definition>virtual HGI_API HgiTextureViewHandle CreateTextureView</definition>
+        <argsstring>(HgiTextureViewDesc const &amp;desc)=0</argsstring>
+        <name>CreateTextureView</name>
+        <reimplementedby refid="class_hgi_g_l_1a6f121d477ce2a60073b72481a7f2e166">CreateTextureView</reimplementedby>
+        <param>
+          <type><ref refid="struct_hgi_texture_view_desc" kindref="compound">HgiTextureViewDesc</ref> const &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+<para>Create a texture view in rendering backend. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A texture view aliases another texture&apos;s data. It is the responsibility of the client to ensure that the sourceTexture is not destroyed while the texture view is in use. Thread safety: Creation must happen on main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="200" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a68755a4beb78a7ef33e81f80cbbee3e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API void</type>
+        <definition>virtual HGI_API void DestroyTextureView</definition>
+        <argsstring>(HgiTextureViewHandle *viewHandle)=0</argsstring>
+        <name>DestroyTextureView</name>
+        <reimplementedby refid="class_hgi_g_l_1a5b07fdbdfe6a80212287ba4e0cf57cf6">DestroyTextureView</reimplementedby>
+        <param>
+          <type><ref refid="class_hgi_handle" kindref="compound">HgiTextureViewHandle</ref> *</type>
+          <declname>viewHandle</declname>
+        </param>
+        <briefdescription>
+<para>Destroy a texture view in rendering backend. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This will destroy the view&apos;s texture, but not the sourceTexture that was aliased by the view. The sourceTexture data remains unchanged. Thread safety: Destruction must happen on main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="208" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a1e30e202c0bae3a120840545e90567ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API <ref refid="class_hgi_handle" kindref="compound">HgiSamplerHandle</ref></type>
+        <definition>virtual HGI_API HgiSamplerHandle CreateSampler</definition>
+        <argsstring>(HgiSamplerDesc const &amp;desc)=0</argsstring>
+        <name>CreateSampler</name>
+        <reimplementedby refid="class_hgi_g_l_1aa585ae902a63d02ae654fb57050ef440">CreateSampler</reimplementedby>
+        <param>
+          <type><ref refid="struct_hgi_sampler_desc" kindref="compound">HgiSamplerDesc</ref> const &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+<para>Create a sampler in rendering backend. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread safety: Creation must happen on main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="213" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a5c049e81f4c28bd10ec8be6c8f9561f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API void</type>
+        <definition>virtual HGI_API void DestroySampler</definition>
+        <argsstring>(HgiSamplerHandle *smpHandle)=0</argsstring>
+        <name>DestroySampler</name>
+        <reimplementedby refid="class_hgi_g_l_1adb33e671e013bd474ccf035ebe7ea0a0">DestroySampler</reimplementedby>
+        <param>
+          <type><ref refid="class_hgi_handle" kindref="compound">HgiSamplerHandle</ref> *</type>
+          <declname>smpHandle</declname>
+        </param>
+        <briefdescription>
+<para>Destroy a sampler in rendering backend. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread safety: Destruction must happen on main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="218" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1aa7d3ce4a8fd78ac6850c04fc0a8c52c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API <ref refid="class_hgi_handle" kindref="compound">HgiBufferHandle</ref></type>
+        <definition>virtual HGI_API HgiBufferHandle CreateBuffer</definition>
+        <argsstring>(HgiBufferDesc const &amp;desc)=0</argsstring>
+        <name>CreateBuffer</name>
+        <reimplementedby refid="class_hgi_g_l_1a4d1fee2a6d894d15e88667d1d670bd23">CreateBuffer</reimplementedby>
+        <param>
+          <type><ref refid="struct_hgi_buffer_desc" kindref="compound">HgiBufferDesc</ref> const &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+<para>Create a buffer in rendering backend. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread safety: Creation must happen on main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="223" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a090ed0465f1f25cac321c95e3800f603" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API void</type>
+        <definition>virtual HGI_API void DestroyBuffer</definition>
+        <argsstring>(HgiBufferHandle *bufHandle)=0</argsstring>
+        <name>DestroyBuffer</name>
+        <reimplementedby refid="class_hgi_g_l_1ac1a8becc86a0cb2195140e4cf07e1391">DestroyBuffer</reimplementedby>
+        <param>
+          <type><ref refid="class_hgi_handle" kindref="compound">HgiBufferHandle</ref> *</type>
+          <declname>bufHandle</declname>
+        </param>
+        <briefdescription>
+<para>Destroy a buffer in rendering backend. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread safety: Destruction must happen on main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="228" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a4445f60d4aca3de8abafb03e61c6fa4c" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API <ref refid="class_hgi_handle" kindref="compound">HgiShaderFunctionHandle</ref></type>
+        <definition>virtual HGI_API HgiShaderFunctionHandle CreateShaderFunction</definition>
+        <argsstring>(HgiShaderFunctionDesc const &amp;desc)=0</argsstring>
+        <name>CreateShaderFunction</name>
+        <reimplementedby refid="class_hgi_g_l_1aa278d5c0cb57fa63fb18f64a0eaada65">CreateShaderFunction</reimplementedby>
+        <param>
+          <type><ref refid="struct_hgi_shader_function_desc" kindref="compound">HgiShaderFunctionDesc</ref> const &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+<para>Create a new shader function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread safety: Creation must happen on main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="233" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1afcd358204f65ef003f768129a4644da2" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API void</type>
+        <definition>virtual HGI_API void DestroyShaderFunction</definition>
+        <argsstring>(HgiShaderFunctionHandle *shaderFunctionHandle)=0</argsstring>
+        <name>DestroyShaderFunction</name>
+        <reimplementedby refid="class_hgi_g_l_1a7063bf56dc01441d3485d8aa641b2d3f">DestroyShaderFunction</reimplementedby>
+        <param>
+          <type><ref refid="class_hgi_handle" kindref="compound">HgiShaderFunctionHandle</ref> *</type>
+          <declname>shaderFunctionHandle</declname>
+        </param>
+        <briefdescription>
+<para>Destroy a shader function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread safety: Destruction must happen on main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="239" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a8527715ce5ac3e5db61fd55388e9f8a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API <ref refid="class_hgi_handle" kindref="compound">HgiShaderProgramHandle</ref></type>
+        <definition>virtual HGI_API HgiShaderProgramHandle CreateShaderProgram</definition>
+        <argsstring>(HgiShaderProgramDesc const &amp;desc)=0</argsstring>
+        <name>CreateShaderProgram</name>
+        <reimplementedby refid="class_hgi_g_l_1a9c777c5a8110db4162e07fdb6d7626a9">CreateShaderProgram</reimplementedby>
+        <param>
+          <type><ref refid="struct_hgi_shader_program_desc" kindref="compound">HgiShaderProgramDesc</ref> const &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+<para>Create a new shader program. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread safety: Creation must happen on main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="245" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a1ef9164eb5095b3fa321ad9e9b575857" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API void</type>
+        <definition>virtual HGI_API void DestroyShaderProgram</definition>
+        <argsstring>(HgiShaderProgramHandle *shaderProgramHandle)=0</argsstring>
+        <name>DestroyShaderProgram</name>
+        <reimplementedby refid="class_hgi_g_l_1ab4e70427a3348bb63c8a81e7ac6a16a4">DestroyShaderProgram</reimplementedby>
+        <param>
+          <type><ref refid="class_hgi_handle" kindref="compound">HgiShaderProgramHandle</ref> *</type>
+          <declname>shaderProgramHandle</declname>
+        </param>
+        <briefdescription>
+<para>Destroy a shader program. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that this does NOT automatically destroy the shader functions in the program since shader functions may be used by more than one program. Thread safety: Destruction must happen on main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="253" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a6867acd350c95dd3aed86957e496d7a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API <ref refid="class_hgi_handle" kindref="compound">HgiResourceBindingsHandle</ref></type>
+        <definition>virtual HGI_API HgiResourceBindingsHandle CreateResourceBindings</definition>
+        <argsstring>(HgiResourceBindingsDesc const &amp;desc)=0</argsstring>
+        <name>CreateResourceBindings</name>
+        <reimplementedby refid="class_hgi_g_l_1ab94a9fcc15cf745afc7815fa232c2a15">CreateResourceBindings</reimplementedby>
+        <param>
+          <type><ref refid="struct_hgi_resource_bindings_desc" kindref="compound">HgiResourceBindingsDesc</ref> const &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+<para>Create a new resource binding object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread safety: Creation must happen on main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="259" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a2cd18da57c12382c596be3977374e057" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API void</type>
+        <definition>virtual HGI_API void DestroyResourceBindings</definition>
+        <argsstring>(HgiResourceBindingsHandle *resHandle)=0</argsstring>
+        <name>DestroyResourceBindings</name>
+        <reimplementedby refid="class_hgi_g_l_1aa73b6f626acaf60c1b97886d2a788c1b">DestroyResourceBindings</reimplementedby>
+        <param>
+          <type><ref refid="class_hgi_handle" kindref="compound">HgiResourceBindingsHandle</ref> *</type>
+          <declname>resHandle</declname>
+        </param>
+        <briefdescription>
+<para>Destroy a resource binding object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread safety: Destruction must happen on main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="265" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1ae0abd210c1ff3e2af894980036a28a92" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API <ref refid="class_hgi_handle" kindref="compound">HgiGraphicsPipelineHandle</ref></type>
+        <definition>virtual HGI_API HgiGraphicsPipelineHandle CreateGraphicsPipeline</definition>
+        <argsstring>(HgiGraphicsPipelineDesc const &amp;pipeDesc)=0</argsstring>
+        <name>CreateGraphicsPipeline</name>
+        <reimplementedby refid="class_hgi_g_l_1ad0a2bdb9f006596286727468d5daa1c0">CreateGraphicsPipeline</reimplementedby>
+        <param>
+          <type><ref refid="struct_hgi_graphics_pipeline_desc" kindref="compound">HgiGraphicsPipelineDesc</ref> const &amp;</type>
+          <declname>pipeDesc</declname>
+        </param>
+        <briefdescription>
+<para>Create a new graphics pipeline state object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread safety: Creation must happen on main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="271" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a257e66ab19a5e46a611a7510be1bfffe" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API void</type>
+        <definition>virtual HGI_API void DestroyGraphicsPipeline</definition>
+        <argsstring>(HgiGraphicsPipelineHandle *pipeHandle)=0</argsstring>
+        <name>DestroyGraphicsPipeline</name>
+        <reimplementedby refid="class_hgi_g_l_1ac0d94f7418119e7d50ffacd9848fba8b">DestroyGraphicsPipeline</reimplementedby>
+        <param>
+          <type><ref refid="class_hgi_handle" kindref="compound">HgiGraphicsPipelineHandle</ref> *</type>
+          <declname>pipeHandle</declname>
+        </param>
+        <briefdescription>
+<para>Destroy a graphics pipeline state object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread safety: Destruction must happen on main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="277" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1ab63e7495a66fa99ee9e97ed0636efba4" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API <ref refid="class_hgi_handle" kindref="compound">HgiComputePipelineHandle</ref></type>
+        <definition>virtual HGI_API HgiComputePipelineHandle CreateComputePipeline</definition>
+        <argsstring>(HgiComputePipelineDesc const &amp;pipeDesc)=0</argsstring>
+        <name>CreateComputePipeline</name>
+        <reimplementedby refid="class_hgi_g_l_1acf9d41a6dc327e517e282469462c3b7a">CreateComputePipeline</reimplementedby>
+        <param>
+          <type><ref refid="struct_hgi_compute_pipeline_desc" kindref="compound">HgiComputePipelineDesc</ref> const &amp;</type>
+          <declname>pipeDesc</declname>
+        </param>
+        <briefdescription>
+<para>Create a new compute pipeline state object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread safety: Creation must happen on main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="283" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a3b715a7d2f70d63f664d4b5eb1cafb61" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API void</type>
+        <definition>virtual HGI_API void DestroyComputePipeline</definition>
+        <argsstring>(HgiComputePipelineHandle *pipeHandle)=0</argsstring>
+        <name>DestroyComputePipeline</name>
+        <reimplementedby refid="class_hgi_g_l_1ae41ac3af5745a8ed6affb41348286c6e">DestroyComputePipeline</reimplementedby>
+        <param>
+          <type><ref refid="class_hgi_handle" kindref="compound">HgiComputePipelineHandle</ref> *</type>
+          <declname>pipeHandle</declname>
+        </param>
+        <briefdescription>
+<para>Destroy a compute pipeline state object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread safety: Destruction must happen on main thread. See notes above. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="289" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a58bea8d97a464d6ec05ea1bf274d3afc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API <ref refid="class_tf_token" kindref="compound">TfToken</ref> const  &amp;</type>
+        <definition>virtual HGI_API TfToken const&amp; GetAPIName</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetAPIName</name>
+        <reimplementedby refid="class_hgi_g_l_1a77eb552daca05a50517554ad6db7a667">GetAPIName</reimplementedby>
+        <briefdescription>
+<para>Return the name of the api (e.g. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>&quot;OpenGL&quot;). Thread safety: This call is thread safe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="294" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1ad5370e56339cd64e3ac8a3698b09b15a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API <ref refid="class_hgi_capabilities" kindref="compound">HgiCapabilities</ref> const  *</type>
+        <definition>virtual HGI_API HgiCapabilities const* GetCapabilities</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetCapabilities</name>
+        <reimplementedby refid="class_hgi_g_l_1af0db806efb2d7b1705e197a9defacfd3">GetCapabilities</reimplementedby>
+        <briefdescription>
+<para>Returns the device-specific capabilities structure. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread safety: This call is thread safe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="299" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1ab698c954480429033695a7be8b92875e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API <ref refid="class_hgi_indirect_command_encoder" kindref="compound">HgiIndirectCommandEncoder</ref> *</type>
+        <definition>virtual HGI_API HgiIndirectCommandEncoder* GetIndirectCommandEncoder</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetIndirectCommandEncoder</name>
+        <reimplementedby refid="class_hgi_g_l_1a3748c86cb5f463c287b12344a0c520fd">GetIndirectCommandEncoder</reimplementedby>
+        <briefdescription>
+<para>Returns the device-specific indirect command buffer encoder or nullptr if not supported. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread safety: This call is thread safe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="305" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a727feb37caf78ea630818b679335381b" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API void</type>
+        <definition>virtual HGI_API void StartFrame</definition>
+        <argsstring>()=0</argsstring>
+        <name>StartFrame</name>
+        <reimplementedby refid="class_hgi_g_l_1a1958a6177445c0e91467331741969817">StartFrame</reimplementedby>
+        <briefdescription>
+<para>Optionally called by client app at the start of a new rendering frame. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>We can&apos;t rely on StartFrame for anything important, because it is up to the external client to (optionally) call this and they may never do. Hydra doesn&apos;t have a clearly defined start or end frame. This can be helpful to insert GPU frame debug markers. Thread safety: Not thread safe. Should be called on the main thread. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="314" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a21a113ab8e7de0102774860f867ce39f" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API void</type>
+        <definition>virtual HGI_API void EndFrame</definition>
+        <argsstring>()=0</argsstring>
+        <name>EndFrame</name>
+        <reimplementedby refid="class_hgi_g_l_1ac1f3d5fdefc6cd377e49ac6499d1fea3">EndFrame</reimplementedby>
+        <briefdescription>
+<para>Optionally called at the end of a rendering frame. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Please read the comments in StartFrame. Thread safety: Not thread safe. Should be called on the main thread. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="320" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_hgi_1a40ab24a195f87c0b377ee0705f6a1775" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HGI_API <ref refid="class_hgi" kindref="compound">Hgi</ref> *</type>
+        <definition>static HGI_API Hgi* GetPlatformDefaultHgi</definition>
+        <argsstring>()</argsstring>
+        <name>GetPlatformDefaultHgi</name>
+        <briefdescription>
+<para>*** DEPRECATED *** Please use: CreatePlatformDefaultHgi </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="134" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a69e7633873a0f1689ae01610a659a294" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HGI_API HgiUniquePtr</type>
+        <definition>static HGI_API HgiUniquePtr CreatePlatformDefaultHgi</definition>
+        <argsstring>()</argsstring>
+        <name>CreatePlatformDefaultHgi</name>
+        <briefdescription>
+<para>Helper function to return a <ref refid="class_hgi" kindref="compound">Hgi</ref> object for the current platform. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For example on Linux this may return <ref refid="class_hgi_g_l" kindref="compound">HgiGL</ref> while on macOS HgiMetal. Caller, usually the application, owns the lifetime of the <ref refid="class_hgi" kindref="compound">Hgi</ref> object and the object is destroyed when the caller drops the unique ptr. Thread safety: Not thread safe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="142" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1add27034f36108f73c06d94b600b61a74" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HGI_API bool</type>
+        <definition>static HGI_API bool IsSupported</definition>
+        <argsstring>()</argsstring>
+        <name>IsSupported</name>
+        <briefdescription>
+<para>Constructs a temporary <ref refid="class_hgi" kindref="compound">Hgi</ref> object for the current platform and calls the object&apos;s <ref refid="class_hgi_1a407d8e78d04e6dd96f3ade45514d20c8" kindref="member">IsBackendSupported()</ref> function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Thread safety: Not thread safe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="153" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_hgi_1afdb85b10705cedea17ccc1e56b232427" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HGI_API uint64_t</type>
+        <definition>HGI_API uint64_t GetUniqueId</definition>
+        <argsstring>()</argsstring>
+        <name>GetUniqueId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="326" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1a82b1bd6860c347f73d5fa4a50bf32e9f" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HGI_API bool</type>
+        <definition>virtual HGI_API bool _SubmitCmds</definition>
+        <argsstring>(HgiCmds *cmds, HgiSubmitWaitType wait)</argsstring>
+        <name>_SubmitCmds</name>
+        <reimplementedby refid="class_hgi_g_l_1acc2cf7300c5501079d31126aba9f5ec8">_SubmitCmds</reimplementedby>
+        <param>
+          <type><ref refid="class_hgi_cmds" kindref="compound">HgiCmds</ref> *</type>
+          <declname>cmds</declname>
+        </param>
+        <param>
+          <type>HgiSubmitWaitType</type>
+          <declname>wait</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="332" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hgi_1a6d5d7bb280aafab48d421d3f49f3d823" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hgi" kindref="compound">Hgi</ref> &amp;</type>
+        <definition>Hgi&amp; operator=</definition>
+        <argsstring>(const Hgi &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_hgi" kindref="compound">Hgi</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="336" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_1aeccc4ae5384385db4e33f626643c1eec" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Hgi</definition>
+        <argsstring>(const Hgi &amp;)=delete</argsstring>
+        <name>Hgi</name>
+        <param>
+          <type>const <ref refid="class_hgi" kindref="compound">Hgi</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/hgi.h" line="337" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Hydra Graphics Interface. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="class_hgi" kindref="compound">Hgi</ref> is used to communicate with one or more physical gpu devices.</para>
+<para><ref refid="class_hgi" kindref="compound">Hgi</ref> provides API to create/destroy resources that a gpu device owns. The lifetime of resources is not managed by <ref refid="class_hgi" kindref="compound">Hgi</ref>, so it is up to the caller to destroy resources and ensure those resources are no longer used.</para>
+<para>Commands are recorded in &apos;<ref refid="class_hgi_cmds" kindref="compound">HgiCmds</ref>&apos; objects and submitted via <ref refid="class_hgi" kindref="compound">Hgi</ref>.</para>
+<para>Thread-safety:</para>
+<para>Modern graphics APIs like Metal and Vulkan are designed with multi-threading in mind. We want to try and take advantage of this where possible. However we also wish to continue to support OpenGL for the time being.</para>
+<para>In an application where OpenGL is involved, when we say &quot;main thread&quot; we mean the thread on which the gl-context is bound.</para>
+<para>Each <ref refid="class_hgi" kindref="compound">Hgi</ref> backend should at minimum support the following:</para>
+<para><itemizedlist>
+<listitem><para>Single threaded <ref refid="class_hgi_1aed132723e59980a774aa58da9d2c3ff9" kindref="member">Hgi::SubmitCmds</ref> on main thread.</para>
+</listitem><listitem><para>Single threaded Hgi::Resource Create*** / Destroy*** on main thread.</para>
+</listitem><listitem><para>Multi threaded recording of commands in Hgi***Cmds objects.</para>
+</listitem><listitem><para>A Hgi***Cmds object should be creatable on the main thread, recorded into with one secondary thread (only one thread may use a Cmds object) and submitted via the main thread.</para>
+</listitem></itemizedlist>
+</para>
+<para>Each <ref refid="class_hgi" kindref="compound">Hgi</ref> backend is additionally encouraged to support:</para>
+<para><itemizedlist>
+<listitem><para>Multi threaded support for resource creation and destruction.</para>
+</listitem></itemizedlist>
+</para>
+<para>We currently do not rely on these additional multi-threading features in Hydra / Storm where we still wish to run OpenGL. In Hydra we make sure to use the main-thread for resource creation and command submission. One day we may wish to switch this to be multi-threaded so new <ref refid="class_hgi" kindref="compound">Hgi</ref> backends are encouraged to support it.</para>
+<para>Pseudo code what should minimally be supported: <verbatim>vector&lt;HgiGraphicsCmds&gt; cmds
+
+for num_threads
+    cmds.push_back( Hgi-&gt;CreateGraphicsCmds() )
+
+parallel_for i to num_threads
+    cmds[i]-&gt;SetViewport()
+    cmds[i]-&gt;Draw()
+
+for i to num_threads
+    hgi-&gt;SubmitCmds( cmds[i] )
+</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3704">
+        <label>Hgi</label>
+        <link refid="class_hgi"/>
+      </node>
+      <node id="3705">
+        <label>HgiGL</label>
+        <link refid="class_hgi_g_l"/>
+        <childnode refid="3704" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="pxr/imaging/hgi/hgi.h" line="111" column="1" bodyfile="pxr/imaging/hgi/hgi.h" bodystart="110" bodyend="340"/>
+    <listofallmembers>
+      <member refid="class_hgi_1a82b1bd6860c347f73d5fa4a50bf32e9f" prot="protected" virt="virtual"><scope>Hgi</scope><name>_SubmitCmds</name></member>
+      <member refid="class_hgi_1a6fd1372d2ed35ce69e95d3933765ffa6" prot="private" virt="non-virtual"><scope>Hgi</scope><name>_uniqueIdCounter</name></member>
+      <member refid="class_hgi_1ac2b2da7d952d0f750ed48695fc9a61eb" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>CreateBlitCmds</name></member>
+      <member refid="class_hgi_1aa7d3ce4a8fd78ac6850c04fc0a8c52c0" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>CreateBuffer</name></member>
+      <member refid="class_hgi_1ab90de4e93cf496894b0d4ba81434140d" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>CreateComputeCmds</name></member>
+      <member refid="class_hgi_1ab63e7495a66fa99ee9e97ed0636efba4" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>CreateComputePipeline</name></member>
+      <member refid="class_hgi_1a7bcca31b306a8e305d782af95cc18b32" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>CreateGraphicsCmds</name></member>
+      <member refid="class_hgi_1ae0abd210c1ff3e2af894980036a28a92" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>CreateGraphicsPipeline</name></member>
+      <member refid="class_hgi_1a69e7633873a0f1689ae01610a659a294" prot="public" virt="non-virtual"><scope>Hgi</scope><name>CreatePlatformDefaultHgi</name></member>
+      <member refid="class_hgi_1a6867acd350c95dd3aed86957e496d7a4" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>CreateResourceBindings</name></member>
+      <member refid="class_hgi_1a1e30e202c0bae3a120840545e90567ce" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>CreateSampler</name></member>
+      <member refid="class_hgi_1a4445f60d4aca3de8abafb03e61c6fa4c" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>CreateShaderFunction</name></member>
+      <member refid="class_hgi_1a8527715ce5ac3e5db61fd55388e9f8a3" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>CreateShaderProgram</name></member>
+      <member refid="class_hgi_1a203cd5ef883f0ba41ce00831af6e96cd" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>CreateTexture</name></member>
+      <member refid="class_hgi_1ab15f3473097b06ba3313a4d68993292f" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>CreateTextureView</name></member>
+      <member refid="class_hgi_1a090ed0465f1f25cac321c95e3800f603" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>DestroyBuffer</name></member>
+      <member refid="class_hgi_1a3b715a7d2f70d63f664d4b5eb1cafb61" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>DestroyComputePipeline</name></member>
+      <member refid="class_hgi_1a257e66ab19a5e46a611a7510be1bfffe" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>DestroyGraphicsPipeline</name></member>
+      <member refid="class_hgi_1a2cd18da57c12382c596be3977374e057" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>DestroyResourceBindings</name></member>
+      <member refid="class_hgi_1a5c049e81f4c28bd10ec8be6c8f9561f1" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>DestroySampler</name></member>
+      <member refid="class_hgi_1afcd358204f65ef003f768129a4644da2" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>DestroyShaderFunction</name></member>
+      <member refid="class_hgi_1a1ef9164eb5095b3fa321ad9e9b575857" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>DestroyShaderProgram</name></member>
+      <member refid="class_hgi_1a74ebd666f2aa6f3d65db3b97dd1ee509" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>DestroyTexture</name></member>
+      <member refid="class_hgi_1a68755a4beb78a7ef33e81f80cbbee3e1" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>DestroyTextureView</name></member>
+      <member refid="class_hgi_1a21a113ab8e7de0102774860f867ce39f" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>EndFrame</name></member>
+      <member refid="class_hgi_1a58bea8d97a464d6ec05ea1bf274d3afc" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>GetAPIName</name></member>
+      <member refid="class_hgi_1ad5370e56339cd64e3ac8a3698b09b15a" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>GetCapabilities</name></member>
+      <member refid="class_hgi_1ab698c954480429033695a7be8b92875e" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>GetIndirectCommandEncoder</name></member>
+      <member refid="class_hgi_1a40ab24a195f87c0b377ee0705f6a1775" prot="public" virt="non-virtual"><scope>Hgi</scope><name>GetPlatformDefaultHgi</name></member>
+      <member refid="class_hgi_1afdb85b10705cedea17ccc1e56b232427" prot="protected" virt="non-virtual"><scope>Hgi</scope><name>GetUniqueId</name></member>
+      <member refid="class_hgi_1a168c9be9f4721a54a3086809b9e03347" prot="public" virt="non-virtual"><scope>Hgi</scope><name>Hgi</name></member>
+      <member refid="class_hgi_1aeccc4ae5384385db4e33f626643c1eec" prot="private" virt="non-virtual"><scope>Hgi</scope><name>Hgi</name></member>
+      <member refid="class_hgi_1a407d8e78d04e6dd96f3ade45514d20c8" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>IsBackendSupported</name></member>
+      <member refid="class_hgi_1add27034f36108f73c06d94b600b61a74" prot="public" virt="non-virtual"><scope>Hgi</scope><name>IsSupported</name></member>
+      <member refid="class_hgi_1a6d5d7bb280aafab48d421d3f49f3d823" prot="private" virt="non-virtual"><scope>Hgi</scope><name>operator=</name></member>
+      <member refid="class_hgi_1a727feb37caf78ea630818b679335381b" prot="public" virt="pure-virtual"><scope>Hgi</scope><name>StartFrame</name></member>
+      <member refid="class_hgi_1aed132723e59980a774aa58da9d2c3ff9" prot="public" virt="non-virtual"><scope>Hgi</scope><name>SubmitCmds</name></member>
+      <member refid="class_hgi_1a2a4b0145a502bf7fe878191c0365d5cc" prot="public" virt="virtual"><scope>Hgi</scope><name>~Hgi</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="sdr_page_front" kind="page">
+    <compoundname>sdr_page_front</compoundname>
+    <title>Sdr : Shader Definition Registry</title>
+    <tableofcontents>
+      <tocsect>
+        <name>Discussion of SdrPropertyTypes</name>
+        <reference>sdr_page_front_1SdrPropertyTypes</reference>
+    </tocsect>
+    </tableofcontents>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Sdr is a shading-specialized version of Ndr, and provides the following specialized classes:<itemizedlist>
+<listitem><para><computeroutput><ref refid="class_sdr_registry" kindref="compound">SdrRegistry</ref></computeroutput></para>
+</listitem><listitem><para><computeroutput><ref refid="class_sdr_shader_node" kindref="compound">SdrShaderNode</ref></computeroutput></para>
+</listitem><listitem><para><computeroutput><ref refid="class_sdr_shader_property" kindref="compound">SdrShaderProperty</ref></computeroutput></para>
+</listitem></itemizedlist>
+</para>
+<para>For more details on the registry, nodes, or properties, see the base Ndr classes:<itemizedlist>
+<listitem><para><computeroutput><ref refid="class_ndr_registry" kindref="compound">NdrRegistry</ref></computeroutput></para>
+</listitem><listitem><para><computeroutput><ref refid="class_ndr_node" kindref="compound">NdrNode</ref></computeroutput></para>
+</listitem><listitem><para><computeroutput><ref refid="class_ndr_property" kindref="compound">NdrProperty</ref></computeroutput></para>
+</listitem></itemizedlist>
+</para>
+<para>For a high-level view of the system and how all the parts work together, see the overview page for Ndr.</para>
+<sect1 id="sdr_page_front_1SdrPropertyTypes">
+<title>Discussion of SdrPropertyTypes</title>
+<para>Sdr defines a limited set of types:<itemizedlist>
+<listitem><para>Int</para>
+</listitem><listitem><para>String</para>
+</listitem><listitem><para>Float</para>
+</listitem><listitem><para>Color</para>
+</listitem><listitem><para>Point</para>
+</listitem><listitem><para>Normal</para>
+</listitem><listitem><para>Vector</para>
+</listitem><listitem><para>Matrix</para>
+</listitem><listitem><para>Struct</para>
+</listitem><listitem><para>Terminal</para>
+</listitem><listitem><para>VStruct</para>
+</listitem><listitem><para>Unknown</para>
+</listitem></itemizedlist>
+</para>
+<para><heading level="2">Two notions of types (SdrPropertyType and <ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref>)</heading>
+</para>
+<para>The SdrPropertyType is not written out to a USD layer, but with the aid of other information and metadata gathered from a node&apos;s shader definition, the SdrPropertyType is mapped to an <ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref> that is written into USD layers. The SdfValueTypeNames are a much richer and wider set of types, and it is this type that is looked at during opinion composition.</para>
+<para>For most of the basic SdrPropertyTypes, we have direct mappings to SdfValueTypeNames given the Sdr type and if it is an array. For some of the SdrPropertyTypes, we use metadata to aid the translation to a particular <ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref> (see below).</para>
+<para>Clients writing <ref refid="class_ndr_parser_plugin" kindref="compound">NdrParserPlugin</ref> sub-classes for Sdr need only be concerned with a property&apos;s SdrPropertyType. Sdr will handle the details of assigning the correct <ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref>.</para>
+<para><heading level="2">Discussion of the special Sdr property types</heading>
+</para>
+<para>Some SdrPropertyTypes are a little special because there is no reasonable corresponding <ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref>, so we map them all to SdfValueTypeName-&gt;Token, which is typically reserved for an Unknown type.</para>
+<para>The special SdrPropertyTypes that map to &apos;Token&apos; are:<itemizedlist>
+<listitem><para>Struct - Struct types</para>
+</listitem><listitem><para>Terminal - Certain properties represent &apos;terminal&apos; ports (ie. surface, displacement, volume, etc)</para>
+</listitem><listitem><para>Vstruct - An abstract struct type that can connect to any other &apos;vstruct&apos;, and connections are only made if a matching vstruct member is found.</para>
+</listitem></itemizedlist>
+</para>
+<para>As described, these special SdrPropertyTypes cannot be represented as a <ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref>, which is why we simply map them to &apos;Token&apos;. A user can find the original struct type or terminal type of one of these properties by examining the &apos;renderType&apos; metadata on the property, since this original type information is not preserved in either the SdrPropertyType or <ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref>.</para>
+<para><heading level="2">Sdr metadata that is used to determine SdrPropertyType</heading>
+</para>
+<para>As mentioned previously, metadata can be used to drive the parsing of a SdrPropertyType. This metadata does need to be authored by shader writers. Some of these metadata tags are:<itemizedlist>
+<listitem><para>&apos;renderType&apos; - The &apos;renderType&apos; metadata should be specified for Struct, Terminal, and Vstruct properties.<itemizedlist>
+<listitem><para>On a Struct, the metadata would be &apos;renderType&apos; = &apos;struct structName&apos;, where structName is the actual struct&apos;s typename</para>
+</listitem><listitem><para>On a Terminal, the metadata would be &apos;renderType&apos; = &apos;terminal terminalName&apos; where terminalName is the actual kind of terminal</para>
+</listitem><listitem><para>On a Vstruct, the metadata would be &apos;renderType&apos; = &apos;vstruct&apos;, since there is no further specific type name for a vstruct</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>&apos;role&apos; - The &apos;role&apos; metadata can be specified for any SdrPropertyType, and the value of &apos;role&apos; will determine if the property will be transformed to a different SdrPropertyType. This metadata is special in that parser plugin writers do NOT need to handle any SdrPropertyType transformations. Parser writers simply need to parse the property as usual and allow <ref refid="class_sdr_shader_property" kindref="compound">SdrShaderProperty</ref> to apply any needed transformations to the SdrPropertyType. The &apos;role&apos; metadata can only have the following predefined values:<itemizedlist>
+<listitem><para>&apos;none&apos; - If &apos;role&apos; is &apos;none&apos;, then the SdrPropertyType will be transformed to be as generic as possible. For example, if a property of original SdrPropertyTypes-&gt;Color has &apos;role&apos; specified as &apos;none&apos;, then the property will actually become SdrPropertyTypes-&gt;Float.</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+<para><heading level="2">Sdr metadata that is used to determine <ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref></heading>
+</para>
+<para>Some metadata is used to drive the conversion of an <ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref>. Metadata that is used for <ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref> conversion is authored either by shader writers (SdrUsdDefinitionName), or it should be injected into an <ref refid="class_sdr_shader_property" kindref="compound">SdrShaderProperty</ref> by a parser plugin writer (IsAssetIdentifier). This includes:<itemizedlist>
+<listitem><para>SdrPropertyMetadata-&gt;IsAssetIdentifier - This metadata tag is injected by a parser if the parser determines that the property is an asset. The presence of this metadata tag then guides the type mapping to choose SdfValueTypeNames-&gt;Asset</para>
+</listitem><listitem><para>SdrPropertyMetadata-&gt;SdrUsdDefinitionType - This metadata, explicitly authored in a shader definition, specifies the <ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref> as string. Note that this metadata takes precendence in determining the <ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref> for the <ref refid="class_sdr_shader_property" kindref="compound">SdrShaderProperty</ref>. Authors of shader definition will have to provide explicit <ref refid="class_tf_type" kindref="compound">TfType</ref> value aliases (Refer <ref refid="class_sdf_value_type_name_1a37d2aeb7c0c3e0a39ae85f037d9bb503" kindref="member">SdfValueTypeName::GetAliasesAsTokens()</ref>) associated with the <ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref>, which generally match the type declarations found in a usda file. Example &quot;bool&quot; for SdfValueTypeNames-&gt;Bool, &quot;bool[]&quot; for SdfValueTypeNames-&gt;BoolArray, etc. This is specifically important in determining types which are represented as an &quot;int&quot; in the sdr type system but should be represented as SdfValueTypeNames-&gt;Bool in the equivalent Sdf/USD representation. When sdrUsdDefinitionType is specified, Sdr will do its best to convert the default value provided in the shader definition into the requested SdfValueType.</para>
+</listitem></itemizedlist>
+</para>
+<para><heading level="2">Some examples illustrating the treatment of property types</heading>
+</para>
+<para><programlisting filename=".usd"><codeline><highlight class="normal">shader<sp/>TestOSLShader</highlight></codeline>
+<codeline><highlight class="normal">(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>color<sp/>foo<sp/>=<sp/>color(1.0,<sp/>1.0<sp/>1.0),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>token<sp/>bar<sp/>=<sp/>&quot;baz&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>token<sp/>surface<sp/>=<sp/>&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>[[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>renderType<sp/>=<sp/>&quot;terminal<sp/>surface&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>]]</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+</programlisting> In the above example, the properties would be translated as follows:</para>
+<para><table rows="4" cols="3"><row>
+<entry thead="yes"><para>Property  </para>
+</entry><entry thead="yes"><para>SdrPropertyType  </para>
+</entry><entry thead="yes"><para><ref refid="class_sdf_value_type_name" kindref="compound">SdfValueTypeName</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>foo  </para>
+</entry><entry thead="no"><para>SdrPropertyTypes-&gt;Color  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Color   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>bar  </para>
+</entry><entry thead="no"><para>SdrPropertyTypes-&gt;String  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;String   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>surface  </para>
+</entry><entry thead="no"><para>SdrPropertyTypes-&gt;Terminal  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Token   </para>
+</entry></row>
+</table>
+</para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

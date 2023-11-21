@@ -1,0 +1,909 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_st_basis_curves" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>HdStBasisCurves</compoundname>
+    <basecompoundref refid="class_hd_basis_curves" prot="public" virt="non-virtual">HdBasisCurves</basecompoundref>
+    <includes refid="imaging_2hd_st_2basis_curves_8h" local="no">basisCurves.h</includes>
+      <sectiondef kind="private-type">
+      <memberdef kind="enum" id="class_hd_st_basis_curves_1a46951d84c88bbc389c0ce4f1f6194d95" prot="private" static="no" strong="no">
+        <type></type>
+        <name>DrawingCoord</name>
+        <enumvalue id="class_hd_st_basis_curves_1a46951d84c88bbc389c0ce4f1f6194d95ac9aeed4de761670792b32ebc62d4ac56" prot="private">
+          <name>HullTopology</name>
+          <initializer>= HdDrawingCoord::CustomSlotsBegin</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_st_basis_curves_1a46951d84c88bbc389c0ce4f1f6194d95ab5353a545c31a7aa0875aa357db520a2" prot="private">
+          <name>PointsTopology</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_st_basis_curves_1a46951d84c88bbc389c0ce4f1f6194d95ae5768758878aa52064b4fa5f45a5e0b1" prot="private">
+          <name>InstancePrimvar</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="135" column="1" bodyfile="pxr/imaging/hdSt/basisCurves.h" bodystart="135" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="enum" id="class_hd_st_basis_curves_1a2f2dbbbe47e871395a781c8105398c8f" prot="private" static="no" strong="no">
+        <type>HdDirtyBits</type>
+        <name>DirtyBits</name>
+        <enumvalue id="class_hd_st_basis_curves_1a2f2dbbbe47e871395a781c8105398c8fad0f47e2fa2329fb12caba39857b7b8f6" prot="private">
+          <name>DirtyIndices</name>
+          <initializer>= HdChangeTracker::CustomBitsBegin</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_st_basis_curves_1a2f2dbbbe47e871395a781c8105398c8fa4b468e596804ffdf18c057ed1c63814a" prot="private">
+          <name>DirtyHullIndices</name>
+          <initializer>= (DirtyIndices       &lt;&lt; 1)</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_hd_st_basis_curves_1a2f2dbbbe47e871395a781c8105398c8fa7e5f25d1237e404777f2b847c19f37a0" prot="private">
+          <name>DirtyPointsIndices</name>
+          <initializer>= (DirtyHullIndices   &lt;&lt; 1)</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="141" column="1" bodyfile="pxr/imaging/hdSt/basisCurves.h" bodystart="141" bodyend="145"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_st_basis_curves_1aee26c7655a8923a498121b291bf7b01b" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _basisWidthInterpolation</definition>
+        <argsstring></argsstring>
+        <name>_basisWidthInterpolation</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="152" column="1" bodyfile="pxr/imaging/hdSt/basisCurves.h" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_basis_curves_1ae02351b14679cc7b5ccb7812a6129cb0" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _basisNormalInterpolation</definition>
+        <argsstring></argsstring>
+        <name>_basisNormalInterpolation</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="153" column="1" bodyfile="pxr/imaging/hdSt/basisCurves.h" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_basis_curves_1a86f701573f4f35db8e4730a0c4fbcfe2" prot="private" static="no" mutable="no">
+        <type>HdSt_BasisCurvesTopologySharedPtr</type>
+        <definition>HdSt_BasisCurvesTopologySharedPtr _topology</definition>
+        <argsstring></argsstring>
+        <name>_topology</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="178" column="1" bodyfile="pxr/imaging/hdSt/basisCurves.h" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_basis_curves_1a4cfd448c5f6a741eb51c3058a2d16faf" prot="private" static="no" mutable="no">
+        <type>HdTopology::ID</type>
+        <definition>HdTopology::ID _topologyId</definition>
+        <argsstring></argsstring>
+        <name>_topologyId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="179" column="1" bodyfile="pxr/imaging/hdSt/basisCurves.h" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_basis_curves_1a113a4b178fdd2dfde975b1dff7174680" prot="private" static="no" mutable="no">
+        <type>HdDirtyBits</type>
+        <definition>HdDirtyBits _customDirtyBitsInUse</definition>
+        <argsstring></argsstring>
+        <name>_customDirtyBitsInUse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="180" column="1" bodyfile="pxr/imaging/hdSt/basisCurves.h" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_basis_curves_1a53e70e5086b3c7786118fb7fbff88e8a" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int _refineLevel</definition>
+        <argsstring></argsstring>
+        <name>_refineLevel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="181" column="1" bodyfile="pxr/imaging/hdSt/basisCurves.h" bodystart="181" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_basis_curves_1a4982eba9dc68d60f9a017aaf07c32f26" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _displayOpacity</definition>
+        <argsstring></argsstring>
+        <name>_displayOpacity</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="182" column="1" bodyfile="pxr/imaging/hdSt/basisCurves.h" bodystart="182" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_basis_curves_1a8d014cf5010c8f9c4193129e1c602c6b" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _occludedSelectionShowsThrough</definition>
+        <argsstring></argsstring>
+        <name>_occludedSelectionShowsThrough</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="183" column="1" bodyfile="pxr/imaging/hdSt/basisCurves.h" bodystart="183" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_basis_curves_1a3ad7ac2216f65954a9c35f97d0c9b497" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _pointsShadingEnabled</definition>
+        <argsstring></argsstring>
+        <name>_pointsShadingEnabled</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="184" column="1" bodyfile="pxr/imaging/hdSt/basisCurves.h" bodystart="184" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_st_basis_curves_1afc6d51ebb77c6e93593ca3a5cbab14a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HF_MALLOC_TAG_NEW</definition>
+        <argsstring>(&quot;new HdStBasisCurves&quot;)</argsstring>
+        <name>HF_MALLOC_TAG_NEW</name>
+        <param>
+          <type>&quot;new <ref refid="class_hd_st_basis_curves" kindref="compound">HdStBasisCurves</ref>&quot;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="74" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_basis_curves_1a3b681dc7facd519efc474d9d59a33ff5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HDST_API</type>
+        <definition>HDST_API HdStBasisCurves</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>HdStBasisCurves</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="77" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_basis_curves_1abd55b8267de00367c736267a6a9eebf7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HDST_API</type>
+        <definition>HDST_API ~HdStBasisCurves</definition>
+        <argsstring>() override</argsstring>
+        <name>~HdStBasisCurves</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="80" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_basis_curves_1a1dd447a19bfb779147fe23a7cd152852" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HDST_API void</type>
+        <definition>HDST_API void UpdateRenderTag</definition>
+        <argsstring>(HdSceneDelegate *delegate, HdRenderParam *renderParam) override</argsstring>
+        <name>UpdateRenderTag</name>
+        <reimplements refid="class_hd_rprim_1af4ab6abf1e3c972387514dca88ebddce">UpdateRenderTag</reimplements>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="83" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_basis_curves_1a072a970822c6880f78f513372dab87c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HDST_API void</type>
+        <definition>HDST_API void Sync</definition>
+        <argsstring>(HdSceneDelegate *delegate, HdRenderParam *renderParam, HdDirtyBits *dirtyBits, TfToken const &amp;reprToken) override</argsstring>
+        <name>Sync</name>
+        <reimplements refid="class_hd_rprim_1accb912c87d0f4772cec8b9b51c6bed89">Sync</reimplements>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>reprToken</declname>
+        </param>
+        <briefdescription>
+<para>Pull invalidated scene data and prepare/update the renderable representation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is told which scene data to pull through the dirtyBits parameter. The first time it&apos;s called, dirtyBits comes from _GetInitialDirtyBits(), which provides initial dirty state, but after that it&apos;s driven by invalidation tracking in the scene delegate.</para>
+<para>The contract for this function is that the prim can only pull on scene delegate buffers that are marked dirty. Scene delegates can and do implement just-in-time data schemes that mean that pulling on clean data will be at best incorrect, and at worst a crash.</para>
+<para>This function is called in parallel from worker threads, so it needs to be threadsafe; calls into <ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> are ok.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sceneDelegate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The data source for this geometry item. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>renderParam</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A render delegate object that holds rendering parameters that scene geometry may use. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dirtyBits</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A specifier for which scene data has changed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>reprToken</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The representation that needs to be updated. This is useful for backends that support multiple display representations for an rprim. A given representation may choose to pull on a subset of the dirty state. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dirtyBits</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>On input specifies which state is dirty and can be pulled from the scene delegate. On output specifies which bits are still dirty and were not cleaned by the sync. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="87" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_basis_curves_1afacd7217dce1f83fe450e78b1624a8b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HDST_API void</type>
+        <definition>HDST_API void Finalize</definition>
+        <argsstring>(HdRenderParam *renderParam) override</argsstring>
+        <name>Finalize</name>
+        <reimplements refid="class_hd_rprim_1a385eed04c15e636796b187bfdf0fcbf0">Finalize</reimplements>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <briefdescription>
+<para>Finalizes object resources. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function might not delete resources, but it should deal with resource ownership so that the rprim is deletable. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="93" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_basis_curves_1a59b589b9042f2173054e853d4d58036f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HDST_API HdDirtyBits</type>
+        <definition>HDST_API HdDirtyBits GetInitialDirtyBitsMask</definition>
+        <argsstring>() const override</argsstring>
+        <name>GetInitialDirtyBitsMask</name>
+        <reimplements refid="class_hd_rprim_1ac05e81662ee475cfe52ce97e84e7205d">GetInitialDirtyBitsMask</reimplements>
+        <briefdescription>
+<para>Returns the set of dirty bits that should be added to the change tracker for this prim, when this prim is inserted. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="96" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_basis_curves_1a97acb2b7c2622c006880ef3b05932903" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HDST_API <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> const  &amp;</type>
+        <definition>HDST_API TfTokenVector const&amp; GetBuiltinPrimvarNames</definition>
+        <argsstring>() const override</argsstring>
+        <name>GetBuiltinPrimvarNames</name>
+        <reimplements refid="class_hd_basis_curves_1a9538b3d6f03d3ff12f61734caaa559a9">GetBuiltinPrimvarNames</reimplements>
+        <briefdescription>
+<para>Returns the names of built-in primvars, i.e. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>primvars that are part of the core geometric schema for this prim. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="99" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_hd_st_basis_curves_1a3b198b2ed119be2418d2efc679a12d39" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HDST_API void</type>
+        <definition>HDST_API void _InitRepr</definition>
+        <argsstring>(TfToken const &amp;reprToken, HdDirtyBits *dirtyBits) override</argsstring>
+        <name>_InitRepr</name>
+        <reimplements refid="class_hd_rprim_1ae8808b3a20d4f5c297884e53490eafdc">_InitRepr</reimplements>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>reprToken</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+<para>Initialize the given representation of this Rprim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is called prior to syncing the prim, the first time the repr is used.</para>
+<para>reprToken is the name of the representation to initalize.</para>
+<para>dirtyBits is an in/out value. It is initialized to the dirty bits from the change tracker. InitRepr can then set additional dirty bits if additional data is required from the scene delegate when this repr is synced. InitRepr occurs before dirty bit propagation.</para>
+<para>See <ref refid="class_hd_rprim_1af62f2311f5580ddc32ecd571a0f559d4" kindref="member">HdRprim::InitRepr()</ref> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="103" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_basis_curves_1a1e965b1d836f1868947bb1a54439bbba" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HDST_API HdDirtyBits</type>
+        <definition>HDST_API HdDirtyBits _PropagateDirtyBits</definition>
+        <argsstring>(HdDirtyBits bits) const override</argsstring>
+        <name>_PropagateDirtyBits</name>
+        <reimplements refid="class_hd_rprim_1a6ab9057a8d24d811a6f99f8cfb2fc0fd">_PropagateDirtyBits</reimplements>
+        <param>
+          <type>HdDirtyBits</type>
+          <declname>bits</declname>
+        </param>
+        <briefdescription>
+<para>This callback from Rprim gives the prim an opportunity to set additional dirty bits based on those already set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is done before the dirty bits are passed to the scene delegate, so can be used to communicate that extra information is needed by the prim to process the changes.</para>
+<para>The return value is the new set of dirty bits, which replaces the bits passed in.</para>
+<para>See <ref refid="class_hd_rprim_1af80a9b6a6565e86769cf248698122958" kindref="member">HdRprim::PropagateRprimDirtyBits()</ref> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="106" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_basis_curves_1ad9c75cfd6e0d776f011ee18046428abd" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _UpdateRepr</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, TfToken const &amp;reprToken, HdDirtyBits *dirtyBitsState)</argsstring>
+        <name>_UpdateRepr</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>reprToken</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBitsState</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="108" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_basis_curves_1ad29a0f5a5c3cf984daf0bc46b39902d6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _PopulateTopology</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, HdStDrawItem *drawItem, HdDirtyBits *dirtyBits, const HdBasisCurvesReprDesc &amp;desc)</argsstring>
+        <name>_PopulateTopology</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>HdStDrawItem *</type>
+          <declname>drawItem</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_hd_basis_curves_repr_desc" kindref="compound">HdBasisCurvesReprDesc</ref> &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="113" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_basis_curves_1a65b9eadfeafafb863ed0702f386aa86a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _PopulateVertexPrimvars</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, HdStDrawItem *drawItem, HdDirtyBits *dirtyBits)</argsstring>
+        <name>_PopulateVertexPrimvars</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>HdStDrawItem *</type>
+          <declname>drawItem</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="119" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_basis_curves_1aa006d32e868a520a6d3fa16ad16d32e3" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _PopulateVaryingPrimvars</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, HdStDrawItem *drawItem, HdDirtyBits *dirtyBits)</argsstring>
+        <name>_PopulateVaryingPrimvars</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>HdStDrawItem *</type>
+          <declname>drawItem</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="124" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_basis_curves_1a14ff3bb6d8db58a42b1dc267baf06699" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _PopulateElementPrimvars</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, HdStDrawItem *drawItem, HdDirtyBits *dirtyBits)</argsstring>
+        <name>_PopulateElementPrimvars</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>HdStDrawItem *</type>
+          <declname>drawItem</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="129" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hd_st_basis_curves_1a8707b4835551af253d7b528cbe6411d5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _SupportsRefinement</definition>
+        <argsstring>(int refineLevel)</argsstring>
+        <name>_SupportsRefinement</name>
+        <param>
+          <type>int</type>
+          <declname>refineLevel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="155" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_basis_curves_1a651e9bdb3f697f0b899e33e4f588bfdb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _SupportsUserWidths</definition>
+        <argsstring>(HdStDrawItem *drawItem)</argsstring>
+        <name>_SupportsUserWidths</name>
+        <param>
+          <type>HdStDrawItem *</type>
+          <declname>drawItem</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="156" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_basis_curves_1a520c64f3e9be3ba29fef7167a1f2611d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _SupportsUserNormals</definition>
+        <argsstring>(HdStDrawItem *drawItem)</argsstring>
+        <name>_SupportsUserNormals</name>
+        <param>
+          <type>HdStDrawItem *</type>
+          <declname>drawItem</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="157" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_basis_curves_1a690c23c38a6dc40e4ece8b81a8ee988f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _UpdateDrawItem</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, HdStDrawItem *drawItem, HdDirtyBits *dirtyBits, const HdBasisCurvesReprDesc &amp;desc)</argsstring>
+        <name>_UpdateDrawItem</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>HdStDrawItem *</type>
+          <declname>drawItem</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_hd_basis_curves_repr_desc" kindref="compound">HdBasisCurvesReprDesc</ref> &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="159" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_basis_curves_1abef9ff42e95cc64420149460b30f8b60" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _UpdateDrawItemGeometricShader</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, HdStDrawItem *drawItem, const HdBasisCurvesReprDesc &amp;desc)</argsstring>
+        <name>_UpdateDrawItemGeometricShader</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>HdStDrawItem *</type>
+          <declname>drawItem</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_hd_basis_curves_repr_desc" kindref="compound">HdBasisCurvesReprDesc</ref> &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="165" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_basis_curves_1ab3df5347ab3b505d35e529658db6edcf" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _UpdateShadersForAllReprs</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam, bool updateMaterialNetworkShader, bool updateGeometricShader)</argsstring>
+        <name>_UpdateShadersForAllReprs</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>updateMaterialNetworkShader</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>updateGeometricShader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="170" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_basis_curves_1a1a90ae5ce2b65a2a05f9dbdeda386e80" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _UpdateMaterialTagsForAllReprs</definition>
+        <argsstring>(HdSceneDelegate *sceneDelegate, HdRenderParam *renderParam)</argsstring>
+        <name>_UpdateMaterialTagsForAllReprs</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>sceneDelegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+          <declname>renderParam</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/basisCurves.h" line="175" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A collection of curves using a particular basis. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Render mode is dependent on both the HdBasisCurvesGeomStyle, refinement level, and the authored primvars.</para>
+<para>If style is set to HdBasisCurvesGeomStyleWire, the curves will always draw as infinitely thin wires. Cubic curves will be refined if complexity is above 0, otherwise they draw the unrefined control points. (This may provide a misleading representation for Catmull-Rom and Bspline curves.)</para>
+<para>If style is set to HdBasisCurvesGeomStylePatch, the curves will draw as patches ONLY if refinement level is above 0. Otherwise, they draw as the unrefined control points (see notes on HdBasisCurvesGeomStyleWire).</para>
+<para>Curves rendered as patches may be rendered as ribbons or halftubes. Curves with primvar authored normals will always render as ribbons. Curves without primvar authored normals are assumed to be round and may be rendered in one of three styles:<itemizedlist>
+<listitem><para>if complexity is 1, a camera facing normal is used</para>
+</listitem><listitem><para>if complexity is 2, a fake &quot;bumped&quot; round normal is used</para>
+</listitem><listitem><para>if complexity is 3 or above, the patch is displaced into a half tube We plan for future checkins will remove the need for the camera facing normal mode, using the fake &quot;bumped&quot; round normal instead. </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3059">
+        <label>HdStBasisCurves</label>
+        <link refid="class_hd_st_basis_curves"/>
+        <childnode refid="3060" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3060">
+        <label>HdBasisCurves</label>
+        <link refid="class_hd_basis_curves"/>
+        <childnode refid="3061" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3061">
+        <label>HdRprim</label>
+        <link refid="class_hd_rprim"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3062">
+        <label>HdStBasisCurves</label>
+        <link refid="class_hd_st_basis_curves"/>
+        <childnode refid="3063" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3063">
+        <label>HdBasisCurves</label>
+        <link refid="class_hd_basis_curves"/>
+        <childnode refid="3064" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3064">
+        <label>HdRprim</label>
+        <link refid="class_hd_rprim"/>
+        <childnode refid="3065" relation="usage">
+          <edgelabel>_renderTag</edgelabel>
+        </childnode>
+        <childnode refid="3066" relation="usage">
+          <edgelabel>_authoredReprSelector</edgelabel>
+        </childnode>
+      </node>
+      <node id="3065">
+        <label>TfToken</label>
+        <link refid="class_tf_token"/>
+      </node>
+      <node id="3066">
+        <label>HdReprSelector</label>
+        <link refid="class_hd_repr_selector"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/hdSt/basisCurves.h" line="72" column="1" bodyfile="pxr/imaging/hdSt/basisCurves.h" bodystart="71" bodyend="185"/>
+    <listofallmembers>
+      <member refid="class_hd_rprim_1af99cc7d4b20df2fd31786a21ebe68331" prot="protected" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_authoredReprSelector</name></member>
+      <member refid="class_hd_basis_curves_1a94f038fda6681828f1a186aaa6d0917b" prot="protected" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_BasisCurvesReprConfig</name></member>
+      <member refid="class_hd_st_basis_curves_1ae02351b14679cc7b5ccb7812a6129cb0" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_basisNormalInterpolation</name></member>
+      <member refid="class_hd_st_basis_curves_1aee26c7655a8923a498121b291bf7b01b" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_basisWidthInterpolation</name></member>
+      <member refid="class_hd_st_basis_curves_1a113a4b178fdd2dfde975b1dff7174680" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_customDirtyBitsInUse</name></member>
+      <member refid="class_hd_st_basis_curves_1a4982eba9dc68d60f9a017aaf07c32f26" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_displayOpacity</name></member>
+      <member refid="class_hd_rprim_1a7536f2dc14a09b5e59047a845435d895" prot="protected" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_GetRepr</name></member>
+      <member refid="class_hd_basis_curves_1a2b2c6ed83e714957e0b13c642c432377" prot="protected" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_GetReprDesc</name></member>
+      <member refid="class_hd_st_basis_curves_1a3b198b2ed119be2418d2efc679a12d39" prot="protected" virt="virtual"><scope>HdStBasisCurves</scope><name>_InitRepr</name></member>
+      <member refid="class_hd_st_basis_curves_1a8d014cf5010c8f9c4193129e1c602c6b" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_occludedSelectionShowsThrough</name></member>
+      <member refid="class_hd_st_basis_curves_1a3ad7ac2216f65954a9c35f97d0c9b497" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_pointsShadingEnabled</name></member>
+      <member refid="class_hd_st_basis_curves_1a14ff3bb6d8db58a42b1dc267baf06699" prot="protected" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_PopulateElementPrimvars</name></member>
+      <member refid="class_hd_st_basis_curves_1ad29a0f5a5c3cf984daf0bc46b39902d6" prot="protected" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_PopulateTopology</name></member>
+      <member refid="class_hd_st_basis_curves_1aa006d32e868a520a6d3fa16ad16d32e3" prot="protected" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_PopulateVaryingPrimvars</name></member>
+      <member refid="class_hd_st_basis_curves_1a65b9eadfeafafb863ed0702f386aa86a" prot="protected" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_PopulateVertexPrimvars</name></member>
+      <member refid="class_hd_st_basis_curves_1a1e965b1d836f1868947bb1a54439bbba" prot="protected" virt="virtual"><scope>HdStBasisCurves</scope><name>_PropagateDirtyBits</name></member>
+      <member refid="class_hd_st_basis_curves_1a53e70e5086b3c7786118fb7fbff88e8a" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_refineLevel</name></member>
+      <member refid="class_hd_rprim_1ad83e4473062b97f26cf76c844bf7a3a1" prot="protected" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_renderTag</name></member>
+      <member refid="class_hd_rprim_1a136710a8b140e2e6350f01f80f1d85a4" prot="protected" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_reprs</name></member>
+      <member refid="class_hd_rprim_1aad438bd2af17cf2eafbfbd90cc2a2db1" prot="protected" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_ReprVector</name></member>
+      <member refid="class_hd_rprim_1ab47ac9b77df39ee8de77b10486ea24c5" prot="protected" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_sharedData</name></member>
+      <member refid="class_hd_st_basis_curves_1a8707b4835551af253d7b528cbe6411d5" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_SupportsRefinement</name></member>
+      <member refid="class_hd_st_basis_curves_1a520c64f3e9be3ba29fef7167a1f2611d" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_SupportsUserNormals</name></member>
+      <member refid="class_hd_st_basis_curves_1a651e9bdb3f697f0b899e33e4f588bfdb" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_SupportsUserWidths</name></member>
+      <member refid="class_hd_st_basis_curves_1a86f701573f4f35db8e4730a0c4fbcfe2" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_topology</name></member>
+      <member refid="class_hd_st_basis_curves_1a4cfd448c5f6a741eb51c3058a2d16faf" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_topologyId</name></member>
+      <member refid="class_hd_st_basis_curves_1a690c23c38a6dc40e4ece8b81a8ee988f" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_UpdateDrawItem</name></member>
+      <member refid="class_hd_st_basis_curves_1abef9ff42e95cc64420149460b30f8b60" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_UpdateDrawItemGeometricShader</name></member>
+      <member refid="class_hd_rprim_1a07b717bf883db5ca574acb6a17b0c192" prot="protected" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_UpdateInstancer</name></member>
+      <member refid="class_hd_st_basis_curves_1a1a90ae5ce2b65a2a05f9dbdeda386e80" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_UpdateMaterialTagsForAllReprs</name></member>
+      <member refid="class_hd_st_basis_curves_1ad9c75cfd6e0d776f011ee18046428abd" prot="protected" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_UpdateRepr</name></member>
+      <member refid="class_hd_st_basis_curves_1ab3df5347ab3b505d35e529658db6edcf" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_UpdateShadersForAllReprs</name></member>
+      <member refid="class_hd_rprim_1a2a2640835d0c96bfa94425428ec00633" prot="protected" virt="non-virtual"><scope>HdStBasisCurves</scope><name>_UpdateVisibility</name></member>
+      <member refid="class_hd_rprim_1ac363dc6fc79936a3e2147e4676b07472" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>CanSkipDirtyBitPropagationAndSync</name></member>
+      <member refid="class_hd_basis_curves_1a4c0449e7393180ca17408c7718a4dcf7" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>ConfigureRepr</name></member>
+      <member refid="class_hd_st_basis_curves_1a2f2dbbbe47e871395a781c8105398c8f" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>DirtyBits</name></member>
+      <member refid="class_hd_st_basis_curves_1a2f2dbbbe47e871395a781c8105398c8fa4b468e596804ffdf18c057ed1c63814a" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>DirtyHullIndices</name></member>
+      <member refid="class_hd_st_basis_curves_1a2f2dbbbe47e871395a781c8105398c8fad0f47e2fa2329fb12caba39857b7b8f6" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>DirtyIndices</name></member>
+      <member refid="class_hd_st_basis_curves_1a2f2dbbbe47e871395a781c8105398c8fa7e5f25d1237e404777f2b847c19f37a0" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>DirtyPointsIndices</name></member>
+      <member refid="class_hd_st_basis_curves_1a46951d84c88bbc389c0ce4f1f6194d95" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>DrawingCoord</name></member>
+      <member refid="class_hd_st_basis_curves_1afacd7217dce1f83fe450e78b1624a8b4" prot="public" virt="virtual"><scope>HdStBasisCurves</scope><name>Finalize</name></member>
+      <member refid="class_hd_basis_curves_1a7afd33b7ebaa0c581f1c339f85860fe2" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>GetBasisCurvesTopology</name></member>
+      <member refid="class_hd_st_basis_curves_1a97acb2b7c2622c006880ef3b05932903" prot="public" virt="virtual"><scope>HdStBasisCurves</scope><name>GetBuiltinPrimvarNames</name></member>
+      <member refid="class_hd_basis_curves_1a19272f8ea7e8b1e345bb9b8a7513dc0b" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>GetDisplayStyle</name></member>
+      <member refid="class_hd_rprim_1acdeab568daeb62af72f3cf5f7359f216" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>GetDrawItems</name></member>
+      <member refid="class_hd_rprim_1a606da02b739d7eb4d1b19fe04d985f2e" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>GetExtent</name></member>
+      <member refid="class_hd_rprim_1a9301243d9273afcba6395e86047490ab" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>GetId</name></member>
+      <member refid="class_hd_rprim_1a81f906afa368c0de559aba39fc57bff8" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>GetIndexedPrimvar</name></member>
+      <member refid="class_hd_st_basis_curves_1a59b589b9042f2173054e853d4d58036f" prot="public" virt="virtual"><scope>HdStBasisCurves</scope><name>GetInitialDirtyBitsMask</name></member>
+      <member refid="class_hd_rprim_1a7119f60143f27b3e561ffa04464c1ca7" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>GetInstancerId</name></member>
+      <member refid="class_hd_rprim_1a8b6da4a9d65f37cc07b2647808093bbe" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>GetInstancerTransforms</name></member>
+      <member refid="class_hd_rprim_1a8124f95bf477fa1aedd20bbb2dbf589e" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>GetMaterialId</name></member>
+      <member refid="class_hd_rprim_1ae37ae1625cd178d6d940eebcea42698f" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>GetPrimId</name></member>
+      <member refid="class_hd_rprim_1a9065fe959f49db479d2e37e6daed9b2d" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>GetPrimvar</name></member>
+      <member refid="class_hd_rprim_1a6d78d1d22dab6a2e814277c49f77d8da" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>GetPrimvarDescriptors</name></member>
+      <member refid="class_hd_rprim_1ad69d62d157f59712c736b827eb212100" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>GetRenderTag</name></member>
+      <member refid="class_hd_rprim_1ac759696985c687f4047ed065c999c3c1" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>GetRenderTag</name></member>
+      <member refid="class_hd_rprim_1ae0a7b4f61b90ca488a28a7b075543612" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>GetReprSelector</name></member>
+      <member refid="class_hd_basis_curves_1a884640936d204a8255626190029c2b63" prot="protected" virt="non-virtual"><scope>HdStBasisCurves</scope><name>HdBasisCurves</name></member>
+      <member refid="class_hd_rprim_1a3a4bcc257ba5af64bf9627291cc7ddb5" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>HdRprim</name></member>
+      <member refid="class_hd_st_basis_curves_1a3b681dc7facd519efc474d9d59a33ff5" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>HdStBasisCurves</name></member>
+      <member refid="class_hd_st_basis_curves_1afc6d51ebb77c6e93593ca3a5cbab14a5" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>HF_MALLOC_TAG_NEW</name></member>
+      <member refid="class_hd_st_basis_curves_1a46951d84c88bbc389c0ce4f1f6194d95ac9aeed4de761670792b32ebc62d4ac56" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>HullTopology</name></member>
+      <member refid="class_hd_rprim_1af62f2311f5580ddc32ecd571a0f559d4" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>InitRepr</name></member>
+      <member refid="class_hd_st_basis_curves_1a46951d84c88bbc389c0ce4f1f6194d95ae5768758878aa52064b4fa5f45a5e0b1" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>InstancePrimvar</name></member>
+      <member refid="class_hd_rprim_1a894cef8181ed5adf7abc88616c3a8e94" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>IsDirty</name></member>
+      <member refid="class_hd_basis_curves_1a28ad141666291ba3e8b0daa5264907a8" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>IsEnabledForceRefinedCurves</name></member>
+      <member refid="class_hd_rprim_1a638cd13b75c2dd9d1ccd84e9dd311d6f" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>IsVisible</name></member>
+      <member refid="class_hd_st_basis_curves_1a46951d84c88bbc389c0ce4f1f6194d95ab5353a545c31a7aa0875aa357db520a2" prot="private" virt="non-virtual"><scope>HdStBasisCurves</scope><name>PointsTopology</name></member>
+      <member refid="class_hd_rprim_1af80a9b6a6565e86769cf248698122958" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>PropagateRprimDirtyBits</name></member>
+      <member refid="class_hd_rprim_1a9fc27f601b7bb56ab9f7c62f76bcb6fb" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>SetMaterialId</name></member>
+      <member refid="class_hd_rprim_1a348af2854c0f8c81d848ed55795a1751" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>SetPrimId</name></member>
+      <member refid="class_hd_st_basis_curves_1a072a970822c6880f78f513372dab87c2" prot="public" virt="virtual"><scope>HdStBasisCurves</scope><name>Sync</name></member>
+      <member refid="class_hd_st_basis_curves_1a1dd447a19bfb779147fe23a7cd152852" prot="public" virt="virtual"><scope>HdStBasisCurves</scope><name>UpdateRenderTag</name></member>
+      <member refid="class_hd_rprim_1af70add9253213db0665940375da392a0" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>UpdateReprSelector</name></member>
+      <member refid="class_hd_basis_curves_1a9a1c45cdccd44f8099a94e1f99217537" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>~HdBasisCurves</name></member>
+      <member refid="class_hd_rprim_1a84054b7edae1ba797c1bd4f8b121001c" prot="public" virt="virtual"><scope>HdStBasisCurves</scope><name>~HdRprim</name></member>
+      <member refid="class_hd_st_basis_curves_1abd55b8267de00367c736267a6a9eebf7" prot="public" virt="non-virtual"><scope>HdStBasisCurves</scope><name>~HdStBasisCurves</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_retained_sampled_data_source" kind="class" language="C++" prot="public">
+    <compoundname>HdRetainedSampledDataSource</compoundname>
+    <basecompoundref refid="class_hd_sampled_data_source" prot="public" virt="non-virtual">HdSampledDataSource</basecompoundref>
+    <includes refid="retained_data_source_8h" local="no">retainedDataSource.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_retained_sampled_data_source_1af34e7f29af04cd10894849720ef3505e" prot="private" static="no" mutable="no">
+        <type><ref refid="class_vt_value" kindref="compound">VtValue</ref></type>
+        <definition>VtValue _value</definition>
+        <argsstring></argsstring>
+        <name>_value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/retainedDataSource.h" line="151" column="1" bodyfile="pxr/imaging/hd/retainedDataSource.h" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_retained_sampled_data_source_1a87cee14b9ad9f1b02bd298b9bf2504a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HD_DECLARE_DATASOURCE</definition>
+        <argsstring>(HdRetainedSampledDataSource)</argsstring>
+        <name>HD_DECLARE_DATASOURCE</name>
+        <param>
+          <type><ref refid="class_hd_retained_sampled_data_source" kindref="compound">HdRetainedSampledDataSource</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/retainedDataSource.h" line="132" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_retained_sampled_data_source_1a6b2232293fcf4ee52db8ed10aa6889ec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>HdRetainedSampledDataSource</definition>
+        <argsstring>(VtValue value)</argsstring>
+        <name>HdRetainedSampledDataSource</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref></type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/retainedDataSource.h" line="134" column="1" bodyfile="pxr/imaging/hd/retainedDataSource.h" bodystart="134" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_retained_sampled_data_source_1a904c024c50ddeb48c0c3ee329e7aa90f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>bool GetContributingSampleTimesForInterval</definition>
+        <argsstring>(HdSampledDataSource::Time startTime, HdSampledDataSource::Time endTime, std::vector&lt; HdSampledDataSource::Time &gt; *outSampleTimes) override</argsstring>
+        <name>GetContributingSampleTimesForInterval</name>
+        <reimplements refid="class_hd_sampled_data_source_1a17a23ccc6cb474a40ed846bb17aabeee">GetContributingSampleTimesForInterval</reimplements>
+        <param>
+          <type>HdSampledDataSource::Time</type>
+          <declname>startTime</declname>
+        </param>
+        <param>
+          <type>HdSampledDataSource::Time</type>
+          <declname>endTime</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; HdSampledDataSource::Time &gt; *</type>
+          <declname>outSampleTimes</declname>
+        </param>
+        <briefdescription>
+<para>Given a shutter window of interest (<computeroutput>startTime</computeroutput> and <computeroutput>endTime</computeroutput> relative to the current frame), return a list of sample times for the caller to query with GetValue such that the caller can reconstruct the signal over the shutter window. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For a sample-based attribute, this might be a list of times when samples are defined. For a procedural scene, this might be a generated distribution. Note that the returned samples don&apos;t need to be within <computeroutput>startTime</computeroutput> and <computeroutput>endTime</computeroutput>; if a boundary sample is outside of the window, implementers can return it, and callers should expect it and interpolate to <computeroutput>startTime</computeroutput> or <computeroutput>endTime</computeroutput> accordingly. If this call returns <computeroutput>true</computeroutput>, the caller is expected to pass the list of <computeroutput>outSampleTimes</computeroutput> to <computeroutput>GetValue</computeroutput>. If this call returns <computeroutput>false</computeroutput>, this value is uniform across the shutter window and the caller should call <computeroutput>GetValue(0)</computeroutput> to get that uniform value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/retainedDataSource.h" line="137" column="1" bodyfile="pxr/imaging/hd/retainedDataSource.h" bodystart="137" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_retained_sampled_data_source_1ad46d3dd1284d588fe6d666dc3595549a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="class_vt_value" kindref="compound">VtValue</ref></type>
+        <definition>VtValue GetValue</definition>
+        <argsstring>(HdSampledDataSource::Time shutterOffset) override</argsstring>
+        <name>GetValue</name>
+        <reimplements refid="class_hd_sampled_data_source_1a19e689a8b66b0574a6b9d2d805ba7a49">GetValue</reimplements>
+        <param>
+          <type>HdSampledDataSource::Time</type>
+          <declname>shutterOffset</declname>
+        </param>
+        <briefdescription>
+<para>Returns the value of this data source at frame-relative time <computeroutput>shutterOffset</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The caller does not track the frame; the scene index producing this datasource is responsible for that, if applicable. Note that, although this call returns a <ref refid="class_vt_value" kindref="compound">VtValue</ref> for each shutter offset, the type of the held value is expected to be the same across all shutter offsets. This call is expected to be threadsafe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/retainedDataSource.h" line="145" column="1" bodyfile="pxr/imaging/hd/retainedDataSource.h" bodystart="145" bodyend="148"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A retained data source for sampled data. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Typically used when the data needs to be locally stored and cut off from any backing scene data. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2649">
+        <label>HdRetainedSampledDataSource</label>
+        <link refid="class_hd_retained_sampled_data_source"/>
+        <childnode refid="2650" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2650">
+        <label>HdSampledDataSource</label>
+        <link refid="class_hd_sampled_data_source"/>
+        <childnode refid="2651" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2651">
+        <label>HdDataSourceBase</label>
+        <link refid="class_hd_data_source_base"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2652">
+        <label>HdRetainedSampledDataSource</label>
+        <link refid="class_hd_retained_sampled_data_source"/>
+        <childnode refid="2653" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2653">
+        <label>HdSampledDataSource</label>
+        <link refid="class_hd_sampled_data_source"/>
+        <childnode refid="2654" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2654">
+        <label>HdDataSourceBase</label>
+        <link refid="class_hd_data_source_base"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/hd/retainedDataSource.h" line="130" column="1" bodyfile="pxr/imaging/hd/retainedDataSource.h" bodystart="129" bodyend="152"/>
+    <listofallmembers>
+      <member refid="class_hd_retained_sampled_data_source_1af34e7f29af04cd10894849720ef3505e" prot="private" virt="non-virtual"><scope>HdRetainedSampledDataSource</scope><name>_value</name></member>
+      <member refid="class_hd_retained_sampled_data_source_1a904c024c50ddeb48c0c3ee329e7aa90f" prot="public" virt="virtual"><scope>HdRetainedSampledDataSource</scope><name>GetContributingSampleTimesForInterval</name></member>
+      <member refid="class_hd_retained_sampled_data_source_1ad46d3dd1284d588fe6d666dc3595549a" prot="public" virt="virtual"><scope>HdRetainedSampledDataSource</scope><name>GetValue</name></member>
+      <member refid="class_hd_retained_sampled_data_source_1a87cee14b9ad9f1b02bd298b9bf2504a0" prot="public" virt="non-virtual"><scope>HdRetainedSampledDataSource</scope><name>HD_DECLARE_DATASOURCE</name></member>
+      <member refid="class_hd_sampled_data_source_1ab45d96827fd60e3b9c4ad6c1b4ffa250" prot="public" virt="non-virtual"><scope>HdRetainedSampledDataSource</scope><name>HD_DECLARE_DATASOURCE_ABSTRACT</name></member>
+      <member refid="class_hd_retained_sampled_data_source_1a6b2232293fcf4ee52db8ed10aa6889ec" prot="public" virt="non-virtual"><scope>HdRetainedSampledDataSource</scope><name>HdRetainedSampledDataSource</name></member>
+      <member refid="class_hd_sampled_data_source_1a851a90f0e02e0b08bf020cf30571437f" prot="public" virt="non-virtual"><scope>HdRetainedSampledDataSource</scope><name>Time</name></member>
+      <member refid="class_hd_data_source_base_1a0e9f38acfe7894ade111a24f131b37f8" prot="public" virt="pure-virtual"><scope>HdRetainedSampledDataSource</scope><name>~HdDataSourceBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,26 @@
+var class_usd_geom_primvars_a_p_i =
+[
+    [ "UsdGeomPrimvarsAPI", "class_usd_geom_primvars_a_p_i.html#ae1f859bd4810b8a11817840c2c0af5f1", null ],
+    [ "UsdGeomPrimvarsAPI", "class_usd_geom_primvars_a_p_i.html#abcc2ab1157e631046af6967af9c7112d", null ],
+    [ "~UsdGeomPrimvarsAPI", "class_usd_geom_primvars_a_p_i.html#a49bfa477f4822edca31f21d15c35bd3a", null ],
+    [ "_GetSchemaKind", "class_usd_geom_primvars_a_p_i.html#a71a1af4672754da617b8cb537f29c5f4", null ],
+    [ "BlockPrimvar", "class_usd_geom_primvars_a_p_i.html#a198ea4ab120a58a5ce8efb92e94e9865", null ],
+    [ "CreateIndexedPrimvar", "class_usd_geom_primvars_a_p_i.html#a56895335e37f04c41ef0e22eb4d198f9", null ],
+    [ "CreateNonIndexedPrimvar", "class_usd_geom_primvars_a_p_i.html#aedcab17785ff140d9c56911ad8057eb0", null ],
+    [ "CreatePrimvar", "class_usd_geom_primvars_a_p_i.html#a59951bef1e28f830ea5f5f1b1316ec73", null ],
+    [ "FindIncrementallyInheritablePrimvars", "class_usd_geom_primvars_a_p_i.html#a5fa330ba82f72c4af813981c5ad59259", null ],
+    [ "FindInheritablePrimvars", "class_usd_geom_primvars_a_p_i.html#a8659e3cb48f72bf95dcd32c7544969d3", null ],
+    [ "FindPrimvarsWithInheritance", "class_usd_geom_primvars_a_p_i.html#a9cfe5c5531e1cec294f116e6443ba881", null ],
+    [ "FindPrimvarsWithInheritance", "class_usd_geom_primvars_a_p_i.html#a8c0451e06ba484b89c1426cac61e93d7", null ],
+    [ "FindPrimvarWithInheritance", "class_usd_geom_primvars_a_p_i.html#a72a60117c872e73301f56cf99925ef6e", null ],
+    [ "FindPrimvarWithInheritance", "class_usd_geom_primvars_a_p_i.html#a4e6eed782d1445c4c5f070ae6897946a", null ],
+    [ "GetAuthoredPrimvars", "class_usd_geom_primvars_a_p_i.html#abf9c7c40bc82fd443d6238e864ee6cfe", null ],
+    [ "GetPrimvar", "class_usd_geom_primvars_a_p_i.html#a31461d541ad7dec79af013e6d3070f59", null ],
+    [ "GetPrimvars", "class_usd_geom_primvars_a_p_i.html#a7b17c4b3c0b6c13fbbb6d406f9971814", null ],
+    [ "GetPrimvarsWithAuthoredValues", "class_usd_geom_primvars_a_p_i.html#a7c03c7d56921f1e334f2fffaec0ee424", null ],
+    [ "GetPrimvarsWithValues", "class_usd_geom_primvars_a_p_i.html#a0677499a4e9974d9f98ace9bb0ab5572", null ],
+    [ "HasPossiblyInheritedPrimvar", "class_usd_geom_primvars_a_p_i.html#aafb9c5666e00d2c9a8cc4de9b2e41f09", null ],
+    [ "HasPrimvar", "class_usd_geom_primvars_a_p_i.html#adabc5552fd9486884055f2b1527d481b", null ],
+    [ "RemovePrimvar", "class_usd_geom_primvars_a_p_i.html#a7e2a6d6f547f71c136ed7825e33e78b9", null ],
+    [ "UsdSchemaRegistry", "class_usd_geom_primvars_a_p_i.html#aff8b8d83211f127c6c4cba48fb7d3334", null ]
+];

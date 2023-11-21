@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_embree_constant_sampler" kind="class" language="C++" prot="public">
+    <compoundname>HdEmbreeConstantSampler</compoundname>
+    <basecompoundref refid="class_hd_embree_primvar_sampler" prot="public" virt="non-virtual">HdEmbreePrimvarSampler</basecompoundref>
+    <includes refid="mesh_samplers_8h" local="no">meshSamplers.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_embree_constant_sampler_1ae0eca215b9bf8f4379a9a9e8bb9101bd" prot="private" static="no" mutable="no">
+        <type><ref refid="class_hd_vt_buffer_source" kindref="compound">HdVtBufferSource</ref> const</type>
+        <definition>HdVtBufferSource const _buffer</definition>
+        <argsstring></argsstring>
+        <name>_buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/meshSamplers.h" line="107" column="1" bodyfile="pxr/imaging/hdEmbree/meshSamplers.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_embree_constant_sampler_1aa185f9fa7f064d55b2953a593905f942" prot="private" static="no" mutable="no">
+        <type><ref refid="class_hd_embree_buffer_sampler" kindref="compound">HdEmbreeBufferSampler</ref> const</type>
+        <definition>HdEmbreeBufferSampler const _sampler</definition>
+        <argsstring></argsstring>
+        <name>_sampler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/meshSamplers.h" line="108" column="1" bodyfile="pxr/imaging/hdEmbree/meshSamplers.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_embree_constant_sampler_1a6ff8c92b32856914759034c597b3450f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>HdEmbreeConstantSampler</definition>
+        <argsstring>(TfToken const &amp;name, VtValue const &amp;value)</argsstring>
+        <name>HdEmbreeConstantSampler</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the primvar. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The buffer data for the primvar. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/meshSamplers.h" line="89" column="1" bodyfile="pxr/imaging/hdEmbree/meshSamplers.h" bodystart="89" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_embree_constant_sampler_1aaf0d4c42b1b0fa03f3fb9065b3cc67ed" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool Sample</definition>
+        <argsstring>(unsigned int element, float u, float v, void *value, HdTupleType dataType) const</argsstring>
+        <name>Sample</name>
+        <reimplements refid="class_hd_embree_primvar_sampler_1a802e907ebae62500c9d89935cf0e1b73">Sample</reimplements>
+        <param>
+          <type>unsigned int</type>
+          <declname>element</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>u</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_hd_tuple_type" kindref="compound">HdTupleType</ref></type>
+          <declname>dataType</declname>
+        </param>
+        <briefdescription>
+<para>Sample the primvar at an (element, u, v) location. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For constant primvars, the buffer only contains one item, so we always return that item. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The element index to sample. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The u coordinate to sample. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The v coordinate to sample. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The memory to write the value to (only written on success). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dataType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="struct_hd_tuple_type" kindref="compound">HdTupleType</ref> describing element values. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the value was successfully sampled. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/meshSamplers.h" line="103" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This class implements the <ref refid="class_hd_embree_primvar_sampler" kindref="compound">HdEmbreePrimvarSampler</ref> interface for primvars with &quot;constant&quot; interpolation mode. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This means that the buffer only has one item, which should be returned for any (element, u, v) tuple. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1843">
+        <label>HdEmbreeConstantSampler</label>
+        <link refid="class_hd_embree_constant_sampler"/>
+        <childnode refid="1844" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1844">
+        <label>HdEmbreePrimvarSampler</label>
+        <link refid="class_hd_embree_primvar_sampler"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1845">
+        <label>HdEmbreeConstantSampler</label>
+        <link refid="class_hd_embree_constant_sampler"/>
+        <childnode refid="1846" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1846">
+        <label>HdEmbreePrimvarSampler</label>
+        <link refid="class_hd_embree_primvar_sampler"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/hdEmbree/meshSamplers.h" line="84" column="1" bodyfile="pxr/imaging/hdEmbree/meshSamplers.h" bodystart="84" bodyend="109"/>
+    <listofallmembers>
+      <member refid="class_hd_embree_constant_sampler_1ae0eca215b9bf8f4379a9a9e8bb9101bd" prot="private" virt="non-virtual"><scope>HdEmbreeConstantSampler</scope><name>_buffer</name></member>
+      <member refid="class_hd_embree_primvar_sampler_1aefb47f670c75f7d9684c3316dd287795" prot="protected" virt="non-virtual"><scope>HdEmbreeConstantSampler</scope><name>_Interpolate</name></member>
+      <member refid="class_hd_embree_constant_sampler_1aa185f9fa7f064d55b2953a593905f942" prot="private" virt="non-virtual"><scope>HdEmbreeConstantSampler</scope><name>_sampler</name></member>
+      <member refid="class_hd_embree_constant_sampler_1a6ff8c92b32856914759034c597b3450f" prot="public" virt="non-virtual"><scope>HdEmbreeConstantSampler</scope><name>HdEmbreeConstantSampler</name></member>
+      <member refid="class_hd_embree_primvar_sampler_1ac3f3cf2a94560360b7c243122e1c3a08" prot="public" virt="non-virtual"><scope>HdEmbreeConstantSampler</scope><name>HdEmbreePrimvarSampler</name></member>
+      <member refid="class_hd_embree_constant_sampler_1aaf0d4c42b1b0fa03f3fb9065b3cc67ed" prot="public" virt="virtual"><scope>HdEmbreeConstantSampler</scope><name>Sample</name></member>
+      <member refid="class_hd_embree_primvar_sampler_1aacc1550f570db3c4f60230b765cb0541" prot="public" virt="non-virtual" ambiguityscope="HdEmbreePrimvarSampler::"><scope>HdEmbreeConstantSampler</scope><name>Sample</name></member>
+      <member refid="class_hd_embree_primvar_sampler_1a1b1c3421b0be4ecd123b2cb41e4d535b" prot="public" virt="virtual"><scope>HdEmbreeConstantSampler</scope><name>~HdEmbreePrimvarSampler</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="group__group__arch___multithreading" kind="group">
+    <compoundname>group_arch_Multithreading</compoundname>
+    <title>Multithreading</title>
+    <innerfile refid="daemon_8h">daemon.h</innerfile>
+    <innerfile refid="arch_2threads_8h">threads.h</innerfile>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__group__arch___multithreading_1ga391d9b859b6f855f79ef6e071f362067" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ARCH_API int</type>
+        <definition>ARCH_API int ArchCloseAllFiles</definition>
+        <argsstring>(int nExcept, const int *exceptFds)</argsstring>
+        <name>ArchCloseAllFiles</name>
+        <param>
+          <type>int</type>
+          <declname>nExcept</declname>
+        </param>
+        <param>
+          <type>const int *</type>
+          <declname>exceptFds</declname>
+        </param>
+        <briefdescription>
+<para>Close all file descriptors (with possible exceptions) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>ArchCloseAllFiles</computeroutput> will close all file descriptors open in the current process. Occasionally you&apos;d like to close all files except for some small subset (like 0, 1, and 2). The <computeroutput>nExcept</computeroutput> and <computeroutput>exceptFds</computeroutput> arguments can be used to provide the list of exceptions. <computeroutput>ArchDaemonizeProcess</computeroutput> uses this method to close all unwanted file descriptors in the daemon process.</para>
+<para><computeroutput>nExcept</computeroutput> should be the number of elements in the <computeroutput>exceptFds</computeroutput> array. Invalid file descriptors in exceptFds are ignored.</para>
+<para><simplesect kind="note"><para>Be <bold>very</bold> careful when using this routine. It is intended to be used after a <computeroutput>fork(2)</computeroutput> call to close <bold>all</bold> unwanted file descriptors. However, it does not flush stdio buffers, wait for processes opened with popen, shut down the X11 display connection, or anything. It just slams closed all the file descriptors. This is appropriate following a <computeroutput>fork(2)</computeroutput> call as all these file descriptors are duplicates of the ones in the parent process and shutting down the X11 display connection would mess up the parent&apos;s X11 display. But you shouldn&apos;t use <computeroutput>ArchCloseAllFiles</computeroutput> unless you know what you are doing.</para>
+</simplesect>
+<simplesect kind="return"><para>-1 on error and <computeroutput>errno</computeroutput> will be set to an appropriate value. Returns 0 on success. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/daemon.h" line="64" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__arch___multithreading_1ga8a56185021f0996fe90d65b9032dcb54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ARCH_API bool</type>
+        <definition>ARCH_API bool ArchIsMainThread</definition>
+        <argsstring>()</argsstring>
+        <name>ArchIsMainThread</name>
+        <briefdescription>
+<para>Return true if the calling thread is the main thread, false otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/threads.h" line="47" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Functions having to do with multithreading. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,895 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_tf_diagnostic_mgr" kind="class" language="C++" prot="public">
+    <compoundname>TfDiagnosticMgr</compoundname>
+    <basecompoundref refid="class_tf_weak_base" prot="public" virt="non-virtual">TfWeakBase</basecompoundref>
+    <includes refid="diagnostic_mgr_8h" local="no">diagnosticMgr.h</includes>
+    <innerclass refid="struct_tf_diagnostic_mgr_1_1___log_text" prot="private">TfDiagnosticMgr::_LogText</innerclass>
+    <innerclass refid="class_tf_diagnostic_mgr_1_1_delegate" prot="public">TfDiagnosticMgr::Delegate</innerclass>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_tf_diagnostic_mgr_1a6c3f6d6081e8df7063d60db05c1c90da" prot="public" static="no">
+        <type><ref refid="class_tf_diagnostic_mgr" kindref="compound">TfDiagnosticMgr</ref></type>
+        <definition>typedef TfDiagnosticMgr This</definition>
+        <argsstring></argsstring>
+        <name>This</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="74" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_tf_diagnostic_mgr_1a05a65caeb81e5a1c1c80c6fc1b792906" prot="public" static="no">
+        <type>std::list&lt; <ref refid="class_tf_error" kindref="compound">TfError</ref> &gt;</type>
+        <definition>typedef std::list&lt;TfError&gt; ErrorList</definition>
+        <argsstring></argsstring>
+        <name>ErrorList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="76" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_tf_diagnostic_mgr_1aebfc293adf0bdea39fc3ef0e858561b3" prot="public" static="no">
+        <type>ErrorList::iterator</type>
+        <definition>typedef ErrorList::iterator ErrorIterator</definition>
+        <argsstring></argsstring>
+        <name>ErrorIterator</name>
+        <briefdescription>
+<para>Synonym for standard STL iterator to traverse the error list. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The error list for a thread is an STL list. The <computeroutput>ErrorIterator</computeroutput> type is an STL iterator and can be used without restriction in any way that it is legal to use an STL iterator.</para>
+<para>Given an iterator, one accesses the error in the standard STL fashion: <programlisting><codeline><highlight class="normal">TfErrorMark<sp/>m;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">...<sp/>;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(!m.IsClean())<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TfErrorMark::Iterator<sp/>i;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(i<sp/>=<sp/>m.GetBegin();<sp/>i<sp/>!=<sp/>m.GetEnd();<sp/>++i)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/>&quot;file<sp/>=<sp/>&quot;<sp/>&lt;&lt;<sp/>i-&gt;GetSourceFileName()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>&quot;line<sp/>=<sp/>&quot;<sp/>&lt;&lt;<sp/>i-&gt;GetSourceLineNumber()<sp/>&lt;&lt;<sp/>&quot;\n&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="96" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_tf_diagnostic_mgr_1ac443fd49c9ab99cbc65050761db08863" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class TfSingleton&lt; This &gt;</definition>
+        <argsstring></argsstring>
+        <name>TfSingleton&lt; This &gt;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="395" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="396" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_tf_diagnostic_mgr_1a0bce966381772c1315d4ea1e080f018b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class TfError</definition>
+        <argsstring></argsstring>
+        <name>TfError</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="465" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="465" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_tf_diagnostic_mgr_1adaa9077caab86eea9e90d9e08390dbb0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class TfErrorTransport</definition>
+        <argsstring></argsstring>
+        <name>TfErrorTransport</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="466" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="466" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_tf_diagnostic_mgr_1abf35913dc33f1379907a1caa1ed1613a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class TfErrorMark</definition>
+        <argsstring></argsstring>
+        <name>TfErrorMark</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="467" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="467" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_tf_diagnostic_mgr_1a97a30f9e29c7b75c7c10abafd9c83ec2" prot="private" static="no" mutable="yes">
+        <type>tbb::enumerable_thread_specific&lt; bool &gt;</type>
+        <definition>tbb::enumerable_thread_specific&lt;bool&gt; _reentrantGuard</definition>
+        <argsstring></argsstring>
+        <name>_reentrantGuard</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="430" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="430" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_tf_diagnostic_mgr_1ad15da35ad31316a45bf115f509e6fff1" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_tf_diagnostic_mgr_1_1_delegate" kindref="compound">Delegate</ref> * &gt;</type>
+        <definition>std::vector&lt;Delegate*&gt; _delegates</definition>
+        <argsstring></argsstring>
+        <name>_delegates</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="433" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="433" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_tf_diagnostic_mgr_1af676539d7e15c3f02db3930086d2fe26" prot="private" static="no" mutable="yes">
+        <type>tbb::spin_rw_mutex</type>
+        <definition>tbb::spin_rw_mutex _delegatesMutex</definition>
+        <argsstring></argsstring>
+        <name>_delegatesMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="435" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="435" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_tf_diagnostic_mgr_1af07d1c61118ae2afd3e61f030adcef4a" prot="private" static="no" mutable="no">
+        <type>std::atomic&lt; size_t &gt;</type>
+        <definition>std::atomic&lt;size_t&gt; _nextSerial</definition>
+        <argsstring></argsstring>
+        <name>_nextSerial</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="438" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="438" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_tf_diagnostic_mgr_1af4b956015a93e250b7ff5ce906722fc7" prot="private" static="no" mutable="no">
+        <type>tbb::enumerable_thread_specific&lt; ErrorList &gt;</type>
+        <definition>tbb::enumerable_thread_specific&lt;ErrorList&gt; _errorList</definition>
+        <argsstring></argsstring>
+        <name>_errorList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="441" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="441" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_tf_diagnostic_mgr_1ad2629998e63c2f420c6afea1ae1e0a01" prot="private" static="no" mutable="no">
+        <type>tbb::enumerable_thread_specific&lt; _LogText &gt;</type>
+        <definition>tbb::enumerable_thread_specific&lt;_LogText&gt; _logText</definition>
+        <argsstring></argsstring>
+        <name>_logText</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="455" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="455" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_tf_diagnostic_mgr_1a70ec834df403970417ec976620698a7b" prot="private" static="no" mutable="no">
+        <type>tbb::enumerable_thread_specific&lt; size_t, tbb::cache_aligned_allocator&lt; size_t &gt;, tbb::ets_key_per_instance &gt;</type>
+        <definition>tbb::enumerable_thread_specific&lt; size_t, tbb::cache_aligned_allocator&lt;size_t&gt;, tbb::ets_key_per_instance&gt; _errorMarkCounts</definition>
+        <argsstring></argsstring>
+        <name>_errorMarkCounts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="461" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="461" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_tf_diagnostic_mgr_1a672734405861af56a9fa9d3010ea68f9" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _quiet</definition>
+        <argsstring></argsstring>
+        <name>_quiet</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="463" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="463" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1af9a9a6792ee1ee8cf777f1066fdd9493" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>static TF_API std::string GetCodeName</definition>
+        <argsstring>(const TfEnum &amp;code)</argsstring>
+        <name>GetCodeName</name>
+        <param>
+          <type>const <ref refid="class_tf_enum" kindref="compound">TfEnum</ref> &amp;</type>
+          <declname>code</declname>
+        </param>
+        <briefdescription>
+<para>Returns the name of the given diagnostic code. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="100" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1af08ce7e61fa2d27abebab215930b4855" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>static TF_API std::string FormatDiagnostic</definition>
+        <argsstring>(const TfEnum &amp;code, const TfCallContext &amp;context, const std::string &amp;msg, const TfDiagnosticInfo &amp;info)</argsstring>
+        <name>FormatDiagnostic</name>
+        <param>
+          <type>const <ref refid="class_tf_enum" kindref="compound">TfEnum</ref> &amp;</type>
+          <declname>code</declname>
+        </param>
+        <param>
+          <type>const TfCallContext &amp;</type>
+          <declname>context</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <param>
+          <type>const TfDiagnosticInfo &amp;</type>
+          <declname>info</declname>
+        </param>
+        <briefdescription>
+<para>Return a human-readable diagnostic message. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The <ref refid="class_tf_diagnostic_mgr" kindref="compound">TfDiagnosticMgr</ref> uses this function to print diagnostics when no diagnostic delegates are installed. Diagnostic delegate implementations can call this to produce messages in the same format, if desired. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="107" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1ae18594af10c21320658ea776d62e7a03" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_diagnostic_mgr" kindref="compound">This</ref> &amp;</type>
+        <definition>static TF_API This&amp; GetInstance</definition>
+        <argsstring>()</argsstring>
+        <name>GetInstance</name>
+        <briefdescription>
+<para>Return the singleton instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="156" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="156" bodyend="158"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1a11a9c86a14925f7c31bba729cb429f8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void AddDelegate</definition>
+        <argsstring>(Delegate *delegate)</argsstring>
+        <name>AddDelegate</name>
+        <param>
+          <type><ref refid="class_tf_diagnostic_mgr_1_1_delegate" kindref="compound">Delegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <briefdescription>
+<para>Add the delegate <computeroutput>delegate</computeroutput> to the list of current delegates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This will add the delegate even if it already exists in the list.</para>
+<para>Each delegate will be called when diagnostics and errors are invoked</para>
+<para>This function is thread safe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="168" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1a02c92dbdd3eba74cf817c5269dadeb9d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void RemoveDelegate</definition>
+        <argsstring>(Delegate *delegate)</argsstring>
+        <name>RemoveDelegate</name>
+        <param>
+          <type><ref refid="class_tf_diagnostic_mgr_1_1_delegate" kindref="compound">Delegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <briefdescription>
+<para>Removes all delegates equal to <computeroutput>delegate</computeroutput> from the current delegates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is thread safe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="174" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1a2d0ba6f723efbbaf893e2d1063c99674" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void SetQuiet</definition>
+        <argsstring>(bool quiet)</argsstring>
+        <name>SetQuiet</name>
+        <param>
+          <type>bool</type>
+          <declname>quiet</declname>
+        </param>
+        <briefdescription>
+<para>Set whether errors, warnings and status messages should be printed out to the terminal. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="179" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="179" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1af7f98b05ff98d4059db2b1b73584fb33" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_diagnostic_mgr_1aebfc293adf0bdea39fc3ef0e858561b3" kindref="member">ErrorIterator</ref></type>
+        <definition>ErrorIterator GetErrorBegin</definition>
+        <argsstring>()</argsstring>
+        <name>GetErrorBegin</name>
+        <briefdescription>
+<para>Return an iterator to the beginning of this thread&apos;s error list. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="182" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="182" bodyend="182"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1a6958bc575fe7141f9fb6183047d6e5fa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_diagnostic_mgr_1aebfc293adf0bdea39fc3ef0e858561b3" kindref="member">ErrorIterator</ref></type>
+        <definition>ErrorIterator GetErrorEnd</definition>
+        <argsstring>()</argsstring>
+        <name>GetErrorEnd</name>
+        <briefdescription>
+<para>Return an iterator to the end of this thread&apos;s error list. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="185" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="185" bodyend="185"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1a504524cc789a51f0e071253f9377c3c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_diagnostic_mgr_1aebfc293adf0bdea39fc3ef0e858561b3" kindref="member">ErrorIterator</ref></type>
+        <definition>TF_API ErrorIterator EraseError</definition>
+        <argsstring>(ErrorIterator i)</argsstring>
+        <name>EraseError</name>
+        <param>
+          <type><ref refid="class_tf_diagnostic_mgr_1aebfc293adf0bdea39fc3ef0e858561b3" kindref="member">ErrorIterator</ref></type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Remove error specified by iterator <computeroutput>i</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000057"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Use <ref refid="class_tf_error_mark" kindref="compound">TfErrorMark</ref> instead. </para>
+</xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="190" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1abaddf8600318038ae3a521a25d0cd8bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_diagnostic_mgr_1aebfc293adf0bdea39fc3ef0e858561b3" kindref="member">ErrorIterator</ref></type>
+        <definition>TF_API ErrorIterator EraseRange</definition>
+        <argsstring>(ErrorIterator first, ErrorIterator last)</argsstring>
+        <name>EraseRange</name>
+        <param>
+          <type><ref refid="class_tf_diagnostic_mgr_1aebfc293adf0bdea39fc3ef0e858561b3" kindref="member">ErrorIterator</ref></type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_diagnostic_mgr_1aebfc293adf0bdea39fc3ef0e858561b3" kindref="member">ErrorIterator</ref></type>
+          <declname>last</declname>
+        </param>
+        <briefdescription>
+<para>Remove all the errors in [first, last) from this thread&apos;s error stream. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This should generally not be invoked directly. Use <ref refid="class_tf_error_mark" kindref="compound">TfErrorMark</ref> instead. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="196" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1a9e9465b182bff262fbe72a1b271248d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void AppendError</definition>
+        <argsstring>(TfError const &amp;e)</argsstring>
+        <name>AppendError</name>
+        <param>
+          <type><ref refid="class_tf_error" kindref="compound">TfError</ref> const &amp;</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+<para>Append an error to the list of active errors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is generally not meant to be called by user code. It is public so that the system which translates tf errors to and from python exceptions can manage errors. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="203" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1a4b1e71bffa7a2ab989951d13feee4433" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void PostError</definition>
+        <argsstring>(TfEnum errorCode, const char *errorCodeString, TfCallContext const &amp;context, const std::string &amp;commentary, TfDiagnosticInfo info, bool quiet)</argsstring>
+        <name>PostError</name>
+        <param>
+          <type><ref refid="class_tf_enum" kindref="compound">TfEnum</ref></type>
+          <declname>errorCode</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>errorCodeString</declname>
+        </param>
+        <param>
+          <type>TfCallContext const &amp;</type>
+          <declname>context</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>commentary</declname>
+        </param>
+        <param>
+          <type>TfDiagnosticInfo</type>
+          <declname>info</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>quiet</declname>
+        </param>
+        <briefdescription>
+<para>This method will create a <ref refid="class_tf_error" kindref="compound">TfError</ref>, append it to the error list, and pass it to all delegates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no delegates have been registered and no error mark is active, this method will print the error to stderr. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="211" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1a08cb10c8a24dc667b2396a45d665466a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void PostError</definition>
+        <argsstring>(const TfDiagnosticBase &amp;diagnostic)</argsstring>
+        <name>PostError</name>
+        <param>
+          <type>const <ref refid="class_tf_diagnostic_base" kindref="compound">TfDiagnosticBase</ref> &amp;</type>
+          <declname>diagnostic</declname>
+        </param>
+        <briefdescription>
+<para>This method will create a <ref refid="class_tf_error" kindref="compound">TfError</ref>, append it to the error list, and pass it to all delegates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no delegates have been registered and no error mark is active, this method will print the error to stderr. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="222" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1a758242c0fa02630fb717db060d9c7e4c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void PostWarning</definition>
+        <argsstring>(TfEnum warningCode, const char *warningCodeString, TfCallContext const &amp;context, std::string const &amp;commentary, TfDiagnosticInfo info, bool quiet) const</argsstring>
+        <name>PostWarning</name>
+        <param>
+          <type><ref refid="class_tf_enum" kindref="compound">TfEnum</ref></type>
+          <declname>warningCode</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>warningCodeString</declname>
+        </param>
+        <param>
+          <type>TfCallContext const &amp;</type>
+          <declname>context</declname>
+        </param>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>commentary</declname>
+        </param>
+        <param>
+          <type>TfDiagnosticInfo</type>
+          <declname>info</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>quiet</declname>
+        </param>
+        <briefdescription>
+<para>This method will create a <ref refid="class_tf_warning" kindref="compound">TfWarning</ref> and pass it to all delegates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no delegates have been registered, this method will print the warning msg to stderr. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="229" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1acfd11434d6621f741496255ab5a4fb35" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void PostWarning</definition>
+        <argsstring>(const TfDiagnosticBase &amp;diagnostic) const</argsstring>
+        <name>PostWarning</name>
+        <param>
+          <type>const <ref refid="class_tf_diagnostic_base" kindref="compound">TfDiagnosticBase</ref> &amp;</type>
+          <declname>diagnostic</declname>
+        </param>
+        <briefdescription>
+<para>This method will create a <ref refid="class_tf_warning" kindref="compound">TfWarning</ref> and pass it to all delegates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no delegates have been registered, this method will print the warning msg to stderr. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="238" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1adb613cc67cedfe49d77b5c2f265253d9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void PostStatus</definition>
+        <argsstring>(TfEnum statusCode, const char *statusCodeString, TfCallContext const &amp;context, std::string const &amp;commentary, TfDiagnosticInfo info, bool quiet) const</argsstring>
+        <name>PostStatus</name>
+        <param>
+          <type><ref refid="class_tf_enum" kindref="compound">TfEnum</ref></type>
+          <declname>statusCode</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>statusCodeString</declname>
+        </param>
+        <param>
+          <type>TfCallContext const &amp;</type>
+          <declname>context</declname>
+        </param>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>commentary</declname>
+        </param>
+        <param>
+          <type>TfDiagnosticInfo</type>
+          <declname>info</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>quiet</declname>
+        </param>
+        <briefdescription>
+<para>This method will create a <ref refid="class_tf_status" kindref="compound">TfStatus</ref> and pass it to all delegates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no delegates have been registered, this method will print the status msg to stderr. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="245" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1a7677318ec8f44a98af1403039fd4809d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void PostStatus</definition>
+        <argsstring>(const TfDiagnosticBase &amp;diagnostic) const</argsstring>
+        <name>PostStatus</name>
+        <param>
+          <type>const <ref refid="class_tf_diagnostic_base" kindref="compound">TfDiagnosticBase</ref> &amp;</type>
+          <declname>diagnostic</declname>
+        </param>
+        <briefdescription>
+<para>This method will create a <ref refid="class_tf_status" kindref="compound">TfStatus</ref> and pass it to all delegates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no delegates have been registered, this method will print the status msg to stderr. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="254" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1a6562bcdcb67658ef3c560898fecb4488" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void PostFatal</definition>
+        <argsstring>(TfCallContext const &amp;context, TfEnum statusCode, std::string const &amp;msg) const</argsstring>
+        <name>PostFatal</name>
+        <param>
+          <type>TfCallContext const &amp;</type>
+          <declname>context</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_enum" kindref="compound">TfEnum</ref></type>
+          <declname>statusCode</declname>
+        </param>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>This method will issue a fatal error to all delegates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no delegates have been registered, or if none of the delegates abort the process, this method will print the error msg and abort the process. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="262" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1abaeebb085c50ea8b6f8ce34a79acc65f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool HasActiveErrorMark</definition>
+        <argsstring>()</argsstring>
+        <name>HasActiveErrorMark</name>
+        <briefdescription>
+<para>Return true if an instance of <ref refid="class_tf_error_mark" kindref="compound">TfErrorMark</ref> exists in the current thread of execution, false otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="267" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="267" bodyend="267"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1ae9ba6adfc6be47d32179ad94abc2115c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TfDiagnosticMgr</definition>
+        <argsstring>()</argsstring>
+        <name>TfDiagnosticMgr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="394" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1a44d5ce75226c78c5d4efbb77d1b18fde" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual ~TfDiagnosticMgr</definition>
+        <argsstring>()</argsstring>
+        <name>~TfDiagnosticMgr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="395" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1adfbcdeddb30797caede2439700401263" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_diagnostic_mgr_1aebfc293adf0bdea39fc3ef0e858561b3" kindref="member">ErrorIterator</ref></type>
+        <definition>TF_API ErrorIterator _GetErrorMarkBegin</definition>
+        <argsstring>(size_t mark, size_t *nErrors)</argsstring>
+        <name>_GetErrorMarkBegin</name>
+        <param>
+          <type>size_t</type>
+          <declname>mark</declname>
+        </param>
+        <param>
+          <type>size_t *</type>
+          <declname>nErrors</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="401" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1a4b6788ad51807fb1706029a56c5b1145" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _CreateErrorMark</definition>
+        <argsstring>()</argsstring>
+        <name>_CreateErrorMark</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="404" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="404" bodyend="404"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1ae96e015221069a7d12b6657738613fac" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _DestroyErrorMark</definition>
+        <argsstring>()</argsstring>
+        <name>_DestroyErrorMark</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="407" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="407" bodyend="407"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1a8e62473e9161648bfb46c5e5bacefc3c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _ReportError</definition>
+        <argsstring>(const TfError &amp;err)</argsstring>
+        <name>_ReportError</name>
+        <param>
+          <type>const <ref refid="class_tf_error" kindref="compound">TfError</ref> &amp;</type>
+          <declname>err</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="411" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1a0017f5553ed09451c19fa5d82641f0d6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _SpliceErrors</definition>
+        <argsstring>(ErrorList &amp;src)</argsstring>
+        <name>_SpliceErrors</name>
+        <param>
+          <type>ErrorList &amp;</type>
+          <declname>src</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="416" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1a28d9a81a8e64a867f23f510e97fdcbb5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _AppendErrorsToLogText</definition>
+        <argsstring>(ErrorIterator i)</argsstring>
+        <name>_AppendErrorsToLogText</name>
+        <param>
+          <type><ref refid="class_tf_diagnostic_mgr_1aebfc293adf0bdea39fc3ef0e858561b3" kindref="member">ErrorIterator</ref></type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="419" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1ad3d81fa5be7e2401ae5d4f6a032488a5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RebuildErrorLogText</definition>
+        <argsstring>()</argsstring>
+        <name>_RebuildErrorLogText</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="423" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_diagnostic_mgr_1a6e1b6220d539ae801e04cbf1eb47fd7d" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _SetLogInfoForErrors</definition>
+        <argsstring>(std::vector&lt; std::string &gt; const &amp;logText) const</argsstring>
+        <name>_SetLogInfoForErrors</name>
+        <param>
+          <type>std::vector&lt; std::string &gt; const &amp;</type>
+          <declname>logText</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/diagnosticMgr.h" line="426" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Singleton class through which all errors and diagnostics pass. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5378">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="5377">
+        <label>TfDiagnosticMgr</label>
+        <link refid="class_tf_diagnostic_mgr"/>
+        <childnode refid="5378" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5380">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="5379">
+        <label>TfDiagnosticMgr</label>
+        <link refid="class_tf_diagnostic_mgr"/>
+        <childnode refid="5380" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/base/tf/diagnosticMgr.h" line="71" column="1" bodyfile="pxr/base/tf/diagnosticMgr.h" bodystart="71" bodyend="468"/>
+    <listofallmembers>
+      <member refid="class_tf_weak_base_1a01aa4c4b93df067f2ec9b9e5fa4c35b3" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>__GetTfWeakBase__</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a28d9a81a8e64a867f23f510e97fdcbb5" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>_AppendErrorsToLogText</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a4b6788ad51807fb1706029a56c5b1145" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>_CreateErrorMark</name></member>
+      <member refid="class_tf_diagnostic_mgr_1ad15da35ad31316a45bf115f509e6fff1" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>_delegates</name></member>
+      <member refid="class_tf_diagnostic_mgr_1af676539d7e15c3f02db3930086d2fe26" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>_delegatesMutex</name></member>
+      <member refid="class_tf_diagnostic_mgr_1ae96e015221069a7d12b6657738613fac" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>_DestroyErrorMark</name></member>
+      <member refid="class_tf_diagnostic_mgr_1af4b956015a93e250b7ff5ce906722fc7" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>_errorList</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a70ec834df403970417ec976620698a7b" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>_errorMarkCounts</name></member>
+      <member refid="class_tf_diagnostic_mgr_1adfbcdeddb30797caede2439700401263" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>_GetErrorMarkBegin</name></member>
+      <member refid="class_tf_weak_base_1a6a5533162e8efab1be47acd6ccd5254c" prot="protected" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>_HasRemnant</name></member>
+      <member refid="class_tf_diagnostic_mgr_1ad2629998e63c2f420c6afea1ae1e0a01" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>_logText</name></member>
+      <member refid="class_tf_diagnostic_mgr_1af07d1c61118ae2afd3e61f030adcef4a" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>_nextSerial</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a672734405861af56a9fa9d3010ea68f9" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>_quiet</name></member>
+      <member refid="class_tf_diagnostic_mgr_1ad3d81fa5be7e2401ae5d4f6a032488a5" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>_RebuildErrorLogText</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a97a30f9e29c7b75c7c10abafd9c83ec2" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>_reentrantGuard</name></member>
+      <member refid="class_tf_weak_base_1a95139d2f4d04eb706664a4f47eb93918" prot="protected" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>_Register</name></member>
+      <member refid="class_tf_weak_base_1ac1312732482c8a286522f703f2cf90d1" prot="protected" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>_Register</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a8e62473e9161648bfb46c5e5bacefc3c" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>_ReportError</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a6e1b6220d539ae801e04cbf1eb47fd7d" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>_SetLogInfoForErrors</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a0017f5553ed09451c19fa5d82641f0d6" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>_SpliceErrors</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a11a9c86a14925f7c31bba729cb429f8b" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>AddDelegate</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a9e9465b182bff262fbe72a1b271248d1" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>AppendError</name></member>
+      <member refid="class_tf_weak_base_1a16f1e27cc0c7c606ffb397b7d970ed10" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>EnableNotification2</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a504524cc789a51f0e071253f9377c3c5" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>EraseError</name></member>
+      <member refid="class_tf_diagnostic_mgr_1abaddf8600318038ae3a521a25d0cd8bd" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>EraseRange</name></member>
+      <member refid="class_tf_diagnostic_mgr_1aebfc293adf0bdea39fc3ef0e858561b3" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>ErrorIterator</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a05a65caeb81e5a1c1c80c6fc1b792906" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>ErrorList</name></member>
+      <member refid="class_tf_diagnostic_mgr_1af08ce7e61fa2d27abebab215930b4855" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>FormatDiagnostic</name></member>
+      <member refid="class_tf_diagnostic_mgr_1af9a9a6792ee1ee8cf777f1066fdd9493" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>GetCodeName</name></member>
+      <member refid="class_tf_diagnostic_mgr_1af7f98b05ff98d4059db2b1b73584fb33" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>GetErrorBegin</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a6958bc575fe7141f9fb6183047d6e5fa" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>GetErrorEnd</name></member>
+      <member refid="class_tf_diagnostic_mgr_1ae18594af10c21320658ea776d62e7a03" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>GetInstance</name></member>
+      <member refid="class_tf_weak_base_1a3241c32a82fbed0716a77049f6134e1e" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>GetUniqueIdentifier</name></member>
+      <member refid="class_tf_diagnostic_mgr_1abaeebb085c50ea8b6f8ce34a79acc65f" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>HasActiveErrorMark</name></member>
+      <member refid="class_tf_weak_base_1af890ac314073e903458bf6b2397566b5" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>operator=</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a4b1e71bffa7a2ab989951d13feee4433" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>PostError</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a08cb10c8a24dc667b2396a45d665466a" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>PostError</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a6562bcdcb67658ef3c560898fecb4488" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>PostFatal</name></member>
+      <member refid="class_tf_diagnostic_mgr_1adb613cc67cedfe49d77b5c2f265253d9" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>PostStatus</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a7677318ec8f44a98af1403039fd4809d" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>PostStatus</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a758242c0fa02630fb717db060d9c7e4c" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>PostWarning</name></member>
+      <member refid="class_tf_diagnostic_mgr_1acfd11434d6621f741496255ab5a4fb35" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>PostWarning</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a02c92dbdd3eba74cf817c5269dadeb9d" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>RemoveDelegate</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a2d0ba6f723efbbaf893e2d1063c99674" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>SetQuiet</name></member>
+      <member refid="class_tf_diagnostic_mgr_1ae9ba6adfc6be47d32179ad94abc2115c" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>TfDiagnosticMgr</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a0bce966381772c1315d4ea1e080f018b" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>TfError</name></member>
+      <member refid="class_tf_diagnostic_mgr_1abf35913dc33f1379907a1caa1ed1613a" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>TfErrorMark</name></member>
+      <member refid="class_tf_diagnostic_mgr_1adaa9077caab86eea9e90d9e08390dbb0" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>TfErrorTransport</name></member>
+      <member refid="class_tf_diagnostic_mgr_1ac443fd49c9ab99cbc65050761db08863" prot="private" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>TfSingleton&lt; This &gt;</name></member>
+      <member refid="class_tf_weak_base_1a6e4abdd663654f8c8019702a464de8d6" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_weak_base_1affc4c00d0bbfdfe4f9e6a8b2e81be368" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a6c3f6d6081e8df7063d60db05c1c90da" prot="public" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>This</name></member>
+      <member refid="class_tf_diagnostic_mgr_1a44d5ce75226c78c5d4efbb77d1b18fde" prot="private" virt="virtual"><scope>TfDiagnosticMgr</scope><name>~TfDiagnosticMgr</name></member>
+      <member refid="class_tf_weak_base_1a778020f525b66def8a284c6f020592c2" prot="protected" virt="non-virtual"><scope>TfDiagnosticMgr</scope><name>~TfWeakBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

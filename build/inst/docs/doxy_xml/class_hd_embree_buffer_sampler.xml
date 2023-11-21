@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_embree_buffer_sampler" kind="class" language="C++" prot="public">
+    <compoundname>HdEmbreeBufferSampler</compoundname>
+    <includes refid="hd_embree_2sampler_8h" local="no">sampler.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_embree_buffer_sampler_1acee9efba685582bf6ca64996053ec5b8" prot="private" static="no" mutable="no">
+        <type><ref refid="class_hd_vt_buffer_source" kindref="compound">HdVtBufferSource</ref> const  &amp;</type>
+        <definition>HdVtBufferSource const&amp; _buffer</definition>
+        <argsstring></argsstring>
+        <name>_buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/sampler.h" line="127" column="1" bodyfile="pxr/imaging/hdEmbree/sampler.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_embree_buffer_sampler_1a45cdf4dee95d5c39cdc6b48286195d3e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>HdEmbreeBufferSampler</definition>
+        <argsstring>(HdVtBufferSource const &amp;buffer)</argsstring>
+        <name>HdEmbreeBufferSampler</name>
+        <param>
+          <type><ref refid="class_hd_vt_buffer_source" kindref="compound">HdVtBufferSource</ref> const &amp;</type>
+          <declname>buffer</declname>
+        </param>
+        <briefdescription>
+<para>The constructor takes a reference to a buffer source. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The data is owned externally; the caller is responsible for ensuring the buffer is alive while <ref refid="class_hd_embree_buffer_sampler_1a00fe1d3702fcc03fe55b71523b89e69d" kindref="member">Sample()</ref> is being called. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The buffer being sampled. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/sampler.h" line="102" column="1" bodyfile="pxr/imaging/hdEmbree/sampler.h" bodystart="102" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_embree_buffer_sampler_1a00fe1d3702fcc03fe55b71523b89e69d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Sample</definition>
+        <argsstring>(int index, void *value, HdTupleType dataType) const</argsstring>
+        <name>Sample</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_hd_tuple_type" kindref="compound">HdTupleType</ref></type>
+          <declname>dataType</declname>
+        </param>
+        <briefdescription>
+<para>Sample the buffer at element index <computeroutput>index</computeroutput>, and write the sample to <computeroutput>value</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Interpret <computeroutput>value</computeroutput> as having arity <computeroutput>numComponents</computeroutput>, each of type <computeroutput>componentType</computeroutput>. These parameters may not match the datatype declaration of the underlying buffer, in which case Sample returns false. Sample also returns false if <computeroutput>index</computeroutput> is out of bounds.</para>
+<para>For example, to sample data as GfVec3, <computeroutput>dataType</computeroutput> would be <ref refid="struct_hd_tuple_type" kindref="compound">HdTupleType</ref> { HdTypeFloatVec3, 1 }.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The element index to sample. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The memory to write the value to (only written on success). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dataType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="struct_hd_tuple_type" kindref="compound">HdTupleType</ref> describing element values. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the value was successfully sampled. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/sampler.h" line="118" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_embree_buffer_sampler_1a7e187e5f27fd089d12da11a864bd1001" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool Sample</definition>
+        <argsstring>(int index, T *value) const</argsstring>
+        <name>Sample</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>T *</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdEmbree/sampler.h" line="121" column="1" bodyfile="pxr/imaging/hdEmbree/sampler.h" bodystart="121" bodyend="124"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A utility class that knows how to sample an element from a type-tagged buffer (like <ref refid="class_hd_vt_buffer_source" kindref="compound">HdVtBufferSource</ref>). </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class provides templated accessors to let the caller directly get the final sample type; it also does bounds checks and type checks. </para>
+    </detaileddescription>
+    <location file="pxr/imaging/hdEmbree/sampler.h" line="96" column="1" bodyfile="pxr/imaging/hdEmbree/sampler.h" bodystart="96" bodyend="128"/>
+    <listofallmembers>
+      <member refid="class_hd_embree_buffer_sampler_1acee9efba685582bf6ca64996053ec5b8" prot="private" virt="non-virtual"><scope>HdEmbreeBufferSampler</scope><name>_buffer</name></member>
+      <member refid="class_hd_embree_buffer_sampler_1a45cdf4dee95d5c39cdc6b48286195d3e" prot="public" virt="non-virtual"><scope>HdEmbreeBufferSampler</scope><name>HdEmbreeBufferSampler</name></member>
+      <member refid="class_hd_embree_buffer_sampler_1a00fe1d3702fcc03fe55b71523b89e69d" prot="public" virt="non-virtual"><scope>HdEmbreeBufferSampler</scope><name>Sample</name></member>
+      <member refid="class_hd_embree_buffer_sampler_1a7e187e5f27fd089d12da11a864bd1001" prot="public" virt="non-virtual"><scope>HdEmbreeBufferSampler</scope><name>Sample</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,545 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_glf_binding_map" kind="class" language="C++" prot="public">
+    <compoundname>GlfBindingMap</compoundname>
+    <basecompoundref refid="class_tf_ref_base" prot="public" virt="non-virtual">TfRefBase</basecompoundref>
+    <basecompoundref refid="class_tf_weak_base" prot="public" virt="non-virtual">TfWeakBase</basecompoundref>
+      <sectiondef kind="user-defined">
+      <header>Sampler and UBO Bindings</header>
+      <description><para>Sampler units and uniform block bindings are reset and will be assigned sequentially starting from the specified baseIndex.</para>
+<para>This allows other subsystems to claim sampler units and uniform block bindings before additional indices are assigned by this binding map. </para>
+</description>
+      <memberdef kind="function" id="class_glf_binding_map_1a26e375a4ae9c0e5a101b9c59b3a1df66" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ResetSamplerBindings</definition>
+        <argsstring>(int baseIndex)</argsstring>
+        <name>ResetSamplerBindings</name>
+        <param>
+          <type>int</type>
+          <declname>baseIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="91" column="1" bodyfile="pxr/imaging/glf/bindingMap.h" bodystart="91" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_binding_map_1ac85d085146a650fbac018c3168c49733" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ResetUniformBindings</definition>
+        <argsstring>(int baseIndex)</argsstring>
+        <name>ResetUniformBindings</name>
+        <param>
+          <type>int</type>
+          <declname>baseIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="96" column="1" bodyfile="pxr/imaging/glf/bindingMap.h" bodystart="96" bodyend="99"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_glf_binding_map_1aa5e7222aa11aa0b0fa211e73603160e3" prot="public" static="no">
+        <type>TfHashMap&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, int, <ref refid="struct_tf_token_1_1_hash_functor" kindref="compound">TfToken::HashFunctor</ref> &gt;</type>
+        <definition>typedef TfHashMap&lt;TfToken, int, TfToken::HashFunctor&gt; BindingMap</definition>
+        <argsstring></argsstring>
+        <name>BindingMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="44" column="1" bodyfile="pxr/imaging/glf/bindingMap.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_glf_binding_map_1a557f2ec1f60bba1c7789834c93549b5f" prot="private" static="no" mutable="no">
+        <type>BindingMap</type>
+        <definition>BindingMap _attribBindings</definition>
+        <argsstring></argsstring>
+        <name>_attribBindings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="128" column="1" bodyfile="pxr/imaging/glf/bindingMap.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_binding_map_1ab4718bdefba0f4b7aaded4fa23460f8a" prot="private" static="no" mutable="no">
+        <type>BindingMap</type>
+        <definition>BindingMap _samplerBindings</definition>
+        <argsstring></argsstring>
+        <name>_samplerBindings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="129" column="1" bodyfile="pxr/imaging/glf/bindingMap.h" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_binding_map_1a8723d0355fbbab59fec9ed6e65b738c5" prot="private" static="no" mutable="no">
+        <type>BindingMap</type>
+        <definition>BindingMap _uniformBindings</definition>
+        <argsstring></argsstring>
+        <name>_uniformBindings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="130" column="1" bodyfile="pxr/imaging/glf/bindingMap.h" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_binding_map_1a7c3c0caecc245bf9c081d08c159192ec" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int _samplerBindingBaseIndex</definition>
+        <argsstring></argsstring>
+        <name>_samplerBindingBaseIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="132" column="1" bodyfile="pxr/imaging/glf/bindingMap.h" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_glf_binding_map_1ae072267861220420ff052c7377bc9794" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int _uniformBindingBaseIndex</definition>
+        <argsstring></argsstring>
+        <name>_uniformBindingBaseIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="133" column="1" bodyfile="pxr/imaging/glf/bindingMap.h" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_glf_binding_map_1aa5f044899518395bf39b0ddb27dea055" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GlfBindingMap</definition>
+        <argsstring>()</argsstring>
+        <name>GlfBindingMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="46" column="1" bodyfile="pxr/imaging/glf/bindingMap.h" bodystart="46" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_binding_map_1ac5f5674f8a815c3f2f6d7eae0c6b09e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API int</type>
+        <definition>GLF_API int GetSamplerUnit</definition>
+        <argsstring>(std::string const &amp;name)</argsstring>
+        <name>GetSamplerUnit</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="52" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_binding_map_1aa3a9127418d273c631e18f505dbf12c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API int</type>
+        <definition>GLF_API int GetSamplerUnit</definition>
+        <argsstring>(TfToken const &amp;name)</argsstring>
+        <name>GetSamplerUnit</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="54" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_binding_map_1a03a738657e0638bbcc44af9c185846dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API int</type>
+        <definition>GLF_API int GetAttributeIndex</definition>
+        <argsstring>(std::string const &amp;name)</argsstring>
+        <name>GetAttributeIndex</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="59" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_binding_map_1a214e97fe711be61fefe9cb591dfaab7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API int</type>
+        <definition>GLF_API int GetAttributeIndex</definition>
+        <argsstring>(TfToken const &amp;name)</argsstring>
+        <name>GetAttributeIndex</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="61" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_binding_map_1aa0dae8d9f1f8c2fc285741ee697db700" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API int</type>
+        <definition>GLF_API int GetUniformBinding</definition>
+        <argsstring>(std::string const &amp;name)</argsstring>
+        <name>GetUniformBinding</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="64" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_binding_map_1aff68924f1f6290550adfaca0788ae097" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API int</type>
+        <definition>GLF_API int GetUniformBinding</definition>
+        <argsstring>(TfToken const &amp;name)</argsstring>
+        <name>GetUniformBinding</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="66" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_binding_map_1a3ffa6a2afd0fe5ee990df319735a35ee" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API bool</type>
+        <definition>GLF_API bool HasUniformBinding</definition>
+        <argsstring>(std::string const &amp;name) const</argsstring>
+        <name>HasUniformBinding</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="69" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_binding_map_1a8a6e4b237129ecbddf49bd14b059bbf0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API bool</type>
+        <definition>GLF_API bool HasUniformBinding</definition>
+        <argsstring>(TfToken const &amp;name) const</argsstring>
+        <name>HasUniformBinding</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="71" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_binding_map_1a0bab168fc6575a58333f7fc1284d4a7f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int GetNumSamplerBindings</definition>
+        <argsstring>() const</argsstring>
+        <name>GetNumSamplerBindings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="73" column="1" bodyfile="pxr/imaging/glf/bindingMap.h" bodystart="73" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_binding_map_1a2bdd48262d37167b35fcaeb4c56e1bd6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ClearAttribBindings</definition>
+        <argsstring>()</argsstring>
+        <name>ClearAttribBindings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="77" column="1" bodyfile="pxr/imaging/glf/bindingMap.h" bodystart="77" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_binding_map_1a8a506e700f333e1280f3c1b3b31d5b42" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AddAttribBinding</definition>
+        <argsstring>(TfToken const &amp;name, int location)</argsstring>
+        <name>AddAttribBinding</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>location</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="103" column="1" bodyfile="pxr/imaging/glf/bindingMap.h" bodystart="103" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_binding_map_1a2c666cbece0058126b9cf05371ae322d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>BindingMap const  &amp;</type>
+        <definition>BindingMap const&amp; GetAttributeBindings</definition>
+        <argsstring>() const</argsstring>
+        <name>GetAttributeBindings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="107" column="1" bodyfile="pxr/imaging/glf/bindingMap.h" bodystart="107" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_binding_map_1a9807edea2bd059d3d3f8797502d6e6ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API void</type>
+        <definition>GLF_API void AssignSamplerUnitsToProgram</definition>
+        <argsstring>(GLuint program)</argsstring>
+        <name>AssignSamplerUnitsToProgram</name>
+        <param>
+          <type>GLuint</type>
+          <declname>program</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="112" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_binding_map_1a85eee95ff1f051afd571319ec394253d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API void</type>
+        <definition>GLF_API void AssignUniformBindingsToProgram</definition>
+        <argsstring>(GLuint program)</argsstring>
+        <name>AssignUniformBindingsToProgram</name>
+        <param>
+          <type>GLuint</type>
+          <declname>program</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="115" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_binding_map_1aa0fe8f554a6751505f1a18b01a174c91" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API void</type>
+        <definition>GLF_API void AddCustomBindings</definition>
+        <argsstring>(GLuint program)</argsstring>
+        <name>AddCustomBindings</name>
+        <param>
+          <type>GLuint</type>
+          <declname>program</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="118" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_binding_map_1a15bf18d2d708c6300e9ff8935610b5f2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>GLF_API void</type>
+        <definition>GLF_API void Debug</definition>
+        <argsstring>() const</argsstring>
+        <name>Debug</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="121" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_glf_binding_map_1a8bd3603395b045ca55ceca1e9beaeb16" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _AddActiveAttributeBindings</definition>
+        <argsstring>(GLuint program)</argsstring>
+        <name>_AddActiveAttributeBindings</name>
+        <param>
+          <type>GLuint</type>
+          <declname>program</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="124" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_binding_map_1ab0bfeb07511cab7759c3e795c2dbbe44" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _AddActiveUniformBindings</definition>
+        <argsstring>(GLuint program)</argsstring>
+        <name>_AddActiveUniformBindings</name>
+        <param>
+          <type>GLuint</type>
+          <declname>program</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="125" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_glf_binding_map_1ac92b4331a0e9eb3cb310d106087d8cbd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _AddActiveUniformBlockBindings</definition>
+        <argsstring>(GLuint program)</argsstring>
+        <name>_AddActiveUniformBlockBindings</name>
+        <param>
+          <type>GLuint</type>
+          <declname>program</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/glf/bindingMap.h" line="126" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1440">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="1438">
+        <label>GlfBindingMap</label>
+        <childnode refid="1439" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1440" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1439">
+        <label>TfRefBase</label>
+        <link refid="class_tf_ref_base"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1443">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="1441">
+        <label>GlfBindingMap</label>
+        <childnode refid="1442" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1443" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1442">
+        <label>TfRefBase</label>
+        <link refid="class_tf_ref_base"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/glf/bindingMap.h" line="42" column="1" bodyfile="pxr/imaging/glf/bindingMap.h" bodystart="42" bodyend="134"/>
+    <listofallmembers>
+      <member refid="class_tf_weak_base_1a01aa4c4b93df067f2ec9b9e5fa4c35b3" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>__GetTfWeakBase__</name></member>
+      <member refid="class_glf_binding_map_1a8bd3603395b045ca55ceca1e9beaeb16" prot="private" virt="non-virtual"><scope>GlfBindingMap</scope><name>_AddActiveAttributeBindings</name></member>
+      <member refid="class_glf_binding_map_1ab0bfeb07511cab7759c3e795c2dbbe44" prot="private" virt="non-virtual"><scope>GlfBindingMap</scope><name>_AddActiveUniformBindings</name></member>
+      <member refid="class_glf_binding_map_1ac92b4331a0e9eb3cb310d106087d8cbd" prot="private" virt="non-virtual"><scope>GlfBindingMap</scope><name>_AddActiveUniformBlockBindings</name></member>
+      <member refid="class_glf_binding_map_1a557f2ec1f60bba1c7789834c93549b5f" prot="private" virt="non-virtual"><scope>GlfBindingMap</scope><name>_attribBindings</name></member>
+      <member refid="class_tf_weak_base_1a6a5533162e8efab1be47acd6ccd5254c" prot="protected" virt="non-virtual"><scope>GlfBindingMap</scope><name>_HasRemnant</name></member>
+      <member refid="class_tf_weak_base_1a95139d2f4d04eb706664a4f47eb93918" prot="protected" virt="non-virtual"><scope>GlfBindingMap</scope><name>_Register</name></member>
+      <member refid="class_tf_weak_base_1ac1312732482c8a286522f703f2cf90d1" prot="protected" virt="non-virtual"><scope>GlfBindingMap</scope><name>_Register</name></member>
+      <member refid="class_glf_binding_map_1a7c3c0caecc245bf9c081d08c159192ec" prot="private" virt="non-virtual"><scope>GlfBindingMap</scope><name>_samplerBindingBaseIndex</name></member>
+      <member refid="class_glf_binding_map_1ab4718bdefba0f4b7aaded4fa23460f8a" prot="private" virt="non-virtual"><scope>GlfBindingMap</scope><name>_samplerBindings</name></member>
+      <member refid="class_glf_binding_map_1ae072267861220420ff052c7377bc9794" prot="private" virt="non-virtual"><scope>GlfBindingMap</scope><name>_uniformBindingBaseIndex</name></member>
+      <member refid="class_glf_binding_map_1a8723d0355fbbab59fec9ed6e65b738c5" prot="private" virt="non-virtual"><scope>GlfBindingMap</scope><name>_uniformBindings</name></member>
+      <member refid="class_glf_binding_map_1a8a506e700f333e1280f3c1b3b31d5b42" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>AddAttribBinding</name></member>
+      <member refid="class_glf_binding_map_1aa0fe8f554a6751505f1a18b01a174c91" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>AddCustomBindings</name></member>
+      <member refid="class_glf_binding_map_1a9807edea2bd059d3d3f8797502d6e6ed" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>AssignSamplerUnitsToProgram</name></member>
+      <member refid="class_glf_binding_map_1a85eee95ff1f051afd571319ec394253d" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>AssignUniformBindingsToProgram</name></member>
+      <member refid="class_glf_binding_map_1aa5e7222aa11aa0b0fa211e73603160e3" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>BindingMap</name></member>
+      <member refid="class_glf_binding_map_1a2bdd48262d37167b35fcaeb4c56e1bd6" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>ClearAttribBindings</name></member>
+      <member refid="class_glf_binding_map_1a15bf18d2d708c6300e9ff8935610b5f2" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>Debug</name></member>
+      <member refid="class_tf_weak_base_1a16f1e27cc0c7c606ffb397b7d970ed10" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>EnableNotification2</name></member>
+      <member refid="class_glf_binding_map_1a2c666cbece0058126b9cf05371ae322d" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>GetAttributeBindings</name></member>
+      <member refid="class_glf_binding_map_1a03a738657e0638bbcc44af9c185846dd" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>GetAttributeIndex</name></member>
+      <member refid="class_glf_binding_map_1a214e97fe711be61fefe9cb591dfaab7a" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>GetAttributeIndex</name></member>
+      <member refid="class_tf_ref_base_1abcd501e4bb37d7a93faa4e625e96ecf7" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>GetCurrentCount</name></member>
+      <member refid="class_glf_binding_map_1a0bab168fc6575a58333f7fc1284d4a7f" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>GetNumSamplerBindings</name></member>
+      <member refid="class_tf_ref_base_1abc1926aa1f9b1ad25c5c583b92bcf14b" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>GetRefCount</name></member>
+      <member refid="class_glf_binding_map_1ac5f5674f8a815c3f2f6d7eae0c6b09e4" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>GetSamplerUnit</name></member>
+      <member refid="class_glf_binding_map_1aa3a9127418d273c631e18f505dbf12c5" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>GetSamplerUnit</name></member>
+      <member refid="class_glf_binding_map_1aa0dae8d9f1f8c2fc285741ee697db700" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>GetUniformBinding</name></member>
+      <member refid="class_glf_binding_map_1aff68924f1f6290550adfaca0788ae097" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>GetUniformBinding</name></member>
+      <member refid="class_tf_weak_base_1a3241c32a82fbed0716a77049f6134e1e" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>GetUniqueIdentifier</name></member>
+      <member refid="class_glf_binding_map_1aa5f044899518395bf39b0ddb27dea055" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>GlfBindingMap</name></member>
+      <member refid="class_glf_binding_map_1a3ffa6a2afd0fe5ee990df319735a35ee" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>HasUniformBinding</name></member>
+      <member refid="class_glf_binding_map_1a8a6e4b237129ecbddf49bd14b059bbf0" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>HasUniformBinding</name></member>
+      <member refid="class_tf_ref_base_1aab8bc91cf9cff7c6e1da23dc59f5ad1f" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>IsUnique</name></member>
+      <member refid="class_tf_weak_base_1af890ac314073e903458bf6b2397566b5" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>operator=</name></member>
+      <member refid="class_glf_binding_map_1a26e375a4ae9c0e5a101b9c59b3a1df66" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>ResetSamplerBindings</name></member>
+      <member refid="class_glf_binding_map_1ac85d085146a650fbac018c3168c49733" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>ResetUniformBindings</name></member>
+      <member refid="class_tf_ref_base_1a6ee7fb6df1df9be9afbda405643ecb6c" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>SetShouldInvokeUniqueChangedListener</name></member>
+      <member refid="class_tf_ref_base_1a33e6c8ffe0caf7dac94ba5c4a4485fbd" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>SetUniqueChangedListener</name></member>
+      <member refid="class_tf_ref_base_1aa2d330100c1dde0a28658bbd0bd7e7bd" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>TfRefBase</name></member>
+      <member refid="class_tf_weak_base_1a6e4abdd663654f8c8019702a464de8d6" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_weak_base_1affc4c00d0bbfdfe4f9e6a8b2e81be368" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_ref_base_1a86baed63f8017038997266bdd638f65e" prot="public" virt="non-virtual"><scope>GlfBindingMap</scope><name>UniqueChangedFuncPtr</name></member>
+      <member refid="class_tf_ref_base_1abc8b2a655b2693dacab986b70c30f28a" prot="protected" virt="virtual"><scope>GlfBindingMap</scope><name>~TfRefBase</name></member>
+      <member refid="class_tf_weak_base_1a778020f525b66def8a284c6f020592c2" prot="protected" virt="non-virtual"><scope>GlfBindingMap</scope><name>~TfWeakBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

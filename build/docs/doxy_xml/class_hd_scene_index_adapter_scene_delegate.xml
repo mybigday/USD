@@ -1,0 +1,1522 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_scene_index_adapter_scene_delegate" kind="class" language="C++" prot="public">
+    <compoundname>HdSceneIndexAdapterSceneDelegate</compoundname>
+    <basecompoundref refid="class_hd_scene_delegate" prot="public" virt="non-virtual">HdSceneDelegate</basecompoundref>
+    <basecompoundref refid="class_hd_scene_index_observer" prot="public" virt="non-virtual">HdSceneIndexObserver</basecompoundref>
+    <includes refid="scene_index_adapter_scene_delegate_8h" local="no">sceneIndexAdapterSceneDelegate.h</includes>
+    <innerclass refid="struct_hd_scene_index_adapter_scene_delegate_1_1___prim_cache_entry" prot="private">HdSceneIndexAdapterSceneDelegate::_PrimCacheEntry</innerclass>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_hd_scene_index_adapter_scene_delegate_1a5a7540bb24027ebfd5d0bdd6851c260b" prot="private" static="no">
+        <type>std::pair&lt; <ref refid="class_sdf_path" kindref="compound">SdfPath</ref>, <ref refid="struct_hd_scene_index_prim" kindref="compound">HdSceneIndexPrim</ref> &gt;</type>
+        <definition>using _InputPrimCacheEntry =  std::pair&lt;SdfPath, HdSceneIndexPrim&gt;</definition>
+        <argsstring></argsstring>
+        <name>_InputPrimCacheEntry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="213" column="1" bodyfile="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" bodystart="213" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hd_scene_index_adapter_scene_delegate_1a237d77fb18b29cde2ab8307b032bcf07" prot="private" static="no">
+        <type><ref refid="class_sdf_path_table" kindref="compound">SdfPathTable</ref>&lt; _PrimCacheEntry &gt;</type>
+        <definition>using _PrimCacheTable =  SdfPathTable&lt;_PrimCacheEntry&gt;</definition>
+        <argsstring></argsstring>
+        <name>_PrimCacheTable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="269" column="1" bodyfile="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" bodystart="269" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_scene_index_adapter_scene_delegate_1a39e013dba5dccda9d5faaaeba75017ab" prot="private" static="no" mutable="no">
+        <type>tbb::concurrent_unordered_map&lt; std::thread::id, _InputPrimCacheEntry, std::hash&lt; std::thread::id &gt; &gt;</type>
+        <definition>tbb::concurrent_unordered_map&lt;std::thread::id, _InputPrimCacheEntry, std::hash&lt;std::thread::id&gt; &gt; _inputPrimCache</definition>
+        <argsstring></argsstring>
+        <name>_inputPrimCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="217" column="1" bodyfile="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" bodystart="217" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_scene_index_adapter_scene_delegate_1a421536484fa4a69216c5319cd181ecdb" prot="private" static="no" mutable="no">
+        <type>HdSceneIndexBaseRefPtr</type>
+        <definition>HdSceneIndexBaseRefPtr _inputSceneIndex</definition>
+        <argsstring></argsstring>
+        <name>_inputSceneIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="236" column="1" bodyfile="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" bodystart="236" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_scene_index_adapter_scene_delegate_1a30d43012665890b033b4f21be7028b3d" prot="private" static="no" mutable="no">
+        <type><ref refid="class_sdf_path_table" kindref="compound">_PrimCacheTable</ref></type>
+        <definition>_PrimCacheTable _primCache</definition>
+        <argsstring></argsstring>
+        <name>_primCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="270" column="1" bodyfile="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" bodystart="270" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_scene_index_adapter_scene_delegate_1ae1c46f06ad3e35e6945c468a90ae22cb" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _sceneDelegatesBuilt</definition>
+        <argsstring></argsstring>
+        <name>_sceneDelegatesBuilt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="272" column="1" bodyfile="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" bodystart="272" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_scene_index_adapter_scene_delegate_1a55a1f7f2f12370ec6347b9b8e1388d61" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> * &gt;</type>
+        <definition>std::vector&lt;HdSceneDelegate*&gt; _sceneDelegates</definition>
+        <argsstring></argsstring>
+        <name>_sceneDelegates</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="273" column="1" bodyfile="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" bodystart="273" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_scene_index_adapter_scene_delegate_1aec6cd31dd3b9f5cc95440cb9a9cc8434" prot="private" static="no" mutable="no">
+        <type><ref refid="class_hd_data_source_locator_set" kindref="compound">HdDataSourceLocatorSet</ref></type>
+        <definition>HdDataSourceLocatorSet _cachedLocatorSet</definition>
+        <argsstring></argsstring>
+        <name>_cachedLocatorSet</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="276" column="1" bodyfile="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" bodystart="276" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_scene_index_adapter_scene_delegate_1a10f0aac7b902a665e5c8d185d1d19dd1" prot="private" static="no" mutable="no">
+        <type>HdDirtyBits</type>
+        <definition>HdDirtyBits _cachedDirtyBits</definition>
+        <argsstring></argsstring>
+        <name>_cachedDirtyBits</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="277" column="1" bodyfile="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" bodystart="277" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_scene_index_adapter_scene_delegate_1a51fe7e8b6f2767b65d39c1533920b010" prot="private" static="no" mutable="no">
+        <type><ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>TfToken _cachedPrimType</definition>
+        <argsstring></argsstring>
+        <name>_cachedPrimType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="278" column="1" bodyfile="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" bodystart="278" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a406d69cab020c85ec9f2e9d77e2ed3cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdSceneIndexAdapterSceneDelegate</definition>
+        <argsstring>(HdSceneIndexBaseRefPtr inputSceneIndex, HdRenderIndex *parentIndex, SdfPath const &amp;delegateID)</argsstring>
+        <name>HdSceneIndexAdapterSceneDelegate</name>
+        <param>
+          <type>HdSceneIndexBaseRefPtr</type>
+          <declname>inputSceneIndex</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> *</type>
+          <declname>parentIndex</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>delegateID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="48" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a90f746e70021d0ea5a7dfe5b872dbe4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>~HdSceneIndexAdapterSceneDelegate</definition>
+        <argsstring>() override</argsstring>
+        <name>~HdSceneIndexAdapterSceneDelegate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="53" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a79eb5085cdd0533b424f23e5594cd61b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void PrimsAdded</definition>
+        <argsstring>(const HdSceneIndexBase &amp;sender, const AddedPrimEntries &amp;entries) override</argsstring>
+        <name>PrimsAdded</name>
+        <reimplements refid="class_hd_scene_index_observer_1a486c4ae832a8d67b4a2704286baa7cbd">PrimsAdded</reimplements>
+        <param>
+          <type>const <ref refid="class_hd_scene_index_base" kindref="compound">HdSceneIndexBase</ref> &amp;</type>
+          <declname>sender</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_small_vector" kindref="compound">AddedPrimEntries</ref> &amp;</type>
+          <declname>entries</declname>
+        </param>
+        <briefdescription>
+<para>A notification indicating prims have been added to the scene. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The set of scene prims compiled from added/removed notices should match the set from a traversal based on <computeroutput>sender.GetChildPrimNames</computeroutput>. Each prim has a path and type. It&apos;s possible for <computeroutput>PrimsAdded</computeroutput> to be called for prims that already exist; in that case, observers should be sure to update the prim type, in case it changed, and resync the prim. This function is not expected to be threadsafe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="63" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a184b27c75c27d505f0900ea87b16ac34" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void PrimsRemoved</definition>
+        <argsstring>(const HdSceneIndexBase &amp;sender, const RemovedPrimEntries &amp;entries) override</argsstring>
+        <name>PrimsRemoved</name>
+        <reimplements refid="class_hd_scene_index_observer_1aec4924464d54d6e70002fddf8408d31f">PrimsRemoved</reimplements>
+        <param>
+          <type>const <ref refid="class_hd_scene_index_base" kindref="compound">HdSceneIndexBase</ref> &amp;</type>
+          <declname>sender</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_small_vector" kindref="compound">RemovedPrimEntries</ref> &amp;</type>
+          <declname>entries</declname>
+        </param>
+        <briefdescription>
+<para>A notification indicating prims have been removed from the scene. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that this message is considered hierarchical; if <computeroutput>/Path</computeroutput> is removed, <computeroutput>/Path/child</computeroutput> is considered removed as well. This function is not expected to be threadsafe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="67" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1ab38a1b97a048f6b7548322448206032b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void PrimsDirtied</definition>
+        <argsstring>(const HdSceneIndexBase &amp;sender, const DirtiedPrimEntries &amp;entries) override</argsstring>
+        <name>PrimsDirtied</name>
+        <reimplements refid="class_hd_scene_index_observer_1a087e1d62f6ec2f2041bc78e31d712560">PrimsDirtied</reimplements>
+        <param>
+          <type>const <ref refid="class_hd_scene_index_base" kindref="compound">HdSceneIndexBase</ref> &amp;</type>
+          <declname>sender</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_small_vector" kindref="compound">DirtiedPrimEntries</ref> &amp;</type>
+          <declname>entries</declname>
+        </param>
+        <briefdescription>
+<para>A notification indicating prim datasources have been invalidated. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This message is not considered hierarchical on <computeroutput>primPath</computeroutput>; if <computeroutput>/Path</computeroutput> is dirtied, <computeroutput>/Path/child</computeroutput> is not necessarily dirtied. However datasource locators are considered hierarchical: if <computeroutput>primvars</computeroutput> is dirtied on a prim, <computeroutput>primvars/color</computeroutput> is considered dirtied as well. This function is not expected to be threadsafe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="71" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a1c8cc4fdfbce0f58a2877c3d273e1415" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void PrimsRenamed</definition>
+        <argsstring>(const HdSceneIndexBase &amp;sender, const RenamedPrimEntries &amp;entries) override</argsstring>
+        <name>PrimsRenamed</name>
+        <reimplements refid="class_hd_scene_index_observer_1a5cbc2ff942711627842ddf0f1781a60f">PrimsRenamed</reimplements>
+        <param>
+          <type>const <ref refid="class_hd_scene_index_base" kindref="compound">HdSceneIndexBase</ref> &amp;</type>
+          <declname>sender</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_small_vector" kindref="compound">RenamedPrimEntries</ref> &amp;</type>
+          <declname>entries</declname>
+        </param>
+        <briefdescription>
+<para>A notification indicating prims (and their descendants) have been renamed or reparented. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is not expected to be threadsafe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="75" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a50ea2cbc3f801b671d8a1cb315214a0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_hd_mesh_topology" kindref="compound">HdMeshTopology</ref></type>
+        <definition>HdMeshTopology GetMeshTopology</definition>
+        <argsstring>(SdfPath const &amp;id) override</argsstring>
+        <name>GetMeshTopology</name>
+        <reimplements refid="class_hd_scene_delegate_1acfaf1d4856f431e93d40b776491bb37c">GetMeshTopology</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Gets the topological mesh data for a given prim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="85" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a89ed87c04869d5eb44746ea567e2609d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_hd_basis_curves_topology" kindref="compound">HdBasisCurvesTopology</ref></type>
+        <definition>HdBasisCurvesTopology GetBasisCurvesTopology</definition>
+        <argsstring>(SdfPath const &amp;id) override</argsstring>
+        <name>GetBasisCurvesTopology</name>
+        <reimplements refid="class_hd_scene_delegate_1ae6ac3de94d899b9576f059e3214701b5">GetBasisCurvesTopology</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Gets the topological curve data for a given prim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="86" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a8f00f95b53623e3c37873dec53f72231" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_px_osd_subdiv_tags" kindref="compound">PxOsdSubdivTags</ref></type>
+        <definition>PxOsdSubdivTags GetSubdivTags</definition>
+        <argsstring>(SdfPath const &amp;id) override</argsstring>
+        <name>GetSubdivTags</name>
+        <reimplements refid="class_hd_scene_delegate_1adaf716dc793d2fa4e17f83cef4604f40">GetSubdivTags</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Gets the subdivision surface tags (sharpness, holes, etc). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="87" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1afb06bb5e3d05d1bb1a5531440bee7459" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_gf_range3d" kindref="compound">GfRange3d</ref></type>
+        <definition>GfRange3d GetExtent</definition>
+        <argsstring>(SdfPath const &amp;id) override</argsstring>
+        <name>GetExtent</name>
+        <reimplements refid="class_hd_scene_delegate_1a42def5fc0682ad1962df1a574224c808">GetExtent</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Gets the axis aligned bounds of a prim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The returned bounds are in the local space of the prim (transform is yet to be applied) and should contain the bounds of any child prims.</para>
+<para>The returned bounds does not include any displacement that might occur as the result of running shaders on the prim. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="88" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1ab848438ddd7853371a61fcb56b97a9d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool GetVisible</definition>
+        <argsstring>(SdfPath const &amp;id) override</argsstring>
+        <name>GetVisible</name>
+        <reimplements refid="class_hd_scene_delegate_1af743cd05654ed005cb376fb58c05202b">GetVisible</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns the authored visible state of the prim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="89" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a4296ecb8f06b09b38d1e3f00aec73e32" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool GetDoubleSided</definition>
+        <argsstring>(SdfPath const &amp;id) override</argsstring>
+        <name>GetDoubleSided</name>
+        <reimplements refid="class_hd_scene_delegate_1a8aa249e1150994ee9623e062dd81e12c">GetDoubleSided</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns the doubleSided state for the given prim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="90" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a222e5179ffad16c1696b7780a86229a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HdCullStyle</type>
+        <definition>HdCullStyle GetCullStyle</definition>
+        <argsstring>(SdfPath const &amp;id) override</argsstring>
+        <name>GetCullStyle</name>
+        <reimplements refid="class_hd_scene_delegate_1afb706151d2cb528eb7df8d5c641a7092">GetCullStyle</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns the cullstyle for the given prim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="91" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1aed353308e24c8346ff190e2cae6d4f4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_vt_value" kindref="compound">VtValue</ref></type>
+        <definition>VtValue GetShadingStyle</definition>
+        <argsstring>(SdfPath const &amp;id) override</argsstring>
+        <name>GetShadingStyle</name>
+        <reimplements refid="class_hd_scene_delegate_1a30fc236108f25b67b06ffaf1d250a0f8">GetShadingStyle</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns the shading style for the given prim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="92" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a1208e42e1925ee8fd872ccae92fe04b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="struct_hd_display_style" kindref="compound">HdDisplayStyle</ref></type>
+        <definition>HdDisplayStyle GetDisplayStyle</definition>
+        <argsstring>(SdfPath const &amp;id) override</argsstring>
+        <name>GetDisplayStyle</name>
+        <reimplements refid="class_hd_scene_delegate_1a2e12e749cb49f1e35e8b0bf91fc6a906">GetDisplayStyle</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns the refinement level for the given prim in the range [0,8]. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The refinement level indicates how many iterations to apply when subdividing subdivision surfaces or other refinable primitives. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="93" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a590a3e1e9373342943ec43402e67a80c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_hd_repr_selector" kindref="compound">HdReprSelector</ref></type>
+        <definition>HdReprSelector GetReprSelector</definition>
+        <argsstring>(SdfPath const &amp;id) override</argsstring>
+        <name>GetReprSelector</name>
+        <reimplements refid="class_hd_scene_delegate_1ad7651b83aa342893ff7e900e35edeec2">GetReprSelector</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns the authored repr (if any) for the given prim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="94" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a0213790bd97f765f93dbebde687fd500" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>TfToken GetRenderTag</definition>
+        <argsstring>(SdfPath const &amp;id) override</argsstring>
+        <name>GetRenderTag</name>
+        <reimplements refid="class_hd_scene_delegate_1a0803b53559f3a982c669e8ba12ab5915">GetRenderTag</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns the render tag that will be used to bucket prims during render pass bucketing. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="95" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a2d282e05b6e4cbfac868caecab45cc9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_vt_array" kindref="compound">VtArray</ref>&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref> &gt;</type>
+        <definition>VtArray&lt;TfToken&gt; GetCategories</definition>
+        <argsstring>(SdfPath const &amp;id) override</argsstring>
+        <name>GetCategories</name>
+        <reimplements refid="class_hd_scene_delegate_1a8973f50f161733c26a53652302790383">GetCategories</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns the prim categories. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="96" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a825fecf7344ab3e8045c1347b067ffe1" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HdVolumeFieldDescriptorVector</type>
+        <definition>HdVolumeFieldDescriptorVector GetVolumeFieldDescriptors</definition>
+        <argsstring>(SdfPath const &amp;volumeId) override</argsstring>
+        <name>GetVolumeFieldDescriptors</name>
+        <reimplements refid="class_hd_scene_delegate_1a4caa63d2108b228abd7301c6fa987a57">GetVolumeFieldDescriptors</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>volumeId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="97" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a86193589787a8ab4cfaaf39e7d945d49" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref></type>
+        <definition>GfMatrix4d GetTransform</definition>
+        <argsstring>(SdfPath const &amp;id) override</argsstring>
+        <name>GetTransform</name>
+        <reimplements refid="class_hd_scene_delegate_1a2081bef654e7e0b108c1652d47bf392f">GetTransform</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns the object space transform, including all parent transforms. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="103" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1accf2771be80207437ef7b6d584a3235c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>size_t</type>
+        <definition>size_t SampleTransform</definition>
+        <argsstring>(SdfPath const &amp;id, size_t maxSampleCount, float *sampleTimes, GfMatrix4d *sampleValues) override</argsstring>
+        <name>SampleTransform</name>
+        <reimplements refid="class_hd_scene_delegate_1a77b5da29281473d377d93c9b38ac99b4">SampleTransform</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>maxSampleCount</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>sampleTimes</declname>
+        </param>
+        <param>
+          <type><ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref> *</type>
+          <declname>sampleValues</declname>
+        </param>
+        <briefdescription>
+<para>Store up to <emphasis>maxSampleCount</emphasis> transform samples in <emphasis>*sampleValues</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the union of the authored samples and the boundaries of the current camera shutter interval. If this number is greater than maxSampleCount, you might want to call this function again to get all the authored data. Sample times are relative to the scene delegate&apos;s current time. <simplesect kind="see"><para><ref refid="class_hd_scene_index_adapter_scene_delegate_1a86193589787a8ab4cfaaf39e7d945d49" kindref="member">GetTransform()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="104" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a52367bd43b05ca76fa8937f13d886adb" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref></type>
+        <definition>GfMatrix4d GetInstancerTransform</definition>
+        <argsstring>(SdfPath const &amp;instancerId) override</argsstring>
+        <name>GetInstancerTransform</name>
+        <reimplements refid="class_hd_scene_delegate_1a5aab8b5764cea69054ec3299899a87c0">GetInstancerTransform</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>instancerId</declname>
+        </param>
+        <briefdescription>
+<para>Returns the instancer transform. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="107" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a0e84243037a32e2353e41926830766f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>size_t</type>
+        <definition>size_t SampleInstancerTransform</definition>
+        <argsstring>(SdfPath const &amp;instancerId, size_t maxSampleCount, float *sampleTimes, GfMatrix4d *sampleValues) override</argsstring>
+        <name>SampleInstancerTransform</name>
+        <reimplements refid="class_hd_scene_delegate_1ab1498ca73626e7be29ddc569f0275139">SampleInstancerTransform</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>instancerId</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>maxSampleCount</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>sampleTimes</declname>
+        </param>
+        <param>
+          <type><ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref> *</type>
+          <declname>sampleValues</declname>
+        </param>
+        <briefdescription>
+<para>Store up to <emphasis>maxSampleCount</emphasis> transform samples in <emphasis>*sampleValues</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the union of the authored samples and the boundaries of the current camera shutter interval. If this number is greater than maxSampleCount, you might want to call this function again to get all the authored data. Sample times are relative to the scene delegate&apos;s current time. <simplesect kind="see"><para><ref refid="class_hd_scene_index_adapter_scene_delegate_1a52367bd43b05ca76fa8937f13d886adb" kindref="member">GetInstancerTransform()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="109" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a49ce3acbdac08784f448557a29e46efc" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HdPrimvarDescriptorVector</type>
+        <definition>HdPrimvarDescriptorVector GetPrimvarDescriptors</definition>
+        <argsstring>(SdfPath const &amp;id, HdInterpolation interpolation) override</argsstring>
+        <name>GetPrimvarDescriptors</name>
+        <reimplements refid="class_hd_scene_delegate_1a2d402698e716a161f0e10d9aebd0826c">GetPrimvarDescriptors</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdInterpolation</type>
+          <declname>interpolation</declname>
+        </param>
+        <briefdescription>
+<para>Returns descriptors for all primvars of the given interpolation type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="117" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1ad3f7f16a3cd3b8f8175c7ad6b19ba145" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_vt_value" kindref="compound">VtValue</ref></type>
+        <definition>VtValue Get</definition>
+        <argsstring>(SdfPath const &amp;id, TfToken const &amp;key) override</argsstring>
+        <name>Get</name>
+        <reimplements refid="class_hd_scene_delegate_1ac4b8288076517adc9e44fccbbc140d9c">Get</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Returns a named value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="120" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1ad8afb9e984674e1a97a5bc894b2d3b52" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_vt_value" kindref="compound">VtValue</ref></type>
+        <definition>VtValue GetIndexedPrimvar</definition>
+        <argsstring>(SdfPath const &amp;id, TfToken const &amp;key, VtIntArray *outIndices) override</argsstring>
+        <name>GetIndexedPrimvar</name>
+        <reimplements refid="class_hd_scene_delegate_1ac642fbff8fb615a2871456e436aa5927">GetIndexedPrimvar</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>VtIntArray *</type>
+          <declname>outIndices</declname>
+        </param>
+        <briefdescription>
+<para>Returns a named primvar value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <emphasis>*outIndices</emphasis> is not nullptr and the primvar has indices, it will return the unflattened primvar and set <emphasis>*outIndices</emphasis> to the primvar&apos;s associated indices, clearing the array if the primvar is not indexed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="121" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1aea2c8eb0ead658cab3a67fd9c9189111" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>size_t</type>
+        <definition>size_t SamplePrimvar</definition>
+        <argsstring>(SdfPath const &amp;id, TfToken const &amp;key, size_t maxSampleCount, float *sampleTimes, VtValue *sampleValues) override</argsstring>
+        <name>SamplePrimvar</name>
+        <reimplements refid="class_hd_scene_delegate_1a487bdb0dc9804e6e42d3e0e7262bb592">SamplePrimvar</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>maxSampleCount</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>sampleTimes</declname>
+        </param>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> *</type>
+          <declname>sampleValues</declname>
+        </param>
+        <briefdescription>
+<para>Store up to <emphasis>maxSampleCount</emphasis> primvar samples in <emphasis>*samplesValues</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the union of the authored samples and the boundaries of the current camera shutter interval. If this number is greater than maxSampleCount, you might want to call this function again to get all the authored data.</para>
+<para>Sample values that are array-valued will have a size described by the <ref refid="struct_hd_primvar_descriptor" kindref="compound">HdPrimvarDescriptor</ref> as applied to the toplogy.</para>
+<para>For example, this means that a mesh that is fracturing over time will return samples with the same number of points; the number of points will change as the scene delegate is resynchronized to represent the scene at a time with different topology.</para>
+<para>Sample times are relative to the scene delegate&apos;s current time.</para>
+<para><simplesect kind="see"><para><ref refid="class_hd_scene_index_adapter_scene_delegate_1ad3f7f16a3cd3b8f8175c7ad6b19ba145" kindref="member">Get()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="124" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a324897930027ce33de72e2a34e3ea236" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>size_t</type>
+        <definition>size_t SampleIndexedPrimvar</definition>
+        <argsstring>(SdfPath const &amp;id, TfToken const &amp;key, size_t maxNumSamples, float *times, VtValue *samples, VtIntArray *sampleIndices) override</argsstring>
+        <name>SampleIndexedPrimvar</name>
+        <reimplements refid="class_hd_scene_delegate_1a0664f6c5132d8c113383e4f7bdc2eb7e">SampleIndexedPrimvar</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>maxSampleCount</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>sampleTimes</declname>
+        </param>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> *</type>
+          <declname>sampleValues</declname>
+        </param>
+        <param>
+          <type>VtIntArray *</type>
+          <declname>sampleIndices</declname>
+        </param>
+        <briefdescription>
+<para><ref refid="class_hd_scene_index_adapter_scene_delegate_1aea2c8eb0ead658cab3a67fd9c9189111" kindref="member">SamplePrimvar()</ref> for getting an unflattened primvar and its indices. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <emphasis>*sampleIndices</emphasis> is not nullptr and the primvar has indices, it will return unflattened primvar samples in <emphasis>*sampleValues</emphasis> and the primvar&apos;s sampled indices in <emphasis>*sampleIndices</emphasis>, clearing the <emphasis>*sampleIndices</emphasis> array if the primvar is not indexed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="127" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a1ee912349bed797f5dcb8978156bc46f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; <ref refid="class_vt_array" kindref="compound">VtArray</ref>&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;VtArray&lt;TfToken&gt; &gt; GetInstanceCategories</definition>
+        <argsstring>(SdfPath const &amp;instancerId) override</argsstring>
+        <name>GetInstanceCategories</name>
+        <reimplements refid="class_hd_scene_delegate_1a555b45b4c126d6448f0bed5d018953b8">GetInstanceCategories</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>instancerId</declname>
+        </param>
+        <briefdescription>
+<para>Returns the categories for all instances in the instancer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="135" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1ab5d49dc02ac68212e9ff614563a12c6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>VtIntArray</type>
+        <definition>VtIntArray GetInstanceIndices</definition>
+        <argsstring>(SdfPath const &amp;instancerId, SdfPath const &amp;prototypeId) override</argsstring>
+        <name>GetInstanceIndices</name>
+        <reimplements refid="class_hd_scene_delegate_1a3f473bdbe6c3b3d5d85003aa6f908a38">GetInstanceIndices</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>instancerId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>prototypeId</declname>
+        </param>
+        <briefdescription>
+<para>Gets the extracted indices array of the prototype id used in the instancer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>example instances: 0, 1, 2, 3, 4, 5 protoypes: A, B, A, A, B, C</para>
+<para>GetInstanceIndices(A) : [0, 2, 3] GetInstanceIndices(B) : [1, 4] GetInstanceIndices(C) : [5] GetInstanceIndices(D) : [] </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="137" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a8e080f8acf88b7a36d95c967688a3102" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SdfPath GetInstancerId</definition>
+        <argsstring>(SdfPath const &amp;primId) override</argsstring>
+        <name>GetInstancerId</name>
+        <reimplements refid="class_hd_scene_delegate_1a10b7194fd79e3bd33e3283ba687e742a">GetInstancerId</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>primId</declname>
+        </param>
+        <briefdescription>
+<para>Returns the parent instancer of the given rprim or instancer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="139" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1aa078c085c6e0401451f7d9778a90ec03" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>SdfPathVector</type>
+        <definition>SdfPathVector GetInstancerPrototypes</definition>
+        <argsstring>(SdfPath const &amp;instancerId) override</argsstring>
+        <name>GetInstancerPrototypes</name>
+        <reimplements refid="class_hd_scene_delegate_1a3c2dd2784015b3047b6d5cbcc47b7836">GetInstancerPrototypes</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>instancerId</declname>
+        </param>
+        <briefdescription>
+<para>Returns a list of prototypes of this instancer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The intent is to let renderers cache instance indices by giving them a complete set of prims to call GetInstanceIndices(instancer, prototype) on. XXX: This is currently unused, but may be used in the future. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="140" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a4dd5dffb502a39e7d29714e89f3287cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SdfPath GetMaterialId</definition>
+        <argsstring>(SdfPath const &amp;id) override</argsstring>
+        <name>GetMaterialId</name>
+        <reimplements refid="class_hd_scene_delegate_1a428d357d31cd676710ac3d82b6b8d57c">GetMaterialId</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>rprimId</declname>
+        </param>
+        <briefdescription>
+<para>Returns the material ID bound to the rprim <computeroutput>rprimId</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="145" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1ad3d6cda875d1c303c7a90b9419936521" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_vt_value" kindref="compound">VtValue</ref></type>
+        <definition>VtValue GetMaterialResource</definition>
+        <argsstring>(SdfPath const &amp;id) override</argsstring>
+        <name>GetMaterialResource</name>
+        <reimplements refid="class_hd_scene_delegate_1a2e99135d98c6c757ecc0885e0a82e12c">GetMaterialResource</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="146" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a315262714c99f3845a58bc8135ea2cd5" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HdIdVectorSharedPtr</type>
+        <definition>HdIdVectorSharedPtr GetCoordSysBindings</definition>
+        <argsstring>(SdfPath const &amp;id) override</argsstring>
+        <name>GetCoordSysBindings</name>
+        <reimplements refid="class_hd_scene_delegate_1a9823c120d775a8fe3bb215a66e8332dc">GetCoordSysBindings</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns the coordinate system bindings, or a nullptr if none are bound. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="147" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a1b0b47140392e37120ddf49f17c2060d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="struct_hd_render_buffer_descriptor" kindref="compound">HdRenderBufferDescriptor</ref></type>
+        <definition>HdRenderBufferDescriptor GetRenderBufferDescriptor</definition>
+        <argsstring>(SdfPath const &amp;id) override</argsstring>
+        <name>GetRenderBufferDescriptor</name>
+        <reimplements refid="class_hd_scene_delegate_1a0507dd08e1dd737998166c873df79af3">GetRenderBufferDescriptor</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns the allocation descriptor for a given render buffer prim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="152" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1ab2e8d9e1e1ebe822efe94a4d466e1d05" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_vt_value" kindref="compound">VtValue</ref></type>
+        <definition>VtValue GetLightParamValue</definition>
+        <argsstring>(SdfPath const &amp;id, TfToken const &amp;paramName) override</argsstring>
+        <name>GetLightParamValue</name>
+        <reimplements refid="class_hd_scene_delegate_1ad958d086eddda888620ee2e80ed0c0eb">GetLightParamValue</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>paramName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="158" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1abf5c8952663070947b44df508837d35a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_vt_value" kindref="compound">VtValue</ref></type>
+        <definition>VtValue GetCameraParamValue</definition>
+        <argsstring>(SdfPath const &amp;cameraId, TfToken const &amp;paramName) override</argsstring>
+        <name>GetCameraParamValue</name>
+        <reimplements refid="class_hd_scene_delegate_1a40d6e52c3139692b32e61ae78c40a22b">GetCameraParamValue</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>cameraId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>paramName</declname>
+        </param>
+        <briefdescription>
+<para>Returns a single value for a given camera and parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>See HdCameraTokens for the list of paramters. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="164" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a1776c5160616852ca79a542298536b0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HdExtComputationPrimvarDescriptorVector</type>
+        <definition>HdExtComputationPrimvarDescriptorVector GetExtComputationPrimvarDescriptors</definition>
+        <argsstring>(SdfPath const &amp;id, HdInterpolation interpolationMode) override</argsstring>
+        <name>GetExtComputationPrimvarDescriptors</name>
+        <reimplements refid="class_hd_scene_delegate_1a8362c6dae90eeb20b6cd584fe61b5121">GetExtComputationPrimvarDescriptors</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>HdInterpolation</type>
+          <declname>interpolationMode</declname>
+        </param>
+        <briefdescription>
+<para>Returns a list of primvar names that should be bound to a generated output from an ExtComputation for the given prim id and interpolation mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Binding information is obtained through GetExtComputationPrimvarDesc() Returns a structure describing source information for a primvar that is bound to an ExtComputation. See HdExtComputationPrimvarDesc for the expected information to be returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="172" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a1375ff996f75a19777f0ed7d9383b266" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref></type>
+        <definition>TfTokenVector GetExtComputationSceneInputNames</definition>
+        <argsstring>(SdfPath const &amp;computationId) override</argsstring>
+        <name>GetExtComputationSceneInputNames</name>
+        <reimplements refid="class_hd_scene_delegate_1a5f22260a74a589b65490ed1ea7b3d844">GetExtComputationSceneInputNames</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>computationId</declname>
+        </param>
+        <briefdescription>
+<para>For the given computation id, returns a list of inputs which will be requested from the scene delegate using the <ref refid="class_hd_scene_index_adapter_scene_delegate_1ad3f7f16a3cd3b8f8175c7ad6b19ba145" kindref="member">Get()</ref> method. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>See GetExtComputationInputDescriptors and GetExtComputationOutpuDescriptors for descriptions of other computation inputs and outputs. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="176" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1ac5dac270337e9d516465e2bb01698fc8" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_vt_value" kindref="compound">VtValue</ref></type>
+        <definition>VtValue GetExtComputationInput</definition>
+        <argsstring>(SdfPath const &amp;computationId, TfToken const &amp;input) override</argsstring>
+        <name>GetExtComputationInput</name>
+        <reimplements refid="class_hd_scene_delegate_1a9935b600e222f99ad26e202c9ea1f149">GetExtComputationInput</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>computationId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+<para>Returns a single value for a given computation id and input token. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The token may be a computation input or a computation config parameter. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="178" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a1f4139c8b4d091e81d937da7dce7ca0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>size_t</type>
+        <definition>size_t SampleExtComputationInput</definition>
+        <argsstring>(SdfPath const &amp;computationId, TfToken const &amp;input, size_t maxSampleCount, float *sampleTimes, VtValue *sampleValues) override</argsstring>
+        <name>SampleExtComputationInput</name>
+        <reimplements refid="class_hd_scene_delegate_1a0d1903d93b14fda1c6549bb473e0b0ce">SampleExtComputationInput</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>computationId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>maxSampleCount</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>sampleTimes</declname>
+        </param>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> *</type>
+          <declname>sampleValues</declname>
+        </param>
+        <briefdescription>
+<para>Return up to <emphasis>maxSampleCount</emphasis> samples for a given computation id and input token. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The token may be a computation input or a computation config parameter. Returns the union of the authored samples and the boundaries of the current camera shutter interval. If this number is greater than maxSampleCount, you might want to call this function again to get all the authored data. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="180" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a58bf5a9e416dce73da4af71b4ff1283c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HdExtComputationInputDescriptorVector</type>
+        <definition>HdExtComputationInputDescriptorVector GetExtComputationInputDescriptors</definition>
+        <argsstring>(SdfPath const &amp;computationId) override</argsstring>
+        <name>GetExtComputationInputDescriptors</name>
+        <reimplements refid="class_hd_scene_delegate_1acd5942621d9f8b8dafa1a7dc8372efdc">GetExtComputationInputDescriptors</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>computationId</declname>
+        </param>
+        <briefdescription>
+<para>For the given computation id, returns a list of computation input descriptors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>See HdExtComputationInputDecriptor </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="187" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a59f3ee33e4ef98159689eb1a33d9e843" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HdExtComputationOutputDescriptorVector</type>
+        <definition>HdExtComputationOutputDescriptorVector GetExtComputationOutputDescriptors</definition>
+        <argsstring>(SdfPath const &amp;computationId) override</argsstring>
+        <name>GetExtComputationOutputDescriptors</name>
+        <reimplements refid="class_hd_scene_delegate_1a2ab4c6d4ba95538551b7afc5c5c28472">GetExtComputationOutputDescriptors</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>computationId</declname>
+        </param>
+        <briefdescription>
+<para>For the given computation id, returns a list of computation output descriptors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>See <ref refid="struct_hd_ext_computation_output_descriptor" kindref="compound">HdExtComputationOutputDescriptor</ref> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="189" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a6186700bf6da6e0d78ecbc7b2d8e28ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::string</type>
+        <definition>std::string GetExtComputationKernel</definition>
+        <argsstring>(SdfPath const &amp;computationId) override</argsstring>
+        <name>GetExtComputationKernel</name>
+        <reimplements refid="class_hd_scene_delegate_1af7a640993a4f6fae7f03de8d8f6176d7">GetExtComputationKernel</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>computationId</declname>
+        </param>
+        <briefdescription>
+<para>Returns the kernel source assigned to the computation at the path id. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the string is empty the computation has no GPU kernel and the CPU callback should be used. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="192" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a737364f889f52075061a636e426c531b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void InvokeExtComputation</definition>
+        <argsstring>(SdfPath const &amp;computationId, HdExtComputationContext *context) override</argsstring>
+        <name>InvokeExtComputation</name>
+        <reimplements refid="class_hd_scene_delegate_1ab8d5b919ece633ae41b5a4d3b7cd9a6a">InvokeExtComputation</reimplements>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>computationId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_ext_computation_context" kindref="compound">HdExtComputationContext</ref> *</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Requests the scene delegate run the ExtComputation with the given id. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The context contains the input values that delegate requested through GetExtComputationInputNames().</para>
+<para>The scene delegate is expected to set each output identified by GetExtComputationOutputNames() on the context.</para>
+<para>Hydra may invoke the computation on a different thread from what <ref refid="class_hd_engine_1a75a0815239165c0bf1826a09415013a5" kindref="member">HdEngine::Execute()</ref> was called on. It may also invoke many computations in parallel. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="193" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a04d054f1e5c34a8cc216ef03ffa5b742" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Sync</definition>
+        <argsstring>(HdSyncRequestVector *request) override</argsstring>
+        <name>Sync</name>
+        <reimplements refid="class_hd_scene_delegate_1a95bd13d07dfff95f8f314f2f5ee4d262">Sync</reimplements>
+        <param>
+          <type><ref refid="struct_hd_sync_request_vector" kindref="compound">HdSyncRequestVector</ref> *</type>
+          <declname>request</declname>
+        </param>
+        <briefdescription>
+<para>Synchronizes the delegate state for the given request vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="196" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a3e5ba6692865e99c1adfe3eda30254a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void PostSyncCleanup</definition>
+        <argsstring>() override</argsstring>
+        <name>PostSyncCleanup</name>
+        <reimplements refid="class_hd_scene_delegate_1a6755e58ed360b29cc2282fbbe24fe647">PostSyncCleanup</reimplements>
+        <briefdescription>
+<para>Opportunity for the delegate to clean itself up after performing parallel work during sync phase. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="197" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1adb405f939baa9899bf6ee6276abb62f6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HdSceneIndexBaseRefPtr</type>
+        <definition>static HdSceneIndexBaseRefPtr AppendDefaultSceneFilters</definition>
+        <argsstring>(HdSceneIndexBaseRefPtr inputSceneIndex, SdfPath const &amp;delegateID)</argsstring>
+        <name>AppendDefaultSceneFilters</name>
+        <param>
+          <type>HdSceneIndexBaseRefPtr</type>
+          <declname>inputSceneIndex</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>delegateID</declname>
+        </param>
+        <briefdescription>
+<para>Returns the end of a scene index chain containing the filters necessary for input to an instance of this scene delegate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="59" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1acdb25338136d87e9707d07a5765fb2f8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_hd_scene_index_prim" kindref="compound">HdSceneIndexPrim</ref></type>
+        <definition>HdSceneIndexPrim _GetInputPrim</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>_GetInputPrim</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="211" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a721d0760c1e0a0f6b072f345405d2ca5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _PrimAdded</definition>
+        <argsstring>(const SdfPath &amp;primPath, const TfToken &amp;primType)</argsstring>
+        <name>_PrimAdded</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>primPath</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>primType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="219" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a42865abb94c3a9941304ce4cc0f8fce3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_vt_value" kindref="compound">VtValue</ref></type>
+        <definition>VtValue _GetPrimvar</definition>
+        <argsstring>(SdfPath const &amp;id, TfToken const &amp;key, VtIntArray *outIndices)</argsstring>
+        <name>_GetPrimvar</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>VtIntArray *</type>
+          <declname>outIndices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="223" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1af15bf1aac3779b2de66c70836cef5c34" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_vt_value" kindref="compound">VtValue</ref></type>
+        <definition>VtValue _GetPrimvar</definition>
+        <argsstring>(const HdContainerDataSourceHandle &amp;primvarsDataSource, TfToken const &amp;key, VtIntArray *outIndices)</argsstring>
+        <name>_GetPrimvar</name>
+        <param>
+          <type>const HdContainerDataSourceHandle &amp;</type>
+          <declname>primvarsDataSource</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>VtIntArray *</type>
+          <declname>outIndices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="226" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_scene_index_adapter_scene_delegate_1a458de4f81a109d84ae6ac73f2735582b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t _SamplePrimvar</definition>
+        <argsstring>(SdfPath const &amp;id, TfToken const &amp;key, size_t maxNumSamples, float *times, VtValue *samples, VtIntArray *sampleIndices)</argsstring>
+        <name>_SamplePrimvar</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>maxNumSamples</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>times</declname>
+        </param>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> *</type>
+          <declname>samples</declname>
+        </param>
+        <param>
+          <type>VtIntArray *</type>
+          <declname>sampleIndices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="232" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Scene delegate which observes notices from an HdSceneIndex and applies them to an <ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This serves as &quot;back-end&quot; emulation in order for scenes described via the HdSceneIndex/HdDataSource APIs to be accessible by legacy render delegates. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2744">
+        <label>HdSceneIndexObserver</label>
+        <link refid="class_hd_scene_index_observer"/>
+        <childnode refid="2745" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2745">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="2742">
+        <label>HdSceneIndexAdapterSceneDelegate</label>
+        <link refid="class_hd_scene_index_adapter_scene_delegate"/>
+        <childnode refid="2743" relation="public-inheritance">
+        </childnode>
+        <childnode refid="2744" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2743">
+        <label>HdSceneDelegate</label>
+        <link refid="class_hd_scene_delegate"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2748">
+        <label>HdSceneIndexObserver</label>
+        <link refid="class_hd_scene_index_observer"/>
+        <childnode refid="2749" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2749">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="2746">
+        <label>HdSceneIndexAdapterSceneDelegate</label>
+        <link refid="class_hd_scene_index_adapter_scene_delegate"/>
+        <childnode refid="2747" relation="public-inheritance">
+        </childnode>
+        <childnode refid="2748" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2747">
+        <label>HdSceneDelegate</label>
+        <link refid="class_hd_scene_delegate"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" line="45" column="1" bodyfile="pxr/imaging/hd/sceneIndexAdapterSceneDelegate.h" bodystart="42" bodyend="279"/>
+    <listofallmembers>
+      <member refid="class_tf_weak_base_1a01aa4c4b93df067f2ec9b9e5fa4c35b3" prot="public" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>__GetTfWeakBase__</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a10f0aac7b902a665e5c8d185d1d19dd1" prot="private" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>_cachedDirtyBits</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1aec6cd31dd3b9f5cc95440cb9a9cc8434" prot="private" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>_cachedLocatorSet</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a51fe7e8b6f2767b65d39c1533920b010" prot="private" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>_cachedPrimType</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1acdb25338136d87e9707d07a5765fb2f8" prot="private" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>_GetInputPrim</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a42865abb94c3a9941304ce4cc0f8fce3" prot="private" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>_GetPrimvar</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1af15bf1aac3779b2de66c70836cef5c34" prot="private" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>_GetPrimvar</name></member>
+      <member refid="class_tf_weak_base_1a6a5533162e8efab1be47acd6ccd5254c" prot="protected" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>_HasRemnant</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a39e013dba5dccda9d5faaaeba75017ab" prot="private" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>_inputPrimCache</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a5a7540bb24027ebfd5d0bdd6851c260b" prot="private" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>_InputPrimCacheEntry</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a421536484fa4a69216c5319cd181ecdb" prot="private" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>_inputSceneIndex</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a721d0760c1e0a0f6b072f345405d2ca5" prot="private" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>_PrimAdded</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a30d43012665890b033b4f21be7028b3d" prot="private" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>_primCache</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a237d77fb18b29cde2ab8307b032bcf07" prot="private" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>_PrimCacheTable</name></member>
+      <member refid="class_tf_weak_base_1a95139d2f4d04eb706664a4f47eb93918" prot="protected" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>_Register</name></member>
+      <member refid="class_tf_weak_base_1ac1312732482c8a286522f703f2cf90d1" prot="protected" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>_Register</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a458de4f81a109d84ae6ac73f2735582b" prot="private" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>_SamplePrimvar</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a55a1f7f2f12370ec6347b9b8e1388d61" prot="private" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>_sceneDelegates</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1ae1c46f06ad3e35e6945c468a90ae22cb" prot="private" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>_sceneDelegatesBuilt</name></member>
+      <member refid="class_hd_scene_index_observer_1a3dad19a020c6daee833f270521b3b109" prot="public" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>AddedPrimEntries</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1adb405f939baa9899bf6ee6276abb62f6" prot="public" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>AppendDefaultSceneFilters</name></member>
+      <member refid="class_hd_scene_index_observer_1a1b45298b84622e88b6c0e85ca1baeb57" prot="public" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>ConvertPrimsRenamedToRemovedAndAdded</name></member>
+      <member refid="class_hd_scene_index_observer_1a529aa2e0d528281da47353b55efd2475" prot="public" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>ConvertPrimsRenamedToRemovedAndAdded</name></member>
+      <member refid="class_hd_scene_index_observer_1accb5ec6e29149f518fdb9837443ecdd0" prot="public" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>DirtiedPrimEntries</name></member>
+      <member refid="class_tf_weak_base_1a16f1e27cc0c7c606ffb397b7d970ed10" prot="public" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>EnableNotification2</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1ad3f7f16a3cd3b8f8175c7ad6b19ba145" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>Get</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a89ed87c04869d5eb44746ea567e2609d" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetBasisCurvesTopology</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1abf5c8952663070947b44df508837d35a" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetCameraParamValue</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a2d282e05b6e4cbfac868caecab45cc9f" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetCategories</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a315262714c99f3845a58bc8135ea2cd5" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetCoordSysBindings</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a222e5179ffad16c1696b7780a86229a6" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetCullStyle</name></member>
+      <member refid="class_hd_scene_delegate_1ab7439e7e33d17cadb44edcf2ecec6969" prot="public" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetDelegateID</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a1208e42e1925ee8fd872ccae92fe04b3" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetDisplayStyle</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a4296ecb8f06b09b38d1e3f00aec73e32" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetDoubleSided</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1ac5dac270337e9d516465e2bb01698fc8" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetExtComputationInput</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a58bf5a9e416dce73da4af71b4ff1283c" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetExtComputationInputDescriptors</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a6186700bf6da6e0d78ecbc7b2d8e28ec" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetExtComputationKernel</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a59f3ee33e4ef98159689eb1a33d9e843" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetExtComputationOutputDescriptors</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a1776c5160616852ca79a542298536b0d" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetExtComputationPrimvarDescriptors</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a1375ff996f75a19777f0ed7d9383b266" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetExtComputationSceneInputNames</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1afb06bb5e3d05d1bb1a5531440bee7459" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetExtent</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1ad8afb9e984674e1a97a5bc894b2d3b52" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetIndexedPrimvar</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a1ee912349bed797f5dcb8978156bc46f" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetInstanceCategories</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1ab5d49dc02ac68212e9ff614563a12c6a" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetInstanceIndices</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a8e080f8acf88b7a36d95c967688a3102" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetInstancerId</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1aa078c085c6e0401451f7d9778a90ec03" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetInstancerPrototypes</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a52367bd43b05ca76fa8937f13d886adb" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetInstancerTransform</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1ab2e8d9e1e1ebe822efe94a4d466e1d05" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetLightParamValue</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a4dd5dffb502a39e7d29714e89f3287cf" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetMaterialId</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1ad3d6cda875d1c303c7a90b9419936521" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetMaterialResource</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a50ea2cbc3f801b671d8a1cb315214a0d" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetMeshTopology</name></member>
+      <member refid="class_hd_scene_delegate_1adcab87eb59e47581955ca6da639a2188" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetModelDrawMode</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a49ce3acbdac08784f448557a29e46efc" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetPrimvarDescriptors</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a1b0b47140392e37120ddf49f17c2060d" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetRenderBufferDescriptor</name></member>
+      <member refid="class_hd_scene_delegate_1a36c7bb37e37e694970b49303046d0aa2" prot="public" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetRenderIndex</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a0213790bd97f765f93dbebde687fd500" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetRenderTag</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a590a3e1e9373342943ec43402e67a80c" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetReprSelector</name></member>
+      <member refid="class_hd_scene_delegate_1abf2d598723d5458ec074c92af3a4d318" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetScenePrimPath</name></member>
+      <member refid="class_hd_scene_delegate_1a632cd4d98737ef615df8abfc3a3cae00" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetScenePrimPaths</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1aed353308e24c8346ff190e2cae6d4f4e" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetShadingStyle</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a8f00f95b53623e3c37873dec53f72231" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetSubdivTags</name></member>
+      <member refid="class_hd_scene_delegate_1a938690fa1d2af271b0156a2bfd9a12da" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetTaskRenderTags</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a86193589787a8ab4cfaaf39e7d945d49" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetTransform</name></member>
+      <member refid="class_tf_weak_base_1a3241c32a82fbed0716a77049f6134e1e" prot="public" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetUniqueIdentifier</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1ab848438ddd7853371a61fcb56b97a9d4" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetVisible</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a825fecf7344ab3e8045c1347b067ffe1" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>GetVolumeFieldDescriptors</name></member>
+      <member refid="class_hd_scene_delegate_1a578a0b86f40c3e1dd589144eafb11a7b" prot="public" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>HdSceneDelegate</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a406d69cab020c85ec9f2e9d77e2ed3cc" prot="public" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>HdSceneIndexAdapterSceneDelegate</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a737364f889f52075061a636e426c531b" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>InvokeExtComputation</name></member>
+      <member refid="class_hd_scene_delegate_1a326b9d1a1e75214cf26fd9b8e436de0d" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>IsEnabled</name></member>
+      <member refid="class_tf_weak_base_1af890ac314073e903458bf6b2397566b5" prot="public" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>operator=</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a3e5ba6692865e99c1adfe3eda30254a7" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>PostSyncCleanup</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a79eb5085cdd0533b424f23e5594cd61b" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>PrimsAdded</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1ab38a1b97a048f6b7548322448206032b" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>PrimsDirtied</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a184b27c75c27d505f0900ea87b16ac34" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>PrimsRemoved</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a1c8cc4fdfbce0f58a2877c3d273e1415" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>PrimsRenamed</name></member>
+      <member refid="class_hd_scene_index_observer_1a8c6404855649c2366af2490dc53b08d3" prot="public" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>RemovedPrimEntries</name></member>
+      <member refid="class_hd_scene_index_observer_1a97100b5c8230a90a37e524c23970da8d" prot="public" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>RenamedPrimEntries</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a1f4139c8b4d091e81d937da7dce7ca0d" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>SampleExtComputationInput</name></member>
+      <member refid="class_hd_scene_delegate_1a1c90ab50682413462e92f1630f24dcb1" prot="public" virt="non-virtual" ambiguityscope="HdSceneDelegate::"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>SampleExtComputationInput</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a324897930027ce33de72e2a34e3ea236" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>SampleIndexedPrimvar</name></member>
+      <member refid="class_hd_scene_delegate_1a5c2cfbc0d7475d320e39f7516542bdc0" prot="public" virt="non-virtual" ambiguityscope="HdSceneDelegate::"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>SampleIndexedPrimvar</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a0e84243037a32e2353e41926830766f1" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>SampleInstancerTransform</name></member>
+      <member refid="class_hd_scene_delegate_1a0f698a29fecbb0aa330f3fec67e0730c" prot="public" virt="non-virtual" ambiguityscope="HdSceneDelegate::"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>SampleInstancerTransform</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1aea2c8eb0ead658cab3a67fd9c9189111" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>SamplePrimvar</name></member>
+      <member refid="class_hd_scene_delegate_1aa5a2fca0e7e8df2fde96d3f27ac3cf0c" prot="public" virt="non-virtual" ambiguityscope="HdSceneDelegate::"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>SamplePrimvar</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1accf2771be80207437ef7b6d584a3235c" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>SampleTransform</name></member>
+      <member refid="class_hd_scene_delegate_1acecbea9221dad1768f23523fc3ec7b0d" prot="public" virt="non-virtual" ambiguityscope="HdSceneDelegate::"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>SampleTransform</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a04d054f1e5c34a8cc216ef03ffa5b742" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>Sync</name></member>
+      <member refid="class_tf_weak_base_1a6e4abdd663654f8c8019702a464de8d6" prot="public" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_weak_base_1affc4c00d0bbfdfe4f9e6a8b2e81be368" prot="public" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>TfWeakBase</name></member>
+      <member refid="class_hd_scene_delegate_1aa71a01c241e5f409c1f6b233b6f87501" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>~HdSceneDelegate</name></member>
+      <member refid="class_hd_scene_index_adapter_scene_delegate_1a90f746e70021d0ea5a7dfe5b872dbe4e" prot="public" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>~HdSceneIndexAdapterSceneDelegate</name></member>
+      <member refid="class_hd_scene_index_observer_1a4b755f82fc47b55d3dfcf0d906710758" prot="public" virt="virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>~HdSceneIndexObserver</name></member>
+      <member refid="class_tf_weak_base_1a778020f525b66def8a284c6f020592c2" prot="protected" virt="non-virtual"><scope>HdSceneIndexAdapterSceneDelegate</scope><name>~TfWeakBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

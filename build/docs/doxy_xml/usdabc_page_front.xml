@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="usdabc_page_front" kind="page">
+    <compoundname>usdabc_page_front</compoundname>
+    <title>UsdAbc : Alembic File Format Plugin</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="usdabc_page_front_1usdAbc_overview">
+<title>Overview</title>
+<para>This library currently exists to provide the alembic file format plugin for USD, and currently has no user-level API.</para>
+</sect1>
+<sect1 id="usdabc_page_front_1usdAbc_behavior">
+<title>Behavior</title>
+<sect2 id="usdabc_page_front_1SDF_FORMAT_ARGS">
+<title>SDF_FORMAT_ARGS</title>
+<para>UsdAbc accepts some SDF_FORMAT_ARGS for controlling behavior.</para>
+<para><table rows="3" cols="3"><row>
+<entry thead="yes"><para>SDF_FORMAT_ARGS  </para>
+</entry><entry thead="yes"><para>Meaning  </para>
+</entry><entry thead="yes"><para>Default Value   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>abcReRoot=STRING  </para>
+</entry><entry thead="no"><para>&apos;ReRoot&apos; the immediate children of the IArchive on a single Xform whose name is the value of STRING  </para>
+</entry><entry thead="no"><para>empty / &quot;&quot;   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>abcLayers=LAYER_1,LAYER_2,LAYER_N  </para>
+</entry><entry thead="no"><para>Additional / Layered alembic files for IFactory::getArchive.<linebreak/>
+ These are expected as paths already resolved (likely absolute)  </para>
+</entry><entry thead="no"><para>empty / []   </para>
+</entry></row>
+</table>
+</para>
+<para>testenv/testUsdAbcSDFArguments/testUsdAbcSDFArguments.usda has the following example, which will load all children in testUsdAbcSDFArgumentsMesh.abc into the &apos;AlembicRoot&apos; Xform, using layered Alembic to load UVs from testUsdAbcSDFArgumentsUV.abc. <verbatim>def Xform &quot;AlembicRoot&quot; (
+    references = @./testUsdAbcSDFArgumentsMesh.abc:SDF_FORMAT_ARGS:abcReRoot=AlembicRoot&amp;abcLayers=./testUsdAbcSDFArgumentsUV.abc@
+)
+{
+}
+</verbatim></para>
+</sect2>
+<sect2 id="usdabc_page_front_1TfEnvSettings">
+<title>TfEnvSettings</title>
+<para>UsdAbc exposes some TfEnvSettings for controlling behavior.</para>
+<para><table rows="6" cols="3"><row>
+<entry thead="yes"><para>Setting Name  </para>
+</entry><entry thead="yes"><para>Meaning  </para>
+</entry><entry thead="yes"><para>Default Value   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>USD_ABC_NUM_OGAWA_STREAMS  </para>
+</entry><entry thead="no"><para>The number of threads available for reading ogawa-backed files.  </para>
+</entry><entry thead="no"><para>4   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>USD_ABC_EXPAND_INSTANCES  </para>
+</entry><entry thead="no"><para>Force alembic instances to be expanded  </para>
+</entry><entry thead="no"><para>false   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>USD_ABC_DISABLE_INSTANCES  </para>
+</entry><entry thead="no"><para>Disable instancing on prototypes created from alembic  </para>
+</entry><entry thead="no"><para>false   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>USD_ABC_PARENT_INSTANCES  </para>
+</entry><entry thead="no"><para>Make parent of instance source into prototypes where possible  </para>
+</entry><entry thead="no"><para>true   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>USD_ABC_WARN_ALL_UNSUPPORTED_VALUES  </para>
+</entry><entry thead="no"><para>Issue warnings for all unsupported values encountered.  </para>
+</entry><entry thead="no"><para>false   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

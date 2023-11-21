@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_shade_udim_utils" kind="class" language="C++" prot="public">
+    <compoundname>UsdShadeUdimUtils</compoundname>
+    <includes refid="udim_utils_8h" local="no">udimUtils.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_usd_shade_udim_utils_1a0cb9ce3689f57bb1b0c17c2946496893" prot="public" static="no">
+        <type>std::pair&lt; std::string, std::string &gt;</type>
+        <definition>using ResolvedPathAndTile =  std::pair&lt;std::string, std::string&gt;</definition>
+        <argsstring></argsstring>
+        <name>ResolvedPathAndTile</name>
+        <briefdescription>
+<para>Pair representing a resolved UDIM path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The first member is the fully resolved path The second number contains only the UDIM tile identifier. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/udimUtils.h" line="50" column="1" bodyfile="pxr/usd/usdShade/udimUtils.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_usd_shade_udim_utils_1a18530ce3c304012ac0e84f61944b7207" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API bool</type>
+        <definition>static USDSHADE_API bool IsUdimIdentifier</definition>
+        <argsstring>(const std::string &amp;identifier)</argsstring>
+        <name>IsUdimIdentifier</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>identifier</declname>
+        </param>
+        <briefdescription>
+<para>Checks if <computeroutput>identifier</computeroutput> contains a UDIM token. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Currently only &quot;&lt;UDIM&gt;&quot; is supported, but other patterns such as &quot;_MAPID_&quot; may be supported in the future. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/udimUtils.h" line="56" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_udim_utils_1a659d5b748f806ebb75692b710287fbf1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API std::string</type>
+        <definition>static USDSHADE_API std::string ReplaceUdimPattern</definition>
+        <argsstring>(const std::string &amp;identifierWithPattern, const std::string &amp;replacement)</argsstring>
+        <name>ReplaceUdimPattern</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>identifierWithPattern</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>replacement</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the UDIM pattern contained in <computeroutput>identifierWithPattern</computeroutput> with <computeroutput>replacement</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/udimUtils.h" line="61" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_udim_utils_1af2bc7cbd512828c5eca73d46cc3454ce" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API std::string</type>
+        <definition>static USDSHADE_API std::string ResolveUdimPath</definition>
+        <argsstring>(const std::string &amp;udimPath, const SdfLayerHandle &amp;layer)</argsstring>
+        <name>ResolveUdimPath</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>udimPath</declname>
+        </param>
+        <param>
+          <type>const SdfLayerHandle &amp;</type>
+          <declname>layer</declname>
+        </param>
+        <briefdescription>
+<para>Resolves a <computeroutput>udimPath</computeroutput> containing a UDIM token. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The path is first anchored with the passed <computeroutput>layer</computeroutput> if needed, then the function attempts to resolve any possible UDIM tiles. If any exist, the resolved path is returned with &quot;&lt;UDIM&gt;&quot; substituted back in. If no resolves succeed or <computeroutput>udimPath</computeroutput> does not contain a UDIM token, an empty string is returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/udimUtils.h" line="71" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_shade_udim_utils_1a715a6172b9ad33900837e6bdf6439201" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDSHADE_API std::vector&lt; <ref refid="class_usd_shade_udim_utils_1a0cb9ce3689f57bb1b0c17c2946496893" kindref="member">ResolvedPathAndTile</ref> &gt;</type>
+        <definition>static USDSHADE_API std::vector&lt;ResolvedPathAndTile&gt; ResolveUdimTilePaths</definition>
+        <argsstring>(const std::string &amp;udimPath, const SdfLayerHandle &amp;layer)</argsstring>
+        <name>ResolveUdimTilePaths</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>udimPath</declname>
+        </param>
+        <param>
+          <type>const SdfLayerHandle &amp;</type>
+          <declname>layer</declname>
+        </param>
+        <briefdescription>
+<para>Attempts to resolve all paths which match a path containing a UDIM pattern. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The path is first anchored with the passed <computeroutput>layer</computeroutput> if needed, then the function attempts to resolve all possible UDIM numbers in the path. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdShade/udimUtils.h" line="80" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This class contains a set of utility functions used for working with Udim texture paths. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="pxr/usd/usdShade/udimUtils.h" line="44" column="1" bodyfile="pxr/usd/usdShade/udimUtils.h" bodystart="44" bodyend="83"/>
+    <listofallmembers>
+      <member refid="class_usd_shade_udim_utils_1a18530ce3c304012ac0e84f61944b7207" prot="public" virt="non-virtual"><scope>UsdShadeUdimUtils</scope><name>IsUdimIdentifier</name></member>
+      <member refid="class_usd_shade_udim_utils_1a659d5b748f806ebb75692b710287fbf1" prot="public" virt="non-virtual"><scope>UsdShadeUdimUtils</scope><name>ReplaceUdimPattern</name></member>
+      <member refid="class_usd_shade_udim_utils_1a0cb9ce3689f57bb1b0c17c2946496893" prot="public" virt="non-virtual"><scope>UsdShadeUdimUtils</scope><name>ResolvedPathAndTile</name></member>
+      <member refid="class_usd_shade_udim_utils_1af2bc7cbd512828c5eca73d46cc3454ce" prot="public" virt="non-virtual"><scope>UsdShadeUdimUtils</scope><name>ResolveUdimPath</name></member>
+      <member refid="class_usd_shade_udim_utils_1a715a6172b9ad33900837e6bdf6439201" prot="public" virt="non-virtual"><scope>UsdShadeUdimUtils</scope><name>ResolveUdimTilePaths</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

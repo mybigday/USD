@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_ndr_parser_plugin" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>NdrParserPlugin</compoundname>
+    <basecompoundref refid="class_tf_weak_base" prot="public" virt="non-virtual">TfWeakBase</basecompoundref>
+    <derivedcompoundref refid="class_sdr_osl_parser_plugin" prot="public" virt="non-virtual">SdrOslParserPlugin</derivedcompoundref>
+    <derivedcompoundref refid="class_usd_shade_shader_def_parser_plugin" prot="public" virt="non-virtual">UsdShadeShaderDefParserPlugin</derivedcompoundref>
+    <includes refid="parser_plugin_8h" local="no">parserPlugin.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_ndr_parser_plugin_1ae71ccbb6b524bb041853bf6b32e1a328" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API</type>
+        <definition>NDR_API NdrParserPlugin</definition>
+        <argsstring>()</argsstring>
+        <name>NdrParserPlugin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/parserPlugin.h" line="129" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_parser_plugin_1a631ea1c611ca81e66301b4aacc1d59da" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>NDR_API</type>
+        <definition>virtual NDR_API ~NdrParserPlugin</definition>
+        <argsstring>()</argsstring>
+        <name>~NdrParserPlugin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/parserPlugin.h" line="131" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_parser_plugin_1a2ef1934691588b3b4dfe4eec441ed317" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>NDR_API NdrNodeUniquePtr</type>
+        <definition>virtual NDR_API NdrNodeUniquePtr Parse</definition>
+        <argsstring>(const NdrNodeDiscoveryResult &amp;discoveryResult)=0</argsstring>
+        <name>Parse</name>
+        <reimplementedby refid="class_usd_shade_shader_def_parser_plugin_1a8479ccfddeb9dce547f33bb9ec8b2bd4">Parse</reimplementedby>
+        <reimplementedby refid="class_sdr_osl_parser_plugin_1a0eaedf556b3d0670108b24c8c7142969">Parse</reimplementedby>
+        <param>
+          <type>const <ref refid="struct_ndr_node_discovery_result" kindref="compound">NdrNodeDiscoveryResult</ref> &amp;</type>
+          <declname>discoveryResult</declname>
+        </param>
+        <briefdescription>
+<para>Takes the specified <computeroutput><ref refid="struct_ndr_node_discovery_result" kindref="compound">NdrNodeDiscoveryResult</ref></computeroutput> instance, which was a result of the discovery process, and generates a new <computeroutput><ref refid="class_ndr_node" kindref="compound">NdrNode</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The node&apos;s name, source type, and family must match. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/parserPlugin.h" line="137" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_parser_plugin_1a0a128182a40795469baa3373b2c1f128" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>NDR_API const NdrTokenVec &amp;</type>
+        <definition>virtual NDR_API const NdrTokenVec&amp; GetDiscoveryTypes</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetDiscoveryTypes</name>
+        <reimplementedby refid="class_usd_shade_shader_def_parser_plugin_1a87ec51417c3f78563e153088f245d429">GetDiscoveryTypes</reimplementedby>
+        <reimplementedby refid="class_sdr_osl_parser_plugin_1a7bb9a7042529d3ddef5ac2b5da217a01">GetDiscoveryTypes</reimplementedby>
+        <briefdescription>
+<para>Returns the types of nodes that this plugin can parse. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>&quot;Type&quot; here is the discovery type (in the case of files, this will probably be the file extension, but in other systems will be data that can be determined during discovery). This type should only be used to match up a <computeroutput><ref refid="struct_ndr_node_discovery_result" kindref="compound">NdrNodeDiscoveryResult</ref></computeroutput> to its parser plugin; this value is not exposed in the node&apos;s API. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/parserPlugin.h" line="148" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ndr_parser_plugin_1a83659c4b3ccd025ad202c0d507b5ed8e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>NDR_API const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+        <definition>virtual NDR_API const TfToken&amp; GetSourceType</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetSourceType</name>
+        <reimplementedby refid="class_usd_shade_shader_def_parser_plugin_1aa6a0528a2c3cc8cb540b47c3c48c4ce2">GetSourceType</reimplementedby>
+        <reimplementedby refid="class_sdr_osl_parser_plugin_1a6e5f10b89a2f1f9fad41746b1d0ee34e">GetSourceType</reimplementedby>
+        <briefdescription>
+<para>Returns the source type that this parser operates on. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A source type is the most general type for a node. The parser plugin is responsible for parsing all discovery results that have the types declared under <computeroutput><ref refid="class_ndr_parser_plugin_1a0a128182a40795469baa3373b2c1f128" kindref="member">GetDiscoveryTypes()</ref></computeroutput>, and those types are collectively identified as one &quot;source type&quot;. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/parserPlugin.h" line="157" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_ndr_parser_plugin_1a9cbbe0ba6beeb89591c20782cf9b12c9" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>NDR_API NdrNodeUniquePtr</type>
+        <definition>static NDR_API NdrNodeUniquePtr GetInvalidNode</definition>
+        <argsstring>(const NdrNodeDiscoveryResult &amp;dr)</argsstring>
+        <name>GetInvalidNode</name>
+        <param>
+          <type>const <ref refid="struct_ndr_node_discovery_result" kindref="compound">NdrNodeDiscoveryResult</ref> &amp;</type>
+          <declname>dr</declname>
+        </param>
+        <briefdescription>
+<para>Gets an invalid node based on the discovery result provided. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>An invalid node is a node that has no properties, but may have basic data found during discovery. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/ndr/parserPlugin.h" line="163" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Interface for parser plugins. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Parser plugins take a <computeroutput><ref refid="struct_ndr_node_discovery_result" kindref="compound">NdrNodeDiscoveryResult</ref></computeroutput> from the discovery process and creates a full <computeroutput><ref refid="class_ndr_node" kindref="compound">NdrNode</ref></computeroutput> instance (or, in the case of a real-world scenario, a specialized node that derives from <computeroutput><ref refid="class_ndr_node" kindref="compound">NdrNode</ref></computeroutput>). The parser that is selected to run is ultimately decided by the registry, and depends on the <computeroutput><ref refid="struct_ndr_node_discovery_result" kindref="compound">NdrNodeDiscoveryResult</ref></computeroutput>&apos;s <computeroutput>discoveryType</computeroutput> member. A parser plugin&apos;s <computeroutput><ref refid="class_ndr_parser_plugin_1a0a128182a40795469baa3373b2c1f128" kindref="member">GetDiscoveryTypes()</ref></computeroutput> method is how this link is made. If a discovery result has a <computeroutput>discoveryType</computeroutput> of &apos;foo&apos;, and <computeroutput>SomeParserPlugin</computeroutput> has &apos;foo&apos; included in its <computeroutput><ref refid="class_ndr_parser_plugin_1a0a128182a40795469baa3373b2c1f128" kindref="member">GetDiscoveryTypes()</ref></computeroutput> return value, <computeroutput>SomeParserPlugin</computeroutput> will parse that discovery result.</para>
+<para>Another kind of &apos;type&apos; within the parser plugin is the &apos;source type&apos;. The discovery type simply acts as a way to link a discovery result to a parser plugin. On the other hand, a &apos;source type&apos; acts as an umbrella type that groups all of the discovery types together. For example, if a plugin handled discovery types &apos;foo&apos;, &apos;bar&apos;, and &apos;baz&apos; (which are all related because they are all handled by the same parser), they may all be grouped under one unifying source type. This type is available on the node via <computeroutput><ref refid="class_ndr_node_1a552a651875e4dbe319770af335913253" kindref="member">NdrNode::GetSourceType()</ref></computeroutput>.</para>
+<sect1 id="class_ndr_parser_plugin_1create">
+<title>How to Create a Discovery Plugin</title>
+<para>There are three steps to creating a parser plugin: <itemizedlist>
+<listitem>
+<para>Implement the parser plugin interface. An example parser plugin is available in the plugin folder under <computeroutput>sdrOsl</computeroutput>. The <computeroutput><ref refid="class_ndr_parser_plugin_1a2ef1934691588b3b4dfe4eec441ed317" kindref="member">Parse()</ref></computeroutput> method should return the specialized node that derives from <computeroutput><ref refid="class_ndr_node" kindref="compound">NdrNode</ref></computeroutput> (and this node should also be constructed with its specialized properties). Examples of a specialized node and property class are <computeroutput><ref refid="class_sdr_shader_node" kindref="compound">SdrShaderNode</ref></computeroutput> and <computeroutput><ref refid="class_sdr_shader_property" kindref="compound">SdrShaderProperty</ref></computeroutput>.  </para>
+</listitem>
+<listitem>
+<para>Register your new plugin with the registry. The registration macro must be called in your plugin&apos;s implementation file: <programlisting filename=".cpp"><codeline><highlight class="normal"><ref refid="parser_plugin_8h_1ad6eaa7f170cb6f5c1c4750809d48da00" kindref="member">NDR_REGISTER_PARSER_PLUGIN</ref>(&lt;YOUR_PARSER_PLUGIN_CLASS_NAME&gt;)</highlight></codeline>
+</programlisting> This macro is available in <ref refid="parser_plugin_8h" kindref="compound">parserPlugin.h</ref>.  </para>
+</listitem>
+<listitem>
+<para>In the same folder as your plugin, create a <computeroutput>plugInfo.json</computeroutput> file. This file must be formatted like so, substituting <computeroutput>YOUR_LIBRARY_NAME</computeroutput>, <computeroutput>YOUR_CLASS_NAME</computeroutput>, and <computeroutput>YOUR_DISPLAY_NAME</computeroutput>: <programlisting filename=".json"><codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;Plugins&quot;:<sp/>[{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Type&quot;:<sp/>&quot;library&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Name&quot;:<sp/>&quot;YOUR_LIBRARY_NAME&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Root&quot;:<sp/>&quot;@PLUG_INFO_ROOT@&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;LibraryPath&quot;:<sp/>&quot;@PLUG_INFO_LIBRARY_PATH@&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;ResourcePath&quot;:<sp/>&quot;@PLUG_INFO_RESOURCE_PATH@&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Info&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;Types&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;YOUR_CLASS_NAME&quot;<sp/>:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;bases&quot;:<sp/>[&quot;NdrParserPlugin&quot;],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;displayName&quot;:<sp/>&quot;YOUR_DISPLAY_NAME&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}]</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>The SDR ships with one parser plugin, the <computeroutput><ref refid="class_sdr_osl_parser_plugin" kindref="compound">SdrOslParserPlugin</ref></computeroutput>. Take a look at its plugInfo.json file for example values for <computeroutput>YOUR_LIBRARY_NAME</computeroutput>, <computeroutput>YOUR_CLASS_NAME</computeroutput>, and <computeroutput>YOUR_DISPLAY_NAME</computeroutput>. If multiple parser plugins exist in the same folder, you can continue adding additional plugins under the <computeroutput>Types</computeroutput> key in the JSON. More detailed information about the plugInfo.json format can be found in the documentation for the <computeroutput>plug</computeroutput> library (in pxr/base).  </para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4311">
+        <label>UsdShadeShaderDefParserPlugin</label>
+        <link refid="class_usd_shade_shader_def_parser_plugin"/>
+        <childnode refid="4308" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4308">
+        <label>NdrParserPlugin</label>
+        <link refid="class_ndr_parser_plugin"/>
+        <childnode refid="4309" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4309">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="4310">
+        <label>SdrOslParserPlugin</label>
+        <link refid="class_sdr_osl_parser_plugin"/>
+        <childnode refid="4308" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4312">
+        <label>NdrParserPlugin</label>
+        <link refid="class_ndr_parser_plugin"/>
+        <childnode refid="4313" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4313">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/usd/ndr/parserPlugin.h" line="126" column="1" bodyfile="pxr/usd/ndr/parserPlugin.h" bodystart="125" bodyend="164"/>
+    <listofallmembers>
+      <member refid="class_tf_weak_base_1a01aa4c4b93df067f2ec9b9e5fa4c35b3" prot="public" virt="non-virtual"><scope>NdrParserPlugin</scope><name>__GetTfWeakBase__</name></member>
+      <member refid="class_tf_weak_base_1a6a5533162e8efab1be47acd6ccd5254c" prot="protected" virt="non-virtual"><scope>NdrParserPlugin</scope><name>_HasRemnant</name></member>
+      <member refid="class_tf_weak_base_1a95139d2f4d04eb706664a4f47eb93918" prot="protected" virt="non-virtual"><scope>NdrParserPlugin</scope><name>_Register</name></member>
+      <member refid="class_tf_weak_base_1ac1312732482c8a286522f703f2cf90d1" prot="protected" virt="non-virtual"><scope>NdrParserPlugin</scope><name>_Register</name></member>
+      <member refid="class_tf_weak_base_1a16f1e27cc0c7c606ffb397b7d970ed10" prot="public" virt="non-virtual"><scope>NdrParserPlugin</scope><name>EnableNotification2</name></member>
+      <member refid="class_ndr_parser_plugin_1a0a128182a40795469baa3373b2c1f128" prot="public" virt="pure-virtual"><scope>NdrParserPlugin</scope><name>GetDiscoveryTypes</name></member>
+      <member refid="class_ndr_parser_plugin_1a9cbbe0ba6beeb89591c20782cf9b12c9" prot="public" virt="non-virtual"><scope>NdrParserPlugin</scope><name>GetInvalidNode</name></member>
+      <member refid="class_ndr_parser_plugin_1a83659c4b3ccd025ad202c0d507b5ed8e" prot="public" virt="pure-virtual"><scope>NdrParserPlugin</scope><name>GetSourceType</name></member>
+      <member refid="class_tf_weak_base_1a3241c32a82fbed0716a77049f6134e1e" prot="public" virt="non-virtual"><scope>NdrParserPlugin</scope><name>GetUniqueIdentifier</name></member>
+      <member refid="class_ndr_parser_plugin_1ae71ccbb6b524bb041853bf6b32e1a328" prot="public" virt="non-virtual"><scope>NdrParserPlugin</scope><name>NdrParserPlugin</name></member>
+      <member refid="class_tf_weak_base_1af890ac314073e903458bf6b2397566b5" prot="public" virt="non-virtual"><scope>NdrParserPlugin</scope><name>operator=</name></member>
+      <member refid="class_ndr_parser_plugin_1a2ef1934691588b3b4dfe4eec441ed317" prot="public" virt="pure-virtual"><scope>NdrParserPlugin</scope><name>Parse</name></member>
+      <member refid="class_tf_weak_base_1a6e4abdd663654f8c8019702a464de8d6" prot="public" virt="non-virtual"><scope>NdrParserPlugin</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_weak_base_1affc4c00d0bbfdfe4f9e6a8b2e81be368" prot="public" virt="non-virtual"><scope>NdrParserPlugin</scope><name>TfWeakBase</name></member>
+      <member refid="class_ndr_parser_plugin_1a631ea1c611ca81e66301b4aacc1d59da" prot="public" virt="virtual"><scope>NdrParserPlugin</scope><name>~NdrParserPlugin</name></member>
+      <member refid="class_tf_weak_base_1a778020f525b66def8a284c6f020592c2" prot="protected" virt="non-virtual"><scope>NdrParserPlugin</scope><name>~TfWeakBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

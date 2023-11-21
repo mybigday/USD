@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="struct_tf_dictionary_less_than" kind="class" language="C++" prot="public">
+    <compoundname>TfDictionaryLessThan</compoundname>
+    <includes refid="string_utils_8h" local="no">stringUtils.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_tf_dictionary_less_than_1aaa635e6b9fa9ef664c925f9e76bfb380" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator()</definition>
+        <argsstring>(const std::string &amp;lhs, const std::string &amp;rhs) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Return true if <computeroutput>lhs</computeroutput> is less than <computeroutput>rhs</computeroutput> in dictionary order. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Normally this functor is used to supply an ordering functor for STL containers: for example, <programlisting><codeline><highlight class="normal">map&lt;string,<sp/>DataType,<sp/>TfDictionaryLessThan&gt;<sp/><sp/>table;</highlight></codeline>
+</programlisting></para>
+<para>If you simply need to compare two strings, you can do so as follows: <programlisting><codeline><highlight class="normal">bool<sp/>aIsFirst<sp/>=<sp/>TfDictionaryLessThan()(aString,<sp/>bString);</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="541" column="1" bodyfile="pxr/base/tf/stringUtils.h" bodystart="541" bodyend="559"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="struct_tf_dictionary_less_than_1a911056c944f3107d6fd986289af6fe9f" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API bool</type>
+        <definition>TF_API bool _LessImpl</definition>
+        <argsstring>(const std::string &amp;lhs, const std::string &amp;rhs) const</argsstring>
+        <name>_LessImpl</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="561" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Provides dictionary ordering binary predicate function on strings. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The <computeroutput><ref refid="struct_tf_dictionary_less_than" kindref="compound">TfDictionaryLessThan</ref></computeroutput> class is a functor as defined by the STL standard. It compares strings using &quot;dictionary&quot; order: for example, the following strings are in dictionary order: [&quot;abacus&quot;, &quot;Albert&quot;, &quot;albert&quot;, &quot;baby&quot;, &quot;Bert&quot;, &quot;file01&quot;, &quot;file001&quot;, &quot;file2&quot;, &quot;file10&quot;]</para>
+<para>Note that capitalization matters only if the strings differ by capitalization alone.</para>
+<para>Characters whose ASCII value are inbetween upper- and lowercase letters, such as underscore, are sorted to come after all letters.</para>
+<para><simplesect kind="note"><para>This comparison is used for the runtime to give a deterministic ordering to strings.</para>
+</simplesect>
+ASCII strings will sort lexicographically according to the rules below. Strings with other Unicode characters will follow these same rules until a multi-byte codepoint is encountered in which case it will be byte compared with the bytes in the other string. Multi-byte encoded characters will operate this way for each of the bytes.</para>
+<para>Note that this results in a non-lexicographic ordering of strings that contain non-ASCII characters. Clients interested in sorting strings lexicographically should not rely on this function for doing so and should instead use a custom sort function (or use one provided by an already existing library such as Qt or ICU). </para>
+    </detaileddescription>
+    <location file="pxr/base/tf/stringUtils.h" line="528" column="1" bodyfile="pxr/base/tf/stringUtils.h" bodystart="528" bodyend="563"/>
+    <listofallmembers>
+      <member refid="struct_tf_dictionary_less_than_1a911056c944f3107d6fd986289af6fe9f" prot="private" virt="non-virtual"><scope>TfDictionaryLessThan</scope><name>_LessImpl</name></member>
+      <member refid="struct_tf_dictionary_less_than_1aaa635e6b9fa9ef664c925f9e76bfb380" prot="public" virt="non-virtual"><scope>TfDictionaryLessThan</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

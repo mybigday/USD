@@ -1,0 +1,337 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_geom_util_capsule_mesh_generator" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>GeomUtilCapsuleMeshGenerator</compoundname>
+    <basecompoundref refid="class_geom_util_mesh_generator_base" prot="public" virt="non-virtual">GeomUtilMeshGeneratorBase</basecompoundref>
+    <includes refid="capsule_mesh_generator_8h" local="no">capsuleMeshGenerator.h</includes>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_geom_util_capsule_mesh_generator_1a54023d7fd0ffacb3f018e32d7a6ec9db" prot="public" static="yes" mutable="no">
+        <type>constexpr size_t</type>
+        <definition>constexpr size_t minNumRadial</definition>
+        <argsstring></argsstring>
+        <name>minNumRadial</name>
+        <initializer>= 3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/geomUtil/capsuleMeshGenerator.h" line="73" column="1" bodyfile="pxr/imaging/geomUtil/capsuleMeshGenerator.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_geom_util_capsule_mesh_generator_1a747408c8873f2b34466bbb3f2b2bf1b0" prot="public" static="yes" mutable="no">
+        <type>constexpr size_t</type>
+        <definition>constexpr size_t minNumCapAxial</definition>
+        <argsstring></argsstring>
+        <name>minNumCapAxial</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/geomUtil/capsuleMeshGenerator.h" line="74" column="1" bodyfile="pxr/imaging/geomUtil/capsuleMeshGenerator.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_geom_util_capsule_mesh_generator_1a4fe6a9ceb54a2307c37a2b151f139400" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GEOMUTIL_API size_t</type>
+        <definition>static GEOMUTIL_API size_t ComputeNumPoints</definition>
+        <argsstring>(const size_t numRadial, const size_t numCapAxial, const bool closedSweep=true)</argsstring>
+        <name>ComputeNumPoints</name>
+        <param>
+          <type>const size_t</type>
+          <declname>numRadial</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>numCapAxial</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>closedSweep</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/geomUtil/capsuleMeshGenerator.h" line="77" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_geom_util_capsule_mesh_generator_1aa06fa68cb261bbb9f861518232b416b2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GEOMUTIL_API <ref refid="class_px_osd_mesh_topology" kindref="compound">PxOsdMeshTopology</ref></type>
+        <definition>static GEOMUTIL_API PxOsdMeshTopology GenerateTopology</definition>
+        <argsstring>(const size_t numRadial, const size_t numCapAxial, const bool closedSweep=true)</argsstring>
+        <name>GenerateTopology</name>
+        <param>
+          <type>const size_t</type>
+          <declname>numRadial</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>numCapAxial</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>closedSweep</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/geomUtil/capsuleMeshGenerator.h" line="83" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_geom_util_capsule_mesh_generator_1a9ea720a927c109ed791e161fd86ba988" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename PointIterType</type>
+          </param>
+          <param>
+            <type>typename ScalarType</type>
+          </param>
+          <param>
+            <type>typename Enabled</type>
+            <defval>typename _EnableIfGfVec3Iterator&lt;PointIterType&gt;::type</defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void GeneratePoints</definition>
+        <argsstring>(PointIterType iter, const size_t numRadial, const size_t numCapAxial, const ScalarType radius, const ScalarType height, const GfMatrix4d *framePtr=nullptr)</argsstring>
+        <name>GeneratePoints</name>
+        <param>
+          <type>PointIterType</type>
+          <declname>iter</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>numRadial</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>numCapAxial</declname>
+        </param>
+        <param>
+          <type>const ScalarType</type>
+          <declname>radius</declname>
+        </param>
+        <param>
+          <type>const ScalarType</type>
+          <declname>height</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref> *</type>
+          <declname>framePtr</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/geomUtil/capsuleMeshGenerator.h" line="92" column="1" bodyfile="pxr/imaging/geomUtil/capsuleMeshGenerator.h" bodystart="92" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="class_geom_util_capsule_mesh_generator_1a5a49f121f50f98b3c110564ee9ccba77" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename PointIterType</type>
+          </param>
+          <param>
+            <type>typename ScalarType</type>
+          </param>
+          <param>
+            <type>typename Enabled</type>
+            <defval>typename _EnableIfGfVec3Iterator&lt;PointIterType&gt;::type</defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void GeneratePoints</definition>
+        <argsstring>(PointIterType iter, const size_t numRadial, const size_t numCapAxial, const ScalarType bottomRadius, const ScalarType topRadius, const ScalarType height, const ScalarType sweepDegrees, const GfMatrix4d *framePtr=nullptr)</argsstring>
+        <name>GeneratePoints</name>
+        <param>
+          <type>PointIterType</type>
+          <declname>iter</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>numRadial</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>numCapAxial</declname>
+        </param>
+        <param>
+          <type>const ScalarType</type>
+          <declname>bottomRadius</declname>
+        </param>
+        <param>
+          <type>const ScalarType</type>
+          <declname>topRadius</declname>
+        </param>
+        <param>
+          <type>const ScalarType</type>
+          <declname>height</declname>
+        </param>
+        <param>
+          <type>const ScalarType</type>
+          <declname>sweepDegrees</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref> *</type>
+          <declname>framePtr</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/geomUtil/capsuleMeshGenerator.h" line="112" column="1" bodyfile="pxr/imaging/geomUtil/capsuleMeshGenerator.h" bodystart="112" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="class_geom_util_capsule_mesh_generator_1abad1bfe6e3b339022a24893c5ab052a0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename PointIterType</type>
+          </param>
+          <param>
+            <type>typename Enabled</type>
+            <defval>typename _EnableIfNotGfVec3Iterator&lt;PointIterType&gt;::type</defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void GeneratePoints</definition>
+        <argsstring>(PointIterType iter,...)</argsstring>
+        <name>GeneratePoints</name>
+        <param>
+          <type>PointIterType</type>
+          <declname>iter</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/geomUtil/capsuleMeshGenerator.h" line="131" column="1" bodyfile="pxr/imaging/geomUtil/meshGeneratorBase.h" bodystart="234" bodyend="240"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_geom_util_capsule_mesh_generator_1a211a54583caabb4b96494a455ca602e2" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename PointType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void _GeneratePointsImpl</definition>
+        <argsstring>(const size_t numRadial, const size_t numCapAxial, const typename PointType::ScalarType bottomRadius, const typename PointType::ScalarType topRadius, const typename PointType::ScalarType height, const typename PointType::ScalarType sweep, const _PointWriter&lt; PointType &gt; &amp;ptWriter)</argsstring>
+        <name>_GeneratePointsImpl</name>
+        <param>
+          <type>const size_t</type>
+          <declname>numRadial</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>numCapAxial</declname>
+        </param>
+        <param>
+          <type>const typename PointType::ScalarType</type>
+          <declname>bottomRadius</declname>
+        </param>
+        <param>
+          <type>const typename PointType::ScalarType</type>
+          <declname>topRadius</declname>
+        </param>
+        <param>
+          <type>const typename PointType::ScalarType</type>
+          <declname>height</declname>
+        </param>
+        <param>
+          <type>const typename PointType::ScalarType</type>
+          <declname>sweep</declname>
+        </param>
+        <param>
+          <type>const _PointWriter&lt; PointType &gt; &amp;</type>
+          <declname>ptWriter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/geomUtil/capsuleMeshGenerator.h" line="135" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This class provides an implementation for generating topology and point positions on a capsule. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The simplest form takes a radius and height and is a cylinder capped by two hemispheres that is centered at the origin. The generated capsule is made up of circular cross-sections in the XY plane. Each cross-section has numRadial segments. Successive cross-sections for each of the hemispheres are generated at numCapAxial locations along the Z and -Z axes respectively. The height is aligned with the Z axis and represents the height of just the cylindrical portion.</para>
+<para>An optional transform may be provided to GeneratePoints to orient the capsule as necessary (e.g., whose height is along the Y axis) .</para>
+<para>An additional overload of GeneratePoints is provided to specify different radii and heights for the bottom and top caps, as well as the sweep angle for the capsule about the +Z axis. When the sweep is less than 360 degrees, the generated geometry is not closed.</para>
+<para>Usage: <programlisting filename=".cpp"><codeline><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numRadial<sp/>=<sp/>4,<sp/>numCapAxial<sp/>=<sp/>4;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numPoints<sp/>=</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>GeomUtilCapsuleMeshGenerator::ComputeNumPoints(numRadial,<sp/>numCapAxial);</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>radius<sp/>=<sp/>1,<sp/>height<sp/>=<sp/>2;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">MyPointContainer&lt;GfVec3f&gt;<sp/>points(numPoints);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">GeomUtilCapsuleMeshGenerator::GeneratePoints(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>points.begin(),<sp/>numRadial,<sp/>numCapAxial,<sp/>radius,<sp/>height);</highlight></codeline>
+</programlisting> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1223">
+        <label>GeomUtilCapsuleMeshGenerator</label>
+        <link refid="class_geom_util_capsule_mesh_generator"/>
+        <childnode refid="1224" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1224">
+        <label>GeomUtilMeshGeneratorBase</label>
+        <link refid="class_geom_util_mesh_generator_base"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1225">
+        <label>GeomUtilCapsuleMeshGenerator</label>
+        <link refid="class_geom_util_capsule_mesh_generator"/>
+        <childnode refid="1226" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1226">
+        <label>GeomUtilMeshGeneratorBase</label>
+        <link refid="class_geom_util_mesh_generator_base"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/geomUtil/capsuleMeshGenerator.h" line="71" column="1" bodyfile="pxr/imaging/geomUtil/capsuleMeshGenerator.h" bodystart="69" bodyend="143"/>
+    <listofallmembers>
+      <member refid="class_geom_util_mesh_generator_base_1a4d14538b4b1c0110f571d01cb4064dbf" prot="protected" virt="non-virtual"><scope>GeomUtilCapsuleMeshGenerator</scope><name>_CapStyle</name></member>
+      <member refid="class_geom_util_mesh_generator_base_1a1f586b35cd1a71bfa6235aa5eb967cc7" prot="protected" virt="non-virtual"><scope>GeomUtilCapsuleMeshGenerator</scope><name>_ComputeNumRadialPoints</name></member>
+      <member refid="class_geom_util_mesh_generator_base_1ad30525919e24020ad415b907556feb87" prot="protected" virt="non-virtual"><scope>GeomUtilCapsuleMeshGenerator</scope><name>_GenerateCappedQuadTopology</name></member>
+      <member refid="class_geom_util_capsule_mesh_generator_1a211a54583caabb4b96494a455ca602e2" prot="private" virt="non-virtual"><scope>GeomUtilCapsuleMeshGenerator</scope><name>_GeneratePointsImpl</name></member>
+      <member refid="class_geom_util_mesh_generator_base_1a4d14538b4b1c0110f571d01cb4064dbfa23c3e07026a42595d8d35d063e780499" prot="protected" virt="non-virtual"><scope>GeomUtilCapsuleMeshGenerator</scope><name>CapStyleNone</name></member>
+      <member refid="class_geom_util_mesh_generator_base_1a4d14538b4b1c0110f571d01cb4064dbfa6a84c1f42d4b6b1aaafdc39c81f1a010" prot="protected" virt="non-virtual"><scope>GeomUtilCapsuleMeshGenerator</scope><name>CapStyleSeparateEdge</name></member>
+      <member refid="class_geom_util_mesh_generator_base_1a4d14538b4b1c0110f571d01cb4064dbfa2e26fc4069e337730b1cda7aa109847d" prot="protected" virt="non-virtual"><scope>GeomUtilCapsuleMeshGenerator</scope><name>CapStyleSharedEdge</name></member>
+      <member refid="class_geom_util_capsule_mesh_generator_1a4fe6a9ceb54a2307c37a2b151f139400" prot="public" virt="non-virtual"><scope>GeomUtilCapsuleMeshGenerator</scope><name>ComputeNumPoints</name></member>
+      <member refid="class_geom_util_capsule_mesh_generator_1a9ea720a927c109ed791e161fd86ba988" prot="public" virt="non-virtual"><scope>GeomUtilCapsuleMeshGenerator</scope><name>GeneratePoints</name></member>
+      <member refid="class_geom_util_capsule_mesh_generator_1a5a49f121f50f98b3c110564ee9ccba77" prot="public" virt="non-virtual"><scope>GeomUtilCapsuleMeshGenerator</scope><name>GeneratePoints</name></member>
+      <member refid="class_geom_util_capsule_mesh_generator_1abad1bfe6e3b339022a24893c5ab052a0" prot="public" virt="non-virtual"><scope>GeomUtilCapsuleMeshGenerator</scope><name>GeneratePoints</name></member>
+      <member refid="class_geom_util_mesh_generator_base_1abad1bfe6e3b339022a24893c5ab052a0" prot="public" virt="non-virtual" ambiguityscope="GeomUtilMeshGeneratorBase::"><scope>GeomUtilCapsuleMeshGenerator</scope><name>GeneratePoints</name></member>
+      <member refid="class_geom_util_capsule_mesh_generator_1aa06fa68cb261bbb9f861518232b416b2" prot="public" virt="non-virtual"><scope>GeomUtilCapsuleMeshGenerator</scope><name>GenerateTopology</name></member>
+      <member refid="class_geom_util_capsule_mesh_generator_1a747408c8873f2b34466bbb3f2b2bf1b0" prot="public" virt="non-virtual"><scope>GeomUtilCapsuleMeshGenerator</scope><name>minNumCapAxial</name></member>
+      <member refid="class_geom_util_capsule_mesh_generator_1a54023d7fd0ffacb3f018e32d7a6ec9db" prot="public" virt="non-virtual"><scope>GeomUtilCapsuleMeshGenerator</scope><name>minNumRadial</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

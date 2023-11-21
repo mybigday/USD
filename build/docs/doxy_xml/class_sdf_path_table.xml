@@ -1,0 +1,965 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_sdf_path_table" kind="class" language="C++" prot="public">
+    <compoundname>SdfPathTable</compoundname>
+    <includes refid="path_table_8h" local="no">pathTable.h</includes>
+    <innerclass refid="struct_sdf_path_table_1_1___entry" prot="private">SdfPathTable::_Entry</innerclass>
+    <innerclass refid="class_sdf_path_table_1_1_iterator" prot="public">SdfPathTable::Iterator</innerclass>
+    <innerclass refid="struct_sdf_path_table_1_1_node_handle" prot="public">SdfPathTable::NodeHandle</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>MappedType</declname>
+        <defname>MappedType</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_sdf_path_table_1acf69a5a78415f107dd156e90134eabe2" prot="public" static="no">
+        <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>typedef SdfPath key_type</definition>
+        <argsstring></argsstring>
+        <name>key_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="86" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_sdf_path_table_1a92ffc3b29ee716bb6383e650ca4fe1e8" prot="public" static="no">
+        <type>MappedType</type>
+        <definition>typedef MappedType mapped_type</definition>
+        <argsstring></argsstring>
+        <name>mapped_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="87" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_sdf_path_table_1a52cd4bf356a36ac22838445ebd799aa0" prot="public" static="no">
+        <type>std::pair&lt; <ref refid="class_sdf_path" kindref="compound">key_type</ref>, mapped_type &gt;</type>
+        <definition>typedef std::pair&lt;key_type, mapped_type&gt; value_type</definition>
+        <argsstring></argsstring>
+        <name>value_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="88" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_sdf_path_table_1a604b05b94f10f6dacacff8b78a1d94dd" prot="public" static="no">
+        <type>Iterator&lt; value_type, _Entry * &gt;</type>
+        <definition>typedef Iterator&lt;value_type, _Entry *&gt; iterator</definition>
+        <argsstring></argsstring>
+        <name>iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="308" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="308" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_sdf_path_table_1a390a23b11c6d2aed942e74c8ca39af08" prot="public" static="no">
+        <type>Iterator&lt; const value_type, const _Entry * &gt;</type>
+        <definition>typedef Iterator&lt;const value_type, const _Entry *&gt; const_iterator</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="309" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="309" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_sdf_path_table_1a6a8b0c58f52a3d2b9f6e5587853aec61" prot="public" static="no">
+        <type>std::pair&lt; iterator, bool &gt;</type>
+        <definition>typedef std::pair&lt;iterator, bool&gt; _IterBoolPair</definition>
+        <argsstring></argsstring>
+        <name>_IterBoolPair</name>
+        <briefdescription>
+<para>Result type for <ref refid="class_sdf_path_table_1a403f348bb6155bede6b62ac49597a215" kindref="member">insert()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="312" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="312" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_sdf_path_table_1a829a02793192566b5f66f7a20a13dc63" prot="private" static="no">
+        <type>std::vector&lt; _Entry * &gt;</type>
+        <definition>typedef std::vector&lt;_Entry *&gt; _BucketVec</definition>
+        <argsstring></argsstring>
+        <name>_BucketVec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="195" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="195" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_sdf_path_table_1ac648045af534027b42582d90aee6a37f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class</type>
+          </param>
+          <param>
+            <type>class</type>
+          </param>
+        </templateparamlist>
+        <type>friend class</type>
+        <definition>friend class Iterator</definition>
+        <argsstring></argsstring>
+        <name>Iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="201" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="201" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_sdf_path_table_1a9084b0863c7c015613eaf477e39bef64" prot="private" static="no" mutable="no">
+        <type>_BucketVec</type>
+        <definition>_BucketVec _buckets</definition>
+        <argsstring></argsstring>
+        <name>_buckets</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="899" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="899" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_sdf_path_table_1a3cce90d52cb7e47b6c17d3a0e1c94842" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t _size</definition>
+        <argsstring></argsstring>
+        <name>_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="900" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="900" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_sdf_path_table_1a4a230cdee8c405b2577464e70ee1798f" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t _mask</definition>
+        <argsstring></argsstring>
+        <name>_mask</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="901" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="901" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_sdf_path_table_1afaaf5d8e3d7d01561771ed288858323d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SdfPathTable</definition>
+        <argsstring>()</argsstring>
+        <name>SdfPathTable</name>
+        <briefdescription>
+<para>Default constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="398" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="398" bodyend="398"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a84ed55421a3400d3d4266c6890df991c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SdfPathTable</definition>
+        <argsstring>(SdfPathTable const &amp;other)</argsstring>
+        <name>SdfPathTable</name>
+        <param>
+          <type><ref refid="class_sdf_path_table" kindref="compound">SdfPathTable</ref> const &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Copy constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="401" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="401" bodyend="425"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1af3bbe205603f7aed7c9a6315cb1c8d75" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SdfPathTable</definition>
+        <argsstring>(SdfPathTable &amp;&amp;other)</argsstring>
+        <name>SdfPathTable</name>
+        <param>
+          <type><ref refid="class_sdf_path_table" kindref="compound">SdfPathTable</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Move constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="428" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="428" bodyend="435"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a7ab19514e77f8909d2af80c046a67f2d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>~SdfPathTable</definition>
+        <argsstring>()</argsstring>
+        <name>~SdfPathTable</name>
+        <briefdescription>
+<para>Destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="438" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="438" bodyend="441"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a888d4e83729db228423ba7b39d4f4bbc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_sdf_path_table" kindref="compound">SdfPathTable</ref> &amp;</type>
+        <definition>SdfPathTable&amp; operator=</definition>
+        <argsstring>(SdfPathTable const &amp;other)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="class_sdf_path_table" kindref="compound">SdfPathTable</ref> const &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Copy assignment. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="444" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="444" bodyend="448"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a98c258d052920f8d1b2d0f3f1648f1c3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_sdf_path_table" kindref="compound">SdfPathTable</ref> &amp;</type>
+        <definition>SdfPathTable&amp; operator=</definition>
+        <argsstring>(SdfPathTable &amp;&amp;other)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="class_sdf_path_table" kindref="compound">SdfPathTable</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Move assignment. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="451" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="451" bodyend="455"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1ad69bd11391be1a1dba5c8202259664f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator begin</definition>
+        <argsstring>()</argsstring>
+        <name>begin</name>
+        <briefdescription>
+<para>Return an iterator to the start of the table. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="458" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="458" bodyend="463"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a29305669b60ca1680752e2fc3592ba99" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator begin</definition>
+        <argsstring>() const</argsstring>
+        <name>begin</name>
+        <briefdescription>
+<para>Return a const_iterator to the start of the table. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="466" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="466" bodyend="471"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1acad38d52497a975bfb6f2f6acd76631f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator end</definition>
+        <argsstring>()</argsstring>
+        <name>end</name>
+        <briefdescription>
+<para>Return an iterator denoting the end of the table. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="474" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="474" bodyend="476"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1accf9a4bd0c34d4a5f6a7dab66ea10cdc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator end</definition>
+        <argsstring>() const</argsstring>
+        <name>end</name>
+        <briefdescription>
+<para>Return a const_iterator denoting the end of the table. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="479" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="479" bodyend="481"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1ac21ac41da2effc32b9c59501df83b0e2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool erase</definition>
+        <argsstring>(SdfPath const &amp;path)</argsstring>
+        <name>erase</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Remove the element with path <emphasis>path</emphasis> from the table as well as all elements whose paths are prefixed by <emphasis>path</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Return true if any elements were removed, false otherwise.</para>
+<para>Note that since descendant paths are also erased, <ref refid="class_sdf_path_table_1a259cb5a711406a8c3e5d937eb9350cca" kindref="member">size()</ref> may be decreased by more than one after calling this function. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="489" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="489" bodyend="495"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a0716fb8cceff81231b9afc67b3368903" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void erase</definition>
+        <argsstring>(iterator const &amp;i)</argsstring>
+        <name>erase</name>
+        <param>
+          <type>iterator const &amp;</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Remove the element pointed to by <computeroutput>i</computeroutput> from the table as well as all elements whose paths are prefixed by <emphasis>i-&gt;first</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><emphasis>i</emphasis> must be a valid iterator for this table.</para>
+<para>Note that since descendant paths are also erased, <ref refid="class_sdf_path_table_1a259cb5a711406a8c3e5d937eb9350cca" kindref="member">size()</ref> may be decreased by more than one after calling this function. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="503" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="503" bodyend="510"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a23c6b7a8b159803c07b9fec45466079b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator find</definition>
+        <argsstring>(SdfPath const &amp;path)</argsstring>
+        <name>find</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Return an iterator to the element corresponding to <emphasis>path</emphasis>, or <emphasis><ref refid="class_sdf_path_table_1acad38d52497a975bfb6f2f6acd76631f" kindref="member">end()</ref></emphasis> if there is none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="514" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="514" bodyend="523"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1ac1c92b711d927f4fc577f0870dd9b4fe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator find</definition>
+        <argsstring>(SdfPath const &amp;path) const</argsstring>
+        <name>find</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Return a const_iterator to the element corresponding to <emphasis>path</emphasis>, or <emphasis><ref refid="class_sdf_path_table_1acad38d52497a975bfb6f2f6acd76631f" kindref="member">end()</ref></emphasis> if there is none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="527" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="527" bodyend="536"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a6617a32ea1e1118e1d4d16d15ff52d83" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::pair&lt; iterator, iterator &gt;</type>
+        <definition>std::pair&lt;iterator, iterator&gt; FindSubtreeRange</definition>
+        <argsstring>(SdfPath const &amp;path)</argsstring>
+        <name>FindSubtreeRange</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Return a pair of iterators [<emphasis>b</emphasis>, <emphasis>e</emphasis>), describing the maximal range such that for all <emphasis>i</emphasis> in the range, <emphasis>i-&gt;first</emphasis> is <emphasis>b-&gt;first</emphasis> or is prefixed by <emphasis>b-&gt;first</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="542" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="542" bodyend="547"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a19b266396205480285c13b3be4ec0b70" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::pair&lt; const_iterator, const_iterator &gt;</type>
+        <definition>std::pair&lt;const_iterator, const_iterator&gt; FindSubtreeRange</definition>
+        <argsstring>(SdfPath const &amp;path) const</argsstring>
+        <name>FindSubtreeRange</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Return a pair of const_iterators [<emphasis>b</emphasis>, <emphasis>e</emphasis>), describing the maximal range such that for all <emphasis>i</emphasis> in the range, <emphasis>i-&gt;first</emphasis> is <emphasis>b-&gt;first</emphasis> or is prefixed by <emphasis>b-&gt;first</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="553" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="553" bodyend="558"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1ae0d7a5e8baea4bca7914d93f1e66bc01" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t count</definition>
+        <argsstring>(SdfPath const &amp;path) const</argsstring>
+        <name>count</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Return 1 if there is an element for <emphasis>path</emphasis> in the table, otherwise 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="561" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="561" bodyend="563"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a259cb5a711406a8c3e5d937eb9350cca" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <briefdescription>
+<para>Return the number of elements in the table. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="566" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="566" bodyend="566"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a644718bb2fb240de962dc3c9a1fdf0dc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool empty</definition>
+        <argsstring>() const</argsstring>
+        <name>empty</name>
+        <briefdescription>
+<para>Return true if this table is empty. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="569" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="569" bodyend="569"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a403f348bb6155bede6b62ac49597a215" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_sdf_path_table_1a6a8b0c58f52a3d2b9f6e5587853aec61" kindref="member">_IterBoolPair</ref></type>
+        <definition>_IterBoolPair insert</definition>
+        <argsstring>(value_type const &amp;value)</argsstring>
+        <name>insert</name>
+        <param>
+          <type>value_type const &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Insert <emphasis>value</emphasis> into the table, and additionally insert default entries for all ancestral paths of <emphasis>value.first</emphasis> that do not already exist in the table. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Return a pair of iterator and bool. The iterator points to the inserted element, the bool indicates whether insertion was successful. The bool is true if <emphasis>value</emphasis> was successfully inserted and false if an element with path <emphasis>value.first</emphasis> was already present in the map.</para>
+<para>Note that since ancestral paths are also inserted, <ref refid="class_sdf_path_table_1a259cb5a711406a8c3e5d937eb9350cca" kindref="member">size()</ref> may be increased by more than one after calling this function. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="582" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="582" bodyend="590"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a5cab6da5634b4c41e78d3a87389485aa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_sdf_path_table_1a6a8b0c58f52a3d2b9f6e5587853aec61" kindref="member">_IterBoolPair</ref></type>
+        <definition>_IterBoolPair insert</definition>
+        <argsstring>(NodeHandle &amp;&amp;node)</argsstring>
+        <name>insert</name>
+        <param>
+          <type><ref refid="struct_sdf_path_table_1_1_node_handle" kindref="compound">NodeHandle</ref> &amp;&amp;</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</para>
+<para>Insert the entry held by <computeroutput>node</computeroutput> into this table. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the insertion is successful, the contents of <computeroutput>node</computeroutput> are moved-from and indeterminate. Otherwise if the insertion is unsuccessful, the contents of <computeroutput>node</computeroutput> are unmodified. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="598" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="598" bodyend="606"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a0706192de5640761b146a9cac1a7d225" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>mapped_type &amp;</type>
+        <definition>mapped_type&amp; operator[]</definition>
+        <argsstring>(SdfPath const &amp;path)</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Shorthand for the following, where <emphasis>t</emphasis> is an SdfPathTable&lt;T&gt;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><programlisting><codeline><highlight class="normal">t.insert(value_type(path,<sp/>mapped_type())).first-&gt;second</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="612" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="612" bodyend="614"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1ac8bb3912a3ce86b15842e79d0b421204" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <briefdescription>
+<para>Remove all elements from the table, leaving <ref refid="class_sdf_path_table_1a259cb5a711406a8c3e5d937eb9350cca" kindref="member">size()</ref> == 0. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that this function will not shrink the number of buckets used for the hash table. To do that, swap this instance with a default constructed instance. See also <emphasis>TfReset</emphasis>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="620" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="620" bodyend="632"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a95ad5bf998b6b8ca2404cdef7cfb77e4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ClearInParallel</definition>
+        <argsstring>()</argsstring>
+        <name>ClearInParallel</name>
+        <briefdescription>
+<para>Equivalent to <ref refid="class_sdf_path_table_1ac8bb3912a3ce86b15842e79d0b421204" kindref="member">clear()</ref>, but destroy contained objects in parallel. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This requires that running the contained objects&apos; destructors is thread-safe. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="636" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="636" bodyend="650"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1ac48712c8e6f3de2471dc0529709fe41e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void swap</definition>
+        <argsstring>(SdfPathTable &amp;other)</argsstring>
+        <name>swap</name>
+        <param>
+          <type><ref refid="class_sdf_path_table" kindref="compound">SdfPathTable</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Swap this table&apos;s contents with <emphasis>other</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="653" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="653" bodyend="657"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1aa7bda79d5d96f4c2b07971a0c2e51222" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; size_t &gt;</type>
+        <definition>std::vector&lt;size_t&gt; GetBucketSizes</definition>
+        <argsstring>() const</argsstring>
+        <name>GetBucketSizes</name>
+        <briefdescription>
+<para>Return a vector of the count of elements in each bucket. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="660" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="660" bodyend="668"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1ae0492d48770ee1980cf34774165c48e5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UpdateForRename</definition>
+        <argsstring>(const SdfPath &amp;oldName, const SdfPath &amp;newName)</argsstring>
+        <name>UpdateForRename</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>oldName</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>newName</declname>
+        </param>
+        <briefdescription>
+<para>Replaces all prefixes from <computeroutput>oldName</computeroutput> to <computeroutput>newName</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that <computeroutput>oldName</computeroutput> and <computeroutput>newName</computeroutput> need to be silbing paths (ie. their parent paths must be the same). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="673" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="673" bodyend="689"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a019a0beca19114c764150a82760182bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Callback</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void ParallelForEach</definition>
+        <argsstring>(Callback const &amp;visitFn)</argsstring>
+        <name>ParallelForEach</name>
+        <param>
+          <type>Callback const &amp;</type>
+          <declname>visitFn</declname>
+        </param>
+        <briefdescription>
+<para>ParallelForEach: parallel iteration over all of the key-value pairs in the path table. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The type of <computeroutput>visitFn</computeroutput> should be a callable, taking a (const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref>&amp;, mapped_type&amp;), representing the loop body. Note: since this function is run in parallel, visitFn is responsible for synchronizing access to any non-pathtable state. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="697" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="697" bodyend="709"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a288128f9d543d48998cdc4478ed7a7fc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Callback</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void ParallelForEach</definition>
+        <argsstring>(Callback const &amp;visitFn) const</argsstring>
+        <name>ParallelForEach</name>
+        <param>
+          <type>Callback const &amp;</type>
+          <declname>visitFn</declname>
+        </param>
+        <briefdescription>
+<para>ParallelForEach: const version, runnable on a const path table and taking a (const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref>&amp;, const mapped_type&amp;) input. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="714" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="714" bodyend="728"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_sdf_path_table_1acdf5fe5222923c26f8a425906277a142" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>static SdfPath _GetParentPath</definition>
+        <argsstring>(SdfPath const &amp;path)</argsstring>
+        <name>_GetParentPath</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="735" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="735" bodyend="737"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_sdf_path_table_1a6b2209c34194e7724fd2cd3452bb6331" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _UpdateTreeForNewEntry</definition>
+        <argsstring>(_IterBoolPair const &amp;iresult)</argsstring>
+        <name>_UpdateTreeForNewEntry</name>
+        <param>
+          <type><ref refid="class_sdf_path_table_1a6a8b0c58f52a3d2b9f6e5587853aec61" kindref="member">_IterBoolPair</ref> const &amp;</type>
+          <declname>iresult</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="739" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="739" bodyend="749"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a8264bd20773443de1f3f895b675c01cb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class MakeEntryFn</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_sdf_path_table_1a6a8b0c58f52a3d2b9f6e5587853aec61" kindref="member">_IterBoolPair</ref></type>
+        <definition>_IterBoolPair _InsertInTableImpl</definition>
+        <argsstring>(key_type const &amp;key, MakeEntryFn &amp;&amp;makeEntry)</argsstring>
+        <name>_InsertInTableImpl</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">key_type</ref> const &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>MakeEntryFn &amp;&amp;</type>
+          <declname>makeEntry</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="754" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="754" bodyend="783"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a30f94aab945d9887474314d5803845e4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_sdf_path_table_1a6a8b0c58f52a3d2b9f6e5587853aec61" kindref="member">_IterBoolPair</ref></type>
+        <definition>_IterBoolPair _InsertInTable</definition>
+        <argsstring>(value_type const &amp;value)</argsstring>
+        <name>_InsertInTable</name>
+        <param>
+          <type>value_type const &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="785" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="785" bodyend="790"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a0a53c4948be92e6cf23d5f4d83ad396d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_sdf_path_table_1a6a8b0c58f52a3d2b9f6e5587853aec61" kindref="member">_IterBoolPair</ref></type>
+        <definition>_IterBoolPair _InsertInTable</definition>
+        <argsstring>(NodeHandle &amp;&amp;node)</argsstring>
+        <name>_InsertInTable</name>
+        <param>
+          <type><ref refid="struct_sdf_path_table_1_1_node_handle" kindref="compound">NodeHandle</ref> &amp;&amp;</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="792" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="792" bodyend="798"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a4dfa372b3e34f27b9c519feeb047b142" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _EraseFromTable</definition>
+        <argsstring>(_Entry *entry)</argsstring>
+        <name>_EraseFromTable</name>
+        <param>
+          <type>_Entry *</type>
+          <declname>entry</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="801" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="801" bodyend="812"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a0708d950e00563bb4bf6b385a4c0aca6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _EraseSubtree</definition>
+        <argsstring>(_Entry *entry)</argsstring>
+        <name>_EraseSubtree</name>
+        <param>
+          <type>_Entry *</type>
+          <declname>entry</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="815" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="815" bodyend="821"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a8c18b46452a7d62a764619732d76aebf" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _EraseSubtreeAndSiblings</definition>
+        <argsstring>(_Entry *entry)</argsstring>
+        <name>_EraseSubtreeAndSiblings</name>
+        <param>
+          <type>_Entry *</type>
+          <declname>entry</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="825" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="825" bodyend="838"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a67e5011f16922a1533eb8f8855e4f098" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _RemoveFromParent</definition>
+        <argsstring>(_Entry *entry)</argsstring>
+        <name>_RemoveFromParent</name>
+        <param>
+          <type>_Entry *</type>
+          <declname>entry</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="842" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="842" bodyend="851"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a7e14f25733f7e22f46340e58c5229d6b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _Grow</definition>
+        <argsstring>()</argsstring>
+        <name>_Grow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="856" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="856" bodyend="886"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1ab984a5449a83dc72f72dff836498d310" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _IsTooFull</definition>
+        <argsstring>() const</argsstring>
+        <name>_IsTooFull</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="889" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="889" bodyend="891"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_path_table_1a63d8dd737a7f40b79225c60e8eb5859a" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t _Hash</definition>
+        <argsstring>(SdfPath const &amp;path) const</argsstring>
+        <name>_Hash</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/pathTable.h" line="894" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="894" bodyend="896"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A mapping from <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> to <emphasis>MappedType</emphasis>, somewhat similar to map&lt;<ref refid="class_sdf_path" kindref="compound">SdfPath</ref>, MappedType&gt; and TfHashMap&lt;SdfPath, MappedType&gt;, but with key differences. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Notably:</para>
+<para>Works exclusively with absolute paths.</para>
+<para>Inserting a path <emphasis>p</emphasis> also implicitly inserts all of <emphasis>p&apos;s</emphasis> ancestors.</para>
+<para>Erasing a path <emphasis>p</emphasis> also implicitly erases all of <emphasis>p&apos;s</emphasis> descendants.</para>
+<para>The table has an order: it&apos;s a preordering of the paths in the table, but with arbitrary sibling order. Given a path <emphasis>p</emphasis> in the table, all other paths in the table with <emphasis>p</emphasis> as a prefix appear contiguously, immediately following <emphasis>p</emphasis>. For example, suppose a table contains the paths:</para>
+<para>{&apos;/a/b/c&apos;, &apos;/a&apos;, &apos;/a/d&apos;, &apos;/&apos;, &apos;/a/b&apos;}</para>
+<para>Then there are two possible valid orderings:</para>
+<para>[&apos;/&apos;, &apos;/a&apos;, &apos;/a/d&apos;, &apos;/a/b&apos;, &apos;/a/b/c&apos;] [&apos;/&apos;, &apos;/a&apos;, &apos;/a/b&apos;, &apos;/a/b/c&apos;, &apos;/a/d&apos;]</para>
+<para>In addition to the ordinary map and TfHashMap methods, this class provides a method <emphasis>FindSubtreeRange</emphasis>, which, given a path <emphasis>p</emphasis>, returns a pair of iterators [<emphasis>b</emphasis>, <emphasis>e</emphasis>) defining a range such that for every iterator <emphasis>i</emphasis> in [<emphasis>b</emphasis>, <emphasis>e</emphasis>), i-&gt;first is either equal to <emphasis>p</emphasis> or is prefixed by <emphasis>p</emphasis>.</para>
+<para>Iterator Invalidation</para>
+<para>Like most other node-based containers, iterators are only invalidated when the element they refer to is removed from the table. Note however, that since removing the element with path <emphasis>p</emphasis> also implicitly removes all elements with paths prefixed by <emphasis>p</emphasis>, a call to erase(<emphasis>i</emphasis>) may invalidate many iterators. </para>
+    </detaileddescription>
+    <location file="pxr/usd/sdf/pathTable.h" line="83" column="1" bodyfile="pxr/usd/sdf/pathTable.h" bodystart="82" bodyend="903"/>
+    <listofallmembers>
+      <member refid="class_sdf_path_table_1a9084b0863c7c015613eaf477e39bef64" prot="private" virt="non-virtual"><scope>SdfPathTable</scope><name>_buckets</name></member>
+      <member refid="class_sdf_path_table_1a829a02793192566b5f66f7a20a13dc63" prot="private" virt="non-virtual"><scope>SdfPathTable</scope><name>_BucketVec</name></member>
+      <member refid="class_sdf_path_table_1a4dfa372b3e34f27b9c519feeb047b142" prot="private" virt="non-virtual"><scope>SdfPathTable</scope><name>_EraseFromTable</name></member>
+      <member refid="class_sdf_path_table_1a0708d950e00563bb4bf6b385a4c0aca6" prot="private" virt="non-virtual"><scope>SdfPathTable</scope><name>_EraseSubtree</name></member>
+      <member refid="class_sdf_path_table_1a8c18b46452a7d62a764619732d76aebf" prot="private" virt="non-virtual"><scope>SdfPathTable</scope><name>_EraseSubtreeAndSiblings</name></member>
+      <member refid="class_sdf_path_table_1acdf5fe5222923c26f8a425906277a142" prot="private" virt="non-virtual"><scope>SdfPathTable</scope><name>_GetParentPath</name></member>
+      <member refid="class_sdf_path_table_1a7e14f25733f7e22f46340e58c5229d6b" prot="private" virt="non-virtual"><scope>SdfPathTable</scope><name>_Grow</name></member>
+      <member refid="class_sdf_path_table_1a63d8dd737a7f40b79225c60e8eb5859a" prot="private" virt="non-virtual"><scope>SdfPathTable</scope><name>_Hash</name></member>
+      <member refid="class_sdf_path_table_1a30f94aab945d9887474314d5803845e4" prot="private" virt="non-virtual"><scope>SdfPathTable</scope><name>_InsertInTable</name></member>
+      <member refid="class_sdf_path_table_1a0a53c4948be92e6cf23d5f4d83ad396d" prot="private" virt="non-virtual"><scope>SdfPathTable</scope><name>_InsertInTable</name></member>
+      <member refid="class_sdf_path_table_1a8264bd20773443de1f3f895b675c01cb" prot="private" virt="non-virtual"><scope>SdfPathTable</scope><name>_InsertInTableImpl</name></member>
+      <member refid="class_sdf_path_table_1ab984a5449a83dc72f72dff836498d310" prot="private" virt="non-virtual"><scope>SdfPathTable</scope><name>_IsTooFull</name></member>
+      <member refid="class_sdf_path_table_1a6a8b0c58f52a3d2b9f6e5587853aec61" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>_IterBoolPair</name></member>
+      <member refid="class_sdf_path_table_1a4a230cdee8c405b2577464e70ee1798f" prot="private" virt="non-virtual"><scope>SdfPathTable</scope><name>_mask</name></member>
+      <member refid="class_sdf_path_table_1a67e5011f16922a1533eb8f8855e4f098" prot="private" virt="non-virtual"><scope>SdfPathTable</scope><name>_RemoveFromParent</name></member>
+      <member refid="class_sdf_path_table_1a3cce90d52cb7e47b6c17d3a0e1c94842" prot="private" virt="non-virtual"><scope>SdfPathTable</scope><name>_size</name></member>
+      <member refid="class_sdf_path_table_1a6b2209c34194e7724fd2cd3452bb6331" prot="private" virt="non-virtual"><scope>SdfPathTable</scope><name>_UpdateTreeForNewEntry</name></member>
+      <member refid="class_sdf_path_table_1ad69bd11391be1a1dba5c8202259664f8" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>begin</name></member>
+      <member refid="class_sdf_path_table_1a29305669b60ca1680752e2fc3592ba99" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>begin</name></member>
+      <member refid="class_sdf_path_table_1ac8bb3912a3ce86b15842e79d0b421204" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>clear</name></member>
+      <member refid="class_sdf_path_table_1a95ad5bf998b6b8ca2404cdef7cfb77e4" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>ClearInParallel</name></member>
+      <member refid="class_sdf_path_table_1a390a23b11c6d2aed942e74c8ca39af08" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>const_iterator</name></member>
+      <member refid="class_sdf_path_table_1ae0d7a5e8baea4bca7914d93f1e66bc01" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>count</name></member>
+      <member refid="class_sdf_path_table_1a644718bb2fb240de962dc3c9a1fdf0dc" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>empty</name></member>
+      <member refid="class_sdf_path_table_1acad38d52497a975bfb6f2f6acd76631f" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>end</name></member>
+      <member refid="class_sdf_path_table_1accf9a4bd0c34d4a5f6a7dab66ea10cdc" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>end</name></member>
+      <member refid="class_sdf_path_table_1ac21ac41da2effc32b9c59501df83b0e2" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>erase</name></member>
+      <member refid="class_sdf_path_table_1a0716fb8cceff81231b9afc67b3368903" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>erase</name></member>
+      <member refid="class_sdf_path_table_1a23c6b7a8b159803c07b9fec45466079b" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>find</name></member>
+      <member refid="class_sdf_path_table_1ac1c92b711d927f4fc577f0870dd9b4fe" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>find</name></member>
+      <member refid="class_sdf_path_table_1a6617a32ea1e1118e1d4d16d15ff52d83" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>FindSubtreeRange</name></member>
+      <member refid="class_sdf_path_table_1a19b266396205480285c13b3be4ec0b70" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>FindSubtreeRange</name></member>
+      <member refid="class_sdf_path_table_1aa7bda79d5d96f4c2b07971a0c2e51222" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>GetBucketSizes</name></member>
+      <member refid="class_sdf_path_table_1a403f348bb6155bede6b62ac49597a215" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>insert</name></member>
+      <member refid="class_sdf_path_table_1a5cab6da5634b4c41e78d3a87389485aa" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>insert</name></member>
+      <member refid="class_sdf_path_table_1a604b05b94f10f6dacacff8b78a1d94dd" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>iterator</name></member>
+      <member refid="class_sdf_path_table_1ac648045af534027b42582d90aee6a37f" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>Iterator</name></member>
+      <member refid="class_sdf_path_table_1acf69a5a78415f107dd156e90134eabe2" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>key_type</name></member>
+      <member refid="class_sdf_path_table_1a92ffc3b29ee716bb6383e650ca4fe1e8" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>mapped_type</name></member>
+      <member refid="class_sdf_path_table_1a888d4e83729db228423ba7b39d4f4bbc" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>operator=</name></member>
+      <member refid="class_sdf_path_table_1a98c258d052920f8d1b2d0f3f1648f1c3" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>operator=</name></member>
+      <member refid="class_sdf_path_table_1a0706192de5640761b146a9cac1a7d225" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>operator[]</name></member>
+      <member refid="class_sdf_path_table_1a019a0beca19114c764150a82760182bf" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>ParallelForEach</name></member>
+      <member refid="class_sdf_path_table_1a288128f9d543d48998cdc4478ed7a7fc" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>ParallelForEach</name></member>
+      <member refid="class_sdf_path_table_1afaaf5d8e3d7d01561771ed288858323d" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>SdfPathTable</name></member>
+      <member refid="class_sdf_path_table_1a84ed55421a3400d3d4266c6890df991c" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>SdfPathTable</name></member>
+      <member refid="class_sdf_path_table_1af3bbe205603f7aed7c9a6315cb1c8d75" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>SdfPathTable</name></member>
+      <member refid="class_sdf_path_table_1a259cb5a711406a8c3e5d937eb9350cca" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>size</name></member>
+      <member refid="class_sdf_path_table_1ac48712c8e6f3de2471dc0529709fe41e" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>swap</name></member>
+      <member refid="class_sdf_path_table_1ae0492d48770ee1980cf34774165c48e5" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>UpdateForRename</name></member>
+      <member refid="class_sdf_path_table_1a52cd4bf356a36ac22838445ebd799aa0" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>value_type</name></member>
+      <member refid="class_sdf_path_table_1a7ab19514e77f8909d2af80c046a67f2d" prot="public" virt="non-virtual"><scope>SdfPathTable</scope><name>~SdfPathTable</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,560 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="_usd__page__scenegraph_instancing" kind="page">
+    <compoundname>Usd_Page_ScenegraphInstancing</compoundname>
+    <title>Scenegraph Instancing</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_Overview">
+<title>Overview</title>
+<para>USD&apos;s instancing functionality allows prims that bring in common scene description via <ulink url="https://openusd.org/release/glossary.html#usdglossary-compositionarcs">composition arcs</ulink> to share those parts of the scenegraph, rather than having them duplicated for each prim. This can greatly improve performance in cases where many copies of the same asset are brought in to a scene via composition. For example, a parking lot scene may use references to bring in the same car model (or set of car models) hundreds or thousands of times to fully populate the lot. In cases like these, instancing can provide significant performance benefits.</para>
+<para><anchor id="_usd__page__scenegraph_instancing_1image_overview_scenegraph"/><image type="html" name="Uninstanced_vs_Instanced.png">Uninstanced vs. Instanced Scenegraph</image>
+ With instancing, the hierarchy of prims from the referenced Car model is exposed beneath a single prototype prim, instead of having <emphasis>n</emphasis> copies of that hierarchy beneath each of the Car prims in the scene. This reduces the size of the scenegraph, which reduces the time needed to load a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> as well as the memory it consumes.</para>
+<para>Consumers can take advantage of the shared scenegraph to reduce the amount of processing they need to do. For example, a consumer that needs to compute the bounding box for all of the Car prims in the scene could compute the bounding box for the shared scenegraph just once and reuse that result instead of redoing the same computation for each one. To allow the scenegraph to be shared in this way, instancing restricts the ability to override prims and properties in the prototype prim on a per-instance basis. In this example, consumers would not be able to add, remove, or override prims beneath any of the Car prims in the scene. With this restriction, instancing is able to provide higher degrees of scalability; the benefits become more and more significant as the number of Car prims increases, or as the number of prims beneath the referenced Car model grows.</para>
+</sect1>
+<sect1 id="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_Instancing">
+<title>Explicit Instances, Implicit Prototypes</title>
+<para>Prims that share parts of the scenegraph through instancing are called &quot;instance&quot; prims. Each of these instance prims are associated with a &quot;prototype&quot; prim that serves as the root of the shared scenegraph. A single prototype prim may have many associated instances, all of which share the same scenegraph.</para>
+<para>Users do not explicitly set up the network of prototype and instance prims. Instead, users mark the prims they want to be instanced with metadata that tags them as &quot;instanceable.&quot; <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> will analyze these prims to determine which have scenegraph in common based on their composition structure, then dynamically create prototype prims for each group of compatible instances. This &quot;explicit instance, implicit prototype&quot; scheme provides a simple and flexible way for adding instanced assets to scenes. See <ref refid="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_Instanceable" kindref="member">Making Prims Instanceable</ref> for information on how to tag prims for instancing.</para>
+<para><center> <table rows="1" cols="2"><caption>Uninstanced vs. Instanced Scene Description</caption>
+<row>
+<entry thead="no"><para><programlisting><codeline><highlight class="normal">###<sp/>ParkingLot.usd</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;ParkingLot&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Car_1&quot;<sp/>(references<sp/>=<sp/>@./Car.usd@&lt;/Car&gt;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Car_2&quot;<sp/>(references<sp/>=<sp/>@./Car.usd@&lt;/Car&gt;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>...</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Car_n&quot;<sp/>(references<sp/>=<sp/>@./Car.usd@&lt;/Van&gt;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting>  </para>
+</entry><entry thead="no"><para><programlisting><codeline><highlight class="normal">###<sp/>ParkingLot.usd</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;ParkingLot&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Car_1&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instanceable<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>references<sp/>=<sp/>@./Car.usd@&lt;/Car&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Car_2&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instanceable<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>references<sp/>=<sp/>@./Car.usd@&lt;/Car&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>...</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Car_n&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instanceable<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>references<sp/>=<sp/>@./Car.usd@&lt;/Car&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting>   </para>
+</entry></row>
+</table>
+</center></para>
+<para>This is a simple example of what the scene description in a .usd file might look like for the scenegraph above. In this case, <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> will recognize that all of the instanceable Car prims reference the same Car model and will have the same scenegraph hierarchy. <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> will then generate a prototype prim /__Prototype_1 to contain this common hierarchy and associate the Car instances with this prototype.</para>
+<para>Prototype prims do not exist in scene description <ndash/> they are generated and managed internally by <ref refid="class_usd_stage" kindref="compound">UsdStage</ref>. This allows <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> to create and remove prototypes as needed in response to scene description changes. For example, if some of the Car prims in ParkingLot.usd were changed to reference different assets, <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> would generate new prototype prims as needed. See <ref refid="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_Prototypes" kindref="member">Finding and Traversing Prototypes</ref> for information on how to use prototype prims.</para>
+<para><simplesect kind="warning"><para>Because prototype prims are dynamically generated, the name of a prototype prim associated with an instance is not stable and may vary from run-to-run. Consumers should not save or hard-code the paths to prims in prototypes, but can use the API described below if they need to determine an instance&apos;s prototype at runtime.</para>
+</simplesect>
+</para>
+</sect1>
+<sect1 id="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_Querying">
+<title>Working with Instancing</title>
+<para>This section goes into more detail about instance and prototype prims and the API for working with them. The following example will be used throughout:</para>
+<para><center> <table rows="1" cols="2"><caption>Example Scene Description and Scenegraph</caption>
+<row>
+<entry thead="no"><para><programlisting><codeline><highlight class="normal">###<sp/>ParkingLot.usd</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;ParkingLot&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Car_1&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instanceable<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>references<sp/>=<sp/>@./Car.usd@&lt;/Car&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>color3f<sp/>color<sp/>=<sp/>(1,<sp/>0,<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Car_2&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instanceable<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>references<sp/>=<sp/>@./Car.usd@&lt;/Car&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>color3f<sp/>color<sp/>=<sp/>(0,<sp/>1,<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Car_3&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>references<sp/>=<sp/>@./Car.usd@&lt;/Car&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>color3f<sp/>color<sp/>=<sp/>(0,<sp/>0,<sp/>1)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><programlisting><codeline><highlight class="normal">###<sp/>Car.usd</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;Car&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>color3f<sp/>color<sp/>=<sp/>(0,<sp/>0,<sp/>0)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Mesh<sp/>&quot;Body&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>color3f<sp/>color<sp/>=<sp/>(0,<sp/>0,<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Mesh<sp/>&quot;Door&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting>  </para>
+</entry><entry thead="no"><para><image type="html" name="Instancing_Example.png"></image>
+   </para>
+</entry></row>
+</table>
+</center></para>
+<sect2 id="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_Instanceable">
+<title>Making Prims Instanceable</title>
+<para><ref refid="class_usd_stage" kindref="compound">UsdStage</ref> can only create prototype prims for portions of the scenegraph that are brought into a scene via a composition arc. Because of this, a prim must use at least one composition arc in order to be eligible for instancing.</para>
+<para>Prims may be marked as instanceable by using <ref refid="class_usd_prim_1ad791f3246d4e5bf72e036df7495ec94d" kindref="member">UsdPrim::SetInstanceable</ref> or <ref refid="class_sdf_prim_spec_1a480003e9b19d88e2e959ec5a6c4620eb" kindref="member">SdfPrimSpec::SetInstanceable</ref>. If no value is explicitly authored, this value defaults to <computeroutput>false</computeroutput>.</para>
+<para>The &quot;instanceable&quot; metadata is composed like all other metadata in USD, so it can be authored on different layers and have its value overridden by stronger layers. For example, a user could author their &quot;instanceable&quot; metadata in a session layer to see the effects of enabling (or disabling) instancing on prims in a scene without editing that scene directly.</para>
+</sect2>
+<sect2 id="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_Instances">
+<title>Classifying Prims with Instancing</title>
+<para>Consumers can check if a <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> is an instance with an associated prototype using the following API.</para>
+<para><table rows="2" cols="3"><row>
+<entry thead="yes"><para>Function  </para>
+</entry><entry thead="yes"><para>Purpose  </para>
+</entry><entry thead="yes"><para>Example   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="class_usd_prim_1a802acbcafc0625377d483931ec4fb202" kindref="member">UsdPrim::IsInstance</ref>  </para>
+</entry><entry thead="no"><para>Check if prim is an instance.  </para>
+</entry><entry thead="no"><para>Returns true for Car_1 and Car_2 since they are instances, but returns false for Car_3.   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_Prototypes">
+<title>Finding and Traversing Prototypes</title>
+<para>A prototype prim is a special <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> whose sole purpose is to serve as the parent for the scenegraph shared by its associated instance prims. The following API can be used to retrieve prototype prims or determine whether a prim is part of a shared prototype.</para>
+<para><table rows="5" cols="3"><row>
+<entry thead="yes"><para>Function  </para>
+</entry><entry thead="yes"><para>Purpose  </para>
+</entry><entry thead="yes"><para>Example   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="class_usd_stage_1aedabd9cb88feca10c5fa96c7454df493" kindref="member">UsdStage::GetPrototypes</ref>  </para>
+</entry><entry thead="no"><para>Return a list of all prototype prims on the stage  </para>
+</entry><entry thead="no"><para>Returns the prim /__Prototype_1   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="class_usd_prim_1a5589fb9930ddf2f0ee87f9e6cde87dff" kindref="member">UsdPrim::GetPrototype</ref>  </para>
+</entry><entry thead="no"><para>If prim is an instance, get the corresponding prototype prim.  </para>
+</entry><entry thead="no"><para>Returns prim /__Prototype_1 for Car_1 or Car_2, an invalid <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> for all other prims, including Car_3.   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="class_usd_prim_1a68b802c9624512af6a71de788a8d8861" kindref="member">UsdPrim::IsPrototype</ref>  </para>
+</entry><entry thead="no"><para>Check if this prim is a prototype prim.  </para>
+</entry><entry thead="no"><para>Returns true for prim /__Prototype_1, false for all other prims.   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="class_usd_prim_1a711679d7f780d1160d0b33a1e2f92268" kindref="member">UsdPrim::IsInPrototype</ref>  </para>
+</entry><entry thead="no"><para>Check if this prim is in a subtree rooted at a prototype prim.  </para>
+</entry><entry thead="no"><para>Returns true for prims /__Prototype_1, /__Prototype_1/Body, and /__Prototype_1/Door, false for all other prims.   </para>
+</entry></row>
+</table>
+</para>
+<para>Prototype prims do not have metadata or properties, only children prims. Prototype prims have root prim paths (e.g., /__Prototype_1) that can be used with <ref refid="class_usd_stage_1a6ceb556070804b712c01a7968f925735" kindref="member">UsdStage::GetPrimAtPath</ref>. However, they are considered siblings to the pseudo-root in the scenegraph. Because of this, they will not be returned when using <ref refid="class_usd_stage_1adba675b55f41cc1b305bed414fc4f178" kindref="member">UsdStage::Traverse</ref> or when calling <ref refid="class_usd_prim_1a2619563fc9180d8ead597944fd7f6ec7" kindref="member">UsdPrim::GetChildren</ref> on the pseudo-root. Consumers can access prototype prims via <ref refid="class_usd_prim_1a5589fb9930ddf2f0ee87f9e6cde87dff" kindref="member">UsdPrim::GetPrototype</ref> or <ref refid="class_usd_stage_1aedabd9cb88feca10c5fa96c7454df493" kindref="member">UsdStage::GetPrototypes</ref> instead.</para>
+<para><simplesect kind="warning"><para>Because prototype prims are dynamically generated, the name of a prototype prim associated with an instance is not stable and may vary from run to run. Consumers should not save or hard-code the paths to prims in prototypes, but can use the API described below if they need to determine an instance&apos;s prototype at runtime.</para>
+</simplesect>
+<programlisting filename=".py"><codeline><highlight class="normal">&gt;&gt;&gt;<sp/>stage<sp/>=<sp/>Usd.Stage.Open(</highlight><highlight class="stringliteral">&apos;ParkingLot.usd&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>stage.GetPrototypes()</highlight></codeline>
+<codeline><highlight class="normal">[Usd.Prim(&lt;/__Prototype_1&gt;)]</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>Prototype<sp/>prims<sp/>are<sp/>not<sp/>included<sp/>in<sp/>stage<sp/>traversals.<sp/><sp/>Note<sp/>how<sp/>the<sp/>below</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>functions<sp/>do<sp/>not<sp/>include<sp/>the<sp/>prototype<sp/>prims<sp/>above.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>list(stage.Traverse())</highlight></codeline>
+<codeline><highlight class="normal">[Usd.Prim(&lt;/ParkingLot&gt;),<sp/>Usd.Prim(&lt;/ParkingLot/Car_1&gt;),<sp/>Usd.Prim(&lt;/ParkingLot/Car_2&gt;),<sp/>Usd.Prim(&lt;/ParkingLot/Car_3&gt;),<sp/>Usd.Prim(&lt;/ParkingLot/Car_3/Body&gt;),<sp/>Usd.Prim(&lt;/ParkingLot/Car_3/Door&gt;)]</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>stage.GetPseudoRoot().GetChildren()</highlight></codeline>
+<codeline><highlight class="normal">[Usd.Prim(&lt;/ParkingLot&gt;)]</highlight></codeline>
+</programlisting></para>
+<para><ref refid="class_usd_stage" kindref="compound">UsdStage</ref> arranges the scenegraph so that instance prims do not have any descendant prims; these prims are instead encapsulated beneath prototype prims. Consumers can use <ref refid="class_usd_prim_1a5589fb9930ddf2f0ee87f9e6cde87dff" kindref="member">UsdPrim::GetPrototype</ref> to get an instance&apos;s prototype prim, then traverse its children the same way as with other prims, using <ref refid="class_usd_prim_1a2619563fc9180d8ead597944fd7f6ec7" kindref="member">UsdPrim::GetChildren</ref>, <ref refid="class_usd_prim_range" kindref="compound">UsdPrimRange</ref> or similar facilities.</para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">&gt;&gt;&gt;<sp/>stage<sp/>=<sp/>Usd.Stage.Open(</highlight><highlight class="stringliteral">&apos;ParkingLot.usd&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>Car_1<sp/>doesn&apos;t<sp/>make<sp/>any<sp/>child<sp/>prims<sp/>available<sp/>since<sp/>it&apos;s<sp/>an<sp/>instance<sp/>prim;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>its<sp/>children<sp/>in<sp/>the<sp/>scenegraph<sp/>are<sp/>parented<sp/>beneath<sp/>the<sp/>prototype<sp/>prim.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car_1<sp/>=<sp/>stage.GetPrimAtPath(</highlight><highlight class="stringliteral">&apos;/ParkingLot/Car_1&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car_1.IsInstance()</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">True</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car_1.GetChildren()</highlight></codeline>
+<codeline><highlight class="normal">[]</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>Consumers<sp/>can<sp/>query<sp/>the<sp/>instance&apos;s<sp/>prototype<sp/>for<sp/>its<sp/>child<sp/>prims.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car_1.GetPrototype().GetChildren()</highlight></codeline>
+<codeline><highlight class="normal">[Usd.Prim(&lt;/__Prototype_1/Body&gt;),<sp/>Usd.Prim(&lt;/__Prototype_1/Door&gt;)]</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>list(Usd.PrimRange(car_1.GetPrototype()))</highlight></codeline>
+<codeline><highlight class="normal">[Usd.Prim(&lt;/__Prototype_1&gt;),<sp/>Usd.Prim(&lt;/__Prototype_1/Body&gt;),<sp/>Usd.Prim(&lt;/__Prototype_1/Door&gt;)]</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>Car_3&apos;s<sp/>child<sp/>prims<sp/>can<sp/>be<sp/>accessed<sp/>directly<sp/>since<sp/>it&apos;s<sp/>not<sp/>an<sp/>instance<sp/>prim.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car_3<sp/>=<sp/>stage.GetPrimAtPath(</highlight><highlight class="stringliteral">&apos;/ParkingLot/Car_3&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car_3.IsInstance()</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">False</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car_3.GetChildren()</highlight></codeline>
+<codeline><highlight class="normal">[Usd.Prim(&lt;/ParkingLot/Car_3/Body&gt;),<sp/>Usd.Prim(&lt;/ParkingLot/Car_3/Door&gt;)]</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_InstanceProxies">
+<title>Traversing Into Instances with Instance Proxies</title>
+<para>An instance proxy is a <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> that represents a descendant prim beneath an instance, even though no such prim actually exists in the scenegraph. Instance proxies allow consumers to work with the scenegraph as if instancing were not being used, while retaining the load time and memory usage benefits of instancing.</para>
+<para>An instance proxy prim behaves the same as the corresponding prim in the prototype. However, an instance proxy retains context about the instance being traversed so they appear to be a prim beneath an instance: its path is a descendant of the instance being traversed instead of a descendant of a prototype prim. Consumers should generally be able to use instance proxies anywhere a <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> is used. The primary exception is that editing scene description via instance proxies and their properties is not allowed.</para>
+<para>Calling <ref refid="class_usd_stage_1a6ceb556070804b712c01a7968f925735" kindref="member">UsdStage::GetPrimAtPath</ref> with a path to a descendant of an instance prim will return an instance proxy if a corresponding prim exists in that instance&apos;s prototype. By default, the various prim traversal facilities like <ref refid="class_usd_prim_1a2619563fc9180d8ead597944fd7f6ec7" kindref="member">UsdPrim::GetChildren</ref> and <ref refid="class_usd_prim_range" kindref="compound">UsdPrimRange</ref> do not return instance proxies.</para>
+<para><ref refid="prim_flags_8h_1ac34c7dc1a577a7d9b15c5a37e71317f2" kindref="member">UsdTraverseInstanceProxies</ref> can be used to enable this functionality. By default, this uses the same <ref refid="prim_flags_8h_1a29cc22af3e47af74a71814d9cca1c1fe" kindref="member">UsdPrimDefaultPredicate</ref> used by other traversal functions, but it can be combined with other <ref refid="prim_flags_8h_1Usd_PrimFlags" kindref="member">Usd_PrimFlags</ref> predicates; for example, combining it with <ref refid="prim_flags_8h_1ae3c3c2a67cd47af7d91847a77f806506" kindref="member">UsdPrimAllPrimsPredicate</ref> would yield the same filtering behavior as <ref refid="class_usd_prim_1a0173b7fe85d33e147f820033f4b08f0e" kindref="member">UsdPrim::GetAllChildren</ref>, but with instance proxies enabled.</para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">&gt;&gt;&gt;<sp/>stage<sp/>=<sp/>Usd.Stage.Open(</highlight><highlight class="stringliteral">&apos;ParkingLot.usd&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>Car_1<sp/>doesn&apos;t<sp/>make<sp/>any<sp/>child<sp/>prims<sp/>available<sp/>by<sp/>default<sp/>since<sp/>it&apos;s<sp/>an</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>instance<sp/>prim.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car_1<sp/>=<sp/>stage.GetPrimAtPath(</highlight><highlight class="stringliteral">&apos;/ParkingLot/Car_1&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car_1.IsInstance()</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">True</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car_1.GetChildren()</highlight></codeline>
+<codeline><highlight class="normal">[]</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>Use<sp/>Usd.TraverseInstanceProxies<sp/>to<sp/>enable<sp/>instance<sp/>proxies<sp/>with<sp/>the<sp/>same<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>filtering<sp/>that<sp/>UsdPrim.GetChildren<sp/>would<sp/>do.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car_1.GetFilteredChildren(Usd.TraverseInstanceProxies())</highlight></codeline>
+<codeline><highlight class="normal">[Usd.Prim(&lt;/ParkingLot/Car_1/Body&gt;),<sp/>Usd.Prim(&lt;/ParkingLot/Car_1/Door&gt;)]</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>Calling<sp/>Usd.Stage.GetPrimAtPath<sp/>with<sp/>the<sp/>path<sp/>of<sp/>a<sp/>prim<sp/>beneath<sp/>an</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>instance<sp/>will<sp/>also<sp/>return<sp/>an<sp/>instance<sp/>proxy.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car_1_body<sp/>=<sp/>stage.GetPrimAtPath(</highlight><highlight class="stringliteral">&apos;/ParkingLot/Car_1/Body&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car_1_body</highlight></codeline>
+<codeline><highlight class="normal">Usd.Prim(&lt;/ParkingLot/Car_1/Body&gt;)</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car_1_body.IsInstanceProxy()</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">True</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>Unlike<sp/>prims<sp/>in<sp/>prototypes,<sp/>you<sp/>can<sp/>walk<sp/>up<sp/>an<sp/>instance<sp/>proxy&apos;s<sp/>parent<sp/>prims</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>to<sp/>find<sp/>its<sp/>owning<sp/>instance.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car_1_body.GetParent()</highlight></codeline>
+<codeline><highlight class="normal">Usd.Prim(&lt;/ParkingLot/Car_1&gt;)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>From<sp/>an<sp/>instance<sp/>proxy,<sp/>you<sp/>can<sp/>retrieve<sp/>the<sp/>corresponding<sp/>prim<sp/>in<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>instance&apos;s<sp/>prototype.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car_1_body.GetPrimInPrototype()</highlight></codeline>
+<codeline><highlight class="normal">Usd.Prim(&lt;/__Prototype_1/Body&gt;)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>Instance<sp/>proxies<sp/>can<sp/>be<sp/>used<sp/>for<sp/>read-only<sp/>operations<sp/>anywhere<sp/>a<sp/>Usd.Prim</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>is<sp/>used.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>img<sp/>=<sp/>UsdGeom.Imageable(car_1_body)</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>img.ComputeLocalToWorldTransform(Usd.TimeCode.Default())</highlight></codeline>
+<codeline><highlight class="normal">Gf.Matrix4d(...)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>xfCache<sp/>=<sp/>UsdGeom.XformCache()</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>xfCache.GetLocalToWorldTransform(car_1_body)</highlight></codeline>
+<codeline><highlight class="normal">Gf.Matrix4d(...)</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_Editing">
+<title>Editing Instances and Prototypes</title>
+<para>Properties and metadata (e.g., variant selections) on instance prims can be edited and overridden like any other prim. However, properties and metadata on descendant prims beneath instance prims cannot be overridden. Since prototype prims are dynamically generated and do not exist in scene description, overriding properties and metadata on prototypes or prims in prototypes is also not allowed. Attempting to make these restricted changes via the USD API will result in coding errors. Any existing overrides in scene description will be silently ignored.</para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">&gt;&gt;&gt;<sp/>stage<sp/>=<sp/>Usd.Stage.Open(</highlight><highlight class="stringliteral">&apos;ParkingLot.usd&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>Properties<sp/>on<sp/>an<sp/>instance<sp/>can<sp/>be<sp/>overridden<sp/>as<sp/>expected.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car1Color<sp/>=<sp/>stage.GetPrimAtPath(</highlight><highlight class="stringliteral">&apos;/ParkingLot/Car_1&apos;</highlight><highlight class="normal">).GetAttribute(</highlight><highlight class="stringliteral">&apos;color&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car1Color.Get()</highlight></codeline>
+<codeline><highlight class="normal">Gf.Vec3f(1.0,<sp/>0.0,<sp/>0.0)</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car1Color.Set((1.0,<sp/>1.0,<sp/>1.0))</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">True</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>car1Color.Get()</highlight></codeline>
+<codeline><highlight class="normal">Gf.Vec3f(1.0,<sp/>1.0,<sp/>1.0)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>Properties<sp/>on<sp/>prims<sp/>in<sp/>prototypes<sp/>cannot<sp/>be<sp/>overridden.<sp/>This<sp/>is<sp/>also<sp/>the<sp/>case</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>when<sp/>accessing<sp/>the<sp/>property<sp/>via<sp/>an<sp/>instance<sp/>proxy.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>prototype<sp/>=<sp/>stage.GetPrimAtPath(</highlight><highlight class="stringliteral">&apos;/ParkingLot/Car_1&apos;</highlight><highlight class="normal">).GetPrototype()</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>prototypeBodyColor<sp/>=<sp/>prototype.GetChild(</highlight><highlight class="stringliteral">&apos;Body&apos;</highlight><highlight class="normal">).GetAttribute(</highlight><highlight class="stringliteral">&apos;color&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>prototypeBodyColor.Get()</highlight></codeline>
+<codeline><highlight class="normal">Gf.Vec3f(0.0,<sp/>0.0,<sp/>0.0)</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>prototypeBodyColor.Set((1.0,<sp/>1.0,<sp/>1.0))</highlight></codeline>
+<codeline><highlight class="normal">pixar.Tf.ErrorException</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>instanceProxyBody<sp/>=<sp/>stage.GetPrimAtPath(</highlight><highlight class="stringliteral">&apos;/ParkingLot/Car_1/Body&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>instanceProxyBodyColor<sp/>=<sp/>instanceProxyBody.GetAttribute(</highlight><highlight class="stringliteral">&apos;color&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>instanceProxyBodyColor.Get()</highlight></codeline>
+<codeline><highlight class="normal">Gf.Vec3f(0.0,<sp/>0.0,<sp/>0.0)</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>instanceProxyBodyColor.Set((1.0,<sp/>1.0,<sp/>1.0))</highlight></codeline>
+<codeline><highlight class="normal">pixar.Tf.ErrorException</highlight></codeline>
+</programlisting></para>
+<para>These restrictions ensure that the scenegraph in a prototype prim can be shared by all instances. If an instance-specific edit to a prim in a prototype is needed, that instance must be made un-instanceable (see <ref refid="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_Instanceable" kindref="member">Making Prims Instanceable</ref>) so that it will no longer participate in instancing.</para>
+<para>Although &quot;editing prototypes&quot; is disallowed, USD&apos;s composition arcs can be used to achieve many of the same effects. For example, a consumer could add inherit or specializes arcs to instances, then make edits to the class targeted by those arcs. Those edits would then affect all of the specified instances.</para>
+</sect2>
+<sect2 id="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_TargetsAndConnections">
+<title>Relationship Targets and Attribute Connections</title>
+<para>Relationships and attributes may have authored target and connection paths that point to objects beneath an instance prim. In these cases, the API for retrieving these paths, such as <ref refid="class_usd_relationship_1aaa227b81fdab5fe41bcc0ca21133a0f8" kindref="member">UsdRelationship::GetTargets</ref> or <ref refid="class_usd_attribute_1ab6384fe8ac90bf18c8d781e139a7d813" kindref="member">UsdAttribute::GetConnections</ref>, will not translate them to the corresponding object in the instance&apos;s prototype prim. Consumers can use <ref refid="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_InstanceProxies" kindref="member">instance proxies</ref> to interact with these paths and retrieve the corresponding object in the prototype prim if needed. However, if these functions are called on a <ref refid="class_usd_relationship" kindref="compound">UsdRelationship</ref> or <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> that belong to a prim in a prototype, paths that point to objects in instances of that prototype will be returned as paths in that prototype.</para>
+<para><simplesect kind="note"><para>The following example demonstrates behavior with relationship targets, but the same behavior holds for attribute connections.</para>
+</simplesect>
+<center> <table rows="1" cols="2"><caption>Example Scene Description and Scenegraph with Relationships</caption>
+<row>
+<entry thead="no"><para><programlisting><codeline><highlight class="normal">###<sp/>ParkingLot.usd</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;ParkingLot&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Car_1&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instanceable<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>references<sp/>=<sp/>@./Car.usd@&lt;/Car&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Car_2&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instanceable<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>references<sp/>=<sp/>@./Car.usd@&lt;/Car&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;ShoppingCart&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>custom<sp/>rel<sp/>bodyRel<sp/>=<sp/>[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/ParkingLot/Car_1/Body&gt;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/ParkingLot/Car_2/Body&gt;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><programlisting><codeline><highlight class="normal">###<sp/>Car.usd</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;Car&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Mesh<sp/>&quot;Body&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>custom<sp/>rel<sp/>doorRel<sp/>=<sp/>&lt;/Car/Door&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Mesh<sp/>&quot;Door&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting>  </para>
+</entry><entry thead="no"><para><image type="html" name="Relationship_Example.png"></image>
+   </para>
+</entry></row>
+</table>
+</center></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">&gt;&gt;&gt;<sp/>stage<sp/>=<sp/>Usd.Stage.Open(</highlight><highlight class="stringliteral">&apos;ParkingLot.usd&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>cart<sp/>=<sp/>stage.GetPrimAtPath(</highlight><highlight class="stringliteral">&apos;/ParkingLot/ShoppingCart&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>cart_bodyRel<sp/>=<sp/>cart.GetRelationship(</highlight><highlight class="stringliteral">&apos;bodyRel&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>&apos;bodyRel&apos;<sp/>is<sp/>a<sp/>relationship<sp/>on<sp/>a<sp/>prim<sp/>that<sp/>is<sp/>not<sp/>being<sp/>instanced.<sp/>Its<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>targets<sp/>point<sp/>to<sp/>prims<sp/>beneath<sp/>Car_1<sp/>and<sp/>Car_2,<sp/>which<sp/>are<sp/>both<sp/>instances<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>in<sp/>this<sp/>scene.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>cart_bodyRel.GetTargets()</highlight></codeline>
+<codeline><highlight class="normal">[Sdf.Path(</highlight><highlight class="stringliteral">&apos;/ParkingLot/Car_1/Body&apos;</highlight><highlight class="normal">),<sp/>Sdf.Path(</highlight><highlight class="stringliteral">&apos;/ParkingLot/Car_2/Body&apos;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>Calling<sp/>Usd.Stage.GetPrimAtPath<sp/>with<sp/>these<sp/>targets<sp/>will<sp/>return<sp/>instance</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>proxies,<sp/>so<sp/>consumers<sp/>can<sp/>easily<sp/>interact<sp/>with<sp/>these<sp/>targets<sp/>even<sp/>though</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>they<sp/>are<sp/>prims<sp/>beneath<sp/>instances.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>[stage.GetPrimAtPath(p)<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>p<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>cart_bodyRel.GetTargets()]</highlight></codeline>
+<codeline><highlight class="normal">[Usd.Prim(&lt;/ParkingLot/Car_1/Body&gt;),<sp/>Usd.Prim(&lt;/ParkingLot/Car_2/Body&gt;)]</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>&apos;doorRel&apos;<sp/>is<sp/>a<sp/>relationship<sp/>on<sp/>a<sp/>prim<sp/>beneath<sp/>an<sp/>instance.<sp/>If<sp/>accessed</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>through<sp/>the<sp/>instance&apos;s<sp/>prototype,<sp/>the<sp/>target<sp/>paths<sp/>returned<sp/>will<sp/>be<sp/>returned</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>as<sp/>paths<sp/>in<sp/>the<sp/>instance&apos;s<sp/>prototype.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>prototype<sp/>=<sp/>stage.GetPrimAtPath(</highlight><highlight class="stringliteral">&apos;/ParkingLot/Car_1&apos;</highlight><highlight class="normal">).GetPrototype()</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>prototype_doorRel<sp/>=<sp/>prototype.GetChild(</highlight><highlight class="stringliteral">&apos;Body&apos;</highlight><highlight class="normal">).GetRelationship(</highlight><highlight class="stringliteral">&apos;doorRel&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>prototype_doorRel.GetPath()</highlight></codeline>
+<codeline><highlight class="normal">Sdf.Path(</highlight><highlight class="stringliteral">&apos;/__Prototype_1/Body.doorRel&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>prototype_doorRel.GetTargets()</highlight></codeline>
+<codeline><highlight class="normal">[Sdf.Path(</highlight><highlight class="stringliteral">&apos;/__Prototype_1/Door&apos;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>If<sp/>the<sp/>relationship<sp/>is<sp/>accessed<sp/>through<sp/>instance<sp/>proxies,<sp/>the<sp/>relationship</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>target<sp/>API<sp/>behaves<sp/>as<sp/>though<sp/>instancing<sp/>is<sp/>not<sp/>present.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>instanceProxy<sp/>=<sp/>stage.GetPrimAtPath(</highlight><highlight class="stringliteral">&apos;/ParkingLot/Car_1/Body&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>instanceProxy_doorRel<sp/>=<sp/>instanceProxy.GetRelationship(</highlight><highlight class="stringliteral">&apos;doorRel&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>instanceProxy_doorRel.GetPath()</highlight></codeline>
+<codeline><highlight class="normal">Sdf.Path(</highlight><highlight class="stringliteral">&apos;/ParkingLot/Car_1/Body.doorRel&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>instanceProxy_doorRel.GetTargets()</highlight></codeline>
+<codeline><highlight class="normal">[Sdf.Path(</highlight><highlight class="stringliteral">&apos;/ParkingLot/Car_1/Door&apos;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>instanceProxy_2<sp/>=<sp/>stage.GetPrimAtPath(</highlight><highlight class="stringliteral">&apos;/ParkingLot/Car_2/Body&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>instanceProxy_2_doorRel<sp/>=<sp/>instanceProxy_2.GetRelationship(</highlight><highlight class="stringliteral">&apos;doorRel&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>instanceProxy_2_doorRel.GetPath()</highlight></codeline>
+<codeline><highlight class="normal">Sdf.Path(</highlight><highlight class="stringliteral">&apos;/ParkingLot/Car_2/Body.doorRel&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">&gt;&gt;&gt;<sp/>instanceProxy_2_doorRel.GetTargets()</highlight></codeline>
+<codeline><highlight class="normal">[Sdf.Path(</highlight><highlight class="stringliteral">&apos;/ParkingLot/Car_2/Door&apos;</highlight><highlight class="normal">)]</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_Issues">
+<title>Common Issues</title>
+<sect2 id="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_IssuesSinglePrim">
+<title>Instancing Single Prims</title>
+<para>Since instancing shares the scenegraph hierarchy beneath instance prims, instancing a single prim that has no descendants provides no benefits. In the case that instancing a single prim is desired (e.g., instancing a mesh), that prim should be made a descendant of another prim that is referenced into the scene, as shown below:</para>
+<para><programlisting><codeline><highlight class="normal">###<sp/>Model.usd</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">over<sp/>&quot;InstancedMeshSource&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Mesh<sp/>&quot;Mesh&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;Model&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Mesh_1&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instanceable<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>references<sp/>=<sp/>&lt;/InstancedMesh&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Mesh_2&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instanceable<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>references<sp/>=<sp/>&lt;/InstancedMesh&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>...</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_Advanced">
+<title>Advanced Topics</title>
+<sect2 id="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_PrototypeSelection">
+<title>How USD Generates Prototype Prims</title>
+<para>To determine the set of prototype prims needed, <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> analyzes each prim marked as instanceable and computes an &quot;instancing key&quot; that consists of:</para>
+<para><itemizedlist>
+<listitem><para>The direct composition arcs on the prim that pull in scene description, in order from strongest to weakest</para>
+</listitem><listitem><para>The variant selections applied to the prim</para>
+</listitem><listitem><para>The <ref refid="_usd__page__value_clips" kindref="compound">value clips</ref> that affect the prim</para>
+</listitem><listitem><para>The <ref refid="class_usd_stage_load_rules" kindref="compound">UsdStageLoadRules</ref> from the stage that apply to the prim and its descendants</para>
+</listitem><listitem><para>The <ref refid="class_usd_stage_population_mask" kindref="compound">UsdStagePopulationMask</ref> from the stage that applies to the prim and its descendants</para>
+</listitem></itemizedlist>
+</para>
+<para>These elements, along with the <ref refid="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_Editing" kindref="member">restriction on per-instance overrides</ref> of descendant prims and their properties, guarantee that every prim with the same key will have the same scenegraph hierarchy beneath them, and that computing any values or metadata will return the same result.</para>
+<para><ref refid="class_usd_stage" kindref="compound">UsdStage</ref> groups the instanceable prims by their key and generates a prototype prim for each group. During this process, <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> will select one instanceable prim per group to serve as the source for the corresponding prototype prim.</para>
+<para>This selection is non-deterministic; this allows for multi-threaded discovery of instances with minimal locking, and since all of the prims in a group have the same scenegraph hierarchy and values, it doesn&apos;t matter which is selected. Enabling <computeroutput>USD_INSTANCING</computeroutput> <ref refid="group__group__tf___debugging_output_1ga6db9ff23ef8a070034390745b54e1bf6" kindref="member">TF_DEBUG</ref> flag will given some diagnostic information about this process.</para>
+<para><ref refid="class_usd_stage" kindref="compound">UsdStage</ref> will update prototypes as instanceable prims are added or removed, or whenever an element that is part of the instancing key changes. For example, if an instance prim&apos;s variant selection is changed, <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> will recompute its key and either assign that instance to an already-existing prototype if there are existing instances with the same key, or create a new prototype.</para>
+</sect2>
+<sect2 id="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_NestedInstancing">
+<title>Nested Instancing</title>
+<para>An instanceable prim may have children that are themselves instanceable. This &quot;nested instancing&quot; allows consumers to build up large aggregate assets from smaller ones and use instancing to share as much of the scenegraph as possible, even between the smaller pieces. For example, after constructing a parking lot asset with many instances of a car model, an asset representing a large superstore could be created that brings in multiple instances of that parking lot.</para>
+<para><center> <table rows="1" cols="2"><caption>Example Scene Description and Scenegraph with Nested Instancing</caption>
+<row>
+<entry thead="no"><para><programlisting><codeline><highlight class="normal">###<sp/>BuyNLarge.usd</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;BuyNLarge&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;ParkingLot_1&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instanceable<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>references<sp/>=<sp/>@./ParkingLot.usd@&lt;/ParkingLot&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;ParkingLot_2&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instanceable<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>references<sp/>=<sp/>@./ParkingLot.usd@&lt;/ParkingLot&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>...</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;ParkingLot_n&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instanceable<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>references<sp/>=<sp/>@./ParkingLot.usd@&lt;/ParkingLot&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><programlisting><codeline><highlight class="normal">###<sp/>ParkingLot.usd</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#usda<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>&quot;ParkingLot&quot;</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Car_1&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instanceable<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>references<sp/>=<sp/>@./Car.usd@&lt;/Car&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Car_2&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instanceable<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>references<sp/>=<sp/>@./Car.usd@&lt;/Car&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>...</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>&quot;Car_n&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instanceable<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>references<sp/>=<sp/>@./Car.usd@&lt;/Car&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting>  </para>
+</entry><entry thead="no"><para><image type="html" name="Nested_Instancing_Example.png"></image>
+   </para>
+</entry></row>
+</table>
+</center></para>
+<para>In the above example, USD will generate two prototype prims to accommodate the instanced ParkingLot and Car prims. Even though the Car prims are spread out among the different ParkingLot prims, USD will recognize that they can all share a single prototype prim, since they all have the same composition structure and can share the same scenegraph.</para>
+<para>When <ref refid="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_Prototypes" kindref="member">traversing the scenegraph using prototypes</ref>, it is important to note that, in the nested case, prims in prototypes may also be instances and requiring accessing the associated prototypes to continue traversal. In this example, the prototype prim for the ParkingLot prims, /__Prototype_2, contains instance Car prims that are associated with their prototype prim, /__Prototype_1.</para>
+<para>When <ref refid="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_InstanceProxies" kindref="member">working with instance proxies</ref>, nested instancing will be taken into account and resolved as if instancing were not being used on the stage.</para>
+</sect2>
+<sect2 id="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_Flattening">
+<title>Flattening</title>
+<para>When flattening a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> into a single layer via its various <ref refid="class_usd_stage_1Usd_stageSerialization" kindref="member">serialization methods</ref>, each prototype prim in the scenegraph will be written out to specially-named root prim. These prims will be referenced by the flattened instance prims that were associated with that prototype. </para>
+</sect2>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

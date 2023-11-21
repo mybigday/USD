@@ -1,0 +1,297 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_work_dispatcher" kind="class" language="C++" prot="public">
+    <compoundname>WorkDispatcher</compoundname>
+    <includes refid="dispatcher_8h" local="no">dispatcher.h</includes>
+    <innerclass refid="struct_work_dispatcher_1_1___invoker_task" prot="private">WorkDispatcher::_InvokerTask</innerclass>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_work_dispatcher_1afebc4926801be9ff6844d022a70b45f4" prot="private" static="no">
+        <type>tbb::concurrent_vector&lt; <ref refid="class_tf_error_transport" kindref="compound">TfErrorTransport</ref> &gt;</type>
+        <definition>typedef tbb::concurrent_vector&lt;TfErrorTransport&gt; _ErrorTransports</definition>
+        <argsstring></argsstring>
+        <name>_ErrorTransports</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/dispatcher.h" line="134" column="1" bodyfile="pxr/base/work/dispatcher.h" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_work_dispatcher_1aba6871662b6750fc54da6736d0ed690f" prot="private" static="no" mutable="no">
+        <type>tbb::task_group_context</type>
+        <definition>tbb::task_group_context _context</definition>
+        <argsstring></argsstring>
+        <name>_context</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/dispatcher.h" line="175" column="1" bodyfile="pxr/base/work/dispatcher.h" bodystart="175" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_work_dispatcher_1a756469ce0ed52644b5990f81bebc60eb" prot="private" static="no" mutable="no">
+        <type>tbb::empty_task *</type>
+        <definition>tbb::empty_task* _rootTask</definition>
+        <argsstring></argsstring>
+        <name>_rootTask</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/dispatcher.h" line="176" column="1" bodyfile="pxr/base/work/dispatcher.h" bodystart="176" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_work_dispatcher_1ab94f49bf47be6a39197118939455854d" prot="private" static="no" mutable="no">
+        <type>_ErrorTransports</type>
+        <definition>_ErrorTransports _errors</definition>
+        <argsstring></argsstring>
+        <name>_errors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/dispatcher.h" line="180" column="1" bodyfile="pxr/base/work/dispatcher.h" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_work_dispatcher_1a89fe7332f451bc433675f57f26e31b72" prot="private" static="no" mutable="no">
+        <type>std::atomic_flag</type>
+        <definition>std::atomic_flag _waitCleanupFlag</definition>
+        <argsstring></argsstring>
+        <name>_waitCleanupFlag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/dispatcher.h" line="183" column="1" bodyfile="pxr/base/work/dispatcher.h" bodystart="183" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_work_dispatcher_1aa6e4e1b552be667e11546d7619164daa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WORK_API</type>
+        <definition>WORK_API WorkDispatcher</definition>
+        <argsstring>()</argsstring>
+        <name>WorkDispatcher</name>
+        <briefdescription>
+<para>Construct a new dispatcher. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/dispatcher.h" line="79" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_work_dispatcher_1a688dca47982528dfa6b17b994b906e9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WORK_API</type>
+        <definition>WORK_API ~WorkDispatcher</definition>
+        <argsstring>()</argsstring>
+        <name>~WorkDispatcher</name>
+        <briefdescription>
+<para><ref refid="class_work_dispatcher_1a9a3bcb5d5274f20d0b9b94dae5094ff8" kindref="member">Wait()</ref> for any pending tasks to complete, then destroy the dispatcher. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/dispatcher.h" line="82" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_work_dispatcher_1a19c04fddffc2cf49d5436792c224cf9c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>WorkDispatcher</definition>
+        <argsstring>(WorkDispatcher const &amp;)=delete</argsstring>
+        <name>WorkDispatcher</name>
+        <param>
+          <type><ref refid="class_work_dispatcher" kindref="compound">WorkDispatcher</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/dispatcher.h" line="84" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_work_dispatcher_1a1e73e1c152a05d93220a14b69e13f268" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_work_dispatcher" kindref="compound">WorkDispatcher</ref> &amp;</type>
+        <definition>WorkDispatcher&amp; operator=</definition>
+        <argsstring>(WorkDispatcher const &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="class_work_dispatcher" kindref="compound">WorkDispatcher</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/dispatcher.h" line="85" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_work_dispatcher_1aaebe455f767d8721a1107ef7d8367d0b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Callable</type>
+          </param>
+          <param>
+            <type>class A1</type>
+          </param>
+          <param>
+            <type>class A2</type>
+          </param>
+          <param>
+            <type>... class</type>
+            <declname>AN</declname>
+            <defname>AN</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Run</definition>
+        <argsstring>(Callable &amp;&amp;c, A1 &amp;&amp;a1, A2 &amp;&amp;a2,... AN &amp;&amp;aN)</argsstring>
+        <name>Run</name>
+        <param>
+          <type>Callable &amp;&amp;</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>A1 &amp;&amp;</type>
+          <declname>a1</declname>
+        </param>
+        <param>
+          <type>A2 &amp;&amp;</type>
+          <declname>a2</declname>
+        </param>
+        <param>
+          <type>... AN &amp;&amp;</type>
+          <declname>aN</declname>
+        </param>
+        <briefdescription>
+<para>Add work for the dispatcher to run. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Before a call to <ref refid="class_work_dispatcher_1a9a3bcb5d5274f20d0b9b94dae5094ff8" kindref="member">Wait()</ref> is made it is safe for any client to invoke <ref refid="class_work_dispatcher_1aaebe455f767d8721a1107ef7d8367d0b" kindref="member">Run()</ref>. Once <ref refid="class_work_dispatcher_1a9a3bcb5d5274f20d0b9b94dae5094ff8" kindref="member">Wait()</ref> is invoked, it is <bold>only</bold> safe to invoke <ref refid="class_work_dispatcher_1aaebe455f767d8721a1107ef7d8367d0b" kindref="member">Run()</ref> from within the execution of tasks already added via <ref refid="class_work_dispatcher_1aaebe455f767d8721a1107ef7d8367d0b" kindref="member">Run()</ref>.</para>
+<para>This function does not block, in general. It may block if concurrency is limited to 1. The added work may be not yet started, may be started but not completed, or may be completed upon return. No guarantee is made. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/dispatcher.h" line="100" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_work_dispatcher_1a9a3bcb5d5274f20d0b9b94dae5094ff8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WORK_API void</type>
+        <definition>WORK_API void Wait</definition>
+        <argsstring>()</argsstring>
+        <name>Wait</name>
+        <briefdescription>
+<para>Block until the work started by <ref refid="class_work_dispatcher_1aaebe455f767d8721a1107ef7d8367d0b" kindref="member">Run()</ref> completes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/dispatcher.h" line="119" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_work_dispatcher_1a57daf05829ad125cdf6dadb9cbe2c9a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WORK_API void</type>
+        <definition>WORK_API void Cancel</definition>
+        <argsstring>()</argsstring>
+        <name>Cancel</name>
+        <briefdescription>
+<para>Cancel remaining work and return immediately. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Calling this function affects task that are being run directly by this dispatcher. If any of these tasks are using their own dispatchers to run tasks, these dispatchers will not be affected and these tasks will run to completion, unless they are also explicitly cancelled.</para>
+<para>This call does not block. Call <ref refid="class_work_dispatcher_1a9a3bcb5d5274f20d0b9b94dae5094ff8" kindref="member">Wait()</ref> after <ref refid="class_work_dispatcher_1a57daf05829ad125cdf6dadb9cbe2c9a5" kindref="member">Cancel()</ref> to wait for pending tasks to complete. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/dispatcher.h" line="131" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_work_dispatcher_1aa0f0786098d7e23802a6aac6d2f71fdc" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Fn</type>
+          </param>
+        </templateparamlist>
+        <type>_InvokerTask&lt; typename std::remove_reference&lt; Fn &gt;::type &gt; &amp;</type>
+        <definition>_InvokerTask&lt;typename std::remove_reference&lt;Fn&gt;::type&gt;&amp; _MakeInvokerTask</definition>
+        <argsstring>(Fn &amp;&amp;fn)</argsstring>
+        <name>_MakeInvokerTask</name>
+        <param>
+          <type>Fn &amp;&amp;</type>
+          <declname>fn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/dispatcher.h" line="162" column="1" bodyfile="pxr/base/work/dispatcher.h" bodystart="162" bodyend="166"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_work_dispatcher_1aba1847f36799f43243902f37370c5e10" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WORK_API void</type>
+        <definition>static WORK_API void _TransportErrors</definition>
+        <argsstring>(const TfErrorMark &amp;m, _ErrorTransports *errors)</argsstring>
+        <name>_TransportErrors</name>
+        <param>
+          <type>const <ref refid="class_tf_error_mark" kindref="compound">TfErrorMark</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>_ErrorTransports *</type>
+          <declname>errors</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/work/dispatcher.h" line="171" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A work dispatcher runs concurrent tasks. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The dispatcher supports adding new tasks from within running tasks. This suits problems that exhibit hierarchical structured parallelism: tasks that discover additional tasks during their execution.</para>
+<para>Typical use is to create a dispatcher and invoke <ref refid="class_work_dispatcher_1aaebe455f767d8721a1107ef7d8367d0b" kindref="member">Run()</ref> to begin doing work, then <ref refid="class_work_dispatcher_1a9a3bcb5d5274f20d0b9b94dae5094ff8" kindref="member">Wait()</ref> for the work to complete. Tasks may invoke <ref refid="class_work_dispatcher_1aaebe455f767d8721a1107ef7d8367d0b" kindref="member">Run()</ref> during their execution as they discover additional tasks to perform.</para>
+<para>For example,</para>
+<para><programlisting><codeline><highlight class="normal">WorkDispatcher<sp/>dispatcher;</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>!=<sp/>N;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>dispatcher.Run(DoSomeWork,<sp/>workItem[i]);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">dispatcher.Wait();</highlight></codeline>
+</programlisting></para>
+<para>Calls to <ref refid="class_work_dispatcher_1aaebe455f767d8721a1107ef7d8367d0b" kindref="member">Run()</ref> and <ref refid="class_work_dispatcher_1a57daf05829ad125cdf6dadb9cbe2c9a5" kindref="member">Cancel()</ref> may be made concurrently. Calls to <ref refid="class_work_dispatcher_1a9a3bcb5d5274f20d0b9b94dae5094ff8" kindref="member">Wait()</ref> may also be made concurrently. However, once any calls to <ref refid="class_work_dispatcher_1a9a3bcb5d5274f20d0b9b94dae5094ff8" kindref="member">Wait()</ref> are in-flight, calls to <ref refid="class_work_dispatcher_1aaebe455f767d8721a1107ef7d8367d0b" kindref="member">Run()</ref> and <ref refid="class_work_dispatcher_1a57daf05829ad125cdf6dadb9cbe2c9a5" kindref="member">Cancel()</ref> must only be made by tasks already added by <ref refid="class_work_dispatcher_1aaebe455f767d8721a1107ef7d8367d0b" kindref="member">Run()</ref>. This means that users of this class are responsible to synchronize concurrent calls to <ref refid="class_work_dispatcher_1a9a3bcb5d5274f20d0b9b94dae5094ff8" kindref="member">Wait()</ref> to ensure this requirement is met.</para>
+<para>Additionally, <ref refid="class_work_dispatcher_1a9a3bcb5d5274f20d0b9b94dae5094ff8" kindref="member">Wait()</ref> must never be called by a task added by <ref refid="class_work_dispatcher_1aaebe455f767d8721a1107ef7d8367d0b" kindref="member">Run()</ref>, since that task could never complete. </para>
+    </detaileddescription>
+    <location file="pxr/base/work/dispatcher.h" line="76" column="1" bodyfile="pxr/base/work/dispatcher.h" bodystart="75" bodyend="184"/>
+    <listofallmembers>
+      <member refid="class_work_dispatcher_1aba6871662b6750fc54da6736d0ed690f" prot="private" virt="non-virtual"><scope>WorkDispatcher</scope><name>_context</name></member>
+      <member refid="class_work_dispatcher_1ab94f49bf47be6a39197118939455854d" prot="private" virt="non-virtual"><scope>WorkDispatcher</scope><name>_errors</name></member>
+      <member refid="class_work_dispatcher_1afebc4926801be9ff6844d022a70b45f4" prot="private" virt="non-virtual"><scope>WorkDispatcher</scope><name>_ErrorTransports</name></member>
+      <member refid="class_work_dispatcher_1aa0f0786098d7e23802a6aac6d2f71fdc" prot="private" virt="non-virtual"><scope>WorkDispatcher</scope><name>_MakeInvokerTask</name></member>
+      <member refid="class_work_dispatcher_1a756469ce0ed52644b5990f81bebc60eb" prot="private" virt="non-virtual"><scope>WorkDispatcher</scope><name>_rootTask</name></member>
+      <member refid="class_work_dispatcher_1aba1847f36799f43243902f37370c5e10" prot="private" virt="non-virtual"><scope>WorkDispatcher</scope><name>_TransportErrors</name></member>
+      <member refid="class_work_dispatcher_1a89fe7332f451bc433675f57f26e31b72" prot="private" virt="non-virtual"><scope>WorkDispatcher</scope><name>_waitCleanupFlag</name></member>
+      <member refid="class_work_dispatcher_1a57daf05829ad125cdf6dadb9cbe2c9a5" prot="public" virt="non-virtual"><scope>WorkDispatcher</scope><name>Cancel</name></member>
+      <member refid="class_work_dispatcher_1a1e73e1c152a05d93220a14b69e13f268" prot="public" virt="non-virtual"><scope>WorkDispatcher</scope><name>operator=</name></member>
+      <member refid="class_work_dispatcher_1aaebe455f767d8721a1107ef7d8367d0b" prot="public" virt="non-virtual"><scope>WorkDispatcher</scope><name>Run</name></member>
+      <member refid="class_work_dispatcher_1a9a3bcb5d5274f20d0b9b94dae5094ff8" prot="public" virt="non-virtual"><scope>WorkDispatcher</scope><name>Wait</name></member>
+      <member refid="class_work_dispatcher_1aa6e4e1b552be667e11546d7619164daa" prot="public" virt="non-virtual"><scope>WorkDispatcher</scope><name>WorkDispatcher</name></member>
+      <member refid="class_work_dispatcher_1a19c04fddffc2cf49d5436792c224cf9c" prot="public" virt="non-virtual"><scope>WorkDispatcher</scope><name>WorkDispatcher</name></member>
+      <member refid="class_work_dispatcher_1a688dca47982528dfa6b17b994b906e9e" prot="public" virt="non-virtual"><scope>WorkDispatcher</scope><name>~WorkDispatcher</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

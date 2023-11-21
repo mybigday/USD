@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="struct_tf_deleter" kind="struct" language="C++" prot="public">
+    <compoundname>TfDeleter</compoundname>
+    <includes refid="tf_8h" local="no">tf.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_tf_deleter_1aeb398db602f5b542e58e705759323914" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void operator()</definition>
+        <argsstring>(T *t) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>T *</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/tf.h" line="117" column="1" bodyfile="pxr/base/tf/tf.h" bodystart="117" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_tf_deleter_1a31945b1a8971eea0c0c2eb20b458c81f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T1</type>
+          </param>
+          <param>
+            <type>class T2</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void operator()</definition>
+        <argsstring>(std::pair&lt; T1, T2 * &gt; p) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>std::pair&lt; T1, T2 * &gt;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/tf.h" line="122" column="1" bodyfile="pxr/base/tf/tf.h" bodystart="122" bodyend="124"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Function object for deleting any pointer. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>An STL collection of pointers does not automatically delete each pointer when the collection itself is destroyed. Instead of writing <programlisting><codeline><highlight class="normal">for<sp/>(list&lt;Otter*&gt;::iterator<sp/>i<sp/>=<sp/>otters.begin();<sp/>i<sp/>!=<sp/>otters.end();<sp/>++i)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>delete<sp/>*i;</highlight></codeline>
+</programlisting> you can use <computeroutput><ref refid="struct_tf_deleter" kindref="compound">TfDeleter</ref></computeroutput> and simply write <programlisting><codeline><highlight class="normal">#include<sp/>&lt;algorithm&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>for_each(otters.begin(),<sp/>otters.end(),<sp/>TfDeleter());</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="note"><para><computeroutput><ref refid="struct_tf_deleter" kindref="compound">TfDeleter</ref></computeroutput> calls the non-array version of <computeroutput>delete</computeroutput>. Don&apos;t use <computeroutput><ref refid="struct_tf_deleter" kindref="compound">TfDeleter</ref></computeroutput> if you allocated your space using <computeroutput>new</computeroutput>[] (and consider using a <computeroutput>vector&lt;&gt;</computeroutput> in place of a built-in array). Also, note that you need to put parenthesis after <computeroutput><ref refid="struct_tf_deleter" kindref="compound">TfDeleter</ref></computeroutput> in the call to <computeroutput>for_each()</computeroutput>.</para>
+</simplesect>
+Finally, <computeroutput><ref refid="struct_tf_deleter" kindref="compound">TfDeleter</ref></computeroutput> also works for map-like collections. Note that this works as follows: if <computeroutput><ref refid="struct_tf_deleter" kindref="compound">TfDeleter</ref></computeroutput> is handed a datatype of type <computeroutput>std::pair&lt;T1,T2*&gt;</computeroutput>, then the second element of the pair is deleted, but the first (whether or not it is a pointer) is left alone. In other words, if you give <computeroutput><ref refid="struct_tf_deleter" kindref="compound">TfDeleter()</ref></computeroutput> a pair of pointers, it only deletes the second, but never the first. This is the desired behavior for maps. </para>
+    </detaileddescription>
+    <location file="pxr/base/tf/tf.h" line="115" column="1" bodyfile="pxr/base/tf/tf.h" bodystart="115" bodyend="125"/>
+    <listofallmembers>
+      <member refid="struct_tf_deleter_1aeb398db602f5b542e58e705759323914" prot="public" virt="non-virtual"><scope>TfDeleter</scope><name>operator()</name></member>
+      <member refid="struct_tf_deleter_1a31945b1a8971eea0c0c2eb20b458c81f" prot="public" virt="non-virtual"><scope>TfDeleter</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

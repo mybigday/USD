@@ -1,0 +1,26 @@
+var class_usd_lux_shadow_a_p_i =
+[
+    [ "UsdLuxShadowAPI", "class_usd_lux_shadow_a_p_i.html#aee2cdbfc4b45452c61425567752b1dd6", null ],
+    [ "UsdLuxShadowAPI", "class_usd_lux_shadow_a_p_i.html#a0be4a54fa41a6a5e0f6c50417cc2c481", null ],
+    [ "~UsdLuxShadowAPI", "class_usd_lux_shadow_a_p_i.html#a9d600051fe13c9bbc1ac316d0c33dacb", null ],
+    [ "UsdLuxShadowAPI", "class_usd_lux_shadow_a_p_i.html#ab2597a9fbd84ca79777ceb0a739d49ed", null ],
+    [ "_GetSchemaKind", "class_usd_lux_shadow_a_p_i.html#ac19433aa62f0ecfb00450abefb7ccd4f", null ],
+    [ "ConnectableAPI", "class_usd_lux_shadow_a_p_i.html#a7a397289aa8760e0cfac308a378e4ff7", null ],
+    [ "CreateInput", "class_usd_lux_shadow_a_p_i.html#a49f83c685591e60db110db9e9b32c10a", null ],
+    [ "CreateOutput", "class_usd_lux_shadow_a_p_i.html#a2ba17066845267892079570da4eadef4", null ],
+    [ "CreateShadowColorAttr", "class_usd_lux_shadow_a_p_i.html#a4d56ad902f4d3018df8edd6f9b7fdd3b", null ],
+    [ "CreateShadowDistanceAttr", "class_usd_lux_shadow_a_p_i.html#ab713d252b851827b5b6dcae206360d2a", null ],
+    [ "CreateShadowEnableAttr", "class_usd_lux_shadow_a_p_i.html#a1bfe0ab03a024cab927e62716a725034", null ],
+    [ "CreateShadowFalloffAttr", "class_usd_lux_shadow_a_p_i.html#a61debd527fc846bc33a839766b3e5a1b", null ],
+    [ "CreateShadowFalloffGammaAttr", "class_usd_lux_shadow_a_p_i.html#afd19c2b01b0ab51289d47e2bdbaaec45", null ],
+    [ "GetInput", "class_usd_lux_shadow_a_p_i.html#ae9114b47c8f19407e8a24e00546f52fe", null ],
+    [ "GetInputs", "class_usd_lux_shadow_a_p_i.html#a9a5eca34d13a31c615dad2391d20576f", null ],
+    [ "GetOutput", "class_usd_lux_shadow_a_p_i.html#ac84e188e276e2273a2d6d7970f95a5b3", null ],
+    [ "GetOutputs", "class_usd_lux_shadow_a_p_i.html#a7ceff029383f362ac833a4414aa932cd", null ],
+    [ "GetShadowColorAttr", "class_usd_lux_shadow_a_p_i.html#a3ed6b950596df718c6a2d96aa6780c35", null ],
+    [ "GetShadowDistanceAttr", "class_usd_lux_shadow_a_p_i.html#a61a0614d390f89c0ded9139bd6f58f9d", null ],
+    [ "GetShadowEnableAttr", "class_usd_lux_shadow_a_p_i.html#a284d8b28199df353ad18f7c46891a7f4", null ],
+    [ "GetShadowFalloffAttr", "class_usd_lux_shadow_a_p_i.html#a9ef3ebcf1e39d4a1cbc732ee1873cdf8", null ],
+    [ "GetShadowFalloffGammaAttr", "class_usd_lux_shadow_a_p_i.html#ad8c64fc18ba671d0098e802c2b93fb56", null ],
+    [ "UsdSchemaRegistry", "class_usd_lux_shadow_a_p_i.html#aff8b8d83211f127c6c4cba48fb7d3334", null ]
+];

@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="black_box_testing_8md" kind="file" language="Markdown">
+    <compoundname>blackBoxTesting.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Usdview<sp/>Black<sp/>Box<sp/>Testing</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>testusdview<sp/>automated<sp/>testing<sp/>harness<sp/>allows<sp/>us<sp/>to<sp/>test<sp/>many<sp/>of</highlight></codeline>
+<codeline><highlight class="normal">usdview&apos;s<sp/>features,<sp/>but<sp/>not<sp/>all.<sp/><sp/>As<sp/>we<sp/>develop,<sp/>when<sp/>we<sp/>fix<sp/>or<sp/>deploy</highlight></codeline>
+<codeline><highlight class="normal">a<sp/>feature<sp/>for<sp/>which<sp/>it<sp/>does<sp/>not<sp/>seem<sp/>reasonable<sp/>to<sp/>add<sp/>a<sp/>testusdview</highlight></codeline>
+<codeline><highlight class="normal">test-case,<sp/>we<sp/>should<sp/>instead<sp/>add<sp/>a<sp/>test<sp/>for<sp/>it<sp/>here.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Viewport<sp/>prim<sp/>Vising<sp/>and<sp/>Invising</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Goal</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Ensure<sp/>that<sp/>when<sp/>we<sp/>select<sp/>(including<sp/>multi-select)<sp/>prims<sp/>(or<sp/>models,<sp/>when</highlight></codeline>
+<codeline><highlight class="normal">&quot;Pick<sp/>Mode&quot;<sp/>is<sp/>&quot;Models&quot;)<sp/>in<sp/>the<sp/>viewport,<sp/>and<sp/>**then**<sp/>use<sp/>the<sp/>hotkeys<sp/>for<sp/></highlight></codeline>
+<codeline><highlight class="normal">_Make<sp/>Invisible_,<sp/>_Make<sp/>Visible_,<sp/>_Vis<sp/>Only_,<sp/>_Remove<sp/>Session<sp/>Visibility_,<sp/>and<sp/></highlight></codeline>
+<codeline><highlight class="normal">_Remove<sp/>All<sp/>Session<sp/>Visibility_,<sp/>that:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>prims<sp/>actually<sp/>appear/disappear<sp/>as<sp/>expected<sp/>in<sp/>the<sp/>viewport</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>When<sp/>the<sp/>selected<sp/>items<sp/>are<sp/>viewed<sp/>in<sp/>the<sp/>Prim<sp/>View<sp/>browser<sp/>subsequently,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>the<sp/>**Vis**<sp/>column<sp/>shows<sp/>&quot;I&quot;<sp/>appropriately<sp/>for<sp/>invisible<sp/>prims<sp/>and<sp/>their<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>descendants,<sp/>and<sp/>&quot;V&quot;<sp/>elsewhere<sp/>(except<sp/>for<sp/>non-Imageable<sp/>prims<sp/>such<sp/>as</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Materials<sp/>and<sp/>Shaders,<sp/>which<sp/>should<sp/>show<sp/>nothing).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Method</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Start<sp/>usdview<sp/>with<sp/>a<sp/>sufficiently<sp/>complex<sp/>asset<sp/>such<sp/>that<sp/>not<sp/>all<sp/>prims<sp/>are<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>open<sp/>in<sp/>the<sp/>Prim<sp/>View<sp/>browser.<sp/><sp/>The<sp/>Kitchen_set.usd<sp/>asset<sp/>works<sp/>well.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>In<sp/>the<sp/>viewport,<sp/>Shift-select<sp/>several<sp/>pieces<sp/>of<sp/>geometry,<sp/>from<sp/>different<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>parts<sp/>of<sp/>the<sp/>scene.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Run<sp/>through<sp/>the<sp/>visibility<sp/>operations<sp/>via<sp/>hotkey<sp/>(or<sp/>RMB<sp/>context<sp/>menu),<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>ensuring<sp/>that<sp/>geometry<sp/>disappears<sp/>and<sp/>reappears.<sp/><sp/>E.g.<sp/>Ctrl-h<sp/>to<sp/>invis/hide,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>followed<sp/>by<sp/>Shift-h<sp/>to<sp/>vis/unhide.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>After<sp/>invising<sp/>some<sp/>geometry,<sp/>hover<sp/>mouse<sp/>over<sp/>Prim<sp/>View,<sp/>and<sp/>hit<sp/>&apos;f&apos;<sp/>to</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>frame<sp/>the<sp/>selection(s),<sp/>which<sp/>should<sp/>cause<sp/>rows<sp/>to<sp/>be<sp/>expanded,<sp/>showing<sp/>the</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>selected<sp/>prims.<sp/><sp/>You<sp/>should<sp/>see<sp/>that<sp/>the<sp/>newly<sp/>exposed<sp/>prims<sp/>have<sp/>&apos;I&apos;<sp/>in<sp/>the</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>_Vis_<sp/>column<sp/>(as<sp/>well<sp/>as<sp/>all<sp/>of<sp/>their<sp/>descendants,<sp/>if<sp/>you<sp/>are<sp/>in<sp/>&quot;Pick<sp/>Models&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>mode,<sp/>and<sp/>open<sp/>the<sp/>model<sp/>in<sp/>the<sp/>browser).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Vis<sp/>and<sp/>Draw<sp/>Mode<sp/>Columns<sp/>Do<sp/>Not<sp/>Affect<sp/>Selection</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Goal</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>Prim<sp/>View<sp/>Browser<sp/>should<sp/>select<sp/>prims<sp/>when<sp/>the<sp/>user<sp/>clicks<sp/>within<sp/>the<sp/></highlight></codeline>
+<codeline><highlight class="normal">__Prim<sp/>Name__<sp/>or<sp/>__Type__<sp/>columns,<sp/>but<sp/>when<sp/>clicking<sp/>in<sp/>the<sp/>__Vis__<sp/>or</highlight></codeline>
+<codeline><highlight class="normal">__Draw<sp/>Mode__<sp/>columns,<sp/>the<sp/>current<sp/>selection<sp/>should<sp/>not<sp/>be<sp/>affected,<sp/>and<sp/>instead</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>user<sp/>should<sp/>just<sp/>be<sp/>modifying<sp/>the<sp/>prim&apos;s<sp/>visibility<sp/>or<sp/>Draw<sp/>Mode.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">After<sp/>initial<sp/>deployment<sp/>of<sp/>this<sp/>feature,<sp/>there<sp/>was<sp/>an<sp/>uncaught<sp/>regression<sp/>in<sp/></highlight></codeline>
+<codeline><highlight class="normal">which<sp/>interacting<sp/>with<sp/>a<sp/>prim/row<sp/>when<sp/>the<sp/>selected<sp/>prim/row<sp/>was<sp/>not<sp/>visible</highlight></codeline>
+<codeline><highlight class="normal">in<sp/>the<sp/>browser<sp/>would<sp/>cause<sp/>the<sp/>browser<sp/>to<sp/>scroll<sp/>to<sp/>the<sp/>selected<sp/>prim<sp/>and<sp/>cancel</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>interaction.<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Prim<sp/>View<sp/>Framing</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Goal</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">When<sp/>making<sp/>selections<sp/>in<sp/>the<sp/>viewport,<sp/>we<sp/>do<sp/>not<sp/>expect<sp/>the<sp/>&quot;expansion<sp/>state&quot;</highlight></codeline>
+<codeline><highlight class="normal">of<sp/>the<sp/>Prim<sp/>View<sp/>to<sp/>change.<sp/><sp/>Instead,<sp/>if<sp/>selected<sp/>prim(s)<sp/>is<sp/>already<sp/>visible<sp/>in</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>browser,<sp/>then<sp/>it<sp/>should<sp/>highlight<sp/>(become<sp/>selected);<sp/>but<sp/>if<sp/>it<sp/>is<sp/>not<sp/></highlight></codeline>
+<codeline><highlight class="normal">visible/exposed,<sp/>then<sp/>only<sp/>its<sp/>visible<sp/>ancestors<sp/>should<sp/>be<sp/>highlighted<sp/>in<sp/>a</highlight></codeline>
+<codeline><highlight class="normal">secondary,<sp/>muted<sp/>selection<sp/>color.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Method</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Start<sp/>usdview<sp/>with<sp/>a<sp/>sufficiently<sp/>complex<sp/>asset<sp/>such<sp/>that<sp/>not<sp/>all<sp/>prims<sp/>are<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>open<sp/>in<sp/>the<sp/>Prim<sp/>View<sp/>browser.<sp/><sp/>The<sp/>Kitchen_set.usd<sp/>asset<sp/>works<sp/>well.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Pick<sp/>some<sp/>geometry<sp/>in<sp/>the<sp/>viewer,<sp/>and<sp/>ensure<sp/>we<sp/>see<sp/>desired<sp/>behavior<sp/>in<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>browser,<sp/>as<sp/>described<sp/>in<sp/>Goal<sp/>above.<sp/>(The<sp/>top<sp/>of<sp/>the<sp/>kitchen<sp/>table<sp/>is<sp/>a<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>good<sp/>one.)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Now<sp/>hover<sp/>over<sp/>the<sp/>browser,<sp/>and<sp/>hit<sp/>&apos;f&apos;<sp/>to<sp/>frame<sp/>the<sp/>selection<sp/>(or<sp/>first<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>selected<sp/>prim<sp/>if<sp/>a<sp/>multi-selection).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Reset<sp/>Prim<sp/>View<sp/>with<sp/>Alt-3<sp/>(Show<sp/>&gt;<sp/>Prim<sp/>View<sp/>Depth<sp/>&gt;<sp/>Level<sp/>3)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Go<sp/>back<sp/>to<sp/>the<sp/>viewport,<sp/>and<sp/>select<sp/>something<sp/>else<sp/>(e.g<sp/>refridgerator<sp/>door).</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Ensure<sp/>browser<sp/>updates<sp/>only<sp/>in<sp/>that<sp/>a<sp/>different<sp/>ancestor<sp/>selection<sp/>is<sp/>made</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>(since<sp/>the<sp/>refridgerator<sp/>is<sp/>in<sp/>the<sp/>_North_Group_<sp/>as<sp/>opposed<sp/>to<sp/>the<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>_DiningTable_group_<sp/>).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Hover<sp/>over<sp/>the<sp/>Prim<sp/>View,<sp/>and<sp/>use<sp/>the<sp/>arrow/cursor<sp/>keys<sp/>to<sp/>change<sp/>selection.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Upon<sp/>first<sp/>keypress,<sp/>the<sp/>selected<sp/>item<sp/>should<sp/>become<sp/>visible/expanded,<sp/>and</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>uniquely<sp/>selected<sp/>(if<sp/>you<sp/>had<sp/>a<sp/>multi-selection),<sp/>and<sp/>navigation<sp/>should</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>then<sp/>proceed<sp/>as<sp/>expected<sp/>using<sp/>up/down,<sp/>left/rught<sp/>keys.</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+    </programlisting>
+    <location file="pxr/usdImaging/usdviewq/blackBoxTesting.md"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,27 @@
+var trace_8h =
+[
+    [ "TraceScopeAuto", "class_trace_scope_auto.html", "class_trace_scope_auto" ],
+    [ "TraceAuto", "struct_trace_auto.html", "struct_trace_auto" ],
+    [ "TraceCounterHolder", "class_trace_counter_holder.html", "class_trace_counter_holder" ],
+    [ "_TRACE_COUNTER_CODE_INSTANCE", "trace_8h.html#a8b0e1752c4938f01ad00b1bf0b281f48", null ],
+    [ "_TRACE_COUNTER_INSTANCE", "trace_8h.html#ac378893cd0dfead1625af2542ead4862", null ],
+    [ "_TRACE_FUNCTION_DYNAMIC_INSTANCE", "trace_8h.html#a8e09fa957e6f758b07cdf7fa1dface6d", null ],
+    [ "_TRACE_FUNCTION_INSTANCE", "trace_8h.html#a406024ca0d556b275cd6fe02e36fdade", null ],
+    [ "_TRACE_FUNCTION_SCOPE_INSTANCE", "trace_8h.html#ab98bc8cb59fc45d92acbdc5dd3eb04f2", null ],
+    [ "_TRACE_MARKER_DYNAMIC_INSTANCE", "trace_8h.html#af44afea3aa787d7aa903f87470f3faa6", null ],
+    [ "_TRACE_MARKER_INSTANCE", "trace_8h.html#ac836e9bdbca8083167f5b28fae13239e", null ],
+    [ "_TRACE_SCOPE_DYNAMIC_INSTANCE", "trace_8h.html#ad39d8cb33c6be8e797339b6c2c507420", null ],
+    [ "_TRACE_SCOPE_INSTANCE", "trace_8h.html#a12dd32c2b49002313fee967234f208be", null ],
+    [ "TRACE_COUNTER_DELTA", "trace_8h.html#a23cc37038341ab22266c26144b909a4c", null ],
+    [ "TRACE_COUNTER_DELTA_CODE", "trace_8h.html#a30041c8834e4a86ccfdbfa44c3d7a788", null ],
+    [ "TRACE_COUNTER_DELTA_DYNAMIC", "trace_8h.html#a0ac9127d0d5f8f490123fbdd01c51b2a", null ],
+    [ "TRACE_COUNTER_VALUE", "trace_8h.html#aa24afd97283177cabfdc766c8ac77338", null ],
+    [ "TRACE_COUNTER_VALUE_DYNAMIC", "trace_8h.html#ae3cc75acd1534063e1b4f099cf4e76a9", null ],
+    [ "TRACE_FUNCTION", "trace_8h.html#a5b0af4118bc65ec32e2f5d2558fe90d5", null ],
+    [ "TRACE_FUNCTION_DYNAMIC", "trace_8h.html#a024be3c93cc9f0ae55494e619992b59e", null ],
+    [ "TRACE_FUNCTION_SCOPE", "trace_8h.html#aec9f2bb2b5d0fd9be6ba7cddbce26cf1", null ],
+    [ "TRACE_MARKER", "trace_8h.html#aab342f3867a48bbcf0242d855f3c3d65", null ],
+    [ "TRACE_MARKER_DYNAMIC", "trace_8h.html#ae8cbe3fd5dce625909d9bacccaefb62e", null ],
+    [ "TRACE_SCOPE", "trace_8h.html#a39c16c77a53bc0aaaf4f2f39cd37f6c0", null ],
+    [ "TRACE_SCOPE_DYNAMIC", "trace_8h.html#a9e691dcf1121767f4b93c0615f64084c", null ]
+];

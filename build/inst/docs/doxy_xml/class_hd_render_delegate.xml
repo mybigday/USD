@@ -1,0 +1,1193 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_render_delegate" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>HdRenderDelegate</compoundname>
+    <derivedcompoundref refid="class_hd___unit_test_null_render_delegate" prot="public" virt="non-virtual">Hd_UnitTestNullRenderDelegate</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_embree_render_delegate" prot="public" virt="non-virtual">HdEmbreeRenderDelegate</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_prman_render_delegate" prot="public" virt="non-virtual">HdPrmanRenderDelegate</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_st_render_delegate" prot="public" virt="non-virtual">HdStRenderDelegate</derivedcompoundref>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_hd_render_delegate_1ad868068eecfedd08749da58fe6602c75" prot="protected" static="no" mutable="no">
+        <type>HdRenderSettingsMap</type>
+        <definition>HdRenderSettingsMap _settingsMap</definition>
+        <argsstring></argsstring>
+        <name>_settingsMap</name>
+        <briefdescription>
+<para>Render settings state. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="544" column="1" bodyfile="pxr/imaging/hd/renderDelegate.h" bodystart="544" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_render_delegate_1a0afdb18e14681352fe309aa7744ebed8" prot="protected" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int _settingsVersion</definition>
+        <argsstring></argsstring>
+        <name>_settingsVersion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="545" column="1" bodyfile="pxr/imaging/hd/renderDelegate.h" bodystart="545" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_hd_render_delegate_1add676b6c804dbc1f97565f966cd340ad" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class HdRendererPluginRegistry</definition>
+        <argsstring></argsstring>
+        <name>HdRendererPluginRegistry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="549" column="1" bodyfile="pxr/imaging/hd/renderDelegate.h" bodystart="549" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_render_delegate_1a7ad773cc4d37c9cbab0462f727cae0a7" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string _displayName</definition>
+        <argsstring></argsstring>
+        <name>_displayName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="557" column="1" bodyfile="pxr/imaging/hd/renderDelegate.h" bodystart="557" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_render_delegate_1adc731ea9bdbf26cbcec5d513a32f10de" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API</type>
+        <definition>virtual HD_API ~HdRenderDelegate</definition>
+        <argsstring>()</argsstring>
+        <name>~HdRenderDelegate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="99" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a7cf3390988347ccf6a19c93f453f679a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API void</type>
+        <definition>virtual HD_API void SetDrivers</definition>
+        <argsstring>(HdDriverVector const &amp;drivers)</argsstring>
+        <name>SetDrivers</name>
+        <param>
+          <type>HdDriverVector const &amp;</type>
+          <declname>drivers</declname>
+        </param>
+        <briefdescription>
+<para>Set list of driver objects, such as a rendering context / devices. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is automatically called from <ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> when a <ref refid="class_hd_driver" kindref="compound">HdDriver</ref> is provided during its construction. Default implementation does nothing. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="107" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1abf62748ff3fc7fd2f7cad822ddd99af0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+        <definition>virtual const TfTokenVector&amp; GetSupportedRprimTypes</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetSupportedRprimTypes</name>
+        <briefdescription>
+<para>Returns a list of typeId&apos;s of all supported Rprims by this render delegate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="113" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a2b0161b216ae2b478b403d4a4eb0178e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+        <definition>virtual const TfTokenVector&amp; GetSupportedSprimTypes</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetSupportedSprimTypes</name>
+        <briefdescription>
+<para>Returns a list of typeId&apos;s of all supported Sprims by this render delegate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="119" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a467cd05e7f9fc22719bb708b098ab3b9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+        <definition>virtual const TfTokenVector&amp; GetSupportedBprimTypes</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetSupportedBprimTypes</name>
+        <briefdescription>
+<para>Returns a list of typeId&apos;s of all supported Bprims by this render delegate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="126" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1ad8a496ac71f2b6c3dd7cd358e7d8a40f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API <ref refid="class_hd_render_param" kindref="compound">HdRenderParam</ref> *</type>
+        <definition>virtual HD_API HdRenderParam* GetRenderParam</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRenderParam</name>
+        <briefdescription>
+<para>Returns an opaque handle to a render param, that in turn is passed to each prim created by the render delegate during sync processing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This avoids the need to store a global state pointer in each prim.</para>
+<para>The typical lifetime of the renderParam would match that of the RenderDelegate, however the minimal lifetime is that of the Sync processing. The param maybe queried multiple times during sync.</para>
+<para>A render delegate may return null for the param. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="141" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a72c9fc8e07f19b4a1a4732b2e6f1812e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>HdResourceRegistrySharedPtr</type>
+        <definition>virtual HdResourceRegistrySharedPtr GetResourceRegistry</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetResourceRegistry</name>
+        <briefdescription>
+<para>Returns a shared ptr to the resource registry of the current render delegate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="147" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a7a177e50744da27dc21daeedf80e788c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API void</type>
+        <definition>virtual HD_API void SetRenderSetting</definition>
+        <argsstring>(TfToken const &amp;key, VtValue const &amp;value)</argsstring>
+        <name>SetRenderSetting</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Set a custom render setting on this render delegate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="153" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a0182b5e55fa3c5f77f6c115fbafe1657" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API <ref refid="class_vt_value" kindref="compound">VtValue</ref></type>
+        <definition>virtual HD_API VtValue GetRenderSetting</definition>
+        <argsstring>(TfToken const &amp;key) const</argsstring>
+        <name>GetRenderSetting</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Get the current value for a render setting. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="159" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a03dfab242be992760f9f3376ded04af8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>T</type>
+        <definition>T GetRenderSetting</definition>
+        <argsstring>(TfToken const &amp;key, T const &amp;defValue) const</argsstring>
+        <name>GetRenderSetting</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>T const &amp;</type>
+          <declname>defValue</declname>
+        </param>
+        <briefdescription>
+<para>Get the current value for a render setting, taking a desired type and a fallback value in case of type mismatch. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="166" column="1" bodyfile="pxr/imaging/hd/renderDelegate.h" bodystart="166" bodyend="168"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a185093da28bf58da385d8b15b4d331d3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API HdRenderSettingDescriptorList</type>
+        <definition>virtual HD_API HdRenderSettingDescriptorList GetRenderSettingDescriptors</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRenderSettingDescriptors</name>
+        <briefdescription>
+<para>Get the backend-exported render setting descriptors. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="174" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1aec5c6b9c337c561b691a7aa997bef486" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API unsigned int</type>
+        <definition>virtual HD_API unsigned int GetRenderSettingsVersion</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRenderSettingsVersion</name>
+        <briefdescription>
+<para>Get the current version of the render settings dictionary. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="180" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1af9bdd99ab811f2452dd3f4250ccdf56b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API <ref refid="class_vt_dictionary" kindref="compound">VtDictionary</ref></type>
+        <definition>virtual HD_API VtDictionary GetRenderStats</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRenderStats</name>
+        <briefdescription>
+<para>Returns an open-format dictionary of render statistics. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="186" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a6c15bf7c659dee2ec0bf8830fdd61050" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API HdContainerDataSourceHandle</type>
+        <definition>virtual HD_API HdContainerDataSourceHandle GetCapabilities</definition>
+        <argsstring>() const</argsstring>
+        <name>GetCapabilities</name>
+        <briefdescription>
+<para>Gives capabilities of render delegate as data source (conforming to HdRenderCapabilitiesSchema). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="193" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1abc193490ffcb73f063011c81d867e530" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API bool</type>
+        <definition>virtual HD_API bool IsPauseSupported</definition>
+        <argsstring>() const</argsstring>
+        <name>IsPauseSupported</name>
+        <briefdescription>
+<para>Control of background rendering threads. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim></verbatim>Advertise whether this delegate supports pausing and resuming of background render threads. Default implementation returns false. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="206" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a5d698fce657915c24a3426f46ad66f4b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API bool</type>
+        <definition>virtual HD_API bool IsPaused</definition>
+        <argsstring>() const</argsstring>
+        <name>IsPaused</name>
+        <briefdescription>
+<para>Query the delegate&apos;s pause state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns true if the background rendering threads are currently paused. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="213" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a6c7f48bca36c81bc0e680853c229839c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API bool</type>
+        <definition>virtual HD_API bool Pause</definition>
+        <argsstring>()</argsstring>
+        <name>Pause</name>
+        <briefdescription>
+<para>Pause all of this delegate&apos;s background rendering threads. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Default implementation does nothing.</para>
+<para>Returns <computeroutput>true</computeroutput> if successful. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="222" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a6eb142a82adbc8aab25f9120bb4e9b21" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API bool</type>
+        <definition>virtual HD_API bool Resume</definition>
+        <argsstring>()</argsstring>
+        <name>Resume</name>
+        <briefdescription>
+<para>Resume all of this delegate&apos;s background rendering threads previously paused by a call to Pause. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Default implementation does nothing.</para>
+<para>Returns <computeroutput>true</computeroutput> if successful. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="231" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a4b32c31de429cb778d390cfcfcac91f0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API bool</type>
+        <definition>virtual HD_API bool IsStopSupported</definition>
+        <argsstring>() const</argsstring>
+        <name>IsStopSupported</name>
+        <briefdescription>
+<para>Advertise whether this delegate supports stopping and restarting of background render threads. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Default implementation returns false. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="238" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a61c90c349b5e1bf3af8724dffd901688" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API bool</type>
+        <definition>virtual HD_API bool IsStopped</definition>
+        <argsstring>() const</argsstring>
+        <name>IsStopped</name>
+        <briefdescription>
+<para>Query the delegate&apos;s stop state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns true if the background rendering threads are not currently active. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="245" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1ace920051c2911b0efa782b30c36441ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API bool</type>
+        <definition>virtual HD_API bool Stop</definition>
+        <argsstring>(bool blocking=true)</argsstring>
+        <name>Stop</name>
+        <param>
+          <type>bool</type>
+          <declname>blocking</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Stop all of this delegate&apos;s background rendering threads; if blocking is true, the function waits until they exit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Default implementation does nothing.</para>
+<para>Returns <computeroutput>true</computeroutput> if successfully stopped. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="255" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a35a456e1a68583c0fe686a34558f9bdc" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API bool</type>
+        <definition>virtual HD_API bool Restart</definition>
+        <argsstring>()</argsstring>
+        <name>Restart</name>
+        <briefdescription>
+<para>Restart all of this delegate&apos;s background rendering threads previously stopped by a call to Stop. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Default implementation does nothing.</para>
+<para>Returns <computeroutput>true</computeroutput> if successful. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="264" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1ae72211057cd4073b89be8297d462de93" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HdRenderPassSharedPtr</type>
+        <definition>virtual HdRenderPassSharedPtr CreateRenderPass</definition>
+        <argsstring>(HdRenderIndex *index, HdRprimCollection const &amp;collection)=0</argsstring>
+        <name>CreateRenderPass</name>
+        <param>
+          <type><ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> *</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_rprim_collection" kindref="compound">HdRprimCollection</ref> const &amp;</type>
+          <declname>collection</declname>
+        </param>
+        <briefdescription>
+<para>Renderpass Factory. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim></verbatim>Request to create a new renderpass. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the render index to bind to the new renderpass. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>collection</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the rprim collection to bind to the new renderpass. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A shared pointer to the new renderpass or empty on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="278" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a49249045bdc41fa4d3d4a6c1f21c2314" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API HdRenderPassStateSharedPtr</type>
+        <definition>virtual HD_API HdRenderPassStateSharedPtr CreateRenderPassState</definition>
+        <argsstring>() const</argsstring>
+        <name>CreateRenderPassState</name>
+        <briefdescription>
+<para>Request to create a new renderpass state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The default implementation creates an <ref refid="class_hd_render_pass_state" kindref="compound">HdRenderPassState</ref> instance, but derived render delegates may instantiate their own state type. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shader</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The render pass shader to use. If null, a new HdRenderPassShared will be created. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A shared pointer to the new renderpass state. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="290" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a95e498002cb53d63d37df886f2266499" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="class_hd_instancer" kindref="compound">HdInstancer</ref> *</type>
+        <definition>virtual HdInstancer* CreateInstancer</definition>
+        <argsstring>(HdSceneDelegate *delegate, SdfPath const &amp;id)=0</argsstring>
+        <name>CreateInstancer</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Instancer Factory. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim></verbatim>Request to create a new instancer. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique identifier of this instancer. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A pointer to the new instancer or nullptr on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="303" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a7fcfd028f173bfa507c6863d62f26421" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void DestroyInstancer</definition>
+        <argsstring>(HdInstancer *instancer)=0</argsstring>
+        <name>DestroyInstancer</name>
+        <param>
+          <type><ref refid="class_hd_instancer" kindref="compound">HdInstancer</ref> *</type>
+          <declname>instancer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="306" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1ac3a13791bd5f4f492c479e7732bec276" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="class_hd_rprim" kindref="compound">HdRprim</ref> *</type>
+        <definition>virtual HdRprim* CreateRprim</definition>
+        <argsstring>(TfToken const &amp;typeId, SdfPath const &amp;rprimId)=0</argsstring>
+        <name>CreateRprim</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>rprimId</declname>
+        </param>
+        <briefdescription>
+<para>Prim Factories. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim></verbatim>Request to Allocate and Construct a new Rprim. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>typeId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type identifier of the prim to allocate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rprimId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a unique identifier for the prim </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A pointer to the new prim or nullptr on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="321" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a60287c625e9207d1224a6cf4cca4fdcd" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void DestroyRprim</definition>
+        <argsstring>(HdRprim *rPrim)=0</argsstring>
+        <name>DestroyRprim</name>
+        <param>
+          <type><ref refid="class_hd_rprim" kindref="compound">HdRprim</ref> *</type>
+          <declname>rPrim</declname>
+        </param>
+        <briefdescription>
+<para>Request to Destruct and deallocate the prim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="327" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a08e081076faab1997a7cafa44ccaa0d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="class_hd_sprim" kindref="compound">HdSprim</ref> *</type>
+        <definition>virtual HdSprim* CreateSprim</definition>
+        <argsstring>(TfToken const &amp;typeId, SdfPath const &amp;sprimId)=0</argsstring>
+        <name>CreateSprim</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>sprimId</declname>
+        </param>
+        <briefdescription>
+<para>Request to Allocate and Construct a new Sprim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>typeId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type identifier of the prim to allocate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sprimId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a unique identifier for the prim </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A pointer to the new prim or nullptr on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="335" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1af354881dab91de64dd76c3f9586afe48" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="class_hd_sprim" kindref="compound">HdSprim</ref> *</type>
+        <definition>virtual HdSprim* CreateFallbackSprim</definition>
+        <argsstring>(TfToken const &amp;typeId)=0</argsstring>
+        <name>CreateFallbackSprim</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <briefdescription>
+<para>Request to Allocate and Construct an Sprim to use as a standin, if there if an error with another another Sprim of the same type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For example, if another prim references a non-exisiting Sprim, the fallback could be used.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>typeId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type identifier of the prim to allocate </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A pointer to the new prim or nullptr on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="347" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1ac20ba48ce39579ae04153200acc4d7c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void DestroySprim</definition>
+        <argsstring>(HdSprim *sprim)=0</argsstring>
+        <name>DestroySprim</name>
+        <param>
+          <type><ref refid="class_hd_sprim" kindref="compound">HdSprim</ref> *</type>
+          <declname>sprim</declname>
+        </param>
+        <briefdescription>
+<para>Request to Destruct and deallocate the prim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="352" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a5c9cda7dc000360258d04630df0ea40e" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="class_hd_bprim" kindref="compound">HdBprim</ref> *</type>
+        <definition>virtual HdBprim* CreateBprim</definition>
+        <argsstring>(TfToken const &amp;typeId, SdfPath const &amp;bprimId)=0</argsstring>
+        <name>CreateBprim</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>bprimId</declname>
+        </param>
+        <briefdescription>
+<para>Request to Allocate and Construct a new Bprim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>typeId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type identifier of the prim to allocate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sprimId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a unique identifier for the prim </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A pointer to the new prim or nullptr on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="360" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a20d1f8ec4e470bb3088c1bce2fd10518" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="class_hd_bprim" kindref="compound">HdBprim</ref> *</type>
+        <definition>virtual HdBprim* CreateFallbackBprim</definition>
+        <argsstring>(TfToken const &amp;typeId)=0</argsstring>
+        <name>CreateFallbackBprim</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>typeId</declname>
+        </param>
+        <briefdescription>
+<para>Request to Allocate and Construct a Bprim to use as a standin, if there if an error with another another Bprim of the same type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For example, if another prim references a non-exisiting Bprim, the fallback could be used.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>typeId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type identifier of the prim to allocate </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A pointer to the new prim or nullptr on error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="373" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a3d8d401be18178a19db89da3984cac99" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void DestroyBprim</definition>
+        <argsstring>(HdBprim *bprim)=0</argsstring>
+        <name>DestroyBprim</name>
+        <param>
+          <type><ref refid="class_hd_bprim" kindref="compound">HdBprim</ref> *</type>
+          <declname>bprim</declname>
+        </param>
+        <briefdescription>
+<para>Request to Destruct and deallocate the prim. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="378" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1accb6711ed9724daba7a14bf815f9123b" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void CommitResources</definition>
+        <argsstring>(HdChangeTracker *tracker)=0</argsstring>
+        <name>CommitResources</name>
+        <param>
+          <type><ref refid="class_hd_change_tracker" kindref="compound">HdChangeTracker</ref> *</type>
+          <declname>tracker</declname>
+        </param>
+        <briefdescription>
+<para>Sync, Execute &amp; Dispatch Hooks. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim></verbatim>Notification point from the Engine to the delegate. This notification occurs after all Sync&apos;s have completed and before task execution.</para>
+<para>This notification gives the Render Delegate a chance to update and move memory that the render may need.</para>
+<para>For example, the render delegate might fill primvar buffers or texture memory. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="397" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a4d23b79d1d542bb7b03bd6eb7af0f28d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>virtual HD_API TfToken GetMaterialBindingPurpose</definition>
+        <argsstring>() const</argsstring>
+        <name>GetMaterialBindingPurpose</name>
+        <briefdescription>
+<para>Materials. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim></verbatim>Returns a token that indicates material bindings should be used, based on the indicated purpose. The default purpose is HdTokens-&gt;preview. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="411" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a77ac539951b4e06d17dbf8faceedd4dd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>virtual HD_API TfToken GetMaterialNetworkSelector</definition>
+        <argsstring>() const</argsstring>
+        <name>GetMaterialNetworkSelector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000141"><xreftitle>Deprecated</xreftitle><xrefdescription><para>use GetMaterialRenderContexts() </para>
+</xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="416" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1afd8fc4f024cc70db74b389a85f47625c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref></type>
+        <definition>virtual HD_API TfTokenVector GetMaterialRenderContexts</definition>
+        <argsstring>() const</argsstring>
+        <name>GetMaterialRenderContexts</name>
+        <briefdescription>
+<para>Returns a list, in descending order of preference, that can be used to select among multiple material network implementations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The default list contains an empty token. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="424" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a3cc793424ae4ff6e5c866b67134f6ceb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref></type>
+        <definition>virtual HD_API TfTokenVector GetRenderSettingsNamespaces</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRenderSettingsNamespaces</name>
+        <briefdescription>
+<para>Returns a list of namespace prefixes for render settings attributes relevant to a render delegate. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This list is used to gather just the relevant attributes from render settings scene description. The default is an empty list, which will gather all custom (non-schema) attributes. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="432" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a65efe702e968ba6342e986932b7b97fe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API bool</type>
+        <definition>virtual HD_API bool IsPrimvarFilteringNeeded</definition>
+        <argsstring>() const</argsstring>
+        <name>IsPrimvarFilteringNeeded</name>
+        <briefdescription>
+<para>Return true to indicate that the render delegate wants rprim primvars to be filtered by the scene delegate to reduce the amount of primvars that are send to the render delegate. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For example the scene delegate may check the bound material primvar requirements and send only those to the render delegate. Return false to not apply primvar filtering in the scene delegate. Defaults to false. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="443" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a48b70f591edcd8d68ffcb3b60b7c081c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref></type>
+        <definition>virtual HD_API TfTokenVector GetShaderSourceTypes</definition>
+        <argsstring>() const</argsstring>
+        <name>GetShaderSourceTypes</name>
+        <briefdescription>
+<para>Returns the ordered list of shader source types that the render delegate supports. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="450" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1abd7627fa22e5188361d3012c6cb422d8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API <ref refid="struct_hd_aov_descriptor" kindref="compound">HdAovDescriptor</ref></type>
+        <definition>virtual HD_API HdAovDescriptor GetDefaultAovDescriptor</definition>
+        <argsstring>(TfToken const &amp;name) const</argsstring>
+        <name>GetDefaultAovDescriptor</name>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>AOVs. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim></verbatim>Returns a default AOV descriptor for the given named AOV, specifying things like preferred format. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="463" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a791eff4377f6420ef79da7b4f5f18d53" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API HdCommandDescriptors</type>
+        <definition>virtual HD_API HdCommandDescriptors GetCommandDescriptors</definition>
+        <argsstring>() const</argsstring>
+        <name>GetCommandDescriptors</name>
+        <briefdescription>
+<para>Commands API. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim></verbatim>Get the descriptors for the commands supported by this render delegate. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="475" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a3f1f808ae7ec7730b7fb61fa706d0312" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API bool</type>
+        <definition>virtual HD_API bool InvokeCommand</definition>
+        <argsstring>(const TfToken &amp;command, const HdCommandArgs &amp;args=HdCommandArgs())</argsstring>
+        <name>InvokeCommand</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>command</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_vt_dictionary" kindref="compound">HdCommandArgs</ref> &amp;</type>
+          <declname>args</declname>
+          <defval><ref refid="class_vt_dictionary" kindref="compound">HdCommandArgs</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Invokes the command described by the token <computeroutput>command</computeroutput> with optional <computeroutput>args</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the command succeeds, returns <computeroutput>true</computeroutput>, otherwise returns <computeroutput>false</computeroutput>. A command will generally fail if it is not among those returned by GetCommandDescriptors(). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="486" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a8510f67c1402a0e4c73469e32f4b4e30" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>HD_API const std::string &amp;</type>
+        <definition>HD_API const std::string&amp; GetRendererDisplayName</definition>
+        <argsstring>()</argsstring>
+        <name>GetRendererDisplayName</name>
+        <briefdescription>
+<para>Populated when instantiated via the HdRendererPluginRegistry. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="493" column="1" bodyfile="pxr/imaging/hd/renderDelegate.h" bodystart="493" bodyend="495"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1ab6940cd31eb8619fe9546d2eabbc4bc4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API void</type>
+        <definition>virtual HD_API void SetTerminalSceneIndex</definition>
+        <argsstring>(const HdSceneIndexBaseRefPtr &amp;terminalSceneIndex)</argsstring>
+        <name>SetTerminalSceneIndex</name>
+        <param>
+          <type>const HdSceneIndexBaseRefPtr &amp;</type>
+          <declname>terminalSceneIndex</declname>
+        </param>
+        <briefdescription>
+<para>Hydra 2.0 API. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>The following methods aid in migrating existing 1.0 based render delegates to the Hydra 2.0 API. <verbatim></verbatim>Called after the scene index graph is created during render index construction, providing a hook point for the render delegate to register an observer of the terminal scene index.</para>
+</simplesect>
+<simplesect kind="note"><para>Render delegates should not assume that the scene index is fully populated at this point. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="514" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1af59871eb7fab18e76f9e2e50198b033e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API void</type>
+        <definition>virtual HD_API void Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <briefdescription>
+<para>Called at the beginning of <ref refid="class_hd_render_index_1a4c0c8384764f03418660e24b66fa4c90" kindref="member">HdRenderIndex::SyncAll</ref>, before render index prim sync, to provide the render delegate an opportunity to directly process change notices from observing the terminal scene index, rather than using the Hydra 1.0 Sync algorithm. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="523" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_hd_render_delegate_1a618f63ed40a2ab3b84a28add2a611895" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API HdRenderDelegate</definition>
+        <argsstring>()</argsstring>
+        <name>HdRenderDelegate</name>
+        <briefdescription>
+<para>This class must be derived from. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="528" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1aa2fa9c147b1519e5b8064f3789c51c50" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API HdRenderDelegate</definition>
+        <argsstring>(HdRenderSettingsMap const &amp;settingsMap)</argsstring>
+        <name>HdRenderDelegate</name>
+        <param>
+          <type>HdRenderSettingsMap const &amp;</type>
+          <declname>settingsMap</declname>
+        </param>
+        <briefdescription>
+<para>Allow derived classes to pass construction-time render settings. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="531" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1ac31f4ddb634032a5742c8805279fbd3b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdRenderDelegate</definition>
+        <argsstring>(const HdRenderDelegate &amp;)=delete</argsstring>
+        <name>HdRenderDelegate</name>
+        <param>
+          <type>const HdRenderDelegate &amp;</type>
+        </param>
+        <briefdescription>
+<para>This class is not intended to be copied. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="536" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a151c9839d2cde9150a772af783770f9e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HdRenderDelegate &amp;</type>
+        <definition>HdRenderDelegate&amp; operator=</definition>
+        <argsstring>(const HdRenderDelegate &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const HdRenderDelegate &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="537" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_render_delegate_1a15a319edf2505b8137b284cc78485a7b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API void</type>
+        <definition>HD_API void _PopulateDefaultSettings</definition>
+        <argsstring>(HdRenderSettingDescriptorList const &amp;defaultSettings)</argsstring>
+        <name>_PopulateDefaultSettings</name>
+        <param>
+          <type>HdRenderSettingDescriptorList const &amp;</type>
+          <declname>defaultSettings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="540" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hd_render_delegate_1a62a9dccbac6905634837854e644e3612" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void _SetRendererDisplayName</definition>
+        <argsstring>(const std::string &amp;displayName)</argsstring>
+        <name>_SetRendererDisplayName</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>displayName</declname>
+        </param>
+        <briefdescription>
+<para>Populated when instantiated via the HdRendererPluginRegistry and currently used to associate a renderer delegate instance with related code and resources. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/renderDelegate.h" line="554" column="1" bodyfile="pxr/imaging/hd/renderDelegate.h" bodystart="554" bodyend="556"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2570">
+        <label>HdRenderDelegate</label>
+      </node>
+      <node id="2571">
+        <label>HdEmbreeRenderDelegate</label>
+        <link refid="class_hd_embree_render_delegate"/>
+        <childnode refid="2570" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2572">
+        <label>HdStRenderDelegate</label>
+        <link refid="class_hd_st_render_delegate"/>
+        <childnode refid="2570" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="pxr/imaging/hd/renderDelegate.h" line="96" column="1" bodyfile="pxr/imaging/hd/renderDelegate.h" bodystart="95" bodyend="559"/>
+    <listofallmembers>
+      <member refid="class_hd_render_delegate_1a7ad773cc4d37c9cbab0462f727cae0a7" prot="private" virt="non-virtual"><scope>HdRenderDelegate</scope><name>_displayName</name></member>
+      <member refid="class_hd_render_delegate_1a15a319edf2505b8137b284cc78485a7b" prot="protected" virt="non-virtual"><scope>HdRenderDelegate</scope><name>_PopulateDefaultSettings</name></member>
+      <member refid="class_hd_render_delegate_1a62a9dccbac6905634837854e644e3612" prot="private" virt="non-virtual"><scope>HdRenderDelegate</scope><name>_SetRendererDisplayName</name></member>
+      <member refid="class_hd_render_delegate_1ad868068eecfedd08749da58fe6602c75" prot="protected" virt="non-virtual"><scope>HdRenderDelegate</scope><name>_settingsMap</name></member>
+      <member refid="class_hd_render_delegate_1a0afdb18e14681352fe309aa7744ebed8" prot="protected" virt="non-virtual"><scope>HdRenderDelegate</scope><name>_settingsVersion</name></member>
+      <member refid="class_hd_render_delegate_1accb6711ed9724daba7a14bf815f9123b" prot="public" virt="pure-virtual"><scope>HdRenderDelegate</scope><name>CommitResources</name></member>
+      <member refid="class_hd_render_delegate_1a5c9cda7dc000360258d04630df0ea40e" prot="public" virt="pure-virtual"><scope>HdRenderDelegate</scope><name>CreateBprim</name></member>
+      <member refid="class_hd_render_delegate_1a20d1f8ec4e470bb3088c1bce2fd10518" prot="public" virt="pure-virtual"><scope>HdRenderDelegate</scope><name>CreateFallbackBprim</name></member>
+      <member refid="class_hd_render_delegate_1af354881dab91de64dd76c3f9586afe48" prot="public" virt="pure-virtual"><scope>HdRenderDelegate</scope><name>CreateFallbackSprim</name></member>
+      <member refid="class_hd_render_delegate_1a95e498002cb53d63d37df886f2266499" prot="public" virt="pure-virtual"><scope>HdRenderDelegate</scope><name>CreateInstancer</name></member>
+      <member refid="class_hd_render_delegate_1ae72211057cd4073b89be8297d462de93" prot="public" virt="pure-virtual"><scope>HdRenderDelegate</scope><name>CreateRenderPass</name></member>
+      <member refid="class_hd_render_delegate_1a49249045bdc41fa4d3d4a6c1f21c2314" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>CreateRenderPassState</name></member>
+      <member refid="class_hd_render_delegate_1ac3a13791bd5f4f492c479e7732bec276" prot="public" virt="pure-virtual"><scope>HdRenderDelegate</scope><name>CreateRprim</name></member>
+      <member refid="class_hd_render_delegate_1a08e081076faab1997a7cafa44ccaa0d5" prot="public" virt="pure-virtual"><scope>HdRenderDelegate</scope><name>CreateSprim</name></member>
+      <member refid="class_hd_render_delegate_1a3d8d401be18178a19db89da3984cac99" prot="public" virt="pure-virtual"><scope>HdRenderDelegate</scope><name>DestroyBprim</name></member>
+      <member refid="class_hd_render_delegate_1a7fcfd028f173bfa507c6863d62f26421" prot="public" virt="pure-virtual"><scope>HdRenderDelegate</scope><name>DestroyInstancer</name></member>
+      <member refid="class_hd_render_delegate_1a60287c625e9207d1224a6cf4cca4fdcd" prot="public" virt="pure-virtual"><scope>HdRenderDelegate</scope><name>DestroyRprim</name></member>
+      <member refid="class_hd_render_delegate_1ac20ba48ce39579ae04153200acc4d7c4" prot="public" virt="pure-virtual"><scope>HdRenderDelegate</scope><name>DestroySprim</name></member>
+      <member refid="class_hd_render_delegate_1a6c15bf7c659dee2ec0bf8830fdd61050" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>GetCapabilities</name></member>
+      <member refid="class_hd_render_delegate_1a791eff4377f6420ef79da7b4f5f18d53" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>GetCommandDescriptors</name></member>
+      <member refid="class_hd_render_delegate_1abd7627fa22e5188361d3012c6cb422d8" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>GetDefaultAovDescriptor</name></member>
+      <member refid="class_hd_render_delegate_1a4d23b79d1d542bb7b03bd6eb7af0f28d" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>GetMaterialBindingPurpose</name></member>
+      <member refid="class_hd_render_delegate_1a77ac539951b4e06d17dbf8faceedd4dd" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>GetMaterialNetworkSelector</name></member>
+      <member refid="class_hd_render_delegate_1afd8fc4f024cc70db74b389a85f47625c" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>GetMaterialRenderContexts</name></member>
+      <member refid="class_hd_render_delegate_1a8510f67c1402a0e4c73469e32f4b4e30" prot="public" virt="non-virtual"><scope>HdRenderDelegate</scope><name>GetRendererDisplayName</name></member>
+      <member refid="class_hd_render_delegate_1ad8a496ac71f2b6c3dd7cd358e7d8a40f" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>GetRenderParam</name></member>
+      <member refid="class_hd_render_delegate_1a0182b5e55fa3c5f77f6c115fbafe1657" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>GetRenderSetting</name></member>
+      <member refid="class_hd_render_delegate_1a03dfab242be992760f9f3376ded04af8" prot="public" virt="non-virtual"><scope>HdRenderDelegate</scope><name>GetRenderSetting</name></member>
+      <member refid="class_hd_render_delegate_1a185093da28bf58da385d8b15b4d331d3" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>GetRenderSettingDescriptors</name></member>
+      <member refid="class_hd_render_delegate_1a3cc793424ae4ff6e5c866b67134f6ceb" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>GetRenderSettingsNamespaces</name></member>
+      <member refid="class_hd_render_delegate_1aec5c6b9c337c561b691a7aa997bef486" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>GetRenderSettingsVersion</name></member>
+      <member refid="class_hd_render_delegate_1af9bdd99ab811f2452dd3f4250ccdf56b" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>GetRenderStats</name></member>
+      <member refid="class_hd_render_delegate_1a72c9fc8e07f19b4a1a4732b2e6f1812e" prot="public" virt="pure-virtual"><scope>HdRenderDelegate</scope><name>GetResourceRegistry</name></member>
+      <member refid="class_hd_render_delegate_1a48b70f591edcd8d68ffcb3b60b7c081c" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>GetShaderSourceTypes</name></member>
+      <member refid="class_hd_render_delegate_1a467cd05e7f9fc22719bb708b098ab3b9" prot="public" virt="pure-virtual"><scope>HdRenderDelegate</scope><name>GetSupportedBprimTypes</name></member>
+      <member refid="class_hd_render_delegate_1abf62748ff3fc7fd2f7cad822ddd99af0" prot="public" virt="pure-virtual"><scope>HdRenderDelegate</scope><name>GetSupportedRprimTypes</name></member>
+      <member refid="class_hd_render_delegate_1a2b0161b216ae2b478b403d4a4eb0178e" prot="public" virt="pure-virtual"><scope>HdRenderDelegate</scope><name>GetSupportedSprimTypes</name></member>
+      <member refid="class_hd_render_delegate_1a618f63ed40a2ab3b84a28add2a611895" prot="protected" virt="non-virtual"><scope>HdRenderDelegate</scope><name>HdRenderDelegate</name></member>
+      <member refid="class_hd_render_delegate_1aa2fa9c147b1519e5b8064f3789c51c50" prot="protected" virt="non-virtual"><scope>HdRenderDelegate</scope><name>HdRenderDelegate</name></member>
+      <member refid="class_hd_render_delegate_1ac31f4ddb634032a5742c8805279fbd3b" prot="protected" virt="non-virtual"><scope>HdRenderDelegate</scope><name>HdRenderDelegate</name></member>
+      <member refid="class_hd_render_delegate_1add676b6c804dbc1f97565f966cd340ad" prot="private" virt="non-virtual"><scope>HdRenderDelegate</scope><name>HdRendererPluginRegistry</name></member>
+      <member refid="class_hd_render_delegate_1a3f1f808ae7ec7730b7fb61fa706d0312" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>InvokeCommand</name></member>
+      <member refid="class_hd_render_delegate_1a5d698fce657915c24a3426f46ad66f4b" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>IsPaused</name></member>
+      <member refid="class_hd_render_delegate_1abc193490ffcb73f063011c81d867e530" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>IsPauseSupported</name></member>
+      <member refid="class_hd_render_delegate_1a65efe702e968ba6342e986932b7b97fe" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>IsPrimvarFilteringNeeded</name></member>
+      <member refid="class_hd_render_delegate_1a61c90c349b5e1bf3af8724dffd901688" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>IsStopped</name></member>
+      <member refid="class_hd_render_delegate_1a4b32c31de429cb778d390cfcfcac91f0" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>IsStopSupported</name></member>
+      <member refid="class_hd_render_delegate_1a151c9839d2cde9150a772af783770f9e" prot="protected" virt="non-virtual"><scope>HdRenderDelegate</scope><name>operator=</name></member>
+      <member refid="class_hd_render_delegate_1a6c7f48bca36c81bc0e680853c229839c" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>Pause</name></member>
+      <member refid="class_hd_render_delegate_1a35a456e1a68583c0fe686a34558f9bdc" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>Restart</name></member>
+      <member refid="class_hd_render_delegate_1a6eb142a82adbc8aab25f9120bb4e9b21" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>Resume</name></member>
+      <member refid="class_hd_render_delegate_1a7cf3390988347ccf6a19c93f453f679a" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>SetDrivers</name></member>
+      <member refid="class_hd_render_delegate_1a7a177e50744da27dc21daeedf80e788c" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>SetRenderSetting</name></member>
+      <member refid="class_hd_render_delegate_1ab6940cd31eb8619fe9546d2eabbc4bc4" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>SetTerminalSceneIndex</name></member>
+      <member refid="class_hd_render_delegate_1ace920051c2911b0efa782b30c36441ae" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>Stop</name></member>
+      <member refid="class_hd_render_delegate_1af59871eb7fab18e76f9e2e50198b033e" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>Update</name></member>
+      <member refid="class_hd_render_delegate_1adc731ea9bdbf26cbcec5d513a32f10de" prot="public" virt="virtual"><scope>HdRenderDelegate</scope><name>~HdRenderDelegate</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

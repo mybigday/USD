@@ -1,0 +1,427 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_edit_target" kind="class" language="C++" prot="public">
+    <compoundname>UsdEditTarget</compoundname>
+    <includes refid="edit_target_8h" local="no">editTarget.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_usd_edit_target_1a925f8fa76f74ea39f95379ecd77df956" prot="private" static="no" mutable="no">
+        <type>SdfLayerHandle</type>
+        <definition>SdfLayerHandle _layer</definition>
+        <argsstring></argsstring>
+        <name>_layer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="190" column="1" bodyfile="pxr/usd/usd/editTarget.h" bodystart="190" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_usd_edit_target_1aef794f27c78e2754021a868e323b8b54" prot="private" static="no" mutable="no">
+        <type><ref refid="class_pcp_map_function" kindref="compound">PcpMapFunction</ref></type>
+        <definition>PcpMapFunction _mapping</definition>
+        <argsstring></argsstring>
+        <name>_mapping</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="191" column="1" bodyfile="pxr/usd/usd/editTarget.h" bodystart="191" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_edit_target_1a616f41bebd1921ccee4989821d5aa135" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API</type>
+        <definition>USD_API UsdEditTarget</definition>
+        <argsstring>()</argsstring>
+        <name>UsdEditTarget</name>
+        <briefdescription>
+<para>Construct a null EditTarget. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A null EditTarget will return paths unchanged when asked to map paths. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="85" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_target_1a77da355fc55dece08b388943854979f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API</type>
+        <definition>USD_API UsdEditTarget</definition>
+        <argsstring>(const SdfLayerHandle &amp;layer, SdfLayerOffset offset=SdfLayerOffset())</argsstring>
+        <name>UsdEditTarget</name>
+        <param>
+          <type>const SdfLayerHandle &amp;</type>
+          <declname>layer</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_layer_offset" kindref="compound">SdfLayerOffset</ref></type>
+          <declname>offset</declname>
+          <defval><ref refid="class_sdf_layer_offset" kindref="compound">SdfLayerOffset</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Allow implicit conversion from SdfLayerHandle. EditTargets constructed in this way specify layers in the scene&apos;s local LayerStack. This lets clients pass layers directly in this common case without explicitly having to construct a <emphasis><ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref></emphasis> instance. To automatically supply the appropriate layer offset for the given layer, see UsdStage::GetEditTargetForLayer(). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="94" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_target_1a60a2bf2d93983778dfe8b2d53aeb75ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API</type>
+        <definition>USD_API UsdEditTarget</definition>
+        <argsstring>(const SdfLayerRefPtr &amp;layer, SdfLayerOffset offset=SdfLayerOffset())</argsstring>
+        <name>UsdEditTarget</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr" kindref="compound">SdfLayerRefPtr</ref> &amp;</type>
+          <declname>layer</declname>
+        </param>
+        <param>
+          <type><ref refid="class_sdf_layer_offset" kindref="compound">SdfLayerOffset</ref></type>
+          <declname>offset</declname>
+          <defval><ref refid="class_sdf_layer_offset" kindref="compound">SdfLayerOffset</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Convenience implicit conversion from SdfLayerRefPtr. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>See above constructor for more information. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="100" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_target_1a1a696c0f1c20843f7233aeaebecb1831" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API</type>
+        <definition>USD_API UsdEditTarget</definition>
+        <argsstring>(const SdfLayerHandle &amp;layer, const PcpNodeRef &amp;node)</argsstring>
+        <name>UsdEditTarget</name>
+        <param>
+          <type>const SdfLayerHandle &amp;</type>
+          <declname>layer</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_pcp_node_ref" kindref="compound">PcpNodeRef</ref> &amp;</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+<para>Construct an EditTarget with <emphasis>layer</emphasis> and <emphasis>node</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The mapping will be used to map paths from the scene into the <emphasis>layer&apos;s</emphasis> namespace given the <emphasis><ref refid="class_pcp_node_ref" kindref="compound">PcpNodeRef</ref></emphasis> <emphasis>node&apos;s</emphasis> mapping. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="107" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_target_1ad8e45e933cedc5fb6e162c90231fc7de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API</type>
+        <definition>USD_API UsdEditTarget</definition>
+        <argsstring>(const SdfLayerRefPtr &amp;layer, const PcpNodeRef &amp;node)</argsstring>
+        <name>UsdEditTarget</name>
+        <param>
+          <type>const <ref refid="class_tf_ref_ptr" kindref="compound">SdfLayerRefPtr</ref> &amp;</type>
+          <declname>layer</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_pcp_node_ref" kindref="compound">PcpNodeRef</ref> &amp;</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+<para>Convenience constructor taking SdfLayerRefPtr. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>See above constructor for more information. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="112" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_target_1a48d5c6b4b333c7afff603d9f2ac14fd1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool operator==</definition>
+        <argsstring>(const UsdEditTarget &amp;other) const</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Equality comparison. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="124" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_target_1a9a31231104ca837b18c14355193ec46b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator!=</definition>
+        <argsstring>(const UsdEditTarget &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type>const <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Inequality comparison. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="127" column="1" bodyfile="pxr/usd/usd/editTarget.h" bodystart="127" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_target_1ac4d637a0dec45d546495c1660c9f6047" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool IsNull</definition>
+        <argsstring>() const</argsstring>
+        <name>IsNull</name>
+        <briefdescription>
+<para>Return true if this EditTarget is null. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Null EditTargets map paths unchanged, and have no layer or LayerStack identifier. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="133" column="1" bodyfile="pxr/usd/usd/editTarget.h" bodystart="133" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_target_1ac532c4b500b1a85ea22217f2c65a70ed" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool IsValid</definition>
+        <argsstring>() const</argsstring>
+        <name>IsValid</name>
+        <briefdescription>
+<para>Return true if this EditTarget is valid, false otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Edit targets are considered valid when they have a layer. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="137" column="1" bodyfile="pxr/usd/usd/editTarget.h" bodystart="137" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_target_1a3548d16eac8c872aed732ecc87f189e8" prot="public" static="no" const="yes" explicit="no" inline="yes" refqual="lvalue" virt="non-virtual">
+        <type>const SdfLayerHandle &amp;</type>
+        <definition>const SdfLayerHandle&amp; GetLayer</definition>
+        <argsstring>() const &amp;</argsstring>
+        <name>GetLayer</name>
+        <briefdescription>
+<para>Return the layer this EditTarget contains. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="140" column="1" bodyfile="pxr/usd/usd/editTarget.h" bodystart="140" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_target_1a3b54dc4b8b1502ada61d47a81637f980" prot="public" static="no" const="no" explicit="no" inline="yes" refqual="rvalue" virt="non-virtual">
+        <type>SdfLayerHandle</type>
+        <definition>SdfLayerHandle GetLayer</definition>
+        <argsstring>() &amp;&amp;</argsstring>
+        <name>GetLayer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="141" column="1" bodyfile="pxr/usd/usd/editTarget.h" bodystart="141" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_target_1af780a281f55a3ff20d99835f4d75e1a2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>USD_API SdfPath MapToSpecPath</definition>
+        <argsstring>(const SdfPath &amp;scenePath) const</argsstring>
+        <name>MapToSpecPath</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>scenePath</declname>
+        </param>
+        <briefdescription>
+<para>Map the provided <emphasis>scenePath</emphasis> into a <ref refid="class_sdf_spec" kindref="compound">SdfSpec</ref> path for the EditTarget&apos;s layer, according to the EditTarget&apos;s mapping. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Null edit targets and EditTargets for which <emphasis>IsLocalLayer</emphasis> are true return scenePath unchanged. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="148" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_target_1a010a760a72d8037378b61f0e0a800f84" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API SdfPrimSpecHandle</type>
+        <definition>USD_API SdfPrimSpecHandle GetPrimSpecForScenePath</definition>
+        <argsstring>(const SdfPath &amp;scenePath) const</argsstring>
+        <name>GetPrimSpecForScenePath</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>scenePath</declname>
+        </param>
+        <briefdescription>
+<para>Convenience function for getting the PrimSpec in the edit target&apos;s layer for <emphasis>scenePath</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is equivalent to target.GetLayer()-&gt;GetPrimAtPath(target.MapToSpecPath(scenePath)) if target has a valid layer. If this target IsNull or there is no valid mapping from <emphasis>scenePath</emphasis> to a <ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref> path in the layer, return null. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="158" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_target_1ad194d59028d5944b37d9879a06bff927" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API SdfPropertySpecHandle</type>
+        <definition>USD_API SdfPropertySpecHandle GetPropertySpecForScenePath</definition>
+        <argsstring>(const SdfPath &amp;scenePath) const</argsstring>
+        <name>GetPropertySpecForScenePath</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>scenePath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="162" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_target_1a5d31af1235c02e5ce722bbdf9eb0497d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API SdfSpecHandle</type>
+        <definition>USD_API SdfSpecHandle GetSpecForScenePath</definition>
+        <argsstring>(const SdfPath &amp;scenePath) const</argsstring>
+        <name>GetSpecForScenePath</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>scenePath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="166" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_target_1af84a755f02086591abf81f0a8128eb0e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_pcp_map_function" kindref="compound">PcpMapFunction</ref> &amp;</type>
+        <definition>const PcpMapFunction&amp; GetMapFunction</definition>
+        <argsstring>() const</argsstring>
+        <name>GetMapFunction</name>
+        <briefdescription>
+<para>Returns the <ref refid="class_pcp_map_function" kindref="compound">PcpMapFunction</ref> representing the map from source specs (including any variant selections) to the stage. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="171" column="1" bodyfile="pxr/usd/usd/editTarget.h" bodystart="171" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_target_1a16f6a0bfed31de3de734a83f4b21cf5a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref></type>
+        <definition>USD_API UsdEditTarget ComposeOver</definition>
+        <argsstring>(const UsdEditTarget &amp;weaker) const</argsstring>
+        <name>ComposeOver</name>
+        <param>
+          <type>const <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> &amp;</type>
+          <declname>weaker</declname>
+        </param>
+        <briefdescription>
+<para>Return a new EditTarget composed over <emphasis>weaker</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is typically used to make an EditTarget &quot;explicit&quot;. For example, an edit target with a layer but with no mapping and no LayerStack identifier indicates a layer in the local LayerStack of a composed scene. However, an EditTarget with the same layer but an explicit identity mapping and the LayerStack identifier of the composed scene may be desired. This can be obtained by composing a partial (e.g. layer only) EditTarget over an explicit EditTarget with layer, mapping and layer stack identifier. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="183" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_usd_edit_target_1a9043ce0a9b1bcdce99d6533b11b5c838" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref></type>
+        <definition>static USD_API UsdEditTarget ForLocalDirectVariant</definition>
+        <argsstring>(const SdfLayerHandle &amp;layer, const SdfPath &amp;varSelPath)</argsstring>
+        <name>ForLocalDirectVariant</name>
+        <param>
+          <type>const SdfLayerHandle &amp;</type>
+          <declname>layer</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>varSelPath</declname>
+        </param>
+        <briefdescription>
+<para>Convenience constructor for editing a direct variant in a local LayerStack. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The <computeroutput>varSelPath</computeroutput> must be a prim variant selection path (see <ref refid="class_sdf_path_1a10ba3395e4c97b5ea922bdb03ec2e686" kindref="member">SdfPath::IsPrimVariantSelectionPath()</ref>). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="119" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_usd_edit_target_1a6c01f953e01866db4812d0fa4ebf9fd4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>UsdEditTarget</definition>
+        <argsstring>(const SdfLayerHandle &amp;layer, const PcpMapFunction &amp;mapping)</argsstring>
+        <name>UsdEditTarget</name>
+        <param>
+          <type>const SdfLayerHandle &amp;</type>
+          <declname>layer</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_pcp_map_function" kindref="compound">PcpMapFunction</ref> &amp;</type>
+          <declname>mapping</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editTarget.h" line="187" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Defines a mapping from scene graph paths to Sdf spec paths in a <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> where edits should be directed, or up to where to perform partial composition. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> can represent an arbitrary point in a composition graph for the purposes of placing edits and resolving values. This enables editing and resolving across references, classes, variants, and payloads.</para>
+<para>In the simplest case, an EditTarget represents a single layer in a stage&apos;s local LayerStack. In this case, the mapping that transforms scene graph paths to spec paths in the layer is the identity function. That is, the <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> path &apos;/World/Foo.avar&apos; would map to the <ref refid="class_sdf_property_spec" kindref="compound">SdfPropertySpec</ref> path &apos;/World/Foo.avar&apos;.</para>
+<para>For a more complex example, suppose &apos;/World/Foo&apos; in &apos;Shot.usda&apos; is a reference to &apos;/Model&apos; in &apos;Model.usda&apos;. One can construct a <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> that maps scene graph paths from the &apos;Shot.usda&apos; stage across the reference to the appropriate paths in the &apos;Model.usda&apos; layer. For example, the <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> &apos;/World/Foo.avar&apos; would map to the <ref refid="class_sdf_property_spec" kindref="compound">SdfPropertySpec</ref> &apos;/Model.avar&apos;. Paths in the stage composed at &apos;Shot.usda&apos; that weren&apos;t prefixed by &apos;/World/Foo&apos; would not have a valid mapping to &apos;Model.usda&apos;.</para>
+<para>EditTargets may also work for any other kind of arc or series of arcs. This allows for editing across variants, classes, and payloads, or in a variant on the far side of a reference, for example.</para>
+<para>In addition to mapping scene paths to spec paths for editing, EditTargets may also be used to identify points in the composition graph for partial composition. Though it doesn&apos;t currently exist, a UsdCompose API that takes <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> arguments may someday be provided.</para>
+<para>For convenience and deployment ease, SdfLayerHandles will implicitly convert to UsdEditTargets. A <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> constructed in this way means direct opinions in a layer in a stage&apos;s local LayerStack. </para>
+    </detaileddescription>
+    <location file="pxr/usd/usd/editTarget.h" line="79" column="1" bodyfile="pxr/usd/usd/editTarget.h" bodystart="78" bodyend="192"/>
+    <listofallmembers>
+      <member refid="class_usd_edit_target_1a925f8fa76f74ea39f95379ecd77df956" prot="private" virt="non-virtual"><scope>UsdEditTarget</scope><name>_layer</name></member>
+      <member refid="class_usd_edit_target_1aef794f27c78e2754021a868e323b8b54" prot="private" virt="non-virtual"><scope>UsdEditTarget</scope><name>_mapping</name></member>
+      <member refid="class_usd_edit_target_1a16f6a0bfed31de3de734a83f4b21cf5a" prot="public" virt="non-virtual"><scope>UsdEditTarget</scope><name>ComposeOver</name></member>
+      <member refid="class_usd_edit_target_1a9043ce0a9b1bcdce99d6533b11b5c838" prot="public" virt="non-virtual"><scope>UsdEditTarget</scope><name>ForLocalDirectVariant</name></member>
+      <member refid="class_usd_edit_target_1a3548d16eac8c872aed732ecc87f189e8" prot="public" virt="non-virtual"><scope>UsdEditTarget</scope><name>GetLayer</name></member>
+      <member refid="class_usd_edit_target_1a3b54dc4b8b1502ada61d47a81637f980" prot="public" virt="non-virtual"><scope>UsdEditTarget</scope><name>GetLayer</name></member>
+      <member refid="class_usd_edit_target_1af84a755f02086591abf81f0a8128eb0e" prot="public" virt="non-virtual"><scope>UsdEditTarget</scope><name>GetMapFunction</name></member>
+      <member refid="class_usd_edit_target_1a010a760a72d8037378b61f0e0a800f84" prot="public" virt="non-virtual"><scope>UsdEditTarget</scope><name>GetPrimSpecForScenePath</name></member>
+      <member refid="class_usd_edit_target_1ad194d59028d5944b37d9879a06bff927" prot="public" virt="non-virtual"><scope>UsdEditTarget</scope><name>GetPropertySpecForScenePath</name></member>
+      <member refid="class_usd_edit_target_1a5d31af1235c02e5ce722bbdf9eb0497d" prot="public" virt="non-virtual"><scope>UsdEditTarget</scope><name>GetSpecForScenePath</name></member>
+      <member refid="class_usd_edit_target_1ac4d637a0dec45d546495c1660c9f6047" prot="public" virt="non-virtual"><scope>UsdEditTarget</scope><name>IsNull</name></member>
+      <member refid="class_usd_edit_target_1ac532c4b500b1a85ea22217f2c65a70ed" prot="public" virt="non-virtual"><scope>UsdEditTarget</scope><name>IsValid</name></member>
+      <member refid="class_usd_edit_target_1af780a281f55a3ff20d99835f4d75e1a2" prot="public" virt="non-virtual"><scope>UsdEditTarget</scope><name>MapToSpecPath</name></member>
+      <member refid="class_usd_edit_target_1a9a31231104ca837b18c14355193ec46b" prot="public" virt="non-virtual"><scope>UsdEditTarget</scope><name>operator!=</name></member>
+      <member refid="class_usd_edit_target_1a48d5c6b4b333c7afff603d9f2ac14fd1" prot="public" virt="non-virtual"><scope>UsdEditTarget</scope><name>operator==</name></member>
+      <member refid="class_usd_edit_target_1a616f41bebd1921ccee4989821d5aa135" prot="public" virt="non-virtual"><scope>UsdEditTarget</scope><name>UsdEditTarget</name></member>
+      <member refid="class_usd_edit_target_1a77da355fc55dece08b388943854979f7" prot="public" virt="non-virtual"><scope>UsdEditTarget</scope><name>UsdEditTarget</name></member>
+      <member refid="class_usd_edit_target_1a60a2bf2d93983778dfe8b2d53aeb75ac" prot="public" virt="non-virtual"><scope>UsdEditTarget</scope><name>UsdEditTarget</name></member>
+      <member refid="class_usd_edit_target_1a1a696c0f1c20843f7233aeaebecb1831" prot="public" virt="non-virtual"><scope>UsdEditTarget</scope><name>UsdEditTarget</name></member>
+      <member refid="class_usd_edit_target_1ad8e45e933cedc5fb6e162c90231fc7de" prot="public" virt="non-virtual"><scope>UsdEditTarget</scope><name>UsdEditTarget</name></member>
+      <member refid="class_usd_edit_target_1a6c01f953e01866db4812d0fa4ebf9fd4" prot="private" virt="non-virtual"><scope>UsdEditTarget</scope><name>UsdEditTarget</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

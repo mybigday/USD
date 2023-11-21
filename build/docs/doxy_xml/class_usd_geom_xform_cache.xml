@@ -1,0 +1,376 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_geom_xform_cache" kind="class" language="C++" prot="public">
+    <compoundname>UsdGeomXformCache</compoundname>
+    <includes refid="xform_cache_8h" local="no">xformCache.h</includes>
+    <innerclass refid="struct_usd_geom_xform_cache_1_1___entry" prot="private">UsdGeomXformCache::_Entry</innerclass>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_usd_geom_xform_cache_1a67cbda9563b0d0c39698acc63f47d7c2" prot="private" static="no">
+        <type>TfHashMap&lt; <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref>, _Entry, <ref refid="class_tf_hash" kindref="compound">TfHash</ref> &gt;</type>
+        <definition>typedef TfHashMap&lt;UsdPrim, _Entry, TfHash&gt; _PrimHashMap</definition>
+        <argsstring></argsstring>
+        <name>_PrimHashMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/xformCache.h" line="172" column="1" bodyfile="pxr/usd/usdGeom/xformCache.h" bodystart="172" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_usd_geom_xform_cache_1a64b019d990f71f8adc5c41958e16df73" prot="private" static="no" mutable="no">
+        <type>_PrimHashMap</type>
+        <definition>_PrimHashMap _ctmCache</definition>
+        <argsstring></argsstring>
+        <name>_ctmCache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/xformCache.h" line="173" column="1" bodyfile="pxr/usd/usdGeom/xformCache.h" bodystart="173" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_usd_geom_xform_cache_1a385fbaa7541cbfee86880f46c18e438a" prot="private" static="no" mutable="no">
+        <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+        <definition>UsdTimeCode _time</definition>
+        <argsstring></argsstring>
+        <name>_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/xformCache.h" line="176" column="1" bodyfile="pxr/usd/usdGeom/xformCache.h" bodystart="176" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_geom_xform_cache_1ae520a8adbe23317b8b29ef152362f1c9" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type>USDGEOM_API</type>
+        <definition>USDGEOM_API UsdGeomXformCache</definition>
+        <argsstring>(const UsdTimeCode time)</argsstring>
+        <name>UsdGeomXformCache</name>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new XformCache for the specified <computeroutput>time</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/xformCache.h" line="62" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_xform_cache_1a6bc02b650ba95c18a9a35ac86f740025" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API</type>
+        <definition>USDGEOM_API UsdGeomXformCache</definition>
+        <argsstring>()</argsstring>
+        <name>UsdGeomXformCache</name>
+        <briefdescription>
+<para>Construct a new XformCache for <ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/xformCache.h" line="66" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_xform_cache_1aaba1e27b19713a49c1b5b77805184113" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref></type>
+        <definition>USDGEOM_API GfMatrix4d GetLocalToWorldTransform</definition>
+        <argsstring>(const UsdPrim &amp;prim)</argsstring>
+        <name>GetLocalToWorldTransform</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <briefdescription>
+<para>Compute the transformation matrix for the given <computeroutput>prim</computeroutput>, including the transform authored on the Prim itself, if present. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This method may mutate internal cache state and is not thread safe. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/xformCache.h" line="74" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_xform_cache_1a48673a04396381d0ee8819365fcb8e4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref></type>
+        <definition>USDGEOM_API GfMatrix4d GetParentToWorldTransform</definition>
+        <argsstring>(const UsdPrim &amp;prim)</argsstring>
+        <name>GetParentToWorldTransform</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <briefdescription>
+<para>Compute the transformation matrix for the given <computeroutput>prim</computeroutput>, but do NOT include the transform authored on the prim itself. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This method may mutate internal cache state and is not thread safe. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/xformCache.h" line="82" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_xform_cache_1a307bff3d3d4750fd0458bca41f299af7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref></type>
+        <definition>USDGEOM_API GfMatrix4d GetLocalTransformation</definition>
+        <argsstring>(const UsdPrim &amp;prim, bool *resetsXformStack)</argsstring>
+        <name>GetLocalTransformation</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <param>
+          <type>bool *</type>
+          <declname>resetsXformStack</declname>
+        </param>
+        <briefdescription>
+<para>Returns the local transformation of the prim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Uses the cached XformQuery to compute the result quickly. The <computeroutput>resetsXformStack</computeroutput> pointer must be valid. It will be set to true if <computeroutput>prim</computeroutput> resets the transform stack. The result of this call is cached. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/xformCache.h" line="90" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_xform_cache_1a1910d192b568914156fdded70dd1e779" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref></type>
+        <definition>USDGEOM_API GfMatrix4d ComputeRelativeTransform</definition>
+        <argsstring>(const UsdPrim &amp;prim, const UsdPrim &amp;ancestor, bool *resetXformStack)</argsstring>
+        <name>ComputeRelativeTransform</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>ancestor</declname>
+        </param>
+        <param>
+          <type>bool *</type>
+          <declname>resetXformStack</declname>
+        </param>
+        <briefdescription>
+<para>Returns the result of concatenating all transforms beneath <computeroutput>ancestor</computeroutput> that affect <computeroutput>prim</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This includes the local transform of <computeroutput>prim</computeroutput> itself, but not the local transform of <computeroutput>ancestor</computeroutput>. If <computeroutput>ancestor</computeroutput> is not an ancestor of <computeroutput>prim</computeroutput>, the resulting transform is the local-to-world transformation of <computeroutput>prim</computeroutput>.</para>
+<para>The <computeroutput>resetXformTsack</computeroutput> pointer must be valid. If any intermediate prims reset the transform stack, <computeroutput>resetXformStack</computeroutput> will be set to true. Intermediate transforms are cached, but the result of this call itself is not cached. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/xformCache.h" line="103" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_xform_cache_1a242af80c12a7e994592e85dc2043bf12" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool IsAttributeIncludedInLocalTransform</definition>
+        <argsstring>(const UsdPrim &amp;prim, const TfToken &amp;attrName)</argsstring>
+        <name>IsAttributeIncludedInLocalTransform</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>attrName</declname>
+        </param>
+        <briefdescription>
+<para>Whether the attribute named <computeroutput>attrName</computeroutput>, belonging to the given <computeroutput>prim</computeroutput> affects the local transform value at the prim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This method may mutate internal cache state and is not thread safe. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/xformCache.h" line="113" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_xform_cache_1ab5d009985cf2535b41627428f80dcd4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool TransformMightBeTimeVarying</definition>
+        <argsstring>(const UsdPrim &amp;prim)</argsstring>
+        <name>TransformMightBeTimeVarying</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <briefdescription>
+<para>Whether the local transformation value at the prim may vary over time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This method may mutate internal cache state and is not thread safe. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/xformCache.h" line="121" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_xform_cache_1ab96d6c9407c426bfdff6cce3c64948c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool GetResetXformStack</definition>
+        <argsstring>(const UsdPrim &amp;prim)</argsstring>
+        <name>GetResetXformStack</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <briefdescription>
+<para>Whether the xform stack is reset at the given prim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This method may mutate internal cache state and is not thread safe. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/xformCache.h" line="128" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_xform_cache_1ab70e074f3d7d55cf5fc310bcfeb70214" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API void</type>
+        <definition>USDGEOM_API void Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <briefdescription>
+<para>Clears all pre-cached values. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/xformCache.h" line="132" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_xform_cache_1aa80617459525313fbc669c6ba805ca10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API void</type>
+        <definition>USDGEOM_API void SetTime</definition>
+        <argsstring>(UsdTimeCode time)</argsstring>
+        <name>SetTime</name>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>Use the new <computeroutput>time</computeroutput> when computing values and may clear any existing values cached for the previous time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Setting <computeroutput>time</computeroutput> to the current time is a no-op. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/xformCache.h" line="138" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_xform_cache_1a397be4e143ab4b5b724f0b5f83b669b0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+        <definition>UsdTimeCode GetTime</definition>
+        <argsstring>()</argsstring>
+        <name>GetTime</name>
+        <briefdescription>
+<para>Get the current time from which this cache is reading values. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/xformCache.h" line="141" column="1" bodyfile="pxr/usd/usdGeom/xformCache.h" bodystart="141" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_xform_cache_1a965e259652eceba4d0608e61b3ca4235" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API void</type>
+        <definition>USDGEOM_API void Swap</definition>
+        <argsstring>(UsdGeomXformCache &amp;other)</argsstring>
+        <name>Swap</name>
+        <param>
+          <type><ref refid="class_usd_geom_xform_cache" kindref="compound">UsdGeomXformCache</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Swap the contents of this XformCache with <computeroutput>other</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/xformCache.h" line="145" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_usd_geom_xform_cache_1af9ca8cf15a2a7783baf6cbd714e22084" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref> const  *</type>
+        <definition>GfMatrix4d const* _GetCtm</definition>
+        <argsstring>(const UsdPrim &amp;prim)</argsstring>
+        <name>_GetCtm</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/xformCache.h" line="151" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_xform_cache_1af868ef18ea00ab004f97f25325b458d5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>_Entry *</type>
+        <definition>_Entry* _GetCacheEntryForPrim</definition>
+        <argsstring>(const UsdPrim &amp;prim)</argsstring>
+        <name>_GetCacheEntryForPrim</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/xformCache.h" line="170" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A caching mechanism for transform matrices. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>For best performance, this object should be reused for multiple CTM queries.</para>
+<para>Instances of this type can be copied, though using <ref refid="class_usd_geom_xform_cache_1a965e259652eceba4d0608e61b3ca4235" kindref="member">Swap()</ref> may result in better performance.</para>
+<para>It is valid to cache prims from multiple stages in a single XformCache.</para>
+<para>WARNING: this class does not automatically invalidate cached values based on changes to the stage from which values were cached. Additionally, a separate instance of this class should be used per-thread, calling the Get* methods from multiple threads is not safe, as they mutate internal state. </para>
+    </detaileddescription>
+    <location file="pxr/usd/usdGeom/xformCache.h" line="58" column="1" bodyfile="pxr/usd/usdGeom/xformCache.h" bodystart="57" bodyend="177"/>
+    <listofallmembers>
+      <member refid="class_usd_geom_xform_cache_1a64b019d990f71f8adc5c41958e16df73" prot="private" virt="non-virtual"><scope>UsdGeomXformCache</scope><name>_ctmCache</name></member>
+      <member refid="class_usd_geom_xform_cache_1af868ef18ea00ab004f97f25325b458d5" prot="private" virt="non-virtual"><scope>UsdGeomXformCache</scope><name>_GetCacheEntryForPrim</name></member>
+      <member refid="class_usd_geom_xform_cache_1af9ca8cf15a2a7783baf6cbd714e22084" prot="private" virt="non-virtual"><scope>UsdGeomXformCache</scope><name>_GetCtm</name></member>
+      <member refid="class_usd_geom_xform_cache_1a67cbda9563b0d0c39698acc63f47d7c2" prot="private" virt="non-virtual"><scope>UsdGeomXformCache</scope><name>_PrimHashMap</name></member>
+      <member refid="class_usd_geom_xform_cache_1a385fbaa7541cbfee86880f46c18e438a" prot="private" virt="non-virtual"><scope>UsdGeomXformCache</scope><name>_time</name></member>
+      <member refid="class_usd_geom_xform_cache_1ab70e074f3d7d55cf5fc310bcfeb70214" prot="public" virt="non-virtual"><scope>UsdGeomXformCache</scope><name>Clear</name></member>
+      <member refid="class_usd_geom_xform_cache_1a1910d192b568914156fdded70dd1e779" prot="public" virt="non-virtual"><scope>UsdGeomXformCache</scope><name>ComputeRelativeTransform</name></member>
+      <member refid="class_usd_geom_xform_cache_1aaba1e27b19713a49c1b5b77805184113" prot="public" virt="non-virtual"><scope>UsdGeomXformCache</scope><name>GetLocalToWorldTransform</name></member>
+      <member refid="class_usd_geom_xform_cache_1a307bff3d3d4750fd0458bca41f299af7" prot="public" virt="non-virtual"><scope>UsdGeomXformCache</scope><name>GetLocalTransformation</name></member>
+      <member refid="class_usd_geom_xform_cache_1a48673a04396381d0ee8819365fcb8e4d" prot="public" virt="non-virtual"><scope>UsdGeomXformCache</scope><name>GetParentToWorldTransform</name></member>
+      <member refid="class_usd_geom_xform_cache_1ab96d6c9407c426bfdff6cce3c64948c1" prot="public" virt="non-virtual"><scope>UsdGeomXformCache</scope><name>GetResetXformStack</name></member>
+      <member refid="class_usd_geom_xform_cache_1a397be4e143ab4b5b724f0b5f83b669b0" prot="public" virt="non-virtual"><scope>UsdGeomXformCache</scope><name>GetTime</name></member>
+      <member refid="class_usd_geom_xform_cache_1a242af80c12a7e994592e85dc2043bf12" prot="public" virt="non-virtual"><scope>UsdGeomXformCache</scope><name>IsAttributeIncludedInLocalTransform</name></member>
+      <member refid="class_usd_geom_xform_cache_1aa80617459525313fbc669c6ba805ca10" prot="public" virt="non-virtual"><scope>UsdGeomXformCache</scope><name>SetTime</name></member>
+      <member refid="class_usd_geom_xform_cache_1a965e259652eceba4d0608e61b3ca4235" prot="public" virt="non-virtual"><scope>UsdGeomXformCache</scope><name>Swap</name></member>
+      <member refid="class_usd_geom_xform_cache_1ab5d009985cf2535b41627428f80dcd4f" prot="public" virt="non-virtual"><scope>UsdGeomXformCache</scope><name>TransformMightBeTimeVarying</name></member>
+      <member refid="class_usd_geom_xform_cache_1ae520a8adbe23317b8b29ef152362f1c9" prot="public" virt="non-virtual"><scope>UsdGeomXformCache</scope><name>UsdGeomXformCache</name></member>
+      <member refid="class_usd_geom_xform_cache_1a6bc02b650ba95c18a9a35ac86f740025" prot="public" virt="non-virtual"><scope>UsdGeomXformCache</scope><name>UsdGeomXformCache</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

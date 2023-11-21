@@ -1,0 +1,25 @@
+var class_usd_ri_material_a_p_i =
+[
+    [ "UsdRiMaterialAPI", "class_usd_ri_material_a_p_i.html#a231cf6ac4fe077d968f94f9800c39c64", null ],
+    [ "UsdRiMaterialAPI", "class_usd_ri_material_a_p_i.html#a7ce6378dc9712bc7a0b855af62a3b103", null ],
+    [ "~UsdRiMaterialAPI", "class_usd_ri_material_a_p_i.html#a2236ac5bfa1e3485c2d8f1be6b54a877", null ],
+    [ "UsdRiMaterialAPI", "class_usd_ri_material_a_p_i.html#aca6fcc8cb29669020671ceafe548d4f5", null ],
+    [ "_GetSchemaKind", "class_usd_ri_material_a_p_i.html#a33433d6be99bff8201f850170177dec7", null ],
+    [ "ComputeInterfaceInputConsumersMap", "class_usd_ri_material_a_p_i.html#a6f02d6ec19bfb6e9920c3f9dc49e6c42", null ],
+    [ "CreateDisplacementAttr", "class_usd_ri_material_a_p_i.html#a2e19805cb1cc34e8fba0a84b95544626", null ],
+    [ "CreateSurfaceAttr", "class_usd_ri_material_a_p_i.html#a3f32be3aef6bcb1e740bbf4f55d38cba", null ],
+    [ "CreateVolumeAttr", "class_usd_ri_material_a_p_i.html#a86bbcd75fe57611bd8763403aec00b60", null ],
+    [ "GetDisplacement", "class_usd_ri_material_a_p_i.html#a5fb4f37317f6374beefd641822c163f4", null ],
+    [ "GetDisplacementAttr", "class_usd_ri_material_a_p_i.html#aa2bf83ccc366215977a0cf6650f8739a", null ],
+    [ "GetDisplacementOutput", "class_usd_ri_material_a_p_i.html#aee34c69b7e6430ad772ac369451ad063", null ],
+    [ "GetSurface", "class_usd_ri_material_a_p_i.html#a976bf26af6a7a53f685ecf4fcbc3c28e", null ],
+    [ "GetSurfaceAttr", "class_usd_ri_material_a_p_i.html#aa9d422bff925cd4fe52304222ffaccc6", null ],
+    [ "GetSurfaceOutput", "class_usd_ri_material_a_p_i.html#a90d8cd358bb62e664375255929844ff8", null ],
+    [ "GetVolume", "class_usd_ri_material_a_p_i.html#a88878d40c10aa6e62ff4e775287dae73", null ],
+    [ "GetVolumeAttr", "class_usd_ri_material_a_p_i.html#af71a7c62373b18f87d635861f1b444cc", null ],
+    [ "GetVolumeOutput", "class_usd_ri_material_a_p_i.html#a1b35ddc6cda29319a7d6643e4ef915f5", null ],
+    [ "SetDisplacementSource", "class_usd_ri_material_a_p_i.html#a81a21faa1d31da93deadae58fe693663", null ],
+    [ "SetSurfaceSource", "class_usd_ri_material_a_p_i.html#af5b80759d32efa4466026563b6bea672", null ],
+    [ "SetVolumeSource", "class_usd_ri_material_a_p_i.html#af85a53aaaec9ced5fb5d05cef765aa37", null ],
+    [ "UsdSchemaRegistry", "class_usd_ri_material_a_p_i.html#aff8b8d83211f127c6c4cba48fb7d3334", null ]
+];

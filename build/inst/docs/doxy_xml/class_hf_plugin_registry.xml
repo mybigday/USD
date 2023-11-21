@@ -1,0 +1,485 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hf_plugin_registry" kind="class" language="C++" prot="public">
+    <compoundname>HfPluginRegistry</compoundname>
+    <derivedcompoundref refid="class_hd_gp_generative_procedural_plugin_registry" prot="public" virt="non-virtual">HdGpGenerativeProceduralPluginRegistry</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_renderer_plugin_registry" prot="public" virt="non-virtual">HdRendererPluginRegistry</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_scene_index_plugin_registry" prot="public" virt="non-virtual">HdSceneIndexPluginRegistry</derivedcompoundref>
+    <includes refid="plugin_registry_8h" local="no">pluginRegistry.h</includes>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_hf_plugin_registry_1af733fbf8e580e00eee8cf5b74d6ca139" prot="private" static="no">
+        <type>std::vector&lt; Hf_PluginEntry &gt;</type>
+        <definition>typedef std::vector&lt;Hf_PluginEntry&gt; _PluginEntryVector</definition>
+        <argsstring></argsstring>
+        <name>_PluginEntryVector</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="151" column="1" bodyfile="pxr/imaging/hf/pluginRegistry.h" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hf_plugin_registry_1a7b4a59a075d9c7b741b87b1007949cd3" prot="private" static="no">
+        <type>std::map&lt; <ref refid="class_tf_token" kindref="compound">TfToken</ref>, size_t &gt;</type>
+        <definition>typedef std::map&lt;TfToken, size_t&gt; _TokenMap</definition>
+        <argsstring></argsstring>
+        <name>_TokenMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="152" column="1" bodyfile="pxr/imaging/hf/pluginRegistry.h" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_hf_plugin_registry_1af61d8f17848220f1774868dfe9a197ab" prot="private" static="no">
+        <type>std::function&lt; <ref refid="class_hf_plugin_base" kindref="compound">HfPluginBase</ref> *()&gt;</type>
+        <definition>typedef std::function&lt;HfPluginBase *()&gt; _FactoryFn</definition>
+        <argsstring></argsstring>
+        <name>_FactoryFn</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="159" column="1" bodyfile="pxr/imaging/hf/pluginRegistry.h" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hf_plugin_registry_1aad5273bb3b05b773e79ff3a6b2717736" prot="private" static="no" mutable="no">
+        <type><ref refid="class_tf_type" kindref="compound">TfType</ref></type>
+        <definition>TfType _pluginBaseType</definition>
+        <argsstring></argsstring>
+        <name>_pluginBaseType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="167" column="1" bodyfile="pxr/imaging/hf/pluginRegistry.h" bodystart="167" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hf_plugin_registry_1a2831bad3d62e4e4a0effed8066a57129" prot="private" static="no" mutable="no">
+        <type>_PluginEntryVector</type>
+        <definition>_PluginEntryVector _pluginEntries</definition>
+        <argsstring></argsstring>
+        <name>_pluginEntries</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="173" column="1" bodyfile="pxr/imaging/hf/pluginRegistry.h" bodystart="173" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hf_plugin_registry_1ad17c4b0964e5531c1252f3d9d29e46c4" prot="private" static="no" mutable="no">
+        <type>_TokenMap</type>
+        <definition>_TokenMap _pluginIndex</definition>
+        <argsstring></argsstring>
+        <name>_pluginIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="174" column="1" bodyfile="pxr/imaging/hf/pluginRegistry.h" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hf_plugin_registry_1a6dd7a328309e0366d4b0a10c420d6a9e" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool _pluginCachePopulated</definition>
+        <argsstring></argsstring>
+        <name>_pluginCachePopulated</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="177" column="1" bodyfile="pxr/imaging/hf/pluginRegistry.h" bodystart="177" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hf_plugin_registry_1a9485c432e6f61ffdc0663b700bf94844" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HF_API void</type>
+        <definition>HF_API void GetPluginDescs</definition>
+        <argsstring>(HfPluginDescVector *plugins)</argsstring>
+        <name>GetPluginDescs</name>
+        <param>
+          <type>HfPluginDescVector *</type>
+          <declname>plugins</declname>
+        </param>
+        <briefdescription>
+<para>Returns an ordered list of all registered plugins. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The plugins are ordered by priority then alphabetically </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="80" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hf_plugin_registry_1aa769b020f0f9e34c4bec190456645db4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HF_API bool</type>
+        <definition>HF_API bool GetPluginDesc</definition>
+        <argsstring>(const TfToken &amp;pluginId, HfPluginDesc *desc)</argsstring>
+        <name>GetPluginDesc</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>pluginId</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_hf_plugin_desc" kindref="compound">HfPluginDesc</ref> *</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+<para>Returns the description for the given plugin id. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The plugin may not be loaded or been actually created yet. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="87" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hf_plugin_registry_1a575a9dfe97fd1136df95cdcb5796b106" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HF_API void</type>
+        <definition>HF_API void AddPluginReference</definition>
+        <argsstring>(HfPluginBase *plugin)</argsstring>
+        <name>AddPluginReference</name>
+        <param>
+          <type><ref refid="class_hf_plugin_base" kindref="compound">HfPluginBase</ref> *</type>
+          <declname>plugin</declname>
+        </param>
+        <briefdescription>
+<para>Increment the reference count on an existing plugin. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="93" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hf_plugin_registry_1a37c659eb25f556f9d3ccf5bea3fd885e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HF_API void</type>
+        <definition>HF_API void ReleasePlugin</definition>
+        <argsstring>(HfPluginBase *plugin)</argsstring>
+        <name>ReleasePlugin</name>
+        <param>
+          <type><ref refid="class_hf_plugin_base" kindref="compound">HfPluginBase</ref> *</type>
+          <declname>plugin</declname>
+        </param>
+        <briefdescription>
+<para>Decrement the reference count on the plugin. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the reference count get to 0, the plugin is freed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="100" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hf_plugin_registry_1a926c8e66084a2838c1ccc9729341a1c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HF_API bool</type>
+        <definition>HF_API bool IsRegisteredPlugin</definition>
+        <argsstring>(const TfToken &amp;pluginId)</argsstring>
+        <name>IsRegisteredPlugin</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>pluginId</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if a plugin has been registered for the given id. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The plugin may not be loaded or been actually created yet. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="107" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hf_plugin_registry_1affbd654d94df3e82ad404e1314787e02" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HF_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>HF_API TfToken GetPluginId</definition>
+        <argsstring>(const HfPluginBase *plugin) const</argsstring>
+        <name>GetPluginId</name>
+        <param>
+          <type>const <ref refid="class_hf_plugin_base" kindref="compound">HfPluginBase</ref> *</type>
+          <declname>plugin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="110" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_hf_plugin_registry_1a04183e446211ba6400466634b87fe6f0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HF_API</type>
+        <definition>HF_API HfPluginRegistry</definition>
+        <argsstring>(const TfType &amp;pluginBaseType)</argsstring>
+        <name>HfPluginRegistry</name>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>pluginBaseType</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a Plugin Registry. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>pluginBaseType is the <ref refid="class_tf_type" kindref="compound">TfType</ref> of the class derived from <ref refid="class_hf_plugin_base" kindref="compound">HfPluginBase</ref> that provides the plugin API. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="121" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hf_plugin_registry_1ada2cb686c326cb80eae23a432e810a4c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HF_API</type>
+        <definition>virtual HF_API ~HfPluginRegistry</definition>
+        <argsstring>()</argsstring>
+        <name>~HfPluginRegistry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="123" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hf_plugin_registry_1adc57c0b7f2c83f138e6e59113b90a87e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HF_API <ref refid="class_hf_plugin_base" kindref="compound">HfPluginBase</ref> *</type>
+        <definition>HF_API HfPluginBase* GetPlugin</definition>
+        <argsstring>(const TfToken &amp;pluginId)</argsstring>
+        <name>GetPlugin</name>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>pluginId</declname>
+        </param>
+        <briefdescription>
+<para>Returns the plugin from the given pluginId. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The reference count on the plugin is automatically increased. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="130" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hf_plugin_registry_1acd25c36bd332e8efd2780276bc8e5f96" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HF_API void</type>
+        <definition>virtual HF_API void _CollectAdditionalMetadata</definition>
+        <argsstring>(const PlugRegistry &amp;plugRegistry, const TfType &amp;pluginType)</argsstring>
+        <name>_CollectAdditionalMetadata</name>
+        <param>
+          <type>const <ref refid="class_plug_registry" kindref="compound">PlugRegistry</ref> &amp;</type>
+          <declname>plugRegistry</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>pluginType</declname>
+        </param>
+        <briefdescription>
+<para>Gives subclasses an opportunity to inspect plugInfo-based metadata at the time of discovery. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="147" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-static-func">
+      <memberdef kind="function" id="class_hf_plugin_registry_1a52d39a672868fe20e98cfc240fba0709" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename PluginBaseType</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Bases</declname>
+            <defname>Bases</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Define</definition>
+        <argsstring>()</argsstring>
+        <name>Define</name>
+        <briefdescription>
+<para>Entry point for registering a types implementation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>T is the plugin being registered. PluginBaseType is the <ref refid="class_hf_plugin_base" kindref="compound">HfPluginBase</ref> derived class that specifies the API (the same one the <ref refid="class_tf_type" kindref="compound">TfType</ref> is for in the constructor).</para>
+<para>Bases optionally specifies other classes that T is derived from. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="142" column="1" bodyfile="pxr/imaging/hf/pluginRegistry.h" bodystart="204" bodyend="211"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_hf_plugin_registry_1a72d70d6c25d943cad2253510e53bcd18" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_hf_plugin_base" kindref="compound">HfPluginBase</ref> *</type>
+        <definition>HfPluginBase * _CreatePlugin</definition>
+        <argsstring>()</argsstring>
+        <name>_CreatePlugin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="162" column="1" bodyfile="pxr/imaging/hf/pluginRegistry.h" bodystart="195" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hf_plugin_registry_1a40acb58ec31401ed2a494b0102aedcb4" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HF_API void</type>
+        <definition>static HF_API void _SetFactory</definition>
+        <argsstring>(TfType &amp;type, _FactoryFn &amp;func)</argsstring>
+        <name>_SetFactory</name>
+        <param>
+          <type><ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>_FactoryFn &amp;</type>
+          <declname>func</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="165" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hf_plugin_registry_1a5e010d498b34e9ff1ec4ebf07670f9b5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _DiscoverPlugins</definition>
+        <argsstring>()</argsstring>
+        <name>_DiscoverPlugins</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="180" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hf_plugin_registry_1a4c9b9fcdad1676cd0f8ea81402b5630b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Hf_PluginEntry *</type>
+        <definition>Hf_PluginEntry* _GetEntryForPlugin</definition>
+        <argsstring>(HfPluginBase *plugin)</argsstring>
+        <name>_GetEntryForPlugin</name>
+        <param>
+          <type><ref refid="class_hf_plugin_base" kindref="compound">HfPluginBase</ref> *</type>
+          <declname>plugin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="183" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hf_plugin_registry_1a7fd2dc1954d1e41eb9c9a489b32f7cf6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HfPluginRegistry</definition>
+        <argsstring>()=delete</argsstring>
+        <name>HfPluginRegistry</name>
+        <briefdescription>
+<para>This class is not intended to be copied. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="188" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hf_plugin_registry_1a72c9788c8680ddfb6b34ce3c80faeda5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HfPluginRegistry</definition>
+        <argsstring>(const HfPluginRegistry &amp;)=delete</argsstring>
+        <name>HfPluginRegistry</name>
+        <param>
+          <type>const <ref refid="class_hf_plugin_registry" kindref="compound">HfPluginRegistry</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="189" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hf_plugin_registry_1aa9b70e1a995797ce6cfc6d781759886a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hf_plugin_registry" kindref="compound">HfPluginRegistry</ref> &amp;</type>
+        <definition>HfPluginRegistry&amp; operator=</definition>
+        <argsstring>(const HfPluginRegistry &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_hf_plugin_registry" kindref="compound">HfPluginRegistry</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hf/pluginRegistry.h" line="190" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Base class for registering Hydra plugins using the plug mechanism. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>It is expected that each plugin has a pluginfo.json file that contains a list of types, where each type provides a list of base classes, displayName and priority.</para>
+<para>The priority is used to order plugins, with the plugin with the highest priority being at the front of the order. priority is a signed integer. In the event of two plugins having the same priority, the plugins are sorted alphabetically on the type name.</para>
+<para>The plugin sorted to the front is used as the default plugin, when not specified.</para>
+<para>Example:</para>
+<para>{ &quot;Types&quot;: { &quot;CPPTypeName&quot;: { &quot;bases&quot;: [&quot;BaseTypeName&quot;], &quot;displayName&quot;: &quot;Human Readable Name&quot;, &quot;priority&quot; : 0 } } } </para>
+    </detaileddescription>
+    <location file="pxr/imaging/hf/pluginRegistry.h" line="72" column="1" bodyfile="pxr/imaging/hf/pluginRegistry.h" bodystart="71" bodyend="191"/>
+    <listofallmembers>
+      <member refid="class_hf_plugin_registry_1acd25c36bd332e8efd2780276bc8e5f96" prot="protected" virt="virtual"><scope>HfPluginRegistry</scope><name>_CollectAdditionalMetadata</name></member>
+      <member refid="class_hf_plugin_registry_1a72d70d6c25d943cad2253510e53bcd18" prot="private" virt="non-virtual"><scope>HfPluginRegistry</scope><name>_CreatePlugin</name></member>
+      <member refid="class_hf_plugin_registry_1a5e010d498b34e9ff1ec4ebf07670f9b5" prot="private" virt="non-virtual"><scope>HfPluginRegistry</scope><name>_DiscoverPlugins</name></member>
+      <member refid="class_hf_plugin_registry_1af61d8f17848220f1774868dfe9a197ab" prot="private" virt="non-virtual"><scope>HfPluginRegistry</scope><name>_FactoryFn</name></member>
+      <member refid="class_hf_plugin_registry_1a4c9b9fcdad1676cd0f8ea81402b5630b" prot="private" virt="non-virtual"><scope>HfPluginRegistry</scope><name>_GetEntryForPlugin</name></member>
+      <member refid="class_hf_plugin_registry_1aad5273bb3b05b773e79ff3a6b2717736" prot="private" virt="non-virtual"><scope>HfPluginRegistry</scope><name>_pluginBaseType</name></member>
+      <member refid="class_hf_plugin_registry_1a6dd7a328309e0366d4b0a10c420d6a9e" prot="private" virt="non-virtual"><scope>HfPluginRegistry</scope><name>_pluginCachePopulated</name></member>
+      <member refid="class_hf_plugin_registry_1a2831bad3d62e4e4a0effed8066a57129" prot="private" virt="non-virtual"><scope>HfPluginRegistry</scope><name>_pluginEntries</name></member>
+      <member refid="class_hf_plugin_registry_1af733fbf8e580e00eee8cf5b74d6ca139" prot="private" virt="non-virtual"><scope>HfPluginRegistry</scope><name>_PluginEntryVector</name></member>
+      <member refid="class_hf_plugin_registry_1ad17c4b0964e5531c1252f3d9d29e46c4" prot="private" virt="non-virtual"><scope>HfPluginRegistry</scope><name>_pluginIndex</name></member>
+      <member refid="class_hf_plugin_registry_1a40acb58ec31401ed2a494b0102aedcb4" prot="private" virt="non-virtual"><scope>HfPluginRegistry</scope><name>_SetFactory</name></member>
+      <member refid="class_hf_plugin_registry_1a7b4a59a075d9c7b741b87b1007949cd3" prot="private" virt="non-virtual"><scope>HfPluginRegistry</scope><name>_TokenMap</name></member>
+      <member refid="class_hf_plugin_registry_1a575a9dfe97fd1136df95cdcb5796b106" prot="public" virt="non-virtual"><scope>HfPluginRegistry</scope><name>AddPluginReference</name></member>
+      <member refid="class_hf_plugin_registry_1a52d39a672868fe20e98cfc240fba0709" prot="protected" virt="non-virtual"><scope>HfPluginRegistry</scope><name>Define</name></member>
+      <member refid="class_hf_plugin_registry_1adc57c0b7f2c83f138e6e59113b90a87e" prot="protected" virt="non-virtual"><scope>HfPluginRegistry</scope><name>GetPlugin</name></member>
+      <member refid="class_hf_plugin_registry_1aa769b020f0f9e34c4bec190456645db4" prot="public" virt="non-virtual"><scope>HfPluginRegistry</scope><name>GetPluginDesc</name></member>
+      <member refid="class_hf_plugin_registry_1a9485c432e6f61ffdc0663b700bf94844" prot="public" virt="non-virtual"><scope>HfPluginRegistry</scope><name>GetPluginDescs</name></member>
+      <member refid="class_hf_plugin_registry_1affbd654d94df3e82ad404e1314787e02" prot="public" virt="non-virtual"><scope>HfPluginRegistry</scope><name>GetPluginId</name></member>
+      <member refid="class_hf_plugin_registry_1a04183e446211ba6400466634b87fe6f0" prot="protected" virt="non-virtual"><scope>HfPluginRegistry</scope><name>HfPluginRegistry</name></member>
+      <member refid="class_hf_plugin_registry_1a7fd2dc1954d1e41eb9c9a489b32f7cf6" prot="private" virt="non-virtual"><scope>HfPluginRegistry</scope><name>HfPluginRegistry</name></member>
+      <member refid="class_hf_plugin_registry_1a72c9788c8680ddfb6b34ce3c80faeda5" prot="private" virt="non-virtual"><scope>HfPluginRegistry</scope><name>HfPluginRegistry</name></member>
+      <member refid="class_hf_plugin_registry_1a926c8e66084a2838c1ccc9729341a1c6" prot="public" virt="non-virtual"><scope>HfPluginRegistry</scope><name>IsRegisteredPlugin</name></member>
+      <member refid="class_hf_plugin_registry_1aa9b70e1a995797ce6cfc6d781759886a" prot="private" virt="non-virtual"><scope>HfPluginRegistry</scope><name>operator=</name></member>
+      <member refid="class_hf_plugin_registry_1a37c659eb25f556f9d3ccf5bea3fd885e" prot="public" virt="non-virtual"><scope>HfPluginRegistry</scope><name>ReleasePlugin</name></member>
+      <member refid="class_hf_plugin_registry_1ada2cb686c326cb80eae23a432e810a4c" prot="protected" virt="virtual"><scope>HfPluginRegistry</scope><name>~HfPluginRegistry</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

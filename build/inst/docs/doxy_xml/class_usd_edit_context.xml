@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_edit_context" kind="class" language="C++" prot="public">
+    <compoundname>UsdEditContext</compoundname>
+    <includes refid="edit_context_8h" local="no">editContext.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_usd_edit_context_1afc8bb8cdf1bab21cf79f8f968510d075" prot="private" static="no" mutable="no">
+        <type>UsdStagePtr</type>
+        <definition>UsdStagePtr _stage</definition>
+        <argsstring></argsstring>
+        <name>_stage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editContext.h" line="111" column="1" bodyfile="pxr/usd/usd/editContext.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_usd_edit_context_1ad1d97d2f71a770231198d28d96dc88b9" prot="private" static="no" mutable="no">
+        <type><ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref></type>
+        <definition>UsdEditTarget _originalEditTarget</definition>
+        <argsstring></argsstring>
+        <name>_originalEditTarget</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editContext.h" line="114" column="1" bodyfile="pxr/usd/usd/editContext.h" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_usd_edit_context_1aca33e259e34c3e7d056645944fb371ec" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>UsdEditContext</definition>
+        <argsstring>(UsdEditContext const &amp;)=delete</argsstring>
+        <name>UsdEditContext</name>
+        <param>
+          <type><ref refid="class_usd_edit_context" kindref="compound">UsdEditContext</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editContext.h" line="69" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_context_1aa5eddaf9760673df2a6442e3b183dfcf" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_usd_edit_context" kindref="compound">UsdEditContext</ref> &amp;</type>
+        <definition>UsdEditContext&amp; operator=</definition>
+        <argsstring>(UsdEditContext const &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="class_usd_edit_context" kindref="compound">UsdEditContext</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editContext.h" line="70" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_edit_context_1a65fe788921dfec5fcb88298efb98a60b" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type>USD_API</type>
+        <definition>USD_API UsdEditContext</definition>
+        <argsstring>(const UsdStagePtr &amp;stage)</argsstring>
+        <name>UsdEditContext</name>
+        <param>
+          <type>const UsdStagePtr &amp;</type>
+          <declname>stage</declname>
+        </param>
+        <briefdescription>
+<para>Construct without modifying <emphasis>stage&apos;s</emphasis> current EditTarget. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Save <emphasis>stage&apos;s</emphasis> current EditTarget to restore on destruction.</para>
+<para>If <emphasis>stage</emphasis> is invalid, a coding error will be issued by the constructor, and this class takes no action. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editContext.h" line="78" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_context_1a8441fe3b1511628b2a4324386b887edf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API</type>
+        <definition>USD_API UsdEditContext</definition>
+        <argsstring>(const UsdStagePtr &amp;stage, const UsdEditTarget &amp;editTarget)</argsstring>
+        <name>UsdEditContext</name>
+        <param>
+          <type>const UsdStagePtr &amp;</type>
+          <declname>stage</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> &amp;</type>
+          <declname>editTarget</declname>
+        </param>
+        <briefdescription>
+<para>Construct and save <emphasis>stage&apos;s</emphasis> current EditTarget to restore on destruction, then invoke stage-&gt;SetEditTarget(editTarget). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <emphasis>stage</emphasis> is invalid, a coding error will be issued by the constructor, and this class takes no action.</para>
+<para>If <emphasis>editTarget</emphasis> is invalid, a coding error will be issued by the <emphasis>stage</emphasis>, and its EditTarget will not be modified. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editContext.h" line="89" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_context_1a1771732ee5f2cd92a89b9b8b4e10df54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API</type>
+        <definition>USD_API UsdEditContext</definition>
+        <argsstring>(const std::pair&lt; UsdStagePtr, UsdEditTarget &gt; &amp;stageTarget)</argsstring>
+        <name>UsdEditContext</name>
+        <param>
+          <type>const std::pair&lt; UsdStagePtr, <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> &gt; &amp;</type>
+          <declname>stageTarget</declname>
+        </param>
+        <briefdescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. This ctor is handy to construct an edit context from the return value of another function (Cannot return a <ref refid="class_usd_edit_context" kindref="compound">UsdEditContext</ref> since it needs to be noncopyable). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <emphasis>stage</emphasis> is invalid, a coding error will be issued by the constructor, and this class takes no action.</para>
+<para>If <emphasis>editTarget</emphasis> is invalid, a coding error will be issued by the <emphasis>stage</emphasis>, and its EditTarget will not be modified. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editContext.h" line="102" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_edit_context_1a43e7efccfb9a8896fedf092c1384c373" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API</type>
+        <definition>USD_API ~UsdEditContext</definition>
+        <argsstring>()</argsstring>
+        <name>~UsdEditContext</name>
+        <briefdescription>
+<para>Restore the stage&apos;s original EditTarget if this context&apos;s stage is valid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Otherwise do nothing. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/editContext.h" line="107" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A utility class to temporarily modify a stage&apos;s current EditTarget during an execution scope. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This is an &quot;RAII&quot;-like object meant to be used as an automatic local variable. Upon construction, it sets a given stage&apos;s EditTarget, and upon destruction it restores the stage&apos;s EditTarget to what it was previously.</para>
+<para>Example usage, temporarily overriding a stage&apos;s EditTarget to direct an edit to the stage&apos;s session layer. When the <emphasis>ctx</emphasis> object expires, it restores the stage&apos;s EditTarget to whatever it was previously.</para>
+<para><programlisting><codeline><highlight class="normal">void<sp/>SetVisState(const<sp/>UsdPrim<sp/>&amp;prim,<sp/>bool<sp/>vis)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>UsdEditContext<sp/>ctx(prim.GetStage(),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prim.GetStage()-&gt;GetSessionLayer());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prim.GetAttribute(&quot;visible&quot;).Set(vis);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><bold>Threading Note</bold></para>
+<para>When one thread is mutating a <emphasis><ref refid="class_usd_stage" kindref="compound">UsdStage</ref></emphasis>, it is unsafe for any other thread to either query or mutate it. Using this class with a stage in such a way that it modifies the stage&apos;s EditTarget constitutes a mutation. </para>
+    </detaileddescription>
+    <location file="pxr/usd/usd/editContext.h" line="68" column="1" bodyfile="pxr/usd/usd/editContext.h" bodystart="67" bodyend="115"/>
+    <listofallmembers>
+      <member refid="class_usd_edit_context_1ad1d97d2f71a770231198d28d96dc88b9" prot="private" virt="non-virtual"><scope>UsdEditContext</scope><name>_originalEditTarget</name></member>
+      <member refid="class_usd_edit_context_1afc8bb8cdf1bab21cf79f8f968510d075" prot="private" virt="non-virtual"><scope>UsdEditContext</scope><name>_stage</name></member>
+      <member refid="class_usd_edit_context_1aa5eddaf9760673df2a6442e3b183dfcf" prot="private" virt="non-virtual"><scope>UsdEditContext</scope><name>operator=</name></member>
+      <member refid="class_usd_edit_context_1aca33e259e34c3e7d056645944fb371ec" prot="private" virt="non-virtual"><scope>UsdEditContext</scope><name>UsdEditContext</name></member>
+      <member refid="class_usd_edit_context_1a65fe788921dfec5fcb88298efb98a60b" prot="public" virt="non-virtual"><scope>UsdEditContext</scope><name>UsdEditContext</name></member>
+      <member refid="class_usd_edit_context_1a8441fe3b1511628b2a4324386b887edf" prot="public" virt="non-virtual"><scope>UsdEditContext</scope><name>UsdEditContext</name></member>
+      <member refid="class_usd_edit_context_1a1771732ee5f2cd92a89b9b8b4e10df54" prot="public" virt="non-virtual"><scope>UsdEditContext</scope><name>UsdEditContext</name></member>
+      <member refid="class_usd_edit_context_1a43e7efccfb9a8896fedf092c1384c373" prot="public" virt="non-virtual"><scope>UsdEditContext</scope><name>~UsdEditContext</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

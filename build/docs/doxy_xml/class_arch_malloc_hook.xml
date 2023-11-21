@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_arch_malloc_hook" kind="class" language="C++" prot="public">
+    <compoundname>ArchMallocHook</compoundname>
+    <includes refid="malloc_hook_8h" local="no">mallocHook.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_arch_malloc_hook_1a0de422b27e9e1a4cae989b3eff1e7973" prot="private" static="no" mutable="no">
+        <type>void *(*</type>
+        <definition>void*(* _underlyingMallocFunc) (size_t)</definition>
+        <argsstring>)(size_t)</argsstring>
+        <name>_underlyingMallocFunc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/mallocHook.h" line="152" column="1" bodyfile="pxr/base/arch/mallocHook.h" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_arch_malloc_hook_1ac73a9ebdedeef7c2fa4e659a6e960257" prot="private" static="no" mutable="no">
+        <type>void *(*</type>
+        <definition>void*(* _underlyingReallocFunc) (void *, size_t)</definition>
+        <argsstring>)(void *, size_t)</argsstring>
+        <name>_underlyingReallocFunc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/mallocHook.h" line="153" column="1" bodyfile="pxr/base/arch/mallocHook.h" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_arch_malloc_hook_1ae063d4bc90b02867c350e1e3cfd99c86" prot="private" static="no" mutable="no">
+        <type>void *(*</type>
+        <definition>void*(* _underlyingMemalignFunc) (size_t, size_t)</definition>
+        <argsstring>)(size_t, size_t)</argsstring>
+        <name>_underlyingMemalignFunc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/mallocHook.h" line="154" column="1" bodyfile="pxr/base/arch/mallocHook.h" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_arch_malloc_hook_1ad1ed8fc3ab5dcd0dd5d4bfecc81e5f2d" prot="private" static="no" mutable="no">
+        <type>void(*</type>
+        <definition>void(* _underlyingFreeFunc) (void *)</definition>
+        <argsstring>)(void *)</argsstring>
+        <name>_underlyingFreeFunc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/mallocHook.h" line="155" column="1" bodyfile="pxr/base/arch/mallocHook.h" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_arch_malloc_hook_1abf1596556c2d534a3cd2451568f467ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ARCH_API bool</type>
+        <definition>ARCH_API bool Initialize</definition>
+        <argsstring>(void *(*mallocWrapper)(size_t, const void *), void *(*reallocWrapper)(void *, size_t, const void *), void *(*memalignWrapper)(size_t, size_t, const void *), void(*freeWrapper)(void *, const void *), std::string *errMsg)</argsstring>
+        <name>Initialize</name>
+        <param>
+          <type>void *(*)(size_t, const void *)</type>
+          <declname>mallocWrapper</declname>
+        </param>
+        <param>
+          <type>void *(*)(void *, size_t, const void *)</type>
+          <declname>reallocWrapper</declname>
+        </param>
+        <param>
+          <type>void *(*)(size_t, size_t, const void *)</type>
+          <declname>memalignWrapper</declname>
+        </param>
+        <param>
+          <type>void(*)(void *, const void *)</type>
+          <declname>freeWrapper</declname>
+        </param>
+        <param>
+          <type>std::string *</type>
+          <declname>errMsg</declname>
+        </param>
+        <briefdescription>
+<para>Initialize hooks. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Calling <computeroutput><ref refid="class_arch_malloc_hook_1abf1596556c2d534a3cd2451568f467ec" kindref="member">Initialize()</ref></computeroutput> installs the supplied functions as call-back in place of the standard system memory allocation routines. Note that the callbacks take an extra <computeroutput>const</computeroutput> <computeroutput>void*</computeroutput> parameter; on supported systems, the called function should simply ignore the extra parameter.</para>
+<para>If initialization fails, <computeroutput>false</computeroutput> is returned and <computeroutput>*errMsg</computeroutput> is set accordingly. If <computeroutput>*this</computeroutput> has already been initialized, calling <computeroutput><ref refid="class_arch_malloc_hook_1abf1596556c2d534a3cd2451568f467ec" kindref="member">Initialize()</ref></computeroutput> a second time will fail. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/mallocHook.h" line="89" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_arch_malloc_hook_1a9b126cbf2d193f21b3378b28aeeb6ba2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ARCH_API bool</type>
+        <definition>ARCH_API bool IsInitialized</definition>
+        <argsstring>()</argsstring>
+        <name>IsInitialized</name>
+        <briefdescription>
+<para>Return true if <computeroutput>*this</computeroutput> has been (successfully) initialized. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>In order for this function to work properly, <computeroutput>this</computeroutput> cannot be a local or dynamically initialized variable; rather, <computeroutput>this</computeroutput> must be a global variable, to ensure zero-initialization. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/mallocHook.h" line="101" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_arch_malloc_hook_1a79518d62aca8798b6f3d8fb5c0d34508" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ARCH_API void *</type>
+        <definition>ARCH_API void* Malloc</definition>
+        <argsstring>(size_t nBytes)</argsstring>
+        <name>Malloc</name>
+        <param>
+          <type>size_t</type>
+          <declname>nBytes</declname>
+        </param>
+        <briefdescription>
+<para>Call the original system <computeroutput>malloc()</computeroutput> function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function allows user-supplied callbacks to access the original system-supplied malloc() call. For speed reasons, no safety checks are performed; in particular, calling this function without having successfully initialized <computeroutput>*this</computeroutput> will likely crash your program. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/mallocHook.h" line="110" column="1" bodyfile="pxr/base/arch/mallocHook.h" bodystart="110" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="class_arch_malloc_hook_1acf6ed3e7f6c4b718eb0672b711ce524a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ARCH_API void *</type>
+        <definition>ARCH_API void* Realloc</definition>
+        <argsstring>(void *ptr, size_t nBytes)</argsstring>
+        <name>Realloc</name>
+        <param>
+          <type>void *</type>
+          <declname>ptr</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>nBytes</declname>
+        </param>
+        <briefdescription>
+<para>Call the original system <computeroutput>realloc()</computeroutput> function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function allows user-supplied callbacks to access the original system-supplied <computeroutput>realloc()</computeroutput> call. For speed reasons, no safety checks are performed; in particular, calling this function without having successfully initialized <computeroutput>*this</computeroutput> will likely crash your program. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/mallocHook.h" line="121" column="1" bodyfile="pxr/base/arch/mallocHook.h" bodystart="121" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="class_arch_malloc_hook_1a9b524a7e700f715a424b5253f6189354" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ARCH_API void *</type>
+        <definition>ARCH_API void* Memalign</definition>
+        <argsstring>(size_t alignment, size_t nBytes)</argsstring>
+        <name>Memalign</name>
+        <param>
+          <type>size_t</type>
+          <declname>alignment</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>nBytes</declname>
+        </param>
+        <briefdescription>
+<para>Call the original system <computeroutput>memalign()</computeroutput> function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function allows user-supplied callbacks to access the original system-supplied <computeroutput>memalign()</computeroutput> call. For speed reasons, no safety checks are performed; in particular, calling this function without having successfully initialized <computeroutput>*this</computeroutput> will likely crash your program. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/mallocHook.h" line="132" column="1" bodyfile="pxr/base/arch/mallocHook.h" bodystart="132" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="class_arch_malloc_hook_1aa26349e610377ba796fb05e74b931f9b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ARCH_API void</type>
+        <definition>ARCH_API void Free</definition>
+        <argsstring>(void *ptr)</argsstring>
+        <name>Free</name>
+        <param>
+          <type>void *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+<para>Call the original system <computeroutput>free()</computeroutput> function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function allows user-supplied callbacks to access the original system-supplied <computeroutput>free()</computeroutput> call. For speed reasons, no safety checks are performed; in particular, calling this function without having successfully initialized <computeroutput>*this</computeroutput> will likely crash your program. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/mallocHook.h" line="143" column="1" bodyfile="pxr/base/arch/mallocHook.h" bodystart="143" bodyend="145"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Override default malloc() functionality. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The <computeroutput><ref refid="class_arch_malloc_hook" kindref="compound">ArchMallocHook</ref></computeroutput> class is used on supported systems to install a call-back function in place of the standard malloc/realloc/free/memalign function calls. Supported systems are currently restricted to 64-bit linux systems.</para>
+<para>The call-back function can access the original allocation function by calling, for example, <computeroutput><ref refid="class_arch_malloc_hook_1a79518d62aca8798b6f3d8fb5c0d34508" kindref="member">ArchMallocHook::Malloc</ref></computeroutput>, or it is free to perform its own allocation.</para>
+<para>The <computeroutput><ref refid="class_arch_malloc_hook" kindref="compound">ArchMallocHook</ref></computeroutput> is a POD (plain old datastructure) which means that to use it properly, it should be declared at global scope, ensuring zero-initialization. </para>
+    </detaileddescription>
+    <location file="pxr/base/arch/mallocHook.h" line="75" column="1" bodyfile="pxr/base/arch/mallocHook.h" bodystart="75" bodyend="156"/>
+    <listofallmembers>
+      <member refid="class_arch_malloc_hook_1ad1ed8fc3ab5dcd0dd5d4bfecc81e5f2d" prot="private" virt="non-virtual"><scope>ArchMallocHook</scope><name>_underlyingFreeFunc</name></member>
+      <member refid="class_arch_malloc_hook_1a0de422b27e9e1a4cae989b3eff1e7973" prot="private" virt="non-virtual"><scope>ArchMallocHook</scope><name>_underlyingMallocFunc</name></member>
+      <member refid="class_arch_malloc_hook_1ae063d4bc90b02867c350e1e3cfd99c86" prot="private" virt="non-virtual"><scope>ArchMallocHook</scope><name>_underlyingMemalignFunc</name></member>
+      <member refid="class_arch_malloc_hook_1ac73a9ebdedeef7c2fa4e659a6e960257" prot="private" virt="non-virtual"><scope>ArchMallocHook</scope><name>_underlyingReallocFunc</name></member>
+      <member refid="class_arch_malloc_hook_1aa26349e610377ba796fb05e74b931f9b" prot="public" virt="non-virtual"><scope>ArchMallocHook</scope><name>Free</name></member>
+      <member refid="class_arch_malloc_hook_1abf1596556c2d534a3cd2451568f467ec" prot="public" virt="non-virtual"><scope>ArchMallocHook</scope><name>Initialize</name></member>
+      <member refid="class_arch_malloc_hook_1a9b126cbf2d193f21b3378b28aeeb6ba2" prot="public" virt="non-virtual"><scope>ArchMallocHook</scope><name>IsInitialized</name></member>
+      <member refid="class_arch_malloc_hook_1a79518d62aca8798b6f3d8fb5c0d34508" prot="public" virt="non-virtual"><scope>ArchMallocHook</scope><name>Malloc</name></member>
+      <member refid="class_arch_malloc_hook_1a9b524a7e700f715a424b5253f6189354" prot="public" virt="non-virtual"><scope>ArchMallocHook</scope><name>Memalign</name></member>
+      <member refid="class_arch_malloc_hook_1acf6ed3e7f6c4b718eb0672b711ce524a" prot="public" virt="non-virtual"><scope>ArchMallocHook</scope><name>Realloc</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

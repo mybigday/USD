@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="hio_page_front" kind="page">
+    <compoundname>hio_page_front</compoundname>
+    <title>Hio: Hydra Resource I/O</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>This library contains utility classes for loading resources used by Hydra.</para>
+<para><ref refid="class_hio_glslfx" kindref="compound">HioGlslfx</ref> provides interpretation of the &quot;glslfx&quot; file format, which is Pixar&apos;s GPU shader container format. It supports composition of shader snippets as well as specification of metadata that can be used for code generation purposes.</para>
+<para><ref refid="class_hio_image" kindref="compound">HioImage</ref> provides a plugin-based image/texture-reading abstraction, and is used by hdStorm for all image I/O. Hydra provides two implementations: HioStb_Image and HioOIIO_Image. Stb is compiled by default, whereas the OIIO plugin is only compiled when USD is built against OpenImageIO.</para>
+<para>Hydra integrations can include support for other image libraries by defining new <ref refid="class_hio_image" kindref="compound">HioImage</ref> subclasses and adding appropriate plugin metadata to plugInfo.json; hio/plugInfo.json contains the general idea. When Hydra is asked to load a certain file format (image.FOO), it will return the <ref refid="class_hio_image" kindref="compound">HioImage</ref> base class for which: (1) FOO is listed in the &quot;imageTypes&quot; array; and (2) in the case of multiple matches, the highest numerical value of precedence.</para>
+<para>Note that Stb has a higher precedence than OpenImageIO, meaning that for image types that both plugins support, the Stb version will be used. Integration authors will want to choose their own precedence values accordingly.</para>
+<para><ref refid="class_hio_field_texture_data" kindref="compound">HioFieldTextureData</ref> provides a similar plugin-based abstraction for adding volume field readers, but does not include a precedence.</para>
+<para>For details on how Hydra handles OpenEXR data, see <ulink url="https://openusd.org/release/user_guides/render_user_guide.html#working-with-image-file-formats">Working With Image File Formats</ulink> </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

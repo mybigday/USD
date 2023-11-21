@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="page_tf__diagnostic" kind="page">
+    <compoundname>page_tf_Diagnostic</compoundname>
+    <title>Guide To Diagnostic Facilities</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Describes the use of low-level programming macros to issue coding errors, runtime errors, warnings and status messages.</para>
+<sect1 id="page_tf__diagnostic_1DiagnosticContents">
+<title>Contents</title>
+<para><itemizedlist>
+<listitem><para><ref refid="page_tf__diagnostic_1DiagnosticQuickStart" kindref="member">Quick Guide to Functions and Macros</ref> </para>
+</listitem>
+<listitem><para><ref refid="page_tf__diagnostic_1DiagnosticIntendedUse" kindref="member">Intended Use</ref> </para>
+</listitem>
+<listitem><para><ref refid="page_tf__diagnostic_1DiagnosticTF_FATAL_ERROR" kindref="member">Fatal Errors</ref> </para>
+</listitem>
+<listitem><para><ref refid="page_tf__diagnostic_1DiagnosticTF_ERROR" kindref="member">Non-Fatal Errors</ref> </para>
+</listitem>
+<listitem><para><ref refid="page_tf__diagnostic_1DiagnosticTF_WARN" kindref="member">Warnings</ref> </para>
+</listitem>
+<listitem><para><ref refid="page_tf__diagnostic_1DiagnosticTF_STATUS" kindref="member">Status Messages</ref> </para>
+</listitem>
+<listitem><para><ref refid="page_tf__diagnostic_1DiagnosticTF_FUNC_NAME" kindref="member">Function Names</ref></para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+<sect1 id="page_tf__diagnostic_1DiagnosticQuickStart">
+<title>Quick Guide to Functions and Macros</title>
+<para>If you are already familiar with the TF library diagnostic facilities, here is a quick guide to picking the correct facility:</para>
+<para><itemizedlist>
+<listitem>
+<para>If it is a coding bug: <itemizedlist>
+<listitem>
+<para>If you can work around the bug, do so, but use <ref refid="group__group__tf___diagnostic_1ga8265ac46fd87777ee25efaf4a3290bbe" kindref="member">TF_CODING_ERROR()</ref> to inform users that the bug exists and to let the system back out changes to authored data if necessary. </para>
+</listitem>
+<listitem>
+<para>If you can&apos;t get past the bug, use <ref refid="group__group__tf___diagnostic_1ga7cbfc0e6eb2af388e728ad675086a348" kindref="member">TF_FATAL_ERROR()</ref> to clearly describe what&apos;s wrong. (If the bug doesn&apos;t cross API lines, or in regression tests, <ref refid="group__group__tf___diagnostic_1ga12db62e70113a37341a127f0e0ec9ac4" kindref="member">TF_AXIOM()</ref> is also acceptable. See <ref refid="page_tf__diagnostic_1DiagnosticTF_FATAL_ERROR" kindref="member">Fatal Errors</ref> to make the distinction clear.) </para>
+</listitem>
+</itemizedlist>
+</para>
+</listitem>
+<listitem>
+<para>If it is not a coding bug: Use one of <ref refid="group__group__tf___diagnostic_1ga4abf7754e5dbf161d2a5a4160fd3b891" kindref="member">TF_RUNTIME_ERROR()</ref>, <ref refid="group__group__tf___diagnostic_1gaf07c45323b79ee51a323339f08c5bfb0" kindref="member">TF_ERROR()</ref>, <ref refid="group__group__tf___diagnostic_1gaba2e638edaae9e9c6e5180e020f12ccf" kindref="member">TF_WARN()</ref>, <ref refid="group__group__tf___diagnostic_1ga97dfb3da2a7be92953eda1e4ad268301" kindref="member">TF_STATUS()</ref> to communicate what went wrong. Use <ref refid="group__group__tf___diagnostic_1ga7cbfc0e6eb2af388e728ad675086a348" kindref="member">TF_FATAL_ERROR()</ref> only if there is no reasonable way for the program to continue onward. </para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+<sect1 id="page_tf__diagnostic_1DiagnosticIntendedUse">
+<title>Intended Use</title>
+<para>The intended use of the diagnostic facilities in the Tf Library is for documenting and communicating various abnormal conditions that can occur in your code. The facilities in the Tf Library, while effective, are fairly low-level. If your application or library has access to higher-level and more structured diagnostic facilities, you are urged to make use of them; if not, you should use the facilities in the Tf Library. Although these facilities are fairly simple, they are also highly configurable.</para>
+<para>The diagnostic facilities in the Tf Library are appropriate for the following tasks:</para>
+<para><itemizedlist>
+<listitem><para>Communicating coding errors (for example, unsatisfied program invariants) </para>
+</listitem>
+<listitem><para>Communicating serious runtime errors whose cause is external (for example, a needed server can&apos;t be found, a vital configuration file is missing) </para>
+</listitem>
+<listitem><para>Informing the user of problems that are not handled by other parts of the program.</para>
+</listitem>
+</itemizedlist>
+To communicate errors, warnings, and status messages, the Tf Library first attempts to call a delegate which may be installed by a higher-level library. If there is no delegate installed, default actions include printing errors and warnings to <computeroutput>stderr</computeroutput>, printing status messages to <computeroutput>stdout</computeroutput>, printing stack traces, and terminating the program on fatal errors. The following list describes usage scenarios for the diagnostic facilities in the Tf Library:</para>
+<para><itemizedlist>
+<listitem><para>For non-fatal coding errors (for example, something you didn&apos;t expect, non-fatal violation of an API requirement), use <ref refid="group__group__tf___diagnostic_1ga8265ac46fd87777ee25efaf4a3290bbe" kindref="member">TF_CODING_ERROR()</ref>. </para>
+</listitem>
+<listitem><para>For fatal coding errors (for example, an unexpected, unrecoverable coding error, violation of an API requirement which cannot be handled), use <ref refid="group__group__tf___diagnostic_1ga7cbfc0e6eb2af388e728ad675086a348" kindref="member">TF_FATAL_ERROR()</ref> or <ref refid="group__group__tf___diagnostic_1ga12db62e70113a37341a127f0e0ec9ac4" kindref="member">TF_AXIOM()</ref>. </para>
+</listitem>
+<listitem><para>For fatal external errors (for example, you wanted to execute &quot;/bin/cat&quot;, but it doesn&apos;t exist, the database server won&apos;t respond) use <ref refid="group__group__tf___diagnostic_1ga7cbfc0e6eb2af388e728ad675086a348" kindref="member">TF_FATAL_ERROR()</ref>. </para>
+</listitem>
+<listitem><para>For non-fatal user errors or conditions (for example, a mesh has bad topology, but there is no facility for fixing it, a color is out of range, etc.) use <ref refid="group__group__tf___diagnostic_1ga4abf7754e5dbf161d2a5a4160fd3b891" kindref="member">TF_RUNTIME_ERROR()</ref> or to be more specific, <ref refid="group__group__tf___diagnostic_1gaf07c45323b79ee51a323339f08c5bfb0" kindref="member">TF_ERROR()</ref>. </para>
+</listitem>
+<listitem><para>For warnings (conditions which might possibly be an error, but are not always so) use <ref refid="group__group__tf___diagnostic_1gaba2e638edaae9e9c6e5180e020f12ccf" kindref="member">TF_WARN()</ref>. </para>
+</listitem>
+<listitem><para>For anything else (not fatal, never an error, but useful to know) use <ref refid="group__group__tf___diagnostic_1ga97dfb3da2a7be92953eda1e4ad268301" kindref="member">TF_STATUS()</ref>.</para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+<sect1 id="page_tf__diagnostic_1DiagnosticTF_FATAL_ERROR">
+<title>Fatal Errors</title>
+<para>Sometimes there is no reasonable way to proceed past a coding bug. In this case, use <ref refid="group__group__tf___diagnostic_1ga7cbfc0e6eb2af388e728ad675086a348" kindref="member">TF_FATAL_ERROR()</ref>. Again, be sure to give a clear and concise explanation of what went wrong. Following is an actual example from the Tf Library:</para>
+<para><programlisting><codeline><highlight class="normal">#include<sp/>&quot;pxr/base/tf/diagnostic.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;template<sp/>&lt;class&gt;<sp/>class<sp/>PtrTemplate,<sp/>class<sp/>Type&gt;</highlight></codeline>
+<codeline><highlight class="normal">Type*</highlight></codeline>
+<codeline><highlight class="normal">TfWeakPtrFacade::~operator<sp/>-&gt;<sp/>()<sp/>const</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Type<sp/>*ptr<sp/>=<sp/>_FetchPointer();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(not<sp/>ptr)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TF_FATAL_ERROR(&quot;Dereferenced<sp/>an<sp/>invalid<sp/>%s&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ArchGetDemangled(typeid(PtrTemplate&lt;Type&gt;)).c_str());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>ptr;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>In this example, clients cannot dereference a NULL weak pointer.</para>
+<para><heading level="4">Proper Usage of <ref refid="group__group__tf___diagnostic_1ga12db62e70113a37341a127f0e0ec9ac4" kindref="member">TF_AXIOM()</ref> </heading>
+</para>
+<para>Sometimes it is useful to let the condition itself be the error message. If you reasonably believe that no code-path could allow your condition to fail, then for brevity you might prefer <ref refid="group__group__tf___diagnostic_1ga12db62e70113a37341a127f0e0ec9ac4" kindref="member">TF_AXIOM()</ref>. This implies that use of <ref refid="group__group__tf___diagnostic_1ga12db62e70113a37341a127f0e0ec9ac4" kindref="member">TF_AXIOM()</ref> is designed to document internal assumptions of the code; if a client of your code passes illegal parameters to a public function, it is not appropriate to use <ref refid="group__group__tf___diagnostic_1ga12db62e70113a37341a127f0e0ec9ac4" kindref="member">TF_AXIOM()</ref> to catch this.</para>
+<para>You can also use <ref refid="group__group__tf___diagnostic_1ga12db62e70113a37341a127f0e0ec9ac4" kindref="member">TF_AXIOM()</ref> for regression tests.</para>
+<para>Here are some reasonable uses of <ref refid="group__group__tf___diagnostic_1ga12db62e70113a37341a127f0e0ec9ac4" kindref="member">TF_AXIOM()</ref>: <programlisting><codeline><highlight class="normal">//<sp/>At<sp/>this<sp/>point,<sp/>either<sp/>function1<sp/>or<sp/>function2<sp/>must<sp/>have<sp/>been<sp/>set.</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(_function1)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>(*_function1)(arg1);</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TF_AXIOM(_function2<sp/>!=<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>(*_function2)(arg2);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><programlisting><codeline><highlight class="normal">//<sp/>private<sp/>accessor<sp/>--<sp/>no<sp/>client<sp/>code<sp/>can<sp/>call<sp/>this<sp/>directly</highlight></codeline>
+<codeline><highlight class="normal">double<sp/>_GetValue(size_t<sp/>index)<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TF_AXIOM(index<sp/>&lt;<sp/>GetMaxIndex());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>_values[index];</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><heading level="4">Improper Usage of <ref refid="group__group__tf___diagnostic_1ga12db62e70113a37341a127f0e0ec9ac4" kindref="member">TF_AXIOM()</ref> </heading>
+</para>
+<para>You should avoid using <ref refid="group__group__tf___diagnostic_1ga12db62e70113a37341a127f0e0ec9ac4" kindref="member">TF_AXIOM()</ref> when it can fail because of a client&apos;s use of the code. (Killing off the program is serious enough; doing so without giving the client a strong indication of what they did wrong, and how to fix it, is extremely unhelpful.) The following code sample illustrates improper use of <ref refid="group__group__tf___diagnostic_1ga12db62e70113a37341a127f0e0ec9ac4" kindref="member">TF_AXIOM()</ref>:</para>
+<para><programlisting><codeline><highlight class="normal">//<sp/>in<sp/>refPtr.h:</highlight></codeline>
+<codeline><highlight class="normal">T*<sp/>operator-&gt;()<sp/>const<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TF_AXIOM(_data);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>_data;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>The above axiom fails when you try to use the &quot;-&gt;&quot; operator on a reference-counted pointer which points to NULL. Since a client can cause this to happen, you should use TF_FATAL_ERROR instead, as shown in this sample:</para>
+<para><programlisting><codeline><highlight class="normal">T*<sp/>operator<sp/>-&gt;()<sp/>const<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(!_data)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TF_FATAL_ERROR(&quot;attempted<sp/>member<sp/>lookup<sp/>on<sp/>NULL<sp/>pointer&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>_data;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>The following code sample demonstrates another improper use of <ref refid="group__group__tf___diagnostic_1ga12db62e70113a37341a127f0e0ec9ac4" kindref="member">TF_AXIOM()</ref>. The axiom is not good, because <computeroutput>not</computeroutput> <computeroutput>_instance</computeroutput> doesn&apos;t help anyone fix their code:</para>
+<para><programlisting><codeline><highlight class="normal">#include<sp/>&quot;pxr/base/tf/diagnostic.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;typename<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">TfSingleton&lt;T&gt;::SetInstanceConstructed(T&amp;<sp/>instance)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TF_AXIOM(not<sp/>_instance);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_instance<sp/>=<sp/>&amp;instance;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>Instead, you should use TF_FATAL_ERROR as follows:</para>
+<para><programlisting><codeline><highlight class="normal">#include<sp/>&quot;pxr/base/tf/diagnostic.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">template<sp/>&lt;typename<sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">TfSingleton&lt;T&gt;::SetInstanceConstructed(T&amp;<sp/>instance)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(_instance)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TF_FATAL_ERROR(&quot;this<sp/>function<sp/>may<sp/>not<sp/>be<sp/>called<sp/>after<sp/>&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;GetInstance()<sp/>has<sp/>completed&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_instance<sp/>=<sp/>&amp;instance;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="page_tf__diagnostic_1DiagnosticTF_ERROR">
+<title>Non-Fatal Errors</title>
+<para>To report non-fatal errors, use the TF_ERROR system. That system is documented here: <ref refid="page_tf__tf_error" kindref="compound">The TfError Error Posting System</ref>. Generally, errors reported this way will let execution continue. The system may turn the errors into Python exceptions when returning into Python. Also, if there are unhandled errors remaining at the end of an application iteration, the system may roll back the undo stack to the last known good state.</para>
+<para>There are two convenience macros provided here that generate errors. Use <ref refid="group__group__tf___diagnostic_1ga8265ac46fd87777ee25efaf4a3290bbe" kindref="member">TF_CODING_ERROR()</ref> to indicate a recoverable coding error. Use <ref refid="group__group__tf___diagnostic_1ga4abf7754e5dbf161d2a5a4160fd3b891" kindref="member">TF_RUNTIME_ERROR()</ref> to indicate a generic runtime error. Use <ref refid="group__group__tf___diagnostic_1gaf07c45323b79ee51a323339f08c5bfb0" kindref="member">TF_ERROR()</ref> to provide more specific error codes when possible.</para>
+<para>Be sure to make the description of the bug clear (but concise), as in the following example:</para>
+<para><programlisting><codeline><highlight class="normal">#include<sp/>&quot;pxr/base/tf/diagnostic.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">Node::_SetParent(_Node*<sp/>parent)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(_GetChildCount()<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TF_CODING_ERROR(&quot;cannot<sp/>set/change<sp/>parent<sp/>once<sp/>child<sp/>node<sp/>&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;has<sp/>been<sp/>given<sp/>children<sp/>itself&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_parent<sp/>=<sp/>parent;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>In this case, leaving the parent as set originally is deemed acceptable, so the coding bug is non-fatal.</para>
+</sect1>
+<sect1 id="page_tf__diagnostic_1DiagnosticTF_WARN">
+<title>Warnings</title>
+<para>For situations where it is important to inform the user of an undesirable situation that you can handle, but which may lead to errors, use <ref refid="group__group__tf___diagnostic_1gaba2e638edaae9e9c6e5180e020f12ccf" kindref="member">TF_WARN()</ref>. This will generally be displayed in the application, indicating the warning to the user.</para>
+</sect1>
+<sect1 id="page_tf__diagnostic_1DiagnosticTF_STATUS">
+<title>Status Messages</title>
+<para>For situations where it is important to inform the user of some expected status information, use <ref refid="group__group__tf___diagnostic_1ga97dfb3da2a7be92953eda1e4ad268301" kindref="member">TF_STATUS()</ref>. This will generally be displayed in the application (in a status bar, for instance).</para>
+</sect1>
+<sect1 id="page_tf__diagnostic_1DiagnosticTF_FUNC_NAME">
+<title>Function Names</title>
+<para>If you need to get the name of the function you are currently in, use the <ref refid="group__group__tf___diagnostic_1ga7c6c741bdf765244df0b58d6ef2fb35a" kindref="member">TF_FUNC_NAME()</ref> macro. This macro returns the function&apos;s name as a string. The name is meant for diagnostic purposes only, and while it should be human readable, no guarantees are made to the exact formatting of the string. Note that this macro is only callable from C++. If you need to get the function name from C, consider using the <bold>ARCH_FUNCTION</bold> or <bold>ARCH_PRETTY_FUNCTION</bold> macros.</para>
+<para>For example:</para>
+<para><programlisting><codeline><highlight class="normal">void<sp/>YourClass::SomeMethod(int<sp/>x)<sp/></highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/>&quot;Debugging<sp/>info<sp/>about<sp/>function<sp/>&quot;<sp/>&lt;&lt;<sp/>TF_FUNC_NAME()<sp/>&lt;&lt;<sp/>&quot;.&quot;<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>The preceding code sample should display something like: &quot;Debugging info about function YourClass::SomeMethod.&quot; </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

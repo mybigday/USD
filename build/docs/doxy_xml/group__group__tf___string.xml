@@ -1,0 +1,1492 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="group__group__tf___string" kind="group">
+    <compoundname>group_tf_String</compoundname>
+    <title>String Utilities</title>
+    <innerfile refid="tf_2hash_8h">hash.h</innerfile>
+    <innerfile refid="pattern_matcher_8h">patternMatcher.h</innerfile>
+    <innerfile refid="string_utils_8h">stringUtils.h</innerfile>
+    <innerfile refid="unicode_utils_8h">unicodeUtils.h</innerfile>
+    <innerclass refid="struct_tf_dictionary_less_than" prot="public">TfDictionaryLessThan</innerclass>
+    <innerclass refid="struct_tf_stream_float" prot="public">TfStreamFloat</innerclass>
+    <innerclass refid="struct_tf_stream_double" prot="public">TfStreamDouble</innerclass>
+    <innerclass refid="class_tf_hash" prot="public">TfHash</innerclass>
+    <innerclass refid="class_tf_pattern_matcher" prot="public">TfPatternMatcher</innerclass>
+    <innerclass refid="class_tf_template_string" prot="public">TfTemplateString</innerclass>
+    <innerclass refid="class_tf_token" prot="public">TfToken</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__group__tf___string_1gae42be5a0255e4c7ba38d087fd97a97db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringPrintf</definition>
+        <argsstring>(const char *fmt,...)</argsstring>
+        <name>TfStringPrintf</name>
+        <param>
+          <type>const char *</type>
+          <declname>fmt</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+<para>Returns a string formed by a printf()-like specification. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput><ref refid="group__group__tf___string_1gae42be5a0255e4c7ba38d087fd97a97db" kindref="member">TfStringPrintf()</ref></computeroutput> is a memory-safe way of forming a string using printf()-like formatting. For example, <programlisting><codeline><highlight class="normal">string<sp/>formatMsg(const<sp/>string&amp;<sp/>caller,<sp/>int<sp/>i,<sp/>double<sp/>val[])</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>return<sp/>TfStringfPrintf(&quot;%s:<sp/>val[%d]<sp/>=<sp/>%g\n&quot;,<sp/>caller.c_str(),<sp/>i,<sp/>val[i]);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>The function is safe only to the extent that the arguments match the formatting string. In particular, be careful to pass strings themselves into <computeroutput><ref refid="group__group__tf___string_1gae42be5a0255e4c7ba38d087fd97a97db" kindref="member">TfStringPrintf()</ref></computeroutput> as in the above example (i.e. <computeroutput>caller.c_str()</computeroutput> as opposed to just passing <computeroutput>caller</computeroutput>).</para>
+<para><simplesect kind="note"><para><computeroutput><ref refid="group__group__tf___string_1gae42be5a0255e4c7ba38d087fd97a97db" kindref="member">TfStringPrintf()</ref></computeroutput> is just a wrapper for <computeroutput><ref refid="group__group__arch___strings_1ga0c5e8e089bfd39d71610f329fd3b4090" kindref="member">ArchStringPrintf()</ref></computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="73" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga7865a37742a57ae8e151de7eea160920" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfVStringPrintf</definition>
+        <argsstring>(const std::string &amp;fmt, va_list ap)</argsstring>
+        <name>TfVStringPrintf</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>fmt</declname>
+        </param>
+        <param>
+          <type>va_list</type>
+          <declname>ap</declname>
+        </param>
+        <briefdescription>
+<para>Returns a string formed by a printf()-like specification. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput><ref refid="group__group__tf___string_1ga7865a37742a57ae8e151de7eea160920" kindref="member">TfVStringPrintf()</ref></computeroutput> is equivalent to <computeroutput><ref refid="group__group__tf___string_1gae42be5a0255e4c7ba38d087fd97a97db" kindref="member">TfStringPrintf()</ref></computeroutput> except that it is called with a <computeroutput>va_list</computeroutput> instead of a variable number of arguments. <computeroutput><ref refid="group__group__tf___string_1ga7865a37742a57ae8e151de7eea160920" kindref="member">TfVStringPrintf()</ref></computeroutput> does not call the <computeroutput>va_end</computeroutput> macro. Consequently, the value of <computeroutput>ap</computeroutput> is undefined after the call. A functions that calls <computeroutput><ref refid="group__group__tf___string_1ga7865a37742a57ae8e151de7eea160920" kindref="member">TfVStringPrintf()</ref></computeroutput> should call <computeroutput>va_end(ap)</computeroutput> itself afterwards.</para>
+<para><simplesect kind="note"><para><computeroutput><ref refid="group__group__tf___string_1ga7865a37742a57ae8e151de7eea160920" kindref="member">TfVStringPrintf()</ref></computeroutput> is just a wrapper for <computeroutput>ArchVStringPrintf()</computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="89" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gac0338d0b229616b6061ee60f971e0dc1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfVStringPrintf</definition>
+        <argsstring>(const char *fmt, va_list ap)</argsstring>
+        <name>TfVStringPrintf</name>
+        <param>
+          <type>const char *</type>
+          <declname>fmt</declname>
+        </param>
+        <param>
+          <type>va_list</type>
+          <declname>ap</declname>
+        </param>
+        <briefdescription>
+<para>Bloat-avoidance version of <ref refid="group__group__tf___string_1ga7865a37742a57ae8e151de7eea160920" kindref="member">TfVStringPrintf()</ref> </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="94" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga266a173b9f73e164456b5ff7577fdd9d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string TfSafeString</definition>
+        <argsstring>(const char *ptr)</argsstring>
+        <name>TfSafeString</name>
+        <param>
+          <type>const char *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+<para>Safely create a std::string from a (possibly NULL) char*. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>ptr</computeroutput> is NULL, the empty string is safely returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="103" column="1" bodyfile="pxr/base/tf/stringUtils.h" bodystart="103" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga286f433e8bca5054a868dcbb44786382" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string TfIntToString</definition>
+        <argsstring>(int i)</argsstring>
+        <name>TfIntToString</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Returns the given integer as a string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="108" column="1" bodyfile="pxr/base/tf/stringUtils.h" bodystart="108" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gaeab03b8ef5e730ae50cd19cacf4fbb65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API double</type>
+        <definition>TF_API double TfStringToDouble</definition>
+        <argsstring>(const std::string &amp;txt)</argsstring>
+        <name>TfStringToDouble</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>txt</declname>
+        </param>
+        <briefdescription>
+<para>Converts text string to double. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method converts strings to floating point numbers. It is similar to libc&apos;s atof(), but performs the conversion much more quickly.</para>
+<para>It expects somewhat valid input: it will continue parsing the input until it hits an unrecognized character, as described by the regexp below, and at that point will return the results up to that point.</para>
+<para>(-?[0-9]+(.[0-9]*)?|-?.[0-9]+)([eE][-+]?[0-9]+)?</para>
+<para>It will not check to see if there is any input at all, or whitespace after the digits. Ie: TfStringToDouble(&quot;&quot;) == 0.0 TfStringToDouble(&quot;blah&quot;) == 0.0 TfStringToDouble(&quot;-&quot;) == -0.0 TfStringToDouble(&quot;1.2foo&quot;) == 1.2</para>
+<para><simplesect kind="note"><para><computeroutput>TfStringToDouble</computeroutput> is a wrapper around the extern-c TfStringToDouble </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="131" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga60957f94df2a8e584431b0d80b042df5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API double</type>
+        <definition>TF_API double TfStringToDouble</definition>
+        <argsstring>(const char *text)</argsstring>
+        <name>TfStringToDouble</name>
+        <param>
+          <type>const char *</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="134" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga8fa531c70ccef3fb5fbb75e75091a786" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API double</type>
+        <definition>TF_API double TfStringToDouble</definition>
+        <argsstring>(const char *text, int len)</argsstring>
+        <name>TfStringToDouble</name>
+        <param>
+          <type>const char *</type>
+          <declname>text</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="137" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gac87e0d845d3c64b8c756945a376ad22b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API long</type>
+        <definition>TF_API long TfStringToLong</definition>
+        <argsstring>(const std::string &amp;txt, bool *outOfRange=NULL)</argsstring>
+        <name>TfStringToLong</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>txt</declname>
+        </param>
+        <param>
+          <type>bool *</type>
+          <declname>outOfRange</declname>
+          <defval>NULL</defval>
+        </param>
+        <briefdescription>
+<para>Convert a sequence of digits in <computeroutput>txt</computeroutput> to a long int value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Caller is responsible for ensuring that <computeroutput>txt</computeroutput> has content matching:</para>
+<para><programlisting><codeline><highlight class="normal">-?[0-9]+</highlight></codeline>
+</programlisting></para>
+<para>If the digit sequence&apos;s value is out of range, set <computeroutput>*outOfRange</computeroutput> to true (if <computeroutput>outOfRange</computeroutput> is not NULL) and return either std::numeric_limits&lt;long&gt;::min() or max(), whichever is closest to the true value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="151" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga4197b90755833d5aa6b46bd84ae2b376" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API long</type>
+        <definition>TF_API long TfStringToLong</definition>
+        <argsstring>(const char *txt, bool *outOfRange=NULL)</argsstring>
+        <name>TfStringToLong</name>
+        <param>
+          <type>const char *</type>
+          <declname>txt</declname>
+        </param>
+        <param>
+          <type>bool *</type>
+          <declname>outOfRange</declname>
+          <defval>NULL</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="156" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gad3f8a26ec832a2f46998c868114d7ded" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API unsigned long</type>
+        <definition>TF_API unsigned long TfStringToULong</definition>
+        <argsstring>(const std::string &amp;txt, bool *outOfRange=NULL)</argsstring>
+        <name>TfStringToULong</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>txt</declname>
+        </param>
+        <param>
+          <type>bool *</type>
+          <declname>outOfRange</declname>
+          <defval>NULL</defval>
+        </param>
+        <briefdescription>
+<para>Convert a sequence of digits in <computeroutput>txt</computeroutput> to an unsigned long value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Caller is responsible for ensuring that <computeroutput>txt</computeroutput> has content matching:</para>
+<para><programlisting><codeline><highlight class="normal">[0-9]+</highlight></codeline>
+</programlisting></para>
+<para>If the digit sequence&apos;s value is out of range, set <computeroutput>*outOfRange</computeroutput> to true (if <computeroutput>outOfRange</computeroutput> is not NULL) and return std::numeric_limits&lt;unsigned long&gt;=&quot;&quot;&gt;::max(). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="169" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gafc7e37af76c24cb746fadbb409f7184b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API unsigned long</type>
+        <definition>TF_API unsigned long TfStringToULong</definition>
+        <argsstring>(const char *txt, bool *outOfRange=NULL)</argsstring>
+        <name>TfStringToULong</name>
+        <param>
+          <type>const char *</type>
+          <declname>txt</declname>
+        </param>
+        <param>
+          <type>bool *</type>
+          <declname>outOfRange</declname>
+          <defval>NULL</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="174" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga03fa88100e2c0093f0c593acaaa4c396" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API int64_t</type>
+        <definition>TF_API int64_t TfStringToInt64</definition>
+        <argsstring>(const std::string &amp;txt, bool *outOfRange=NULL)</argsstring>
+        <name>TfStringToInt64</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>txt</declname>
+        </param>
+        <param>
+          <type>bool *</type>
+          <declname>outOfRange</declname>
+          <defval>NULL</defval>
+        </param>
+        <briefdescription>
+<para>Convert a sequence of digits in <computeroutput>txt</computeroutput> to an int64_t value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Caller must ensure that <computeroutput>txt</computeroutput> has content matching:</para>
+<para><programlisting><codeline><highlight class="normal">-?[0-9]+</highlight></codeline>
+</programlisting></para>
+<para>If the digit sequence&apos;s value is out of range, set <computeroutput>*outOfRange</computeroutput> to true (if <computeroutput>outOfRange</computeroutput> is not NULL) and return either std::numeric_limits&lt;int64_t&gt;::min() or max(), whichever is closest to the true value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="188" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga5857c662ea9a36c77f42f7625a913463" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API int64_t</type>
+        <definition>TF_API int64_t TfStringToInt64</definition>
+        <argsstring>(const char *txt, bool *outOfRange=NULL)</argsstring>
+        <name>TfStringToInt64</name>
+        <param>
+          <type>const char *</type>
+          <declname>txt</declname>
+        </param>
+        <param>
+          <type>bool *</type>
+          <declname>outOfRange</declname>
+          <defval>NULL</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="192" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gacc528911e7f5d69e43ef990d4b5bb17a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API uint64_t</type>
+        <definition>TF_API uint64_t TfStringToUInt64</definition>
+        <argsstring>(const std::string &amp;txt, bool *outOfRange=NULL)</argsstring>
+        <name>TfStringToUInt64</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>txt</declname>
+        </param>
+        <param>
+          <type>bool *</type>
+          <declname>outOfRange</declname>
+          <defval>NULL</defval>
+        </param>
+        <briefdescription>
+<para>Convert a sequence of digits in <computeroutput>txt</computeroutput> to a uint64_t value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Caller is responsible for ensuring that <computeroutput>txt</computeroutput> has content matching:</para>
+<para><programlisting><codeline><highlight class="normal">[0-9]+</highlight></codeline>
+</programlisting></para>
+<para>If the digit sequence&apos;s value is out of range, set <computeroutput>*outOfRange</computeroutput> to true (if <computeroutput>outOfRange</computeroutput> is not NULL) and return std::numeric_limits&lt;unsigned long&gt;=&quot;&quot;&gt;::max(). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="205" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga1f3aee7ef57cf1b9e48c8dbea3bc5468" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API uint64_t</type>
+        <definition>TF_API uint64_t TfStringToUInt64</definition>
+        <argsstring>(const char *txt, bool *outOfRange=NULL)</argsstring>
+        <name>TfStringToUInt64</name>
+        <param>
+          <type>const char *</type>
+          <declname>txt</declname>
+        </param>
+        <param>
+          <type>bool *</type>
+          <declname>outOfRange</declname>
+          <defval>NULL</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="209" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga197320d753aa921027df5a3a6ab1adb8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TfStringStartsWith</definition>
+        <argsstring>(const std::string &amp;s, const char *prefix)</argsstring>
+        <name>TfStringStartsWith</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>prefix</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if <computeroutput>s</computeroutput> starts with <computeroutput>prefix</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="220" column="1" bodyfile="pxr/base/tf/stringUtils.h" bodystart="220" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gac9acd1b6d56d7ba358910f1cb9f040c4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TfStringStartsWith</definition>
+        <argsstring>(const std::string &amp;s, const std::string &amp;prefix)</argsstring>
+        <name>TfStringStartsWith</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>prefix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="228" column="1" bodyfile="pxr/base/tf/stringUtils.h" bodystart="228" bodyend="230"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gacb023dfd25a6ab8b3696e33e50d80549" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TfStringEndsWith</definition>
+        <argsstring>(const std::string &amp;s, const char *suffix)</argsstring>
+        <name>TfStringEndsWith</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>suffix</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if <computeroutput>s</computeroutput> ends with <computeroutput>suffix</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="240" column="1" bodyfile="pxr/base/tf/stringUtils.h" bodystart="240" bodyend="244"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gaa2b1cad632066ef0674fb139fc2f1e0a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TfStringEndsWith</definition>
+        <argsstring>(const std::string &amp;s, const std::string &amp;suffix)</argsstring>
+        <name>TfStringEndsWith</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>suffix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="248" column="1" bodyfile="pxr/base/tf/stringUtils.h" bodystart="248" bodyend="251"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga093436e3b1b3109e05899be5f7638e9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API bool</type>
+        <definition>TF_API bool TfStringContains</definition>
+        <argsstring>(const std::string &amp;s, const char *substring)</argsstring>
+        <name>TfStringContains</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>substring</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if <computeroutput>s</computeroutput> contains <computeroutput>substring</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="256" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga697055ba2baa6c4b5921a60dbbfc0bfb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TfStringContains</definition>
+        <argsstring>(const std::string &amp;s, const std::string &amp;substring)</argsstring>
+        <name>TfStringContains</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>substring</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="260" column="1" bodyfile="pxr/base/tf/stringUtils.h" bodystart="260" bodyend="262"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gad451dea1974d5a2a597cd44482e82546" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API bool</type>
+        <definition>TF_API bool TfStringContains</definition>
+        <argsstring>(const std::string &amp;s, const TfToken &amp;substring)</argsstring>
+        <name>TfStringContains</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>substring</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="266" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga2268a5910931796c2e0a53261e6ce7da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringToLower</definition>
+        <argsstring>(const std::string &amp;source)</argsstring>
+        <name>TfStringToLower</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+<para>Makes all characters in <computeroutput>source</computeroutput> lowercase, and returns the result. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="270" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gae3e7f46e6c7381ec8c93e54918061119" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringToUpper</definition>
+        <argsstring>(const std::string &amp;source)</argsstring>
+        <name>TfStringToUpper</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+<para>Makes all characters in <computeroutput>source</computeroutput> uppercase, and returns the result. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="274" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gad14e4ee556adf58a4d9712fa45fd28c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringCapitalize</definition>
+        <argsstring>(const std::string &amp;source)</argsstring>
+        <name>TfStringCapitalize</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+<para>Returns a copy of the <computeroutput>source</computeroutput> string with only its first character capitalized. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This emulates the behavior of Python&apos;s <computeroutput>str.capitalize()</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="279" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga27db779aeaabe869b15510d0ab2cdf9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringToLowerAscii</definition>
+        <argsstring>(const std::string &amp;source)</argsstring>
+        <name>TfStringToLowerAscii</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+<para>Locale-independent case folding of [A-Z] for ASCII or UTF-8 encoded <computeroutput>source</computeroutput> strings. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This can be used for case insensitive matching where one of the strings being compared either known to be ASCII only by specification (like a URI scheme or an explicit token) or where the specification explicitly notes that only [A-Z] will be matched case insensitively.</para>
+<para><programlisting><codeline><highlight class="normal">TfStringEndsWith(TfStringToLowerAscii(&quot;ü.JPG&quot;),<sp/>&quot;.jpg&quot;)</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="293" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga18c42c9ff7aab2733dd4966ba8d74151" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringTrimLeft</definition>
+        <argsstring>(const std::string &amp;s, const char *trimChars=&quot; \n\t\r&quot;)</argsstring>
+        <name>TfStringTrimLeft</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>trimChars</declname>
+          <defval>&quot; \n\t\r&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Trims characters (by default, whitespace) from the left. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Characters from the beginning of <computeroutput>s</computeroutput> are removed until a character not in <computeroutput>trimChars</computeroutput> is found; the result is returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="300" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gae7c4f6847ddb76db0e4f5dbb77f94d56" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringTrimRight</definition>
+        <argsstring>(const std::string &amp;s, const char *trimChars=&quot; \n\t\r&quot;)</argsstring>
+        <name>TfStringTrimRight</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>trimChars</declname>
+          <defval>&quot; \n\t\r&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Trims characters (by default, whitespace) from the right. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Characters at the end of <computeroutput>s</computeroutput> are removed until a character not in <computeroutput>trimChars</computeroutput> is found; the result is returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="308" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gafe1cb80f75a655f23b7923f02a849b06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringTrim</definition>
+        <argsstring>(const std::string &amp;s, const char *trimChars=&quot; \n\t\r&quot;)</argsstring>
+        <name>TfStringTrim</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>trimChars</declname>
+          <defval>&quot; \n\t\r&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Trims characters (by default, whitespace) from the beginning and end of string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Characters at the beginning and end of <computeroutput>s</computeroutput> are removed until a character not in <computeroutput>trimChars</computeroutput> is found; the result is returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="317" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gad2bfa0c8e61096bd0321aec28caa2515" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringGetCommonPrefix</definition>
+        <argsstring>(std::string a, std::string b)</argsstring>
+        <name>TfStringGetCommonPrefix</name>
+        <param>
+          <type>std::string</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>Returns the common prefix of the input strings, if any. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Copies of the input strings are compared. Returns a new string which is the longest prefix common to both input strings. If the strings have no common prefix, an empty string is returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="326" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gafd1e0eb3f3e4f9ca32e674330f062697" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringGetSuffix</definition>
+        <argsstring>(const std::string &amp;name, char delimiter=&apos;.&apos;)</argsstring>
+        <name>TfStringGetSuffix</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>delimiter</declname>
+          <defval>&apos;.&apos;</defval>
+        </param>
+        <briefdescription>
+<para>Returns the suffix of a string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns characters after the final character <computeroutput>delimiter</computeroutput> (default &quot;.&quot;) of a string. Thus suffix of &quot;abc.def&quot; is &quot;def&quot; using &quot;.&quot; as the delimiter. If the delimiter does not occur, the empty string is returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="334" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gac9e93734112b176029a356b304c56767" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringGetBeforeSuffix</definition>
+        <argsstring>(const std::string &amp;name, char delimiter=&apos;.&apos;)</argsstring>
+        <name>TfStringGetBeforeSuffix</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>delimiter</declname>
+          <defval>&apos;.&apos;</defval>
+        </param>
+        <briefdescription>
+<para>Returns everything up to the suffix of a string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns characters before the final character <computeroutput>delimiter</computeroutput> (default &quot;.&quot;) of a string. Thus not-suffix of &quot;abc.def&quot; is &quot;abc&quot; using &quot;.&quot; as the delimiter. If the delimiter does not occur, the original string is returned. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="343" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gadcc90872f80f8023a17118edf91ec75c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfGetBaseName</definition>
+        <argsstring>(const std::string &amp;fileName)</argsstring>
+        <name>TfGetBaseName</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>fileName</declname>
+        </param>
+        <briefdescription>
+<para>Returns the base name of a file (final component of the path). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="347" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gaf2d7260aded12055629188966c8f7e86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfGetPathName</definition>
+        <argsstring>(const std::string &amp;fileName)</argsstring>
+        <name>TfGetPathName</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>fileName</declname>
+        </param>
+        <briefdescription>
+<para>Returns the path component of a file (complement of <ref refid="group__group__tf___string_1gadcc90872f80f8023a17118edf91ec75c" kindref="member">TfGetBaseName()</ref>). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The returned string ends in a &apos;/&apos; (or possibly a &apos;\&apos; on Windows), unless none was found in <computeroutput>fileName</computeroutput>, in which case the empty string is returned. In particular, <computeroutput>TfGetPathName(s)+TfGetBaseName(s)</computeroutput> == <computeroutput>s</computeroutput> for any string <computeroutput>s</computeroutput> (as long as <computeroutput>s</computeroutput> doesn&apos;t end with multiple adjacent slashes, which is illegal). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="357" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gac52faea3628696e9a242bf79cbce4be6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringReplace</definition>
+        <argsstring>(const std::string &amp;source, const std::string &amp;from, const std::string &amp;to)</argsstring>
+        <name>TfStringReplace</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>from</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>to</declname>
+        </param>
+        <briefdescription>
+<para>Replaces all occurrences of string <computeroutput>from</computeroutput> with <computeroutput>to</computeroutput> in <computeroutput>source</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns a new string which is created by copying <computeroutput>source</computeroutput> and replacing every occurrence of <computeroutput>from</computeroutput> with <computeroutput>to</computeroutput>. Correctly handles the case in which <computeroutput>to</computeroutput> contains <computeroutput>from</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="365" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gacd37bcc74ba568292651ece78d667bb9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class ForwardIterator</type>
+          </param>
+        </templateparamlist>
+        <type>std::string</type>
+        <definition>std::string TfStringJoin</definition>
+        <argsstring>(ForwardIterator begin, ForwardIterator end, const char *separator=&quot; &quot;)</argsstring>
+        <name>TfStringJoin</name>
+        <param>
+          <type>ForwardIterator</type>
+          <declname>begin</declname>
+        </param>
+        <param>
+          <type>ForwardIterator</type>
+          <declname>end</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>separator</declname>
+          <defval>&quot; &quot;</defval>
+        </param>
+        <briefdescription>
+<para>Concatenates the strings (<computeroutput>begin</computeroutput>, <computeroutput>end</computeroutput>), with default separator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the concatenation of the strings in the range <computeroutput>begin</computeroutput> to <computeroutput>end</computeroutput>, with <computeroutput>separator</computeroutput> (by default, a space) added between each successive pair of strings. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="374" column="1" bodyfile="pxr/base/tf/stringUtils.h" bodystart="374" bodyend="401"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga2693efcb60908bf5b07caa0786ec000a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringJoin</definition>
+        <argsstring>(const std::vector&lt; std::string &gt; &amp;strings, const char *separator=&quot; &quot;)</argsstring>
+        <name>TfStringJoin</name>
+        <param>
+          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <declname>strings</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>separator</declname>
+          <defval>&quot; &quot;</defval>
+        </param>
+        <briefdescription>
+<para>Concatenates <computeroutput>strings</computeroutput>, with default separator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the concatenation of the strings in <computeroutput>strings</computeroutput>, with <computeroutput>separator</computeroutput> (by default, a space) added between each successive pair of strings. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="408" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga9d739e380be70b26f487bb5476cd07a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringJoin</definition>
+        <argsstring>(const std::set&lt; std::string &gt; &amp;strings, const char *separator=&quot; &quot;)</argsstring>
+        <name>TfStringJoin</name>
+        <param>
+          <type>const std::set&lt; std::string &gt; &amp;</type>
+          <declname>strings</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>separator</declname>
+          <defval>&quot; &quot;</defval>
+        </param>
+        <briefdescription>
+<para>Concatenates <computeroutput>strings</computeroutput>, with default separator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the concatenation of the strings in <computeroutput>strings</computeroutput>, with <computeroutput>separator</computeroutput> (by default, a space) added between each successive pair of strings. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="416" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gaeb4e5db4f6eaf230ae41ff0159316fa5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::vector&lt; std::string &gt;</type>
+        <definition>TF_API std::vector&lt;std::string&gt; TfStringSplit</definition>
+        <argsstring>(std::string const &amp;src, std::string const &amp;separator)</argsstring>
+        <name>TfStringSplit</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>separator</declname>
+        </param>
+        <briefdescription>
+<para>Breaks the given string apart, returning a vector of strings. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The string <computeroutput>source</computeroutput> is broken apart into individual words, where a word is delimited by the string <computeroutput>separator</computeroutput>. This function behaves like pythons string split method. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="425" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gad12791e5ba9776711b996a6faa630d1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::vector&lt; std::string &gt;</type>
+        <definition>TF_API std::vector&lt;std::string&gt; TfStringTokenize</definition>
+        <argsstring>(const std::string &amp;source, const char *delimiters=&quot; \t\n&quot;)</argsstring>
+        <name>TfStringTokenize</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>delimiters</declname>
+          <defval>&quot; \t\n&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Breaks the given string apart, returning a vector of strings. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The string <computeroutput>source</computeroutput> is broken apart into individual words, where a word is delimited by the characters in <computeroutput>delimiters</computeroutput>. Delimiters default to white space (space, tab, and newline).</para>
+<para>No empty strings are returned: delimiters at the start or end are ignored, consecutive delimiters are treated as though they were one, and an empty input will result in an empty return vector. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="438" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gaf315ed978a85fc5db45253354538c924" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::set&lt; std::string &gt;</type>
+        <definition>TF_API std::set&lt;std::string&gt; TfStringTokenizeToSet</definition>
+        <argsstring>(const std::string &amp;source, const char *delimiters=&quot; \t\n&quot;)</argsstring>
+        <name>TfStringTokenizeToSet</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>delimiters</declname>
+          <defval>&quot; \t\n&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Breaks the given string apart, returning a set of strings. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Same as TfStringTokenize, except this one returns a set. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="445" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga878abd789ce48a84906f17092b060181" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::vector&lt; std::string &gt;</type>
+        <definition>TF_API std::vector&lt;std::string&gt; TfQuotedStringTokenize</definition>
+        <argsstring>(const std::string &amp;source, const char *delimiters=&quot; \t\n&quot;, std::string *errors=NULL)</argsstring>
+        <name>TfQuotedStringTokenize</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>delimiters</declname>
+          <defval>&quot; \t\n&quot;</defval>
+        </param>
+        <param>
+          <type>std::string *</type>
+          <declname>errors</declname>
+          <defval>NULL</defval>
+        </param>
+        <briefdescription>
+<para>Breaks the given quoted string apart, returning a vector of strings. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The string <computeroutput>source</computeroutput> is broken apart into individual words, where a word is delimited by the characters in <computeroutput>delimiters</computeroutput>. This function is similar to <computeroutput>TfStringTokenize</computeroutput>, except it considers a quoted string as a single word. The function will preserve quotes that are nested within other quotes or are preceded by a backslash character. <computeroutput>errors</computeroutput>, if provided, contains any error messages. Delimiters default to white space (space, tab, and newline). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="459" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gaee93c5e6983de60eb856fceb6daa64e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::vector&lt; std::string &gt;</type>
+        <definition>TF_API std::vector&lt;std::string&gt; TfMatchedStringTokenize</definition>
+        <argsstring>(const std::string &amp;source, char openDelimiter, char closeDelimiter, char escapeCharacter=&apos;\0&apos;, std::string *errors=NULL)</argsstring>
+        <name>TfMatchedStringTokenize</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>openDelimiter</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>closeDelimiter</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>escapeCharacter</declname>
+          <defval>&apos;\0&apos;</defval>
+        </param>
+        <param>
+          <type>std::string *</type>
+          <declname>errors</declname>
+          <defval>NULL</defval>
+        </param>
+        <briefdescription>
+<para>Breaks the given string apart by matching delimiters. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The string <computeroutput>source</computeroutput> is broken apart into individual words, where a word begins with <computeroutput>openDelimiter</computeroutput> and ends with a matching <computeroutput>closeDelimiter</computeroutput>. Any delimiters within the matching delimiters become part of the word, and anything outside matching delimiters gets dropped. For example, <computeroutput>TfMatchedStringTokenize</computeroutput>(&quot;{a} string {to {be} split}&quot;, &apos;{&apos;, &apos;}&apos;) would return a vector containing &quot;a&quot; and &quot;to {be} split&quot;. If <computeroutput>openDelimiter</computeroutput> and <computeroutput>closeDelimiter</computeroutput> cannot be the same. <computeroutput>errors</computeroutput>, if provided, contains any error messages. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="475" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga989b2d5332b2b1b5a869eba7062a4429" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt;std::string&gt; TfMatchedStringTokenize</definition>
+        <argsstring>(const std::string &amp;source, char openDelimiter, char closeDelimiter, std::string *errors)</argsstring>
+        <name>TfMatchedStringTokenize</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>openDelimiter</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>closeDelimiter</declname>
+        </param>
+        <param>
+          <type>std::string *</type>
+          <declname>errors</declname>
+        </param>
+        <briefdescription>
+<para>This overloaded version of <computeroutput>TfMatchedStringTokenize</computeroutput> does not take an <computeroutput>escapeCharacter</computeroutput> parameter but does take. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>errors.</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>It allows <computeroutput>TfMatchedStringTokenize</computeroutput> to be called with or without an <computeroutput>escapeCharacter</computeroutput> and with or without <computeroutput>errors</computeroutput>.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="489" column="1" bodyfile="pxr/base/tf/stringUtils.h" bodystart="489" bodyend="496"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga7554a67d6bbf6eae3f12131757f13d36" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>std::string</type>
+        <definition>std::string TfStringify</definition>
+        <argsstring>(const T &amp;v)</argsstring>
+        <name>TfStringify</name>
+        <param>
+          <type>const T &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+<para>Convert an arbitrary type into a string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Use the type&apos;s stream output operator to convert it into a string. You are free to use the stream operators in <ref refid="ostream_methods_8h" kindref="compound">ostreamMethods.h</ref>, but are not required to do so. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="572" column="1" bodyfile="pxr/base/tf/stringUtils.h" bodystart="572" bodyend="582"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga58598a7ac8a668999f3eb636fb829fa6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringify</definition>
+        <argsstring>(bool v)</argsstring>
+        <name>TfStringify</name>
+        <param>
+          <type>bool</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="585" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gad579d7a6cc3940fdf0f68f112fba50cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringify</definition>
+        <argsstring>(std::string const &amp;)</argsstring>
+        <name>TfStringify</name>
+        <param>
+          <type>std::string const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="587" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gae8052dd5f6567ee32be0c031babd977d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringify</definition>
+        <argsstring>(float)</argsstring>
+        <name>TfStringify</name>
+        <param>
+          <type>float</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="589" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gaae9cf24d4c04b84f808cc62fe7c8e5d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringify</definition>
+        <argsstring>(double)</argsstring>
+        <name>TfStringify</name>
+        <param>
+          <type>double</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="591" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga57115176ec4d2251da17677287347dbb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API bool</type>
+        <definition>TF_API bool TfDoubleToString</definition>
+        <argsstring>(double d, char *buffer, int len, bool emitTrailingZero)</argsstring>
+        <name>TfDoubleToString</name>
+        <param>
+          <type>double</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>emitTrailingZero</declname>
+        </param>
+        <briefdescription>
+<para>Writes the string representation of <computeroutput>d</computeroutput> to <computeroutput>buffer</computeroutput> of length <computeroutput>len</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>emitTrailingZero</computeroutput> is true, the string representation will end with .0 in the case where d is an integer otherwise it will be omitted. The buffer length must be at least 25 in order to ensure that all doubles values can be represented. Returns whether the conversion was successful. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="599" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gaa6643f7d1a1e3913862212d5fef53303" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::ostream &amp;</type>
+        <definition>TF_API std::ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;o, TfStreamFloat t)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>o</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_tf_stream_float" kindref="compound">TfStreamFloat</ref></type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="611" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gaf5ac1b82b3e090927a465671db89fd25" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::ostream &amp;</type>
+        <definition>TF_API std::ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;o, TfStreamDouble t)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>o</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_tf_stream_double" kindref="compound">TfStreamDouble</ref></type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="622" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga1c7135a04eb120c2b29104d10524e9b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>T</type>
+        <definition>T TfUnstringify</definition>
+        <argsstring>(const std::string &amp;instring, bool *status=NULL)</argsstring>
+        <name>TfUnstringify</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>instring</declname>
+        </param>
+        <param>
+          <type>bool *</type>
+          <declname>status</declname>
+          <defval>NULL</defval>
+        </param>
+        <briefdescription>
+<para>Convert a string to an arbitrary type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Use the type&apos;s stream input operator to get it from a string. If <computeroutput>status</computeroutput> is non-NULL and <computeroutput>instring</computeroutput> cannot be converted to a <computeroutput>T</computeroutput>, <computeroutput>*status</computeroutput> is set to <computeroutput>false</computeroutput>; otherwise, <computeroutput>*status</computeroutput> is not modified. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="631" column="1" bodyfile="pxr/base/tf/stringUtils.h" bodystart="631" bodyend="639"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga1bf0a426bf874f8f887f64abc38b0388" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+        </templateparamlist>
+        <type>TF_API bool</type>
+        <definition>TF_API bool TfUnstringify</definition>
+        <argsstring>(const std::string &amp;instring, bool *status)</argsstring>
+        <name>TfUnstringify</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>instring</declname>
+        </param>
+        <param>
+          <type>bool *</type>
+          <declname>status</declname>
+        </param>
+        <briefdescription>
+<para>Convert a string to an arbitrary type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</para>
+<para>Use the type&apos;s stream input operator to get it from a string. If <computeroutput>status</computeroutput> is non-NULL and <computeroutput>instring</computeroutput> cannot be converted to a <computeroutput>T</computeroutput>, <computeroutput>*status</computeroutput> is set to <computeroutput>false</computeroutput>; otherwise, <computeroutput>*status</computeroutput> is not modified. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="644" column="1" bodyfile="pxr/base/tf/stringUtils.h" bodystart="631" bodyend="639"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga7db15f80d51dbb6182376c689b86cb54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringGlobToRegex</definition>
+        <argsstring>(const std::string &amp;s)</argsstring>
+        <name>TfStringGlobToRegex</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Returns a string with glob characters converted to their regular expression equivalents. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Currently, this transforms strings by replacing all instances of &apos;.&apos; with &apos;.&apos;, &apos;*&apos; with &apos;.*&apos;, and &apos;?&apos; with &apos;.&apos;, in that order. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="656" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gab6646faf6bcb393bab4d0e7deffa63c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfEscapeString</definition>
+        <argsstring>(const std::string &amp;in)</argsstring>
+        <name>TfEscapeString</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Process escape sequences in ANSI C string constants. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The following escape sequences are accepted:</para>
+<para><itemizedlist>
+<listitem><para>\\: backslash </para>
+</listitem>
+<listitem><para>\a: ring the bell </para>
+</listitem>
+<listitem><para>\b: backspace </para>
+</listitem>
+<listitem><para>\f: form feed </para>
+</listitem>
+<listitem><para>\n: new line </para>
+</listitem>
+<listitem><para>\r: carriage return </para>
+</listitem>
+<listitem><para>\t: tab </para>
+</listitem>
+<listitem><para>\v: vertical tab </para>
+</listitem>
+<listitem><para>\xdd: hex constant </para>
+</listitem>
+<listitem><para>\ddd: octal constant</para>
+</listitem>
+</itemizedlist>
+So, if the two-character sequence &quot;\\n&quot; appears in the string, it is replaced by an actual newline. Each hex and octal constant translates into one character in the output string. Hex constants can be up to 2 digits, octal constants can be up to 3 digits. Both are terminated by a character that is not a valid constant. Note that it is good practice to encode hex and octal constants with maximum width (2 and 3 digits, respectively) using leading zeroes if necessary. This avoids problems where characters after the hex/octal constant that shouldn&apos;t be part of the constant get interpreted as part of it. For example, the sequence &quot;\x2defaced&quot; will produce the characters &quot;-efaced&quot; when what was probably intended was the character 0x02 (STX) followed by &quot;defaced&quot;. Illegal escape sequences are replaced by the character following the backslash, so the two character sequence &quot;\\c&quot; would become &quot;c&quot;. Processing continues until the input hits a NUL character in the input string - anything appearing after the NUL will be ignored. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="689" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga40fe85ada23efac4548638f78085e987" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void TfEscapeStringReplaceChar</definition>
+        <argsstring>(const char **in, char **out)</argsstring>
+        <name>TfEscapeStringReplaceChar</name>
+        <param>
+          <type>const char **</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="690" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gaa6e041049a2367beb8cbd7c8efee5c85" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfStringCatPaths</definition>
+        <argsstring>(const std::string &amp;prefix, const std::string &amp;suffix)</argsstring>
+        <name>TfStringCatPaths</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>prefix</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>suffix</declname>
+        </param>
+        <briefdescription>
+<para>Concatenate two strings containing &apos;/&apos; and &apos;..&apos; tokens like a file path or scope name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Tokenize the input strings using a &apos;/&apos; delimiter. Look for &apos;..&apos; tokens in the suffix and construct the appropriate result.</para>
+<para>Examples:</para>
+<para><itemizedlist>
+<listitem><para>TfStringCatPaths( &quot;foo/bar&quot;, &quot;jive&quot; ) =&gt; &quot;foo/bar/jive&quot; </para>
+</listitem>
+<listitem><para>TfStringCatPaths( &quot;foo/bar&quot;, &quot;../jive&quot; ) =&gt; &quot;foo/jive&quot; </para>
+</listitem>
+</itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="703" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gaa129b294af3f68d01477d430b70d40c8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TfIsValidIdentifier</definition>
+        <argsstring>(std::string const &amp;identifier)</argsstring>
+        <name>TfIsValidIdentifier</name>
+        <param>
+          <type>std::string const &amp;</type>
+          <declname>identifier</declname>
+        </param>
+        <briefdescription>
+<para>Test whether <emphasis>identifier</emphasis> is valid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>An identifier is valid if it follows the C/Python identifier convention; that is, it must be at least one character long, must start with a letter or underscore, and must contain only letters, underscores, and numerals. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="712" column="1" bodyfile="pxr/base/tf/stringUtils.h" bodystart="712" bodyend="726"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1ga68e587cc7f9f5a5dd3ae8f03dcffe15c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfMakeValidIdentifier</definition>
+        <argsstring>(const std::string &amp;in)</argsstring>
+        <name>TfMakeValidIdentifier</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Produce a valid identifier (see TfIsValidIdentifier) from <computeroutput>in</computeroutput> by replacing invalid characters with &apos;_&apos;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>in</computeroutput> is empty, return &quot;_&quot;. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="732" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___string_1gaf0fabf3c64bda983fe69edea41ac87f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string TfGetXmlEscapedString</definition>
+        <argsstring>(const std::string &amp;in)</argsstring>
+        <name>TfGetXmlEscapedString</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Escapes characters in <emphasis>in</emphasis> so that they are valid XML. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the name with special characters (&amp;, &lt;, &gt;, ", &apos;) replaced with the corresponding escape sequences. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stringUtils.h" line="739" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Functions/classes for string manipulation. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

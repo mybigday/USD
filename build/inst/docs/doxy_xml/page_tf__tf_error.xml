@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="page_tf__tf_error" kind="page">
+    <compoundname>page_tf_TfError</compoundname>
+    <title>The TfError Error Posting System</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The <ref refid="class_tf_error" kindref="compound">TfError</ref> system is a developer-level mechanism used to indicate that a non-fatal error has occurred. The primary benefit of this facility is that it enables separating the concerns of error detection from error handling/reporting without breaking the normal flow of control, in contrast to exception propagation.</para>
+<para>A good example of where this kind of separation is desirable is in &quot;cross-interface&quot; code situations. These situations occur when a called library routine detects an error condition, but the action to take in response is unclear; different callers want to report or log the error differently. With <ref refid="class_tf_error" kindref="compound">TfError</ref>, the library can record that the error occurred, but leave the handling and reporting to callers as they see fit.</para>
+<para>Use of <ref refid="class_tf_error" kindref="compound">TfError</ref> is not meant to discourage functions from reporting errors by return value or by extra parameter passing. Instead, the <ref refid="class_tf_error" kindref="compound">TfError</ref> facility is a supplement for situations where error return codes or extra parameters are cumbersome or problematic.</para>
+<para>Post a <ref refid="class_tf_error" kindref="compound">TfError</ref> using the <ref refid="group__group__tf___diagnostic_1gaf07c45323b79ee51a323339f08c5bfb0" kindref="member">TF_ERROR()</ref> macro. Since normal flow of control is maintained, the posting code must return gracefully to its caller.</para>
+<para>Each thread maintains its own separate error list. This means that by default, errors reported in a thread can only be observed within that thread, but the <ref refid="class_tf_error_transport" kindref="compound">TfErrorTransport</ref> class provides a mechanism to transport errors from one thread to another. This is particularly useful in scoped parent-child parallel contexts.</para>
+<para>Use the <ref refid="class_tf_error_mark" kindref="compound">TfErrorMark</ref> object to detect errors posted by called code. If errors have occurred, <ref refid="class_tf_error_mark_1aaedab14a2e51166764950e331b7b11d0" kindref="member">TfErrorMark::IsClean()</ref> returns false, and you can iterate the contained errors using a range-for loop, or begin()/end() iterators.</para>
+<para>The following code sample illustrates typical use of <ref refid="class_tf_error" kindref="compound">TfError</ref>:</para>
+<para><programlisting><codeline><highlight class="normal">enum<sp/>MatrixCodes<sp/>{<sp/>MatrixHasBadDimensions,<sp/>MatrixIsSingular<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">TF_REGISTRY_FUNCTION(TfEnum)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TF_ADD_ENUM_NAME(MatrixHasBadDimensions,<sp/>&quot;Matrix<sp/>has<sp/>bad<sp/>dimensions.&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TF_ADD_ENUM_NAME(MatrixIsSingular,<sp/>&quot;Matrix<sp/>is<sp/>singular&quot;);</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">SquareMatrix<sp/>operator+<sp/>(const<sp/>SquareMatrix&amp;<sp/>a,<sp/>const<sp/>SquareMatrix&amp;<sp/>b)<sp/></highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(a.GetSize()<sp/>!=<sp/>b.GetSize())<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TF_ERROR(MatrixHasBadDimensions,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;a<sp/>size:<sp/>%d,<sp/>b<sp/>size:<sp/>%d&quot;,<sp/>a.GetSize(),<sp/>b.GetSize());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>SquareMatrix::Zero();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>compute<sp/>sum,<sp/>return<sp/>result.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">void<sp/>ErrorSavvyFunction()<sp/></highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>SquareMatrix<sp/>a<sp/>=<sp/>...<sp/>,<sp/>b<sp/>=<sp/>...;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TfErrorMark<sp/>m;<sp/>//<sp/>Track<sp/>errors<sp/>issued<sp/>from<sp/>this<sp/>point.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Attempt<sp/>an<sp/>operation<sp/>which<sp/>might<sp/>issue<sp/>a<sp/>TfError.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>SquareMatrix<sp/>c<sp/>=<sp/>a<sp/>+<sp/>b;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(!m.IsClean())<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Some<sp/>errors<sp/>occurred<sp/>--<sp/>look<sp/>for<sp/>the<sp/>MatrixHasBadDimensions<sp/>error.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(TfError<sp/>const<sp/>&amp;err:<sp/>m)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(err.GetErrorCode()<sp/>==<sp/>MatrixHasBadDimensions)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Report<sp/>or<sp/>handle<sp/>appropriately<sp/>for<sp/>this<sp/>caller<sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Do<sp/>not<sp/>propagate<sp/>any<sp/>errors<sp/>to<sp/>further<sp/>callers.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m.Clear();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>The<sp/>TF_HAS_ERRORS<sp/>convenience<sp/>macro<sp/>calls<sp/>TfErrorMark::SetMark()<sp/>to<sp/>begin</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>tracking<sp/>new<sp/>errors,<sp/>invokes<sp/>the<sp/>passed<sp/>expression,<sp/>then<sp/>evaluates<sp/>to</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>true<sp/>if<sp/>any<sp/>errors<sp/>were<sp/>issued<sp/>during<sp/>the<sp/>expression<sp/>evaluation,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>otherwise<sp/>false.<sp/>For<sp/>example:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(TF_HAS_ERRORS(m,<sp/>c<sp/>=<sp/>2*a<sp/>+<sp/>3*b))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(TfError<sp/>const<sp/>&amp;err:<sp/>m)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Handle/report<sp/>error...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<sect1 id="page_tf__tf_error_1DiagnosticErrorUsage">
+<title>Usage</title>
+<para>The TF_ERROR macro is always invoked with a diagnostic enum code. See <ref refid="page_tf__tf_error_1DiagnosticEnumConventions" kindref="member">Enum Conventions</ref> for an example of registering an enum type and its values as diagnostic codes. The calling patterns for <ref refid="group__group__tf___diagnostic_1gaf07c45323b79ee51a323339f08c5bfb0" kindref="member">TF_ERROR()</ref> are shown in the following examples:</para>
+<para><programlisting><codeline><highlight class="normal">//<sp/>The<sp/>TF_ERROR<sp/>macro<sp/>can<sp/>accept<sp/>a<sp/>message<sp/>in<sp/>several<sp/>forms:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>string<sp/>literal<sp/>message:</highlight></codeline>
+<codeline><highlight class="normal">TF_ERROR(NoSuchFile,<sp/>&quot;File<sp/>not<sp/>found&quot;);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>std::string<sp/>message:</highlight></codeline>
+<codeline><highlight class="normal">std::string<sp/>msg<sp/>=<sp/>&quot;File<sp/>not<sp/>found:<sp/>&quot;;</highlight></codeline>
+<codeline><highlight class="normal">TF_ERROR(NoSuchFile,<sp/>msg<sp/>+<sp/>fileName);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>printf-style<sp/>message:</highlight></codeline>
+<codeline><highlight class="normal">TF_ERROR(NoSuchFile,<sp/>&quot;File<sp/>not<sp/>found:<sp/>%s&quot;,<sp/>fileName.c_str());</highlight></codeline>
+</programlisting></para>
+<para>Additionally, an error may have an arbitrary piece of contextual data stored with it as follows:</para>
+<para><programlisting><codeline><highlight class="normal">//<sp/>The<sp/>same<sp/>three<sp/>message<sp/>options<sp/>as<sp/>above,<sp/>but<sp/>with<sp/>an<sp/>additional<sp/>extra<sp/>object</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>of<sp/>any<sp/>type<sp/>to<sp/>convey<sp/>useful<sp/>contextual<sp/>information<sp/>to<sp/>error<sp/>handlers.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">TF_ERROR(NoSuchFile,<sp/>filePathConfig,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;literal,<sp/>std::string,<sp/>or<sp/>printf-style<sp/>message&gt;);</highlight></codeline>
+</programlisting></para>
+<para>Callers inspecting <ref refid="class_tf_error" kindref="compound">TfError</ref> objects can retrieve this extra object by calling <ref refid="class_tf_diagnostic_base_1a4a300471f7a6309930f33a52dcb88ab4" kindref="member">TfError::GetInfo()</ref> (really a base-class member function <ref refid="class_tf_diagnostic_base_1a4a300471f7a6309930f33a52dcb88ab4" kindref="member">TfDiagnosticBase::GetInfo()</ref>).</para>
+<para><programlisting><codeline><highlight class="normal">for<sp/>(TfError<sp/>const<sp/>&amp;err:<sp/>m)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(m.GetCode()<sp/>==<sp/>NoSuchFile)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(const<sp/>FilePathConfig<sp/>*pathConfig<sp/>=<sp/>err.GetInfo&lt;FilePathConfig&gt;())<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Report<sp/>error<sp/>with<sp/>contextual<sp/>information<sp/>from<sp/>pathConfig.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><ref refid="class_tf_diagnostic_base_1a4a300471f7a6309930f33a52dcb88ab4" kindref="member">TfError::GetInfo()</ref> returns <computeroutput>nullptr</computeroutput> if there is no extra data or if it&apos;s not holding (exactly) the given type.</para>
+</sect1>
+<sect1 id="page_tf__tf_error_1BuiltInErrorReporting">
+<title>Built-in Error Reporting</title>
+<para>If there are no <ref refid="class_tf_error_mark" kindref="compound">TfErrorMark</ref> objects in the current thread, <ref refid="group__group__tf___diagnostic_1gaf07c45323b79ee51a323339f08c5bfb0" kindref="member">TF_ERROR()</ref> will immediately report the error, either to the currently installed <ref refid="class_tf_diagnostic_mgr_1_1_delegate" kindref="compound">TfDiagnosticMgr::Delegate</ref> objects, or to stderr if there are no delegates.</para>
+<para>If there are <ref refid="class_tf_error_mark" kindref="compound">TfErrorMark</ref> objects in the current thread, <ref refid="group__group__tf___diagnostic_1gaf07c45323b79ee51a323339f08c5bfb0" kindref="member">TF_ERROR()</ref> will instead append the error to the thread&apos;s local error list to be potentially handled later by a caller. It also appends its message to an internal crash log text buffer. When the last <ref refid="class_tf_error_mark" kindref="compound">TfErrorMark</ref> object on a thread is destroyed, if the error list is not empty, then those remaining errors are reported to either delegates or stderr, as above, and its text is removed from the crash log buffer.</para>
+<para>In case of an unrecoverable crash, Tf&apos;s crash handler will emit all the pending, unreported diagnostic error messages to the crash report. This way, diagnostic messages for unhandled errors are always reported, either via delegates/stderr, or to the crash log in case of a crash.</para>
+</sect1>
+<sect1 id="page_tf__tf_error_1DiagnosticEnumConventions">
+<title>Enum Conventions</title>
+<para>If you have several different error conditions to distinguish, create an enum with multiple values describing the various conditions. In a library named Oof, the enum (or enums, should you group error states into different categories) could be declared in a header file named oof/error.h.</para>
+<para><programlisting><codeline><highlight class="normal">struct<sp/>OofError<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>enum<sp/>Type<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OofErrorCode1,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OofErrorCode2,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OofErrorCode3</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+</programlisting></para>
+<para>Register the enum values with the <ref refid="class_tf_enum" kindref="compound">TfEnum</ref> registry to use them with <ref refid="class_tf_error" kindref="compound">TfError</ref>. For example, in oof/error.cpp:</para>
+<para><programlisting><codeline><highlight class="normal">#include<sp/>&quot;pxr/base/tf/enum.h&quot;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;pxr/base/tf/registryManager.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">TF_REGISTRY_FUNCTION(TfEnum)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TF_ADD_ENUM_NAME(OofError::OofErrorCode1,<sp/>&quot;Description<sp/>of<sp/>error<sp/>code1&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TF_ADD_ENUM_NAME(OofError::OofErrorCode2,<sp/>&quot;Description<sp/>of<sp/>error<sp/>code2&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TF_ADD_ENUM_NAME(OofError::OofErrorCode3,<sp/>&quot;Description<sp/>of<sp/>error<sp/>code3&quot;);</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+</programlisting></para>
+<para>Also wrap the enum to python in oof/wrapError.cpp.</para>
+<para>The following code allows the enum values to be accessible from python under a scope named Error.</para>
+<para><programlisting><codeline><highlight class="normal">//<sp/>wrapOofError.cpp</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;pxr/base/tf/pyEnum.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;boost/python/class.hpp&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;boost/python/scope.hpp&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">using<sp/>namespace<sp/>boost::python;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">void<sp/>wrapOofError()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>typedef<sp/>OofError<sp/>This;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Wrap<sp/>the<sp/>enum<sp/>under<sp/>a<sp/>scope<sp/>called<sp/>Error.<sp/>The<sp/>enum<sp/>values<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>will<sp/>be<sp/>available<sp/>in<sp/>python<sp/>under<sp/>Oof.Error.*.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>scope<sp/>errorTypeScope<sp/>=<sp/>class_<sp/>&lt;This&gt;(&quot;Error&quot;,<sp/>no_init);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TfPyWrapEnum&lt;OofError::Type&gt;();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>To make the enum values available directly under the module Oof, omit the errorTypeScope.</para>
+<para><programlisting><codeline><highlight class="normal">//<sp/>wrapOofError.cpp</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;pxr/base/tf/pyEnum.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">void<sp/>wrapOofError()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TfPyWrapEnum&lt;OofError::Type&gt;();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>Even if you do not wish to distinguish between error states within a library, the fact that these errors came from the same module of code is in itself useful information. In this case, create an enum with a single value, and pass that value.</para>
+<para>On the other hand, while proivding a unique error enumerant for every error condition gives the most specificity, it can also be tedious and cumbersome for both error producers and consumers. Think carefully about the main categories of errors your library generates. The best designs generally have a small number of error enumerants, instead adding nuance and subtlety in the error messages or diagnostic info objects.</para>
+<para>Remember to document the errors that your public API might issue, and under what circumstances it does so. This makes it easier for callers to detect and handle the errors gracefully.</para>
+<para>For convenience Tf supplies two general macros that issue TfErrors with Tf-supplied error enum values: <ref refid="group__group__tf___diagnostic_1ga8265ac46fd87777ee25efaf4a3290bbe" kindref="member">TF_CODING_ERROR()</ref> and <ref refid="group__group__tf___diagnostic_1ga4abf7754e5dbf161d2a5a4160fd3b891" kindref="member">TF_RUNTIME_ERROR()</ref>. These macros issue TfErrors with the error enum values TF_DIAGNOSTIC_CODING_ERROR_TYPE and TF_DIAGNOSTIC_RUNTIME_ERROR_TYPE, respectively. Use <ref refid="group__group__tf___diagnostic_1ga8265ac46fd87777ee25efaf4a3290bbe" kindref="member">TF_CODING_ERROR()</ref> where there is a demonstrable software error; for example, if passed arguments are invalid, or for an unmet precondition. Use <ref refid="group__group__tf___diagnostic_1ga4abf7754e5dbf161d2a5a4160fd3b891" kindref="member">TF_RUNTIME_ERROR()</ref> for errors that are not due to software bugs; for example, corrupt or invalid data in a file, disk space exhausted, network server unresponsive. </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

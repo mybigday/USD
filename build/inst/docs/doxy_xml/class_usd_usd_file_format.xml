@@ -1,0 +1,518 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_usd_file_format" kind="class" language="C++" prot="public">
+    <compoundname>UsdUsdFileFormat</compoundname>
+    <basecompoundref refid="class_sdf_file_format" prot="public" virt="non-virtual">SdfFileFormat</basecompoundref>
+    <includes refid="usd_file_format_8h" local="no">usdFileFormat.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_usd_usd_file_format_1af1d23b198fc378149144cdd814008923" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>SDF_FILE_FORMAT_FACTORY_ACCESS</definition>
+        <argsstring></argsstring>
+        <name>SDF_FILE_FORMAT_FACTORY_ACCESS</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/usdFileFormat.h" line="110" column="1" bodyfile="pxr/usd/usd/usdFileFormat.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_usd_file_format_1a4c75d117fd7aadba7bac14e6d4baecdb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USD_API SdfAbstractDataRefPtr</type>
+        <definition>virtual USD_API SdfAbstractDataRefPtr InitData</definition>
+        <argsstring>(const FileFormatArguments &amp;args) const override</argsstring>
+        <name>InitData</name>
+        <reimplements refid="class_sdf_file_format_1a7e6fe1b90e69c2f271c631b2e0597b23">InitData</reimplements>
+        <param>
+          <type>const <ref refid="class_sdf_file_format_1a1dfd2030337b6243cd6424fce7397590" kindref="member">FileFormatArguments</ref> &amp;</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+<para>This method allows the file format to bind to whatever data container is appropriate. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns a shared pointer to an <ref refid="class_sdf_abstract_data" kindref="compound">SdfAbstractData</ref> implementation. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/usdFileFormat.h" line="66" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_usd_file_format_1acd3c5cb1abb4535fcde8816507752166" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USD_API bool</type>
+        <definition>virtual USD_API bool CanRead</definition>
+        <argsstring>(const std::string &amp;file) const override</argsstring>
+        <name>CanRead</name>
+        <reimplements refid="class_sdf_file_format_1afa76b34e13314ffaf726f4799d4161ae">CanRead</reimplements>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if <computeroutput>file</computeroutput> can be read by this format. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/usdFileFormat.h" line="69" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_usd_file_format_1a6cbcecd530b507afb144749dc92c3df3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USD_API bool</type>
+        <definition>virtual USD_API bool Read</definition>
+        <argsstring>(SdfLayer *layer, const std::string &amp;resolvedPath, bool metadataOnly) const override</argsstring>
+        <name>Read</name>
+        <reimplements refid="class_sdf_file_format_1a8621e64c229386ea8e743faaf3f34d68">Read</reimplements>
+        <param>
+          <type><ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> *</type>
+          <declname>layer</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>resolvedPath</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>metadataOnly</declname>
+        </param>
+        <briefdescription>
+<para>Reads scene description from the asset specified by <computeroutput>resolvedPath</computeroutput> into the layer <computeroutput>layer</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>metadataOnly</computeroutput> is a flag that asks for only the layer metadata to be read in, which can be much faster if that is all that is required. Note that this is just a hint: some FileFormat readers may disregard this flag and still fully populate the layer contents.</para>
+<para>Returns true if the asset is successfully read into <computeroutput>layer</computeroutput>, false otherwise. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/usdFileFormat.h" line="72" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_usd_file_format_1ae3865175b4922f1bd3d96d3da2cda972" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USD_API bool</type>
+        <definition>virtual USD_API bool WriteToFile</definition>
+        <argsstring>(const SdfLayer &amp;layer, const std::string &amp;filePath, const std::string &amp;comment=std::string(), const FileFormatArguments &amp;args=FileFormatArguments()) const override</argsstring>
+        <name>WriteToFile</name>
+        <reimplements refid="class_sdf_file_format_1aebd911a48918fd2cad75a72f3839f40e">WriteToFile</reimplements>
+        <param>
+          <type>const <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> &amp;</type>
+          <declname>layer</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>comment</declname>
+          <defval>std::string()</defval>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_file_format_1a1dfd2030337b6243cd6424fce7397590" kindref="member">FileFormatArguments</ref> &amp;</type>
+          <declname>args</declname>
+          <defval><ref refid="class_sdf_file_format_1a1dfd2030337b6243cd6424fce7397590" kindref="member">FileFormatArguments</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Writes the content in <computeroutput>layer</computeroutput> into the file at <computeroutput>filePath</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the content is successfully written, this method returns true. Otherwise, false is returned and errors are posted. The default implementation returns false. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/usdFileFormat.h" line="78" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_usd_file_format_1a8ceaeb0ff7db4685cd64ea9268662f0a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USD_API bool</type>
+        <definition>virtual USD_API bool ReadFromString</definition>
+        <argsstring>(SdfLayer *layer, const std::string &amp;str) const override</argsstring>
+        <name>ReadFromString</name>
+        <reimplements refid="class_sdf_file_format_1a6bce13cc06020cb090ebe6746208b459">ReadFromString</reimplements>
+        <param>
+          <type><ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> *</type>
+          <declname>layer</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>str</declname>
+        </param>
+        <briefdescription>
+<para>Reads data in the string <computeroutput>str</computeroutput> into the layer <computeroutput>layer</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the file is successfully read, this method returns true. Otherwise, false is returned and errors are posted. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/usdFileFormat.h" line="85" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_usd_file_format_1a02499fd71c04b071413f004cad32cc63" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USD_API bool</type>
+        <definition>virtual USD_API bool WriteToString</definition>
+        <argsstring>(const SdfLayer &amp;layer, std::string *str, const std::string &amp;comment=std::string()) const override</argsstring>
+        <name>WriteToString</name>
+        <reimplements refid="class_sdf_file_format_1a3d36cf09ec2f2556ff6b1cb88823d0d0">WriteToString</reimplements>
+        <param>
+          <type>const <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> &amp;</type>
+          <declname>layer</declname>
+        </param>
+        <param>
+          <type>std::string *</type>
+          <declname>str</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>comment</declname>
+          <defval>std::string()</defval>
+        </param>
+        <briefdescription>
+<para>Writes the content in <computeroutput>layer</computeroutput> to the string <computeroutput>str</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function should write a textual representation of <computeroutput>layer</computeroutput> to the stream that can be read back in via ReadFromString. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/usdFileFormat.h" line="90" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_usd_file_format_1a100b1328d285eb43d51cfe29964f9c15" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USD_API bool</type>
+        <definition>virtual USD_API bool WriteToStream</definition>
+        <argsstring>(const SdfSpecHandle &amp;spec, std::ostream &amp;out, size_t indent) const override</argsstring>
+        <name>WriteToStream</name>
+        <reimplements refid="class_sdf_file_format_1a3d7243749d4e00e091c4df98705316d9">WriteToStream</reimplements>
+        <param>
+          <type>const SdfSpecHandle &amp;</type>
+          <declname>spec</declname>
+        </param>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>indent</declname>
+        </param>
+        <briefdescription>
+<para>Write the provided <computeroutput>spec</computeroutput> to <computeroutput>out</computeroutput> indented <computeroutput>indent</computeroutput> levels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/usdFileFormat.h" line="96" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_usd_usd_file_format_1ac3d7862ac4cc40633e62929f84090b6f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API <ref refid="class_tf_token" kindref="compound">TfToken</ref></type>
+        <definition>static USD_API TfToken GetUnderlyingFormatForLayer</definition>
+        <argsstring>(const SdfLayer &amp;layer)</argsstring>
+        <name>GetUnderlyingFormatForLayer</name>
+        <param>
+          <type>const <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> &amp;</type>
+          <declname>layer</declname>
+        </param>
+        <briefdescription>
+<para>Returns the value of the &quot;format&quot; argument to be used in the FileFormatArguments when exporting or saving the given layer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns an empty token if the given layer does not have this file format. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/usdFileFormat.h" line="107" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_usd_usd_file_format_1aa3233c560c8d2398b112a5544c8f8fa9" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>SdfAbstractDataRefPtr</type>
+        <definition>SdfAbstractDataRefPtr _InitDetachedData</definition>
+        <argsstring>(const FileFormatArguments &amp;args) const override</argsstring>
+        <name>_InitDetachedData</name>
+        <reimplements refid="class_sdf_file_format_1ab4999d2f804fbd556476427ef20ea80e">_InitDetachedData</reimplements>
+        <param>
+          <type>const <ref refid="class_sdf_file_format_1a1dfd2030337b6243cd6424fce7397590" kindref="member">FileFormatArguments</ref> &amp;</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_sdf_file_format_1adc9391d69494e36aae0cbb1ca7007526" kindref="member">InitDetachedData</ref></para>
+</simplesect>
+This function must return a new <ref refid="class_sdf_abstract_data" kindref="compound">SdfAbstractData</ref> object that is detached, i.e. <ref refid="class_sdf_abstract_data_1a4394939afe9f76296e90fca624064128" kindref="member">SdfAbstractData::IsDetached</ref> returns false.</para>
+<para>The default implementation returns an <ref refid="class_sdf_data" kindref="compound">SdfData</ref> object. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/usdFileFormat.h" line="112" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_usd_file_format_1a3e56ab56cb1a1b6fe2a15f92c06f5e5c" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool _ReadDetached</definition>
+        <argsstring>(SdfLayer *layer, const std::string &amp;resolvedPath, bool metadataOnly) const override</argsstring>
+        <name>_ReadDetached</name>
+        <reimplements refid="class_sdf_file_format_1a903006b206ab7fe0c8f9f645efa9dbc3">_ReadDetached</reimplements>
+        <param>
+          <type><ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> *</type>
+          <declname>layer</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>resolvedPath</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>metadataOnly</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_sdf_file_format_1a12d42db40bca59050733c4b40a818475" kindref="member">ReadDetached</ref></para>
+</simplesect>
+Upon completion, <computeroutput>layer</computeroutput> must have an <ref refid="class_sdf_abstract_data" kindref="compound">SdfAbstractData</ref> object set that is detached, i.e. <ref refid="class_sdf_abstract_data_1a4394939afe9f76296e90fca624064128" kindref="member">SdfAbstractData::IsDetached</ref> returns false.</para>
+<para>The default implementation calls _ReadAndCopyLayerDataToMemory to read the specified layer and copy its data into an <ref refid="class_sdf_data" kindref="compound">SdfData</ref> object if it is not detached. If data is copied, a warning will be issued since this may be an expensive operation. If the above behavior is desired, subclasses can just call _ReadAndCopyLayerDataToMemory to do the same thing but without the warning. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/usdFileFormat.h" line="115" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_usd_usd_file_format_1a8959a234a817dd974ad713ebe303aa4f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>UsdUsdFileFormat</definition>
+        <argsstring>()</argsstring>
+        <name>UsdUsdFileFormat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/usdFileFormat.h" line="121" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_usd_file_format_1a2b871467e676d5ceb1800e3957b01f33" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual ~UsdUsdFileFormat</definition>
+        <argsstring>()</argsstring>
+        <name>~UsdUsdFileFormat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/usdFileFormat.h" line="122" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_usd_file_format_1a87d542854f773845967300b2c7d11048" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>bool</type>
+            <declname>Detached</declname>
+            <defname>Detached</defname>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool _ReadHelper</definition>
+        <argsstring>(SdfLayer *layer, const std::string &amp;resolvedPath, bool metadataOnly) const</argsstring>
+        <name>_ReadHelper</name>
+        <param>
+          <type><ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> *</type>
+          <declname>layer</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>resolvedPath</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>metadataOnly</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/usdFileFormat.h" line="128" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_usd_usd_file_format_1a268f81b54ee8e650067c7382943d73ea" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SdfFileFormatConstPtr</type>
+        <definition>static SdfFileFormatConstPtr _GetUnderlyingFileFormatForLayer</definition>
+        <argsstring>(const SdfLayer &amp;layer)</argsstring>
+        <name>_GetUnderlyingFileFormatForLayer</name>
+        <param>
+          <type>const <ref refid="class_sdf_layer" kindref="compound">SdfLayer</ref> &amp;</type>
+          <declname>layer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/usdFileFormat.h" line="125" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_usd_usd_file_format_1a1dfd2030337b6243cd6424fce7397590" prot="public" static="no">
+        <type>std::map&lt; std::string, std::string &gt;</type>
+        <definition>typedef std::map&lt;std::string, std::string&gt; FileFormatArguments</definition>
+        <argsstring></argsstring>
+        <name>FileFormatArguments</name>
+        <briefdescription>
+<para>Type for specifying additional file format-specific arguments to the various API below. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/usdFileFormat.h" line="62" column="1" bodyfile="pxr/usd/sdf/fileFormat.h" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>File format for USD files. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>When creating a file through the <ref refid="class_sdf_layer_1aad57cd44403a4f95a2bb6c730fa1b0f5" kindref="member">SdfLayer::CreateNew()</ref> interface, the meaningful <ref refid="class_sdf_file_format_1a1dfd2030337b6243cd6424fce7397590" kindref="member">SdfFileFormat::FileFormatArguments</ref> are as follows: <itemizedlist>
+<listitem><para>UsdUsdFileFormatTokens-&gt;FormatArg , which must be a supported format&apos;s &apos;Id&apos;. The possible values are UsdUsdaFileFormatTokens-&gt;Id or UsdUsdcFileFormatTokens-&gt;Id.</para>
+</listitem>
+</itemizedlist>
+If no UsdUsdFileFormatTokens-&gt;FormatArg is supplied, the default is UsdUsdcFileFormatTokens-&gt;Id. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="8421">
+        <label>UsdUsdFileFormat</label>
+        <link refid="class_usd_usd_file_format"/>
+        <childnode refid="8422" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8424">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="8422">
+        <label>SdfFileFormat</label>
+        <link refid="class_sdf_file_format"/>
+        <childnode refid="8423" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8424" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8423">
+        <label>TfRefBase</label>
+        <link refid="class_tf_ref_base"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="8425">
+        <label>UsdUsdFileFormat</label>
+        <link refid="class_usd_usd_file_format"/>
+        <childnode refid="8426" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8428">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="8426">
+        <label>SdfFileFormat</label>
+        <link refid="class_sdf_file_format"/>
+        <childnode refid="8427" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8428" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8427">
+        <label>TfRefBase</label>
+        <link refid="class_tf_ref_base"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/usd/usd/usdFileFormat.h" line="60" column="1" bodyfile="pxr/usd/usd/usdFileFormat.h" bodystart="59" bodyend="132"/>
+    <listofallmembers>
+      <member refid="class_tf_weak_base_1a01aa4c4b93df067f2ec9b9e5fa4c35b3" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>__GetTfWeakBase__</name></member>
+      <member refid="class_sdf_file_format_1a128bdfe095ed866d05dca1422f9136f6" prot="protected" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>_GetLayerData</name></member>
+      <member refid="class_usd_usd_file_format_1a268f81b54ee8e650067c7382943d73ea" prot="private" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>_GetUnderlyingFileFormatForLayer</name></member>
+      <member refid="class_tf_weak_base_1a6a5533162e8efab1be47acd6ccd5254c" prot="protected" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>_HasRemnant</name></member>
+      <member refid="class_usd_usd_file_format_1aa3233c560c8d2398b112a5544c8f8fa9" prot="protected" virt="virtual"><scope>UsdUsdFileFormat</scope><name>_InitDetachedData</name></member>
+      <member refid="class_sdf_file_format_1a91060b50288c32d054e55c00815f8c4a" prot="protected" virt="virtual"><scope>UsdUsdFileFormat</scope><name>_InstantiateNewLayer</name></member>
+      <member refid="class_sdf_file_format_1a4cb80cd45410b5f68e76996187d69e6a" prot="protected" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>_ReadAndCopyLayerDataToMemory</name></member>
+      <member refid="class_usd_usd_file_format_1a3e56ab56cb1a1b6fe2a15f92c06f5e5c" prot="protected" virt="virtual"><scope>UsdUsdFileFormat</scope><name>_ReadDetached</name></member>
+      <member refid="class_usd_usd_file_format_1a87d542854f773845967300b2c7d11048" prot="private" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>_ReadHelper</name></member>
+      <member refid="class_tf_weak_base_1a95139d2f4d04eb706664a4f47eb93918" prot="protected" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>_Register</name></member>
+      <member refid="class_tf_weak_base_1ac1312732482c8a286522f703f2cf90d1" prot="protected" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>_Register</name></member>
+      <member refid="class_sdf_file_format_1a8d5aeef83f6b9e72f4b94bcbf5201d9f" prot="protected" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>_SetLayerData</name></member>
+      <member refid="class_sdf_file_format_1a31fd5be937c25d4eb1edeb9e8c1b1748" prot="protected" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>_SetLayerData</name></member>
+      <member refid="class_sdf_file_format_1a12c9e8b7430b2a24447034e0716380aa" prot="protected" virt="virtual"><scope>UsdUsdFileFormat</scope><name>_ShouldReadAnonymousLayers</name></member>
+      <member refid="class_sdf_file_format_1a3d0cbafb2e3b080d9fbcdd93a5e9d967" prot="protected" virt="virtual"><scope>UsdUsdFileFormat</scope><name>_ShouldSkipAnonymousReload</name></member>
+      <member refid="class_usd_usd_file_format_1acd3c5cb1abb4535fcde8816507752166" prot="public" virt="virtual"><scope>UsdUsdFileFormat</scope><name>CanRead</name></member>
+      <member refid="class_tf_weak_base_1a16f1e27cc0c7c606ffb397b7d970ed10" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>EnableNotification2</name></member>
+      <member refid="class_usd_usd_file_format_1a1dfd2030337b6243cd6424fce7397590" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>FileFormatArguments</name></member>
+      <member refid="class_sdf_file_format_1a2fd6d75707af4e54f78e6a47bde4d772" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>FindAllDerivedFileFormatExtensions</name></member>
+      <member refid="class_sdf_file_format_1a3eb382b2d773579a0fc353c2d6c63040" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>FindAllFileFormatExtensions</name></member>
+      <member refid="class_sdf_file_format_1ab9d67519992ef59d03eff5f9b5ca3728" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>FindByExtension</name></member>
+      <member refid="class_sdf_file_format_1ad700415c499bbb5a7d2a9a7ead748904" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>FindByExtension</name></member>
+      <member refid="class_sdf_file_format_1a7217ccb019b97204c7e7cad86ee2fc92" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>FindById</name></member>
+      <member refid="class_sdf_file_format_1acab8762adf43caac7b35f784babb5ae4" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>FormatSupportsEditing</name></member>
+      <member refid="class_sdf_file_format_1ada2c1b75bce2485538862ecddc9285bc" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>FormatSupportsReading</name></member>
+      <member refid="class_sdf_file_format_1add9fecbf8f4a1acac72dd5f9141f97ee" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>FormatSupportsWriting</name></member>
+      <member refid="class_tf_ref_base_1abcd501e4bb37d7a93faa4e625e96ecf7" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>GetCurrentCount</name></member>
+      <member refid="class_sdf_file_format_1a830ffcfcd3441b645265536b05da4412" prot="public" virt="virtual"><scope>UsdUsdFileFormat</scope><name>GetDefaultFileFormatArguments</name></member>
+      <member refid="class_sdf_file_format_1a848b6bb7cedf72cb78e402c4402fdbc0" prot="public" virt="virtual"><scope>UsdUsdFileFormat</scope><name>GetExternalAssetDependencies</name></member>
+      <member refid="class_sdf_file_format_1ae2231eaa1ca0583f91a97f07cd51f731" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>GetFileCookie</name></member>
+      <member refid="class_sdf_file_format_1abcbb3a513cf28abac68c32f75dac4de2" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>GetFileExtension</name></member>
+      <member refid="class_sdf_file_format_1ab332582e9e4898a6462207fefe608ba9" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>GetFileExtensions</name></member>
+      <member refid="class_sdf_file_format_1af94cee934d3f9f57ddec5d6ba4ab0f72" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>GetFormatId</name></member>
+      <member refid="class_sdf_file_format_1ae20721adeae2ab3e3f03b468d7c938c2" prot="public" virt="virtual"><scope>UsdUsdFileFormat</scope><name>GetPackageRootLayerPath</name></member>
+      <member refid="class_sdf_file_format_1a855ff6edf7f38b3a8863f597ebe557c9" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>GetPrimaryFileExtension</name></member>
+      <member refid="class_tf_ref_base_1abc1926aa1f9b1ad25c5c583b92bcf14b" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>GetRefCount</name></member>
+      <member refid="class_sdf_file_format_1a3bd6905e6ee12562d4702db19fe6cc1f" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>GetSchema</name></member>
+      <member refid="class_sdf_file_format_1affc99189439fce34c0c63d91a476b1b8" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>GetTarget</name></member>
+      <member refid="class_usd_usd_file_format_1ac3d7862ac4cc40633e62929f84090b6f" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>GetUnderlyingFormatForLayer</name></member>
+      <member refid="class_tf_weak_base_1a3241c32a82fbed0716a77049f6134e1e" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>GetUniqueIdentifier</name></member>
+      <member refid="class_sdf_file_format_1ac2060c617124b513ccf799426ce149e1" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>GetVersionString</name></member>
+      <member refid="class_usd_usd_file_format_1a4c75d117fd7aadba7bac14e6d4baecdb" prot="public" virt="virtual"><scope>UsdUsdFileFormat</scope><name>InitData</name></member>
+      <member refid="class_sdf_file_format_1adc9391d69494e36aae0cbb1ca7007526" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>InitDetachedData</name></member>
+      <member refid="class_sdf_file_format_1a688a3cc6628e445cc997e8952a434170" prot="public" virt="virtual"><scope>UsdUsdFileFormat</scope><name>IsPackage</name></member>
+      <member refid="class_sdf_file_format_1ad92ebb5ec62184ddbc8913e4f05db070" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>IsPrimaryFormatForExtensions</name></member>
+      <member refid="class_sdf_file_format_1ae5349dcbdcfd8c009af50d11c717e071" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>IsSupportedExtension</name></member>
+      <member refid="class_tf_ref_base_1aab8bc91cf9cff7c6e1da23dc59f5ad1f" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>IsUnique</name></member>
+      <member refid="class_sdf_file_format_1a79344fd3d6748c5beee6198a41fcd141" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>NewLayer</name></member>
+      <member refid="class_sdf_file_format_1ae044dff6cb8c0aa5231692938ce0d287" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>operator=</name></member>
+      <member refid="class_tf_weak_base_1af890ac314073e903458bf6b2397566b5" prot="public" virt="non-virtual" ambiguityscope="TfWeakBase::"><scope>UsdUsdFileFormat</scope><name>operator=</name></member>
+      <member refid="class_usd_usd_file_format_1a6cbcecd530b507afb144749dc92c3df3" prot="public" virt="virtual"><scope>UsdUsdFileFormat</scope><name>Read</name></member>
+      <member refid="class_sdf_file_format_1a12d42db40bca59050733c4b40a818475" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>ReadDetached</name></member>
+      <member refid="class_usd_usd_file_format_1a8ceaeb0ff7db4685cd64ea9268662f0a" prot="public" virt="virtual"><scope>UsdUsdFileFormat</scope><name>ReadFromString</name></member>
+      <member refid="class_usd_usd_file_format_1af1d23b198fc378149144cdd814008923" prot="protected" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>SDF_FILE_FORMAT_FACTORY_ACCESS</name></member>
+      <member refid="class_sdf_file_format_1a48e9cf3f2434d3311eeb2e04c10e8156" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>SdfFileFormat</name></member>
+      <member refid="class_sdf_file_format_1a264d3e88f88f613493c2d7fcfad67e94" prot="protected" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>SdfFileFormat</name></member>
+      <member refid="class_sdf_file_format_1a75670dd7e233757cafd3c598446c6206" prot="protected" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>SdfFileFormat</name></member>
+      <member refid="class_sdf_file_format_1a0bfad924c4fb5e5789207f149f0db032" prot="protected" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>SdfFileFormat</name></member>
+      <member refid="class_sdf_file_format_1aebe62122c83fdaf835755c00fb56e9ae" prot="protected" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>SdfFileFormat</name></member>
+      <member refid="class_sdf_file_format_1aeb704822963e888102f17369717ecd5c" prot="protected" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>SdfFileFormat</name></member>
+      <member refid="class_sdf_file_format_1a780caf13030dfa6f32cf697f484faf01" prot="protected" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>SdfFileFormat</name></member>
+      <member refid="class_tf_ref_base_1a6ee7fb6df1df9be9afbda405643ecb6c" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>SetShouldInvokeUniqueChangedListener</name></member>
+      <member refid="class_tf_ref_base_1a33e6c8ffe0caf7dac94ba5c4a4485fbd" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>SetUniqueChangedListener</name></member>
+      <member refid="class_sdf_file_format_1a50928a94b9625eb1a149e07944ddb99d" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>ShouldReadAnonymousLayers</name></member>
+      <member refid="class_sdf_file_format_1ae5bee0843fce18d3c607c0b56b118319" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>ShouldSkipAnonymousReload</name></member>
+      <member refid="class_sdf_file_format_1a83eab906a0358ebdf94b03316bf66d80" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>SupportsEditing</name></member>
+      <member refid="class_sdf_file_format_1a5f99ff74942b86a7aa1ec7c69a617b64" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>SupportsReading</name></member>
+      <member refid="class_sdf_file_format_1a27f2b45688a158acb95d1d00b6d82e0f" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>SupportsWriting</name></member>
+      <member refid="class_tf_ref_base_1aa2d330100c1dde0a28658bbd0bd7e7bd" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>TfRefBase</name></member>
+      <member refid="class_tf_weak_base_1a6e4abdd663654f8c8019702a464de8d6" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_weak_base_1affc4c00d0bbfdfe4f9e6a8b2e81be368" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_ref_base_1a86baed63f8017038997266bdd638f65e" prot="public" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>UniqueChangedFuncPtr</name></member>
+      <member refid="class_usd_usd_file_format_1a8959a234a817dd974ad713ebe303aa4f" prot="private" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>UsdUsdFileFormat</name></member>
+      <member refid="class_usd_usd_file_format_1ae3865175b4922f1bd3d96d3da2cda972" prot="public" virt="virtual"><scope>UsdUsdFileFormat</scope><name>WriteToFile</name></member>
+      <member refid="class_usd_usd_file_format_1a100b1328d285eb43d51cfe29964f9c15" prot="public" virt="virtual"><scope>UsdUsdFileFormat</scope><name>WriteToStream</name></member>
+      <member refid="class_usd_usd_file_format_1a02499fd71c04b071413f004cad32cc63" prot="public" virt="virtual"><scope>UsdUsdFileFormat</scope><name>WriteToString</name></member>
+      <member refid="class_sdf_file_format_1a6f9bde194003de8378da0fcbc8e7598d" prot="protected" virt="virtual"><scope>UsdUsdFileFormat</scope><name>~SdfFileFormat</name></member>
+      <member refid="class_tf_ref_base_1abc8b2a655b2693dacab986b70c30f28a" prot="protected" virt="virtual"><scope>UsdUsdFileFormat</scope><name>~TfRefBase</name></member>
+      <member refid="class_tf_weak_base_1a778020f525b66def8a284c6f020592c2" prot="protected" virt="non-virtual"><scope>UsdUsdFileFormat</scope><name>~TfWeakBase</name></member>
+      <member refid="class_usd_usd_file_format_1a2b871467e676d5ceb1800e3957b01f33" prot="private" virt="virtual"><scope>UsdUsdFileFormat</scope><name>~UsdUsdFileFormat</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

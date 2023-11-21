@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hgi_buffer" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>HgiBuffer</compoundname>
+    <derivedcompoundref refid="class_hgi_g_l_buffer" prot="public" virt="non-virtual">HgiGLBuffer</derivedcompoundref>
+    <includes refid="buffer_8h" local="no">buffer.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_hgi_buffer_1a9503a55f0cf51236333fd92bd7b2e94f" prot="protected" static="no" mutable="no">
+        <type><ref refid="struct_hgi_buffer_desc" kindref="compound">HgiBufferDesc</ref></type>
+        <definition>HgiBufferDesc _descriptor</definition>
+        <argsstring></argsstring>
+        <name>_descriptor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/buffer.h" line="143" column="1" bodyfile="pxr/imaging/hgi/buffer.h" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hgi_buffer_1a3c24fa32e0717efd33a255a27ed4d1c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HGI_API</type>
+        <definition>virtual HGI_API ~HgiBuffer</definition>
+        <argsstring>()</argsstring>
+        <name>~HgiBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/buffer.h" line="102" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_buffer_1a2a56ff95e6030dfda51b8e0d607923d0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>HGI_API <ref refid="struct_hgi_buffer_desc" kindref="compound">HgiBufferDesc</ref> const  &amp;</type>
+        <definition>HGI_API HgiBufferDesc const&amp; GetDescriptor</definition>
+        <argsstring>() const</argsstring>
+        <name>GetDescriptor</name>
+        <briefdescription>
+<para>The descriptor describes the object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/buffer.h" line="106" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_buffer_1afb9f5da99a13e9adcab7f87cb9a6ad94" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API size_t</type>
+        <definition>virtual HGI_API size_t GetByteSizeOfResource</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetByteSizeOfResource</name>
+        <reimplementedby refid="class_hgi_g_l_buffer_1aaf2f07918f87f57adccda3e250297da7">GetByteSizeOfResource</reimplementedby>
+        <briefdescription>
+<para>Returns the byte size of the GPU buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This can be helpful if the application wishes to tally up memory usage. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/buffer.h" line="111" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_buffer_1a1c1b84de203362af87c23d73c8f8d395" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API uint64_t</type>
+        <definition>virtual HGI_API uint64_t GetRawResource</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetRawResource</name>
+        <reimplementedby refid="class_hgi_g_l_buffer_1adc3ffb4c04b3ab04225e25cf3f7dfe05">GetRawResource</reimplementedby>
+        <briefdescription>
+<para>This function returns the handle to the <ref refid="class_hgi" kindref="compound">Hgi</ref> backend&apos;s gpu resource, cast to a uint64_t. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Clients should avoid using this function and instead use <ref refid="class_hgi" kindref="compound">Hgi</ref> base classes so that client code works with any <ref refid="class_hgi" kindref="compound">Hgi</ref> platform. For transitioning code to <ref refid="class_hgi" kindref="compound">Hgi</ref>, it can however we useful to directly access a platform&apos;s internal resource handles. There is no safety provided in using this. If you by accident pass a HgiMetal resource into an OpenGL call, bad things may happen. In OpenGL this returns the GLuint resource name. In Metal this returns the id&lt;MTLBuffer&gt; as uint64_t. In Vulkan this returns the VkBuffer as uint64_t. In DX12 this returns the ID3D12Resource pointer as uint64_t. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/buffer.h" line="125" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_buffer_1a18a81f9f7059180f7f2660dab2ab5128" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>HGI_API void *</type>
+        <definition>virtual HGI_API void* GetCPUStagingAddress</definition>
+        <argsstring>()=0</argsstring>
+        <name>GetCPUStagingAddress</name>
+        <reimplementedby refid="class_hgi_g_l_buffer_1a593f93ecb0a534d0100b3f9bb0db8fb5">GetCPUStagingAddress</reimplementedby>
+        <briefdescription>
+<para>Returns the &apos;staging area&apos; in which new buffer data is copied before it is flushed to GPU. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Some implementations (e.g. Metal) may have build in support for queueing up CPU-&gt;GPU copies. Those implementations can return the CPU pointer to the buffer&apos;s content directly. The caller should not assume that the data from the CPU staging area is automatically flushed to the GPU. Instead, after copying is finished, the caller should use BlitCmds CopyBufferCpuToGpu to ensure the transfer from the staging area to the GPU is scheduled. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/buffer.h" line="137" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_hgi_buffer_1ae28fc23ddf021e75e99b19b4dd3caa52" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HGI_API</type>
+        <definition>HGI_API HgiBuffer</definition>
+        <argsstring>(HgiBufferDesc const &amp;desc)</argsstring>
+        <name>HgiBuffer</name>
+        <param>
+          <type><ref refid="struct_hgi_buffer_desc" kindref="compound">HgiBufferDesc</ref> const &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/buffer.h" line="141" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hgi_buffer_1aadeb8eed0d6c94572b7457515b865ded" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HgiBuffer</definition>
+        <argsstring>()=delete</argsstring>
+        <name>HgiBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/buffer.h" line="146" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_buffer_1a9d6beb2ddc2056ccf377ce5b95784f6a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hgi_buffer" kindref="compound">HgiBuffer</ref> &amp;</type>
+        <definition>HgiBuffer&amp; operator=</definition>
+        <argsstring>(const HgiBuffer &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_hgi_buffer" kindref="compound">HgiBuffer</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/buffer.h" line="147" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_buffer_1af93184885d40b411537d99adff63cc29" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HgiBuffer</definition>
+        <argsstring>(const HgiBuffer &amp;)=delete</argsstring>
+        <name>HgiBuffer</name>
+        <param>
+          <type>const <ref refid="class_hgi_buffer" kindref="compound">HgiBuffer</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgi/buffer.h" line="148" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Represents a graphics platform independent GPU buffer resource (base class). </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Buffers should be created via <ref refid="class_hgi_1aa7d3ce4a8fd78ac6850c04fc0a8c52c0" kindref="member">Hgi::CreateBuffer</ref>. The fill the buffer with data you supply <computeroutput>initialData</computeroutput> in the descriptor. To update the data inside the buffer later on, use blitCmds. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3715">
+        <label>HgiBuffer</label>
+        <link refid="class_hgi_buffer"/>
+      </node>
+      <node id="3716">
+        <label>HgiGLBuffer</label>
+        <link refid="class_hgi_g_l_buffer"/>
+        <childnode refid="3715" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3718">
+        <label>HgiBufferDesc</label>
+        <link refid="struct_hgi_buffer_desc"/>
+      </node>
+      <node id="3717">
+        <label>HgiBuffer</label>
+        <link refid="class_hgi_buffer"/>
+        <childnode refid="3718" relation="usage">
+          <edgelabel>_descriptor</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/hgi/buffer.h" line="99" column="1" bodyfile="pxr/imaging/hgi/buffer.h" bodystart="98" bodyend="149"/>
+    <listofallmembers>
+      <member refid="class_hgi_buffer_1a9503a55f0cf51236333fd92bd7b2e94f" prot="protected" virt="non-virtual"><scope>HgiBuffer</scope><name>_descriptor</name></member>
+      <member refid="class_hgi_buffer_1afb9f5da99a13e9adcab7f87cb9a6ad94" prot="public" virt="pure-virtual"><scope>HgiBuffer</scope><name>GetByteSizeOfResource</name></member>
+      <member refid="class_hgi_buffer_1a18a81f9f7059180f7f2660dab2ab5128" prot="public" virt="pure-virtual"><scope>HgiBuffer</scope><name>GetCPUStagingAddress</name></member>
+      <member refid="class_hgi_buffer_1a2a56ff95e6030dfda51b8e0d607923d0" prot="public" virt="non-virtual"><scope>HgiBuffer</scope><name>GetDescriptor</name></member>
+      <member refid="class_hgi_buffer_1a1c1b84de203362af87c23d73c8f8d395" prot="public" virt="pure-virtual"><scope>HgiBuffer</scope><name>GetRawResource</name></member>
+      <member refid="class_hgi_buffer_1ae28fc23ddf021e75e99b19b4dd3caa52" prot="protected" virt="non-virtual"><scope>HgiBuffer</scope><name>HgiBuffer</name></member>
+      <member refid="class_hgi_buffer_1aadeb8eed0d6c94572b7457515b865ded" prot="private" virt="non-virtual"><scope>HgiBuffer</scope><name>HgiBuffer</name></member>
+      <member refid="class_hgi_buffer_1af93184885d40b411537d99adff63cc29" prot="private" virt="non-virtual"><scope>HgiBuffer</scope><name>HgiBuffer</name></member>
+      <member refid="class_hgi_buffer_1a9d6beb2ddc2056ccf377ce5b95784f6a" prot="private" virt="non-virtual"><scope>HgiBuffer</scope><name>operator=</name></member>
+      <member refid="class_hgi_buffer_1a3c24fa32e0717efd33a255a27ed4d1c8" prot="public" virt="virtual"><scope>HgiBuffer</scope><name>~HgiBuffer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_st_texture_utils" kind="class" language="C++" prot="public">
+    <compoundname>HdStTextureUtils</compoundname>
+    <includes refid="imaging_2hd_st_2texture_utils_8h" local="no">textureUtils.h</includes>
+    <innerclass refid="class_hd_st_texture_utils_1_1_aligned_buffer" prot="public">HdStTextureUtils::AlignedBuffer</innerclass>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_hd_st_texture_utils_1a1469f8f4d26ab39ade8983e73f3edab6" prot="public" static="no">
+        <type>void(*)(const void *src, size_t numTexels, void *dst)</type>
+        <definition>using ConversionFunction =  void(*)(const void * src, size_t numTexels, void * dst)</definition>
+        <argsstring></argsstring>
+        <name>ConversionFunction</name>
+        <briefdescription>
+<para>Converts given number of texels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Conversion can be in-place if the ends of the source and destination buffers align. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/textureUtils.h" line="55" column="1" bodyfile="pxr/imaging/hdSt/textureUtils.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_hd_st_texture_utils_1a3dd1f463f8ee011be65443e328902c78" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HDST_API HgiFormat</type>
+        <definition>static HDST_API HgiFormat GetHgiFormat</definition>
+        <argsstring>(HioFormat hioFormat, bool premultiplyAlpha)</argsstring>
+        <name>GetHgiFormat</name>
+        <param>
+          <type>HioFormat</type>
+          <declname>hioFormat</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>premultiplyAlpha</declname>
+        </param>
+        <briefdescription>
+<para>Get the <ref refid="class_hgi" kindref="compound">Hgi</ref> format suitable for a given Hio format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Premultiply alpha indicates whether a conversion function multiplying RGB with alpha should be created. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/textureUtils.h" line="66" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_texture_utils_1a151a8b07b91c5be479b8219cc9cd8469" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HDST_API <ref refid="class_hd_st_texture_utils_1a1469f8f4d26ab39ade8983e73f3edab6" kindref="member">ConversionFunction</ref></type>
+        <definition>static HDST_API ConversionFunction GetHioToHgiConversion</definition>
+        <argsstring>(HioFormat hioFormat, bool premultiplyAlpha)</argsstring>
+        <name>GetHioToHgiConversion</name>
+        <param>
+          <type>HioFormat</type>
+          <declname>hioFormat</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>premultiplyAlpha</declname>
+        </param>
+        <briefdescription>
+<para>Returns the conversion function to return a HioFormat to the corresponding HgiFormat given by GetHgiFormat. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns nullptr if no conversion necessary. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/textureUtils.h" line="76" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_texture_utils_1aaa84a8ab5dcdcdbdb26936d8847a1b1a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HDST_API std::vector&lt; HioImageSharedPtr &gt;</type>
+        <definition>static HDST_API std::vector&lt;HioImageSharedPtr&gt; GetAllMipImages</definition>
+        <argsstring>(const std::string &amp;filePath, HioImage::SourceColorSpace sourceColorSpace)</argsstring>
+        <name>GetAllMipImages</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hio_image_1ac1059a5d68d55a93cf748cc3cc11ba48" kindref="member">HioImage::SourceColorSpace</ref></type>
+          <declname>sourceColorSpace</declname>
+        </param>
+        <briefdescription>
+<para>Get all mip levels from a file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/textureUtils.h" line="83" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_texture_utils_1aa12fbf45bdec83212014d202e4dde5a8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HDST_API <ref refid="class_gf_vec3i" kindref="compound">GfVec3i</ref></type>
+        <definition>static HDST_API GfVec3i ComputeDimensionsFromTargetMemory</definition>
+        <argsstring>(const std::vector&lt; HioImageSharedPtr &gt; &amp;mips, HgiFormat targetFormat, size_t tileCount, size_t targetMemory, size_t *mipIndex=nullptr)</argsstring>
+        <name>ComputeDimensionsFromTargetMemory</name>
+        <param>
+          <type>const std::vector&lt; HioImageSharedPtr &gt; &amp;</type>
+          <declname>mips</declname>
+        </param>
+        <param>
+          <type>HgiFormat</type>
+          <declname>targetFormat</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>tileCount</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>targetMemory</declname>
+        </param>
+        <param>
+          <type>size_t *</type>
+          <declname>mipIndex</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/textureUtils.h" line="95" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_texture_utils_1abffe1b5b9cc697acf034ea3339064ae1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HDST_API bool</type>
+        <definition>static HDST_API bool ReadAndConvertImage</definition>
+        <argsstring>(HioImageSharedPtr const &amp;image, bool flipped, bool premultiplyAlpha, const HgiMipInfo &amp;mipInfo, size_t layer, void *bufferStart)</argsstring>
+        <name>ReadAndConvertImage</name>
+        <param>
+          <type>HioImageSharedPtr const &amp;</type>
+          <declname>image</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>flipped</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>premultiplyAlpha</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_hgi_mip_info" kindref="compound">HgiMipInfo</ref> &amp;</type>
+          <declname>mipInfo</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>layer</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>bufferStart</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/textureUtils.h" line="112" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_texture_utils_1a87ebd50c270e2710a0be61c51634c489" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HDST_API AlignedBuffer&lt; uint8_t &gt;</type>
+        <definition>static HDST_API AlignedBuffer&lt;uint8_t&gt; HgiTextureReadback</definition>
+        <argsstring>(Hgi *const hgi, HgiTextureHandle const &amp;texture, size_t *bufferSize)</argsstring>
+        <name>HgiTextureReadback</name>
+        <param>
+          <type><ref refid="class_hgi" kindref="compound">Hgi</ref> *const</type>
+          <declname>hgi</declname>
+        </param>
+        <param>
+          <type>HgiTextureHandle const &amp;</type>
+          <declname>texture</declname>
+        </param>
+        <param>
+          <type>size_t *</type>
+          <declname>bufferSize</declname>
+        </param>
+        <briefdescription>
+<para>Returns an unsigned byte buffer with data read back from <computeroutput>texture</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/textureUtils.h" line="154" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_texture_utils_1a799937668b419461c96a85fc9aa2880e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>AlignedBuffer&lt; T &gt;</type>
+        <definition>HdStTextureUtils::AlignedBuffer&lt; T &gt; HgiTextureReadback</definition>
+        <argsstring>(Hgi *const hgi, HgiTextureHandle const &amp;texture, size_t *bufferSize)</argsstring>
+        <name>HgiTextureReadback</name>
+        <param>
+          <type><ref refid="class_hgi" kindref="compound">Hgi</ref> *const</type>
+          <declname>hgi</declname>
+        </param>
+        <param>
+          <type>HgiTextureHandle const &amp;</type>
+          <declname>texture</declname>
+        </param>
+        <param>
+          <type>size_t *</type>
+          <declname>bufferSize</declname>
+        </param>
+        <briefdescription>
+<para>Returns a buffer with data of type T read back from <computeroutput>texture</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/textureUtils.h" line="162" column="1" bodyfile="pxr/imaging/hdSt/textureUtils.h" bodystart="169" bodyend="178"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Helpers for loading textures. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="pxr/imaging/hdSt/textureUtils.h" line="49" column="1" bodyfile="pxr/imaging/hdSt/textureUtils.h" bodystart="48" bodyend="165"/>
+    <listofallmembers>
+      <member refid="class_hd_st_texture_utils_1aa12fbf45bdec83212014d202e4dde5a8" prot="public" virt="non-virtual"><scope>HdStTextureUtils</scope><name>ComputeDimensionsFromTargetMemory</name></member>
+      <member refid="class_hd_st_texture_utils_1a1469f8f4d26ab39ade8983e73f3edab6" prot="public" virt="non-virtual"><scope>HdStTextureUtils</scope><name>ConversionFunction</name></member>
+      <member refid="class_hd_st_texture_utils_1aaa84a8ab5dcdcdbdb26936d8847a1b1a" prot="public" virt="non-virtual"><scope>HdStTextureUtils</scope><name>GetAllMipImages</name></member>
+      <member refid="class_hd_st_texture_utils_1a3dd1f463f8ee011be65443e328902c78" prot="public" virt="non-virtual"><scope>HdStTextureUtils</scope><name>GetHgiFormat</name></member>
+      <member refid="class_hd_st_texture_utils_1a151a8b07b91c5be479b8219cc9cd8469" prot="public" virt="non-virtual"><scope>HdStTextureUtils</scope><name>GetHioToHgiConversion</name></member>
+      <member refid="class_hd_st_texture_utils_1a87ebd50c270e2710a0be61c51634c489" prot="public" virt="non-virtual"><scope>HdStTextureUtils</scope><name>HgiTextureReadback</name></member>
+      <member refid="class_hd_st_texture_utils_1a799937668b419461c96a85fc9aa2880e" prot="public" virt="non-virtual"><scope>HdStTextureUtils</scope><name>HgiTextureReadback</name></member>
+      <member refid="class_hd_st_texture_utils_1abffe1b5b9cc697acf034ea3339064ae1" prot="public" virt="non-virtual"><scope>HdStTextureUtils</scope><name>ReadAndConvertImage</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

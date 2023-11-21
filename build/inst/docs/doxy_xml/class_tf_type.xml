@@ -1,0 +1,1604 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_tf_type" kind="class" language="C++" prot="public">
+    <compoundname>TfType</compoundname>
+    <includes refid="type_8h" local="no">type.h</includes>
+    <innerclass refid="struct_tf_type_1_1_bases" prot="public">TfType::Bases</innerclass>
+    <innerclass refid="class_tf_type_1_1_factory_base" prot="public">TfType::FactoryBase</innerclass>
+    <innerclass refid="struct_tf_type_1_1_py_polymorphic_base" prot="public">TfType::PyPolymorphicBase</innerclass>
+      <sectiondef kind="user-defined">
+      <header>Finding types</header>
+      <memberdef kind="function" id="class_tf_type_1ac2acc8a814d948d5444aba8852db5bcf" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>TF_API TfType const&amp; FindDerivedByName</definition>
+        <argsstring>(const std::string &amp;name) const</argsstring>
+        <name>FindDerivedByName</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Retrieve the <computeroutput><ref refid="class_tf_type" kindref="compound">TfType</ref></computeroutput> that derives from this type and has the given alias or typename. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_tf_type_1a4a5dc94f0775e8d845514466e3620c97" kindref="member">AddAlias</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="224" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1abc1c650c0fd030a4822d3548654c594e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>static TfType const&amp; Find</definition>
+        <argsstring>()</argsstring>
+        <name>Find</name>
+        <briefdescription>
+<para>Retrieve the <computeroutput><ref refid="class_tf_type" kindref="compound">TfType</ref></computeroutput> corresponding to type <computeroutput>T</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The type <computeroutput>T</computeroutput> must have been declared or defined in the type system or the <computeroutput><ref refid="class_tf_type" kindref="compound">TfType</ref></computeroutput> corresponding to an unknown type is returned.</para>
+<para><simplesect kind="see"><para><ref refid="class_tf_type_1abdcd9e3cee35fcfc8dcdba7429af0b00" kindref="member">IsUnknown()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="153" column="1" bodyfile="pxr/base/tf/type.h" bodystart="153" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1aa648bc184361cdb6da077bb364e55217" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>static TfType const&amp; Find</definition>
+        <argsstring>(const T &amp;obj)</argsstring>
+        <name>Find</name>
+        <param>
+          <type>const T &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Retrieve the <computeroutput><ref refid="class_tf_type" kindref="compound">TfType</ref></computeroutput> corresponding to <computeroutput>obj</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The <computeroutput><ref refid="class_tf_type" kindref="compound">TfType</ref></computeroutput> corresponding to the actual object represented by <computeroutput>obj</computeroutput> is returned; this may not be the object returned by <computeroutput><ref refid="class_tf_type_1abc1c650c0fd030a4822d3548654c594e" kindref="member">TfType::Find&lt;T&gt;()</ref></computeroutput> if <computeroutput>T</computeroutput> is a polymorphic type.</para>
+<para>This works for Python subclasses of the C++ type <computeroutput>T</computeroutput> as well, as long as <computeroutput>T</computeroutput> has been wrapped using TfPyPolymorphic.</para>
+<para>Of course, the object&apos;s type must have been declared or defined in the type system or the <computeroutput><ref refid="class_tf_type" kindref="compound">TfType</ref></computeroutput> corresponding to an unknown type is returned.</para>
+<para><simplesect kind="see"><para><ref refid="class_tf_type_1abdcd9e3cee35fcfc8dcdba7429af0b00" kindref="member">IsUnknown()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="173" column="1" bodyfile="pxr/base/tf/type.h" bodystart="173" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a359bb2e5b2a54e9f4dd6889bf37a0484" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>static TfType const&amp; Find</definition>
+        <argsstring>(const std::type_info &amp;t)</argsstring>
+        <name>Find</name>
+        <param>
+          <type>const std::type_info &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>Retrieve the <computeroutput><ref refid="class_tf_type" kindref="compound">TfType</ref></computeroutput> corresponding to an obj with the given <computeroutput>type_info</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="186" column="1" bodyfile="pxr/base/tf/type.h" bodystart="186" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1ad710c9bbc6c158c6eda96a91b580b368" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>static TfType const&amp; FindByTypeid</definition>
+        <argsstring>(const std::type_info &amp;t)</argsstring>
+        <name>FindByTypeid</name>
+        <param>
+          <type>const std::type_info &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>Retrieve the <computeroutput><ref refid="class_tf_type" kindref="compound">TfType</ref></computeroutput> corresponding to an obj with the given <computeroutput>type_info</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="193" column="1" bodyfile="pxr/base/tf/type.h" bodystart="193" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a73035766205949ad12cc23ebf622e07e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>static TF_API TfType const&amp; FindByName</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>FindByName</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Retrieve the <computeroutput><ref refid="class_tf_type" kindref="compound">TfType</ref></computeroutput> corresponding to the given <computeroutput>name</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Every type defined in the <ref refid="class_tf_type" kindref="compound">TfType</ref> system has a unique, implementation independent name. In addition, aliases can be added to identify a type underneath a specific base type; see <ref refid="class_tf_type_1a4a5dc94f0775e8d845514466e3620c97" kindref="member">TfType::AddAlias()</ref>. The given name will first be tried as an alias under the root type, and subsequently as a typename.</para>
+<para>This method is equivalent to: <programlisting><codeline><highlight class="normal">TfType::GetRoot().FindDerivedByName(name)</highlight></codeline>
+</programlisting></para>
+<para>For any object <computeroutput>obj</computeroutput>, <programlisting><codeline><highlight class="normal">Find(obj)<sp/>==<sp/>FindByName(<sp/>Find(obj).GetTypeName()<sp/>)</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="216" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a20546b560a5304be95a16db23d04178c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename BASE</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>static TfType const&amp; FindDerivedByName</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>FindDerivedByName</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Retrieve the <computeroutput><ref refid="class_tf_type" kindref="compound">TfType</ref></computeroutput> that derives from BASE and has the given alias or typename. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is a convenience method, and is equivalent to: <programlisting><codeline><highlight class="normal">TfType::Find&lt;BASE&gt;().FindDerivedByName(name)</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="235" column="1" bodyfile="pxr/base/tf/type.h" bodystart="235" bodyend="238"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a7600b470c5b3f487a9fe6ec7c4d300de" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>static TF_API TfType const&amp; FindByPythonClass</definition>
+        <argsstring>(const TfPyObjWrapper &amp;classObj)</argsstring>
+        <name>FindByPythonClass</name>
+        <param>
+          <type>const <ref refid="class_tf_py_obj_wrapper" kindref="compound">TfPyObjWrapper</ref> &amp;</type>
+          <declname>classObj</declname>
+        </param>
+        <briefdescription>
+<para>Retrieve the <computeroutput><ref refid="class_tf_type" kindref="compound">TfType</ref></computeroutput> corresponding to an obj with the given Python class <computeroutput>classObj</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="245" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Type queries</header>
+      <memberdef kind="typedef" id="class_tf_type_1a85d263270c1b947fb5f65a61c79a8c91" prot="public" static="no">
+        <type>TfType::_TypeInfo *TfType::*</type>
+        <definition>typedef TfType::_TypeInfo*TfType::* UnspecifiedBoolType</definition>
+        <argsstring></argsstring>
+        <name>UnspecifiedBoolType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="390" column="1" bodyfile="pxr/base/tf/type.h" bodystart="390" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1af47e7403c714d094efe32a4b788b0194" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API const std::string &amp;</type>
+        <definition>TF_API const std::string&amp; GetTypeName</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTypeName</name>
+        <briefdescription>
+<para>Return the machine-independent name for this type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This name is specified when the <ref refid="class_tf_type" kindref="compound">TfType</ref> is declared. <simplesect kind="see"><para><ref refid="class_tf_type_1a032cf1f970470d87c2ca320a6c9be24f" kindref="member">Declare()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="268" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1aa74e202a4c93274c08acba663999d6b2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API const std::type_info &amp;</type>
+        <definition>TF_API const std::type_info&amp; GetTypeid</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTypeid</name>
+        <briefdescription>
+<para>Return a C++ RTTI type_info for this type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If this type is unknown or has not yet had a C++ type defined, <computeroutput>typeid(void)</computeroutput> will be returned.</para>
+<para><simplesect kind="see"><para><ref refid="class_tf_type_1a2812a06d6d2dbafc53b4f297d2aed030" kindref="member">Define()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="278" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a4be6067b46f1e5fb8feb7a409dbc5fb5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::vector&lt; std::string &gt;</type>
+        <definition>TF_API std::vector&lt;std::string&gt; GetAliases</definition>
+        <argsstring>(TfType derivedType) const</argsstring>
+        <name>GetAliases</name>
+        <param>
+          <type><ref refid="class_tf_type" kindref="compound">TfType</ref></type>
+          <declname>derivedType</declname>
+        </param>
+        <briefdescription>
+<para>Returns a vector of the aliases registered for the derivedType under this, the base type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_tf_type_1a4a5dc94f0775e8d845514466e3620c97" kindref="member">AddAlias()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="295" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1abe8e2e20954e222625dd0e282e6dd572" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_py_obj_wrapper" kindref="compound">TfPyObjWrapper</ref></type>
+        <definition>TF_API TfPyObjWrapper GetPythonClass</definition>
+        <argsstring>() const</argsstring>
+        <name>GetPythonClass</name>
+        <briefdescription>
+<para>Return the Python class object for this type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If this type is unknown or has not yet had a Python class defined, this will return <computeroutput>None</computeroutput>, as an empty <computeroutput><ref refid="class_tf_py_obj_wrapper" kindref="compound">TfPyObjWrapper</ref></computeroutput> </para>
+<para><simplesect kind="see"><para><ref refid="class_tf_type_1a35f5c369ebaaa8b07ec2e03cf9dff0ab" kindref="member">DefinePythonClass()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="307" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a7935af24ffec851e74f0b29b8b70eb17" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::vector&lt; <ref refid="class_tf_type" kindref="compound">TfType</ref> &gt;</type>
+        <definition>TF_API std::vector&lt;TfType&gt; GetBaseTypes</definition>
+        <argsstring>() const</argsstring>
+        <name>GetBaseTypes</name>
+        <briefdescription>
+<para>Return a vector of types from which this type was derived. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="313" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1adfb7f3726a7b628a4d8b777ace37dadb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API size_t</type>
+        <definition>TF_API size_t GetNBaseTypes</definition>
+        <argsstring>(TfType *out, size_t maxBases) const</argsstring>
+        <name>GetNBaseTypes</name>
+        <param>
+          <type><ref refid="class_tf_type" kindref="compound">TfType</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>maxBases</declname>
+        </param>
+        <briefdescription>
+<para>Copy the first <computeroutput>maxBases</computeroutput> base types of <computeroutput>this</computeroutput> type to <computeroutput>out</computeroutput>, or all the base types if this type has <computeroutput>maxBases</computeroutput> or fewer base types. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Return <computeroutput>this</computeroutput> type&apos;s number of base types.</para>
+<para>Note that it is supported to change a <ref refid="class_tf_type" kindref="compound">TfType</ref> to its first base type by calling this function. For example: <programlisting><codeline><highlight class="normal">TfType<sp/>t<sp/>=<sp/>...;</highlight></codeline>
+<codeline><highlight class="normal">t.GetNBaseTypes(&amp;t,<sp/>1);</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="326" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1aa37b02659aa00a6f6f098acd1bff3a41" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::vector&lt; <ref refid="class_tf_type" kindref="compound">TfType</ref> &gt;</type>
+        <definition>TF_API std::vector&lt;TfType&gt; GetDirectlyDerivedTypes</definition>
+        <argsstring>() const</argsstring>
+        <name>GetDirectlyDerivedTypes</name>
+        <briefdescription>
+<para>Return a vector of types derived directly from this type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="331" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a7d87322e1c71bb36860c9ce532e6ee9f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>TF_API TfType const&amp; GetCanonicalType</definition>
+        <argsstring>() const</argsstring>
+        <name>GetCanonicalType</name>
+        <briefdescription>
+<para>Return the canonical type for this type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="335" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1aa596041c67273d15501bef32540094fd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void GetAllDerivedTypes</definition>
+        <argsstring>(std::set&lt; TfType &gt; *result) const</argsstring>
+        <name>GetAllDerivedTypes</name>
+        <param>
+          <type>std::set&lt; <ref refid="class_tf_type" kindref="compound">TfType</ref> &gt; *</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+<para>Return the set of all types derived (directly or indirectly) from this type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="341" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1ab2d52ed62dd2dfedcdddb3fbae99f50f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void GetAllAncestorTypes</definition>
+        <argsstring>(std::vector&lt; TfType &gt; *result) const</argsstring>
+        <name>GetAllAncestorTypes</name>
+        <param>
+          <type>std::vector&lt; <ref refid="class_tf_type" kindref="compound">TfType</ref> &gt; *</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+<para>Build a vector of all ancestor types inherited by this type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The starting type is itself included, as the first element of the results vector.</para>
+<para>Types are given in &quot;C3&quot; resolution order, as used for new-style classes starting in Python 2.3. This algorithm is more complicated than a simple depth-first traversal of base classes, in order to prevent some subtle errors with multiple-inheritance. See the references below for more background.</para>
+<para><simplesect kind="note"><para>This can be expensive; consider caching the results. <ref refid="class_tf_type" kindref="compound">TfType</ref> does not cache this itself since it is not needed internally.</para>
+</simplesect>
+<simplesect kind="see"><para>Guido van Rossum. &quot;Unifying types and classes in Python 2.2: Method resolution order.&quot; <ulink url="http://www.python.org/download/releases/2.2.2/descrintro/#mro">http://www.python.org/download/releases/2.2.2/descrintro/#mro</ulink></para>
+</simplesect>
+<simplesect kind="see"><para>Barrett, Cassels, Haahr, Moon, Playford, Withington. &quot;A Monotonic Superclass Linearization for Dylan.&quot; OOPSLA 96. <ulink url="http://www.webcom.com/haahr/dylan/linearization-oopsla96.html">http://www.webcom.com/haahr/dylan/linearization-oopsla96.html</ulink> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="365" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a4af87da6dea85ee71026bd61edff67f3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API bool</type>
+        <definition>TF_API bool IsA</definition>
+        <argsstring>(TfType queryType) const</argsstring>
+        <name>IsA</name>
+        <param>
+          <type><ref refid="class_tf_type" kindref="compound">TfType</ref></type>
+          <declname>queryType</declname>
+        </param>
+        <briefdescription>
+<para>Return true if this type is the same as or derived from <computeroutput>queryType</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>queryType</computeroutput> is unknown, this always returns <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="371" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a6cc1b146723c266ae69fb873bcb2df67" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool IsA</definition>
+        <argsstring>() const</argsstring>
+        <name>IsA</name>
+        <briefdescription>
+<para>Return true if this type is the same as or derived from T. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is equivalent to: <programlisting><codeline><highlight class="normal">IsA(Find&lt;T&gt;())</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="380" column="1" bodyfile="pxr/base/tf/type.h" bodystart="380" bodyend="380"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1abdcd9e3cee35fcfc8dcdba7429af0b00" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool IsUnknown</definition>
+        <argsstring>() const</argsstring>
+        <name>IsUnknown</name>
+        <briefdescription>
+<para>Return true if this is the unknown type, representing a type unknown to the <ref refid="class_tf_type" kindref="compound">TfType</ref> system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The unknown type does not derive from the root type, or any other type. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="388" column="1" bodyfile="pxr/base/tf/type.h" bodystart="388" bodyend="388"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a10c79bb09aeb8efbd9b01ee1fbde0061" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>operator UnspecifiedBoolType</definition>
+        <argsstring>() const</argsstring>
+        <name>operator UnspecifiedBoolType</name>
+        <briefdescription>
+<para>Convert to bool <ndash/> return true if this type is not unknown, false otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="394" column="1" bodyfile="pxr/base/tf/type.h" bodystart="394" bodyend="396"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a45a49470b17aeb71f23c5a2ca7bff5fa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator !</definition>
+        <argsstring>() const</argsstring>
+        <name>operator !</name>
+        <briefdescription>
+<para>Boolean not operator <ndash/> return true if this type is unknown, false otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="400" column="1" bodyfile="pxr/base/tf/type.h" bodystart="400" bodyend="400"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1adf7b57b6ef7cbf118d492df6b7e2f6b7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool IsRoot</definition>
+        <argsstring>() const</argsstring>
+        <name>IsRoot</name>
+        <briefdescription>
+<para>Return true if this is the root type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="404" column="1" bodyfile="pxr/base/tf/type.h" bodystart="404" bodyend="404"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a54072cd078d021310c47f1ce3d9c5d1c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API bool</type>
+        <definition>TF_API bool IsEnumType</definition>
+        <argsstring>() const</argsstring>
+        <name>IsEnumType</name>
+        <briefdescription>
+<para>Return true if this is an enum type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="409" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1afbbdc4606290c71b789bc3f0ff0db613" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API bool</type>
+        <definition>TF_API bool IsPlainOldDataType</definition>
+        <argsstring>() const</argsstring>
+        <name>IsPlainOldDataType</name>
+        <briefdescription>
+<para>Return true if this is a plain old data type, as defined by C++. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="414" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a727195e7e724066712f29fc213c92b2d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API size_t</type>
+        <definition>TF_API size_t GetSizeof</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSizeof</name>
+        <briefdescription>
+<para>Return the size required to hold an instance of this type on the stack (does not include any heap allocated memory the instance uses). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is what the C++ sizeof operator returns for the type, so this value is not very useful for Python types (it will always be sizeof(boost::python::object)). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="424" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1afad6fbbe1ff47153d19b9239b50908a4" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>static TF_API TfType const&amp; GetRoot</definition>
+        <argsstring>()</argsstring>
+        <name>GetRoot</name>
+        <briefdescription>
+<para>Return the root type of the type hierarchy. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>All known types derive (directly or indirectly) from the root. If a type is specified with no bases, it is implicitly considered to derive from the root type. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="261" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1ae47e0ba4a284fabdbbd03a6ee33a61bd" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>static TF_API std::string GetCanonicalTypeName</definition>
+        <argsstring>(const std::type_info &amp;)</argsstring>
+        <name>GetCanonicalTypeName</name>
+        <param>
+          <type>const std::type_info &amp;</type>
+        </param>
+        <briefdescription>
+<para>Return the canonical typeName used for a given std::type_info. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Exactly how the canonical name is generated is left undefined, but in practice it is likely to be the demangled RTTI name of the type_info, stripped of namespaces. The real answer is implemented by this method. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="288" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Registering new types</header>
+      <memberdef kind="function" id="class_tf_type_1a35f5c369ebaaa8b07ec2e03cf9dff0ab" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void DefinePythonClass</definition>
+        <argsstring>(const TfPyObjWrapper &amp;classObj) const</argsstring>
+        <name>DefinePythonClass</name>
+        <param>
+          <type>const <ref refid="class_tf_py_obj_wrapper" kindref="compound">TfPyObjWrapper</ref> &amp;</type>
+          <declname>classObj</declname>
+        </param>
+        <briefdescription>
+<para>Define the Python class object corresponding to this <ref refid="class_tf_type" kindref="compound">TfType</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="struct_tf_type_python_class" kindref="compound">TfTypePythonClass</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="496" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a28744a3b459987b9ddc07131fcef7a43" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void AddAlias</definition>
+        <argsstring>(TfType base, const std::string &amp;name) const</argsstring>
+        <name>AddAlias</name>
+        <param>
+          <type><ref refid="class_tf_type" kindref="compound">TfType</ref></type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Add an alias name for this type under the given base type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Aliases are similar to typedefs in C++: they provide an alternate name for a type. The alias is defined with respect to the given <computeroutput>base</computeroutput> type. Aliases must be unique with respect to both other aliases beneath that base type and names of derived types of that base. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="520" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1af67ef635ebcb6748375db0d87e4a37a3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+        <definition>const TfType&amp; Alias</definition>
+        <argsstring>(TfType base, const std::string &amp;name) const</argsstring>
+        <name>Alias</name>
+        <param>
+          <type><ref refid="class_tf_type" kindref="compound">TfType</ref></type>
+          <declname>base</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Convenience method to add an alias and return *this. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_tf_type_1a4a5dc94f0775e8d845514466e3620c97" kindref="member">AddAlias()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="524" column="1" bodyfile="pxr/base/tf/type.h" bodystart="524" bodyend="527"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a7b9baa83cae0c2ba6ef594a2c8d5f1ad" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>static TF_API TfType const&amp; Declare</definition>
+        <argsstring>(const std::string &amp;typeName)</argsstring>
+        <name>Declare</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>typeName</declname>
+        </param>
+        <briefdescription>
+<para>Declare a <ref refid="class_tf_type" kindref="compound">TfType</ref> with the given <computeroutput>typeName</computeroutput>, but no base type information. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This just establishes the minimal stub for the type to exist, prior to it being fleshed out with more declarations (specifying base types) or a definition. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="439" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a6b2111a01b759c946eff600211ef5765" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>static TF_API TfType const&amp; Declare</definition>
+        <argsstring>(const std::string &amp;typeName, const std::vector&lt; TfType &gt; &amp;bases, DefinitionCallback definitionCallback=nullptr)</argsstring>
+        <name>Declare</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>typeName</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_tf_type" kindref="compound">TfType</ref> &gt; &amp;</type>
+          <declname>bases</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_type_1aad2f72e93cad36d6653d4ff08b1fc44a" kindref="member">DefinitionCallback</ref></type>
+          <declname>definitionCallback</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Declare a <ref refid="class_tf_type" kindref="compound">TfType</ref> with the given <computeroutput>typeName</computeroutput> and <computeroutput>bases</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the bases vector is empty, the type will be marked as deriving from the root <ref refid="class_tf_type" kindref="compound">TfType</ref> (see TfType::GetRootType()). The <computeroutput>definitionCallback</computeroutput>, if given, will be invoked later to define the type when needed.</para>
+<para>It is ok to redeclare a type that has already been declared. The given bases will supplement any existing bases. An example use of this is the Plugin system, where only a single base may be known in the plugin metadata, but when the code is loaded later, a full set of bases is specified.</para>
+<para>It is an error to redeclare a type&apos;s definitionCallback. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="457" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a032cf1f970470d87c2ca320a6c9be24f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename BaseTypes</type>
+            <defval><ref refid="struct_tf_type_1_1_bases" kindref="compound">TfType::Bases</ref>&lt;&gt;</defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>TfType const  &amp; Declare</definition>
+        <argsstring>()</argsstring>
+        <name>Declare</name>
+        <briefdescription>
+<para>Declares a <ref refid="class_tf_type" kindref="compound">TfType</ref> with the given C++ type T and C++ base types <ref refid="struct_tf_type_1_1_bases" kindref="compound">Bases</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Each of the base types will be declared (but not defined) as TfTypes if they have not already been. See the other <ref refid="class_tf_type_1a032cf1f970470d87c2ca320a6c9be24f" kindref="member">Declare()</ref> methods for more details. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="467" column="1" bodyfile="pxr/base/tf/type_Impl.h" bodystart="65" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a2812a06d6d2dbafc53b4f297d2aed030" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename B</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>TfType const  &amp; Define</definition>
+        <argsstring>()</argsstring>
+        <name>Define</name>
+        <briefdescription>
+<para>Define a <ref refid="class_tf_type" kindref="compound">TfType</ref> with the given C++ type T and C++ base types B. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Each of the base types will be declared (but not defined) as TfTypes if they have not already been.</para>
+<para>The typeName of the created <ref refid="class_tf_type" kindref="compound">TfType</ref> will be the canonical demangled RTTI type name, as defined by <ref refid="class_tf_type_1ae47e0ba4a284fabdbbd03a6ee33a61bd" kindref="member">GetCanonicalTypeName()</ref>.</para>
+<para>It is an error to attempt to define a type that has already been defined. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="480" column="1" bodyfile="pxr/base/tf/type_Impl.h" bodystart="77" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a3cfdbc4b1dbd978b4f20fa76293a582b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>TfType const  &amp; Define</definition>
+        <argsstring>()</argsstring>
+        <name>Define</name>
+        <briefdescription>
+<para>Define a <ref refid="class_tf_type" kindref="compound">TfType</ref> with the given C++ type T and no bases. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>See the other <ref refid="class_tf_type_1a2812a06d6d2dbafc53b4f297d2aed030" kindref="member">Define()</ref> template for more details.</para>
+<para><simplesect kind="note"><para>C++ does not allow default template arguments for function templates, so we provide this separate definition for the case of no bases. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="490" column="1" bodyfile="pxr/base/tf/type_Impl.h" bodystart="102" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a4a5dc94f0775e8d845514466e3620c97" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Base</type>
+          </param>
+          <param>
+            <type>typename Derived</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void AddAlias</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>AddAlias</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Add an alias for DERIVED beneath BASE. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is a convenience method, that declares both DERIVED and BASE as TfTypes before adding the alias. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="505" column="1" bodyfile="pxr/base/tf/type.h" bodystart="505" bodyend="509"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Pointer casts</header>
+      <memberdef kind="function" id="class_tf_type_1aab94403439cd7a644b2ed1cf1961e697" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void *</type>
+        <definition>TF_API void* CastToAncestor</definition>
+        <argsstring>(TfType ancestor, void *addr) const</argsstring>
+        <name>CastToAncestor</name>
+        <param>
+          <type><ref refid="class_tf_type" kindref="compound">TfType</ref></type>
+          <declname>ancestor</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>addr</declname>
+        </param>
+        <briefdescription>
+<para>Cast <computeroutput>addr</computeroutput> to the address corresponding to the type <computeroutput>ancestor</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>(This is a dangerous function; there&apos;s probably a much better way to do whatever it is you&apos;re trying to do.)</para>
+<para>With multiple inheritance, you can&apos;t do a reinterpret_cast back to an ancestor type; this function figures out how to cast addr to the address corresponding to the type ancestor if in fact ancestor is really an ancestor of the type corresponding to <computeroutput>*this</computeroutput>.</para>
+<para>In order for this function to work correctly, <computeroutput>addr</computeroutput> must have been a pointer of type corresponding to <computeroutput>*this</computeroutput>, which was cast to void; and of course the type of <computeroutput>ancestor</computeroutput> must be an ancestor of the type of <computeroutput>*this</computeroutput>.</para>
+<para><simplesect kind="warning"><para>You are warned: this is deadly dangerous stuff, and you shouldn&apos;t be doing it! </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="553" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1aa3a4d747261cc4260c65482c8b2d6f15" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const void *</type>
+        <definition>const void* CastToAncestor</definition>
+        <argsstring>(TfType ancestor, const void *addr) const</argsstring>
+        <name>CastToAncestor</name>
+        <param>
+          <type><ref refid="class_tf_type" kindref="compound">TfType</ref></type>
+          <declname>ancestor</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>addr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="555" column="1" bodyfile="pxr/base/tf/type.h" bodystart="555" bodyend="558"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a6caba8ce25c352c43bb23e062a5b9467" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void *</type>
+        <definition>TF_API void* CastFromAncestor</definition>
+        <argsstring>(TfType ancestor, void *addr) const</argsstring>
+        <name>CastFromAncestor</name>
+        <param>
+          <type><ref refid="class_tf_type" kindref="compound">TfType</ref></type>
+          <declname>ancestor</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>addr</declname>
+        </param>
+        <briefdescription>
+<para>Cast <computeroutput>addr</computeroutput>, which pointed to the ancestor type <computeroutput>ancestor</computeroutput>, to the type of <computeroutput>*this</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is the opposite of <computeroutput><ref refid="class_tf_type_1aab94403439cd7a644b2ed1cf1961e697" kindref="member">CastToAncestor()</ref></computeroutput>; the assumption is that <computeroutput>addr</computeroutput> was a pointer to the type corresponding to <computeroutput>ancestor</computeroutput>, and was then reinterpret-cast to <computeroutput>void*</computeroutput>, but now you wish to turn cast the pointer to the type corresponding to <computeroutput>*this</computeroutput>. While the fact that <computeroutput>addr</computeroutput> was a pointer of type <computeroutput>ancestor</computeroutput> is taken on faith, a runtime check is performed to verify that the underlying object pointed to by <computeroutput>addr</computeroutput> is of type <computeroutput>*this</computeroutput> (or derived from <computeroutput>*this</computeroutput>).</para>
+<para><simplesect kind="warning"><para>Again, this is dangerous territory, and there&apos;s probably something much better than using this function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="575" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a772da3665f08bd3247fac16779c8cdc6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const void *</type>
+        <definition>const void* CastFromAncestor</definition>
+        <argsstring>(TfType ancestor, const void *addr) const</argsstring>
+        <name>CastFromAncestor</name>
+        <param>
+          <type><ref refid="class_tf_type" kindref="compound">TfType</ref></type>
+          <declname>ancestor</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>addr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="577" column="1" bodyfile="pxr/base/tf/type.h" bodystart="577" bodyend="580"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Instantiation / Manufacturing</header>
+      <memberdef kind="function" id="class_tf_type_1a6d120688765f2587c837f76b16642ad3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void SetFactory</definition>
+        <argsstring>(std::unique_ptr&lt; FactoryBase &gt; factory) const</argsstring>
+        <name>SetFactory</name>
+        <param>
+          <type>std::unique_ptr&lt; <ref refid="class_tf_type_1_1_factory_base" kindref="compound">FactoryBase</ref> &gt;</type>
+          <declname>factory</declname>
+        </param>
+        <briefdescription>
+<para>Sets the factory object for this type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A type&apos;s factory typically has methods to instantiate the type given various arguments and must inherit from <computeroutput><ref refid="class_tf_type_1_1_factory_base" kindref="compound">FactoryBase</ref></computeroutput>. The factory cannot be changed once set. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="591" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1ae53c7cdd4e9444851870fdccd9bbc32f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void SetFactory</definition>
+        <argsstring>(std::unique_ptr&lt; T &gt; &amp;factory) const</argsstring>
+        <name>SetFactory</name>
+        <param>
+          <type>std::unique_ptr&lt; T &gt; &amp;</type>
+          <declname>factory</declname>
+        </param>
+        <briefdescription>
+<para>Sets the factory object for this type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A type&apos;s factory typically has methods to instantiate the type given various arguments and must inherit from <computeroutput><ref refid="class_tf_type_1_1_factory_base" kindref="compound">FactoryBase</ref></computeroutput>. The factory cannot be changed once set. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="597" column="1" bodyfile="pxr/base/tf/type.h" bodystart="597" bodyend="599"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1aa6977e081e73fc9160f2ad76d5cbd6ef" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void SetFactory</definition>
+        <argsstring>() const</argsstring>
+        <name>SetFactory</name>
+        <briefdescription>
+<para>Sets the factory object for this type to be a <computeroutput>T</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The factory cannot be changed once set. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="604" column="1" bodyfile="pxr/base/tf/type.h" bodystart="604" bodyend="604"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1ae458d57fc5e7715cf7c24fb20ba77674" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+        <definition>const TfType&amp; Factory</definition>
+        <argsstring>(std::unique_ptr&lt; FactoryBase &gt; factory) const</argsstring>
+        <name>Factory</name>
+        <param>
+          <type>std::unique_ptr&lt; <ref refid="class_tf_type_1_1_factory_base" kindref="compound">FactoryBase</ref> &gt;</type>
+          <declname>factory</declname>
+        </param>
+        <briefdescription>
+<para>Sets the factory object for this type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A type&apos;s factory typically has methods to instantiate the type given various arguments and must inherit from <computeroutput><ref refid="class_tf_type_1_1_factory_base" kindref="compound">FactoryBase</ref></computeroutput>. The factory cannot be changed once set. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="609" column="1" bodyfile="pxr/base/tf/type.h" bodystart="609" bodyend="612"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a498eaf7e8830aabd7bf0dcdffa3c3f70" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+        <definition>const TfType&amp; Factory</definition>
+        <argsstring>(std::unique_ptr&lt; T &gt; &amp;factory) const</argsstring>
+        <name>Factory</name>
+        <param>
+          <type>std::unique_ptr&lt; T &gt; &amp;</type>
+          <declname>factory</declname>
+        </param>
+        <briefdescription>
+<para>Sets the factory object for this type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A type&apos;s factory typically has methods to instantiate the type given various arguments and must inherit from <computeroutput><ref refid="class_tf_type_1_1_factory_base" kindref="compound">FactoryBase</ref></computeroutput>. The factory cannot be changed once set. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="618" column="1" bodyfile="pxr/base/tf/type.h" bodystart="618" bodyend="622"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a1a573d676ff6fcad58e369e66df0cbcb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+        <definition>const TfType&amp; Factory</definition>
+        <argsstring>() const</argsstring>
+        <name>Factory</name>
+        <briefdescription>
+<para>Sets the factory object for this type to be a <computeroutput>T</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The factory cannot be changed once set. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="627" column="1" bodyfile="pxr/base/tf/type.h" bodystart="627" bodyend="630"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a11f5ea108b10ee71f163a847bc494d33" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>T *</type>
+        <definition>T* GetFactory</definition>
+        <argsstring>() const</argsstring>
+        <name>GetFactory</name>
+        <briefdescription>
+<para>Returns the factory object for this type as a <computeroutput>T*</computeroutput>, or <computeroutput>NULL</computeroutput> if there is no factory or the factory is not or is not derived from <computeroutput>T</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Clients can check if a factory is set using <computeroutput><ref refid="class_tf_type_1a11f5ea108b10ee71f163a847bc494d33" kindref="member">GetFactory&lt;TfType::FactoryBase&gt;()</ref></computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="637" column="1" bodyfile="pxr/base/tf/type.h" bodystart="637" bodyend="637"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="class_tf_type_1a3de4639f976acbf3cf416d5997939bff" prot="public" static="no" strong="no">
+        <type></type>
+        <name>LegacyFlags</name>
+        <enumvalue id="class_tf_type_1a3de4639f976acbf3cf416d5997939bffa7b62cfe03ccf259e4f0a1be2bf90491f" prot="public">
+          <name>ABSTRACT</name>
+          <initializer>=       0x01</initializer>
+          <briefdescription>
+<para>Abstract (unmanufacturable and unclonable) </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_tf_type_1a3de4639f976acbf3cf416d5997939bffa4579924b160e725f1bcb8945e133bd57" prot="public">
+          <name>CONCRETE</name>
+          <initializer>=       0x02</initializer>
+          <briefdescription>
+<para>Not abstract. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_tf_type_1a3de4639f976acbf3cf416d5997939bffa76598f1dc08ed2d9f1901b24f0bfeb28" prot="public">
+          <name>MANUFACTURABLE</name>
+          <initializer>= 0x08</initializer>
+          <briefdescription>
+<para>Manufacturable type (implies concrete) </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="80" column="1" bodyfile="pxr/base/tf/type.h" bodystart="80" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_tf_type_1aad2f72e93cad36d6653d4ff08b1fc44a" prot="public" static="no">
+        <type>void(*)(<ref refid="class_tf_type" kindref="compound">TfType</ref>)</type>
+        <definition>using DefinitionCallback =  void (*)(TfType)</definition>
+        <argsstring></argsstring>
+        <name>DefinitionCallback</name>
+        <briefdescription>
+<para>Callback invoked when a declared type needs to be defined. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="70" column="1" bodyfile="pxr/base/tf/type.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="class_tf_type_1a9f04075b78635b58c1d61cf7d0e447e0" prot="private" static="no">
+        <type>void *(*</type>
+        <definition>typedef void*(* _CastFunction) (void *, bool derivedToBase)</definition>
+        <argsstring>)(void *, bool derivedToBase)</argsstring>
+        <name>_CastFunction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="683" column="1" bodyfile="pxr/base/tf/type.h" bodystart="683" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_tf_type_1a6b78fbe9357c548ed6412401f11a7a5f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend struct</type>
+        <definition>friend struct _TypeInfo</definition>
+        <argsstring></argsstring>
+        <name>_TypeInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="687" column="1" bodyfile="pxr/base/tf/type.h" bodystart="687" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_tf_type_1a5297e64bab3e7c7bd3201b71fa35b3e7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class HashState</type>
+          </param>
+        </templateparamlist>
+        <type>friend void</type>
+        <definition>void TfHashAppend</definition>
+        <argsstring>(HashState &amp;h, TfType const &amp;type)</argsstring>
+        <name>TfHashAppend</name>
+        <param>
+          <type>HashState &amp;</type>
+          <declname>h</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_type" kindref="compound">TfType</ref> const &amp;</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="693" column="1" bodyfile="pxr/base/tf/type.h" bodystart="693" bodyend="695"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_tf_type_1a5c86a3d92551e78abe8a50efb44c8c3a" prot="private" static="no" mutable="no">
+        <type>_TypeInfo *</type>
+        <definition>_TypeInfo* _info</definition>
+        <argsstring></argsstring>
+        <name>_info</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="728" column="1" bodyfile="pxr/base/tf/type.h" bodystart="728" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_tf_type_1ae6e3ad1e2feda01500c56388e68bd61f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API</type>
+        <definition>TF_API TfType</definition>
+        <argsstring>()</argsstring>
+        <name>TfType</name>
+        <briefdescription>
+<para>Construct an <ref refid="class_tf_type" kindref="compound">TfType</ref> representing an unknown type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>To actually register a new type with the <ref refid="class_tf_type" kindref="compound">TfType</ref> system, see <ref refid="class_tf_type_1a032cf1f970470d87c2ca320a6c9be24f" kindref="member">TfType::Declare()</ref>.</para>
+<para>Note that this always holds true: <programlisting><codeline><highlight class="normal">TfType().IsUnknown()<sp/>==<sp/>true</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="114" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a338bf504cf9c50f054bb402df356fb92" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator==</definition>
+        <argsstring>(const TfType &amp;t) const</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>Equality operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>All unknown types (see <ref refid="class_tf_type_1abdcd9e3cee35fcfc8dcdba7429af0b00" kindref="member">IsUnknown()</ref>) are considered equal. This is so all unknown types will only occupy one key when used in an associative map. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="132" column="1" bodyfile="pxr/base/tf/type.h" bodystart="132" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a746b66bb6dd145168b529fcde1b93c0d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator !=</definition>
+        <argsstring>(const TfType &amp;t) const</argsstring>
+        <name>operator !=</name>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="133" column="1" bodyfile="pxr/base/tf/type.h" bodystart="133" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a53f19f39d38d18d5d4171e3962632ef6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator&lt;</definition>
+        <argsstring>(const TfType &amp;t) const</argsstring>
+        <name>operator&lt;</name>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>Comparison operator. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="136" column="1" bodyfile="pxr/base/tf/type.h" bodystart="136" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a5e405cbbd3e7b348435fb3df5f39aa44" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator &gt;</definition>
+        <argsstring>(const TfType &amp;t) const</argsstring>
+        <name>operator &gt;</name>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="137" column="1" bodyfile="pxr/base/tf/type.h" bodystart="137" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1adb646ade111969946f2f21c4ea995307" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator&lt;=</definition>
+        <argsstring>(const TfType &amp;t) const</argsstring>
+        <name>operator&lt;=</name>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="138" column="1" bodyfile="pxr/base/tf/type.h" bodystart="138" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a5ec602b5b156df33a99829537ee4a731" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool operator &gt;=</definition>
+        <argsstring>(const TfType &amp;t) const</argsstring>
+        <name>operator &gt;=</name>
+        <param>
+          <type>const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="139" column="1" bodyfile="pxr/base/tf/type.h" bodystart="139" bodyend="139"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_tf_type_1afd7fcde80651e2882b54e8e94977f721" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>static TF_API TfType const&amp; GetUnknownType</definition>
+        <argsstring>()</argsstring>
+        <name>GetUnknownType</name>
+        <briefdescription>
+<para>Return an empty <ref refid="class_tf_type" kindref="compound">TfType</ref>, representing the unknown type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is equivalento the default constructor, <ref refid="class_tf_type_1ae6e3ad1e2feda01500c56388e68bd61f" kindref="member">TfType()</ref>. This form exists as a clearer way to express intent in code explicitly dealing with unknown types.</para>
+<para><simplesect kind="see"><para><ref refid="class_tf_type_1abdcd9e3cee35fcfc8dcdba7429af0b00" kindref="member">IsUnknown()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="125" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_tf_type_1aa1d6f83bc83546df85cdcb48c85b2bce" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_type_1_1_factory_base" kindref="compound">FactoryBase</ref> *</type>
+        <definition>TF_API FactoryBase* _GetFactory</definition>
+        <argsstring>() const</argsstring>
+        <name>_GetFactory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="643" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a419ba1c7f59266985fdf6eeaf2c1aacd" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _IsAImplNoLock</definition>
+        <argsstring>(TfType queryType) const</argsstring>
+        <name>_IsAImplNoLock</name>
+        <param>
+          <type><ref refid="class_tf_type" kindref="compound">TfType</ref></type>
+          <declname>queryType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="681" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a3436fc0d9affac6e7d7d1c272eef4f85" prot="private" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TfType</definition>
+        <argsstring>(_TypeInfo *info)</argsstring>
+        <name>TfType</name>
+        <param>
+          <type>_TypeInfo *</type>
+          <declname>info</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="698" column="1" bodyfile="pxr/base/tf/type.h" bodystart="698" bodyend="698"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a9226793607c704df750a77aac791fdad" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _AddBasesNoLock</definition>
+        <argsstring>(const std::vector&lt; TfType &gt; &amp;bases, std::vector&lt; std::string &gt; *errorToEmit) const</argsstring>
+        <name>_AddBasesNoLock</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_tf_type" kindref="compound">TfType</ref> &gt; &amp;</type>
+          <declname>bases</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt; *</type>
+          <declname>errorToEmit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="702" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1aef92d647e6f62dd71054c072e536faef" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void _AddCppCastFunc</definition>
+        <argsstring>(const std::type_info &amp;baseTypeInfo, _CastFunction) const</argsstring>
+        <name>_AddCppCastFunc</name>
+        <param>
+          <type>const std::type_info &amp;</type>
+          <declname>baseTypeInfo</declname>
+        </param>
+        <param>
+          <type>_CastFunction</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="708" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1a5cc1926e47fa5f1bb4188d184b914882" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void _DefineCppType</definition>
+        <argsstring>(const std::type_info &amp;, size_t sizeofType, bool isPodType, bool isEnumType) const</argsstring>
+        <name>_DefineCppType</name>
+        <param>
+          <type>const std::type_info &amp;</type>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>sizeofType</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>isPodType</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>isEnumType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="713" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1aa5bcbeedbd3bddbb5af5006cfc1425f0" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void _ExecuteDefinitionCallback</definition>
+        <argsstring>() const</argsstring>
+        <name>_ExecuteDefinitionCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="719" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_tf_type_1ac9c475fa1ac8e09a028463f847f91459" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>static TF_API TfType const&amp; _FindImplPyPolymorphic</definition>
+        <argsstring>(PyPolymorphicBase const *ptr)</argsstring>
+        <name>_FindImplPyPolymorphic</name>
+        <param>
+          <type>PyPolymorphicBase const *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="647" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1aa146559dc7541156cdf4a7a0f98a1e84" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>static TfType const&amp; _FindImpl</definition>
+        <argsstring>(PyPolymorphicBase const *rawPtr)</argsstring>
+        <name>_FindImpl</name>
+        <param>
+          <type>PyPolymorphicBase const *</type>
+          <declname>rawPtr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="651" column="1" bodyfile="pxr/base/tf/type.h" bodystart="651" bodyend="653"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1af9e999813fbd8ceb207afac6a6043bfe" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>static TfType const&amp; _FindImpl</definition>
+        <argsstring>(T const *rawPtr)</argsstring>
+        <name>_FindImpl</name>
+        <param>
+          <type>T const *</type>
+          <declname>rawPtr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="658" column="1" bodyfile="pxr/base/tf/type.h" bodystart="658" bodyend="670"/>
+      </memberdef>
+      <memberdef kind="function" id="class_tf_type_1acd41c6e67acea98d510693ee72a409c7" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API <ref refid="class_tf_type" kindref="compound">TfType</ref> const  &amp;</type>
+        <definition>static TF_API TfType const&amp; _FindByTypeid</definition>
+        <argsstring>(const std::type_info &amp;)</argsstring>
+        <name>_FindByTypeid</name>
+        <param>
+          <type>const std::type_info &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/type.h" line="724" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="class_tf_type" kindref="compound">TfType</ref> represents a dynamic runtime type. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>TfTypes are created and discovered at runtime, rather than compile time.</para>
+<para>Features:</para>
+<para><itemizedlist>
+<listitem><para>unique typename</para>
+</listitem><listitem><para>safe across DSO boundaries</para>
+</listitem><listitem><para>can represent C++ types, pure Python types, or Python subclasses of wrapped C++ types</para>
+</listitem><listitem><para>lightweight value semantics <ndash/> you can copy and default construct <ref refid="class_tf_type" kindref="compound">TfType</ref>, unlike <computeroutput>std::type_info</computeroutput>.</para>
+</listitem><listitem><para>totally ordered <ndash/> can use as a <computeroutput>std::map</computeroutput> key </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <location file="pxr/base/tf/type.h" line="65" column="1" bodyfile="pxr/base/tf/type.h" bodystart="64" bodyend="729"/>
+    <listofallmembers>
+      <member refid="class_tf_type_1a9226793607c704df750a77aac791fdad" prot="private" virt="non-virtual"><scope>TfType</scope><name>_AddBasesNoLock</name></member>
+      <member refid="class_tf_type_1aef92d647e6f62dd71054c072e536faef" prot="private" virt="non-virtual"><scope>TfType</scope><name>_AddCppCastFunc</name></member>
+      <member refid="class_tf_type_1a9f04075b78635b58c1d61cf7d0e447e0" prot="private" virt="non-virtual"><scope>TfType</scope><name>_CastFunction</name></member>
+      <member refid="class_tf_type_1a5cc1926e47fa5f1bb4188d184b914882" prot="private" virt="non-virtual"><scope>TfType</scope><name>_DefineCppType</name></member>
+      <member refid="class_tf_type_1aa5bcbeedbd3bddbb5af5006cfc1425f0" prot="private" virt="non-virtual"><scope>TfType</scope><name>_ExecuteDefinitionCallback</name></member>
+      <member refid="class_tf_type_1acd41c6e67acea98d510693ee72a409c7" prot="private" virt="non-virtual"><scope>TfType</scope><name>_FindByTypeid</name></member>
+      <member refid="class_tf_type_1aa146559dc7541156cdf4a7a0f98a1e84" prot="private" virt="non-virtual"><scope>TfType</scope><name>_FindImpl</name></member>
+      <member refid="class_tf_type_1af9e999813fbd8ceb207afac6a6043bfe" prot="private" virt="non-virtual"><scope>TfType</scope><name>_FindImpl</name></member>
+      <member refid="class_tf_type_1ac9c475fa1ac8e09a028463f847f91459" prot="private" virt="non-virtual"><scope>TfType</scope><name>_FindImplPyPolymorphic</name></member>
+      <member refid="class_tf_type_1aa1d6f83bc83546df85cdcb48c85b2bce" prot="private" virt="non-virtual"><scope>TfType</scope><name>_GetFactory</name></member>
+      <member refid="class_tf_type_1a5c86a3d92551e78abe8a50efb44c8c3a" prot="private" virt="non-virtual"><scope>TfType</scope><name>_info</name></member>
+      <member refid="class_tf_type_1a419ba1c7f59266985fdf6eeaf2c1aacd" prot="private" virt="non-virtual"><scope>TfType</scope><name>_IsAImplNoLock</name></member>
+      <member refid="class_tf_type_1a6b78fbe9357c548ed6412401f11a7a5f" prot="private" virt="non-virtual"><scope>TfType</scope><name>_TypeInfo</name></member>
+      <member refid="class_tf_type_1a3de4639f976acbf3cf416d5997939bffa7b62cfe03ccf259e4f0a1be2bf90491f" prot="public" virt="non-virtual"><scope>TfType</scope><name>ABSTRACT</name></member>
+      <member refid="class_tf_type_1a4a5dc94f0775e8d845514466e3620c97" prot="public" virt="non-virtual"><scope>TfType</scope><name>AddAlias</name></member>
+      <member refid="class_tf_type_1a28744a3b459987b9ddc07131fcef7a43" prot="public" virt="non-virtual"><scope>TfType</scope><name>AddAlias</name></member>
+      <member refid="class_tf_type_1af67ef635ebcb6748375db0d87e4a37a3" prot="public" virt="non-virtual"><scope>TfType</scope><name>Alias</name></member>
+      <member refid="class_tf_type_1a6caba8ce25c352c43bb23e062a5b9467" prot="public" virt="non-virtual"><scope>TfType</scope><name>CastFromAncestor</name></member>
+      <member refid="class_tf_type_1a772da3665f08bd3247fac16779c8cdc6" prot="public" virt="non-virtual"><scope>TfType</scope><name>CastFromAncestor</name></member>
+      <member refid="class_tf_type_1aab94403439cd7a644b2ed1cf1961e697" prot="public" virt="non-virtual"><scope>TfType</scope><name>CastToAncestor</name></member>
+      <member refid="class_tf_type_1aa3a4d747261cc4260c65482c8b2d6f15" prot="public" virt="non-virtual"><scope>TfType</scope><name>CastToAncestor</name></member>
+      <member refid="class_tf_type_1a3de4639f976acbf3cf416d5997939bffa4579924b160e725f1bcb8945e133bd57" prot="public" virt="non-virtual"><scope>TfType</scope><name>CONCRETE</name></member>
+      <member refid="class_tf_type_1a7b9baa83cae0c2ba6ef594a2c8d5f1ad" prot="public" virt="non-virtual"><scope>TfType</scope><name>Declare</name></member>
+      <member refid="class_tf_type_1a6b2111a01b759c946eff600211ef5765" prot="public" virt="non-virtual"><scope>TfType</scope><name>Declare</name></member>
+      <member refid="class_tf_type_1a032cf1f970470d87c2ca320a6c9be24f" prot="public" virt="non-virtual"><scope>TfType</scope><name>Declare</name></member>
+      <member refid="class_tf_type_1a2812a06d6d2dbafc53b4f297d2aed030" prot="public" virt="non-virtual"><scope>TfType</scope><name>Define</name></member>
+      <member refid="class_tf_type_1a3cfdbc4b1dbd978b4f20fa76293a582b" prot="public" virt="non-virtual"><scope>TfType</scope><name>Define</name></member>
+      <member refid="class_tf_type_1a35f5c369ebaaa8b07ec2e03cf9dff0ab" prot="public" virt="non-virtual"><scope>TfType</scope><name>DefinePythonClass</name></member>
+      <member refid="class_tf_type_1aad2f72e93cad36d6653d4ff08b1fc44a" prot="public" virt="non-virtual"><scope>TfType</scope><name>DefinitionCallback</name></member>
+      <member refid="class_tf_type_1ae458d57fc5e7715cf7c24fb20ba77674" prot="public" virt="non-virtual"><scope>TfType</scope><name>Factory</name></member>
+      <member refid="class_tf_type_1a498eaf7e8830aabd7bf0dcdffa3c3f70" prot="public" virt="non-virtual"><scope>TfType</scope><name>Factory</name></member>
+      <member refid="class_tf_type_1a1a573d676ff6fcad58e369e66df0cbcb" prot="public" virt="non-virtual"><scope>TfType</scope><name>Factory</name></member>
+      <member refid="class_tf_type_1abc1c650c0fd030a4822d3548654c594e" prot="public" virt="non-virtual"><scope>TfType</scope><name>Find</name></member>
+      <member refid="class_tf_type_1aa648bc184361cdb6da077bb364e55217" prot="public" virt="non-virtual"><scope>TfType</scope><name>Find</name></member>
+      <member refid="class_tf_type_1a359bb2e5b2a54e9f4dd6889bf37a0484" prot="public" virt="non-virtual"><scope>TfType</scope><name>Find</name></member>
+      <member refid="class_tf_type_1a73035766205949ad12cc23ebf622e07e" prot="public" virt="non-virtual"><scope>TfType</scope><name>FindByName</name></member>
+      <member refid="class_tf_type_1a7600b470c5b3f487a9fe6ec7c4d300de" prot="public" virt="non-virtual"><scope>TfType</scope><name>FindByPythonClass</name></member>
+      <member refid="class_tf_type_1ad710c9bbc6c158c6eda96a91b580b368" prot="public" virt="non-virtual"><scope>TfType</scope><name>FindByTypeid</name></member>
+      <member refid="class_tf_type_1ac2acc8a814d948d5444aba8852db5bcf" prot="public" virt="non-virtual"><scope>TfType</scope><name>FindDerivedByName</name></member>
+      <member refid="class_tf_type_1a20546b560a5304be95a16db23d04178c" prot="public" virt="non-virtual"><scope>TfType</scope><name>FindDerivedByName</name></member>
+      <member refid="class_tf_type_1a4be6067b46f1e5fb8feb7a409dbc5fb5" prot="public" virt="non-virtual"><scope>TfType</scope><name>GetAliases</name></member>
+      <member refid="class_tf_type_1ab2d52ed62dd2dfedcdddb3fbae99f50f" prot="public" virt="non-virtual"><scope>TfType</scope><name>GetAllAncestorTypes</name></member>
+      <member refid="class_tf_type_1aa596041c67273d15501bef32540094fd" prot="public" virt="non-virtual"><scope>TfType</scope><name>GetAllDerivedTypes</name></member>
+      <member refid="class_tf_type_1a7935af24ffec851e74f0b29b8b70eb17" prot="public" virt="non-virtual"><scope>TfType</scope><name>GetBaseTypes</name></member>
+      <member refid="class_tf_type_1a7d87322e1c71bb36860c9ce532e6ee9f" prot="public" virt="non-virtual"><scope>TfType</scope><name>GetCanonicalType</name></member>
+      <member refid="class_tf_type_1ae47e0ba4a284fabdbbd03a6ee33a61bd" prot="public" virt="non-virtual"><scope>TfType</scope><name>GetCanonicalTypeName</name></member>
+      <member refid="class_tf_type_1aa37b02659aa00a6f6f098acd1bff3a41" prot="public" virt="non-virtual"><scope>TfType</scope><name>GetDirectlyDerivedTypes</name></member>
+      <member refid="class_tf_type_1a11f5ea108b10ee71f163a847bc494d33" prot="public" virt="non-virtual"><scope>TfType</scope><name>GetFactory</name></member>
+      <member refid="class_tf_type_1adfb7f3726a7b628a4d8b777ace37dadb" prot="public" virt="non-virtual"><scope>TfType</scope><name>GetNBaseTypes</name></member>
+      <member refid="class_tf_type_1abe8e2e20954e222625dd0e282e6dd572" prot="public" virt="non-virtual"><scope>TfType</scope><name>GetPythonClass</name></member>
+      <member refid="class_tf_type_1afad6fbbe1ff47153d19b9239b50908a4" prot="public" virt="non-virtual"><scope>TfType</scope><name>GetRoot</name></member>
+      <member refid="class_tf_type_1a727195e7e724066712f29fc213c92b2d" prot="public" virt="non-virtual"><scope>TfType</scope><name>GetSizeof</name></member>
+      <member refid="class_tf_type_1aa74e202a4c93274c08acba663999d6b2" prot="public" virt="non-virtual"><scope>TfType</scope><name>GetTypeid</name></member>
+      <member refid="class_tf_type_1af47e7403c714d094efe32a4b788b0194" prot="public" virt="non-virtual"><scope>TfType</scope><name>GetTypeName</name></member>
+      <member refid="class_tf_type_1afd7fcde80651e2882b54e8e94977f721" prot="public" virt="non-virtual"><scope>TfType</scope><name>GetUnknownType</name></member>
+      <member refid="class_tf_type_1a4af87da6dea85ee71026bd61edff67f3" prot="public" virt="non-virtual"><scope>TfType</scope><name>IsA</name></member>
+      <member refid="class_tf_type_1a6cc1b146723c266ae69fb873bcb2df67" prot="public" virt="non-virtual"><scope>TfType</scope><name>IsA</name></member>
+      <member refid="class_tf_type_1a54072cd078d021310c47f1ce3d9c5d1c" prot="public" virt="non-virtual"><scope>TfType</scope><name>IsEnumType</name></member>
+      <member refid="class_tf_type_1afbbdc4606290c71b789bc3f0ff0db613" prot="public" virt="non-virtual"><scope>TfType</scope><name>IsPlainOldDataType</name></member>
+      <member refid="class_tf_type_1adf7b57b6ef7cbf118d492df6b7e2f6b7" prot="public" virt="non-virtual"><scope>TfType</scope><name>IsRoot</name></member>
+      <member refid="class_tf_type_1abdcd9e3cee35fcfc8dcdba7429af0b00" prot="public" virt="non-virtual"><scope>TfType</scope><name>IsUnknown</name></member>
+      <member refid="class_tf_type_1a3de4639f976acbf3cf416d5997939bff" prot="public" virt="non-virtual"><scope>TfType</scope><name>LegacyFlags</name></member>
+      <member refid="class_tf_type_1a3de4639f976acbf3cf416d5997939bffa76598f1dc08ed2d9f1901b24f0bfeb28" prot="public" virt="non-virtual"><scope>TfType</scope><name>MANUFACTURABLE</name></member>
+      <member refid="class_tf_type_1a45a49470b17aeb71f23c5a2ca7bff5fa" prot="public" virt="non-virtual"><scope>TfType</scope><name>operator !</name></member>
+      <member refid="class_tf_type_1a746b66bb6dd145168b529fcde1b93c0d" prot="public" virt="non-virtual"><scope>TfType</scope><name>operator !=</name></member>
+      <member refid="class_tf_type_1a5e405cbbd3e7b348435fb3df5f39aa44" prot="public" virt="non-virtual"><scope>TfType</scope><name>operator &gt;</name></member>
+      <member refid="class_tf_type_1a5ec602b5b156df33a99829537ee4a731" prot="public" virt="non-virtual"><scope>TfType</scope><name>operator &gt;=</name></member>
+      <member refid="class_tf_type_1a10c79bb09aeb8efbd9b01ee1fbde0061" prot="public" virt="non-virtual"><scope>TfType</scope><name>operator UnspecifiedBoolType</name></member>
+      <member refid="class_tf_type_1a53f19f39d38d18d5d4171e3962632ef6" prot="public" virt="non-virtual"><scope>TfType</scope><name>operator&lt;</name></member>
+      <member refid="class_tf_type_1adb646ade111969946f2f21c4ea995307" prot="public" virt="non-virtual"><scope>TfType</scope><name>operator&lt;=</name></member>
+      <member refid="class_tf_type_1a338bf504cf9c50f054bb402df356fb92" prot="public" virt="non-virtual"><scope>TfType</scope><name>operator==</name></member>
+      <member refid="class_tf_type_1a6d120688765f2587c837f76b16642ad3" prot="public" virt="non-virtual"><scope>TfType</scope><name>SetFactory</name></member>
+      <member refid="class_tf_type_1ae53c7cdd4e9444851870fdccd9bbc32f" prot="public" virt="non-virtual"><scope>TfType</scope><name>SetFactory</name></member>
+      <member refid="class_tf_type_1aa6977e081e73fc9160f2ad76d5cbd6ef" prot="public" virt="non-virtual"><scope>TfType</scope><name>SetFactory</name></member>
+      <member refid="class_tf_type_1a5297e64bab3e7c7bd3201b71fa35b3e7" prot="private" virt="non-virtual"><scope>TfType</scope><name>TfHashAppend</name></member>
+      <member refid="class_tf_type_1ae6e3ad1e2feda01500c56388e68bd61f" prot="public" virt="non-virtual"><scope>TfType</scope><name>TfType</name></member>
+      <member refid="class_tf_type_1a3436fc0d9affac6e7d7d1c272eef4f85" prot="private" virt="non-virtual"><scope>TfType</scope><name>TfType</name></member>
+      <member refid="class_tf_type_1a85d263270c1b947fb5f65a61c79a8c91" prot="public" virt="non-virtual"><scope>TfType</scope><name>UnspecifiedBoolType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

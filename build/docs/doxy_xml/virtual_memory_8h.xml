@@ -1,0 +1,245 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="virtual_memory_8h" kind="file" language="C++">
+    <compoundname>virtualMemory.h</compoundname>
+    <includes refid="pxr_8h" local="yes">pxr/pxr.h</includes>
+    <includes refid="base_2arch_2api_8h" local="yes">pxr/base/arch/api.h</includes>
+    <includes local="no">cstddef</includes>
+    <incdepgraph>
+      <node id="23716">
+        <label>pxr/base/arch/export.h</label>
+        <link refid="export_8h"/>
+        <childnode refid="23717" relation="include">
+        </childnode>
+      </node>
+      <node id="23714">
+        <label>pxr/pxr.h</label>
+        <link refid="pxr_8h"/>
+      </node>
+      <node id="23717">
+        <label>pxr/base/arch/defines.h</label>
+        <link refid="defines_8h_source"/>
+      </node>
+      <node id="23713">
+        <label>pxr/base/arch/virtualMemory.h</label>
+        <link refid="virtual_memory_8h"/>
+        <childnode refid="23714" relation="include">
+        </childnode>
+        <childnode refid="23715" relation="include">
+        </childnode>
+        <childnode refid="23718" relation="include">
+        </childnode>
+      </node>
+      <node id="23718">
+        <label>cstddef</label>
+      </node>
+      <node id="23715">
+        <label>pxr/base/arch/api.h</label>
+        <link refid="base_2arch_2api_8h_source"/>
+        <childnode refid="23716" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="virtual_memory_8h_1a347b822172fe0daebbacb3d2a0dd04de" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ArchMemoryProtection</name>
+        <enumvalue id="virtual_memory_8h_1a347b822172fe0daebbacb3d2a0dd04dea4fd8028f2140a154f06afeb94e74dfcf" prot="public">
+          <name>ArchProtectNoAccess</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="virtual_memory_8h_1a347b822172fe0daebbacb3d2a0dd04dea8cffcde61f22c2fed870debdb9795d0e" prot="public">
+          <name>ArchProtectReadOnly</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="virtual_memory_8h_1a347b822172fe0daebbacb3d2a0dd04dead539c00a7bffc66184656e97db8a14a2" prot="public">
+          <name>ArchProtectReadWrite</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="virtual_memory_8h_1a347b822172fe0daebbacb3d2a0dd04deac4db1488d90afae52eeb1f0a5d47cb29" prot="public">
+          <name>ArchProtectReadWriteCopy</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Memory protection options, see <ref refid="virtual_memory_8h_1ab3dae8ed32e3973e741e7551c8281eb8" kindref="member">ArchSetMemoryProtection()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/virtualMemory.h" line="61" column="1" bodyfile="pxr/base/arch/virtualMemory.h" bodystart="61" bodyend="66"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="virtual_memory_8h_1a09d7a0e30a196e67ed478c0212cb1e7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ARCH_API void *</type>
+        <definition>ARCH_API void* ArchReserveVirtualMemory</definition>
+        <argsstring>(size_t numBytes)</argsstring>
+        <name>ArchReserveVirtualMemory</name>
+        <param>
+          <type>size_t</type>
+          <declname>numBytes</declname>
+        </param>
+        <briefdescription>
+<para>Reserve <computeroutput>numBytes</computeroutput> bytes of virtual memory. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Call ArchCommitVirtualMemory() on subranges to write to and read from the memory. Return nullptr in case of an error; check errno. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/virtualMemory.h" line="42" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="virtual_memory_8h_1a0f4d7555247e8e56c4d6f7e496ed0414" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ARCH_API bool</type>
+        <definition>ARCH_API bool ArchCommitVirtualMemoryRange</definition>
+        <argsstring>(void *start, size_t numBytes)</argsstring>
+        <name>ArchCommitVirtualMemoryRange</name>
+        <param>
+          <type>void *</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>numBytes</declname>
+        </param>
+        <briefdescription>
+<para>Make the range of <computeroutput>numBytes</computeroutput> bytes starting at <computeroutput>start</computeroutput> available for reading and writing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The range must be within one previously reserved by <ref refid="virtual_memory_8h_1a09d7a0e30a196e67ed478c0212cb1e7d" kindref="member">ArchReserveVirtualMemory()</ref>. It is not an error to commit a range that was previously partly or fully committed. Return false in case of an error; check errno. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/virtualMemory.h" line="50" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="virtual_memory_8h_1a70ea2242c586427702695f60a11fbf98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ARCH_API bool</type>
+        <definition>ARCH_API bool ArchFreeVirtualMemory</definition>
+        <argsstring>(void *start, size_t numBytes)</argsstring>
+        <name>ArchFreeVirtualMemory</name>
+        <param>
+          <type>void *</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>numBytes</declname>
+        </param>
+        <briefdescription>
+<para>Return memory obtained with <ref refid="virtual_memory_8h_1a09d7a0e30a196e67ed478c0212cb1e7d" kindref="member">ArchReserveVirtualMemory()</ref> to the system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The <computeroutput>start</computeroutput> argument must be the value returned from a previous call to ArchReserveVirtualMemory, and <computeroutput>numBytes</computeroutput> must match the argument from that call. Memory within the range may not be accessed after this call. Return false in case of an error; check errno. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/virtualMemory.h" line="58" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="virtual_memory_8h_1ab3dae8ed32e3973e741e7551c8281eb8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ARCH_API bool</type>
+        <definition>ARCH_API bool ArchSetMemoryProtection</definition>
+        <argsstring>(void const *start, size_t numBytes, ArchMemoryProtection protection)</argsstring>
+        <name>ArchSetMemoryProtection</name>
+        <param>
+          <type>void const *</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>numBytes</declname>
+        </param>
+        <param>
+          <type><ref refid="virtual_memory_8h_1a347b822172fe0daebbacb3d2a0dd04de" kindref="member">ArchMemoryProtection</ref></type>
+          <declname>protection</declname>
+        </param>
+        <briefdescription>
+<para>Change the memory protection on the pages containing <computeroutput>start</computeroutput> and <computeroutput>start</computeroutput> + <computeroutput>numBytes</computeroutput> to <computeroutput>protection</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Return true if the protection is changed successfully. Return false in case of an error; check errno. This function rounds <computeroutput>start</computeroutput> to the nearest lower page boundary. On POSIX systems, ArchProtectReadWrite and ArchProtectReadWriteCopy are the same, on Windows they differ but the Windows API documentation does not make it clear what using ReadWrite means for a private file-backed mapping. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/arch/virtualMemory.h" line="76" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Architecture dependent routines for virtual memory. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>2019<sp/>Pixar</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>&quot;Apache<sp/>License&quot;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>with<sp/>the<sp/>following<sp/>modification;<sp/>you<sp/>may<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>compliance<sp/>with<sp/>the<sp/>Apache<sp/>License<sp/>and<sp/>the<sp/>following<sp/>modification<sp/>to<sp/>it:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Section<sp/>6.<sp/>Trademarks.<sp/>is<sp/>deleted<sp/>and<sp/>replaced<sp/>with:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>6.<sp/>Trademarks.<sp/>This<sp/>License<sp/>does<sp/>not<sp/>grant<sp/>permission<sp/>to<sp/>use<sp/>the<sp/>trade</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>names,<sp/>trademarks,<sp/>service<sp/>marks,<sp/>or<sp/>product<sp/>names<sp/>of<sp/>the<sp/>Licensor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>and<sp/>its<sp/>affiliates,<sp/>except<sp/>as<sp/>required<sp/>to<sp/>comply<sp/>with<sp/>Section<sp/>4(c)<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>the<sp/>License<sp/>and<sp/>to<sp/>reproduce<sp/>the<sp/>content<sp/>of<sp/>the<sp/>NOTICE<sp/>file.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>Apache<sp/>License<sp/>at</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>http://www.apache.org/licenses/LICENSE-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>distributed<sp/>under<sp/>the<sp/>Apache<sp/>License<sp/>with<sp/>the<sp/>above<sp/>modification<sp/>is</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>distributed<sp/>on<sp/>an<sp/>&quot;AS<sp/>IS&quot;<sp/>BASIS,<sp/>WITHOUT<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.<sp/>See<sp/>the<sp/>Apache<sp/>License<sp/>for<sp/>the<sp/>specific</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>language<sp/>governing<sp/>permissions<sp/>and<sp/>limitations<sp/>under<sp/>the<sp/>Apache<sp/>License.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>PXR_BASE_ARCH_VIRTUAL_MEMORY_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PXR_BASE_ARCH_VIRTUAL_MEMORY_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pxr_8h" kindref="compound">pxr/pxr.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;pxr/base/arch/api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstddef&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">PXR_NAMESPACE_OPEN_SCOPE</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">ARCH_API<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><ref refid="virtual_memory_8h_1a09d7a0e30a196e67ed478c0212cb1e7d" kindref="member">ArchReserveVirtualMemory</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numBytes);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal">ARCH_API<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><ref refid="virtual_memory_8h_1a0f4d7555247e8e56c4d6f7e496ed0414" kindref="member">ArchCommitVirtualMemoryRange</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*start,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numBytes);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">ARCH_API<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><ref refid="virtual_memory_8h_1a70ea2242c586427702695f60a11fbf98" kindref="member">ArchFreeVirtualMemory</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*start,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numBytes);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="virtual_memory_8h_1a347b822172fe0daebbacb3d2a0dd04de" refkind="member"><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="virtual_memory_8h_1a347b822172fe0daebbacb3d2a0dd04de" kindref="member">ArchMemoryProtection</ref><sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>ArchProtectNoAccess,</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>ArchProtectReadOnly,</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>ArchProtectReadWrite,</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>ArchProtectReadWriteCopy</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal">ARCH_API<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><ref refid="virtual_memory_8h_1ab3dae8ed32e3973e741e7551c8281eb8" kindref="member">ArchSetMemoryProtection</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>*start,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numBytes,</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="virtual_memory_8h_1a347b822172fe0daebbacb3d2a0dd04de" kindref="member">ArchMemoryProtection</ref><sp/>protection);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="79"><highlight class="normal">PXR_NAMESPACE_CLOSE_SCOPE</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>PXR_BASE_ARCH_VIRTUAL_MEMORY_H</highlight></codeline>
+    </programlisting>
+    <location file="pxr/base/arch/virtualMemory.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_sdf_change_block" kind="class" language="C++" prot="public">
+    <compoundname>SdfChangeBlock</compoundname>
+    <includes refid="change_block_8h" local="no">changeBlock.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_sdf_change_block_1a7abd6c54865ceb8773c02fb630020f58" prot="private" static="no" mutable="no">
+        <type>void const  *</type>
+        <definition>void const* _key</definition>
+        <argsstring></argsstring>
+        <name>_key</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeBlock.h" line="86" column="1" bodyfile="pxr/usd/sdf/changeBlock.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_sdf_change_block_1affed1882d4fd8f22b31f00253f2c0806" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API</type>
+        <definition>SDF_API SdfChangeBlock</definition>
+        <argsstring>()</argsstring>
+        <name>SdfChangeBlock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeBlock.h" line="76" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sdf_change_block_1a39fe46806e6fe26b5c3dbea3c7d42d49" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>~SdfChangeBlock</definition>
+        <argsstring>()</argsstring>
+        <name>~SdfChangeBlock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeBlock.h" line="77" column="1" bodyfile="pxr/usd/sdf/changeBlock.h" bodystart="77" bodyend="81"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_sdf_change_block_1a2d908e39969f99695a6122035a4566f9" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SDF_API void</type>
+        <definition>SDF_API void _CloseChangeBlock</definition>
+        <argsstring>(void const *key) const</argsstring>
+        <name>_CloseChangeBlock</name>
+        <param>
+          <type>void const *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/sdf/changeBlock.h" line="84" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><bold>DANGER DANGER DANGER</bold> </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Please make sure you have read and fully understand the issues below before using a changeblock! They are very easy to use in an unsafe way that could make the system crash or corrupt data. If you have any questions, please contact the USD team, who would be happy to help!</para>
+<para><ref refid="class_sdf_change_block" kindref="compound">SdfChangeBlock</ref> provides a way to group a round of related changes to scene description in order to process them more efficiently.</para>
+<para>Normally, Sdf sends notification immediately as changes are made so that downstream representations like <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> can update accordingly.</para>
+<para>However, sometimes it can be advantageous to group a series of Sdf changes into a batch so that they can be processed more efficiently, with a single round of change processing. An example might be when setting many avar values on a model at the same time.</para>
+<para>Opening a changeblock tells Sdf to delay sending notification about changes until the outermost changeblock is exited. Until then, Sdf internally queues up the notification it needs to send.</para>
+<para><simplesect kind="note"><para>It is <emphasis>not</emphasis> safe to use Usd or other downstream API while a changeblock is open!! This is because those derived representations will not have had a chance to update while the changeblock is open. Not only will their view of the world be stale, it could be unsafe to even make queries from, since they may be holding onto expired handles to Sdf objects that no longer exist.</para>
+</simplesect>
+If you need to make a bunch of changes to scene description, the best approach is to build a list of necessary changes that can be performed directly via the Sdf API, then submit those all inside a changeblock without talking to any downstream libraries. For example, this is how many mutators in Usd that operate on more than one field or Spec work. </para>
+    </detaileddescription>
+    <location file="pxr/usd/sdf/changeBlock.h" line="73" column="1" bodyfile="pxr/usd/sdf/changeBlock.h" bodystart="73" bodyend="87"/>
+    <listofallmembers>
+      <member refid="class_sdf_change_block_1a2d908e39969f99695a6122035a4566f9" prot="private" virt="non-virtual"><scope>SdfChangeBlock</scope><name>_CloseChangeBlock</name></member>
+      <member refid="class_sdf_change_block_1a7abd6c54865ceb8773c02fb630020f58" prot="private" virt="non-virtual"><scope>SdfChangeBlock</scope><name>_key</name></member>
+      <member refid="class_sdf_change_block_1affed1882d4fd8f22b31f00253f2c0806" prot="public" virt="non-virtual"><scope>SdfChangeBlock</scope><name>SdfChangeBlock</name></member>
+      <member refid="class_sdf_change_block_1a39fe46806e6fe26b5c3dbea3c7d42d49" prot="public" virt="non-virtual"><scope>SdfChangeBlock</scope><name>~SdfChangeBlock</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

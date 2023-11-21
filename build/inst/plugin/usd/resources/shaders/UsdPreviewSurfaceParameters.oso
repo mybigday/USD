@@ -1,0 +1,369 @@
+OpenShadingLanguage 1.00
+# Compiled by oslc 1.11.0@OPROJECT_VERSION_RELEASE_TYPE@
+# options: -o /home/clachanski/trees/OpenUSD_Vulkan/build/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.oso
+shader UsdPreviewSurfaceParameters
+param	color	diffuseColor	0.180000007 0.180000007 0.180000007		%read{37,76} %write{2147483647,-1}
+param	color	emissiveColor	0 0 0		%read{93,109} %write{2147483647,-1}
+param	int	useSpecularWorkflow	0		%read{70,70} %write{2147483647,-1}
+param	color	specularColor	0 0 0		%read{71,71} %write{2147483647,-1}
+param	float	metallic	0		%read{74,74} %write{2147483647,-1}
+param	float	roughness	0.5		%read{84,84} %write{2147483647,-1}
+param	float	clearcoat	0		%read{85,91} %write{2147483647,-1}
+param	float	clearcoatRoughness	0.00999999978		%read{92,92} %write{2147483647,-1}
+param	float	opacity	1		%read{54,57} %write{2147483647,-1}
+param	float	opacityThreshold	0		%read{55,57} %write{2147483647,-1}
+param	float	ior	1.5		%read{63,83} %write{2147483647,-1}
+param	normal	normalIn	0 0 1		%read{14,19} %write{2147483647,-1}
+param	float	displacement	0		%read{110,113} %write{2147483647,-1}
+param	float	occlusion	1		%read{2147483647,-1} %write{2147483647,-1}
+oparam	float	diffuseGainOut	0		%meta{string,widget,"null"}  %read{65,82} %write{52,82}
+oparam	color	diffuseColorOut	0 0 0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{53,53}
+oparam	color	specularFaceColorOut	0 0 0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{71,79}
+oparam	color	specularEdgeColorOut	0 0 0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{72,80}
+oparam	float	specularRoughnessOut	0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{84,84}
+oparam	color	specularIorOut	0 0 0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{83,83}
+oparam	color	clearcoatFaceColorOut	0 0 0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{90,90}
+oparam	color	clearcoatEdgeColorOut	0 0 0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{91,91}
+oparam	float	clearcoatRoughnessOut	0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{92,92}
+oparam	float	glowGainOut	0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{108,108}
+oparam	color	glowColorOut	0 0 0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{109,109}
+oparam	normal	bumpNormalOut	0 0 0		%meta{string,widget,"null"}  %read{22,33} %write{21,32}
+oparam	float	refractionGainOut	0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{64,64}
+oparam	float	glassIorOut	0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{63,63}
+oparam	float	presenceOut	1		%meta{string,widget,"null"}  %read{2147483647,-1} %write{66,66}
+oparam	float	dispAmountOut	0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{112,112}
+oparam	float	dispScalarOut	0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{113,113}
+global	vector	I	%read{24,33} %write{2147483647,-1}
+global	normal	N	%read{12,20} %write{2147483647,-1}
+local	int	isDoubleSided	%read{5,5} %write{0,1}
+local	int	isFrontSide	%read{7,35} %write{4,4}
+local	vector	___326_Tn	%read{12,15} %write{10,11}
+local	vector	___326_Bn	%read{17,17} %write{13,13}
+local	vector	___327_Vn	%read{26,30} %write{25,25}
+local	float	___327_VdotN	%read{27,29} %write{26,26}
+local	int	___325_isFrontFacing	%read{36,36} %write{35,35}
+local	float	___329_opacityAdjusted	%read{61,66} %write{54,60}
+local	float	___329_r	%read{77,89} %write{69,69}
+local	float	___336_metal	%read{76,81} %write{75,75}
+local	color	___336_spec	%read{78,80} %write{76,76}
+local	color	___337_clearcoatColor	%read{90,91} %write{87,87}
+const	int	$const1	0		%read{0,105} %write{2147483647,-1}
+temp	int	$tmp1	%read{2147483647,-1} %write{1,1}
+const	string	$const2	"user:hydra:doubleSided"		%read{1,1} %write{2147483647,-1}
+temp	int	$tmp2	%read{3,3} %write{2,2}
+temp	int	$tmp3	%read{4,4} %write{3,3}
+temp	int	$tmp4	%read{6,9} %write{5,8}
+temp	int	$tmp5	%read{8,8} %write{7,7}
+const	vector	$const3	1 0 0		%read{10,10} %write{2147483647,-1}
+temp	int	$tmp6	%read{2147483647,-1} %write{11,11}
+const	string	$const4	"builtin"		%read{11,11} %write{2147483647,-1}
+const	string	$const5	"Tn"		%read{11,11} %write{2147483647,-1}
+temp	vector	$tmp7	%read{13,13} %write{12,12}
+temp	float	$tmp8	%read{15,15} %write{14,14}
+temp	vector	$tmp9	%read{18,18} %write{15,15}
+const	int	$const6	1		%read{16,97} %write{2147483647,-1}
+temp	float	$tmp10	%read{17,17} %write{16,16}
+temp	vector	$tmp11	%read{18,18} %write{17,17}
+temp	vector	$tmp12	%read{21,21} %write{18,18}
+const	int	$const7	2		%read{19,103} %write{2147483647,-1}
+temp	float	$tmp13	%read{20,20} %write{19,19}
+temp	normal	$tmp14	%read{21,21} %write{20,20}
+temp	vector	$tmp15	%read{25,25} %write{24,24}
+temp	int	$tmp16	%read{28,28} %write{27,27}
+const	float	$const8	1.00999999		%read{29,29} %write{2147483647,-1}
+temp	float	$tmp17	%read{30,30} %write{29,29}
+temp	vector	$tmp18	%read{31,31} %write{30,30}
+temp	float	$tmp19	%read{34,34} %write{33,33}
+const	float	$const9	0		%read{34,110} %write{2147483647,-1}
+temp	int	$tmp20	%read{35,35} %write{34,34}
+temp	float	$tmp21	%read{38,38} %write{37,37}
+temp	int	$tmp22	%read{39,39} %write{38,38}
+temp	int	$tmp23	%read{40,45} %write{39,44}
+temp	float	$tmp24	%read{42,42} %write{41,41}
+temp	int	$tmp25	%read{43,43} %write{42,42}
+temp	int	$tmp26	%read{44,44} %write{43,43}
+temp	int	$tmp27	%read{46,51} %write{45,50}
+temp	float	$tmp28	%read{48,48} %write{47,47}
+temp	int	$tmp29	%read{49,49} %write{48,48}
+temp	int	$tmp30	%read{50,50} %write{49,49}
+const	float	$const10	1		%read{52,108} %write{2147483647,-1}
+temp	int	$tmp31	%read{56,56} %write{55,55}
+temp	int	$tmp32	%read{58,58} %write{57,57}
+temp	int	$tmp33	%read{62,62} %write{61,61}
+temp	float	$tmp34	%read{69,69} %write{67,67}
+temp	float	$tmp35	%read{69,69} %write{68,68}
+const	color	$const11	1 1 1		%read{72,87} %write{2147483647,-1}
+const	string	$const12	"clamp"		%read{73,73} %write{2147483647,-1}
+temp	float	$tmp36	%read{75,75} %write{74,74}
+temp	float	$tmp38	%read{78,78} %write{77,77}
+temp	color	$tmp39	%read{79,79} %write{78,78}
+temp	float	$tmp40	%read{82,82} %write{81,81}
+temp	int	$tmp41	%read{86,86} %write{85,85}
+temp	float	$tmp42	%read{89,89} %write{88,88}
+temp	float	$tmp43	%read{90,90} %write{89,89}
+temp	float	$tmp44	%read{94,94} %write{93,93}
+temp	int	$tmp45	%read{95,95} %write{94,94}
+temp	int	$tmp46	%read{96,101} %write{95,100}
+temp	float	$tmp47	%read{98,98} %write{97,97}
+temp	int	$tmp48	%read{99,99} %write{98,98}
+temp	int	$tmp49	%read{100,100} %write{99,99}
+temp	int	$tmp50	%read{102,107} %write{101,106}
+temp	float	$tmp51	%read{104,104} %write{103,103}
+temp	int	$tmp52	%read{105,105} %write{104,104}
+temp	int	$tmp53	%read{106,106} %write{105,105}
+temp	int	$tmp54	%read{111,111} %write{110,110}
+const	float	$const13	0.100000001		%read{112,112} %write{2147483647,-1}
+code ___main___
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:103
+#     int isDoubleSided = 0;
+	assign		isDoubleSided $const1 	%filename{"/home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl"} %line{103} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:104
+#     getattribute("user:hydra:doubleSided", isDoubleSided);
+	getattribute	$tmp1 $const2 isDoubleSided 	%line{104} %argrw{"wrw"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:105
+#     int isFrontSide = !backfacing();
+	backfacing	$tmp2 	%line{105} %argrw{"w"}
+	eq		$tmp3 $tmp2 $const1 	%argrw{"wrr"}
+	assign		isFrontSide $tmp3 	%argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:107
+#     if (isDoubleSided || isFrontSide) {
+	neq		$tmp4 isDoubleSided $const1 	%line{107} %argrw{"wrr"}
+	if		$tmp4 7 9 	%argrw{"r"}
+	neq		$tmp5 isFrontSide $const1 	%argrw{"wrr"}
+	assign		$tmp4 $tmp5 	%argrw{"wr"}
+	if		$tmp4 114 114 	%argrw{"r"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:112
+#             vector Tn = vector (1.0,0.0,0.0);
+	assign		___326_Tn $const3 	%line{112} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:113
+#             getattribute("builtin", "Tn", Tn);
+	getattribute	$tmp6 $const4 $const5 ___326_Tn 	%line{113} %argrw{"wrrw"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:114
+#             vector Bn = normalize(cross(N, Tn));
+	cross		$tmp7 N ___326_Tn 	%line{114} %argrw{"wrr"}
+	normalize	___326_Bn $tmp7 	%argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:117
+#             bumpNormalOut = Tn * normalIn[0] +
+	compref		$tmp8 normalIn $const1 	%line{117} %argrw{"wrr"}
+	mul		$tmp9 ___326_Tn $tmp8 	%argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:118
+#                             Bn * normalIn[1] + 
+	compref		$tmp10 normalIn $const6 	%line{118} %argrw{"wrr"}
+	mul		$tmp11 ___326_Bn $tmp10 	%argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:117
+#             bumpNormalOut = Tn * normalIn[0] +
+	add		$tmp12 $tmp9 $tmp11 	%line{117} %argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:119
+#                             N * normalIn[2];
+	compref		$tmp13 normalIn $const7 	%line{119} %argrw{"wrr"}
+	mul		$tmp14 N $tmp13 	%argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:118
+#                             Bn * normalIn[1] + 
+	add		bumpNormalOut $tmp12 $tmp14 	%line{118} %argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:120
+#             bumpNormalOut = normalize(bumpNormalOut);
+	normalize	bumpNormalOut bumpNormalOut 	%line{120} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:123
+#             if (isFrontSide) {
+	if		isFrontSide 33 33 	%line{123} %argrw{"r"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:125
+#                 vector Vn = normalize(-I);
+	neg		$tmp15 I 	%line{125} %argrw{"wr"}
+	normalize	___327_Vn $tmp15 	%argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:126
+#                 float VdotN = dot(Vn, bumpNormalOut);
+	dot		___327_VdotN ___327_Vn bumpNormalOut 	%line{126} %argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:127
+#                 if (VdotN <= 0)
+	le		$tmp16 ___327_VdotN $const1 	%line{127} %argrw{"wrr"}
+	if		$tmp16 33 33 	%argrw{"r"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:131
+#                     bumpNormalOut -= 1.01 * VdotN * Vn;
+	mul		$tmp17 $const8 ___327_VdotN 	%line{131} %argrw{"wrr"}
+	mul		$tmp18 $tmp17 ___327_Vn 	%argrw{"wrr"}
+	sub		bumpNormalOut bumpNormalOut $tmp18 	%argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:132
+#                     bumpNormalOut = normalize(bumpNormalOut);
+	normalize	bumpNormalOut bumpNormalOut 	%line{132} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:140
+#         int isFrontFacing = (isFrontSide == (dot(bumpNormalOut, I) < 0.0));
+	dot		$tmp19 bumpNormalOut I 	%line{140} %argrw{"wrr"}
+	lt		$tmp20 $tmp19 $const9 	%argrw{"wrr"}
+	eq		___325_isFrontFacing isFrontSide $tmp20 	%argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:141
+#         if (isFrontFacing) {
+	if		___325_isFrontFacing 110 110 	%line{141} %argrw{"r"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:144
+#             if (diffuseColor[0] > 0.0 ||
+	compref		$tmp21 diffuseColor $const1 	%line{144} %argrw{"wrr"}
+	gt		$tmp22 $tmp21 $const9 	%argrw{"wrr"}
+	neq		$tmp23 $tmp22 $const1 	%argrw{"wrr"}
+	if		$tmp23 41 45 	%argrw{"r"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:145
+#                 diffuseColor[1] > 0.0 ||
+	compref		$tmp24 diffuseColor $const6 	%line{145} %argrw{"wrr"}
+	gt		$tmp25 $tmp24 $const9 	%argrw{"wrr"}
+	neq		$tmp26 $tmp25 $const1 	%argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:144
+#             if (diffuseColor[0] > 0.0 ||
+	assign		$tmp23 $tmp26 	%line{144} %argrw{"wr"}
+	neq		$tmp27 $tmp23 $const1 	%argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:145
+#                 diffuseColor[1] > 0.0 ||
+	if		$tmp27 47 51 	%line{145} %argrw{"r"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:146
+#                 diffuseColor[2] > 0.0)
+	compref		$tmp28 diffuseColor $const7 	%line{146} %argrw{"wrr"}
+	gt		$tmp29 $tmp28 $const9 	%argrw{"wrr"}
+	neq		$tmp30 $tmp29 $const1 	%argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:145
+#                 diffuseColor[1] > 0.0 ||
+	assign		$tmp27 $tmp30 	%line{145} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:144
+#             if (diffuseColor[0] > 0.0 ||
+	if		$tmp27 54 54 	%line{144} %argrw{"r"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:148
+#                 diffuseGainOut = 1.0;
+	assign		diffuseGainOut $const10 	%line{148} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:149
+#                 diffuseColorOut = diffuseColor;
+	assign		diffuseColorOut diffuseColor 	%line{149} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:153
+#             float opacityAdjusted = opacity;
+	assign		___329_opacityAdjusted opacity 	%line{153} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:154
+#             if (opacityThreshold > 0.0) {
+	gt		$tmp31 opacityThreshold $const9 	%line{154} %argrw{"wrr"}
+	if		$tmp31 61 61 	%argrw{"r"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:155
+#                 if (opacity < opacityThreshold) {
+	lt		$tmp32 opacity opacityThreshold 	%line{155} %argrw{"wrr"}
+	if		$tmp32 60 61 	%argrw{"r"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:156
+#                     opacityAdjusted = 0.0;
+	assign		___329_opacityAdjusted $const9 	%line{156} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:158
+#                     opacityAdjusted = 1.0;
+	assign		___329_opacityAdjusted $const10 	%line{158} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:163
+#             if (opacityAdjusted < 1.0) {
+	lt		$tmp33 ___329_opacityAdjusted $const10 	%line{163} %argrw{"wrr"}
+	if		$tmp33 67 67 	%argrw{"r"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:164
+#                 glassIorOut = ior;
+	assign		glassIorOut ior 	%line{164} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:165
+#                 refractionGainOut = 1.0 - opacityAdjusted;
+	sub		refractionGainOut $const10 ___329_opacityAdjusted 	%line{165} %argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:166
+#                 diffuseGainOut *= opacityAdjusted;
+	mul		diffuseGainOut diffuseGainOut ___329_opacityAdjusted 	%line{166} %argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:167
+#                 presenceOut = opacityAdjusted;
+	assign		presenceOut ___329_opacityAdjusted 	%line{167} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:172
+#             float r = (1.0 - ior) / (1.0 + ior);
+	sub		$tmp34 $const10 ior 	%line{172} %argrw{"wrr"}
+	add		$tmp35 $const10 ior 	%argrw{"wrr"}
+	div		___329_r $tmp34 $tmp35 	%argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:173
+#             if (useSpecularWorkflow) {
+	if		useSpecularWorkflow 73 83 	%line{173} %argrw{"r"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:174
+#                 specularFaceColorOut = specularColor;
+	assign		specularFaceColorOut specularColor 	%line{174} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:175
+#                 specularEdgeColorOut = color(1.0,1.0,1.0);
+	assign		specularEdgeColorOut $const11 	%line{175} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:177
+#                 float metal = clamp(metallic, 0.0, 1.0); 
+	functioncall	$const12 76 	%line{177} %argrw{"r"}
+# /usr/anim/share_tools/rmanrels/25.0.049.linux.gcc93icc219.x86-64/lib/osl/include/stdosl.h:163
+# float  clamp (float x, float minval, float maxval) { return max(min(x,maxval),minval); }
+	min		$tmp36 metallic $const10 	%filename{"/usr/anim/share_tools/rmanrels/25.0.049.linux.gcc93icc219.x86-64/lib/osl/include/stdosl.h"} %line{163} %argrw{"wrr"}
+	max		___336_metal $tmp36 $const9 	%argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:178
+#                 color spec = mix(color(1.0,1.0,1.0), diffuseColor, metal);
+	mix		___336_spec $const11 diffuseColor ___336_metal 	%filename{"/home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl"} %line{178} %argrw{"wrrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:179
+#                 specularFaceColorOut = mix(r * r * spec, spec, metal);
+	mul		$tmp38 ___329_r ___329_r 	%line{179} %argrw{"wrr"}
+	mul		$tmp39 $tmp38 ___336_spec 	%argrw{"wrr"}
+	mix		specularFaceColorOut $tmp39 ___336_spec ___336_metal 	%argrw{"wrrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:180
+#                 specularEdgeColorOut = spec;
+	assign		specularEdgeColorOut ___336_spec 	%line{180} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:182
+#                 diffuseGainOut *= 1.0 - metal;
+	sub		$tmp40 $const10 ___336_metal 	%line{182} %argrw{"wrr"}
+	mul		diffuseGainOut diffuseGainOut $tmp40 	%argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:184
+#             specularIorOut = color(ior);
+	assign		specularIorOut ior 	%line{184} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:185
+#             specularRoughnessOut = roughness;
+	assign		specularRoughnessOut roughness 	%line{185} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:188
+#             if (clearcoat > 0.0) {
+	gt		$tmp41 clearcoat $const9 	%line{188} %argrw{"wrr"}
+	if		$tmp41 93 93 	%argrw{"r"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:189
+#                 color clearcoatColor = color(1.0, 1.0, 1.0);
+	assign		___337_clearcoatColor $const11 	%line{189} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:190
+#                 clearcoatFaceColorOut = clearcoat * r * r * clearcoatColor;
+	mul		$tmp42 clearcoat ___329_r 	%line{190} %argrw{"wrr"}
+	mul		$tmp43 $tmp42 ___329_r 	%argrw{"wrr"}
+	mul		clearcoatFaceColorOut $tmp43 ___337_clearcoatColor 	%argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:191
+#                 clearcoatEdgeColorOut = clearcoat * clearcoatColor;
+	mul		clearcoatEdgeColorOut clearcoat ___337_clearcoatColor 	%line{191} %argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:192
+#                 clearcoatRoughnessOut = clearcoatRoughness;
+	assign		clearcoatRoughnessOut clearcoatRoughness 	%line{192} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:196
+#             if (emissiveColor[0] > 0.0 ||
+	compref		$tmp44 emissiveColor $const1 	%line{196} %argrw{"wrr"}
+	gt		$tmp45 $tmp44 $const9 	%argrw{"wrr"}
+	neq		$tmp46 $tmp45 $const1 	%argrw{"wrr"}
+	if		$tmp46 97 101 	%argrw{"r"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:197
+#                 emissiveColor[1] > 0.0 ||
+	compref		$tmp47 emissiveColor $const6 	%line{197} %argrw{"wrr"}
+	gt		$tmp48 $tmp47 $const9 	%argrw{"wrr"}
+	neq		$tmp49 $tmp48 $const1 	%argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:196
+#             if (emissiveColor[0] > 0.0 ||
+	assign		$tmp46 $tmp49 	%line{196} %argrw{"wr"}
+	neq		$tmp50 $tmp46 $const1 	%argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:197
+#                 emissiveColor[1] > 0.0 ||
+	if		$tmp50 103 107 	%line{197} %argrw{"r"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:198
+#                 emissiveColor[2] > 0.0)
+	compref		$tmp51 emissiveColor $const7 	%line{198} %argrw{"wrr"}
+	gt		$tmp52 $tmp51 $const9 	%argrw{"wrr"}
+	neq		$tmp53 $tmp52 $const1 	%argrw{"wrr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:197
+#                 emissiveColor[1] > 0.0 ||
+	assign		$tmp50 $tmp53 	%line{197} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:196
+#             if (emissiveColor[0] > 0.0 ||
+	if		$tmp50 110 110 	%line{196} %argrw{"r"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:200
+#                 glowGainOut = 1.0;
+	assign		glowGainOut $const10 	%line{200} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:201
+#                 glowColorOut = emissiveColor;
+	assign		glowColorOut emissiveColor 	%line{201} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:206
+#         if (displacement != 0.0)
+	neq		$tmp54 displacement $const9 	%line{206} %argrw{"wrr"}
+	if		$tmp54 114 114 	%argrw{"r"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:208
+#             dispAmountOut = 0.1;
+	assign		dispAmountOut $const13 	%line{208} %argrw{"wr"}
+# /home/clachanski/trees/OpenUSD_Vulkan/third_party/renderman-25/shaders/UsdPreviewSurfaceParameters.osl:209
+#             dispScalarOut = displacement;
+	assign		dispScalarOut displacement 	%line{209} %argrw{"wr"}
+	end

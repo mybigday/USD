@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_st_buffer_relocator" kind="class" language="C++" prot="public">
+    <compoundname>HdStBufferRelocator</compoundname>
+    <includes refid="buffer_utils_8h" local="no">bufferUtils.h</includes>
+    <innerclass refid="struct_hd_st_buffer_relocator_1_1___copy_unit" prot="private">HdStBufferRelocator::_CopyUnit</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_st_buffer_relocator_1abd5b9504ac94179cc345460b51566432" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; _CopyUnit &gt;</type>
+        <definition>std::vector&lt;_CopyUnit&gt; _queue</definition>
+        <argsstring></argsstring>
+        <name>_queue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/bufferUtils.h" line="89" column="1" bodyfile="pxr/imaging/hdSt/bufferUtils.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_buffer_relocator_1a67cfd6b3fead8fd53d926d9b99c0ed81" prot="private" static="no" mutable="no">
+        <type><ref refid="class_hgi_handle" kindref="compound">HgiBufferHandle</ref></type>
+        <definition>HgiBufferHandle _srcBuffer</definition>
+        <argsstring></argsstring>
+        <name>_srcBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/bufferUtils.h" line="90" column="1" bodyfile="pxr/imaging/hdSt/bufferUtils.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hd_st_buffer_relocator_1a2a87b0f6c5938bf66c56d7415ea2657e" prot="private" static="no" mutable="no">
+        <type><ref refid="class_hgi_handle" kindref="compound">HgiBufferHandle</ref></type>
+        <definition>HgiBufferHandle _dstBuffer</definition>
+        <argsstring></argsstring>
+        <name>_dstBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/bufferUtils.h" line="91" column="1" bodyfile="pxr/imaging/hdSt/bufferUtils.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_st_buffer_relocator_1aa5c2cd781427ec9e9ad0932e73cacc06" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>HdStBufferRelocator</definition>
+        <argsstring>(HgiBufferHandle const &amp;srcBuffer, HgiBufferHandle const &amp;dstBuffer)</argsstring>
+        <name>HdStBufferRelocator</name>
+        <param>
+          <type><ref refid="class_hgi_handle" kindref="compound">HgiBufferHandle</ref> const &amp;</type>
+          <declname>srcBuffer</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hgi_handle" kindref="compound">HgiBufferHandle</ref> const &amp;</type>
+          <declname>dstBuffer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/bufferUtils.h" line="55" column="1" bodyfile="pxr/imaging/hdSt/bufferUtils.h" bodystart="55" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_buffer_relocator_1a5ea3b795d369b329d823d240af5a432d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HDST_API void</type>
+        <definition>HDST_API void AddRange</definition>
+        <argsstring>(ptrdiff_t readOffset, ptrdiff_t writeOffset, ptrdiff_t copySize)</argsstring>
+        <name>AddRange</name>
+        <param>
+          <type>ptrdiff_t</type>
+          <declname>readOffset</declname>
+        </param>
+        <param>
+          <type>ptrdiff_t</type>
+          <declname>writeOffset</declname>
+        </param>
+        <param>
+          <type>ptrdiff_t</type>
+          <declname>copySize</declname>
+        </param>
+        <briefdescription>
+<para>Schedule the range to be copied. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The consecutive ranges could be aggregated into a single copy where possible. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/bufferUtils.h" line="62" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_buffer_relocator_1a20025e5e4e7f39645524971f501a7048" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HDST_API void</type>
+        <definition>HDST_API void Commit</definition>
+        <argsstring>(class HgiBlitCmds *blitCmds)</argsstring>
+        <name>Commit</name>
+        <param>
+          <type>class <ref refid="class_hgi_blit_cmds" kindref="compound">HgiBlitCmds</ref> *</type>
+          <declname>blitCmds</declname>
+        </param>
+        <briefdescription>
+<para>Execute <ref refid="class_hgi" kindref="compound">Hgi</ref> buffer copy command to flush all scheduled range copies. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/bufferUtils.h" line="68" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A utility class to perform batched buffer copy. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="pxr/imaging/hdSt/bufferUtils.h" line="53" column="1" bodyfile="pxr/imaging/hdSt/bufferUtils.h" bodystart="53" bodyend="92"/>
+    <listofallmembers>
+      <member refid="class_hd_st_buffer_relocator_1a2a87b0f6c5938bf66c56d7415ea2657e" prot="private" virt="non-virtual"><scope>HdStBufferRelocator</scope><name>_dstBuffer</name></member>
+      <member refid="class_hd_st_buffer_relocator_1abd5b9504ac94179cc345460b51566432" prot="private" virt="non-virtual"><scope>HdStBufferRelocator</scope><name>_queue</name></member>
+      <member refid="class_hd_st_buffer_relocator_1a67cfd6b3fead8fd53d926d9b99c0ed81" prot="private" virt="non-virtual"><scope>HdStBufferRelocator</scope><name>_srcBuffer</name></member>
+      <member refid="class_hd_st_buffer_relocator_1a5ea3b795d369b329d823d240af5a432d" prot="public" virt="non-virtual"><scope>HdStBufferRelocator</scope><name>AddRange</name></member>
+      <member refid="class_hd_st_buffer_relocator_1a20025e5e4e7f39645524971f501a7048" prot="public" virt="non-virtual"><scope>HdStBufferRelocator</scope><name>Commit</name></member>
+      <member refid="class_hd_st_buffer_relocator_1aa5c2cd781427ec9e9ad0932e73cacc06" prot="public" virt="non-virtual"><scope>HdStBufferRelocator</scope><name>HdStBufferRelocator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="hd_embree_page_front" kind="page">
+    <compoundname>hdEmbree_page_front</compoundname>
+    <title>HdEmbree : Embree-based hydra renderer plugin.</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="hd_embree_page_front_1hdEmbree_mainpage"/> <heading level="2">Classes</heading>
+</para>
+<para><itemizedlist>
+<listitem><para><ref refid="class_hd_embree_config" kindref="compound">HdEmbreeConfig</ref></para>
+</listitem><listitem><para><ref refid="class_hd_embree_instancer" kindref="compound">HdEmbreeInstancer</ref></para>
+</listitem><listitem><para><ref refid="class_hd_embree_mesh" kindref="compound">HdEmbreeMesh</ref></para>
+</listitem><listitem><para><ref refid="class_hd_embree_renderer_plugin" kindref="compound">HdEmbreeRendererPlugin</ref></para>
+</listitem><listitem><para><ref refid="class_hd_embree_render_delegate" kindref="compound">HdEmbreeRenderDelegate</ref></para>
+</listitem><listitem><para><ref refid="class_hd_embree_render_param" kindref="compound">HdEmbreeRenderParam</ref></para>
+</listitem><listitem><para><ref refid="class_hd_embree_render_pass" kindref="compound">HdEmbreeRenderPass</ref></para>
+</listitem><listitem><para><ref refid="class_hd_embree_renderer" kindref="compound">HdEmbreeRenderer</ref></para>
+</listitem></itemizedlist>
+</para>
+<para><heading level="2">Overview</heading>
+</para>
+<para>HdEmbree implements a Hydra renderer plugin based on Intel&apos;s Embree raytracing kernels. HdEmbree is provided as a minimal example of how to write a renderer plugin for hydra; it aims to be living documentation of that API.</para>
+<para>The embree API is prefixed by &quot;rtc&quot;, for raytracing core, and documentation is available <ulink url="https://embree.github.io/api.html">here</ulink>.</para>
+<para>The hydra image generation algorithm (as implemented in <ref refid="class_hd_engine_1a75a0815239165c0bf1826a09415013a5" kindref="member">HdEngine::Execute</ref>) has three main phases: sync, commit resources, and execution of tasks. At each point, hydra delegates some responsibility to the renderer plugin.</para>
+<para><heading level="2">Sync</heading>
+</para>
+<para>Hydra tracks scene state in the <ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> datastructure. Before generating images, hydra updates scene state with <ref refid="class_hd_render_index_1a4c0c8384764f03418660e24b66fa4c90" kindref="member">HdRenderIndex::SyncAll()</ref>. Each prim (scene object) is bound to an <ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> object, which acts as its datasource; SyncAll loops through each prim calling Sync(), which pulls new scene data from the scene delegate and updates the renderable representation.</para>
+<para>The render index uses an instance of HdRenderDelegate to create prim classes, and render delegates are specialized for each renderer so that they can create the appropriate renderable representation. HdEmbree provides <ref refid="class_hd_embree_render_delegate" kindref="compound">HdEmbreeRenderDelegate</ref>, which can create <ref refid="class_hd_embree_instancer" kindref="compound">HdEmbreeInstancer</ref> and <ref refid="class_hd_embree_mesh" kindref="compound">HdEmbreeMesh</ref>. Together, these classes insert mesh objects and mesh instances into the embree scene, so that drawing code can raycast against them.</para>
+<para>In order to support the standard hydra render task, <ref refid="class_hdx_render_task" kindref="compound">HdxRenderTask</ref>, the scene delegate also supports a basic camera type, <ref refid="class_hd_camera" kindref="compound">HdCamera</ref>.</para>
+<para><heading level="2">Commit Resources</heading>
+</para>
+<para>After updating the render index, but before running tasks, <ref refid="class_hd_engine_1a75a0815239165c0bf1826a09415013a5" kindref="member">HdEngine::Execute()</ref> calls the render delegate&apos;s CommitResources(). This gives the renderer a chance to commit the results of the sync phase, e.g. by copying buffers to the GPU or doing a final rebuild of intersection datastructures. HdEmbree doesn&apos;t use this, instead deferring bvh rebuilds to the next Render() call.</para>
+<para><heading level="2">Executing tasks</heading>
+</para>
+<para>The last phase of <ref refid="class_hd_engine_1a75a0815239165c0bf1826a09415013a5" kindref="member">HdEngine::Execute()</ref> is running tasks. Hydra tasks are schedulable callbacks that can be used to render, to maintain scene state, or to interleave execution with other renderers or libraries.</para>
+<para>Hydra provides <ref refid="class_hdx_render_task" kindref="compound">HdxRenderTask</ref> as a way to simply render a scene. <ref refid="class_hdx_render_task" kindref="compound">HdxRenderTask</ref> takes a collection and render parameters as inputs, and maps them to a render pass, created by the render delegate. Collections specify which parts of the scene to draw (by include/exclude paths), and how to draw them (via the repr token).</para>
+<para>HdEmbree provides <ref refid="class_hd_embree_render_pass" kindref="compound">HdEmbreeRenderPass</ref>, which draws by raycasting into the embree scene that&apos;s been populated by HdEmbree prim objects. The raycasting is done in the helper <ref refid="class_hd_embree_renderer" kindref="compound">HdEmbreeRenderer</ref> class. Outputs are written into <ref refid="class_hd_render_buffer" kindref="compound">HdRenderBuffer</ref> objects, which represent image data. Typically, auxiliary tasks in hdx will blit these into the GL framebuffer.</para>
+<para>Note: <ref refid="class_hd_embree_render_pass" kindref="compound">HdEmbreeRenderPass</ref> currently doesn&apos;t support collection include/exclude paths, so it draws everything in every renderpass. Rendering with multiple embree render passes is unsupported, since they&apos;ll write over each other instead of compositing.</para>
+<para><heading level="2">Renderer Plugin</heading>
+</para>
+<para>HdEmbree fits into the hydra runtime as a plugin, and the discoverable class is <ref refid="class_hd_embree_renderer_plugin" kindref="compound">HdEmbreeRendererPlugin</ref>. The plugin class&apos;s only responsibility is to create instances of <ref refid="class_hd_embree_render_delegate" kindref="compound">HdEmbreeRenderDelegate</ref>.</para>
+<para><heading level="2">Embree Scene Ownership</heading>
+</para>
+<para>The embree scene that renderpasses raycast against lives in <ref refid="class_hd_embree_render_delegate" kindref="compound">HdEmbreeRenderDelegate</ref>. Because of this, each render index should have a distinct render delegate. The scene is passed to prims during Sync() via the <ref refid="class_hd_embree_render_param" kindref="compound">HdEmbreeRenderParam</ref> object, and the scene is passed to the renderer object on creation; the renderpass, in turn, gets a handle to the renderer on creation.</para>
+<para><heading level="2">Configuration</heading>
+</para>
+<para>Embree exports some configuration parameters, controllable by environment variable, through the <ref refid="class_hd_embree_config" kindref="compound">HdEmbreeConfig</ref> class.</para>
+<para><heading level="2">Unit Test</heading>
+</para>
+<para>testHdEmbree provides an example of how to write a minimal hydra application. It uses HdSt_UnitTestGLDrawing to create a window and provide a GL framebuffer, and Hd_UnitTestDelegate to provide a simple scene graph/data source. The scene is then rendered by running <ref refid="class_hdx_render_task" kindref="compound">HdxRenderTask</ref> via <ref refid="class_hd_engine_1a75a0815239165c0bf1826a09415013a5" kindref="member">HdEngine::Execute()</ref>. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

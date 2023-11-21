@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_st_computation" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>HdStComputation</compoundname>
+    <derivedcompoundref refid="class_hd_st___dome_light_computation_g_p_u" prot="public" virt="non-virtual">HdSt_DomeLightComputationGPU</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_st___flat_normals_computation_g_p_u" prot="public" virt="non-virtual">HdSt_FlatNormalsComputationGPU</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_st___smooth_normals_computation_g_p_u" prot="public" virt="non-virtual">HdSt_SmoothNormalsComputationGPU</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_st_copy_computation_g_p_u" prot="public" virt="non-virtual">HdStCopyComputationGPU</derivedcompoundref>
+    <derivedcompoundref refid="class_hd_st_ext_comp_gpu_computation" prot="public" virt="non-virtual">HdStExtCompGpuComputation</derivedcompoundref>
+    <includes refid="computation_8h" local="no">computation.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_st_computation_1a68c76127de856de0467c3b350434ea88" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HDST_API</type>
+        <definition>virtual HDST_API ~HdStComputation</definition>
+        <argsstring>()</argsstring>
+        <name>~HdStComputation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/computation.h" line="56" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_computation_1a0868e343ecbcdb8a87d6b26653d18fca" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void Execute</definition>
+        <argsstring>(HdBufferArrayRangeSharedPtr const &amp;range, HdResourceRegistry *resourceRegistry)=0</argsstring>
+        <name>Execute</name>
+        <reimplementedby refid="class_hd_st_copy_computation_g_p_u_1a0c7e66f0a973f19d545a376c6acd8571">Execute</reimplementedby>
+        <reimplementedby refid="class_hd_st_ext_comp_gpu_computation_1a0c7e66f0a973f19d545a376c6acd8571">Execute</reimplementedby>
+        <param>
+          <type>HdBufferArrayRangeSharedPtr const &amp;</type>
+          <declname>range</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_resource_registry" kindref="compound">HdResourceRegistry</ref> *</type>
+          <declname>resourceRegistry</declname>
+        </param>
+        <briefdescription>
+<para>Execute computation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/computation.h" line="59" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_computation_1ab35f67106a7590bcd1c96695a7ac3f4c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int GetNumOutputElements</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetNumOutputElements</name>
+        <reimplementedby refid="class_hd_st_copy_computation_g_p_u_1a70b4d3e1ba119e868a92d4347313293d">GetNumOutputElements</reimplementedby>
+        <reimplementedby refid="class_hd_st_ext_comp_gpu_computation_1a70b4d3e1ba119e868a92d4347313293d">GetNumOutputElements</reimplementedby>
+        <briefdescription>
+<para>Returns the size of its destination buffer (located by range argument of <ref refid="class_hd_st_computation_1a0868e343ecbcdb8a87d6b26653d18fca" kindref="member">Execute()</ref>). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function will be called after all HdBufferSources have been resolved and commited, so it can use the result of those buffer source results. Returning 0 means it doesn&apos;t need to resize. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/computation.h" line="68" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_computation_1a8a168db3ae7e1b0a8e17ed98f40f9f4e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void GetBufferSpecs</definition>
+        <argsstring>(HdBufferSpecVector *specs) const =0</argsstring>
+        <name>GetBufferSpecs</name>
+        <reimplementedby refid="class_hd_st_copy_computation_g_p_u_1a596df3707c1a0ac69178be8b953a65ab">GetBufferSpecs</reimplementedby>
+        <reimplementedby refid="class_hd_st_ext_comp_gpu_computation_1a596df3707c1a0ac69178be8b953a65ab">GetBufferSpecs</reimplementedby>
+        <param>
+          <type>HdBufferSpecVector *</type>
+          <declname>specs</declname>
+        </param>
+        <briefdescription>
+<para>Add the buffer spec for this computation into given bufferspec vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Caller has to allocate the destination buffer with respect to the BufferSpecs, and passes the range when registering the computation. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/computation.h" line="73" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_st_computation_1a9dcb9b43a3d0fa9003d4c1c9d921f6b2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool IsValid</definition>
+        <argsstring>()</argsstring>
+        <name>IsValid</name>
+        <briefdescription>
+<para>This function is needed as <ref refid="class_hd_st_computation" kindref="compound">HdStComputation</ref> shares a templatized interface with <ref refid="class_hd_buffer_source" kindref="compound">HdBufferSource</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>It is a check to see if the GetBufferSpecs would produce a valid result. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hdSt/computation.h" line="79" column="1" bodyfile="pxr/imaging/hdSt/computation.h" bodystart="79" bodyend="79"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>An interface class for GPU computation. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>GPU computation fills the result into range, which has to be allocated using buffer specs determined by GetBufferSpecs, and registered as a pair of computation and range. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3090">
+        <label>HdStExtCompGpuComputation</label>
+        <link refid="class_hd_st_ext_comp_gpu_computation"/>
+        <childnode refid="3088" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3089">
+        <label>HdStCopyComputationGPU</label>
+        <link refid="class_hd_st_copy_computation_g_p_u"/>
+        <childnode refid="3088" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3088">
+        <label>HdStComputation</label>
+        <link refid="class_hd_st_computation"/>
+      </node>
+    </inheritancegraph>
+    <location file="pxr/imaging/hdSt/computation.h" line="53" column="1" bodyfile="pxr/imaging/hdSt/computation.h" bodystart="52" bodyend="80"/>
+    <listofallmembers>
+      <member refid="class_hd_st_computation_1a0868e343ecbcdb8a87d6b26653d18fca" prot="public" virt="pure-virtual"><scope>HdStComputation</scope><name>Execute</name></member>
+      <member refid="class_hd_st_computation_1a8a168db3ae7e1b0a8e17ed98f40f9f4e" prot="public" virt="pure-virtual"><scope>HdStComputation</scope><name>GetBufferSpecs</name></member>
+      <member refid="class_hd_st_computation_1ab35f67106a7590bcd1c96695a7ac3f4c" prot="public" virt="pure-virtual"><scope>HdStComputation</scope><name>GetNumOutputElements</name></member>
+      <member refid="class_hd_st_computation_1a9dcb9b43a3d0fa9003d4c1c9d921f6b2" prot="public" virt="non-virtual"><scope>HdStComputation</scope><name>IsValid</name></member>
+      <member refid="class_hd_st_computation_1a68c76127de856de0467c3b350434ea88" prot="public" virt="virtual"><scope>HdStComputation</scope><name>~HdStComputation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

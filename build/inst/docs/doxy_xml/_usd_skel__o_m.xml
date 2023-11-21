@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="_usd_skel__o_m" kind="page">
+    <compoundname>UsdSkel_OM</compoundname>
+    <title>Object Model</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="_usd_skel__o_m_1UsdSkel_OM_Overview">
+<title>Overview</title>
+<para>In UsdSkel, skeletons are encoded as independent entities, which are &apos;bound&apos; to the primitives that they affect <ndash/> similar to material bindings.</para>
+<para>For example:</para>
+<para><programlisting><codeline><highlight class="normal">def<sp/>Skeleton<sp/>&quot;Skel&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:animationSource<sp/>=<sp/>&lt;Anim&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>SkelAnimation<sp/>&quot;Anim&quot;<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">def<sp/>SkelRoot<sp/>&quot;Character&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rel<sp/>skel:skeleton<sp/>=<sp/>&lt;/Skel&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>def<sp/>Mesh<sp/>&quot;Mesh&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prepend<sp/>apiSchemas<sp/>=<sp/>[&quot;SkelBindingAPI&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int[]<sp/>primvars:skel:jointIndices<sp/>=<sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float[]<sp/>primvars:skel:jointWeights<sp/>=<sp/>...</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>Above, there is a single <emphasis>skeleton</emphasis> at <computeroutput>&lt;/Skel&gt;</computeroutput>, which is animated according to the <emphasis>animation</emphasis> at <computeroutput>&lt;/Skel/Anim&gt;</computeroutput>. That skeleton is bound to <computeroutput>&lt;/Character&gt;</computeroutput>, and so affects every <emphasis>skinnable primitive</emphasis> beneath <computeroutput>&lt;/Character&gt;</computeroutput>, such as <computeroutput>&lt;/Character/Mesh&gt;</computeroutput>.</para>
+<para>UsdSkel provides various &quot;query&quot; objects, which provide convenient API to assist extraction of data related to the above components: For Skeleton primitives, a <ref refid="_usd_skel__o_m_1UsdSkel_OM_SkeletonQuery" kindref="member">skeleton query</ref> can be created to extra resolved data for the skeleton. Similarly, a animation query provides can be created to extract data from an animation. Finally, a <ref refid="_usd_skel__o_m_1UsdSkel_OM_SkinningQuery" kindref="member">skinning query</ref> can be used to introspect bindings on skinnable primitives, or to compute the effect of skinning.</para>
+<para>All of these query objects are created through a <ref refid="_usd_skel__o_m_1UsdSkel_OM_Cache" kindref="member">skel cache</ref>.</para>
+</sect1>
+<sect1 id="_usd_skel__o_m_1UsdSkel_OM_Cache">
+<title>UsdSkelCache: Persistent Skeleton Cache</title>
+<para>Bindings in UsdSkel are based on a set of inherited binding properties, set through the <ref refid="class_usd_skel_binding_a_p_i" kindref="compound">UsdSkelBindingAPI</ref> schema. The <ref refid="class_usd_skel_cache" kindref="compound">UsdSkelCache</ref> provides a cache with an explicit population step, which provides an efficient and simplified way for clients to reason about resolved properties.</para>
+</sect1>
+<sect1 id="_usd_skel__o_m_1UsdSkel_OM_SkeletonQuery">
+<title>UsdSkelSkeletonQuery: Skeleton Resolver</title>
+<para>A <ref refid="class_usd_skel_skeleton_query" kindref="compound">UsdSkelSkeletonQuery</ref> provides a simplified API for querying resolved data related to a <ref refid="class_usd_skel_skeleton" kindref="compound">UsdSkelSkeleton</ref>.</para>
+<para>A <ref refid="class_usd_skel_skeleton_query" kindref="compound">UsdSkelSkeletonQuery</ref> is created through a <ref refid="class_usd_skel_cache" kindref="compound">UsdSkelCache</ref> instance. Internally, constructing a query through a cache presents opportunities for sharing work across instanced skeletons. <ref refid="class_usd_skel_anim_query" kindref="compound">UsdSkelAnimQuery</ref> objects, which a <ref refid="class_usd_skel_skeleton_query" kindref="compound">UsdSkelSkeletonQuery</ref> references (when a valid animation source is bound) are also constructed through a <ref refid="class_usd_skel_cache" kindref="compound">UsdSkelCache</ref>. Internally, the <ref refid="class_usd_skel_cache" kindref="compound">UsdSkelCache</ref> will share both the <ref refid="class_usd_skel_anim_query" kindref="compound">UsdSkelAnimQuery</ref> objects across primitives that reference the same animation, as well as information about the definition of the skeleton, corresponding to a resolved <ref refid="class_usd_skel_skeleton" kindref="compound">UsdSkelSkeleton</ref> primitive. Both of these properties are shared across Usd_ScenegraphInstancing_Overview &quot;instance primitives.&quot;</para>
+</sect1>
+<sect1 id="_usd_skel__o_m_1UsdSkel_OM_AnimQuery">
+<title>UsdSkelAnimQuery: Animation Resolver</title>
+<para>A <ref refid="class_usd_skel_anim_query" kindref="compound">UsdSkelAnimQuery</ref> provides an interface to computing resolved animation for an animation source.</para>
+<para>A <ref refid="class_usd_skel_anim_query" kindref="compound">UsdSkelAnimQuery</ref> is created through a <ref refid="class_usd_skel_cache" kindref="compound">UsdSkelCache</ref> instance. This is because we anticipate adding <emphasis>compound</emphasis> animation sources like animation blenders in the future, and expect that different instances of blenders may reference many of the same animations, so requiring a <ref refid="class_usd_skel_anim_query" kindref="compound">UsdSkelAnimQuery</ref> to be constructed through a <ref refid="class_usd_skel_cache" kindref="compound">UsdSkelCache</ref> presents an opportunity to share references to queries internally.</para>
+<para>Data computed through a <ref refid="class_usd_skel_anim_query" kindref="compound">UsdSkelAnimQuery</ref> includes joint transformations, as well as blend shapes.</para>
+<para>It is important to note that per-joint data computations, like joint transformations, provide animation data in the joint order of the animation source. This ordering may not match the order of data as defined on as skeleton, and must be mapped into skeleton-order by an <ref refid="_usd_skel__o_m_1UsdSkel_OM_AnimMapper" kindref="member">anim mapper</ref>.</para>
+<para>It is expected that clients should rarely need to interact with a <ref refid="class_usd_skel_anim_query" kindref="compound">UsdSkelAnimQuery</ref>. Instead, clients will typically work through a <ref refid="_usd_skel__o_m_1UsdSkel_OM_SkeletonQuery" kindref="member">skeleton query</ref> when querying joint transforms.</para>
+</sect1>
+<sect1 id="_usd_skel__o_m_1UsdSkel_OM_SkinningQuery">
+<title>UsdSkelSkinningQuery: Resolving Joint Influences and Skinning</title>
+<para>At each skinnable primitive, a <ref refid="class_usd_skel_skinning_query" kindref="compound">UsdSkelSkinningQuery</ref> is populated on a <ref refid="class_usd_skel_cache" kindref="compound">UsdSkelCache</ref> to facilitate querying of properties that define how that primitive is to be skinned. This includes <ref refid="_usd_skel__intro_1UsdSkel_Term_JointInfluences" kindref="member">joint influences</ref> and a geom bind transform.</para>
+</sect1>
+<sect1 id="_usd_skel__o_m_1UsdSkel_OM_AnimMapper">
+<title>UsdSkelAnimMapper: Remapping Data Between Different Orders</title>
+<para>A helper for mapping vectorized data from one ordering to another.</para>
+<para>Vectorized data in UsdSkel may be required to adhere to a variety of different orderings. For example, an animation source provides joint data in its own order, which may need to be remapped into the joint order defined for a skeleton. The skeleton order itself may also need to be remapped into an order declared at a binding site via a <emphasis>skel:joints</emphasis> binding relationship. Clients may also want to remap vectorized animation data into their own, externally-defined order.</para>
+<para>A UsdSkelAnimMapper provides a mapping of vectorized data from one ordering to another to simplify these tasks. Based on two token orderings <ndash/> as defined by two VtTokenArray constructor arguments <ndash/> a mapper provides a reusable structure for remapping data between different orderings.</para>
+<para>For joint orderings defined as part of the core schemas, clients should not generally need to manually construct UsdSkelAnimMapper objects. Rather, the mapper instances are populated on the <ref refid="_usd_skel__o_m_1UsdSkel_OM_Cache" kindref="member">skel cache</ref>, held by the different <emphasis>query</emphasis> objects, where needed. Those UsdSkelAnimMapper objects may be shared across different query objects, if possible.</para>
+<para>An effort is made in mappers to provide additional information about a remapping task, to facilitate optimizations while remapping data. For instance, the result of UsdSkelAnimMapper::IsIdentity can be used to decide whether or not any remapping work is required <ndash/> possibly allowing some array copies to be bypassed. Similarly, UsdSkelAnimMapper::IsNull indicates that no source values can be remapped (and so maybe we need not bother computing the source data to begin with). </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

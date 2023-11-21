@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="page_tf__malloc_tag" kind="page">
+    <compoundname>page_tf_MallocTag</compoundname>
+    <title>The TfMallocTag Memory Tagging System</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="page_tf__malloc_tag_1MallocTagContents">
+<title>Contents</title>
+<para><itemizedlist>
+<listitem><para><ref refid="page_tf__malloc_tag_1MallocTagOverview" kindref="member">Overview</ref> </para>
+</listitem>
+<listitem><para><ref refid="page_tf__malloc_tag_1MallocTagAddingTags" kindref="member">Adding Tags</ref> </para>
+</listitem>
+<listitem><para><ref refid="page_tf__malloc_tag_1MallocTagVaryingTags" kindref="member">Varying Tags</ref> </para>
+</listitem>
+<listitem><para><ref refid="page_tf__malloc_tag_1MallocTagPushPop" kindref="member">Manual Push / Pop</ref> </para>
+</listitem>
+<listitem><para><ref refid="page_tf__malloc_tag_1MallocTagPerformance" kindref="member">Performance Impact</ref> </para>
+</listitem>
+<listitem><para><ref refid="page_tf__malloc_tag_1MallocTagBestResults" kindref="member">Best Profiling Results</ref> </para>
+</listitem>
+<listitem><para><ref refid="page_tf__malloc_tag_1MallocTagMultithreading" kindref="member">Multithreading</ref></para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+<sect1 id="page_tf__malloc_tag_1MallocTagOverview">
+<title>Overview</title>
+<para>Accounting for memory use in a program is often difficult. The <ref refid="class_tf_malloc_tag" kindref="compound">TfMallocTag</ref> system is designed to track memory use in a hierarchical fashion. Memory use in this context refers specifically to allocations that you make using malloc() (and its variants) and free(). Note that this includes the C++ new and delete operators, since they (in general) simply call through to malloc() and free() (but see <ref refid="page_tf__malloc_tag_1tf_MallocTag_BestResults" kindref="member">Best Profiling Results</ref> as well).</para>
+<para>The basic idea is that at any point during program execution, you can push a memory &quot;tag&quot; onto the local call stack. Allocations made while that tag is active are &quot;billed&quot; to that tag; at any point, you can query and see how much outstanding memory is due to that particular tag. If additional tags are pushed onto the stack, memory allocations are billed to these &quot;children&quot; tags but are also included in the bill to the parent tags.</para>
+<para>Each line of code in the program that pushes a tag is called a <emphasis>call-site</emphasis>. A sequence of call-sites is called a <emphasis>path</emphasis> node and describes the hierarchy under which allocations take place. You use an object whose constructor pushes the tag and whose destructor pops the tag to control the lifetime of a tag. Consider the following example:</para>
+<para><programlisting><codeline><highlight class="normal">#include<sp/>&quot;pxr/base/tf/mallocTag.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">void<sp/>TopFunction()<sp/></highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TfAutoMallocTag<sp/>noname(&quot;Top&quot;);<sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>call-site<sp/>&quot;Top&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>FuncA();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>malloc(100);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>note1</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>FuncB();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">void<sp/>FuncA()<sp/></highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TfAutoMallocTag<sp/>noname(&quot;A&quot;);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>call-site<sp/>&quot;A&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>malloc(100);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>FuncB();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">void<sp/>FuncB()<sp/></highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TfAutoMallocTag<sp/>noname(&quot;B&quot;);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>call-site<sp/>&quot;B&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>malloc(100);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>Suppose now that you invoke TopFunction(). The program has three different call-sites, Top, A and B. However, running TopFunction() generates the following distinct path nodes: Top, Top/A, Top/A/B, and Top/B.</para>
+<para>The total memory billed to path node Top is 400. Calling TopFunction() results in allocations in itself, its direct calls FuncA() and FuncB(), and its indirect call to FuncB() from FuncA(). The direct memory billed to the path node Top is simply 100. That is the memory allocation noted by the line in the example marked <emphasis>note1</emphasis>. Even though this call comes after FuncA() has been called, the call-site tag A is no longer active, since it was popped off the stack when FuncA() exited.</para>
+<para>Continuing the analysis, the total memory billed to Top/A is 200, the memory billed to Top/A/B is 100, and the memory billed to Top/B is also 100. To access these statistics, you call the GetCallTree() function on the <ref refid="class_tf_malloc_tag" kindref="compound">TfMallocTag</ref> object. Note that the system does not begin any actual accounting until Initialize() is called. Any memory allocations that occur prior to this point are &quot;off the radar.&quot;</para>
+</sect1>
+<sect1 id="page_tf__malloc_tag_1MallocTagAddingTags">
+<title>Adding Tags</title>
+<para>The following example shows a typical use of tags in a library. Note that memory tags in a program need to be distinct from other people&apos;s tags, so you should follow the same basic guidelines that apply to avoiding name-conflicts in functions and classes.</para>
+<para><programlisting><codeline><highlight class="normal">#include<sp/>&quot;pxr/base/tf/mallocTag.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">void<sp/>FancyMesh::Assemble()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TfAutoMallocTag<sp/>noname(&quot;FancyMesh::Assemble&quot;);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>code<sp/>that<sp/>does<sp/>a<sp/>lot<sp/>of<sp/>allocation</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>code<sp/>that<sp/>calls<sp/>CreateVertex(),<sp/>CreateFace()<sp/>a<sp/>lot...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">void<sp/>FancyMesh::CreateVertex()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TfAutoMallocTag<sp/>noname(&quot;FancyMesh::CreateVertex&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">void<sp/>FancyMesh::CreateFace()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TfAutoMallocTag<sp/>noname(&quot;FancyMesh::CreateFace&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="page_tf__malloc_tag_1MallocTagVaryingTags">
+<title>Varying Tags</title>
+<para>Thus far, all of the tags shown in examples have been string literals. Sometimes it is useful to let tags be constructed on the fly, as in the following example:</para>
+<para><programlisting><codeline><highlight class="normal">void<sp/>LoadModel(string<sp/>const&amp;<sp/>name)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TfAutoMallocTag<sp/>noname(&quot;LoadModel<sp/>(&quot;<sp/>+<sp/>name<sp/>+<sp/>&quot;)&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>This technique can generate any number of different call-sites (each distinct <computeroutput>name</computeroutput> passed in generates a different call-site) and thus a whole sequence of different path nodes.</para>
+<para>Note that even if the tagging system is not being used (see Performance, below), the cost of building the call-site name string is still incurred in the above example. While this should almost never be a problem, extremely performance-intensive code should probably pass a string literal or previously constructed string, as opposed to creating a string (even an empty string).</para>
+</sect1>
+<sect1 id="page_tf__malloc_tag_1MallocTagPushPop">
+<title>Manual Push / Pop</title>
+<para>Occasionally, using local variables to delimit the scope of a tag isn&apos;t possible. You can make manual calls to Push() and Pop(), but whenever possible you should use TfAutoMallocTag.</para>
+</sect1>
+<sect1 id="page_tf__malloc_tag_1MallocTagPerformance">
+<title>Performance Impact</title>
+<para>The memory-cost for using the <ref refid="class_tf_malloc_tag" kindref="compound">TfMallocTag</ref> system is as follows:</para>
+<para><itemizedlist>
+<listitem><para>Each call to malloc() incurs no extra overhead compared with not using the tagging system. This is done by &quot;stealing&quot; some number of bits from a control-word that malloc() already tacks on to your memory requests. The implication of this is that users are restricted to malloc() requests that are no more than 1 terabyte (1&lt;&lt;40 bytes) at a time when the tagging system is activated. </para>
+</listitem>
+<listitem><para>The above applies to using the ptmalloc3 allocator. For jemalloc, every allocation is stored in a separate table, so there is an additional call to an allocator to add the entry, with possibly an extra memory allocation of its own. </para>
+</listitem>
+<listitem><para>Each different call-site and each different path-node reached during the program requires a small amount of memory to store its statistics, if tagging is on. Obviously, there is a one-time runtime cost to create each new call-site or path-node, but it is small, and is not repeated. </para>
+</listitem>
+<listitem><para>Pushing and popping call-site objects has effectively no cost if tagging is not active. </para>
+</listitem>
+<listitem><para>Pushing call-site objects requires locking a mutex and doing a single hash-lookup when tagging is active. Popping call-site objects does not incur a mutex lock. </para>
+</listitem>
+<listitem><para>Calls to malloc() and free() require an extra mutex lock when tagging is active.</para>
+</listitem>
+</itemizedlist>
+Obviously, a program that does nothing but allocate memory can be substantially impacted by turning tagging on. For typical applications, however, (such as Renderman, or loading models in Menv30) the actual runtime hit has proven (so far) to be in the 2-3 percent range when tagging is active. Programs with tags, but which have not called Initialize(), have no measurable increase in running times.</para>
+<para>The above statement applies to ptmalloc3. For the jemalloc allocator, it&apos;s unclear right now what performance impact this might have for prman.</para>
+<para><anchor id="page_tf__malloc_tag_1tf_MallocTag_BestResults"/></para>
+</sect1>
+<sect1 id="page_tf__malloc_tag_1MallocTagBestResults">
+<title>Best Profiling Results</title>
+<para>The memory statistics can be fooled by programs which contain their own allocators: in this case, the memory requested by the allocator itself does not correlate well with what tags are active. It is best to turn off as many internal allocators as possible.</para>
+<para>In particular, the C++ STL library maintains its own allocator for small requests, as does the TF Library. The former can be turned off by setting the environment variable GLIBCXX_FORCE_NEW to any value. For simplicity, this will also deactivate the Tf Library allocator (see TfFixedSizeAllocator).</para>
+</sect1>
+<sect1 id="page_tf__malloc_tag_1MallocTagMultithreading">
+<title>Multithreading</title>
+<para>The <ref refid="class_tf_malloc_tag" kindref="compound">TfMallocTag</ref> system is completely thread-safe. Each thread has its own local stack of call-site objects. You can call <ref refid="class_tf_malloc_tag_1ac05c3ae7dfa19d9034a1b5f4737548e8" kindref="member">TfMallocTag::GetCallTree()</ref> or <ref refid="class_tf_malloc_tag_1a94043f2dbe14589226a577f501eb384f" kindref="member">TfMallocTag::GetTotalBytes()</ref> at any time and from any thread. </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,509 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hd_task" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>HdTask</compoundname>
+    <derivedcompoundref refid="class_hdx_draw_target_task" prot="public" virt="non-virtual">HdxDrawTargetTask</derivedcompoundref>
+    <derivedcompoundref refid="class_hdx_oit_resolve_task" prot="public" virt="non-virtual">HdxOitResolveTask</derivedcompoundref>
+    <derivedcompoundref refid="class_hdx_pick_task" prot="public" virt="non-virtual">HdxPickTask</derivedcompoundref>
+    <derivedcompoundref refid="class_hdx_render_setup_task" prot="public" virt="non-virtual">HdxRenderSetupTask</derivedcompoundref>
+    <derivedcompoundref refid="class_hdx_selection_task" prot="public" virt="non-virtual">HdxSelectionTask</derivedcompoundref>
+    <derivedcompoundref refid="class_hdx_shadow_task" prot="public" virt="non-virtual">HdxShadowTask</derivedcompoundref>
+    <derivedcompoundref refid="class_hdx_simple_light_task" prot="public" virt="non-virtual">HdxSimpleLightTask</derivedcompoundref>
+    <derivedcompoundref refid="class_hdx_task" prot="public" virt="non-virtual">HdxTask</derivedcompoundref>
+    <derivedcompoundref refid="class_usd_imaging___test_task" prot="public" virt="non-virtual">UsdImaging_TestTask</derivedcompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hd_task_1ae87c83b9f3d4f5ba91530df74da5e284" prot="private" static="no" mutable="no">
+        <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SdfPath _id</definition>
+        <argsstring></argsstring>
+        <name>_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/task.h" line="203" column="1" bodyfile="pxr/imaging/hd/task.h" bodystart="203" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hd_task_1a3df864dcce7538c1b130b105af7c2406" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API</type>
+        <definition>HD_API HdTask</definition>
+        <argsstring>(SdfPath const &amp;id)</argsstring>
+        <name>HdTask</name>
+        <param>
+          <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new task. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the task is going to be added to the render index, id should be an absolute scene path. If the task isn&apos;t going to be added to the render index an empty path should be used for id. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/task.h" line="62" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_task_1a08a2f7cc6d3767c8081f5098bd113d66" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>HD_API</type>
+        <definition>virtual HD_API ~HdTask</definition>
+        <argsstring>()</argsstring>
+        <name>~HdTask</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/task.h" line="65" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_task_1ad88eb1fe4f30180a71ae25ede7a99b89" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void Sync</definition>
+        <argsstring>(HdSceneDelegate *delegate, HdTaskContext *ctx, HdDirtyBits *dirtyBits)=0</argsstring>
+        <name>Sync</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type>HdTaskContext *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>HdDirtyBits *</type>
+          <declname>dirtyBits</declname>
+        </param>
+        <briefdescription>
+<para>Sync Phase: Obtain task state from Scene delegate based on change processing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function might only be called if dirtyBits is not 0, so isn&apos;t guaranteed to be called every time <ref refid="class_hd_engine_1a75a0815239165c0bf1826a09415013a5" kindref="member">HdEngine::Execute()</ref> is run with this task.</para>
+<para>However, this is the only time when the task should communicate with with the scene delegate responsible for the task and should be used to pull all changed data. As outside the Sync phase, the scene delegate may not have the data available.</para>
+<para>Tasks maybe synced in parallel and out of order.</para>
+<para>The ctx parameter is present for legacy reason and shouldn&apos;t be used once the task has moved to using the 3-phase mechanism.</para>
+<para>After a task has been synced, it is expected that it produces a collection identifying the prims that are important to the task. This collection is used to filter the prims in the scene so only the Relevant prims get synced.</para>
+<para>Note about inter-prim dependencies: Quite often tasks need to access other prims, such as a camera prim for example. These other prims have not been synced yet when sync is called. Therefore, it is not recommended to access these prims during the sync phase. Instead a task should store the path to the prim to be resolved to an actual prim during the &quot;prepare&quot; phase. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/task.h" line="96" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_task_1acf33bc9da3a0e9449d4aceb0f524f44d" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void Prepare</definition>
+        <argsstring>(HdTaskContext *ctx, HdRenderIndex *renderIndex)=0</argsstring>
+        <name>Prepare</name>
+        <param>
+          <type>HdTaskContext *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type><ref refid="class_hd_render_index" kindref="compound">HdRenderIndex</ref> *</type>
+          <declname>renderIndex</declname>
+        </param>
+        <briefdescription>
+<para>Prepare Phase: Resolve bindings and manage resources. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The Prepare phase happens before the Data Commit phase. All tasks in the task list get called for every execute. At this time all Tasks and other prims have completed the phase synced.</para>
+<para>This is an opportunity for the task to pull data from other prims (such as a camera prim) by querying the render index.</para>
+<para>The task can also use the phase to create, register and update temporary resources with the resource registry or other render delegate specific mechanism.</para>
+<para>Tasks are always &quot;Prepared&quot; in execution order.</para>
+<para>Inter-task communication is achievable via the task context. The same task context is used for the prepare and execution phases. Data in the task context isn&apos;t guaranteed to persist across calls to <ref refid="class_hd_engine_1a75a0815239165c0bf1826a09415013a5" kindref="member">HdEngine::Execute()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/task.h" line="119" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_task_1a8e17fe075a39a5e0438b48467f05e4fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void Execute</definition>
+        <argsstring>(HdTaskContext *ctx)=0</argsstring>
+        <name>Execute</name>
+        <param>
+          <type>HdTaskContext *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>Execute Phase: Runs the task. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The execution phase should trigger render delegate processing, such as issuing draw commands.</para>
+<para>Task execution is non-parallel and ordered.</para>
+<para>The task context is the same as used by the prepare step and is used for inter-task communication. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/task.h" line="131" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_task_1a5660db150d0d46d62319100c3f6138fd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+        <definition>virtual HD_API const TfTokenVector&amp; GetRenderTags</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRenderTags</name>
+        <briefdescription>
+<para>Render Tag Gather. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Is called during the Sync phase after the task has been sync&apos;ed.</para>
+<para>The task should return the render tags it wants to be appended to the active set.</para>
+<para>Hydra prims are marked up with a render tag and only prims marked with the render tags in the current active set are Sync&apos;ed.</para>
+<para>Hydra&apos;s core will combine the sets from each task and deduplicate the result. So tasks don&apos;t need to co-ordinate with each other to optimize the set.</para>
+<para>For those tasks that use <ref refid="class_hd_render_pass" kindref="compound">HdRenderPass</ref>, this set is passed to <ref refid="class_hd_render_pass" kindref="compound">HdRenderPass</ref>&apos;s Execute method.</para>
+<para>The default implementation returns an empty set </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/task.h" line="152" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_task_1a9301243d9273afcba6395e86047490ab" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref> const  &amp;</type>
+        <definition>SdfPath const&amp; GetId</definition>
+        <argsstring>() const</argsstring>
+        <name>GetId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/task.h" line="154" column="1" bodyfile="pxr/imaging/hd/task.h" bodystart="154" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_task_1ade051cd8ff53a108b7e6c27be99a5e3a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HD_API HdDirtyBits</type>
+        <definition>virtual HD_API HdDirtyBits GetInitialDirtyBitsMask</definition>
+        <argsstring>() const</argsstring>
+        <name>GetInitialDirtyBitsMask</name>
+        <briefdescription>
+<para>Returns the minimal set of dirty bits to place in the change tracker for use in the first sync of this prim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Typically this would be all dirty bits. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/task.h" line="160" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-static-func">
+      <memberdef kind="function" id="class_hd_task_1a6f03b9a9e34350db200b0a7f252eaf8e" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API bool</type>
+        <definition>static HD_API bool _HasTaskContextData</definition>
+        <argsstring>(HdTaskContext const *ctx, TfToken const &amp;id)</argsstring>
+        <name>_HasTaskContextData</name>
+        <param>
+          <type>HdTaskContext const *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Check if the shared context contains a value for the given id. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/task.h" line="166" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_task_1a2ceca911620546c6b245d903f9ec5f78" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool _GetTaskContextData</definition>
+        <argsstring>(HdTaskContext const *ctx, TfToken const &amp;id, T *outValue)</argsstring>
+        <name>_GetTaskContextData</name>
+        <param>
+          <type>HdTaskContext const *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>T *</type>
+          <declname>outValue</declname>
+        </param>
+        <briefdescription>
+<para>Extracts a typed value out of the task context at the given id. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the id is missing or of the wrong type, the code will throw a verify error, return false and outValue will be unmodified. in case of success, the return value is true and the value is copied into outValue.</para>
+<para>outValue must not be null. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/task.h" line="177" column="1" bodyfile="pxr/imaging/hd/task.h" bodystart="213" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_task_1ab4beed642380f0353cf158cef16c4f32" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>T</type>
+        <definition>T _GetDriver</definition>
+        <argsstring>(HdTaskContext const *ctx, TfToken const &amp;driverName)</argsstring>
+        <name>_GetDriver</name>
+        <param>
+          <type>HdTaskContext const *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type><ref refid="class_tf_token" kindref="compound">TfToken</ref> const &amp;</type>
+          <declname>driverName</declname>
+        </param>
+        <briefdescription>
+<para>Extract an object from a <ref refid="class_hd_driver" kindref="compound">HdDriver</ref> inside the task context. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns nullptr if driver was not found. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/task.h" line="198" column="1" bodyfile="pxr/imaging/hd/task.h" bodystart="264" bodyend="284"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_hd_task_1a50bb64fcb3404805df436ad9e12ddd3c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool _GetTaskParams</definition>
+        <argsstring>(HdSceneDelegate *delegate, T *outValue)</argsstring>
+        <name>_GetTaskParams</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <param>
+          <type>T *</type>
+          <declname>outValue</declname>
+        </param>
+        <briefdescription>
+<para>Extracts a typed value out of the task context at the given id. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If the id is missing or of the wrong type, the code will throw a verify error, return false and outValue will be unmodified. in case of success, the return value is true and the value is copied into outValue.</para>
+<para>outValue must not be null. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/task.h" line="189" column="1" bodyfile="pxr/imaging/hd/task.h" bodystart="243" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_task_1a7db1af254e4af3fbffc974c19968a6e7" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HD_API <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref></type>
+        <definition>HD_API TfTokenVector _GetTaskRenderTags</definition>
+        <argsstring>(HdSceneDelegate *delegate)</argsstring>
+        <name>_GetTaskRenderTags</name>
+        <param>
+          <type><ref refid="class_hd_scene_delegate" kindref="compound">HdSceneDelegate</ref> *</type>
+          <declname>delegate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/task.h" line="193" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hd_task_1ae7baac71bab6449ac6451c6065e46b83" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdTask</definition>
+        <argsstring>()=delete</argsstring>
+        <name>HdTask</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/task.h" line="205" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_task_1acd4329878e4f56ea3de81af99287e620" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HdTask</definition>
+        <argsstring>(const HdTask &amp;)=delete</argsstring>
+        <name>HdTask</name>
+        <param>
+          <type>const HdTask &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/task.h" line="206" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hd_task_1aecf1d5ad8aa9d6057bc1db4f96e9e7eb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HdTask &amp;</type>
+        <definition>HdTask&amp; operator=</definition>
+        <argsstring>(const HdTask &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const HdTask &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hd/task.h" line="207" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3422">
+        <label>HdxOitRenderTask</label>
+        <link refid="class_hdx_oit_render_task"/>
+        <childnode refid="3421" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3420">
+        <label>HdxPresentTask</label>
+        <link refid="class_hdx_present_task"/>
+        <childnode refid="3413" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3423">
+        <label>HdxOitVolumeRenderTask</label>
+        <link refid="class_hdx_oit_volume_render_task"/>
+        <childnode refid="3421" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3424">
+        <label>HdxSkydomeTask</label>
+        <link refid="class_hdx_skydome_task"/>
+        <childnode refid="3413" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3414">
+        <label>HdxAovInputTask</label>
+        <link refid="class_hdx_aov_input_task"/>
+        <childnode refid="3413" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3418">
+        <label>HdxColorizeSelectionTask</label>
+        <link refid="class_hdx_colorize_selection_task"/>
+        <childnode refid="3413" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3411">
+        <label>HdxSelectionTask</label>
+        <link refid="class_hdx_selection_task"/>
+        <childnode refid="3407" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3410">
+        <label>HdxRenderSetupTask</label>
+        <link refid="class_hdx_render_setup_task"/>
+        <childnode refid="3407" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3415">
+        <label>HdxBoundingBoxTask</label>
+        <link refid="class_hdx_bounding_box_task"/>
+        <childnode refid="3413" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3425">
+        <label>HdxVisualizeAovTask</label>
+        <link refid="class_hdx_visualize_aov_task"/>
+        <childnode refid="3413" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3409">
+        <label>HdxPickTask</label>
+        <link refid="class_hdx_pick_task"/>
+        <childnode refid="3407" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3412">
+        <label>HdxShadowTask</label>
+        <link refid="class_hdx_shadow_task"/>
+        <childnode refid="3407" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3417">
+        <label>HdxColorCorrectionTask</label>
+        <link refid="class_hdx_color_correction_task"/>
+        <childnode refid="3413" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3413">
+        <label>HdxTask</label>
+        <link refid="class_hdx_task"/>
+        <childnode refid="3407" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3408">
+        <label>HdxOitResolveTask</label>
+        <link refid="class_hdx_oit_resolve_task"/>
+        <childnode refid="3407" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3421">
+        <label>HdxRenderTask</label>
+        <link refid="class_hdx_render_task"/>
+        <childnode refid="3413" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3407">
+        <label>HdTask</label>
+      </node>
+      <node id="3416">
+        <label>HdxColorChannelTask</label>
+        <link refid="class_hdx_color_channel_task"/>
+        <childnode refid="3413" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3419">
+        <label>HdxPickFromRenderBufferTask</label>
+        <link refid="class_hdx_pick_from_render_buffer_task"/>
+        <childnode refid="3413" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="pxr/imaging/hd/task.h" line="54" column="1" bodyfile="pxr/imaging/hd/task.h" bodystart="54" bodyend="208"/>
+    <listofallmembers>
+      <member refid="class_hd_task_1ab4beed642380f0353cf158cef16c4f32" prot="protected" virt="non-virtual"><scope>HdTask</scope><name>_GetDriver</name></member>
+      <member refid="class_hd_task_1a2ceca911620546c6b245d903f9ec5f78" prot="protected" virt="non-virtual"><scope>HdTask</scope><name>_GetTaskContextData</name></member>
+      <member refid="class_hd_task_1a50bb64fcb3404805df436ad9e12ddd3c" prot="protected" virt="non-virtual"><scope>HdTask</scope><name>_GetTaskParams</name></member>
+      <member refid="class_hd_task_1a7db1af254e4af3fbffc974c19968a6e7" prot="protected" virt="non-virtual"><scope>HdTask</scope><name>_GetTaskRenderTags</name></member>
+      <member refid="class_hd_task_1a6f03b9a9e34350db200b0a7f252eaf8e" prot="protected" virt="non-virtual"><scope>HdTask</scope><name>_HasTaskContextData</name></member>
+      <member refid="class_hd_task_1ae87c83b9f3d4f5ba91530df74da5e284" prot="private" virt="non-virtual"><scope>HdTask</scope><name>_id</name></member>
+      <member refid="class_hd_task_1a8e17fe075a39a5e0438b48467f05e4fd" prot="public" virt="pure-virtual"><scope>HdTask</scope><name>Execute</name></member>
+      <member refid="class_hd_task_1a9301243d9273afcba6395e86047490ab" prot="public" virt="non-virtual"><scope>HdTask</scope><name>GetId</name></member>
+      <member refid="class_hd_task_1ade051cd8ff53a108b7e6c27be99a5e3a" prot="public" virt="virtual"><scope>HdTask</scope><name>GetInitialDirtyBitsMask</name></member>
+      <member refid="class_hd_task_1a5660db150d0d46d62319100c3f6138fd" prot="public" virt="virtual"><scope>HdTask</scope><name>GetRenderTags</name></member>
+      <member refid="class_hd_task_1a3df864dcce7538c1b130b105af7c2406" prot="public" virt="non-virtual"><scope>HdTask</scope><name>HdTask</name></member>
+      <member refid="class_hd_task_1ae7baac71bab6449ac6451c6065e46b83" prot="private" virt="non-virtual"><scope>HdTask</scope><name>HdTask</name></member>
+      <member refid="class_hd_task_1acd4329878e4f56ea3de81af99287e620" prot="private" virt="non-virtual"><scope>HdTask</scope><name>HdTask</name></member>
+      <member refid="class_hd_task_1aecf1d5ad8aa9d6057bc1db4f96e9e7eb" prot="private" virt="non-virtual"><scope>HdTask</scope><name>operator=</name></member>
+      <member refid="class_hd_task_1acf33bc9da3a0e9449d4aceb0f524f44d" prot="public" virt="pure-virtual"><scope>HdTask</scope><name>Prepare</name></member>
+      <member refid="class_hd_task_1ad88eb1fe4f30180a71ae25ede7a99b89" prot="public" virt="pure-virtual"><scope>HdTask</scope><name>Sync</name></member>
+      <member refid="class_hd_task_1a08a2f7cc6d3767c8081f5098bd113d66" prot="public" virt="virtual"><scope>HdTask</scope><name>~HdTask</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

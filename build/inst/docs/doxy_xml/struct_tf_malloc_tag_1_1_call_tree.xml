@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="struct_tf_malloc_tag_1_1_call_tree" kind="struct" language="C++" prot="public">
+    <compoundname>TfMallocTag::CallTree</compoundname>
+    <includes refid="malloc_tag_8h" local="no">mallocTag.h</includes>
+    <innerclass refid="struct_tf_malloc_tag_1_1_call_tree_1_1_call_site" prot="public">TfMallocTag::CallTree::CallSite</innerclass>
+    <innerclass refid="struct_tf_malloc_tag_1_1_call_tree_1_1_path_node" prot="public">TfMallocTag::CallTree::PathNode</innerclass>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="struct_tf_malloc_tag_1_1_call_tree_1a9f8f5364ced04f2ef4f8d963014006e7" prot="public" static="no" strong="no">
+        <type></type>
+        <name>PrintSetting</name>
+        <enumvalue id="struct_tf_malloc_tag_1_1_call_tree_1a9f8f5364ced04f2ef4f8d963014006e7a80ee3d282aa2d7af547e862568d3e240" prot="public">
+          <name>TREE</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+<para>Print the full call tree. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="struct_tf_malloc_tag_1_1_call_tree_1a9f8f5364ced04f2ef4f8d963014006e7aac65001c3ced66ad6e6ab529931518e1" prot="public">
+          <name>CALLSITES</name>
+          <briefdescription>
+<para>Print just the call sites &gt; 0.1%. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="struct_tf_malloc_tag_1_1_call_tree_1a9f8f5364ced04f2ef4f8d963014006e7a627abe5a430420baf29ebe1940a7f2fb" prot="public">
+          <name>BOTH</name>
+          <briefdescription>
+<para>Print both tree and call sites. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Specify which parts of the report to print. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="105" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="105" bodyend="109"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_tf_malloc_tag_1_1_call_tree_1af7c9efd8b24c01555d3a9ecf09199a08" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="struct_tf_malloc_tag_1_1_call_tree_1_1_call_site" kindref="compound">CallSite</ref> &gt;</type>
+        <definition>std::vector&lt;CallSite&gt; callSites</definition>
+        <argsstring></argsstring>
+        <name>callSites</name>
+        <briefdescription>
+<para>All call sites. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="151" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_tf_malloc_tag_1_1_call_tree_1ab0e3bf1042905c7e44860187aee7c84f" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_tf_malloc_tag_1_1_call_tree_1_1_path_node" kindref="compound">PathNode</ref></type>
+        <definition>PathNode root</definition>
+        <argsstring></argsstring>
+        <name>root</name>
+        <briefdescription>
+<para>Root node of the call-site hierarchy. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="154" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_tf_malloc_tag_1_1_call_tree_1a4cfd03943a0c88303f898afbe7ed75cf" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="struct_tf_malloc_tag_1_1_call_stack_info" kindref="compound">CallStackInfo</ref> &gt;</type>
+        <definition>std::vector&lt;CallStackInfo&gt; capturedCallStacks</definition>
+        <argsstring></argsstring>
+        <name>capturedCallStacks</name>
+        <briefdescription>
+<para>The captured malloc stacks. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="157" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_tf_malloc_tag_1_1_call_tree_1a19c227c1e6a04128fae99df90533dc82" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API std::string</type>
+        <definition>TF_API std::string GetPrettyPrintString</definition>
+        <argsstring>(PrintSetting setting=BOTH, size_t maxPrintedNodes=100000) const</argsstring>
+        <name>GetPrettyPrintString</name>
+        <param>
+          <type><ref refid="struct_tf_malloc_tag_1_1_call_tree_1a9f8f5364ced04f2ef4f8d963014006e7" kindref="member">PrintSetting</ref></type>
+          <declname>setting</declname>
+          <defval><ref refid="struct_tf_malloc_tag_1_1_call_tree_1a9f8f5364ced04f2ef4f8d963014006e7a627abe5a430420baf29ebe1940a7f2fb" kindref="member">BOTH</ref></defval>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>maxPrintedNodes</declname>
+          <defval>100000</defval>
+        </param>
+        <briefdescription>
+<para>Return the malloc report string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Get a malloc report of the tree and/or callsites.</para>
+<para>The columns in the report are abbreviated. Here are the definitions.</para>
+<para><bold>TAGNAME</bold> : The name of the tag being tracked. This matches the string argument to TfAutoMallocTag constructor.</para>
+<para><bold>BytesIncl</bold> : Bytes Inclusive. This includes all bytes allocated by this tag and any bytes of its children.</para>
+<para><bold>BytesExcl</bold> : Bytes Exclusive. Only bytes allocated exclusively by this tag, not including any bytes of its children.</para>
+<para><bold>%Prnt</bold> : (%% Parent). me.BytesIncl / parent.BytesIncl * 100</para>
+<para><bold>%Exc</bold> : BytesExcl / BytesIncl * 100</para>
+<para><bold>%Totl</bold> : (%% Total). BytesExcl / TotalBytes * 100 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="132" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_tf_malloc_tag_1_1_call_tree_1ac83bd324c18e8d18870f21200cdac1b0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void Report</definition>
+        <argsstring>(std::ostream &amp;out, const std::string &amp;rootName) const</argsstring>
+        <name>Report</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>rootName</declname>
+        </param>
+        <briefdescription>
+<para>Generates a report to the ostream <computeroutput>out</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This report is printed in a way that is intended to be used by xxtracediff. If <computeroutput>rootName</computeroutput> is non-empty it will replace the name of the tree root in the report. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="141" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_tf_malloc_tag_1_1_call_tree_1a65566a0f22ee3caa54b66987177f0beb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TF_API void</type>
+        <definition>TF_API void Report</definition>
+        <argsstring>(std::ostream &amp;out) const</argsstring>
+        <name>Report</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/mallocTag.h" line="147" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Summary data structure for <computeroutput>malloc</computeroutput> statistics. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The <computeroutput><ref refid="struct_tf_malloc_tag_1_1_call_tree" kindref="compound">CallTree</ref></computeroutput> structure is used to deliver a snapshot of the current malloc usage. It is accessible as publicly modifiable data because it is simply a returned snapshot of the current memory state. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1005">
+        <label>TfMallocTag::CallTree</label>
+        <link refid="struct_tf_malloc_tag_1_1_call_tree"/>
+        <childnode refid="1006" relation="usage">
+          <edgelabel>root</edgelabel>
+        </childnode>
+      </node>
+      <node id="1006">
+        <label>PathNode</label>
+        <link refid="struct_tf_malloc_tag_1_1_call_tree_1_1_path_node"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/base/tf/mallocTag.h" line="60" column="1" bodyfile="pxr/base/tf/mallocTag.h" bodystart="60" bodyend="158"/>
+    <listofallmembers>
+      <member refid="struct_tf_malloc_tag_1_1_call_tree_1a9f8f5364ced04f2ef4f8d963014006e7a627abe5a430420baf29ebe1940a7f2fb" prot="public" virt="non-virtual"><scope>TfMallocTag::CallTree</scope><name>BOTH</name></member>
+      <member refid="struct_tf_malloc_tag_1_1_call_tree_1af7c9efd8b24c01555d3a9ecf09199a08" prot="public" virt="non-virtual"><scope>TfMallocTag::CallTree</scope><name>callSites</name></member>
+      <member refid="struct_tf_malloc_tag_1_1_call_tree_1a9f8f5364ced04f2ef4f8d963014006e7aac65001c3ced66ad6e6ab529931518e1" prot="public" virt="non-virtual"><scope>TfMallocTag::CallTree</scope><name>CALLSITES</name></member>
+      <member refid="struct_tf_malloc_tag_1_1_call_tree_1a4cfd03943a0c88303f898afbe7ed75cf" prot="public" virt="non-virtual"><scope>TfMallocTag::CallTree</scope><name>capturedCallStacks</name></member>
+      <member refid="struct_tf_malloc_tag_1_1_call_tree_1a19c227c1e6a04128fae99df90533dc82" prot="public" virt="non-virtual"><scope>TfMallocTag::CallTree</scope><name>GetPrettyPrintString</name></member>
+      <member refid="struct_tf_malloc_tag_1_1_call_tree_1a9f8f5364ced04f2ef4f8d963014006e7" prot="public" virt="non-virtual"><scope>TfMallocTag::CallTree</scope><name>PrintSetting</name></member>
+      <member refid="struct_tf_malloc_tag_1_1_call_tree_1ac83bd324c18e8d18870f21200cdac1b0" prot="public" virt="non-virtual"><scope>TfMallocTag::CallTree</scope><name>Report</name></member>
+      <member refid="struct_tf_malloc_tag_1_1_call_tree_1a65566a0f22ee3caa54b66987177f0beb" prot="public" virt="non-virtual"><scope>TfMallocTag::CallTree</scope><name>Report</name></member>
+      <member refid="struct_tf_malloc_tag_1_1_call_tree_1ab0e3bf1042905c7e44860187aee7c84f" prot="public" virt="non-virtual"><scope>TfMallocTag::CallTree</scope><name>root</name></member>
+      <member refid="struct_tf_malloc_tag_1_1_call_tree_1a9f8f5364ced04f2ef4f8d963014006e7a80ee3d282aa2d7af547e862568d3e240" prot="public" virt="non-virtual"><scope>TfMallocTag::CallTree</scope><name>TREE</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

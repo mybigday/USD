@@ -1,0 +1,2186 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_geom_point_instancer" kind="class" language="C++" prot="public">
+    <compoundname>UsdGeomPointInstancer</compoundname>
+    <basecompoundref refid="class_usd_geom_boundable" prot="public" virt="non-virtual">UsdGeomBoundable</basecompoundref>
+    <includes refid="point_instancer_8h" local="no">pointInstancer.h</includes>
+      <sectiondef kind="user-defined">
+      <header>Id-based Instance Masking/Pruning</header>
+      <description><para>See <ref refid="class_usd_geom_point_instancer_1UsdGeomPointInstancer_masking" kindref="member">Masking Instances: &quot;Deactivating&quot; and Invising</ref> </para>
+</description>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a8c252eec2616b2d883a2db5b8b0f3d60" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool ActivateId</definition>
+        <argsstring>(int64_t id) const</argsstring>
+        <name>ActivateId</name>
+        <param>
+          <type>int64_t</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Ensure that the instance identified by <computeroutput>id</computeroutput> is active over all time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This activation is encoded sparsely, affecting no other instances.</para>
+<para>This does not guarantee that the instance will be rendered, because it may still be &quot;invisible&quot; due to <computeroutput>id</computeroutput> being present in the <emphasis>invisibleIds</emphasis> attribute (see <ref refid="class_usd_geom_point_instancer_1abf1ac95ca33821f69586590df694ee35" kindref="member">VisId()</ref>, <ref refid="class_usd_geom_point_instancer_1a9cc2315ea6be2e129f1732e6d33e363f" kindref="member">InvisId()</ref>) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="661" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a20fc012cd705f67c61c7d8e0f2df59df" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool ActivateIds</definition>
+        <argsstring>(VtInt64Array const &amp;ids) const</argsstring>
+        <name>ActivateIds</name>
+        <param>
+          <type>VtInt64Array const &amp;</type>
+          <declname>ids</declname>
+        </param>
+        <briefdescription>
+<para>Ensure that the instances identified by <computeroutput>ids</computeroutput> are active over all time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This activation is encoded sparsely, affecting no other instances.</para>
+<para>This does not guarantee that the instances will be rendered, because each may still be &quot;invisible&quot; due to its presence in the <emphasis>invisibleIds</emphasis> attribute (see <ref refid="class_usd_geom_point_instancer_1abf1ac95ca33821f69586590df694ee35" kindref="member">VisId()</ref>, <ref refid="class_usd_geom_point_instancer_1a9cc2315ea6be2e129f1732e6d33e363f" kindref="member">InvisId()</ref>) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="670" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a85dfcdcc6094dcfe1abf108fb491f75c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool ActivateAllIds</definition>
+        <argsstring>() const</argsstring>
+        <name>ActivateAllIds</name>
+        <briefdescription>
+<para>Ensure that all instances are active over all time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This does not guarantee that the instances will be rendered, because each may still be &quot;invisible&quot; due to its presence in the <emphasis>invisibleIds</emphasis> attribute (see <ref refid="class_usd_geom_point_instancer_1abf1ac95ca33821f69586590df694ee35" kindref="member">VisId()</ref>, <ref refid="class_usd_geom_point_instancer_1a9cc2315ea6be2e129f1732e6d33e363f" kindref="member">InvisId()</ref>) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="678" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1af62e7d7882ad88c1ed4f22328e91263c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool DeactivateId</definition>
+        <argsstring>(int64_t id) const</argsstring>
+        <name>DeactivateId</name>
+        <param>
+          <type>int64_t</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Ensure that the instance identified by <computeroutput>id</computeroutput> is inactive over all time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This deactivation is encoded sparsely, affecting no other instances.</para>
+<para>A deactivated instance is guaranteed not to render if the renderer honors masking. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="686" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a263554417f6a285d071fdfd85b725e23" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool DeactivateIds</definition>
+        <argsstring>(VtInt64Array const &amp;ids) const</argsstring>
+        <name>DeactivateIds</name>
+        <param>
+          <type>VtInt64Array const &amp;</type>
+          <declname>ids</declname>
+        </param>
+        <briefdescription>
+<para>Ensure that the instances identified by <computeroutput>ids</computeroutput> are inactive over all time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This deactivation is encoded sparsely, affecting no other instances.</para>
+<para>A deactivated instance is guaranteed not to render if the renderer honors masking. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="694" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1abf1ac95ca33821f69586590df694ee35" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool VisId</definition>
+        <argsstring>(int64_t id, UsdTimeCode const &amp;time) const</argsstring>
+        <name>VisId</name>
+        <param>
+          <type>int64_t</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> const &amp;</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>Ensure that the instance identified by <computeroutput>id</computeroutput> is visible at <computeroutput>time</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This will cause <emphasis>invisibleIds</emphasis> to first be broken down (keyed) at <computeroutput>time</computeroutput>, causing all animation in weaker layers that the current <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> to be overridden. Has no effect on any timeSamples other than the one at <computeroutput>time</computeroutput>. If the <emphasis>invisibleIds</emphasis> attribute is not authored or is blocked, this operation is a no-op.</para>
+<para>This does not guarantee that the instance will be rendered, because it may still be &quot;inactive&quot; due to <computeroutput>id</computeroutput> being present in the <emphasis>inactivevIds</emphasis> metadata (see <ref refid="class_usd_geom_point_instancer_1a8c252eec2616b2d883a2db5b8b0f3d60" kindref="member">ActivateId()</ref>, <ref refid="class_usd_geom_point_instancer_1af62e7d7882ad88c1ed4f22328e91263c" kindref="member">DeactivateId()</ref>) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="708" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a1233046a057a7befb515aaa1b5fee9c6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool VisIds</definition>
+        <argsstring>(VtInt64Array const &amp;ids, UsdTimeCode const &amp;time) const</argsstring>
+        <name>VisIds</name>
+        <param>
+          <type>VtInt64Array const &amp;</type>
+          <declname>ids</declname>
+        </param>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> const &amp;</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>Ensure that the instances identified by <computeroutput>ids</computeroutput> are visible at <computeroutput>time</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This will cause <emphasis>invisibleIds</emphasis> to first be broken down (keyed) at <computeroutput>time</computeroutput>, causing all animation in weaker layers that the current <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> to be overridden. Has no effect on any timeSamples other than the one at <computeroutput>time</computeroutput>. If the <emphasis>invisibleIds</emphasis> attribute is not authored or is blocked, this operation is a no-op.</para>
+<para>This does not guarantee that the instances will be rendered, because each may still be &quot;inactive&quot; due to <computeroutput>id</computeroutput> being present in the <emphasis>inactivevIds</emphasis> metadata (see <ref refid="class_usd_geom_point_instancer_1a8c252eec2616b2d883a2db5b8b0f3d60" kindref="member">ActivateId()</ref>, <ref refid="class_usd_geom_point_instancer_1af62e7d7882ad88c1ed4f22328e91263c" kindref="member">DeactivateId()</ref>) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="721" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a9a4d919761befd2ee076188f02419272" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool VisAllIds</definition>
+        <argsstring>(UsdTimeCode const &amp;time) const</argsstring>
+        <name>VisAllIds</name>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> const &amp;</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>Ensure that all instances are visible at <computeroutput>time</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Operates by authoring an empty array at <computeroutput>time</computeroutput>.</para>
+<para>This does not guarantee that the instances will be rendered, because each may still be &quot;inactive&quot; due to its id being present in the <emphasis>inactivevIds</emphasis> metadata (see <ref refid="class_usd_geom_point_instancer_1a8c252eec2616b2d883a2db5b8b0f3d60" kindref="member">ActivateId()</ref>, <ref refid="class_usd_geom_point_instancer_1af62e7d7882ad88c1ed4f22328e91263c" kindref="member">DeactivateId()</ref>) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="730" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a9cc2315ea6be2e129f1732e6d33e363f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool InvisId</definition>
+        <argsstring>(int64_t id, UsdTimeCode const &amp;time) const</argsstring>
+        <name>InvisId</name>
+        <param>
+          <type>int64_t</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> const &amp;</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>Ensure that the instance identified by <computeroutput>id</computeroutput> is invisible at <computeroutput>time</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This will cause <emphasis>invisibleIds</emphasis> to first be broken down (keyed) at <computeroutput>time</computeroutput>, causing all animation in weaker layers that the current <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> to be overridden. Has no effect on any timeSamples other than the one at <computeroutput>time</computeroutput>.</para>
+<para>An invised instance is guaranteed not to render if the renderer honors masking. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="741" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1aa88b2c5d831432796b69d7b85bc39bd5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool InvisIds</definition>
+        <argsstring>(VtInt64Array const &amp;ids, UsdTimeCode const &amp;time) const</argsstring>
+        <name>InvisIds</name>
+        <param>
+          <type>VtInt64Array const &amp;</type>
+          <declname>ids</declname>
+        </param>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> const &amp;</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>Ensure that the instances identified by <computeroutput>ids</computeroutput> are invisible at <computeroutput>time</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This will cause <emphasis>invisibleIds</emphasis> to first be broken down (keyed) at <computeroutput>time</computeroutput>, causing all animation in weaker layers that the current <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref> to be overridden. Has no effect on any timeSamples other than the one at <computeroutput>time</computeroutput>.</para>
+<para>An invised instance is guaranteed not to render if the renderer honors masking. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="752" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1ac8cd85f70313ba3118d2a7416d309d4a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API std::vector&lt; bool &gt;</type>
+        <definition>USDGEOM_API std::vector&lt;bool&gt; ComputeMaskAtTime</definition>
+        <argsstring>(UsdTimeCode time, VtInt64Array const *ids=nullptr) const</argsstring>
+        <name>ComputeMaskAtTime</name>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>VtInt64Array const *</type>
+          <declname>ids</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Computes a presence mask to be applied to per-instance data arrays based on authored <emphasis>inactiveIds</emphasis>, <emphasis>invisibleIds</emphasis>, and <emphasis>ids</emphasis> . </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no <emphasis>ids</emphasis> attribute has been authored, then the values in <emphasis>inactiveIds</emphasis> and <emphasis>invisibleIds</emphasis> will be interpreted directly as indices of <emphasis>protoIndices</emphasis> .</para>
+<para>If <computeroutput>ids</computeroutput> is non-NULL, it is assumed to be the id-mapping to apply, and must match the length of <emphasis>protoIndices</emphasis> at <computeroutput>time</computeroutput> . If NULL, we will call <ref refid="class_usd_geom_point_instancer_1ab649953d4c84eae16d2b821bc3627b3a" kindref="member">GetIdsAttr()</ref>.Get(time)</para>
+<para><simplesect kind="note"><para>If all &quot;live&quot; instances at <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> <computeroutput>time</computeroutput> pass the mask, we will return an <bold>empty</bold> mask so that clients can trivially recognize the common &quot;no masking&quot; case.</para>
+</simplesect>
+The returned mask can be used with <ref refid="class_usd_geom_point_instancer_1a4fd64ffb5f621575fcc9c89c17c9c04a" kindref="member">ApplyMaskToArray()</ref>, and will contain a <computeroutput>true</computeroutput> value for every element that should survive. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="772" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a4fd64ffb5f621575fcc9c89c17c9c04a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool ApplyMaskToArray</definition>
+        <argsstring>(std::vector&lt; bool &gt; const &amp;mask, VtArray&lt; T &gt; *dataArray, const int elementSize=1)</argsstring>
+        <name>ApplyMaskToArray</name>
+        <param>
+          <type>std::vector&lt; bool &gt; const &amp;</type>
+          <declname>mask</declname>
+        </param>
+        <param>
+          <type><ref refid="class_vt_array" kindref="compound">VtArray</ref>&lt; T &gt; *</type>
+          <declname>dataArray</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>elementSize</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+<para>Contract <computeroutput>dataArray</computeroutput> in-place to contain only the elements whose index in <computeroutput>mask</computeroutput> is <computeroutput>true</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>an empty <computeroutput>mask</computeroutput> specifies &quot;all pass&quot;, in which case <computeroutput>dataArray</computeroutput> is trivially unmodified</para>
+</simplesect>
+<itemizedlist>
+<listitem><para>It is an error for <computeroutput>dataArray</computeroutput> to be NULL .</para>
+</listitem><listitem><para>If <emphasis>elementSize</emphasis> times <emphasis>mask.size()</emphasis> does not equal <emphasis>dataArray-&gt;size()</emphasis>, warn and fail.</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>true on success, false on failure. </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="class_usd_geom_point_instancer_1ac8cd85f70313ba3118d2a7416d309d4a" kindref="member">ComputeMaskAtTime()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="788" column="1" bodyfile="pxr/usd/usdGeom/pointInstancer.h" bodystart="1114" bodyend="1150"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="class_usd_geom_point_instancer_1aa184c49dc6b24efa4d160c1fe505a403" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ProtoXformInclusion</name>
+        <enumvalue id="class_usd_geom_point_instancer_1aa184c49dc6b24efa4d160c1fe505a403afddf3d32b5aaf5e37ad0caa2a5b2b8ff" prot="public">
+          <name>IncludeProtoXform</name>
+          <briefdescription>
+<para>Include the transform on the proto&apos;s root. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_usd_geom_point_instancer_1aa184c49dc6b24efa4d160c1fe505a403a56a11959aa28115d253d01e56f1bdf1c" prot="public">
+          <name>ExcludeProtoXform</name>
+          <briefdescription>
+<para>Exclude the transform on the proto&apos;s root. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Encodes whether to include each prototype&apos;s root prim&apos;s transformation as the most-local component of computed instance transforms. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="800" column="1" bodyfile="pxr/usd/usdGeom/pointInstancer.h" bodystart="800" bodyend="803"/>
+      </memberdef>
+      <memberdef kind="enum" id="class_usd_geom_point_instancer_1aa2257e2db6d6aea4856489ceece508a8" prot="public" static="no" strong="no">
+        <type></type>
+        <name>MaskApplication</name>
+        <enumvalue id="class_usd_geom_point_instancer_1aa2257e2db6d6aea4856489ceece508a8a4b4edcf3676c20fc90a1367af05379d1" prot="public">
+          <name>ApplyMask</name>
+          <briefdescription>
+<para>Compute and apply the PointInstancer mask. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_usd_geom_point_instancer_1aa2257e2db6d6aea4856489ceece508a8ab749281e998b40f076ace0c021d8ec9e" prot="public">
+          <name>IgnoreMask</name>
+          <briefdescription>
+<para>Ignore the PointInstancer mask. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Encodes whether to evaluate and apply the PointInstancer&apos;s mask to computed results. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_usd_geom_point_instancer_1ac8cd85f70313ba3118d2a7416d309d4a" kindref="member">ComputeMaskAtTime()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="811" column="1" bodyfile="pxr/usd/usdGeom/pointInstancer.h" bodystart="811" bodyend="814"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_usd_geom_point_instancer_1a3e5fc43aea5aea4908c3ce980fdf8908" prot="public" static="yes" mutable="no">
+        <type>const <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref></type>
+        <definition>const UsdSchemaKind schemaKind</definition>
+        <argsstring></argsstring>
+        <name>schemaKind</name>
+        <initializer>= <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741aa6650141c3d230f8e4e51461e1d9e645" kindref="member">UsdSchemaKind::ConcreteTyped</ref></initializer>
+        <briefdescription>
+<para>Compile time constant representing what kind of schema this class is. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="284" column="1" bodyfile="pxr/usd/usdGeom/pointInstancer.h" bodystart="284" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_usd_geom_point_instancer_1aff8b8d83211f127c6c4cba48fb7d3334" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class UsdSchemaRegistry</definition>
+        <argsstring></argsstring>
+        <name>UsdSchemaRegistry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="362" column="1" bodyfile="pxr/usd/usdGeom/pointInstancer.h" bodystart="362" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1af3d9eb4de0568b41fb590380e0ebf73f" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdGeomPointInstancer</definition>
+        <argsstring>(const UsdPrim &amp;prim=UsdPrim())</argsstring>
+        <name>UsdGeomPointInstancer</name>
+        <param>
+          <type>const <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> &amp;</type>
+          <declname>prim</declname>
+          <defval><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="class_usd_geom_point_instancer" kindref="compound">UsdGeomPointInstancer</ref> on <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref> <computeroutput>prim</computeroutput> . </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Equivalent to <ref refid="class_usd_geom_point_instancer_1a8aecdc9be88ae26cc50c64756e37ce09" kindref="member">UsdGeomPointInstancer::Get</ref>(prim.GetStage(), prim.GetPath()) for a <emphasis>valid</emphasis> <computeroutput>prim</computeroutput>, but will not immediately throw an error for an invalid <computeroutput>prim</computeroutput> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="290" column="1" bodyfile="pxr/usd/usdGeom/pointInstancer.h" bodystart="290" bodyend="293"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a43e3a5ff1c51841ac28393aa253b8dd2" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdGeomPointInstancer</definition>
+        <argsstring>(const UsdSchemaBase &amp;schemaObj)</argsstring>
+        <name>UsdGeomPointInstancer</name>
+        <param>
+          <type>const <ref refid="class_usd_schema_base" kindref="compound">UsdSchemaBase</ref> &amp;</type>
+          <declname>schemaObj</declname>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="class_usd_geom_point_instancer" kindref="compound">UsdGeomPointInstancer</ref> on the prim held by <computeroutput>schemaObj</computeroutput> . </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Should be preferred over <ref refid="class_usd_geom_point_instancer" kindref="compound">UsdGeomPointInstancer</ref>(schemaObj.GetPrim()), as it preserves SchemaBase state. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="298" column="1" bodyfile="pxr/usd/usdGeom/pointInstancer.h" bodystart="298" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a5f5a2f45d599d277dcffec23e73f863c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>USDGEOM_API</type>
+        <definition>virtual USDGEOM_API ~UsdGeomPointInstancer</definition>
+        <argsstring>()</argsstring>
+        <name>~UsdGeomPointInstancer</name>
+        <briefdescription>
+<para>Destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="305" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a1f0a46b50806ce1922c5ebd03ad94bd6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetProtoIndicesAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetProtoIndicesAttr</name>
+        <briefdescription>
+<para><bold>Required property</bold>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Per-instance index into <emphasis>prototypes</emphasis> relationship that identifies what geometry should be drawn for each instance. <bold>Topology attribute</bold> - can be animated, but at a potential performance impact for streaming.</para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>int[] protoIndices</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para>VtArray&lt;int&gt;   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;IntArray   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="387" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a87c07674a5ce95e00b87e1d4e70b047d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateProtoIndicesAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateProtoIndicesAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_point_instancer_1a1f0a46b50806ce1922c5ebd03ad94bd6" kindref="member">GetProtoIndicesAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="395" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1ab649953d4c84eae16d2b821bc3627b3a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetIdsAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetIdsAttr</name>
+        <briefdescription>
+<para>Ids are optional; if authored, the ids array should be the same length as the <emphasis>protoIndices</emphasis> array, specifying (at each timeSample if instance identities are changing) the id of each instance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The type is signed intentionally, so that clients can encode some binary state on Id&apos;d instances without adding a separate primvar. See also <ref refid="class_usd_geom_point_instancer_1UsdGeomPointInstancer_varyingTopo" kindref="member">Varying Instance Identity over Time</ref></para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>int64[] ids</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para>VtArray&lt;int64_t&gt;   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Int64Array   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="414" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a836153b8fed90436fea28a1ff0de5966" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateIdsAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateIdsAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_point_instancer_1ab649953d4c84eae16d2b821bc3627b3a" kindref="member">GetIdsAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="422" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a30684ce10025f54b6b9fdab13700ae99" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetPositionsAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetPositionsAttr</name>
+        <briefdescription>
+<para><bold>Required property</bold>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Per-instance position. See also <ref refid="class_usd_geom_point_instancer_1UsdGeomPointInstancer_transform" kindref="member">Computing an Instance Transform</ref> .</para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>point3f[] positions</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_vt_array" kindref="compound">VtArray&lt;GfVec3f&gt;</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Point3fArray   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="437" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a187eb8f0aeb00ec937c0516aec82dfe8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreatePositionsAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreatePositionsAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_point_instancer_1a30684ce10025f54b6b9fdab13700ae99" kindref="member">GetPositionsAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="445" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1ada5000a8b2f38c6d4b3ea550a91aa069" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetOrientationsAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetOrientationsAttr</name>
+        <briefdescription>
+<para>If authored, per-instance orientation of each instance about its prototype&apos;s origin, represented as a unit length quaternion, which allows us to encode it with sufficient precision in a compact <ref refid="class_gf_quath" kindref="compound">GfQuath</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>It is client&apos;s responsibility to ensure that authored quaternions are unit length; the convenience API below for authoring orientations from rotation matrices will ensure that quaternions are unit length, though it will not make any attempt to select the &quot;better (for interpolation
+with respect to neighboring samples)&quot; of the two possible quaternions that encode the rotation.</para>
+<para>See also <ref refid="class_usd_geom_point_instancer_1UsdGeomPointInstancer_transform" kindref="member">Computing an Instance Transform</ref> .</para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>quath[] orientations</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para>VtArray&lt;GfQuath&gt;   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;QuathArray   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="470" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a8dc7993e9c906a2b4ad227140604be5b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateOrientationsAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateOrientationsAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_point_instancer_1ada5000a8b2f38c6d4b3ea550a91aa069" kindref="member">GetOrientationsAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="478" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a0b0e562b36e2413ba95616bd4eed98a5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetScalesAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetScalesAttr</name>
+        <briefdescription>
+<para>If authored, per-instance scale to be applied to each instance, before any rotation is applied. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>See also <ref refid="class_usd_geom_point_instancer_1UsdGeomPointInstancer_transform" kindref="member">Computing an Instance Transform</ref> .</para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>float3[] scales</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_vt_array" kindref="compound">VtArray&lt;GfVec3f&gt;</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Float3Array   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="495" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a4b02522ca738f4b1801f8a7a6b061240" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateScalesAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateScalesAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_point_instancer_1a0b0e562b36e2413ba95616bd4eed98a5" kindref="member">GetScalesAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="503" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a2840a996c8a768ecea390147390dc222" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetVelocitiesAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetVelocitiesAttr</name>
+        <briefdescription>
+<para>If provided, per-instance &apos;velocities&apos; will be used to compute positions between samples for the &apos;positions&apos; attribute, rather than interpolating between neighboring &apos;positions&apos; samples. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Velocities should be considered mandatory if both <emphasis>protoIndices</emphasis> and <emphasis>positions</emphasis> are animated. Velocity is measured in position units per second, as per most simulation software. To convert to position units per <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref>, divide by <ref refid="class_usd_stage_1a85092d7455ae894d50224e761dc6e840" kindref="member">UsdStage::GetTimeCodesPerSecond()</ref>.</para>
+<para>See also <ref refid="class_usd_geom_point_instancer_1UsdGeomPointInstancer_transform" kindref="member">Computing an Instance Transform</ref>, <ref refid="usd_geom_page_front_1UsdGeom_VelocityInterpolation" kindref="member">Applying Timesampled Velocities to Geometry</ref> .</para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>vector3f[] velocities</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_vt_array" kindref="compound">VtArray&lt;GfVec3f&gt;</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Vector3fArray   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="527" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1aaf96c3a4bc0546725bc50c23067b7d1a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateVelocitiesAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateVelocitiesAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_point_instancer_1a2840a996c8a768ecea390147390dc222" kindref="member">GetVelocitiesAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="535" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1abf4df1035f2f759d5119392f94a73626" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetAccelerationsAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetAccelerationsAttr</name>
+        <briefdescription>
+<para>If authored, per-instance &apos;accelerations&apos; will be used with velocities to compute positions between samples for the &apos;positions&apos; attribute rather than interpolating between neighboring &apos;positions&apos; samples. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Acceleration is measured in position units per second-squared. To convert to position units per squared <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref>, divide by the square of <ref refid="class_usd_stage_1a85092d7455ae894d50224e761dc6e840" kindref="member">UsdStage::GetTimeCodesPerSecond()</ref>.</para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>vector3f[] accelerations</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_vt_array" kindref="compound">VtArray&lt;GfVec3f&gt;</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Vector3fArray   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="554" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1ae13702eda2c800254bc40d3948420457" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateAccelerationsAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateAccelerationsAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_point_instancer_1abf4df1035f2f759d5119392f94a73626" kindref="member">GetAccelerationsAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="562" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1af98bc3fe0a980a0fb0d5a67e6b4901f2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetAngularVelocitiesAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetAngularVelocitiesAttr</name>
+        <briefdescription>
+<para>If authored, per-instance angular velocity vector to be used for interoplating orientations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Angular velocities should be considered mandatory if both <emphasis>protoIndices</emphasis> and <emphasis>orientations</emphasis> are animated. Angular velocity is measured in <bold>degrees</bold> per second. To convert to degrees per <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref>, divide by <ref refid="class_usd_stage_1a85092d7455ae894d50224e761dc6e840" kindref="member">UsdStage::GetTimeCodesPerSecond()</ref>.</para>
+<para>See also <ref refid="class_usd_geom_point_instancer_1UsdGeomPointInstancer_transform" kindref="member">Computing an Instance Transform</ref> .</para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>vector3f[] angularVelocities</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para><ref refid="class_vt_array" kindref="compound">VtArray&lt;GfVec3f&gt;</ref>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Vector3fArray   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="583" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a26932e7a9f211578f436a14683ac58c1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateAngularVelocitiesAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateAngularVelocitiesAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_point_instancer_1af98bc3fe0a980a0fb0d5a67e6b4901f2" kindref="member">GetAngularVelocitiesAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="591" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a4ccd01db405d601c5cc12645d1f9a8d3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute GetInvisibleIdsAttr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetInvisibleIdsAttr</name>
+        <briefdescription>
+<para>A list of id&apos;s to make invisible at the evaluation time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>See <ref refid="class_usd_geom_point_instancer_1UsdGeomPointInstancer_invisibleIds" kindref="member">invisibleIds: Animatable Masking</ref> .</para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes"><para></para>
+</entry></row>
+<row>
+<entry thead="no"><para>Declaration  </para>
+</entry><entry thead="no"><para><computeroutput>int64[] invisibleIds = []</computeroutput>   </para>
+</entry></row>
+<row>
+<entry thead="no"><para>C++ Type  </para>
+</entry><entry thead="no"><para>VtArray&lt;int64_t&gt;   </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="_usd__page__datatypes_1Usd_Datatypes" kindref="member">Usd Type</ref>  </para>
+</entry><entry thead="no"><para>SdfValueTypeNames-&gt;Int64Array   </para>
+</entry></row>
+</table>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="606" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1abab7826296b1bb8d647439f5bb6f5167" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref></type>
+        <definition>USDGEOM_API UsdAttribute CreateInvisibleIdsAttr</definition>
+        <argsstring>(VtValue const &amp;defaultValue=VtValue(), bool writeSparsely=false) const</argsstring>
+        <name>CreateInvisibleIdsAttr</name>
+        <param>
+          <type><ref refid="class_vt_value" kindref="compound">VtValue</ref> const &amp;</type>
+          <declname>defaultValue</declname>
+          <defval><ref refid="class_vt_value" kindref="compound">VtValue</ref>()</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writeSparsely</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_point_instancer_1a4ccd01db405d601c5cc12645d1f9a8d3" kindref="member">GetInvisibleIdsAttr()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If specified, author <computeroutput>defaultValue</computeroutput> as the attribute&apos;s default, sparsely (when it makes sense to do so) if <computeroutput>writeSparsely</computeroutput> is <computeroutput>true</computeroutput> - the default for <computeroutput>writeSparsely</computeroutput> is <computeroutput>false</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="614" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a612b93e2bca96a78c93967a20555bb3d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_relationship" kindref="compound">UsdRelationship</ref></type>
+        <definition>USDGEOM_API UsdRelationship GetPrototypesRel</definition>
+        <argsstring>() const</argsstring>
+        <name>GetPrototypesRel</name>
+        <briefdescription>
+<para><bold>Required property</bold>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Orders and targets the prototype root prims, which can be located anywhere in the scenegraph that is convenient, although we promote organizing prototypes as children of the PointInstancer. The position of a prototype in this relationship defines the value an instance would specify in the <emphasis>protoIndices</emphasis> attribute to instance that prototype. Since relationships are uniform, this property cannot be animated. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="629" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1afec51385816998f993b365e6a2266150" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_relationship" kindref="compound">UsdRelationship</ref></type>
+        <definition>USDGEOM_API UsdRelationship CreatePrototypesRel</definition>
+        <argsstring>() const</argsstring>
+        <name>CreatePrototypesRel</name>
+        <briefdescription>
+<para>See <ref refid="class_usd_geom_point_instancer_1a612b93e2bca96a78c93967a20555bb3d" kindref="member">GetPrototypesRel()</ref>, and also <ref refid="_usd__page__common_idioms_1Usd_Create_Or_Get_Property" kindref="member">Create vs Get Property Methods</ref> for when to use Get vs Create. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="634" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a619b5f21f6c0fc26e6bd25c86c82b390" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool ComputeInstanceTransformsAtTime</definition>
+        <argsstring>(VtArray&lt; GfMatrix4d &gt; *xforms, const UsdTimeCode time, const UsdTimeCode baseTime, const ProtoXformInclusion doProtoXforms=IncludeProtoXform, const MaskApplication applyMask=ApplyMask) const</argsstring>
+        <name>ComputeInstanceTransformsAtTime</name>
+        <param>
+          <type><ref refid="class_vt_array" kindref="compound">VtArray</ref>&lt; <ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref> &gt; *</type>
+          <declname>xforms</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>baseTime</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_geom_point_instancer_1aa184c49dc6b24efa4d160c1fe505a403" kindref="member">ProtoXformInclusion</ref></type>
+          <declname>doProtoXforms</declname>
+          <defval><ref refid="class_usd_geom_point_instancer_1aa184c49dc6b24efa4d160c1fe505a403afddf3d32b5aaf5e37ad0caa2a5b2b8ff" kindref="member">IncludeProtoXform</ref></defval>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_geom_point_instancer_1aa2257e2db6d6aea4856489ceece508a8" kindref="member">MaskApplication</ref></type>
+          <declname>applyMask</declname>
+          <defval><ref refid="class_usd_geom_point_instancer_1aa2257e2db6d6aea4856489ceece508a8a4b4edcf3676c20fc90a1367af05379d1" kindref="member">ApplyMask</ref></defval>
+        </param>
+        <briefdescription>
+<para>Compute the per-instance, &quot;PointInstancer relative&quot; transforms given the positions, scales, orientations, velocities and angularVelocities at <computeroutput>time</computeroutput>, as described in <ref refid="class_usd_geom_point_instancer_1UsdGeomPointInstancer_transform" kindref="member">Computing an Instance Transform</ref> . </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This will return <computeroutput>false</computeroutput> and leave <computeroutput>xforms</computeroutput> untouched if:<itemizedlist>
+<listitem><para><computeroutput>xforms</computeroutput> is NULL</para>
+</listitem><listitem><para>one of <computeroutput>time</computeroutput> and <computeroutput>baseTime</computeroutput> is numeric and the other is <ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default()</ref> (they must either both be numeric or both be default)</para>
+</listitem><listitem><para>there is no authored <emphasis>protoIndices</emphasis> attribute or <emphasis>positions</emphasis> attribute</para>
+</listitem><listitem><para>the size of any of the per-instance attributes does not match the size of <emphasis>protoIndices</emphasis> </para>
+</listitem><listitem><para><computeroutput>doProtoXforms</computeroutput> is <computeroutput>IncludeProtoXform</computeroutput> but an index value in <emphasis>protoIndices</emphasis> is outside the range [0, prototypes.size())</para>
+</listitem><listitem><para><computeroutput>applyMask</computeroutput> is <computeroutput>ApplyMask</computeroutput> and a mask is set but the size of the mask does not match the size of <emphasis>protoIndices</emphasis>.</para>
+</listitem></itemizedlist>
+</para>
+<para>If there is no error, we will return <computeroutput>true</computeroutput> and <computeroutput>xforms</computeroutput> will contain the computed transformations.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>xforms</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- the out parameter for the transformations. Its size will depend on the authored data and <computeroutput>applyMask</computeroutput> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> at which we want to evaluate the transforms </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>baseTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- required for correct interpolation between samples when <emphasis>velocities</emphasis> or <emphasis>angularVelocities</emphasis> are present. If there are samples for <emphasis>positions</emphasis> and <emphasis>velocities</emphasis> at t1 and t2, normal value resolution would attempt to interpolate between the two samples, and if they could not be interpolated because they differ in size (common in cases where velocity is authored), will choose the sample at t1. When sampling for the purposes of motion-blur, for example, it is common, when rendering the frame at t2, to sample at [ t2-shutter/2, t2+shutter/2 ] for a shutter interval of <emphasis>shutter</emphasis>. The first sample falls between t1 and t2, but we must sample at t2 and apply velocity-based interpolation based on those samples to get a correct result. In such scenarios, one should provide a <computeroutput>baseTime</computeroutput> of t2 when querying <emphasis>both</emphasis> samples. If your application does not care about off-sample interpolation, it can supply the same value for <computeroutput>baseTime</computeroutput> that it does for <computeroutput>time</computeroutput>. When <computeroutput>baseTime</computeroutput> is less than or equal to <computeroutput>time</computeroutput>, we will choose the lower bracketing timeSample. Selecting sample times with respect to baseTime will be performed independently for positions and orientations. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>doProtoXforms</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- specifies whether to include the root transformation of each instance&apos;s prototype in the instance&apos;s transform. Default is to include it, but some clients may want to apply the proto transform as part of the prototype itself, so they can specify <computeroutput>ExcludeProtoXform</computeroutput> instead. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>applyMask</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- specifies whether to apply <ref refid="class_usd_geom_point_instancer_1a4fd64ffb5f621575fcc9c89c17c9c04a" kindref="member">ApplyMaskToArray()</ref> to the computed result. The default is <computeroutput>ApplyMask</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="875" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a8468b44a2996504b0caa828e7414b68f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool ComputeInstanceTransformsAtTimes</definition>
+        <argsstring>(std::vector&lt; VtArray&lt; GfMatrix4d &gt;&gt; *xformsArray, const std::vector&lt; UsdTimeCode &gt; &amp;times, const UsdTimeCode baseTime, const ProtoXformInclusion doProtoXforms=IncludeProtoXform, const MaskApplication applyMask=ApplyMask) const</argsstring>
+        <name>ComputeInstanceTransformsAtTimes</name>
+        <param>
+          <type>std::vector&lt; <ref refid="class_vt_array" kindref="compound">VtArray</ref>&lt; <ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref> &gt;&gt; *</type>
+          <declname>xformsArray</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> &gt; &amp;</type>
+          <declname>times</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>baseTime</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_geom_point_instancer_1aa184c49dc6b24efa4d160c1fe505a403" kindref="member">ProtoXformInclusion</ref></type>
+          <declname>doProtoXforms</declname>
+          <defval><ref refid="class_usd_geom_point_instancer_1aa184c49dc6b24efa4d160c1fe505a403afddf3d32b5aaf5e37ad0caa2a5b2b8ff" kindref="member">IncludeProtoXform</ref></defval>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_geom_point_instancer_1aa2257e2db6d6aea4856489ceece508a8" kindref="member">MaskApplication</ref></type>
+          <declname>applyMask</declname>
+          <defval><ref refid="class_usd_geom_point_instancer_1aa2257e2db6d6aea4856489ceece508a8a4b4edcf3676c20fc90a1367af05379d1" kindref="member">ApplyMask</ref></defval>
+        </param>
+        <briefdescription>
+<para>Compute the per-instance transforms as in ComputeInstanceTransformsAtTime, but using multiple sample times. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>An array of matrix arrays is returned where each matrix array contains the instance transforms for the corresponding time in <computeroutput>times</computeroutput> .</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>times</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- A vector containing the UsdTimeCodes at which we want to sample. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="891" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a93d339584167e16e1f38aa2f9c95476c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool ComputeExtentAtTime</definition>
+        <argsstring>(VtVec3fArray *extent, const UsdTimeCode time, const UsdTimeCode baseTime) const</argsstring>
+        <name>ComputeExtentAtTime</name>
+        <param>
+          <type>VtVec3fArray *</type>
+          <declname>extent</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>baseTime</declname>
+        </param>
+        <briefdescription>
+<para>Compute the extent of the point instancer based on the per-instance, &quot;PointInstancer relative&quot; transforms at <computeroutput>time</computeroutput>, as described in <ref refid="class_usd_geom_point_instancer_1UsdGeomPointInstancer_transform" kindref="member">Computing an Instance Transform</ref> . </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If there is no error, we return <computeroutput>true</computeroutput> and <computeroutput>extent</computeroutput> will be the tightest bounds we can compute efficiently. If an error occurs, <computeroutput>false</computeroutput> will be returned and <computeroutput>extent</computeroutput> will be left untouched.</para>
+<para>For now, this uses a <ref refid="class_usd_geom_b_box_cache" kindref="compound">UsdGeomBBoxCache</ref> with the &quot;default&quot;, &quot;proxy&quot;, and &quot;render&quot; purposes.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>extent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- the out parameter for the extent. On success, it will contain two elements representing the min and max. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> at which we want to evaluate the extent </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>baseTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- required for correct interpolation between samples when <emphasis>velocities</emphasis> or <emphasis>angularVelocities</emphasis> are present. If there are samples for <emphasis>positions</emphasis> and <emphasis>velocities</emphasis> at t1 and t2, normal value resolution would attempt to interpolate between the two samples, and if they could not be interpolated because they differ in size (common in cases where velocity is authored), will choose the sample at t1. When sampling for the purposes of motion-blur, for example, it is common, when rendering the frame at t2, to sample at [ t2-shutter/2, t2+shutter/2 ] for a shutter interval of <emphasis>shutter</emphasis>. The first sample falls between t1 and t2, but we must sample at t2 and apply velocity-based interpolation based on those samples to get a correct result. In such scenarios, one should provide a <computeroutput>baseTime</computeroutput> of t2 when querying <emphasis>both</emphasis> samples. If your application does not care about off-sample interpolation, it can supply the same value for <computeroutput>baseTime</computeroutput> that it does for <computeroutput>time</computeroutput>. When <computeroutput>baseTime</computeroutput> is less than or equal to <computeroutput>time</computeroutput>, we will choose the lower bracketing timeSample. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="1029" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a273cc4b4b5e2adf815d7e5ae6c6b2023" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool ComputeExtentAtTime</definition>
+        <argsstring>(VtVec3fArray *extent, const UsdTimeCode time, const UsdTimeCode baseTime, const GfMatrix4d &amp;transform) const</argsstring>
+        <name>ComputeExtentAtTime</name>
+        <param>
+          <type>VtVec3fArray *</type>
+          <declname>extent</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>baseTime</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref> &amp;</type>
+          <declname>transform</declname>
+        </param>
+        <briefdescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. Computes the extent as if the matrix <computeroutput>transform</computeroutput> was first applied. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="1037" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1ac3c01e24e2adbf6c1521771f8357da57" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool ComputeExtentAtTimes</definition>
+        <argsstring>(std::vector&lt; VtVec3fArray &gt; *extents, const std::vector&lt; UsdTimeCode &gt; &amp;times, const UsdTimeCode baseTime) const</argsstring>
+        <name>ComputeExtentAtTimes</name>
+        <param>
+          <type>std::vector&lt; VtVec3fArray &gt; *</type>
+          <declname>extents</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> &gt; &amp;</type>
+          <declname>times</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>baseTime</declname>
+        </param>
+        <briefdescription>
+<para>Compute the extent of the point instancer as in <ref refid="class_usd_geom_point_instancer_1a93d339584167e16e1f38aa2f9c95476c" kindref="member">ComputeExtentAtTime</ref> , but across multiple <computeroutput>times</computeroutput> . </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is equivalent to, but more efficient than, calling ComputeExtentAtTime several times. Each element in <computeroutput>extents</computeroutput> is the computed extent at the corresponding time in <computeroutput>times</computeroutput> .</para>
+<para>As in <ref refid="class_usd_geom_point_instancer_1a93d339584167e16e1f38aa2f9c95476c" kindref="member">ComputeExtentAtTime</ref>, if there is no error, we return <computeroutput>true</computeroutput> and <computeroutput>extents</computeroutput> will be the tightest bounds we can compute efficiently. If an error occurs computing the extent at any time, <computeroutput>false</computeroutput> will be returned and <computeroutput>extents</computeroutput> will be left untouched.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>times</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- A vector containing the UsdTimeCodes at which we want to sample. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="1057" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a70faad65f77bbaa27dff8c133da7d6ba" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>USDGEOM_API bool ComputeExtentAtTimes</definition>
+        <argsstring>(std::vector&lt; VtVec3fArray &gt; *extents, const std::vector&lt; UsdTimeCode &gt; &amp;times, const UsdTimeCode baseTime, const GfMatrix4d &amp;transform) const</argsstring>
+        <name>ComputeExtentAtTimes</name>
+        <param>
+          <type>std::vector&lt; VtVec3fArray &gt; *</type>
+          <declname>extents</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> &gt; &amp;</type>
+          <declname>times</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>baseTime</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref> &amp;</type>
+          <declname>transform</declname>
+        </param>
+        <briefdescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. Computes the extent as if the matrix <computeroutput>transform</computeroutput> was first applied at each time. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="1066" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a94eab71913905f429534a527af9a7006" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API size_t</type>
+        <definition>USDGEOM_API size_t GetInstanceCount</definition>
+        <argsstring>(UsdTimeCode timeCode=UsdTimeCode::Default()) const</argsstring>
+        <name>GetInstanceCount</name>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>timeCode</declname>
+          <defval><ref refid="class_usd_time_code_1a8a2192045dc22e90fe08ef2d8d68f3b8" kindref="member">UsdTimeCode::Default</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Returns the number of instances as defined by the size of the <emphasis>protoIndices</emphasis> array at <emphasis>timeCode</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><para><simplesect kind="note"><para>For most code, this check will be performant. When using file formats where the cost of attribute reading is high and the time sampled array will be read into memory later, it may be better to explicitly read the value once and check the size of the array directly. </para>
+</simplesect>
+</para>
+<simplesect kind="see"><para><ref refid="class_usd_geom_point_instancer_1a1f0a46b50806ce1922c5ebd03ad94bd6" kindref="member">GetProtoIndicesAttr()</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="1078" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1ae40ae43320babff8a254a3a8107a255a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API const <ref refid="token_8h_1a9d94c69b8de3eb7202797d3c6d56db59" kindref="member">TfTokenVector</ref> &amp;</type>
+        <definition>static USDGEOM_API const TfTokenVector&amp; GetSchemaAttributeNames</definition>
+        <argsstring>(bool includeInherited=true)</argsstring>
+        <name>GetSchemaAttributeNames</name>
+        <param>
+          <type>bool</type>
+          <declname>includeInherited</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Return a vector of names of all pre-declared attributes for this schema class and all its ancestor classes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does not include attributes that may be authored by custom/extended methods of the schemas involved. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="312" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a8aecdc9be88ae26cc50c64756e37ce09" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_geom_point_instancer" kindref="compound">UsdGeomPointInstancer</ref></type>
+        <definition>static USDGEOM_API UsdGeomPointInstancer Get</definition>
+        <argsstring>(const UsdStagePtr &amp;stage, const SdfPath &amp;path)</argsstring>
+        <name>Get</name>
+        <param>
+          <type>const UsdStagePtr &amp;</type>
+          <declname>stage</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Return a <ref refid="class_usd_geom_point_instancer" kindref="compound">UsdGeomPointInstancer</ref> holding the prim adhering to this schema at <computeroutput>path</computeroutput> on <computeroutput>stage</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If no prim exists at <computeroutput>path</computeroutput> on <computeroutput>stage</computeroutput>, or if the prim at that path does not adhere to this schema, return an invalid schema object. This is shorthand for the following:</para>
+<para><programlisting><codeline><highlight class="normal">UsdGeomPointInstancer(stage-&gt;GetPrimAtPath(path));</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="325" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a9b13c0dce72dcf8af3f22df2bddd2f5a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API <ref refid="class_usd_geom_point_instancer" kindref="compound">UsdGeomPointInstancer</ref></type>
+        <definition>static USDGEOM_API UsdGeomPointInstancer Define</definition>
+        <argsstring>(const UsdStagePtr &amp;stage, const SdfPath &amp;path)</argsstring>
+        <name>Define</name>
+        <param>
+          <type>const UsdStagePtr &amp;</type>
+          <declname>stage</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Attempt to ensure a <emphasis><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref></emphasis> adhering to this schema at <computeroutput>path</computeroutput> is defined (according to <ref refid="class_usd_prim_1a87fbe0030c0fbb6307ee434664f1142f" kindref="member">UsdPrim::IsDefined()</ref>) on this stage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If a prim adhering to this schema at <computeroutput>path</computeroutput> is already defined on this stage, return that prim. Otherwise author an <emphasis><ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref></emphasis> with <emphasis>specifier</emphasis> == <emphasis>SdfSpecifierDef</emphasis> and this schema&apos;s prim type name for the prim at <computeroutput>path</computeroutput> at the current EditTarget. Author <emphasis><ref refid="class_sdf_prim_spec" kindref="compound">SdfPrimSpec</ref></emphasis> s with <computeroutput>specifier</computeroutput> == <emphasis>SdfSpecifierDef</emphasis> and empty typeName at the current EditTarget for any nonexistent, or existing but not <emphasis>Defined</emphasis> ancestors.</para>
+<para>The given <emphasis>path</emphasis> must be an absolute prim path that does not contain any variant selections.</para>
+<para>If it is impossible to author any of the necessary PrimSpecs, (for example, in case <emphasis>path</emphasis> cannot map to the current <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref>&apos;s namespace) issue an error and return an invalid <emphasis><ref refid="class_usd_prim" kindref="compound">UsdPrim</ref></emphasis>.</para>
+<para>Note that this method may return a defined prim whose typeName does not specify this schema class, in case a stronger typeName opinion overrides the opinion at the current EditTarget. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="351" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a27aee7c27b72251b2dce9218ad12facd" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API bool</type>
+        <definition>static USDGEOM_API bool ComputeInstanceTransformsAtTime</definition>
+        <argsstring>(VtArray&lt; GfMatrix4d &gt; *xforms, UsdStageWeakPtr &amp;stage, UsdTimeCode time, const VtIntArray &amp;protoIndices, const VtVec3fArray &amp;positions, const VtVec3fArray &amp;velocities, UsdTimeCode velocitiesSampleTime, const VtVec3fArray &amp;accelerations, const VtVec3fArray &amp;scales, const VtQuathArray &amp;orientations, const VtVec3fArray &amp;angularVelocities, UsdTimeCode angularVelocitiesSampleTime, const SdfPathVector &amp;protoPaths, const std::vector&lt; bool &gt; &amp;mask, float velocityScale=1.0)</argsstring>
+        <name>ComputeInstanceTransformsAtTime</name>
+        <param>
+          <type><ref refid="class_vt_array" kindref="compound">VtArray</ref>&lt; <ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref> &gt; *</type>
+          <declname>xforms</declname>
+        </param>
+        <param>
+          <type>UsdStageWeakPtr &amp;</type>
+          <declname>stage</declname>
+        </param>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>const VtIntArray &amp;</type>
+          <declname>protoIndices</declname>
+        </param>
+        <param>
+          <type>const VtVec3fArray &amp;</type>
+          <declname>positions</declname>
+        </param>
+        <param>
+          <type>const VtVec3fArray &amp;</type>
+          <declname>velocities</declname>
+        </param>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>velocitiesSampleTime</declname>
+        </param>
+        <param>
+          <type>const VtVec3fArray &amp;</type>
+          <declname>accelerations</declname>
+        </param>
+        <param>
+          <type>const VtVec3fArray &amp;</type>
+          <declname>scales</declname>
+        </param>
+        <param>
+          <type>const VtQuathArray &amp;</type>
+          <declname>orientations</declname>
+        </param>
+        <param>
+          <type>const VtVec3fArray &amp;</type>
+          <declname>angularVelocities</declname>
+        </param>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>angularVelocitiesSampleTime</declname>
+        </param>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>protoPaths</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; bool &gt; &amp;</type>
+          <declname>mask</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>velocityScale</declname>
+          <defval>1.0</defval>
+        </param>
+        <briefdescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. Perform the per-instance transform computation as described in <ref refid="class_usd_geom_point_instancer_1UsdGeomPointInstancer_transform" kindref="member">Computing an Instance Transform</ref> . </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This does the same computation as the non-static ComputeInstanceTransformsAtTime method, but takes all data as parameters rather than accessing authored data.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>xforms</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- the out parameter for the transformations. Its size will depend on the given data and <computeroutput>applyMask</computeroutput> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stage</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- the <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- time at which we want to evaluate the transforms </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>protoIndices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- array containing all instance prototype indices. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>positions</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- array containing all instance positions. This array must be the same size as <computeroutput>protoIndices</computeroutput> . </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>velocities</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- array containing all instance velocities. This array must be either the same size as <computeroutput>protoIndices</computeroutput> or empty. If it is empty, transforms are computed as if all velocities were zero in all dimensions. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>velocitiesSampleTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- time at which the samples from <computeroutput>velocities</computeroutput> were taken. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>accelerations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- array containing all instance accelerations. This array must be either the same size as <computeroutput>protoIndicesor</computeroutput> empty. If it is empty, transforms are computed as if all accelerations were zero in all dimensions. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scales</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- array containing all instance scales. This array must be either the same size as <computeroutput>protoIndices</computeroutput> or empty. If it is empty, transforms are computed with no change in scale. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>orientations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- array containing all instance orientations. This array must be either the same size as <computeroutput>protoIndices</computeroutput> or empty. If it is empty, transforms are computed with no change in orientation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>angularVelocities</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- array containing all instance angular velocities. This array must be either the same size as <computeroutput>protoIndices</computeroutput> or empty. If it is empty, transforms are computed as if all angular velocities were zero in all dimensions. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>angularVelocitiesSampleTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- time at which the samples from <computeroutput>angularVelocities</computeroutput> were taken. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>protoPaths</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- array containing the paths for all instance prototypes. If this array is not empty, prototype transforms are applied to the instance transforms. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mask</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- vector containing a mask to apply to the computed result. This vector must be either the same size as <computeroutput>protoIndices</computeroutput> or empty. If it is empty, no mask is applied. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>velocityScale</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<xrefsect id="deprecated_1_deprecated000081"><xreftitle>Deprecated</xreftitle><xrefdescription><para>. </para>
+</xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="949" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a71a1af4672754da617b8cb537f29c5f4" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USDGEOM_API <ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref></type>
+        <definition>USDGEOM_API UsdSchemaKind _GetSchemaKind</definition>
+        <argsstring>() const override</argsstring>
+        <name>_GetSchemaKind</name>
+        <reimplements refid="class_usd_geom_boundable_1a71a1af4672754da617b8cb537f29c5f4">_GetSchemaKind</reimplements>
+        <briefdescription>
+<para>Returns the kind of schema this class belongs to. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="common_8h_1a64c9c016c495366a2ca7330d56c77741" kindref="member">UsdSchemaKind</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="358" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1ad32bf70dffbb431c0fa883d5fbc1802d" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>USDGEOM_API const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+        <definition>static USDGEOM_API const TfType&amp; _GetStaticTfType</definition>
+        <argsstring>()</argsstring>
+        <name>_GetStaticTfType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="364" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1abbc02364dd87e9f147201cbd8d260d43" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool _IsTypedSchema</definition>
+        <argsstring>()</argsstring>
+        <name>_IsTypedSchema</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="366" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a1e6b9f0da5624212c58019b749c21286" prot="private" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>USDGEOM_API const <ref refid="class_tf_type" kindref="compound">TfType</ref> &amp;</type>
+        <definition>USDGEOM_API const TfType&amp; _GetTfType</definition>
+        <argsstring>() const override</argsstring>
+        <name>_GetTfType</name>
+        <reimplements refid="class_usd_geom_boundable_1a1e6b9f0da5624212c58019b749c21286">_GetTfType</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="370" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1add92f4f39e0a5bc77c862ed3d49b5805" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _GetPrototypePathsForInstanceTransforms</definition>
+        <argsstring>(const VtIntArray &amp;protoIndices, SdfPathVector *protoPaths) const</argsstring>
+        <name>_GetPrototypePathsForInstanceTransforms</name>
+        <param>
+          <type>const VtIntArray &amp;</type>
+          <declname>protoIndices</declname>
+        </param>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>protoPaths</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="970" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1adadbdcaffdc1192fafbcfe675032d319" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _GetProtoIndicesForInstanceTransforms</definition>
+        <argsstring>(UsdTimeCode baseTime, VtIntArray *protoIndices) const</argsstring>
+        <name>_GetProtoIndicesForInstanceTransforms</name>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>baseTime</declname>
+        </param>
+        <param>
+          <type>VtIntArray *</type>
+          <declname>protoIndices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="976" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1abcb21ab1f783c14245aee5a1ea2b401e" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _ComputePointInstancerAttributesPreamble</definition>
+        <argsstring>(const UsdTimeCode baseTime, const ProtoXformInclusion doProtoXforms, const MaskApplication applyMask, VtIntArray *protoIndices, SdfPathVector *protoPaths, std::vector&lt; bool &gt; *mask) const</argsstring>
+        <name>_ComputePointInstancerAttributesPreamble</name>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>baseTime</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_geom_point_instancer_1aa184c49dc6b24efa4d160c1fe505a403" kindref="member">ProtoXformInclusion</ref></type>
+          <declname>doProtoXforms</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_geom_point_instancer_1aa2257e2db6d6aea4856489ceece508a8" kindref="member">MaskApplication</ref></type>
+          <declname>applyMask</declname>
+        </param>
+        <param>
+          <type>VtIntArray *</type>
+          <declname>protoIndices</declname>
+        </param>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>protoPaths</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; bool &gt; *</type>
+          <declname>mask</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="983" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1abec73b9fcdb5d752ddef6c3d2e1b841d" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _ComputeExtentAtTimePreamble</definition>
+        <argsstring>(UsdTimeCode baseTime, VtIntArray *protoIndices, std::vector&lt; bool &gt; *mask, UsdRelationship *prototypes, SdfPathVector *protoPaths) const</argsstring>
+        <name>_ComputeExtentAtTimePreamble</name>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>baseTime</declname>
+        </param>
+        <param>
+          <type>VtIntArray *</type>
+          <declname>protoIndices</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; bool &gt; *</type>
+          <declname>mask</declname>
+        </param>
+        <param>
+          <type><ref refid="class_usd_relationship" kindref="compound">UsdRelationship</ref> *</type>
+          <declname>prototypes</declname>
+        </param>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>protoPaths</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="1082" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a16e827e53ec7636f20edfa4b20f09b85" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _ComputeExtentFromTransforms</definition>
+        <argsstring>(VtVec3fArray *extent, const VtIntArray &amp;protoIndices, const std::vector&lt; bool &gt; &amp;mask, const UsdRelationship &amp;prototypes, const SdfPathVector &amp;protoPaths, const VtMatrix4dArray &amp;instanceTransforms, UsdTimeCode time, const GfMatrix4d *transform) const</argsstring>
+        <name>_ComputeExtentFromTransforms</name>
+        <param>
+          <type>VtVec3fArray *</type>
+          <declname>extent</declname>
+        </param>
+        <param>
+          <type>const VtIntArray &amp;</type>
+          <declname>protoIndices</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; bool &gt; &amp;</type>
+          <declname>mask</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_relationship" kindref="compound">UsdRelationship</ref> &amp;</type>
+          <declname>prototypes</declname>
+        </param>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>protoPaths</declname>
+        </param>
+        <param>
+          <type>const VtMatrix4dArray &amp;</type>
+          <declname>instanceTransforms</declname>
+        </param>
+        <param>
+          <type><ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref> *</type>
+          <declname>transform</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="1089" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1a8a70ba2687f7af5e74ab4007f11893fd" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _ComputeExtentAtTime</definition>
+        <argsstring>(VtVec3fArray *extent, const UsdTimeCode time, const UsdTimeCode baseTime, const GfMatrix4d *transform) const</argsstring>
+        <name>_ComputeExtentAtTime</name>
+        <param>
+          <type>VtVec3fArray *</type>
+          <declname>extent</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>baseTime</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref> *</type>
+          <declname>transform</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="1099" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_geom_point_instancer_1ac6c2e22901e04d1aeb2f8044230b8c66" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _ComputeExtentAtTimes</definition>
+        <argsstring>(std::vector&lt; VtVec3fArray &gt; *extent, const std::vector&lt; UsdTimeCode &gt; &amp;times, const UsdTimeCode baseTime, const GfMatrix4d *transform) const</argsstring>
+        <name>_ComputeExtentAtTimes</name>
+        <param>
+          <type>std::vector&lt; VtVec3fArray &gt; *</type>
+          <declname>extent</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> &gt; &amp;</type>
+          <declname>times</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref></type>
+          <declname>baseTime</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_gf_matrix4d" kindref="compound">GfMatrix4d</ref> *</type>
+          <declname>transform</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usdGeom/pointInstancer.h" line="1105" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Encodes vectorized instancing of multiple, potentially animated, prototypes (object/instance masters), which can be arbitrary prims/subtrees on a <ref refid="class_usd_stage" kindref="compound">UsdStage</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>PointInstancer is a &quot;multi instancer&quot;, as it allows multiple prototypes to be scattered among its &quot;points&quot;. We use a <ref refid="class_usd_relationship" kindref="compound">UsdRelationship</ref> <emphasis>prototypes</emphasis> to identify and order all of the possible prototypes, by targeting the root prim of each prototype. The ordering imparted by relationships associates a zero-based integer with each prototype, and it is these integers we use to identify the prototype of each instance, compactly, and allowing prototypes to be swapped out without needing to reauthor all of the per-instance data.</para>
+<para>The PointInstancer schema is designed to scale to billions of instances, which motivates the choice to split the per-instance transformation into position, (quaternion) orientation, and scales, rather than a 4x4 matrix per-instance. In addition to requiring fewer bytes even if all elements are authored (32 bytes vs 64 for a single-precision 4x4 matrix), we can also be selective about which attributes need to animate over time, for substantial data reduction in many cases.</para>
+<para>Note that PointInstancer is <emphasis>not</emphasis> a Gprim, since it is not a graphical primitive by any stretch of the imagination. It <emphasis>is</emphasis>, however, Boundable, since we will sometimes want to treat the entire PointInstancer similarly to a procedural, from the perspective of inclusion or framing.</para>
+<sect1 id="class_usd_geom_point_instancer_1UsdGeomPointInstancer_varyingTopo">
+<title>Varying Instance Identity over Time</title>
+<para>PointInstancers originating from simulations often have the characteristic that points/instances are &quot;born&quot;, move around for some time period, and then die (or leave the area of interest). In such cases, billions of instances may be birthed over time, while at any <emphasis>specific</emphasis> time, only a much smaller number are actually alive. To encode this situation efficiently, the simulator may re-use indices in the instance arrays, when a particle dies, its index will be taken over by a new particle that may be birthed in a much different location. This presents challenges both for identity-tracking, and for motion-blur.</para>
+<para>We facilitate identity tracking by providing an optional, animatable <emphasis>ids</emphasis> attribute, that specifies the 64 bit integer ID of the particle at each index, at each point in time. If the simulator keeps monotonically increasing a particle-count each time a new particle is birthed, it will serve perfectly as particle <emphasis>ids</emphasis>.</para>
+<para>We facilitate motion blur for varying-topology particle streams by optionally allowing per-instance <emphasis>velocities</emphasis> and <emphasis>angularVelocities</emphasis> to be authored. If instance transforms are requested at a time between samples and either of the velocity attributes is authored, then we will not attempt to interpolate samples of <emphasis>positions</emphasis> or <emphasis>orientations</emphasis>. If not authored, and the bracketing samples have the same length, then we will interpolate.</para>
+</sect1>
+<sect1 id="class_usd_geom_point_instancer_1UsdGeomPointInstancer_transform">
+<title>Computing an Instance Transform</title>
+<para>Each instance&apos;s transformation is a combination of the SRT affine transform described by its scale, orientation, and position, applied <emphasis>after</emphasis> (i.e. less locally than) the local to parent transformation computed at the root of the prototype it is instancing.</para>
+<para>If your processing of prototype geometry naturally takes into account the transform of the prototype root, then this term can be omitted from the computation of each instance transform, and this can be controlled when computing instance transformation matrices using the UsdGeomPointInstancer::PrototypeXformInclusion enumeration.</para>
+<para>To understand the computation of the instance transform, in order to put an instance of a PointInstancer into the space of the PointInstancer&apos;s parent prim we do the following:</para>
+<para><orderedlist>
+<listitem><para>Apply (most locally) the authored local to parent transformation for <emphasis>prototypes[protoIndices[i]]</emphasis></para>
+</listitem><listitem><para>If <emphasis>scales</emphasis> is authored, next apply the scaling matrix from <emphasis>scales[i]</emphasis></para>
+</listitem><listitem><para>If <emphasis>orientations</emphasis> is authored: <bold>if <emphasis>angularVelocities</emphasis> is authored</bold>, first multiply <emphasis>orientations[i]</emphasis> by the unit quaternion derived by scaling <emphasis>angularVelocities[i]</emphasis> by the <ref refid="class_usd_geom_point_instancer_1UsdGeom_PITimeScaling" kindref="member">time differential</ref> from the left-bracketing timeSample for <emphasis>orientation</emphasis> to the requested evaluation time <emphasis>t</emphasis>, storing the result in <emphasis>R</emphasis>, <bold>else</bold> assign <emphasis>R</emphasis> directly from <emphasis>orientations[i]</emphasis>. Apply the rotation matrix derived from <emphasis>R</emphasis>.</para>
+</listitem><listitem><para>Apply the translation derived from <emphasis>positions[i]</emphasis>. If <emphasis>velocities</emphasis> is authored, apply the translation deriving from <emphasis>velocities[i]</emphasis> scaled by the time differential from the left-bracketing timeSample for <emphasis>positions</emphasis> to the requested evaluation time <emphasis>t</emphasis>.</para>
+</listitem><listitem><para>Least locally, apply the transformation authored on the PointInstancer prim itself (or the <ref refid="class_usd_geom_imageable_1a8e3fb09253ba63d63921f665d63cd270" kindref="member">UsdGeomImageable::ComputeLocalToWorldTransform()</ref> of the PointInstancer to put the instance directly into world space)</para>
+</listitem></orderedlist>
+</para>
+<para>If neither <emphasis>velocities</emphasis> nor <emphasis>angularVelocities</emphasis> are authored, we fallback to standard position and orientation computation logic (using linear interpolation between timeSamples) as described by <ref refid="usd_geom_page_front_1UsdGeom_VelocityInterpolation" kindref="member">Applying Timesampled Velocities to Geometry</ref> .</para>
+<para><anchor id="class_usd_geom_point_instancer_1UsdGeom_PITimeScaling"/><bold>Scaling Velocities for Interpolation</bold></para>
+<para>When computing time-differentials by which to apply velocity or angularVelocity to positions or orientations, we must scale by ( 1.0 / <ref refid="class_usd_stage_1a85092d7455ae894d50224e761dc6e840" kindref="member">UsdStage::GetTimeCodesPerSecond()</ref> ), because velocities are recorded in units/second, while we are interpolating in <ref refid="class_usd_time_code" kindref="compound">UsdTimeCode</ref> ordinates.</para>
+<para>We provide both high and low-level API&apos;s for dealing with the transformation as a matrix, both will compute the instance matrices using multiple threads; the low-level API allows the client to cache unvarying inputs so that they need not be read duplicately when computing over time.</para>
+<para>See also <ref refid="usd_geom_page_front_1UsdGeom_VelocityInterpolation" kindref="member">Applying Timesampled Velocities to Geometry</ref> .</para>
+</sect1>
+<sect1 id="class_usd_geom_point_instancer_1UsdGeomPointInstancer_primvars">
+<title>Primvars on PointInstancer</title>
+<para><ref refid="class_usd_geom_primvar" kindref="compound">Primvars</ref> authored on a PointInstancer prim should always be applied to each instance with <emphasis>constant</emphasis> interpolation at the root of the instance. When you are authoring primvars on a PointInstancer, think about it as if you were authoring them on a point-cloud (e.g. a <ref refid="class_usd_geom_points" kindref="compound">UsdGeomPoints</ref> gprim). The same <ulink url="https://renderman.pixar.com/resources/RenderMan_20/appnote.22.html#classSpecifiers">interpolation rules for points</ulink> apply here, substituting &quot;instance&quot; for &quot;point&quot;.</para>
+<para>In other words, the (constant) value extracted for each instance from the authored primvar value depends on the authored <emphasis>interpolation</emphasis> and <emphasis>elementSize</emphasis> of the primvar, as follows: <itemizedlist>
+<listitem><para><bold>constant</bold> or <bold>uniform</bold> : the entire authored value of the primvar should be applied exactly to each instance. </para>
+</listitem>
+<listitem><para><bold>varying</bold>, <bold>vertex</bold>, or <bold>faceVarying</bold>: the first <emphasis>elementSize</emphasis> elements of the authored primvar array should be assigned to instance zero, the second <emphasis>elementSize</emphasis> elements should be assigned to instance one, and so forth.</para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+<sect1 id="class_usd_geom_point_instancer_1UsdGeomPointInstancer_masking">
+<title>Masking Instances: &quot;Deactivating&quot; and Invising</title>
+<para>Often a PointInstancer is created &quot;upstream&quot; in a graphics pipeline, and the needs of &quot;downstream&quot; clients necessitate eliminating some of the instances from further consideration. Accomplishing this pruning by re-authoring all of the per-instance attributes is not very attractive, since it may mean destructively editing a large quantity of data. We therefore provide means of &quot;masking&quot; instances by ID, such that the instance data is unmolested, but per-instance transform and primvar data can be retrieved with the no-longer-desired instances eliminated from the (smaller) arrays. PointInstancer allows two independent means of masking instances by ID, each with different features that meet the needs of various clients in a pipeline. Both pruning features&apos; lists of ID&apos;s are combined to produce the mask returned by <ref refid="class_usd_geom_point_instancer_1ac8cd85f70313ba3118d2a7416d309d4a" kindref="member">ComputeMaskAtTime()</ref>.</para>
+<para><simplesect kind="note"><para>If a PointInstancer has no authored <emphasis>ids</emphasis> attribute, the masking features will still be available, with the integers specifying element position in the <emphasis>protoIndices</emphasis> array rather than ID.</para>
+</simplesect>
+</para>
+<sect2 id="class_usd_geom_point_instancer_1UsdGeomPointInstancer_inactiveIds">
+<title>InactiveIds: List-edited, Unvarying Masking</title>
+<para>The first masking feature encodes a list of IDs in a list-editable metadatum called <emphasis>inactiveIds</emphasis>, which, although it does not have any similar impact to stage population as <ref refid="class_usd_prim_1ac156eed30c42c013c4a4debf580ce17f" kindref="member">prim activation</ref>, it shares with that feature that its application is uniform over all time. Because it is list-editable, we can <emphasis>sparsely</emphasis> add and remove instances from it in many layers.</para>
+<para>This sparse application pattern makes <emphasis>inactiveIds</emphasis> a good choice when further downstream clients may need to reverse masking decisions made upstream, in a manner that is robust to many kinds of future changes to the upstream data.</para>
+<para>See <ref refid="class_usd_geom_point_instancer_1a8c252eec2616b2d883a2db5b8b0f3d60" kindref="member">ActivateId()</ref>, <ref refid="class_usd_geom_point_instancer_1a20fc012cd705f67c61c7d8e0f2df59df" kindref="member">ActivateIds()</ref>, <ref refid="class_usd_geom_point_instancer_1af62e7d7882ad88c1ed4f22328e91263c" kindref="member">DeactivateId()</ref>, <ref refid="class_usd_geom_point_instancer_1a263554417f6a285d071fdfd85b725e23" kindref="member">DeactivateIds()</ref>, <ref refid="class_usd_geom_point_instancer_1a85dfcdcc6094dcfe1abf108fb491f75c" kindref="member">ActivateAllIds()</ref></para>
+</sect2>
+<sect2 id="class_usd_geom_point_instancer_1UsdGeomPointInstancer_invisibleIds">
+<title>invisibleIds: Animatable Masking</title>
+<para>The second masking feature encodes a list of IDs in a time-varying Int64Array-valued <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> called <emphasis>invisibleIds</emphasis> , since it shares with <ref refid="class_usd_geom_imageable_1a943eddc325190bd67789407400f122b7" kindref="member">Imageable visibility</ref> the ability to animate object visibility.</para>
+<para>Unlike <emphasis>inactiveIds</emphasis>, overriding a set of opinions for <emphasis>invisibleIds</emphasis> is not at all straightforward, because one will, in general need to reauthor (in the overriding layer) <bold>all</bold> timeSamples for the attribute just to change one Id&apos;s visibility state, so it cannot be authored sparsely. But it can be a very useful tool for situations like encoding pre-computed camera-frustum culling of geometry when either or both of the instances or the camera is animated.</para>
+<para>See <ref refid="class_usd_geom_point_instancer_1abf1ac95ca33821f69586590df694ee35" kindref="member">VisId()</ref>, <ref refid="class_usd_geom_point_instancer_1a1233046a057a7befb515aaa1b5fee9c6" kindref="member">VisIds()</ref>, <ref refid="class_usd_geom_point_instancer_1a9cc2315ea6be2e129f1732e6d33e363f" kindref="member">InvisId()</ref>, <ref refid="class_usd_geom_point_instancer_1aa88b2c5d831432796b69d7b85bc39bd5" kindref="member">InvisIds()</ref>, <ref refid="class_usd_geom_point_instancer_1a9a4d919761befd2ee076188f02419272" kindref="member">VisAllIds()</ref></para>
+</sect2>
+</sect1>
+<sect1 id="class_usd_geom_point_instancer_1UsdGeomPointInstancer_protoProcessing">
+<title>Processing and Not Processing Prototypes</title>
+<para>Any prim in the scenegraph can be targeted as a prototype by the <emphasis>prototypes</emphasis> relationship. We do not, however, provide a specific mechanism for identifying prototypes as geometry that should not be drawn (or processed) in their own, local spaces in the scenegraph. We encourage organizing all prototypes as children of the PointInstancer prim that consumes them, and pruning &quot;raw&quot; processing and drawing traversals when they encounter a PointInstancer prim; this is what the <ref refid="class_usd_geom_b_box_cache" kindref="compound">UsdGeomBBoxCache</ref> and UsdImaging engines do.</para>
+<para>There <emphasis>is</emphasis> a pattern one can deploy for organizing the prototypes such that they will automatically be skipped by basic <ref refid="class_usd_prim_1a2619563fc9180d8ead597944fd7f6ec7" kindref="member">UsdPrim::GetChildren()</ref> or <ref refid="class_usd_prim_range" kindref="compound">UsdPrimRange</ref> traversals. Usd prims each have a <ref refid="_usd__page__properties_of_scene_description_1Usd_PrimSpecifiers" kindref="member">specifier</ref> of &quot;def&quot;, &quot;over&quot;, or &quot;class&quot;. The default traversals skip over prims that are &quot;pure overs&quot; or classes. So to protect prototypes from all generic traversals and processing, place them under a prim that is just an &quot;over&quot;. For example, <programlisting><codeline><highlight class="normal">01<sp/>def<sp/>PointInstancer<sp/>&quot;Crowd_Mid&quot;</highlight></codeline>
+<codeline><highlight class="normal">02<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">03<sp/><sp/><sp/><sp/><sp/>rel<sp/>prototypes<sp/>=<sp/>[<sp/>&lt;/Crowd_Mid/Prototypes/MaleThin_Business&gt;,<sp/>&lt;/Crowd_Mid/Prototypes/MaleThin_Casual&gt;<sp/>]</highlight></codeline>
+<codeline><highlight class="normal">04<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">05<sp/><sp/><sp/><sp/><sp/>over<sp/>&quot;Prototypes&quot;<sp/></highlight></codeline>
+<codeline><highlight class="normal">06<sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal">07<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>&quot;MaleThin_Business&quot;<sp/>(</highlight></codeline>
+<codeline><highlight class="normal">08<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>references<sp/>=<sp/>[@MaleGroupA/usd/MaleGroupA.usd@&lt;/MaleGroupA&gt;]</highlight></codeline>
+<codeline><highlight class="normal">09<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>variants<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">10<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>modelingVariant<sp/>=<sp/>&quot;Thin&quot;</highlight></codeline>
+<codeline><highlight class="normal">11<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>costumeVariant<sp/>=<sp/>&quot;BusinessAttire&quot;</highlight></codeline>
+<codeline><highlight class="normal">12<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">13<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal">14<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>...<sp/>}</highlight></codeline>
+<codeline><highlight class="normal">15<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">16<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>def<sp/>&quot;MaleThin_Casual&quot;</highlight></codeline>
+<codeline><highlight class="normal">17<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal">18<sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">19<sp/>}</highlight></codeline>
+</programlisting> </para>
+</sect1>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="6431">
+        <label>UsdGeomPointInstancer</label>
+        <link refid="class_usd_geom_point_instancer"/>
+        <childnode refid="6432" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6434">
+        <label>UsdGeomImageable</label>
+        <link refid="class_usd_geom_imageable"/>
+        <childnode refid="6435" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6435">
+        <label>UsdTyped</label>
+        <link refid="class_usd_typed"/>
+        <childnode refid="6436" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6436">
+        <label>UsdSchemaBase</label>
+        <link refid="class_usd_schema_base"/>
+      </node>
+      <node id="6432">
+        <label>UsdGeomBoundable</label>
+        <link refid="class_usd_geom_boundable"/>
+        <childnode refid="6433" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6433">
+        <label>UsdGeomXformable</label>
+        <link refid="class_usd_geom_xformable"/>
+        <childnode refid="6434" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="6437">
+        <label>UsdGeomPointInstancer</label>
+        <link refid="class_usd_geom_point_instancer"/>
+        <childnode refid="6438" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6440">
+        <label>UsdGeomImageable</label>
+        <link refid="class_usd_geom_imageable"/>
+        <childnode refid="6441" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6441">
+        <label>UsdTyped</label>
+        <link refid="class_usd_typed"/>
+        <childnode refid="6442" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6442">
+        <label>UsdSchemaBase</label>
+        <link refid="class_usd_schema_base"/>
+      </node>
+      <node id="6438">
+        <label>UsdGeomBoundable</label>
+        <link refid="class_usd_geom_boundable"/>
+        <childnode refid="6439" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6439">
+        <label>UsdGeomXformable</label>
+        <link refid="class_usd_geom_xformable"/>
+        <childnode refid="6440" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/usd/usdGeom/pointInstancer.h" line="279" column="1" bodyfile="pxr/usd/usdGeom/pointInstancer.h" bodystart="278" bodyend="1110"/>
+    <listofallmembers>
+      <member refid="class_usd_geom_point_instancer_1a8a70ba2687f7af5e74ab4007f11893fd" prot="private" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>_ComputeExtentAtTime</name></member>
+      <member refid="class_usd_geom_point_instancer_1abec73b9fcdb5d752ddef6c3d2e1b841d" prot="private" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>_ComputeExtentAtTimePreamble</name></member>
+      <member refid="class_usd_geom_point_instancer_1ac6c2e22901e04d1aeb2f8044230b8c66" prot="private" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>_ComputeExtentAtTimes</name></member>
+      <member refid="class_usd_geom_point_instancer_1a16e827e53ec7636f20edfa4b20f09b85" prot="private" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>_ComputeExtentFromTransforms</name></member>
+      <member refid="class_usd_geom_point_instancer_1abcb21ab1f783c14245aee5a1ea2b401e" prot="private" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>_ComputePointInstancerAttributesPreamble</name></member>
+      <member refid="class_usd_schema_base_1ad99ec8284868478b50e8fc3475880dab" prot="protected" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>_CreateAttr</name></member>
+      <member refid="class_usd_geom_point_instancer_1adadbdcaffdc1192fafbcfe675032d319" prot="private" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>_GetProtoIndicesForInstanceTransforms</name></member>
+      <member refid="class_usd_geom_point_instancer_1add92f4f39e0a5bc77c862ed3d49b5805" prot="private" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>_GetPrototypePathsForInstanceTransforms</name></member>
+      <member refid="class_usd_geom_point_instancer_1a71a1af4672754da617b8cb537f29c5f4" prot="protected" virt="virtual"><scope>UsdGeomPointInstancer</scope><name>_GetSchemaKind</name></member>
+      <member refid="class_usd_schema_base_1a6c51fb3251d5fde5ffa9fe7a998ce970" prot="protected" virt="virtual"><scope>UsdGeomPointInstancer</scope><name>_GetSchemaType</name></member>
+      <member refid="class_usd_geom_point_instancer_1ad32bf70dffbb431c0fa883d5fbc1802d" prot="private" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>_GetStaticTfType</name></member>
+      <member refid="class_usd_geom_point_instancer_1a1e6b9f0da5624212c58019b749c21286" prot="private" virt="virtual"><scope>UsdGeomPointInstancer</scope><name>_GetTfType</name></member>
+      <member refid="class_usd_schema_base_1aa29ea4c951d8debfd8085a28c6aa80ca" prot="protected" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>_GetType</name></member>
+      <member refid="class_usd_typed_1ad91204cc9fb92f0306372e074052190f" prot="protected" virt="virtual"><scope>UsdGeomPointInstancer</scope><name>_IsCompatible</name></member>
+      <member refid="class_usd_geom_point_instancer_1abbc02364dd87e9f147201cbd8d260d43" prot="private" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>_IsTypedSchema</name></member>
+      <member refid="class_usd_geom_point_instancer_1a85dfcdcc6094dcfe1abf108fb491f75c" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ActivateAllIds</name></member>
+      <member refid="class_usd_geom_point_instancer_1a8c252eec2616b2d883a2db5b8b0f3d60" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ActivateId</name></member>
+      <member refid="class_usd_geom_point_instancer_1a20fc012cd705f67c61c7d8e0f2df59df" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ActivateIds</name></member>
+      <member refid="class_usd_geom_xformable_1a8b0d6e551f3705724405ddf6795756a7" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>AddOrientOp</name></member>
+      <member refid="class_usd_geom_xformable_1ac01badf7416ca43636d9e479bc47da33" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>AddRotateXOp</name></member>
+      <member refid="class_usd_geom_xformable_1aba511327f305e9a8b3f8941e244c8992" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>AddRotateXYZOp</name></member>
+      <member refid="class_usd_geom_xformable_1a63ffbff66e60a314adac3380d533469f" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>AddRotateXZYOp</name></member>
+      <member refid="class_usd_geom_xformable_1a4af9af5dc523e80fce81a88014edef19" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>AddRotateYOp</name></member>
+      <member refid="class_usd_geom_xformable_1ac7235be9524c6eb1a906f3247f9833f0" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>AddRotateYXZOp</name></member>
+      <member refid="class_usd_geom_xformable_1a353b43cb6f6d04b2db5b68c057d0494f" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>AddRotateYZXOp</name></member>
+      <member refid="class_usd_geom_xformable_1a9c089e1932ce91477becbc1f01bdfb02" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>AddRotateZOp</name></member>
+      <member refid="class_usd_geom_xformable_1a6dd6174a48238d6a9564128f43362ce2" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>AddRotateZXYOp</name></member>
+      <member refid="class_usd_geom_xformable_1a5938bf453b0f07bfaf80d121b916d720" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>AddRotateZYXOp</name></member>
+      <member refid="class_usd_geom_xformable_1a4f84556fa9b1fab0432b8c4342e98045" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>AddScaleOp</name></member>
+      <member refid="class_usd_geom_xformable_1a0fd59cb1cdd089e0d93fa755fb0da268" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>AddTransformOp</name></member>
+      <member refid="class_usd_geom_xformable_1a782fe5d36ac6657235b80741d47a8b1f" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>AddTranslateOp</name></member>
+      <member refid="class_usd_geom_xformable_1ad6dfc740dcec052482489647af9ed36b" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>AddXformOp</name></member>
+      <member refid="class_usd_geom_point_instancer_1aa2257e2db6d6aea4856489ceece508a8a4b4edcf3676c20fc90a1367af05379d1" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ApplyMask</name></member>
+      <member refid="class_usd_geom_point_instancer_1a4fd64ffb5f621575fcc9c89c17c9c04a" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ApplyMaskToArray</name></member>
+      <member refid="class_usd_geom_xformable_1a10a241711290631508cfc349ad4ab64d" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ClearXformOpOrder</name></member>
+      <member refid="class_usd_geom_imageable_1a1174d9985088dd364f6a56925073fe76" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputeEffectiveVisibility</name></member>
+      <member refid="class_usd_geom_boundable_1a99f4a8f288a211fc286c3f12f0e87fda" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputeExtent</name></member>
+      <member refid="class_usd_geom_point_instancer_1a93d339584167e16e1f38aa2f9c95476c" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputeExtentAtTime</name></member>
+      <member refid="class_usd_geom_point_instancer_1a273cc4b4b5e2adf815d7e5ae6c6b2023" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputeExtentAtTime</name></member>
+      <member refid="class_usd_geom_point_instancer_1ac3c01e24e2adbf6c1521771f8357da57" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputeExtentAtTimes</name></member>
+      <member refid="class_usd_geom_point_instancer_1a70faad65f77bbaa27dff8c133da7d6ba" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputeExtentAtTimes</name></member>
+      <member refid="class_usd_geom_boundable_1a413c9eb5b4e1d8fddd627cf33ed4a106" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputeExtentFromPlugins</name></member>
+      <member refid="class_usd_geom_boundable_1a7fa34cebf9339958ad25099dd635c9c7" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputeExtentFromPlugins</name></member>
+      <member refid="class_usd_geom_point_instancer_1a619b5f21f6c0fc26e6bd25c86c82b390" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputeInstanceTransformsAtTime</name></member>
+      <member refid="class_usd_geom_point_instancer_1a27aee7c27b72251b2dce9218ad12facd" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputeInstanceTransformsAtTime</name></member>
+      <member refid="class_usd_geom_point_instancer_1a8468b44a2996504b0caa828e7414b68f" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputeInstanceTransformsAtTimes</name></member>
+      <member refid="class_usd_geom_imageable_1a503f6d39abbd1b62c3c55f227461334d" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputeLocalBound</name></member>
+      <member refid="class_usd_geom_imageable_1a8e3fb09253ba63d63921f665d63cd270" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputeLocalToWorldTransform</name></member>
+      <member refid="class_usd_geom_point_instancer_1ac8cd85f70313ba3118d2a7416d309d4a" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputeMaskAtTime</name></member>
+      <member refid="class_usd_geom_imageable_1a4313664fa692f724da56cc254bce70fc" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputeParentToWorldTransform</name></member>
+      <member refid="class_usd_geom_imageable_1ad5a114f3776eb75edc651e8c2d67f8ff" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputeProxyPrim</name></member>
+      <member refid="class_usd_geom_imageable_1a1aa2ea4240e7e12f11122d7ff8ad7f90" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputePurpose</name></member>
+      <member refid="class_usd_geom_imageable_1a2a7d61f7af1a02e095e6a8abcf8e641f" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputePurposeInfo</name></member>
+      <member refid="class_usd_geom_imageable_1a00c5620a09313aa39cb0d79f492b340f" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputePurposeInfo</name></member>
+      <member refid="class_usd_geom_imageable_1a54086b2386d22b1de4aaeb5b3005533d" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputeUntransformedBound</name></member>
+      <member refid="class_usd_geom_imageable_1ac0bfa1554d9b57303c14f71d084c578d" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputeVisibility</name></member>
+      <member refid="class_usd_geom_imageable_1ae616043b0f7fbc631ef9e5c784132a6c" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ComputeWorldBound</name></member>
+      <member refid="class_usd_geom_point_instancer_1ae13702eda2c800254bc40d3948420457" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>CreateAccelerationsAttr</name></member>
+      <member refid="class_usd_geom_point_instancer_1a26932e7a9f211578f436a14683ac58c1" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>CreateAngularVelocitiesAttr</name></member>
+      <member refid="class_usd_geom_boundable_1a20dfcd57796694016d7d852e798458d8" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>CreateExtentAttr</name></member>
+      <member refid="class_usd_geom_point_instancer_1a836153b8fed90436fea28a1ff0de5966" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>CreateIdsAttr</name></member>
+      <member refid="class_usd_geom_point_instancer_1abab7826296b1bb8d647439f5bb6f5167" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>CreateInvisibleIdsAttr</name></member>
+      <member refid="class_usd_geom_point_instancer_1a8dc7993e9c906a2b4ad227140604be5b" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>CreateOrientationsAttr</name></member>
+      <member refid="class_usd_geom_point_instancer_1a187eb8f0aeb00ec937c0516aec82dfe8" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>CreatePositionsAttr</name></member>
+      <member refid="class_usd_geom_point_instancer_1a87c07674a5ce95e00b87e1d4e70b047d" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>CreateProtoIndicesAttr</name></member>
+      <member refid="class_usd_geom_point_instancer_1afec51385816998f993b365e6a2266150" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>CreatePrototypesRel</name></member>
+      <member refid="class_usd_geom_imageable_1aafc2e3aa91cf892f7937cc46a2351472" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>CreateProxyPrimRel</name></member>
+      <member refid="class_usd_geom_imageable_1a3f4f6685ac7cef1d8ef94c44586b84bc" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>CreatePurposeAttr</name></member>
+      <member refid="class_usd_geom_point_instancer_1a4b02522ca738f4b1801f8a7a6b061240" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>CreateScalesAttr</name></member>
+      <member refid="class_usd_geom_point_instancer_1aaf96c3a4bc0546725bc50c23067b7d1a" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>CreateVelocitiesAttr</name></member>
+      <member refid="class_usd_geom_imageable_1a96d4959f4d99367dfa3a79a3371e278a" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>CreateVisibilityAttr</name></member>
+      <member refid="class_usd_geom_xformable_1a03e49a63dc0bed6c97cee6bbc10aa182" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>CreateXformOpOrderAttr</name></member>
+      <member refid="class_usd_geom_point_instancer_1af62e7d7882ad88c1ed4f22328e91263c" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>DeactivateId</name></member>
+      <member refid="class_usd_geom_point_instancer_1a263554417f6a285d071fdfd85b725e23" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>DeactivateIds</name></member>
+      <member refid="class_usd_geom_point_instancer_1a9b13c0dce72dcf8af3f22df2bddd2f5a" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>Define</name></member>
+      <member refid="class_usd_geom_point_instancer_1aa184c49dc6b24efa4d160c1fe505a403a56a11959aa28115d253d01e56f1bdf1c" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ExcludeProtoXform</name></member>
+      <member refid="class_usd_geom_point_instancer_1a8aecdc9be88ae26cc50c64756e37ce09" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>Get</name></member>
+      <member refid="class_usd_geom_point_instancer_1abf4df1035f2f759d5119392f94a73626" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetAccelerationsAttr</name></member>
+      <member refid="class_usd_geom_point_instancer_1af98bc3fe0a980a0fb0d5a67e6b4901f2" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetAngularVelocitiesAttr</name></member>
+      <member refid="class_usd_geom_boundable_1abecc87b5433fec139295a78b439b0531" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetExtentAttr</name></member>
+      <member refid="class_usd_geom_point_instancer_1ab649953d4c84eae16d2b821bc3627b3a" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetIdsAttr</name></member>
+      <member refid="class_usd_geom_point_instancer_1a94eab71913905f429534a527af9a7006" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetInstanceCount</name></member>
+      <member refid="class_usd_geom_point_instancer_1a4ccd01db405d601c5cc12645d1f9a8d3" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetInvisibleIdsAttr</name></member>
+      <member refid="class_usd_geom_xformable_1a9a04ccb1ba8aa16e8cc1e878c2c92969" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetLocalTransformation</name></member>
+      <member refid="class_usd_geom_xformable_1a3bdae958563500cfdf2b4f3bcf34c465" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetLocalTransformation</name></member>
+      <member refid="class_usd_geom_xformable_1ad0838e193af826f5bbde3c274e9839ce" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetLocalTransformation</name></member>
+      <member refid="class_usd_geom_imageable_1ac7d41ddd5b5d274785f4a109a7cebad5" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetOrderedPurposeTokens</name></member>
+      <member refid="class_usd_geom_xformable_1a5e7cd1ac98925aa41af4f83d1efe6375" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetOrderedXformOps</name></member>
+      <member refid="class_usd_geom_point_instancer_1ada5000a8b2f38c6d4b3ea550a91aa069" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetOrientationsAttr</name></member>
+      <member refid="class_usd_geom_xformable_1a618c9b0ad5f39a8ebfc7f8e1b9319e5f" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetOrientOp</name></member>
+      <member refid="class_usd_schema_base_1a936bfb1e341cc81184c64af44763c433" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetPath</name></member>
+      <member refid="class_usd_geom_point_instancer_1a30684ce10025f54b6b9fdab13700ae99" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetPositionsAttr</name></member>
+      <member refid="class_usd_schema_base_1a4ba10e023e7f3f3c93131bc7fc3146b7" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetPrim</name></member>
+      <member refid="class_usd_geom_point_instancer_1a1f0a46b50806ce1922c5ebd03ad94bd6" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetProtoIndicesAttr</name></member>
+      <member refid="class_usd_geom_point_instancer_1a612b93e2bca96a78c93967a20555bb3d" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetPrototypesRel</name></member>
+      <member refid="class_usd_geom_imageable_1a5be4a4143e2b9f89f9bea44d27639a92" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetProxyPrimRel</name></member>
+      <member refid="class_usd_geom_imageable_1acff531252fb2787a973eb028f2b04bdd" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetPurposeAttr</name></member>
+      <member refid="class_usd_geom_imageable_1a2dfc306cddf0c522d39ba477e91ec161" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetPurposeVisibilityAttr</name></member>
+      <member refid="class_usd_geom_xformable_1a6d16bc5455344e131683d91e14ab62db" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetResetXformStack</name></member>
+      <member refid="class_usd_geom_xformable_1adbc1cc0684aad279a9f7954cce0ad083" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetRotateXOp</name></member>
+      <member refid="class_usd_geom_xformable_1a8b871424ffaff814ec4595b406198e12" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetRotateXYZOp</name></member>
+      <member refid="class_usd_geom_xformable_1aeabbd1a4b1e09254ddf700bfc1d83790" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetRotateXZYOp</name></member>
+      <member refid="class_usd_geom_xformable_1a9846b234308946bb9f91e1520f97de05" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetRotateYOp</name></member>
+      <member refid="class_usd_geom_xformable_1a803cfbc1fe2750bf9c5aadd83bd50a4c" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetRotateYXZOp</name></member>
+      <member refid="class_usd_geom_xformable_1aa244d99dd6e7f5abecc57f8ece422c93" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetRotateYZXOp</name></member>
+      <member refid="class_usd_geom_xformable_1a478e11c424f265543b333a00fb4268d0" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetRotateZOp</name></member>
+      <member refid="class_usd_geom_xformable_1a12311efeb62f64b39a02a1c001169ec6" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetRotateZXYOp</name></member>
+      <member refid="class_usd_geom_xformable_1a4ac8cec6efb64e0cbdd4b7a72f71c7f3" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetRotateZYXOp</name></member>
+      <member refid="class_usd_geom_xformable_1a2029e0b90a0684a9a8c31e62aa98d317" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetScaleOp</name></member>
+      <member refid="class_usd_geom_point_instancer_1a0b0e562b36e2413ba95616bd4eed98a5" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetScalesAttr</name></member>
+      <member refid="class_usd_geom_point_instancer_1ae40ae43320babff8a254a3a8107a255a" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetSchemaAttributeNames</name></member>
+      <member refid="class_usd_schema_base_1a030d03e2a9839d9c3da0fbca8c3722d4" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetSchemaClassPrimDefinition</name></member>
+      <member refid="class_usd_schema_base_1aeac68c5514faebb20c5ae3cb930170de" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetSchemaKind</name></member>
+      <member refid="class_usd_geom_xformable_1a0384cb87a595fa56c29463ff4fe73015" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetTimeSamples</name></member>
+      <member refid="class_usd_geom_xformable_1ab855f0ea37793df1f22d2bce3d68caff" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetTimeSamples</name></member>
+      <member refid="class_usd_geom_xformable_1a64d8dabfbe974503daf5e8f2057424f7" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetTimeSamplesInInterval</name></member>
+      <member refid="class_usd_geom_xformable_1a582133c4e08813d891690f58497d4add" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetTimeSamplesInInterval</name></member>
+      <member refid="class_usd_geom_xformable_1a0b425fbfdfe0f254add07f904ab231aa" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetTransformOp</name></member>
+      <member refid="class_usd_geom_xformable_1ab81f8a9eb062d2c726dbb8303188408c" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetTranslateOp</name></member>
+      <member refid="class_usd_geom_point_instancer_1a2840a996c8a768ecea390147390dc222" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetVelocitiesAttr</name></member>
+      <member refid="class_usd_geom_imageable_1a943eddc325190bd67789407400f122b7" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetVisibilityAttr</name></member>
+      <member refid="class_usd_geom_xformable_1ab153aead880eebecaf2138706c4bdbf2" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetXformOp</name></member>
+      <member refid="class_usd_geom_xformable_1af8533621f9f141dfd016711171433caf" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>GetXformOpOrderAttr</name></member>
+      <member refid="class_usd_geom_point_instancer_1aa2257e2db6d6aea4856489ceece508a8ab749281e998b40f076ace0c021d8ec9e" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>IgnoreMask</name></member>
+      <member refid="class_usd_geom_point_instancer_1aa184c49dc6b24efa4d160c1fe505a403afddf3d32b5aaf5e37ad0caa2a5b2b8ff" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>IncludeProtoXform</name></member>
+      <member refid="class_usd_geom_point_instancer_1a9cc2315ea6be2e129f1732e6d33e363f" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>InvisId</name></member>
+      <member refid="class_usd_geom_point_instancer_1aa88b2c5d831432796b69d7b85bc39bd5" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>InvisIds</name></member>
+      <member refid="class_usd_schema_base_1ad658b6730d4246ee1f903ce4ce18fdfe" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>IsAPISchema</name></member>
+      <member refid="class_usd_schema_base_1a68e867971cc992c5b03e73725c405c05" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>IsAppliedAPISchema</name></member>
+      <member refid="class_usd_schema_base_1ae2c90cefba1b2e09dc117a7d972009cb" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>IsConcrete</name></member>
+      <member refid="class_usd_schema_base_1af752510dea0c7106aa89832e60dfa3d5" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>IsMultipleApplyAPISchema</name></member>
+      <member refid="class_usd_geom_xformable_1adb444654a8443f3413213cc526ee6c1a" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>IsTransformationAffectedByAttrNamed</name></member>
+      <member refid="class_usd_schema_base_1afa15659f4fa280e4c0772173d7471920" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>IsTyped</name></member>
+      <member refid="class_usd_geom_imageable_1a91eda805326fd94cc9910cfaeb4ac4a0" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>MakeInvisible</name></member>
+      <member refid="class_usd_geom_xformable_1a97e5c56a739490600e4e7e37b3953a08" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>MakeMatrixXform</name></member>
+      <member refid="class_usd_geom_imageable_1a3fd30c76b787e7e32180c1b454b971c7" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>MakeVisible</name></member>
+      <member refid="class_usd_geom_point_instancer_1aa2257e2db6d6aea4856489ceece508a8" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>MaskApplication</name></member>
+      <member refid="class_usd_schema_base_1a586531d84339318108c817f91367e626" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>operator bool</name></member>
+      <member refid="class_usd_geom_point_instancer_1aa184c49dc6b24efa4d160c1fe505a403" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>ProtoXformInclusion</name></member>
+      <member refid="class_usd_geom_point_instancer_1a3e5fc43aea5aea4908c3ce980fdf8908" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>schemaKind</name></member>
+      <member refid="class_usd_geom_imageable_1a6b808012a6a5bc9df34e794ff82bb6f0" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>SetProxyPrim</name></member>
+      <member refid="class_usd_geom_imageable_1a8c0c8b7faa4056a7267c586b2ffc0bd8" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>SetProxyPrim</name></member>
+      <member refid="class_usd_geom_xformable_1a99c4c768f58d6375edad8c9c7cb4bee2" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>SetResetXformStack</name></member>
+      <member refid="class_usd_geom_xformable_1a4b6dd6e51eb84725c763d064c4f9f3ba" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>SetXformOpOrder</name></member>
+      <member refid="class_usd_geom_xformable_1aca0c1f0eb2639bd9e126f5e6a16e856f" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>TransformMightBeTimeVarying</name></member>
+      <member refid="class_usd_geom_xformable_1a43e63cb240ddb36f550b3c86a22252c6" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>TransformMightBeTimeVarying</name></member>
+      <member refid="class_usd_geom_boundable_1a93364dd184714cc86a93a4e6c943f54f" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>UsdGeomBoundable</name></member>
+      <member refid="class_usd_geom_boundable_1acddb485259d4c8d3c0fdb9445b85a19e" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>UsdGeomBoundable</name></member>
+      <member refid="class_usd_geom_imageable_1a00ea23bdac8d751c2b97dc8fe5cd7f73" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>UsdGeomImageable</name></member>
+      <member refid="class_usd_geom_imageable_1a912f3e5572536e0492914fe251446bc9" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>UsdGeomImageable</name></member>
+      <member refid="class_usd_geom_point_instancer_1af3d9eb4de0568b41fb590380e0ebf73f" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>UsdGeomPointInstancer</name></member>
+      <member refid="class_usd_geom_point_instancer_1a43e3a5ff1c51841ac28393aa253b8dd2" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>UsdGeomPointInstancer</name></member>
+      <member refid="class_usd_geom_xformable_1adf53f566e1d4a6ff2c4e6e90590b0510" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>UsdGeomXformable</name></member>
+      <member refid="class_usd_geom_xformable_1a4f5550d15c8a43ef4ac30a063f96d0cd" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>UsdGeomXformable</name></member>
+      <member refid="class_usd_schema_base_1a32e0a9b0465ecf201fb501753baa8587" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>UsdSchemaBase</name></member>
+      <member refid="class_usd_schema_base_1a73921308189043c86867d6bd9012b4af" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>UsdSchemaBase</name></member>
+      <member refid="class_usd_geom_point_instancer_1aff8b8d83211f127c6c4cba48fb7d3334" prot="private" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>UsdSchemaRegistry</name></member>
+      <member refid="class_usd_typed_1a0eedaa009a86f3b1186f709bc78d0c09" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>UsdTyped</name></member>
+      <member refid="class_usd_typed_1a64de30966732c854c3c29616244e5250" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>UsdTyped</name></member>
+      <member refid="class_usd_geom_point_instancer_1a9a4d919761befd2ee076188f02419272" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>VisAllIds</name></member>
+      <member refid="class_usd_geom_point_instancer_1abf1ac95ca33821f69586590df694ee35" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>VisId</name></member>
+      <member refid="class_usd_geom_point_instancer_1a1233046a057a7befb515aaa1b5fee9c6" prot="public" virt="non-virtual"><scope>UsdGeomPointInstancer</scope><name>VisIds</name></member>
+      <member refid="class_usd_geom_boundable_1af5dfc6e58452966f10c6f8d0a771c346" prot="public" virt="virtual"><scope>UsdGeomPointInstancer</scope><name>~UsdGeomBoundable</name></member>
+      <member refid="class_usd_geom_imageable_1acbd981c2779c70ec4c3fd5d8cc610925" prot="public" virt="virtual"><scope>UsdGeomPointInstancer</scope><name>~UsdGeomImageable</name></member>
+      <member refid="class_usd_geom_point_instancer_1a5f5a2f45d599d277dcffec23e73f863c" prot="public" virt="virtual"><scope>UsdGeomPointInstancer</scope><name>~UsdGeomPointInstancer</name></member>
+      <member refid="class_usd_geom_xformable_1a8c8f037aa67ff544aea009f0881ed530" prot="public" virt="virtual"><scope>UsdGeomPointInstancer</scope><name>~UsdGeomXformable</name></member>
+      <member refid="class_usd_schema_base_1a3e97b9a7311478da9f2d168bea29560e" prot="public" virt="virtual"><scope>UsdGeomPointInstancer</scope><name>~UsdSchemaBase</name></member>
+      <member refid="class_usd_typed_1a558859985aa8647bc068d590b5d9e08f" prot="public" virt="virtual"><scope>UsdGeomPointInstancer</scope><name>~UsdTyped</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

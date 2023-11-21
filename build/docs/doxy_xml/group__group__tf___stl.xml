@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="group__group__tf___stl" kind="group">
+    <compoundname>group_tf_Stl</compoundname>
+    <title>C++ STL Utilities</title>
+    <innerfile refid="stl_8h">stl.h</innerfile>
+    <innerclass refid="class_tf_get" prot="public">TfGet</innerclass>
+    <innerclass refid="class_tf_iterator" prot="public">TfIterator</innerclass>
+    <innerclass refid="struct_tf_deleter" prot="public">TfDeleter</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__group__tf___stl_1gadccf17bfe649de2c0816c301a6a581d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Container</type>
+          </param>
+          <param>
+            <type>class Key</type>
+          </param>
+          <param>
+            <type>class Result</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool TfMapLookup</definition>
+        <argsstring>(Container const &amp;map, Key const &amp;key, Result *valuePtr)</argsstring>
+        <name>TfMapLookup</name>
+        <param>
+          <type>Container const &amp;</type>
+          <declname>map</declname>
+        </param>
+        <param>
+          <type>Key const &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>Result *</type>
+          <declname>valuePtr</declname>
+        </param>
+        <briefdescription>
+<para>Checks if an item exists in a <computeroutput>map</computeroutput> or a <computeroutput>TfHashMap</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>key</computeroutput> exists in <computeroutput>map</computeroutput>, then this function returns <computeroutput>true</computeroutput> and the value indexed by <computeroutput>key</computeroutput> is copied into <computeroutput>*valuePtr</computeroutput>. Otherwise, <computeroutput>*valuePtr</computeroutput> is not modified, and <computeroutput>false</computeroutput> is returned.</para>
+<para>Example: <programlisting><codeline><highlight class="normal">TfHashMap&lt;string,<sp/>int,<sp/>TfHash&gt;<sp/>m<sp/>=<sp/>...;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>value;</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(TfMapLookup(m,<sp/>&quot;someKey&quot;,<sp/>&amp;value))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(&quot;Value<sp/>found:<sp/>%d\n&quot;,<sp/>value);</highlight></codeline>
+<codeline><highlight class="normal">else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(&quot;Value<sp/>not<sp/>found\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stl.h" line="86" column="1" bodyfile="pxr/base/tf/stl.h" bodystart="86" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___stl_1gae94d7c62bab1792de0b47db62aff92fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Container</type>
+          </param>
+          <param>
+            <type>class Key</type>
+          </param>
+          <param>
+            <type>class Result</type>
+          </param>
+        </templateparamlist>
+        <type>const Result</type>
+        <definition>const Result TfMapLookupByValue</definition>
+        <argsstring>(Container const &amp;map, Key const &amp;key, const Result &amp;defaultValue)</argsstring>
+        <name>TfMapLookupByValue</name>
+        <param>
+          <type>Container const &amp;</type>
+          <declname>map</declname>
+        </param>
+        <param>
+          <type>Key const &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const Result &amp;</type>
+          <declname>defaultValue</declname>
+        </param>
+        <briefdescription>
+<para>Checks if an item exists in a <computeroutput>map</computeroutput> or a <computeroutput>TfHashMap</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>key</computeroutput> exists in <computeroutput>map</computeroutput>, then this function returns the value index by <computeroutput>key</computeroutput>. Otherwise, <computeroutput>defaultValue</computeroutput> is returned. Note that the result is returned by value, so this is best used for types that are quick to copy.</para>
+<para>Example: <programlisting><codeline><highlight class="normal">TfHashMap&lt;string,<sp/>int,<sp/>TfHash&gt;<sp/>m;</highlight></codeline>
+<codeline><highlight class="normal">m[&quot;foo&quot;]<sp/>=<sp/>1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>value<sp/>=<sp/>TfMapLookupByValue(m,<sp/>&quot;someKey&quot;,<sp/>-1);</highlight></codeline>
+<codeline><highlight class="normal">TF_AXIOM(value<sp/>==<sp/>-1);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>value<sp/>=<sp/>TfMapLookupByValue(m,<sp/>&quot;foo&quot;,<sp/>-1);</highlight></codeline>
+<codeline><highlight class="normal">TF_AXIOM(value<sp/>==<sp/>1);</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stl.h" line="112" column="1" bodyfile="pxr/base/tf/stl.h" bodystart="112" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___stl_1gacc705f977b0efa8e687737559d3f89e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Container</type>
+          </param>
+          <param>
+            <type>class Key</type>
+          </param>
+        </templateparamlist>
+        <type>Container::mapped_type *</type>
+        <definition>Container::mapped_type* TfMapLookupPtr</definition>
+        <argsstring>(Container &amp;map, Key const &amp;key)</argsstring>
+        <name>TfMapLookupPtr</name>
+        <param>
+          <type>Container &amp;</type>
+          <declname>map</declname>
+        </param>
+        <param>
+          <type>Key const &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Checks if an item exists in a <computeroutput>map</computeroutput> or <computeroutput>TfHashMap</computeroutput>, without copying it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If <computeroutput>key</computeroutput> exists in the <computeroutput>map</computeroutput>, then this function returns a pointer to the value indexed by <computeroutput>key</computeroutput>. Otherwise, NULL is returned.</para>
+<para>Example: <programlisting><codeline><highlight class="normal">TfHashMap&lt;string,<sp/>BigData,<sp/>TfHash&gt;<sp/>m<sp/>=<sp/>...;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(BigData*<sp/>bigPtr<sp/>=<sp/>TfMapLookupPtr(m,<sp/>&quot;someKey&quot;))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bigPtr-&gt;ModifyStuff();<sp/></highlight></codeline>
+<codeline><highlight class="normal">else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(&quot;Value<sp/>not<sp/>found\n&quot;);</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stl.h" line="141" column="1" bodyfile="pxr/base/tf/stl.h" bodystart="141" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="group__group__tf___stl_1ga13247894c9d60ec7e946739c4b1d19e5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; T, T &gt;</type>
+        <definition>std::pair&lt;T,T&gt; TfOrderedPair</definition>
+        <argsstring>(T a, T b)</argsstring>
+        <name>TfOrderedPair</name>
+        <param>
+          <type>T</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>Return an <computeroutput>std::pair</computeroutput> in sorted order. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This call is a useful helper for maps whose key is an unordered pair of elements. One can either define a new data type such that (a,b) is deemed equivalent to (b,a), or more simply, adopt the convention that a key is always written (a,b) with a &lt; b. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/base/tf/stl.h" line="165" column="1" bodyfile="pxr/base/tf/stl.h" bodystart="165" bodyend="167"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Helper functions/classes for STL. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

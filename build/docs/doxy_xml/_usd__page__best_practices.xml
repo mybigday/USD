@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="_usd__page__best_practices" kind="page">
+    <compoundname>Usd_Page_BestPractices</compoundname>
+    <title>Best Practices and Common Questions</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="_usd__page__best_practices_1Usd_SharedConstRef">
+<title>Object Parameters as Const-Ref</title>
+</sect1>
+<sect1 id="_usd__page__best_practices_1Usd_DataStreaming">
+<title>Reading Data Efficiently</title>
+<para>Processing different subtrees of a stage in different threads to reduce contention for prims and paths.</para>
+<para>Converting datatypes (<ref refid="class_vt_value_1ad0578f3c34662abae8e38349c195affd" kindref="member">VtValue::Cast</ref>) and potentially reading native datatypes.</para>
+</sect1>
+<sect1 id="_usd__page__best_practices_1Usd_Payloads">
+<title>Payloads: Impact of Using and Not Using</title>
+</sect1>
+<sect1 id="_usd__page__best_practices_1Usd_Misc_Dos_Donts">
+<title>Miscellaneous Do&apos;s and Dont&apos;s</title>
+<para><ref refid="class_sdf_path_1af4d60b0568603a696ac239b362d25417" kindref="member">SdfPath::GetString()</ref> gives a fully unrolled, representation of any location in namespace, and is very useful for debugging. However, it is rather expensive, and may cause a globally-shared cache to be populated. Don&apos;t call it (or <ref refid="class_sdf_path_1a31225e07892b847e3e98473f7f04dbf4" kindref="member">SdfPath::GetText()</ref>) in any performance-critical loops, and in general, if using it for diagnostics, only call it inside a block that is guarded by your debug flag. </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

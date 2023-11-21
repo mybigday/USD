@@ -1,0 +1,566 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_usd_relationship" kind="class" language="C++" prot="public">
+    <compoundname>UsdRelationship</compoundname>
+    <basecompoundref refid="class_usd_property" prot="public" virt="non-virtual">UsdProperty</basecompoundref>
+    <includes refid="relationship_8h" local="no">relationship.h</includes>
+      <sectiondef kind="user-defined">
+      <header>Editing Relationships at Current EditTarget</header>
+      <memberdef kind="function" id="class_usd_relationship_1a0db3d68820f130f08152592b0fe10b00" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool AddTarget</definition>
+        <argsstring>(const SdfPath &amp;target, UsdListPosition position=UsdListPositionBackOfPrependList) const</argsstring>
+        <name>AddTarget</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type><ref refid="common_8h_1a28349701078995dc76a99331bb60c555" kindref="member">UsdListPosition</ref></type>
+          <declname>position</declname>
+          <defval><ref refid="common_8h_1a28349701078995dc76a99331bb60c555a681727d9e5aecd6058825ab1fe888028" kindref="member">UsdListPositionBackOfPrependList</ref></defval>
+        </param>
+        <briefdescription>
+<para>Adds <computeroutput>target</computeroutput> to the list of targets, in the position specified by <computeroutput>position</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Passing paths to prototype prims or any other objects in prototypes will cause an error to be issued. It is not valid to author targets to these objects.</para>
+<para>What data this actually authors depends on what data is currently authored in the authoring layer, with respect to list-editing semantics, which we will document soon </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/relationship.h" line="153" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_relationship_1a1c64d259d347d096e06481cfc4537c64" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool RemoveTarget</definition>
+        <argsstring>(const SdfPath &amp;target) const</argsstring>
+        <name>RemoveTarget</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+<para>Removes <computeroutput>target</computeroutput> from the list of targets. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Passing paths to prototype prims or any other objects in prototypes will cause an error to be issued. It is not valid to author targets to these objects. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/relationship.h" line="162" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_relationship_1a459108ba8902c4bf7ba4dbe55b9f3416" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool SetTargets</definition>
+        <argsstring>(const SdfPathVector &amp;targets) const</argsstring>
+        <name>SetTargets</name>
+        <param>
+          <type>const SdfPathVector &amp;</type>
+          <declname>targets</declname>
+        </param>
+        <briefdescription>
+<para>Make the authoring layer&apos;s opinion of the targets list explicit, and set exactly to <computeroutput>targets</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Passing paths to prototype prims or any other objects in prototypes will cause an error to be issued. It is not valid to author targets to these objects.</para>
+<para>If any target in <computeroutput>targets</computeroutput> is invalid, no targets will be authored and this function will return false. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/relationship.h" line="174" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_relationship_1aa64565132ed712f506231b7b1cd7df48" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool ClearTargets</definition>
+        <argsstring>(bool removeSpec) const</argsstring>
+        <name>ClearTargets</name>
+        <param>
+          <type>bool</type>
+          <declname>removeSpec</declname>
+        </param>
+        <briefdescription>
+<para>Remove all opinions about the target list from the current edit target. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Only remove the spec if <computeroutput>removeSpec</computeroutput> is true (leave the spec to preserve meta-data we may have intentionally authored on the relationship) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/relationship.h" line="183" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_relationship_1aaa227b81fdab5fe41bcc0ca21133a0f8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool GetTargets</definition>
+        <argsstring>(SdfPathVector *targets) const</argsstring>
+        <name>GetTargets</name>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>targets</declname>
+        </param>
+        <briefdescription>
+<para>Compose this relationship&apos;s targets and fill <computeroutput>targets</computeroutput> with the result. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>All preexisting elements in <computeroutput>targets</computeroutput> are lost.</para>
+<para>Returns true if any target path opinions have been authored and no composition errors were encountered, returns false otherwise. Note that authored opinions may include opinions that clear the targets and a return value of true does not necessarily indicate that <computeroutput>targets</computeroutput> will contain any target paths.</para>
+<para>See <ref refid="_usd__page__scenegraph_instancing_1Usd_ScenegraphInstancing_TargetsAndConnections" kindref="member">Relationship Targets and Attribute Connections</ref> for details on behavior when targets point to objects beneath instance prims.</para>
+<para>The result is not cached, so will be recomputed on every query. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/relationship.h" line="199" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_relationship_1a66140abeac945df3998b3297e52ca99b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool GetForwardedTargets</definition>
+        <argsstring>(SdfPathVector *targets) const</argsstring>
+        <name>GetForwardedTargets</name>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>targets</declname>
+        </param>
+        <briefdescription>
+<para>Compose this relationship&apos;s <emphasis>ultimate</emphasis> targets, taking into account &quot;relationship forwarding&quot;, and fill <computeroutput>targets</computeroutput> with the result. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>All preexisting elements in <computeroutput>targets</computeroutput> are lost. This method never inserts relationship paths in <computeroutput>targets</computeroutput>.</para>
+<para>Returns true if any of the visited relationships that are not &quot;purely forwarding&quot; has an authored opinion for its target paths and no composition errors were encountered while computing any targets. Purely forwarding, in this context, means the relationship has at least one target but all of its targets are paths to other relationships. Note that authored opinions may include opinions that clear the targets and a return value of true does not necessarily indicate that <computeroutput>targets</computeroutput> will not be empty.</para>
+<para>Returns false otherwise. When composition errors occur, this function continues to collect successfully composed targets, but returns false to indicate to the caller that errors occurred.</para>
+<para>When a forwarded target cannot be determined, e.g. due to a composition error, no value is returned for that target; the alternative would be to return the relationship path at which the forwarded targets could not be composed, however this would require all callers of <ref refid="class_usd_relationship_1a66140abeac945df3998b3297e52ca99b" kindref="member">GetForwardedTargets()</ref> to account for unexpected relationship paths being returned with the expected target results. For example, a particular caller may expect only prim paths in the target vector, but when composition errors occur, relationships would be included, potentially triggering additional down stream errors.</para>
+<para>See <ref refid="class_usd_relationship_1usd_relationship_forwarding" kindref="member">Relationship Forwarding</ref> for details on the semantics.</para>
+<para>The result is not cached, so will be recomputed on every query. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/relationship.h" line="233" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_relationship_1aca882864141e938459bf288a9a5696a6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>USD_API bool</type>
+        <definition>USD_API bool HasAuthoredTargets</definition>
+        <argsstring>() const</argsstring>
+        <name>HasAuthoredTargets</name>
+        <briefdescription>
+<para>Returns true if any target path opinions have been authored. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note that this may include opinions that clear targets and may not indicate that target paths will exist for this relationship. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/relationship.h" line="239" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_usd_relationship_1a4e7075a31a58b84795edf0b8f11f228e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class UsdObject</definition>
+        <argsstring></argsstring>
+        <name>UsdObject</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/relationship.h" line="244" column="1" bodyfile="pxr/usd/usd/relationship.h" bodystart="244" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_usd_relationship_1a2456ef04cace6b3b67dad91da7f430b8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class UsdPrim</definition>
+        <argsstring></argsstring>
+        <name>UsdPrim</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/relationship.h" line="245" column="1" bodyfile="pxr/usd/usd/relationship.h" bodystart="245" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="class_usd_relationship_1a43c76e2190f5caea2cf0dda62f0b2098" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class A0</type>
+          </param>
+          <param>
+            <type>class A1</type>
+          </param>
+        </templateparamlist>
+        <type>friend struct</type>
+        <definition>friend struct UsdPrim_TargetFinder</definition>
+        <argsstring></argsstring>
+        <name>UsdPrim_TargetFinder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/relationship.h" line="248" column="1" bodyfile="pxr/usd/usd/relationship.h" bodystart="248" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_usd_relationship_1ac935fe40926ba612c4ff48301654413b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdRelationship</definition>
+        <argsstring>()</argsstring>
+        <name>UsdRelationship</name>
+        <briefdescription>
+<para>Construct an invalid relationship. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/relationship.h" line="131" column="1" bodyfile="pxr/usd/usd/relationship.h" bodystart="131" bodyend="131"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_usd_relationship_1af33ce62aa0ec0d73d0ab7fa98d7554f0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdRelationship</definition>
+        <argsstring>(const Usd_PrimDataHandle &amp;prim, const SdfPath &amp;proxyPrimPath, const TfToken &amp;relName)</argsstring>
+        <name>UsdRelationship</name>
+        <param>
+          <type>const Usd_PrimDataHandle &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>proxyPrimPath</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>relName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/relationship.h" line="250" column="1" bodyfile="pxr/usd/usd/relationship.h" bodystart="250" bodyend="253"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_relationship_1a75d654f26a53502b122cfccd7febabf1" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UsdRelationship</definition>
+        <argsstring>(UsdObjType objType, const Usd_PrimDataHandle &amp;prim, const SdfPath &amp;proxyPrimPath, const TfToken &amp;propName)</argsstring>
+        <name>UsdRelationship</name>
+        <param>
+          <type><ref refid="object_8h_1ada9a9a926dbc7aa06b0449ed00d11097" kindref="member">UsdObjType</ref></type>
+          <declname>objType</declname>
+        </param>
+        <param>
+          <type>const Usd_PrimDataHandle &amp;</type>
+          <declname>prim</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>proxyPrimPath</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_tf_token" kindref="compound">TfToken</ref> &amp;</type>
+          <declname>propName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/relationship.h" line="255" column="1" bodyfile="pxr/usd/usd/relationship.h" bodystart="255" bodyend="259"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_relationship_1a6313844f191e1c33a3b87db4b40aac18" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>SdfRelationshipSpecHandle</type>
+        <definition>SdfRelationshipSpecHandle _CreateSpec</definition>
+        <argsstring>(bool fallbackCustom=true) const</argsstring>
+        <name>_CreateSpec</name>
+        <param>
+          <type>bool</type>
+          <declname>fallbackCustom</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/relationship.h" line="261" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_relationship_1a097319c6641de981389b66ed10a01991" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _Create</definition>
+        <argsstring>(bool fallbackCustom) const</argsstring>
+        <name>_Create</name>
+        <param>
+          <type>bool</type>
+          <declname>fallbackCustom</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/relationship.h" line="262" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_relationship_1a3d714ebca97560949cbe80bf23e31c3f" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _GetForwardedTargets</definition>
+        <argsstring>(SdfPathVector *targets, bool includeForwardingRels) const</argsstring>
+        <name>_GetForwardedTargets</name>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>targets</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>includeForwardingRels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/relationship.h" line="264" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_relationship_1a069f408f2e821d610f4216402402dee1" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool _GetForwardedTargetsImpl</definition>
+        <argsstring>(SdfPathSet *visited, SdfPathSet *uniqueTargets, SdfPathVector *targets, bool *foundAnyErrors, bool includeForwardingRels) const</argsstring>
+        <name>_GetForwardedTargetsImpl</name>
+        <param>
+          <type>SdfPathSet *</type>
+          <declname>visited</declname>
+        </param>
+        <param>
+          <type>SdfPathSet *</type>
+          <declname>uniqueTargets</declname>
+        </param>
+        <param>
+          <type>SdfPathVector *</type>
+          <declname>targets</declname>
+        </param>
+        <param>
+          <type>bool *</type>
+          <declname>foundAnyErrors</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>includeForwardingRels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/relationship.h" line="267" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_usd_relationship_1a593831ada4fb293073d8f2d2f961a18b" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_sdf_path" kindref="compound">SdfPath</ref></type>
+        <definition>SdfPath _GetTargetForAuthoring</definition>
+        <argsstring>(const SdfPath &amp;targetPath, std::string *whyNot=0) const</argsstring>
+        <name>_GetTargetForAuthoring</name>
+        <param>
+          <type>const <ref refid="class_sdf_path" kindref="compound">SdfPath</ref> &amp;</type>
+          <declname>targetPath</declname>
+        </param>
+        <param>
+          <type>std::string *</type>
+          <declname>whyNot</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/usd/usd/relationship.h" line="273" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A <ref refid="class_usd_relationship" kindref="compound">UsdRelationship</ref> creates dependencies between scenegraph objects by allowing a prim to <emphasis>target</emphasis> other prims, attributes, or relationships. </para>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="class_usd_relationship_1usd_relationship_chars">
+<title>Relationship Characteristics</title>
+<para>A <ref refid="class_usd_relationship" kindref="compound">UsdRelationship</ref> is a pointer to other objects, which are named by their scenegraph paths. When authoring relationships, the <emphasis>target</emphasis> parameters should be scenegraph paths in the composed namespace of the <ref refid="class_usd_stage" kindref="compound">UsdStage</ref> into which you are authoring. If your edits are targeted to a different layer, across various composition arcs (because you specified a non-default <ref refid="class_usd_edit_target" kindref="compound">UsdEditTarget</ref>), the target&apos;s path will be automatically translated into the proper namespace.</para>
+<para>A single <ref refid="class_usd_relationship" kindref="compound">UsdRelationship</ref> can target multiple other objects, which can be of <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref>, <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref>, or <ref refid="class_usd_relationship" kindref="compound">UsdRelationship</ref> type. <ref refid="class_usd_relationship" kindref="compound">UsdRelationship</ref> participates in &quot;list editing&quot;, which means that stronger layers in a composed scene can add, remove, or reorder targets authored on the relationship in weaker layers <emphasis>without</emphasis> stomping the weaker opinions, although stomping behavior is still possible, via <ref refid="class_usd_relationship_1a459108ba8902c4bf7ba4dbe55b9f3416" kindref="member">SetTargets()</ref>.</para>
+<para>An authored relationship creates a dependency of the targeting prim on the targeted prim(s). We consider these dependencies to be &quot;load
+dependencies&quot;, which means that when we load the targeting prim&apos;s &quot;load group&quot;, we will also load the targeted prims&apos; load groups, to ensure that all the data required to render the model containing the targeting prim is composed and available.</para>
+<para>Like <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref>, <ref refid="class_usd_relationship" kindref="compound">UsdRelationship</ref> objects are meant to be ephemeral, live on the stack, and be cheap to refetch from their owning <ref refid="class_usd_prim" kindref="compound">UsdPrim</ref>.</para>
+<para>Unlike <ref refid="class_usd_attribute" kindref="compound">UsdAttribute</ref> s, which can either be uniform over all time or vary in value over time, <ref refid="class_usd_relationship" kindref="compound">UsdRelationship</ref> is <bold>always uniform</bold>.</para>
+</sect1>
+<sect1 id="class_usd_relationship_1usd_relationship_restrictions">
+<title>Relationship Restrictions</title>
+<para>When authoring relationship targets in a stage&apos;s local LayerStack, all target paths are legal (Note we may restrict this prior to launch to only allowing targeting of already-extant scenegraph objects). However, a relationship target that is legal in a local LayerStack may become unreachable when the stage&apos;s root layer is <emphasis>referenced</emphasis> into an aggregate, and will cause an error when attempting to load/compose the aggregate.</para>
+<para>This can happen because references encapsulate just the tree whose root is targeted in the reference - no other scene description in the referenced layer will be composed into the aggregate. So if some descendant prim of the referenced root targets a relationship to another tree in the same layer, that relationship would dangle, and the client will error in <ref refid="class_usd_relationship_1aaa227b81fdab5fe41bcc0ca21133a0f8" kindref="member">GetTargets()</ref> or <ref refid="class_usd_relationship_1a66140abeac945df3998b3297e52ca99b" kindref="member">GetForwardedTargets()</ref>.</para>
+<para>Authoring targets to objects within prototypes is not allowed, since prototype prims do not have a stable identity across runs. Consumers must author targets to the object within an instance instead.</para>
+<para>Relationships authored in a descendent prim of a referenced prim may not target the referenced prim itself or any of its immediate child properties if the referencing prim is instanceable. Allowing this would break the ability for this relationship to be instanced and shared by multiple instances <ndash/> it would force consumers of relationships within prototypes to resolve targets in the context of each of that prototype&apos;s instances.</para>
+</sect1>
+<sect1 id="class_usd_relationship_1usd_relationship_forwarding">
+<title>Relationship Forwarding</title>
+<para>Because a relationship can target another relationship, we can and do provide the ability to resolve chained or <emphasis>forwarded</emphasis> relationships. This can be useful in several situations, including:</para>
+<para><itemizedlist>
+<listitem><para>Combining relationships with VariantSets to create demultiplexers. A prim can host a relationship that serves as a &quot;binding post&quot; for other prims to target. The prim also hosts a &quot;bindingVariant&quot; <ref refid="class_usd_variant_set" kindref="compound">UsdVariantSet</ref> whose variants each modulate the target of the binding-post relationship. We can now change the <emphasis>forwarded</emphasis> target of all prims targeting the binding-post by simply switching the bindingVariant VariantSet. We will work through this example in the USD reference manual. </para>
+</listitem>
+<listitem><para>Defining a relationship as part of a model&apos;s interface (so that it can be targeted in model hierarchy with no models loaded), which, inside the model&apos;s payload, forwards to prims useful to a client, the set of which may vary depending on the model&apos;s configured VariantSets. </para>
+</listitem>
+</itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="7910">
+        <label>UsdRelationship</label>
+        <link refid="class_usd_relationship"/>
+        <childnode refid="7911" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7911">
+        <label>UsdProperty</label>
+        <link refid="class_usd_property"/>
+        <childnode refid="7912" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7912">
+        <label>UsdObject</label>
+        <link refid="class_usd_object"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="7913">
+        <label>UsdRelationship</label>
+        <link refid="class_usd_relationship"/>
+        <childnode refid="7914" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7914">
+        <label>UsdProperty</label>
+        <link refid="class_usd_property"/>
+        <childnode refid="7915" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7915">
+        <label>UsdObject</label>
+        <link refid="class_usd_object"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/usd/usd/relationship.h" line="128" column="1" bodyfile="pxr/usd/usd/relationship.h" bodystart="128" bodyend="275"/>
+    <listofallmembers>
+      <member refid="class_usd_relationship_1a097319c6641de981389b66ed10a01991" prot="private" virt="non-virtual"><scope>UsdRelationship</scope><name>_Create</name></member>
+      <member refid="class_usd_relationship_1a6313844f191e1c33a3b87db4b40aac18" prot="private" virt="non-virtual"><scope>UsdRelationship</scope><name>_CreateSpec</name></member>
+      <member refid="class_usd_object_1a49fff1f7d23dfc1f95c40ed8bca888f7" prot="protected" virt="non-virtual"><scope>UsdRelationship</scope><name>_GetDefiningSpecType</name></member>
+      <member refid="class_usd_relationship_1a3d714ebca97560949cbe80bf23e31c3f" prot="private" virt="non-virtual"><scope>UsdRelationship</scope><name>_GetForwardedTargets</name></member>
+      <member refid="class_usd_relationship_1a069f408f2e821d610f4216402402dee1" prot="private" virt="non-virtual"><scope>UsdRelationship</scope><name>_GetForwardedTargetsImpl</name></member>
+      <member refid="class_usd_object_1aaaa93a1af279c8b5551391a8b45c7bbc" prot="protected" virt="non-virtual"><scope>UsdRelationship</scope><name>_GetStage</name></member>
+      <member refid="class_usd_relationship_1a593831ada4fb293073d8f2d2f961a18b" prot="private" virt="non-virtual"><scope>UsdRelationship</scope><name>_GetTargetForAuthoring</name></member>
+      <member refid="class_usd_property_1a0f1b258b0b7494094a22463f9edc27ee" prot="protected" virt="non-virtual"><scope>UsdRelationship</scope><name>_GetTargets</name></member>
+      <member refid="class_usd_object_1a476be2b495a6fcc0f03f1b52aa61745d" prot="protected" virt="non-virtual"><scope>UsdRelationship</scope><name>_Prim</name></member>
+      <member refid="class_usd_object_1a0f84e075219fbeb85f40a5533ac6b550" prot="protected" virt="non-virtual"><scope>UsdRelationship</scope><name>_PropName</name></member>
+      <member refid="class_usd_object_1a47e60c6fc1efca5e426fd0b40a049236" prot="protected" virt="non-virtual"><scope>UsdRelationship</scope><name>_ProxyPrimPath</name></member>
+      <member refid="class_usd_relationship_1a0db3d68820f130f08152592b0fe10b00" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>AddTarget</name></member>
+      <member refid="class_usd_object_1aaca099fe79c1bbdd2216e7cb583952a9" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>As</name></member>
+      <member refid="class_usd_object_1a85151085271ffb20e4c642a8a854f786" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>ClearAssetInfo</name></member>
+      <member refid="class_usd_object_1aadb1b6b9372e1de8b0cef16a8809de0a" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>ClearAssetInfoByKey</name></member>
+      <member refid="class_usd_object_1a30d686bc90f3d7d6753086a484d86ed4" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>ClearCustomData</name></member>
+      <member refid="class_usd_object_1a5abc2ea6c40a3b8b9bc60896cfee0c63" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>ClearCustomDataByKey</name></member>
+      <member refid="class_usd_property_1a416edbbf0b17dc8292bae42fc6e67951" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>ClearDisplayGroup</name></member>
+      <member refid="class_usd_object_1a45f102f292999a4d2c2d5015d54ab9dc" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>ClearDisplayName</name></member>
+      <member refid="class_usd_object_1ab84f704415b18a9819918a1a73732f38" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>ClearDocumentation</name></member>
+      <member refid="class_usd_object_1a5b6b31dcfcfb34f43f334161522de847" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>ClearHidden</name></member>
+      <member refid="class_usd_object_1af75ddb7982a5b5c77f9840e67df94435" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>ClearMetadata</name></member>
+      <member refid="class_usd_object_1afd756d242f6026a3d7c5606badbf8411" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>ClearMetadataByDictKey</name></member>
+      <member refid="class_usd_relationship_1aa64565132ed712f506231b7b1cd7df48" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>ClearTargets</name></member>
+      <member refid="class_usd_property_1a8768ec57187614071e3df8b60d7f26eb" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>FlattenTo</name></member>
+      <member refid="class_usd_property_1ad1836afc78a4368306599c26d4238818" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>FlattenTo</name></member>
+      <member refid="class_usd_property_1ab89fa3e003dcd4fe843fc4b6ac8e51a8" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>FlattenTo</name></member>
+      <member refid="class_usd_object_1ac81c4a2222e6c4957ed7a540c05e2346" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetAllAuthoredMetadata</name></member>
+      <member refid="class_usd_object_1afd698d0849b1a8dd4e9a4bf7608e8754" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetAllMetadata</name></member>
+      <member refid="class_usd_object_1a568ab5eceb43fd673cad556f30df6619" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetAssetInfo</name></member>
+      <member refid="class_usd_object_1ada201f20c6d4b33ec27fd459703909e9" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetAssetInfoByKey</name></member>
+      <member refid="class_usd_property_1a2011318cd445c9fc30a1a00df5318a86" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetBaseName</name></member>
+      <member refid="class_usd_object_1abea26b9c6a71883a2d9da4ff64952391" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetCustomData</name></member>
+      <member refid="class_usd_object_1a9aebce4a579e9bb24385bac6e4ae3186" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetCustomDataByKey</name></member>
+      <member refid="class_usd_object_1aa8476a8039c198245c87e27b0f6b7e78" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetDescription</name></member>
+      <member refid="class_usd_property_1a0ad1f6f9e132e54b4c3fe32f9f962436" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetDisplayGroup</name></member>
+      <member refid="class_usd_object_1afea773af9042346906dbd1226d704aeb" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetDisplayName</name></member>
+      <member refid="class_usd_object_1afbeb96db494ea5fa795d937e532083c9" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetDocumentation</name></member>
+      <member refid="class_usd_relationship_1a66140abeac945df3998b3297e52ca99b" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetForwardedTargets</name></member>
+      <member refid="class_usd_object_1ad2d76f736733f3ad51aa1ea1df6f4d44" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetMetadata</name></member>
+      <member refid="class_usd_object_1af114545bd56cd7619e7d4f2f884e4128" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetMetadata</name></member>
+      <member refid="class_usd_object_1aba47c41ec8cc536290c04e219f12589c" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetMetadataByDictKey</name></member>
+      <member refid="class_usd_object_1a3bdf70a1d4a8754a0cb51cddab11b299" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetMetadataByDictKey</name></member>
+      <member refid="class_usd_object_1ae57e12beedf10c423e11c5b889343f6d" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetName</name></member>
+      <member refid="class_usd_property_1a914ef5e6cffe6c3c85f7b1085bea0cf2" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetNamespace</name></member>
+      <member refid="class_usd_object_1aa5d32fe69eb9f41ff16222ce8458f67e" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetNamespaceDelimiter</name></member>
+      <member refid="class_usd_property_1aa7ca9f249313195de824478cbebc8554" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetNestedDisplayGroups</name></member>
+      <member refid="class_usd_object_1a936bfb1e341cc81184c64af44763c433" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetPath</name></member>
+      <member refid="class_usd_object_1a4ba10e023e7f3f3c93131bc7fc3146b7" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetPrim</name></member>
+      <member refid="class_usd_object_1ae980898ec578c6f8082717ceac44a11e" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetPrimPath</name></member>
+      <member refid="class_usd_property_1a2159d3d651cd66e4fb1c724be90ed5e0" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetPropertyStack</name></member>
+      <member refid="class_usd_property_1af744264b3c104a86d28948b26af7060a" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetPropertyStackWithLayerOffsets</name></member>
+      <member refid="class_usd_object_1acbf11fd10a72dbc827b2f3738d2edfde" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetStage</name></member>
+      <member refid="class_usd_relationship_1aaa227b81fdab5fe41bcc0ca21133a0f8" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>GetTargets</name></member>
+      <member refid="class_usd_object_1aac2bfbc79842758d55ad739f471ff437" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>HasAssetInfo</name></member>
+      <member refid="class_usd_object_1a4f337c0c1709d3e161a8ff34f46eb7e5" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>HasAssetInfoKey</name></member>
+      <member refid="class_usd_object_1af05106a278e314f85483651af43e8f68" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>HasAuthoredAssetInfo</name></member>
+      <member refid="class_usd_object_1a7cc57b254d41d8f09f95b8621f238e49" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>HasAuthoredAssetInfoKey</name></member>
+      <member refid="class_usd_object_1afe9a33d79276073db9dbc712861c3aa0" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>HasAuthoredCustomData</name></member>
+      <member refid="class_usd_object_1a0b5df6ddc5f201cc3e42709b8949bb9c" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>HasAuthoredCustomDataKey</name></member>
+      <member refid="class_usd_property_1aa6ff8f0c0c16e9550e4e779e345b5343" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>HasAuthoredDisplayGroup</name></member>
+      <member refid="class_usd_object_1a6af100fedb961a5952b62a94bc8e725b" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>HasAuthoredDisplayName</name></member>
+      <member refid="class_usd_object_1ab0e3e800ab9fdaf480b767a225208767" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>HasAuthoredDocumentation</name></member>
+      <member refid="class_usd_object_1a904b990143e4b62ac64e3d1ebeaf5bdc" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>HasAuthoredHidden</name></member>
+      <member refid="class_usd_object_1a37211404a939811e841d90c65cd19999" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>HasAuthoredMetadata</name></member>
+      <member refid="class_usd_object_1a20a01b0dd0dd51f9439b6a3a231c76ef" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>HasAuthoredMetadataDictKey</name></member>
+      <member refid="class_usd_relationship_1aca882864141e938459bf288a9a5696a6" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>HasAuthoredTargets</name></member>
+      <member refid="class_usd_object_1ae3d80901c17a644af30bdef5c265580c" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>HasCustomData</name></member>
+      <member refid="class_usd_object_1a2de3d809c116fe60c3646d90dcbba87f" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>HasCustomDataKey</name></member>
+      <member refid="class_usd_object_1ae2d99fd05dbc39c2d9746fe639c24825" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>HasMetadata</name></member>
+      <member refid="class_usd_object_1a911c19d77fe0552877918517818e7399" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>HasMetadataDictKey</name></member>
+      <member refid="class_usd_object_1a7152c172b8551a1e222bf446ce7689fd" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>Is</name></member>
+      <member refid="class_usd_property_1ac8f562e95497111de63cedca83a3bfd4" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>IsAuthored</name></member>
+      <member refid="class_usd_property_1aedb04011aab7cb14ef71e6e7933129bd" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>IsAuthoredAt</name></member>
+      <member refid="class_usd_property_1ad0ffcc4c9b780ba8f6dd5a92746c0059" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>IsCustom</name></member>
+      <member refid="class_usd_property_1a409637b99e0b5b487b9e7d1d2016dbfc" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>IsDefined</name></member>
+      <member refid="class_usd_object_1aaccbe79a26ceada03ab81918b30a383e" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>IsHidden</name></member>
+      <member refid="class_usd_object_1ac532c4b500b1a85ea22217f2c65a70ed" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>IsValid</name></member>
+      <member refid="class_usd_object_1a67b76affb3b5d35fa419ac234144038b" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>operator bool</name></member>
+      <member refid="class_usd_relationship_1a1c64d259d347d096e06481cfc4537c64" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>RemoveTarget</name></member>
+      <member refid="class_usd_object_1acd1183e9097ec5de924a87b084bb6d08" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>SetAssetInfo</name></member>
+      <member refid="class_usd_object_1a2d4070d8ad13d6880deb6fcdb6679183" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>SetAssetInfoByKey</name></member>
+      <member refid="class_usd_property_1a3092786289fbc8cf2c3c0df08296c9e9" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>SetCustom</name></member>
+      <member refid="class_usd_object_1ac4f24685000b88fbdf783de2b1546995" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>SetCustomData</name></member>
+      <member refid="class_usd_object_1abdcc93cd6a4dd8ad2bbe2134316ad836" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>SetCustomDataByKey</name></member>
+      <member refid="class_usd_property_1a66724c4a721e156a88f9262694b86a67" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>SetDisplayGroup</name></member>
+      <member refid="class_usd_object_1a89d396665875d4d4a88b5ecb0a22acb0" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>SetDisplayName</name></member>
+      <member refid="class_usd_object_1a207a3fac40b4bd2dca8e9bce07d398e9" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>SetDocumentation</name></member>
+      <member refid="class_usd_object_1a0e3d2a1a0e00d5e4ba2ba8aad555d593" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>SetHidden</name></member>
+      <member refid="class_usd_object_1a1a5325c3bfad050926f03f867a803c03" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>SetMetadata</name></member>
+      <member refid="class_usd_object_1abccca1c487755a7f08e6e4b042d39ede" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>SetMetadata</name></member>
+      <member refid="class_usd_object_1a7f3b367075ca8d6bba9fbf3636183ff3" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>SetMetadataByDictKey</name></member>
+      <member refid="class_usd_object_1a0c04b54500b5b6d5ef0e8aca66282770" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>SetMetadataByDictKey</name></member>
+      <member refid="class_usd_property_1ad136e193894e58ad6d46f29f9210379b" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>SetNestedDisplayGroups</name></member>
+      <member refid="class_usd_relationship_1a459108ba8902c4bf7ba4dbe55b9f3416" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>SetTargets</name></member>
+      <member refid="class_usd_property_1a7253ab8dc19d4e7540b49b70bcc82ff6" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>SplitName</name></member>
+      <member refid="class_usd_relationship_1a4e7075a31a58b84795edf0b8f11f228e" prot="private" virt="non-virtual"><scope>UsdRelationship</scope><name>UsdObject</name></member>
+      <member refid="class_usd_object_1a385fde82261ce94db08ca9b4d53966ab" prot="public" virt="non-virtual" ambiguityscope="UsdObject::"><scope>UsdRelationship</scope><name>UsdObject</name></member>
+      <member refid="class_usd_object_1a16bdb9fdb779ddaa849433d5c029a2a5" prot="protected" virt="non-virtual" ambiguityscope="UsdObject::"><scope>UsdRelationship</scope><name>UsdObject</name></member>
+      <member refid="class_usd_object_1adc7d0f32c2146c7ed23416283a39e991" prot="protected" virt="non-virtual" ambiguityscope="UsdObject::"><scope>UsdRelationship</scope><name>UsdObject</name></member>
+      <member refid="class_usd_object_1a2331471890f65208bdef3fa70d77fd16" prot="protected" virt="non-virtual" ambiguityscope="UsdObject::"><scope>UsdRelationship</scope><name>UsdObject</name></member>
+      <member refid="class_usd_relationship_1a2456ef04cace6b3b67dad91da7f430b8" prot="private" virt="non-virtual"><scope>UsdRelationship</scope><name>UsdPrim</name></member>
+      <member refid="class_usd_relationship_1a43c76e2190f5caea2cf0dda62f0b2098" prot="private" virt="non-virtual"><scope>UsdRelationship</scope><name>UsdPrim_TargetFinder</name></member>
+      <member refid="class_usd_property_1a62328a1b3ff6c104338d4a4aa813b716" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>UsdProperty</name></member>
+      <member refid="class_usd_property_1ad6896705d65d50b04ceaba59ba9c71d8" prot="protected" virt="non-virtual"><scope>UsdRelationship</scope><name>UsdProperty</name></member>
+      <member refid="class_usd_relationship_1ac935fe40926ba612c4ff48301654413b" prot="public" virt="non-virtual"><scope>UsdRelationship</scope><name>UsdRelationship</name></member>
+      <member refid="class_usd_relationship_1af33ce62aa0ec0d73d0ab7fa98d7554f0" prot="private" virt="non-virtual"><scope>UsdRelationship</scope><name>UsdRelationship</name></member>
+      <member refid="class_usd_relationship_1a75d654f26a53502b122cfccd7febabf1" prot="private" virt="non-virtual"><scope>UsdRelationship</scope><name>UsdRelationship</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

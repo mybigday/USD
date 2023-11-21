@@ -1,0 +1,304 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="class_hgi_g_l_texture" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>HgiGLTexture</compoundname>
+    <basecompoundref refid="class_hgi_texture" prot="public" virt="non-virtual">HgiTexture</basecompoundref>
+    <basecompoundref refid="class_tf_weak_base" prot="public" virt="non-virtual">TfWeakBase</basecompoundref>
+    <includes refid="hgi_g_l_2texture_8h" local="no">texture.h</includes>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="class_hgi_g_l_texture_1a459c65427f4c47c738022928ea52ecae" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class HgiGL</definition>
+        <argsstring></argsstring>
+        <name>HgiGL</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/texture.h" line="67" column="1" bodyfile="pxr/imaging/hgiGL/texture.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hgi_g_l_texture_1a664154bf1dddbdf122d64f7369f19c8e" prot="private" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t _textureId</definition>
+        <argsstring></argsstring>
+        <name>_textureId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/texture.h" line="80" column="1" bodyfile="pxr/imaging/hgiGL/texture.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hgi_g_l_texture_1af509f3b4f9ca1990e6e3b67d94f2b6ff" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t _bindlessHandle</definition>
+        <argsstring></argsstring>
+        <name>_bindlessHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/texture.h" line="81" column="1" bodyfile="pxr/imaging/hgiGL/texture.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hgi_g_l_texture_1a177658890b97bce6ae3bc26b8d15acb4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HGIGL_API</type>
+        <definition>HGIGL_API ~HgiGLTexture</definition>
+        <argsstring>() override</argsstring>
+        <name>~HgiGLTexture</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/texture.h" line="51" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_g_l_texture_1aaf2f07918f87f57adccda3e250297da7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HGIGL_API size_t</type>
+        <definition>HGIGL_API size_t GetByteSizeOfResource</definition>
+        <argsstring>() const override</argsstring>
+        <name>GetByteSizeOfResource</name>
+        <reimplements refid="class_hgi_texture_1afb9f5da99a13e9adcab7f87cb9a6ad94">GetByteSizeOfResource</reimplements>
+        <briefdescription>
+<para>Returns the byte size of the GPU texture. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This can be helpful if the application wishes to tally up memory usage. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/texture.h" line="54" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_g_l_texture_1adc3ffb4c04b3ab04225e25cf3f7dfe05" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>HGIGL_API uint64_t</type>
+        <definition>HGIGL_API uint64_t GetRawResource</definition>
+        <argsstring>() const override</argsstring>
+        <name>GetRawResource</name>
+        <reimplements refid="class_hgi_texture_1a1c1b84de203362af87c23d73c8f8d395">GetRawResource</reimplements>
+        <briefdescription>
+<para>This function returns the handle to the <ref refid="class_hgi" kindref="compound">Hgi</ref> backend&apos;s gpu resource, cast to a uint64_t. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Clients should avoid using this function and instead use <ref refid="class_hgi" kindref="compound">Hgi</ref> base classes so that client code works with any <ref refid="class_hgi" kindref="compound">Hgi</ref> platform. For transitioning code to <ref refid="class_hgi" kindref="compound">Hgi</ref>, it can however we useful to directly access a platform&apos;s internal resource handles. There is no safety provided in using this. If you by accident pass a HgiMetal resource into an OpenGL call, bad things may happen. In OpenGL this returns the GLuint resource name. In Metal this returns the id&lt;MTLTexture&gt; as uint64_t. In Vulkan this returns the VkImage as uint64_t. In DX12 this returns the ID3D12Resource pointer as uint64_t. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/texture.h" line="57" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_g_l_texture_1a3eab4e57bac1f339cc0127cfa76910ce" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t GetTextureId</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTextureId</name>
+        <briefdescription>
+<para>Returns the OpenGL id / name of the texture. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/texture.h" line="60" column="1" bodyfile="pxr/imaging/hgiGL/texture.h" bodystart="60" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_g_l_texture_1ac09289e43916417cff4a3dd034a614d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HGIGL_API uint64_t</type>
+        <definition>HGIGL_API uint64_t GetBindlessHandle</definition>
+        <argsstring>()</argsstring>
+        <name>GetBindlessHandle</name>
+        <briefdescription>
+<para>Returns the bindless gpu handle (caller must verify extension support) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/texture.h" line="64" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_hgi_g_l_texture_1af874dc8edd9577a8cb0e858a4e4309a0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HGIGL_API</type>
+        <definition>HGIGL_API HgiGLTexture</definition>
+        <argsstring>(HgiTextureDesc const &amp;desc)</argsstring>
+        <name>HgiGLTexture</name>
+        <param>
+          <type><ref refid="struct_hgi_texture_desc" kindref="compound">HgiTextureDesc</ref> const &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/texture.h" line="70" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_g_l_texture_1a1d5a3f8169db21f989af8060a53493fb" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HGIGL_API</type>
+        <definition>HGIGL_API HgiGLTexture</definition>
+        <argsstring>(HgiTextureViewDesc const &amp;desc)</argsstring>
+        <name>HgiGLTexture</name>
+        <param>
+          <type><ref refid="struct_hgi_texture_view_desc" kindref="compound">HgiTextureViewDesc</ref> const &amp;</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/texture.h" line="73" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hgi_g_l_texture_1a61115cb09066632e1dab6b0e857a1264" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HgiGLTexture</definition>
+        <argsstring>()=delete</argsstring>
+        <name>HgiGLTexture</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/texture.h" line="76" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_g_l_texture_1a7287c69e2e66a6b03d8fdef5889df0b0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_hgi_g_l_texture" kindref="compound">HgiGLTexture</ref> &amp;</type>
+        <definition>HgiGLTexture&amp; operator=</definition>
+        <argsstring>(const HgiGLTexture &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_hgi_g_l_texture" kindref="compound">HgiGLTexture</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/texture.h" line="77" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hgi_g_l_texture_1ad599a2b456fa98e0bfc90c89a9e631a1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>HgiGLTexture</definition>
+        <argsstring>(const HgiGLTexture &amp;)=delete</argsstring>
+        <name>HgiGLTexture</name>
+        <param>
+          <type>const <ref refid="class_hgi_g_l_texture" kindref="compound">HgiGLTexture</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pxr/imaging/hgiGL/texture.h" line="78" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Represents a OpenGL GPU texture resource. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Note that we inherit from <ref refid="class_tf_weak_base" kindref="compound">TfWeakBase</ref> for deletion detection. This is useful to invalidate container objects such as framebuffer objects that reference a deleted texture resource as an attachment. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3873">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="3872">
+        <label>HgiTexture</label>
+        <link refid="class_hgi_texture"/>
+      </node>
+      <node id="3871">
+        <label>HgiGLTexture</label>
+        <link refid="class_hgi_g_l_texture"/>
+        <childnode refid="3872" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3873" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3876">
+        <label>HgiTextureDesc</label>
+        <link refid="struct_hgi_texture_desc"/>
+        <childnode refid="3877" relation="usage">
+          <edgelabel>dimensions</edgelabel>
+        </childnode>
+        <childnode refid="3878" relation="usage">
+          <edgelabel>componentMapping</edgelabel>
+        </childnode>
+      </node>
+      <node id="3879">
+        <label>TfWeakBase</label>
+        <link refid="class_tf_weak_base"/>
+      </node>
+      <node id="3875">
+        <label>HgiTexture</label>
+        <link refid="class_hgi_texture"/>
+        <childnode refid="3876" relation="usage">
+          <edgelabel>_descriptor</edgelabel>
+        </childnode>
+      </node>
+      <node id="3877">
+        <label>GfVec3i</label>
+        <link refid="class_gf_vec3i"/>
+      </node>
+      <node id="3874">
+        <label>HgiGLTexture</label>
+        <link refid="class_hgi_g_l_texture"/>
+        <childnode refid="3875" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3879" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3878">
+        <label>HgiComponentMapping</label>
+        <link refid="struct_hgi_component_mapping"/>
+      </node>
+    </collaborationgraph>
+    <location file="pxr/imaging/hgiGL/texture.h" line="48" column="1" bodyfile="pxr/imaging/hgiGL/texture.h" bodystart="47" bodyend="82"/>
+    <listofallmembers>
+      <member refid="class_tf_weak_base_1a01aa4c4b93df067f2ec9b9e5fa4c35b3" prot="public" virt="non-virtual"><scope>HgiGLTexture</scope><name>__GetTfWeakBase__</name></member>
+      <member refid="class_hgi_g_l_texture_1af509f3b4f9ca1990e6e3b67d94f2b6ff" prot="private" virt="non-virtual"><scope>HgiGLTexture</scope><name>_bindlessHandle</name></member>
+      <member refid="class_hgi_texture_1acc1a65bd09eb1e99f7b1b99012e156af" prot="protected" virt="non-virtual"><scope>HgiGLTexture</scope><name>_descriptor</name></member>
+      <member refid="class_hgi_texture_1ae44fa02749f7d03b660d671e3117a11c" prot="protected" virt="non-virtual"><scope>HgiGLTexture</scope><name>_GetByteSizeOfResource</name></member>
+      <member refid="class_tf_weak_base_1a6a5533162e8efab1be47acd6ccd5254c" prot="protected" virt="non-virtual"><scope>HgiGLTexture</scope><name>_HasRemnant</name></member>
+      <member refid="class_tf_weak_base_1a95139d2f4d04eb706664a4f47eb93918" prot="protected" virt="non-virtual"><scope>HgiGLTexture</scope><name>_Register</name></member>
+      <member refid="class_tf_weak_base_1ac1312732482c8a286522f703f2cf90d1" prot="protected" virt="non-virtual"><scope>HgiGLTexture</scope><name>_Register</name></member>
+      <member refid="class_hgi_g_l_texture_1a664154bf1dddbdf122d64f7369f19c8e" prot="private" virt="non-virtual"><scope>HgiGLTexture</scope><name>_textureId</name></member>
+      <member refid="class_tf_weak_base_1a16f1e27cc0c7c606ffb397b7d970ed10" prot="public" virt="non-virtual"><scope>HgiGLTexture</scope><name>EnableNotification2</name></member>
+      <member refid="class_hgi_g_l_texture_1ac09289e43916417cff4a3dd034a614d4" prot="public" virt="non-virtual"><scope>HgiGLTexture</scope><name>GetBindlessHandle</name></member>
+      <member refid="class_hgi_g_l_texture_1aaf2f07918f87f57adccda3e250297da7" prot="public" virt="virtual"><scope>HgiGLTexture</scope><name>GetByteSizeOfResource</name></member>
+      <member refid="class_hgi_texture_1ae9c921439fbed3805052964de138bcc1" prot="public" virt="non-virtual"><scope>HgiGLTexture</scope><name>GetDescriptor</name></member>
+      <member refid="class_hgi_g_l_texture_1adc3ffb4c04b3ab04225e25cf3f7dfe05" prot="public" virt="virtual"><scope>HgiGLTexture</scope><name>GetRawResource</name></member>
+      <member refid="class_hgi_g_l_texture_1a3eab4e57bac1f339cc0127cfa76910ce" prot="public" virt="non-virtual"><scope>HgiGLTexture</scope><name>GetTextureId</name></member>
+      <member refid="class_tf_weak_base_1a3241c32a82fbed0716a77049f6134e1e" prot="public" virt="non-virtual"><scope>HgiGLTexture</scope><name>GetUniqueIdentifier</name></member>
+      <member refid="class_hgi_g_l_texture_1a459c65427f4c47c738022928ea52ecae" prot="protected" virt="non-virtual"><scope>HgiGLTexture</scope><name>HgiGL</name></member>
+      <member refid="class_hgi_g_l_texture_1af874dc8edd9577a8cb0e858a4e4309a0" prot="protected" virt="non-virtual"><scope>HgiGLTexture</scope><name>HgiGLTexture</name></member>
+      <member refid="class_hgi_g_l_texture_1a1d5a3f8169db21f989af8060a53493fb" prot="protected" virt="non-virtual"><scope>HgiGLTexture</scope><name>HgiGLTexture</name></member>
+      <member refid="class_hgi_g_l_texture_1a61115cb09066632e1dab6b0e857a1264" prot="private" virt="non-virtual"><scope>HgiGLTexture</scope><name>HgiGLTexture</name></member>
+      <member refid="class_hgi_g_l_texture_1ad599a2b456fa98e0bfc90c89a9e631a1" prot="private" virt="non-virtual"><scope>HgiGLTexture</scope><name>HgiGLTexture</name></member>
+      <member refid="class_hgi_texture_1a9a0c27a607e7e34d13ad2550e9de6ef6" prot="protected" virt="non-virtual"><scope>HgiGLTexture</scope><name>HgiTexture</name></member>
+      <member refid="class_hgi_g_l_texture_1a7287c69e2e66a6b03d8fdef5889df0b0" prot="private" virt="non-virtual"><scope>HgiGLTexture</scope><name>operator=</name></member>
+      <member refid="class_tf_weak_base_1af890ac314073e903458bf6b2397566b5" prot="public" virt="non-virtual" ambiguityscope="TfWeakBase::"><scope>HgiGLTexture</scope><name>operator=</name></member>
+      <member refid="class_tf_weak_base_1a6e4abdd663654f8c8019702a464de8d6" prot="public" virt="non-virtual"><scope>HgiGLTexture</scope><name>TfWeakBase</name></member>
+      <member refid="class_tf_weak_base_1affc4c00d0bbfdfe4f9e6a8b2e81be368" prot="public" virt="non-virtual"><scope>HgiGLTexture</scope><name>TfWeakBase</name></member>
+      <member refid="class_hgi_g_l_texture_1a177658890b97bce6ae3bc26b8d15acb4" prot="public" virt="non-virtual"><scope>HgiGLTexture</scope><name>~HgiGLTexture</name></member>
+      <member refid="class_hgi_texture_1ae85405e130a25db15c34e2a78cd10ca6" prot="public" virt="virtual"><scope>HgiGLTexture</scope><name>~HgiTexture</name></member>
+      <member refid="class_tf_weak_base_1a778020f525b66def8a284c6f020592c2" prot="protected" virt="non-virtual"><scope>HgiGLTexture</scope><name>~TfWeakBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
