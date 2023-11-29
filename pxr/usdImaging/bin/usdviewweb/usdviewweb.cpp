@@ -87,7 +87,7 @@ namespace {
 
     wgpu::RenderPipeline createBlitPipeline(wgpu::Device const &device, wgpu::TextureFormat const &format) {
         wgpu::ShaderModuleWGSLDescriptor wgslDesc = {};
-        wgslDesc.source = R"(
+        wgslDesc.code = R"(
 var<private> pos : array<vec2<f32>, 3> = array<vec2<f32>, 3>(
               vec2<f32>(-1.0, -1.0), vec2<f32>(-1.0, 3.0), vec2<f32>(3.0, -1.0));
 struct VertexOutput {
@@ -290,7 +290,7 @@ struct VertexOutput {
 
             wgpu::SurfaceDescriptor surfDesc{};
             surfDesc.nextInChain = &canvasDesc;
-            wgpu::Instance instance{};  // null instance
+            wgpu::Instance instance = wgpu::CreateInstance();
             wgpu::Surface surface = instance.CreateSurface(&surfDesc);
 
             wgpu::SwapChainDescriptor scDesc{};
@@ -428,9 +428,6 @@ struct VertexOutput {
 
             pxr::HgiTextureHandle colorTarget = glEngine->GetAovTexture(pxr::HdAovTokens->color);
 
-            pxr::HgiTextureDesc const &colorTargetDesc = colorTarget->GetDescriptor();
-
-
             wgpu::TextureView backbuffer = swapChain.GetCurrentTextureView();
             pxr::HgiWebGPUTexture* srcTexture =static_cast<pxr::HgiWebGPUTexture*>(colorTarget.Get());
             wgpu::Texture colorTexture = srcTexture->GetTextureHandle();
@@ -468,7 +465,7 @@ struct VertexOutput {
 
                 const wgpu::BindGroupLayout bindGroupLayout = pipeline.GetBindGroupLayout(0);
                 wgpu::BindGroupDescriptor bindGroupDsc = {};
-                std::string bindGroupDscLabel = "Mipmap BindGroupDescriptor";
+                std::string bindGroupDscLabel = "Texture BindGroupDescriptor";
                 bindGroupDsc.label = bindGroupDscLabel.c_str();
                 bindGroupDsc.layout = bindGroupLayout;
                 bindGroupDsc.entryCount = entries.size();

@@ -34,7 +34,6 @@ import codecs
 import contextlib
 import ctypes
 import datetime
-import distutils
 import fnmatch
 import glob
 import locale
@@ -364,7 +363,7 @@ def FormatMultiProcs(numJobs, generator):
 
     return "{tag}{procs}".format(tag=tag, procs=numJobs)
 
-def RunCMake(context, force, extraArgs = None):
+def RunCMake(context, force, extraArgs = None, target="install"):
     """Invoke CMake to configure, build, and install a library whose 
     source code is located in the current working directory."""
     # Create a directory for out-of-source builds in the build directory
@@ -462,8 +461,9 @@ def RunCMake(context, force, extraArgs = None):
                     toolset=(toolset or ""),
                     extraArgs=(" ".join(extraArgs) if extraArgs else "")))
         Run(('{} '.format('emmake.bat' if Windows() else 'emmake') if context.emscripten else '') +
-            "cmake --build . --config {config} --target install -- {multiproc}"
+            "cmake --build . --config {config} --target {target} -- {multiproc}"
             .format(config=config,
+                    target=target,
                     multiproc=FormatMultiProcs(context.numJobs, generator)))
         return buildDir
 
@@ -739,14 +739,16 @@ def InstallBoost_Helper(context, force, buildArgs):
     #   compatibility issues on Big Sur and Monterey.
     pyInfo = GetPythonInfo(context)
     pyVer = (int(pyInfo[3].split('.')[0]), int(pyInfo[3].split('.')[1]))
-    if context.buildPython and pyVer >= (3, 10):
+    if context.emscripten:
+        BOOST_URL = "https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.zip"
+    elif context.buildPython and pyVer >= (3, 10):
         BOOST_URL = "https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.zip"
     elif IsVisualStudio2022OrGreater():
         BOOST_URL = "https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.zip"
     elif MacOS():
         BOOST_URL = "https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.zip"
     else:
-        BOOST_URL = "https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.zip"
+        BOOST_URL = "https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_78_0.zip"
 
     # Documentation files in the boost archive can have exceptionally
     # long paths. This can lead to errors when extracting boost on Windows,
@@ -930,7 +932,7 @@ def InstallBoost(context, force, buildArgs):
         # Copy boost headers to align with other platforms
         if Windows():
             with CurrentWorkingDirectory(context.instDir):
-                CopyDirectory(context, "include\\boost-1_70\\boost", "include\\boost")
+                CopyDirectory(context, "include\\boost-1_78\\boost", "include\\boost")
     except:
         for versionHeader in [
             os.path.join(context.instDir, f) for f in BOOST_VERSION_FILES
@@ -1093,6 +1095,9 @@ def InstallTBB_Linux(context, force, buildArgs):
 def InstallTBB_Emscripten(context, force, buildArgs):
 
     with CurrentWorkingDirectory(DownloadURL(TBB_EMSCRIPTEN_URL, context, force)):
+        PatchFile("build/linux.emscripten.inc",
+                  [("-DUSE_PTHREAD", "-DUSE_PTHREAD -pthread")],
+                  multiLineMatches=True)
         # By default no config for other platform is available, but the one for linux
         # seems to work fine
         if MacOS():
@@ -1286,6 +1291,22 @@ def InstallOpenVDB(context, force, buildArgs):
         # Add on any user-specified extra arguments.
         extraArgs += buildArgs
 
+        # Patch files to support debug build
+        PatchFile('cmake/FindIlmBase.cmake',
+                  [('set(_IlmBase_Version_Suffix "-${IlmBase_VERSION_MAJOR}_${IlmBase_VERSION_MINOR}")',
+                    'if(NOT CMAKE_BUILD_TYPE STREQUAL "Debug")\n' +
+                    '  set(_IlmBase_Version_Suffix "-${IlmBase_VERSION_MAJOR}_${IlmBase_VERSION_MINOR}")\n' +
+                    'else()\n' +
+                    '  set(_IlmBase_Version_Suffix "-${IlmBase_VERSION_MAJOR}_${IlmBase_VERSION_MINOR}_d")\n' +
+                    'endif()')])
+        PatchFile('cmake/FindOpenEXR.cmake',
+                  [('set(_OpenEXR_Version_Suffix "-${OpenEXR_VERSION_MAJOR}_${OpenEXR_VERSION_MINOR}")',
+                    'if(NOT CMAKE_BUILD_TYPE STREQUAL "Debug")\n' +
+                    '  set(_OpenEXR_Version_Suffix "-${OpenEXR_VERSION_MAJOR}_${OpenEXR_VERSION_MINOR}")\n' +
+                    'else()\n' +
+                    '  set(_OpenEXR_Version_Suffix "-${OpenEXR_VERSION_MAJOR}_${OpenEXR_VERSION_MINOR}_d")\n' +
+                    'endif()')])
+
         RunCMake(context, force, extraArgs)
 
 OPENVDB = Dependency("OpenVDB", InstallOpenVDB, "include/openvdb/openvdb.h")
@@ -1392,8 +1413,8 @@ def InstallOpenSubdiv(context, force, buildArgs):
         ]
         if context.emscripten:
             extraArgs.append('-DBUILD_SHARED_LIB=OFF')
-            extraArgs.append('-DCMAKE_CXX_FLAGS="-s USE_PTHREADS=1"')
-            extraArgs.append('-DCMAKE_C_FLAGS="-s USE_PTHREADS=1"')
+            extraArgs.append('-DCMAKE_CXX_FLAGS="-pthread"')
+            extraArgs.append('-DCMAKE_C_FLAGS="-pthread"')
             extraArgs.append('-DNO_OPENGL=ON')
             extraArgs.append('-DNO_METAL=ON')
 
@@ -1563,10 +1584,58 @@ def InstallThreeJs(context, force, buildArgs):
 THREE = Dependency("ThreeJs", InstallThreeJs, "src/three.js")
 
 ############################################################
+# glslang
+
+GLSLANG_RELATIVE_PATH = "third_party/vulkan-deps/glslang/src"
+def InstallGlslang(context, force, buildArgs):
+    with CurrentWorkingDirectory(context.srcDir):
+        if context.emscripten:
+            srcDir = os.path.join(os.getcwd(), "tint", GLSLANG_RELATIVE_PATH)
+        else:
+            srcDir = os.path.join(os.getcwd(), "dawn", GLSLANG_RELATIVE_PATH)
+
+        if not os.path.isdir(srcDir):
+            raise RuntimeError("glslang not found at " + srcDir + ". This is probably because dawn or " +
+               "tint installation was not executed firts")
+
+        with CurrentWorkingDirectory(srcDir):
+
+            if context.buildDebug:
+                PatchFile("CMakeLists.txt", [('set(CMAKE_DEBUG_POSTFIX "d")','set(CMAKE_DEBUG_POSTFIX "")')])
+
+            cmakeOptions = [
+                '-DALLOW_EXTERNAL_SPIRV_TOOLS=ON',
+                '-DENABLE_GLSLANG_BINARIES=OFF',
+                '-DENABLE_HLSL=OFF',
+                '-DENABLE_CTEST=OFF',
+            ]
+            if context.emscripten:
+                cmakeOptions += [
+                    '-DCMAKE_CXX_FLAGS="' + EMSCRIPTEN_CMAKE_CXX_FLAGS + '"',
+                    '-DCMAKE_EXE_LINKER_FLAGS="' + EMSCRIPTEN_CMAKE_EXE_LINKER_FLAGS + '"',
+                    '-DBUILD_SHARED_LIBS=OFF',
+                    '-DSPIRV-Tools-opt_DIR="{instDir}/lib/cmake/SPIRV-Tools-opt"'.format(instDir=context.instDir),
+                    '-DSPIRV-Tools_DIR="{instDir}/lib/cmake/SPIRV-Tools"'.format(instDir=context.instDir)
+                ]
+            cmakeOptions += buildArgs
+            RunCMake(context, force, cmakeOptions)
+
+GLSLANG = Dependency("glslang", InstallGlslang, "include/glslang/SPIRV/GlslangToSpv.h")
+
+############################################################
 # Tint
 
 TINT_REPO = "https://dawn.googlesource.com/tint"
-TINT_COMMIT = "55af0f2207ab85c4344eb11bfa10ec9a6485fcd4"
+TINT_COMMIT = "0c0084b9f89333c0400e57e9f2fbf47a758840b7"
+TINT_CMAKE_OPTIONS = [
+    '-DTINT_BUILD_SPV_READER=ON',
+    '-DTINT_BUILD_SPV_WRITER=OFF',
+    '-DTINT_BUILD_WGSL_WRITER=ON',
+    '-DTINT_BUILD_DOCS=OFF',
+    '-DTINT_BUILD_TESTS=OFF',
+    '-DTINT_BUILD_CMD_TOOLS=OFF',
+    '-DTINT_BUILD_BENCHMARKS=OFF'
+]
 
 def InstallTint(context, force, buildArgs):
     with CurrentWorkingDirectory(context.srcDir):
@@ -1587,29 +1656,43 @@ def InstallTint(context, force, buildArgs):
                 'third_party/vulkan-deps',
                 'third_party/vulkan-deps/spirv-headers/src',
                 'third_party/vulkan-deps/spirv-tools/src',
-                'third_party/vulkan-deps/glslang/src',
+                GLSLANG_RELATIVE_PATH,
                 'third_party/abseil-cpp',
             ]
             google_depot_tools.fetch_dependecies(required_submodules)
 
+            # This will allow us to install the already built spirv-tools library
+            PatchFile("third_party/CMakeLists.txt", [
+            ('    set(SKIP_SPIRV_TOOLS_INSTALL ON CACHE BOOL "" FORCE)\n',
+            '    set(SKIP_SPIRV_TOOLS_INSTALL OFF CACHE BOOL "" FORCE)\n'),
+            ('    add_subdirectory(${TINT_SPIRV_TOOLS_DIR} "${CMAKE_CURRENT_BINARY_DIR}/spirv-tools" EXCLUDE_FROM_ALL)\n',
+            '    add_subdirectory(${TINT_SPIRV_TOOLS_DIR} "${CMAKE_CURRENT_BINARY_DIR}/spirv-tools")\n'),
+            ])
+
             cmakeOptions = [
-                '-DTINT_BUILD_SPV_READER=ON',
-                '-DTINT_BUILD_WGSL_READER=OFF',
-                '-DTINT_BUILD_HLSL_WRITER=OFF',
-                '-DTINT_BUILD_MSL_WRITER=OFF',
-                '-DTINT_BUILD_SPV_WRITER=OFF',
-                '-DTINT_BUILD_WGSL_WRITER=ON',
-                '-DTINT_BUILD_WGSL_READER=OFF',
-                '-DTINT_BUILD_DOCS=OFF',
-                '-DTINT_BUILD_SAMPLES=OFF',
-                '-DTINT_BUILD_TESTS=OFF',
                 '-DCMAKE_CXX_FLAGS="-Wno-unsafe-buffer-usage -Wno-disabled-macro-expansion -Wno-#warnings -Wno-error '
                     + EMSCRIPTEN_CMAKE_CXX_FLAGS + '"',
                 '-DCMAKE_EXE_LINKER_FLAGS="' + EMSCRIPTEN_CMAKE_EXE_LINKER_FLAGS + '"',
                 '-DBUILD_SHARED_LIBS=OFF'
             ]
             cmakeOptions += buildArgs
-            buildDir = RunCMake(context, force, cmakeOptions)
+            cmakeOptions += TINT_CMAKE_OPTIONS
+            # In the case of the desktop build, we need to let tint specify the value of the readers and writers for
+            # the current platform, so that it also matches the corresponding Dawn backend (e.g. Metal).
+            # In contrast, the emscripten build just needs to process the glsl to wgsl and the browser implementation
+            # of WebGPU is the one responsible to interpret the wgsl shader code.
+            cmakeOptions += [
+                '-DTINT_BUILD_WGSL_READER=OFF',
+                '-DTINT_BUILD_GLSL_WRITER=OFF',
+                '-DTINT_BUILD_HLSL_WRITER=OFF',
+                '-DTINT_BUILD_MSL_WRITER=OFF',
+            ]
+
+            # There is a weird issue with the current tint build that, with some features off, it will not generate
+            # the tint libraries when using the "install" target. As we still want to install some of the SPIRV
+            # libraries, we first build with the "install" target
+            RunCMake(context, force, cmakeOptions)
+            buildDir = RunCMake(context, force, cmakeOptions, target="tint_api")
 
         # installation scripts are missing in tint. Doing it manually until addressed
         with CurrentWorkingDirectory(srcDir):
@@ -1617,8 +1700,7 @@ def InstallTint(context, force, buildArgs):
             CopyDirectory(context, "src/tint", "include/src/tint")
 
         with CurrentWorkingDirectory(buildDir):
-            CopyFiles(context, "src/tint/libtint.a", "lib")
-            CopyFiles(context, "src/tint/libtint_diagnostic_utils.a", "lib")
+            CopyFiles(context, "src/tint/libtint*.a", "lib")
 
 
 TINT = Dependency("Tint", InstallTint, "include/tint/tint.h")
@@ -1626,7 +1708,7 @@ TINT = Dependency("Tint", InstallTint, "include/tint/tint.h")
 ############################################################
 # DAWN and 3rd parties
 DAWN_REPO = "https://dawn.googlesource.com/dawn"
-DAWN_CHROMIUM_VERSION = "5677"
+DAWN_CHROMIUM_VERSION = "6031"
 
 def InstallDawn(context, force, buildArgs):
     with CurrentWorkingDirectory(context.srcDir):
@@ -1649,23 +1731,41 @@ def InstallDawn(context, force, buildArgs):
                 'third_party/abseil-cpp',
                 'third_party/jinja2',
                 'third_party/markupsafe',
+                GLSLANG_RELATIVE_PATH
             ]
+
+            PatchFile("third_party/CMakeLists.txt",
+              [('    set(SKIP_SPIRV_TOOLS_INSTALL ON CACHE BOOL "" FORCE)\n',
+                '    set(SKIP_SPIRV_TOOLS_INSTALL OFF CACHE BOOL "" FORCE)\n'),
+               ('    add_subdirectory(${DAWN_SPIRV_TOOLS_DIR} "${CMAKE_CURRENT_BINARY_DIR}/spirv-tools" EXCLUDE_FROM_ALL)\n',
+                '    add_subdirectory(${DAWN_SPIRV_TOOLS_DIR} "${CMAKE_CURRENT_BINARY_DIR}/spirv-tools")\n'),
+               ])
+
+            if Windows():
+                required_submodules += [
+                    'third_party/dxheaders',
+                    'third_party/vulkan-deps/vulkan-utility-libraries/src',
+                ]
+
+                # Dawn native cmake needs revise for DX12
+                PatchFile("src/dawn/native/CMakeLists.txt",
+                    [('    target_link_libraries(dawn_native PRIVATE dxguid.lib)\n',
+                     '    target_include_directories(dawn_native PRIVATE ${DAWN_THIRD_PARTY_DIR}/dxheaders/include/directx)\n' +
+                     '    target_link_libraries(dawn_native PRIVATE dxguid.lib)\n')])
+
             google_depot_tools.fetch_dependecies(required_submodules)
             cmakeOptions = [
                 '-DBUILD_SHARED_LIBS={}'.format('OFF' if Windows() else 'ON'),
-                '-DTINT_BUILD_SPV_READER=ON',
-                '-DTINT_BUILD_WGSL_WRITER=ON',
-                '-DTINT_BUILD_SAMPLES=OFF',
-                '-DTINT_BUILD_TESTS=OFF'
+                '-DDAWN_BUILD_SAMPLES=OFF',
+                '-DDAWN_ENABLE_INSTALL=ON'
             ]
-            cmakeOptions += buildArgs;
+            cmakeOptions += TINT_CMAKE_OPTIONS
+            cmakeOptions += buildArgs
             buildDir = RunCMake(context, force, cmakeOptions)
         
     # installation scripts are missing in dawn. Doing it manually until addressed
     with CurrentWorkingDirectory(srcDir):
-        CopyDirectory(context, "include/dawn", "include/dawn")
         CopyDirectory(context, "include/tint", "include/tint")
-        CopyDirectory(context, "include/webgpu", "include/webgpu")
         CopyDirectory(context, "src/tint", "include/src/tint")
 
     with CurrentWorkingDirectory(buildDir):
@@ -1678,58 +1778,18 @@ def InstallDawn(context, force, buildArgs):
             buildConfigFolder = ''
 
         # Lib files
-        CopyFiles(context, "src/dawn/{buildConfig}*.*".format(buildConfig=buildConfigFolder), "lib")
         CopyFiles(context, "src/dawn/common/{buildConfig}*.*".format(buildConfig=buildConfigFolder), "lib")
-        CopyFiles(context, "src/dawn/glfw/{buildConfig}*.*".format(buildConfig=buildConfigFolder), "lib")
-        CopyFiles(context, "src/dawn/native/{buildConfig}*.*".format(buildConfig=buildConfigFolder), "lib")
-        CopyFiles(context, "src/dawn/platform/{buildConfig}*.*".format(buildConfig=buildConfigFolder), "lib")
-        CopyFiles(context, "src/dawn/wire/{buildConfig}*.*".format(buildConfig=buildConfigFolder), "lib")
         CopyFiles(context, "third_party/spirv-tools/source/{buildConfig}*SPIRV-Tools.*".format(buildConfig=buildConfigFolder), "lib")
         CopyFiles(context, "third_party/spirv-tools/source/opt/{buildConfig}*SPIRV-Tools-opt.*".format(buildConfig=buildConfigFolder), "lib")
         CopyFiles(context, "third_party/abseil/absl/strings/{buildConfig}*.*".format(buildConfig=buildConfigFolder), "lib")
         CopyFiles(context, "third_party/abseil/absl/base/{buildConfig}*.*".format(buildConfig=buildConfigFolder), "lib")
         CopyFiles(context, "third_party/abseil/absl/numeric/{buildConfig}*.*".format(buildConfig=buildConfigFolder), "lib")
         CopyFiles(context, "src/tint/{buildConfig}*.*".format(buildConfig=buildConfigFolder), "lib")
-
         # Extra include files
         CopyFiles(context, "gen/include/dawn/*.*", "include/dawn")
 
+
 DAWN = Dependency("Dawn", InstallDawn, "include/dawn/webgpu_cpp.h")
-
-############################################################
-# shaderc
-
-SHADERC_URL = "https://github.com/google/shaderc/archive/refs/tags/v2023.3.zip"
-
-def InstallShaderc(context, force, buildArgs):
-    with CurrentWorkingDirectory(DownloadURL(SHADERC_URL, context, force)):
-        pythonInfo = GetPythonInfo(context)
-
-        Run("{} ./utils/git-sync-deps".format(pythonInfo[0].replace('\\', '/')))
-        cmakeOptions = [
-            '-DBUILD_SHARED_LIBS=OFF',
-            '-DSHADERC_SKIP_TESTS=ON',
-            '-DSHADERC_SKIP_EXAMPLES=ON',
-            '-DSHADERC_SKIP_COPYRIGHT_CHECK=ON',
-            '-DENABLE_GLSLANG_BINARIES=OFF'
-        ]
-
-        cmakeOptions += buildArgs
-
-        # We link with tint same common dependencies and verify there are no issues with different version
-        if context.emscripten:
-            cmakeOptions += [
-                '-DCMAKE_CXX_FLAGS="' + EMSCRIPTEN_CMAKE_CXX_FLAGS + '"',
-                '-DCMAKE_EXE_LINKER_FLAGS="' + EMSCRIPTEN_CMAKE_EXE_LINKER_FLAGS + '"',
-                '-DSHADERC_GLSLANG_DIR=' + os.path.join(
-                    context.srcDir, 'tint', 'third_party', 'vulkan-deps', 'glslang', 'src'),
-                '-DSHADERC_SPIRV_TOOLS_DIR=' + os.path.join(
-                    context.srcDir, 'tint', 'third_party', 'vulkan-deps', 'spirv-tools', 'src')
-            ]
-        RunCMake(context, force, cmakeOptions)
-
-
-SHADERC = Dependency("Shaderc", InstallShaderc, "include/shaderc/shaderc.hpp")
 
 ############################################################
 # Embree
@@ -1945,8 +2005,6 @@ def InstallUSD(context, force, buildArgs):
 
             extraArgs.append('-DOPENSUBDIV_INCLUDE_DIR="{}"'.format(os.path.join(context.usdInstDir, 'include')))
             extraArgs.append('-DOPENSUBDIV_OSDCPU_LIBRARY="{}"'.format(os.path.join(context.usdInstDir, 'lib/libosdCPU.a')))
-
-            extraArgs.append('-DTHREE_JS_FILE="{}"'.format(os.path.join(context.usdInstDir, 'src/three.js')))
 
             extraArgs.append('-DPXR_ENABLE_GL_SUPPORT=ON')
             extraArgs.append('-DBUILD_SHARED_LIBS=OFF')
@@ -2500,9 +2558,6 @@ requiredDependencies = [BOOST, TBB]
 if not context.emscripten:
     requiredDependencies += [ZLIB]
 
-if context.dawn:
-    requiredDependencies += [DAWN, SHADERC]
-
 if context.emscripten and context.buildTests:
     requiredDependencies += [THREE]
 
@@ -2518,9 +2573,14 @@ if context.buildMaterialX:
     requiredDependencies += [MATERIALX]
 
 if context.buildImaging:
+    if context.dawn:
+        # Please keep the dependencies order as glslang is a
+        # dependency of Dawn and, it is downloaded when building it.
+        requiredDependencies += [DAWN, GLSLANG]
+
     if context.emscripten:
-        # In this case order is important since SHADERC will use the same common dependencies for SPIRV as TINT
-        requiredDependencies += [TINT, SHADERC]
+        # Same as above, please keep the dependencies order.
+        requiredDependencies += [TINT, GLSLANG]
 
     if context.enablePtex:
         requiredDependencies += [PTEX]
@@ -2578,12 +2638,17 @@ for dep in requiredDependencies:
             dependenciesToBuild.append(dep)
 
 # Verify toolchain needed to build required dependencies
-if (not which("g++") and
-    not which("clang") and
-    not GetXcodeDeveloperDirectory() and
-    not GetVisualStudioCompilerAndVersion()):
-    PrintError("C++ compiler not found -- please install a compiler")
-    sys.exit(1)
+if context.emscripten:
+    if not which("emcc"):
+        PrintError(" Emscripten compiler emcc not found -- please install a compiler")
+        sys.exit(1)
+else:
+    if (not which("g++") and
+        not which("clang") and
+        not GetXcodeDeveloperDirectory() and
+        not GetVisualStudioCompilerAndVersion()):
+        PrintError(" C++ compiler not found -- please install a compiler")
+        sys.exit(1)
 
 # Error out if a 64bit version of python interpreter is not being used
 isPython64Bit = (ctypes.sizeof(ctypes.c_voidp) == 8)

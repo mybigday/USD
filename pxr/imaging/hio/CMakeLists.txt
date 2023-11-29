@@ -49,4 +49,3 @@ pxr_library(hio
     DOXYGEN_FILES
         overview.dox
 )
-

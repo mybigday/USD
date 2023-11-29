@@ -102,6 +102,8 @@ HgiMetalCapabilities::HgiMetalCapabilities(id<MTLDevice> device)
 
     _SetFlag(HgiDeviceCapabilitiesBitsGeometricStage, true);
 
+    _SetFlag(HgiDeviceCapabilitiesBitsClipDistanceSupport, true);
+
     // This is done to decide whether to use a workaround for post tess
     // patch primitive ID lookup. The bug causes the firstPatch offset
     // to be included incorrectly in the primitive ID. Our workaround
@@ -171,5 +173,12 @@ HgiMetalCapabilities::GetShaderVersion() const
     // compatibility with code that is asking for the GLSL version.
     return 450;
 }
+
+bool HgiMetalCapabilities::IsViewportYUp() const {
+    // Actually the metal viewport Y is down but, we are already handling then Y flip by setting the
+    // Viewport height as a negative value and flipping the winding in graphicsCmds.mm
+    return true;
+}
+
 
 PXR_NAMESPACE_CLOSE_SCOPE

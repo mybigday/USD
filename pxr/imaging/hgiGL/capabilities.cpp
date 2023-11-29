@@ -210,6 +210,7 @@ HgiGLCapabilities::_LoadCapabilities()
         true);
     _SetFlag(HgiDeviceCapabilitiesBitsOSDSupport, true);
     _SetFlag(HgiDeviceCapabilitiesBitsGeometricStage, true);
+    _SetFlag(HgiDeviceCapabilitiesBitsClipDistanceSupport, true);
 
     if (TfDebug::IsEnabled(HGI_DEBUG_DEVICE_CAPABILITIES)) {
         std::cout
@@ -259,6 +260,10 @@ HgiGLCapabilities::GetAPIVersion() const {
 int
 HgiGLCapabilities::GetShaderVersion() const {
     return _glslVersion;
+}
+
+bool HgiGLCapabilities::IsViewportYUp() const {
+    return true;
 }
 
 PXR_NAMESPACE_CLOSE_SCOPE

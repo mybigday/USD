@@ -24,9 +24,10 @@
 #include "pxr/imaging/hgiWebGPU/computeCmds.h"
 #include "pxr/imaging/hgiWebGPU/computePipeline.h"
 #include "pxr/imaging/hgiWebGPU/conversions.h"
+#include "pxr/imaging/hgiWebGPU/api.h"
+#include "pxr/imaging/hgiWebGPU/diagnostic.h"
 #include "pxr/imaging/hgiWebGPU/hgi.h"
 #include "pxr/imaging/hgiWebGPU/resourceBindings.h"
-#include "pxr/imaging/hgiWebGPU/api.h"
 
 PXR_NAMESPACE_OPEN_SCOPE
 
@@ -39,7 +40,10 @@ HgiWebGPUComputeCmds::HgiWebGPUComputeCmds(HgiWebGPU* hgi, HgiComputeCmdsDesc co
     , _computePassStarted(false)
     , _pushConstantsDirty(false)
     , _dispatchMethod(desc.dispatchMethod)
+    , _localWorkGroupSize(GfVec3i(1, 1, 1))
 {
+    _constantBindGroupEntry = {};
+    _constantBindGroupEntry.size = 0;
     _CreateCommandEncoder();
 
     // begin compute pass
@@ -54,11 +58,15 @@ HgiWebGPUComputeCmds::~HgiWebGPUComputeCmds()
 void
 HgiWebGPUComputeCmds::PushDebugGroup(const char* label)
 {
+    _CreateCommandEncoder();
+    HgiWebGPUBeginLabel(_commandEncoder, label);
 }
 
 void
 HgiWebGPUComputeCmds::PopDebugGroup()
 {
+    _CreateCommandEncoder();
+    HgiWebGPUEndLabel(_commandEncoder);
 }
 
 void
@@ -68,6 +76,21 @@ HgiWebGPUComputeCmds::BindPipeline(HgiComputePipelineHandle pipeline)
 
     _pipeline = static_cast<HgiWebGPUComputePipeline *>(pipeline.Get());
     _computePassEncoder.SetPipeline(_pipeline->GetPipeline());
+
+    const HgiComputePipelineDesc pipelineDesc = pipeline.Get()->GetDescriptor();
+    const HgiShaderFunctionHandleVector shaderFunctionsHandles = pipelineDesc.shaderProgram.Get()->GetDescriptor().
+                    shaderFunctions;
+
+    for (const auto &handle : shaderFunctionsHandles) {
+        const HgiShaderFunctionDesc &shaderDesc = handle.Get()->GetDescriptor();
+        if (shaderDesc.shaderStage == HgiShaderStageCompute) {
+            if (shaderDesc.computeDescriptor.localSize[0] > 0 &&
+                shaderDesc.computeDescriptor.localSize[1] > 0 &&
+                shaderDesc.computeDescriptor.localSize[2] > 0) {
+                _localWorkGroupSize = shaderDesc.computeDescriptor.localSize;
+            }
+        }
+    }
 }
 
 void
@@ -114,7 +137,10 @@ HgiWebGPUComputeCmds::Dispatch(int dimX, int dimY)
 {
     _ApplyPendingUpdates();
 
-    _computePassEncoder.DispatchWorkgroups(dimX, dimY, 1);
+    const int workgroupSizeX = _localWorkGroupSize[0];
+    const int workgroupSizeY = _localWorkGroupSize[1];
+
+    _computePassEncoder.DispatchWorkgroups((dimX + workgroupSizeX - 1) / workgroupSizeX, (dimY + workgroupSizeY - 1) / workgroupSizeY, 1);
 }
 
 bool

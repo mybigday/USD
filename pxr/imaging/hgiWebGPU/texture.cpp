@@ -33,9 +33,10 @@ HgiWebGPUTexture::HgiWebGPUTexture(HgiWebGPU *hgi, HgiTextureDesc const & desc)
     : HgiTexture(desc)
     , _textureHandle(nullptr)
     , _textureView(nullptr)
+    , _isTextureView(false)
 {
     wgpu::TextureDescriptor descriptor;
-    // TODO: setting TextureBinding since renderAttachment texture could be use as binding in a following pass
+    // TODO: setting TextureBinding since renderAttachment texture could be used as binding in a following pass
     descriptor.usage = wgpu::TextureUsage::CopySrc | wgpu::TextureUsage::CopyDst | wgpu::TextureUsage::TextureBinding;
     descriptor.format = HgiWebGPUConversions::GetPixelFormat(desc.format);
     descriptor.label = desc.debugName.c_str();
@@ -126,6 +127,7 @@ HgiWebGPUTexture::HgiWebGPUTexture(HgiWebGPU *hgi, HgiTextureDesc const & desc)
 HgiWebGPUTexture::HgiWebGPUTexture(HgiWebGPU *hgi, HgiTextureViewDesc const & desc)
     : HgiTexture(desc.sourceTexture->GetDescriptor())
     , _textureHandle(nullptr)
+    , _isTextureView(true)
 {
     HgiWebGPUTexture* srcTexture =
         static_cast<HgiWebGPUTexture*>(desc.sourceTexture.Get());
@@ -133,7 +135,7 @@ HgiWebGPUTexture::HgiWebGPUTexture(HgiWebGPU *hgi, HgiTextureViewDesc const & de
     _descriptor.format = desc.format;
     _descriptor.layerCount = desc.layerCount;
     _descriptor.mipLevels = desc.mipLevels;
-    
+
     // TODO: probably make a *copy* of this resource rather than just a shallow copy of the handle
     _textureHandle = srcTexture->GetTextureHandle();
 
@@ -141,14 +143,16 @@ HgiWebGPUTexture::HgiWebGPUTexture(HgiWebGPU *hgi, HgiTextureViewDesc const & de
     wgpu::TextureViewDescriptor textureViewDesc;
     textureViewDesc.format = srcTexture->_pixelFormat;
     textureViewDesc.dimension = _descriptor.dimensions[1] > 1 ? ( _descriptor.dimensions[2] > 1 ? wgpu::TextureViewDimension::e3D : wgpu::TextureViewDimension::e2D) : wgpu::TextureViewDimension::e1D;
+    textureViewDesc.baseMipLevel = desc.sourceFirstMip;
 	textureViewDesc.mipLevelCount = desc.mipLevels;
+    textureViewDesc.baseArrayLayer = desc.sourceFirstLayer;
     textureViewDesc.arrayLayerCount = desc.layerCount;
 	_textureView = _textureHandle.CreateView(&textureViewDesc);
 }
 
 HgiWebGPUTexture::~HgiWebGPUTexture()
 {
-    if (_textureHandle) {
+    if (_textureHandle && !_isTextureView) {
         _textureHandle.Destroy();
         _textureHandle = nullptr;
     }

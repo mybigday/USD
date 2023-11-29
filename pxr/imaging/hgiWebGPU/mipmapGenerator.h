@@ -1,5 +1,5 @@
 //
-// Copyright 2022 Pixar
+// Copyright 2023 Pixar
 //
 // Licensed under the Apache License, Version 2.0 (the "Apache License")
 // with the following modification; you may not use this file except in
@@ -38,10 +38,10 @@
 
 PXR_NAMESPACE_OPEN_SCOPE
 
-class WebGPUMipmapGenerator {
+class HgiWebGPUMipmapGenerator {
   public:
-    WebGPUMipmapGenerator(wgpu::Device const &device);
-    ~WebGPUMipmapGenerator();
+    HgiWebGPUMipmapGenerator(wgpu::Device const &device);
+    ~HgiWebGPUMipmapGenerator();
     wgpu::Texture generateMipmap(wgpu::Texture const &level0Texture, const HgiTextureDesc &level0TextureDesc);
 
   private:

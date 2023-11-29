@@ -68,8 +68,9 @@ void HgiWebGPUShaderFunction::_CreateBuffersBindingGroupLayoutEntries(
         bufferLayout.type = HgiWebGPUConversions::GetBufferBindingType(b.binding, b.writable);
 
         if (stage & wgpu::ShaderStage::Vertex && b.writable && bufferLayout.type == wgpu::BufferBindingType::Storage) {
-            TF_WARN("No support for writable buffers in vertex stage");
-            bufferLayout.type = wgpu::BufferBindingType::ReadOnlyStorage;
+            // Even though webgpu supports read-write buffers for Fragment shaders, we need to unify the
+            // shader code declaration between the two stages
+            TF_WARN("No support for writable buffer named %s in vertex stage", b.nameInShader.c_str());
         }
         entry.binding = b.bindIndex;
         entry.buffer = bufferLayout;
@@ -92,14 +93,20 @@ void HgiWebGPUShaderFunction::_CreateTexturesGroupLayoutEntries(
         wgpu::BindGroupLayoutEntry textureEntry;
         wgpu::BindGroupLayoutEntry samplerEntry;
         textureEntry.visibility = stage;
+        if (t.writable) {
+            // TODO: This is the only access storage for now
+            textureEntry.storageTexture.access = wgpu::StorageTextureAccess::WriteOnly;
+            textureEntry.storageTexture.viewDimension = HgiWebGPUConversions::GetTextureViewDimension(t.dimensions);
+            textureEntry.storageTexture.format = HgiWebGPUConversions::GetPixelFormat(t.format);
+        } else {
+            textureEntry.texture.viewDimension = HgiWebGPUConversions::GetTextureViewDimension(t.dimensions);
+            textureEntry.texture.sampleType = HgiWebGPUConversions::GetTextureSampleType(t.format);
+        }
         samplerEntry.visibility = stage;
         textureEntry.binding = i;
         samplerEntry.binding = i;
-        textureEntry.texture.viewDimension = HgiWebGPUConversions::GetTextureViewDimension(t.dimensions);
-        textureEntry.texture.sampleType = HgiWebGPUConversions::GetTextureSampleType(t.format);
         // TODO: How to derive this?
         samplerEntry.sampler.type = wgpu::SamplerBindingType::Filtering;
-
         texturesBindGroupEntries.insert(std::make_pair(i,textureEntry));
         samplersBindGroupEntries.insert(std::make_pair(i,samplerEntry));
     }
@@ -114,6 +121,7 @@ HgiWebGPUShaderFunction::HgiWebGPUShaderFunction(
     , _shaderModule(nullptr)
 {
     HgiWebGPUShaderGenerator shaderGenerator(hgi, desc);
+
     shaderGenerator.Execute();
     const char *shaderCode = shaderGenerator.GetGeneratedShaderCode();
 
@@ -125,13 +133,12 @@ HgiWebGPUShaderFunction::HgiWebGPUShaderFunction(
     wgpu::ShaderModuleWGSLDescriptor wgslDesc;
     wgpu::ShaderModuleDescriptor shaderModuleDesc;
     wgslDesc.sType = wgpu::SType::ShaderModuleWGSLDescriptor;
-    shaderModuleDesc.label = _descriptor.debugName.empty() ?
-                             "HdStorm on WebGPU POC" : _descriptor.debugName.c_str();
+    shaderModuleDesc.label = _descriptor.debugName.c_str();
     shaderModuleDesc.nextInChain = &wgslDesc;
     std::string wgslCode;
 
     if (TfGetEnvSetting(HGIWEBGPU_ENABLE_WGSL)) {
-        wgslDesc.source = desc.shaderCode;
+        wgslDesc.code = desc.shaderCode;
     } else {
         const char* debugLbl = _descriptor.debugName.empty() ?
             "unknown" : _descriptor.debugName.c_str();
@@ -147,21 +154,23 @@ HgiWebGPUShaderFunction::HgiWebGPUShaderFunction(
 
         if (result) {
             //// SPIR-V
-            tint::Program program = tint::reader::spirv::Parse(spirvData);
+            tint::spirv::reader::Options readerOptions{};
+            readerOptions.allow_non_uniform_derivatives = true;
+            tint::Program program = tint::spirv::reader::Read(spirvData, readerOptions);
             if (!program.IsValid()) {
                 TF_CODING_ERROR("Tint SPIR-V reader failure:\nParser: " + program.Diagnostics().str() + "\n");
                 return;
             };
 
-            tint::writer::wgsl::Options options{};
-            auto result = tint::writer::wgsl::Generate(&program, options);
-            if (!result.success) {
-                _errors = result.error;
+            tint::wgsl::writer::Options options{};
+            auto tintResult = tint::wgsl::writer::Generate(program, options);
+            if (tintResult) {
+                wgslCode = tintResult->wgsl;
+            } else {
+                _errors = tintResult.Failure().reason.str();
             }
 
-            wgslCode = std::move(result.wgsl);
-            wgslDesc.source = wgslCode.c_str();
-
+            wgslDesc.code = wgslCode.c_str();
         }
     }
 

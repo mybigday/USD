@@ -133,6 +133,7 @@ HgiVulkanCapabilities::HgiVulkanCapabilities(HgiVulkanDevice* device)
         shaderDrawParametersEnabled);
     _SetFlag(HgiDeviceCapabilitiesBitsGeometricStage, true);
     _SetFlag(HgiDeviceCapabilitiesBitsOSDSupport, false);
+    _SetFlag(HgiDeviceCapabilitiesBitsClipDistanceSupport, true);
 }
 
 HgiVulkanCapabilities::~HgiVulkanCapabilities() = default;
@@ -149,6 +150,10 @@ HgiVulkanCapabilities::GetShaderVersion() const
     // Note: This is not the Vulkan Shader Language version. It is provided for
     // compatibility with code that is asking for the GLSL version.
     return 450;
+}
+
+bool HgiVulkanCapabilities::IsViewportYUp() const {
+    return false;
 }
 
 PXR_NAMESPACE_CLOSE_SCOPE

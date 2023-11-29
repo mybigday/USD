@@ -39,6 +39,7 @@ HgiWebGPUCapabilities::HgiWebGPUCapabilities(wgpu::Device)
     _SetFlag(HgiDeviceCapabilitiesBitsCppShaderPadding, false);
     _SetFlag(HgiDeviceCapabilitiesBitsGeometricStage, false);
     _SetFlag(HgiDeviceCapabilitiesBitsOSDSupport, false);
+    _SetFlag(HgiDeviceCapabilitiesBitsClipDistanceSupport, false);
 
 }
 
@@ -54,6 +55,11 @@ int
 HgiWebGPUCapabilities::GetShaderVersion() const
 {
     return 460;
+}
+
+bool
+HgiWebGPUCapabilities::IsViewportYUp() const {
+    return false;
 }
 
 PXR_NAMESPACE_CLOSE_SCOPE

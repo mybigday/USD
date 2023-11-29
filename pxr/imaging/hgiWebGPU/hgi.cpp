@@ -105,104 +105,39 @@ wgpu::Device GetDevice() {
     }
     static std::unique_ptr<dawn::native::Instance> instance;
 
-// Return backend select priority, smaller number means higher priority.
-    int GetBackendPriority(wgpu::BackendType t) {
-        switch (t) {
-            case wgpu::BackendType::Null:
-                return 9999;
-            case wgpu::BackendType::D3D12:
-            case wgpu::BackendType::Metal:
-            case wgpu::BackendType::Vulkan:
-                return 0;
-            case wgpu::BackendType::WebGPU:
-                return 5;
-            case wgpu::BackendType::D3D11:
-            case wgpu::BackendType::OpenGL:
-            case wgpu::BackendType::OpenGLES:
-                return 10;
-        }
-        return 100;
-    }
-
-    const char* BackendTypeName(wgpu::BackendType t)
-    {
-        switch (t) {
-            case wgpu::BackendType::Null:
-                return "Null";
-            case wgpu::BackendType::WebGPU:
-                return "WebGPU";
-            case wgpu::BackendType::D3D11:
-                return "D3D11";
-            case wgpu::BackendType::D3D12:
-                return "D3D12";
-            case wgpu::BackendType::Metal:
-                return "Metal";
-            case wgpu::BackendType::Vulkan:
-                return "Vulkan";
-            case wgpu::BackendType::OpenGL:
-                return "OpenGL";
-            case wgpu::BackendType::OpenGLES:
-                return "OpenGL ES";
-        }
-        return "?";
-    }
-
-    const char* AdapterTypeName(wgpu::AdapterType t)
-    {
-        switch (t) {
-            case wgpu::AdapterType::DiscreteGPU:
-                return "Discrete GPU";
-            case wgpu::AdapterType::IntegratedGPU:
-                return "Integrated GPU";
-            case wgpu::AdapterType::CPU:
-                return "CPU";
-            case wgpu::AdapterType::Unknown:
-                return "Unknown";
-        }
-        return "?";
-    }
-
     wgpu::Device GetDevice() {
         instance = std::make_unique<dawn::native::Instance>();
-        instance->DiscoverDefaultAdapters();
 
-        auto adapters = instance->GetAdapters();
-
-        // Sort adapters by adapterType,
-        std::sort(adapters.begin(), adapters.end(), [](const dawn::native::Adapter& a, const dawn::native::Adapter& b){
-            wgpu::AdapterProperties pa, pb;
-            a.GetProperties(&pa);
-            b.GetProperties(&pb);
-
-            if (pa.adapterType != pb.adapterType) {
-                // Put GPU adapter (D3D, Vulkan, Metal) at front and CPU adapter at back.
-                return pa.adapterType < pb.adapterType;
-            }
-
-            return GetBackendPriority(pa.backendType) < GetBackendPriority(pb.backendType);
-        });
         // Simply pick the first adapter in the sorted list.
-        dawn::native::Adapter backendAdapter = adapters[0];
+        dawn::native::Adapter backendAdapter = instance->EnumerateAdapters()[0];
 
-        TF_DEBUG(HGIWEBGPU_DEBUG_DEVICE_CREATION).
-          Msg("Available adapters sorted by their Adapter type, with GPU adapters listed at front and preferred:\n\n");
-        TF_DEBUG(HGIWEBGPU_DEBUG_DEVICE_CREATION).Msg(" [Selected] -> ");
-        for (auto&& a : adapters) {
-            wgpu::AdapterProperties p;
-            a.GetProperties(&p);
-            TF_DEBUG(HGIWEBGPU_DEBUG_DEVICE_CREATION).Msg(
-                    "* %s (%s)\n"
-                    "    deviceID=%u, vendorID=0x%x, BackendType::%s, AdapterType::%s\n",
-                    p.name, p.driverDescription, p.deviceID, p.vendorID,
-                    BackendTypeName(p.backendType), AdapterTypeName(p.adapterType));
-        }
-        TF_DEBUG(HGIWEBGPU_DEBUG_DEVICE_CREATION).Msg("\n\n");
-
-        // Toggle for debugging shader
         wgpu::DeviceDescriptor descriptor;
-        wgpu::FeatureName requiredFeatures = wgpu::FeatureName::Depth32FloatStencil8;
-        descriptor.requiredFeatures = &requiredFeatures;
-        descriptor.requiredFeaturesCount = 1;
+        std::vector<wgpu::FeatureName> requiredFeatures = {
+                wgpu::FeatureName::Depth32FloatStencil8,
+        };
+
+        #ifndef EMSCRIPTEN
+            // toggles are handled by chrome itself, so we only enable it for the desktop version where we have direct
+            // control
+            wgpu::DawnTogglesDescriptor deviceTogglesDesc;
+            // Toggle for debugging shader
+            std::vector<const char *> enabledToggles = {"allow_unsafe_apis"};
+            if (TfDebug::IsEnabled(HGIWEBGPU_DEBUG_SHADER_CODE)) {
+                enabledToggles.push_back("dump_shaders");
+                enabledToggles.push_back("disable_symbol_renaming");
+            }
+            deviceTogglesDesc.enabledToggles = enabledToggles.data();
+            deviceTogglesDesc.enabledToggleCount = enabledToggles.size();
+            descriptor.nextInChain = &deviceTogglesDesc;
+
+            // This feature requires toggling the "allow_unsafe_apis" in Chrome at the moment. We can include it
+            // in emscripten after it has been classified as "safe"
+            // In particular we enable this feature to handle Float32 textures used in some cases in IBL
+            requiredFeatures.push_back(wgpu::FeatureName::Float32Filterable);
+        #endif
+
+        descriptor.requiredFeatures = requiredFeatures.data();
+        descriptor.requiredFeatureCount = requiredFeatures.size();
 
         WGPUDevice cDevice = backendAdapter.CreateDevice(&descriptor);
         wgpu::Device device = wgpu::Device::Acquire(cDevice);
@@ -214,14 +149,14 @@ wgpu::Device GetDevice() {
     }
 #endif  // __EMSCRIPTEN__
 
-HgiWebGPU::HgiWebGPU(wgpu::Device device)
-: _device(device)
+HgiWebGPU::HgiWebGPU()
+: _device(GetDevice())
 , _currentCmds(nullptr)
+,_depthResolver(_device)
+,_mipmapGenerator(_device)
 , _workToFlush(false)
-{
-    // get the webgpu device
-    _device = GetDevice();
 
+{
     // get the default command queue
     _commandQueue = _device.GetQueue();
 
@@ -230,6 +165,7 @@ HgiWebGPU::HgiWebGPU(wgpu::Device device)
 
 HgiWebGPU::~HgiWebGPU()
 {
+    _PerformGarbageCollection();
 }
 
 bool
@@ -299,10 +235,15 @@ HgiWebGPU::CreateTextureView(HgiTextureViewDesc const & desc)
 }
 
 void
-HgiWebGPU::DestroyTextureView(HgiTextureViewHandle* viewHandle)
-{
+HgiWebGPU::DestroyTextureView(HgiTextureViewHandle *viewHandle) {
     HgiTextureHandle texHandle = (*viewHandle)->GetViewTexture();
-    _TrashObject(&texHandle);
+    if (_workToFlush) {
+        _garbageCollectionHandlers.emplace_back([texHandle] {
+            delete texHandle.Get();
+        });
+    } else {
+        _TrashObject(&texHandle);
+    }
     (*viewHandle)->SetViewTexture(HgiTextureHandle());
     delete viewHandle->Get();
     *viewHandle = HgiTextureViewHandle();
@@ -471,6 +412,14 @@ HgiWebGPU::GetAPIVersion() const
     return GetCapabilities()->GetAPIVersion();
 }
 
+void
+HgiWebGPU::_PerformGarbageCollection() {
+    for (auto const& fn : _garbageCollectionHandlers)
+        fn();
+
+    _garbageCollectionHandlers.clear();
+}
+
 bool
 HgiWebGPU::_SubmitCmds(HgiCmds* cmds, HgiSubmitWaitType wait)
 {
@@ -478,12 +427,24 @@ HgiWebGPU::_SubmitCmds(HgiCmds* cmds, HgiSubmitWaitType wait)
 
     if (cmds) {
         _workToFlush = Hgi::_SubmitCmds(cmds, wait);
+        if (_workToFlush) {
+            _PerformGarbageCollection();
+        }
         if (cmds == _currentCmds) {
             _currentCmds = nullptr;
         }
     }
 
     return _workToFlush;
+}
+
+wgpu::Texture HgiWebGPU::GenerateMipmap(const wgpu::Texture& texture, const HgiTextureDesc& textureDescriptor) {
+    return _mipmapGenerator.generateMipmap(texture, textureDescriptor);
+}
+
+void HgiWebGPU::ResolveDepth(wgpu::CommandEncoder const &commandEncoder, HgiWebGPUTexture &sourceTexture,
+                  HgiWebGPUTexture &destinationTexture) {
+        _depthResolver.resolveDepth(commandEncoder, sourceTexture, destinationTexture);
 }
 
 PXR_NAMESPACE_CLOSE_SCOPE

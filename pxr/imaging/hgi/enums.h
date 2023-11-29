@@ -103,6 +103,7 @@ enum HgiDeviceCapabilitiesBits : HgiBits
     HgiDeviceCapabilitiesBitsIndirectCommandBuffers  = 1 << 17,
     HgiDeviceCapabilitiesBitsGeometricStage          = 1 << 18,
     HgiDeviceCapabilitiesBitsOSDSupport              = 1 << 19,
+    HgiDeviceCapabilitiesBitsClipDistanceSupport     = 1 << 20,
 };
 
 using HgiDeviceCapabilities = HgiBits;
@@ -372,6 +373,8 @@ enum HgiShaderStageBits : HgiBits
     HgiShaderStagePostTessellationControl = 1 << 6,
     HgiShaderStagePostTessellationVertex = 1 << 7,
     HgiShaderStageCustomBitsBegin        = 1 << 8,
+    HgiShaderStageAll                    = 0xFFFFFFFF
+
 };
 using HgiShaderStage = HgiBits;
 
