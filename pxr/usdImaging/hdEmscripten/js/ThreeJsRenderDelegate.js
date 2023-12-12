@@ -21,11 +21,11 @@ class TextureRegistry {
     }
 
     let filetype = undefined;
-    if (filename.indexOf('.png') >= filename.length - 5) {
+    if (filename.endsWith('.png')) {
       filetype = 'image/png';
-    } else if (filename.indexOf('.jpg') >= filename.length - 5) {
+    } else if (filename.endsWith('.jpg')) {
       filetype = 'image/jpeg';
-    } else if (filename.indexOf('.jpeg') >= filename.length - 5) {
+    } else if (filename.endsWith('.jpeg')) {
       filetype = 'image/jpeg';
     } else {
       throw new Error('Unknown filetype');
@@ -37,6 +37,7 @@ class TextureRegistry {
         return;
       }
 
+      loadedFile = new Uint8Array(loadedFile.slice());
       let blob = new Blob([loadedFile.slice()], {type: filetype});
       let blobUrl = URL.createObjectURL(blob);
 
