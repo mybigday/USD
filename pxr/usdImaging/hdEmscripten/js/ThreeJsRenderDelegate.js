@@ -128,6 +128,18 @@ class HydraMesh {
     this.updateOrder(this._normals, 'normal');
   }
 
+  updateSubset(subsets) {
+    this._mesh.material = subsets.map(
+      ({ materialId }) => this._interface.materials[materialId]?._material, // eslint-disable-line no-underscore-dangle
+    )
+
+    subsets.forEach(({ indices }, i) => {
+      indices.forEach((val) => {
+        this._geometry.addGroup(val * 3, 3, i)
+      })
+    })
+  }
+
   // This is always called before prims are updated
   setMaterial(materialId) {
     console.log('Material: ' + materialId);
@@ -147,7 +159,7 @@ class HydraMesh {
 
     if (interpolation === 'constant') {
       this._mesh.material.color = new THREE.Color().fromArray(data);
-    } else if (interpolation === 'vertex') {
+    } else if (interpolation === 'vertex' || interpolation === 'varying') {
       // Per-vertex buffer attribute
       this._mesh.material.vertexColors = true;
       if (wasDefaultMaterial) {
@@ -168,7 +180,7 @@ class HydraMesh {
     if (interpolation === 'facevarying') {
       // The UV buffer has already been prepared on the C++ side, so we just set it
       this._geometry.setAttribute('uv', new THREE.Float32BufferAttribute(data.slice(), dimension));
-    } else if (interpolation === 'vertex') {
+    } else if (interpolation === 'vertex' || interpolation === 'varying') {
       // We have per-vertex UVs, so we need to sort them accordingly
       this._uvs = data.slice();
       this.updateOrder(this._uvs, 'uv', 2);
